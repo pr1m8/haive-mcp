@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "haive-mcp"
+version = "0.1.0"
+description = "haive-mcp for Haive framework"
+authors = ["pr1m8 <william.astley@algebraicwealth.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{ include = "haive", from = "src" }]
+
+[tool.poetry.dependencies]
+python = ">=3.12,<3.13"
+pydantic = "^2.10.6"
+langchain = "^0.3.20"
+langchain-core = "^0.3.44"
+langgraph = "^0.3.5"
+rich = "^13.9.4"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.5"
+black = "^25.1.0"
+isort = "^6.0.1"
+mypy = "^1.15.0"
+pytest-sugar = "^1.0.0"
+pytest-asyncio = "^0.26.0"
+allure-pytest = "^2.14.2"
+pytest-clarity = "^1.0.1"
+pytest-html = "^4.1.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api" 
