@@ -14,6 +14,9 @@ langchain = "^0.3.20"
 langchain-core = "^0.3.44"
 langgraph = "^0.3.5"
 rich = "^13.9.4"
+mcp = "^1.9.4"
+fastmcp = "^2.8.0"
+langchain-mcp-adapters = "^0.1.7"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.5"
@@ -28,4 +31,4 @@ pytest-html = "^4.1.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api" 
+build-backend = "poetry.core.masonry.api"
