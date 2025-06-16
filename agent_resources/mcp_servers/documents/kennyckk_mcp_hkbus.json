@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "kennyckk/mcp_hkbus",
+    "owner": "kennyckk",
+    "repo_name": "mcp_hkbus",
+    "repo_url": "https://github.com/kennyckk/mcp_hkbus",
+    "description": "[kennyckk/mcp_hkbus](https://github.com/kennyckk/mcp_hkbus): Provides real-time access to Hong Kong's KMB and Long Win Bus route information and arrival times for Language Models.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/kennyckk/mcp_hkbus/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# KMB Bus MCP Server\n[![smithery badge](https://smithery.ai/badge/@kennyckk/mcp_hkbus)](https://smithery.ai/server/@kennyckk/mcp_hkbus)\n\nA Model Context Protocol (MCP) server that provides real-time access to Hong Kong's KMB (九龍巴士) and Long Win Bus (龍運巴士) route information and arrival times. This server enables Language Models to query Hong Kong bus service information to answer user questions about bus routes, stops, and estimated arrival times.\n\n## Features\n\n- Real-time bus arrival information (ETA)\n- Comprehensive bus route queries\n- Bus stop information and searches\n- Route-stop mapping\n- Caching system to optimize API calls\n- Bilingual support (English and Traditional Chinese)\n\n## Data Source\n\nThis project utilizes the official KMB/LWB Open Data API:\n\n- Base URL: https://data.etabus.gov.hk/v1/transport/kmb\n- [KMB Open Data API Documentation](https://data.etabus.gov.hk/documentation/overview)\n\n## Prerequisites\n\n- Python 3.10 or higher\n- uv package manager\n\n## Installation\n\n### Installing via Smithery\n\nTo install KMB Bus MCP for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@kennyckk/mcp_hkbus):\n\n```bash\nnpx -y @smithery/cli install @kennyckk/mcp_hkbus --client claude\n```\n\n### Manual Installation\n\n1. First, install uv if you haven't already:\n\n```bash\ncurl -LsSf https://astral.sh/uv/install.sh | sh\n```\n\n2. Clone the repository:\n\n```bash\ngit clone git@github.com:kennyckk/mcp_hkbus.git\ncd mcp_hkbus\n```\n\n3. Use uv to handle the python package:\n\n```bash\nuv sync #using uv.lock\n```\n\n## Usage\n\n1. Edit the Config in your MCP Client (e.g. Claude Desktop):\n\n```json\n{\n  \"mcpServers\": {\n    \"bus_service\": {\n      \"command\": \"path/to/uv.exe\",\n      \"args\": [\"--directory\", \"path/to/kmb_bus\", \"run\", \"kmb_mcp.py\"],\n      \"background\": true\n    }\n  }\n}\n```\n\n2. The server provides several tools that can be used by Language Models to query bus information:\n\n- `get_route_list()`: Get a list of all bus routes\n- `get_stop_list()`: Get a list of all bus stops\n- `get_route_stops()`: Get stops for a specific route\n- `find_stops_by_name()`: Search for bus stops by name\n- `get_all_routes_at_stop()`: Get all routes serving a specific stop\n- `get_eta()`: Get estimated arrival times\n\n## Testing\n\nRun the test suite using pytest:\n\n```bash\npytest test/kmb-mcp-tests.py\n```\n\n## Dependencies\n\n- `httpx`: For async HTTP requests\n- `fastmcp`: For MCP server implementation\n- `pytest`: For testing (development only)\n\n## Contributing\n\nContributions are welcome! Please feel free to submit a Pull Request.\n\n## Acknowledgments\n\n- KMB/LWB for providing the open data API\n- The MCP protocol developers\n\n## Note\n\nThis service relies on the KMB/LWB Open Data API. Please be mindful of API rate limits and implement appropriate error handling in production environments.\n",
+  "extracted_at": "2025-06-13T08:56:59.962441",
+  "content_hash": "1ed6deef91f4bd193fa732a6787d5146328726243be879e137fade40bd3d65dd"
+}

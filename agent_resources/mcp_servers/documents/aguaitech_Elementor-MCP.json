@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "aguaitech/Elementor-MCP",
+    "owner": "aguaitech",
+    "repo_name": "Elementor-MCP",
+    "repo_url": "https://github.com/aguaitech/Elementor-MCP",
+    "description": "[aguaitech/Elementor-MCP](https://github.com/aguaitech/Elementor-MCP): Facilitates CRUD operations on Elementor data within WordPress using a simple MCP server.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/aguaitech/Elementor-MCP/master/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/aguaitech-elementor-mcp-badge.png)](https://mseep.ai/app/aguaitech-elementor-mcp)\n\n# Elementor MCP Server\n\n[![smithery badge](https://smithery.ai/badge/@aguaitech/Elementor-MCP)](https://smithery.ai/server/@aguaitech/Elementor-MCP)\n\n> We recommand you to use [this template project](https://github.com/aguaitech/Elementor_Project_Workflow) to manage your Elementor project.\n\nThis is a simple MCP server for Elementor. It is used to perform CRUD operations on the Elementor data for a given page.\n\n## Installation\n\n### Installing via Smithery\n\nTo install Elementor MCP Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@aguaitech/Elementor-MCP):\n\n```bash\nnpx -y @smithery/cli install @aguaitech/Elementor-MCP --client claude\n```\n\nOr configure the MCP server in your `mcp.json` file. Note that the environment variables are required.\n* WP_URL: The URL of the target website.\n* WP_APP_USER: The username of the target website. Note: it's the username to log in to the target website, not the application name.\n* WP_APP_PASSWORD: The application password of the target website, keep the space. You can create one in the target website's WordPress dashboard, see [Generating Manually Section in this page](https://make.wordpress.org/core/2020/11/05/application-passwords-integration-guide/).\n\n### MacOS / Linux\n\n```json\n{\n  \"mcpServers\": {\n    \"Elementor MCP\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"elementor-mcp\"],\n      \"env\": {\n        \"WP_URL\": \"https://url.of.target.website\",\n        \"WP_APP_USER\": \"wordpress_username\",\n        \"WP_APP_PASSWORD\": \"Appl icat ion_ Pass word\"\n      }\n    }\n  }\n}\n```\n\n### Windows\n\n```json\n{\n  \"mcpServers\": {\n    \"Elementor MCP\": {\n      \"command\": \"cmd\",\n      \"args\": [\"/c\", \"npx\", \"-y\", \"elementor-mcp\"],\n      \"env\": {\n        \"WP_URL\": \"https://url.of.target.website\",\n        \"WP_APP_USER\": \"wordpress_username\",\n        \"WP_APP_PASSWORD\": \"Appl icat ion_ Pass word\"\n      }\n    }\n  }\n}\n```\n\n## License\n\nThis project is licensed under the MIT License\n",
+  "extracted_at": "2025-06-13T08:55:16.977472",
+  "content_hash": "9c73c575f231b8d229633e09d568b87e7c28cd6a35b4236171fbfbcb04db7afe"
+}

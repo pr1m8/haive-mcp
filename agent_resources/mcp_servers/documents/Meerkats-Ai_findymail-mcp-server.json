@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "Meerkats-Ai/findymail-mcp-server",
+    "owner": "Meerkats-Ai",
+    "repo_name": "findymail-mcp-server",
+    "repo_url": "https://github.com/Meerkats-Ai/findymail-mcp-server",
+    "description": "[Meerkats-Ai/findymail-mcp-server](https://github.com/Meerkats-Ai/findymail-mcp-server): Integrates with the Findymail API to provide email validation and finding capabilities using MCP.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/Meerkats-Ai/findymail-mcp-server/master/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Findymail MCP Server\n\nThis is a Model Context Protocol (MCP) server that integrates with the Findymail API to provide email validation and finding capabilities.\n\n## Features\n\n- Validate email addresses to check if they are valid and deliverable\n- Find work emails for individuals using name and company information\n- Find work emails for individuals using their profile URLs (LinkedIn, etc.)\n\n## Setup\n\n### Local Setup\n\n1. Clone this repository\n2. Install dependencies:\n   ```\n   npm install\n   ```\n3. Create a `.env` file based on `.env.example` and add your Findymail API key:\n   ```\n   FINDYMAIL_API_KEY=your_api_key_here\n   ```\n4. Build the server:\n   ```\n   npm run build\n   ```\n5. Start the server:\n   ```\n   npm start\n   ```\n\n### Docker Setup\n\n1. Clone this repository\n2. Create a `.env` file with your Findymail API key\n3. Build and run using Docker Compose:\n   ```\n   docker-compose up -d\n   ```\n\n## MCP Configuration\n\nTo use this server with an MCP client, add the following configuration to your MCP settings file:\n\n```json\n{\n  \"mcpServers\": {\n    \"findymail\": {\n      \"command\": \"node\",\n      \"args\": [\"path/to/findymail/dist/index.js\"],\n      \"env\": {\n        \"FINDYMAIL_API_KEY\": \"your_api_key_here\"\n      },\n      \"disabled\": false,\n      \"autoApprove\": []\n    }\n  }\n}\n```\n\n## Available Tools\n\n- `findymail_validate_email`: Validate an email address to check if it's valid and deliverable\n- `findymail_find_work_email`: Find a work email for an individual using name and company information\n- `findymail_find_work_email_from_profile`: Find a work email for an individual using their profile URL\n\n## License\n\nISC\n",
+  "extracted_at": "2025-06-13T08:55:15.698403",
+  "content_hash": "6dd4f47b3e63e4940ce2463e58b522d352d55bceb0f59b9a1d552faeaf5e4c68"
+}

@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "Lunran/rssmcp",
+    "owner": "Lunran",
+    "repo_name": "rssmcp",
+    "repo_url": "https://github.com/Lunran/rssmcp",
+    "description": "[Lunran/rssmcp](https://github.com/Lunran/rssmcp): Fetches and formats RSS feed entries with optional export capabilities.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/Lunran/rssmcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# rssmcp MCP server\n[![smithery badge](https://smithery.ai/badge/@Lunran/rssmcp)](https://smithery.ai/server/@Lunran/rssmcp)  \nSimple RSS MCP Server\n\n## Components\n\n### Tools\n\nThe server implements one tool:\n- get_rss: Fetches RSS feeds and returns entries as formatted text\n  - Takes \"feed_name\" and \"since\" as required string arguments\n  - \"export_result\" as an optional boolean parameter (defaults to false)\n  - Returns formatted feed entries as text and optionally exports to a file\n\n## Quickstart\n\n### Installing via Smithery\n\nTo install rssmcp for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@Lunran/rssmcp):\n\n```bash\nnpx -y @smithery/cli install @Lunran/rssmcp --client claude\n```\n\n### Install\n\n```\n\"mcpServers\": {\n  \"rssmcp\": {\n    \"command\": \"uvx\",\n    \"args\": [\n      \"-U\", \"rssmcp\"\n      \"--opml\", \"path/to/your.opml\"],\n    ]\n  }\n}\n```\n",
+  "extracted_at": "2025-06-13T08:56:55.874362",
+  "content_hash": "fe5e7d6f2edb70031afb8391da89b1fbc4e228d009ca1b4f64f7662256945be8"
+}

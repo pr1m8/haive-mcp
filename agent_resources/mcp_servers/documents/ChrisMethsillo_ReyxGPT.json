@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "ChrisMethsillo/ReyxGPT",
+    "owner": "ChrisMethsillo",
+    "repo_name": "ReyxGPT",
+    "repo_url": "https://github.com/ChrisMethsillo/ReyxGPT",
+    "description": "[ChrisMethsillo/ReyxGPT](https://github.com/ChrisMethsillo/ReyxGPT): ReyxGPT enables seamless management of Minecraft servers through the Model Context Protocol, facilitating command execution and status monitoring via RCON.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/ChrisMethsillo/ReyxGPT/master/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# ReyxGPT: Minecraft Server Management Agent\n\nReyxGPT is an agent built on the Model Context Protocol (MCP) for managing Minecraft servers via RCON. It allows a language model to:\n\n- Execute server commands\n- Monitor server and player status\n\n## Setup\n\nTo integrate ReyxGPT with clients like Claude Desktop, add the following to your MCP configuration:\n\n```json\n\"mcpServers\": {\n  \"reyxgpt\": {\n    \"command\": \"uv\",\n    \"args\": [\n      \"--directory\",\n      \"C:\\\\ABSOLUTE_PATH\\\\\",\n      \"run\",\n      \"main.py\"\n    ],\n    \"env\": {\n      \"RCON_HOST\": \"localhost\",\n      \"RCON_PORT\": \"25575\",\n      \"RCON_PASSWORD\": \"verysecurepassword\"\n    }\n  }\n}\n```\n\nEnsure your Minecraft server has RCON enabled with the specified credentials.\n\n## Project Structure\n\n```\nReyxGPT/\n├── .env                 # RCON configuration\n├── main.py              # Application entry point\n├── mcp_server/          # MCP server implementation\n├── rcon/                # RCON client implementation\n├── pyproject.toml       # Dependencies and metadata\n└── uv.lock              # Dependency lock file\n```\n\n## Requirements\n\n- Python 3.13\n- [uv](https://github.com/astral-sh/uv) for running the project\n\n## Running the Agent\n\n```bash\nuv run main.py\n```\n\nThis will start the MCP server, allowing the agent to interact with your Minecraft server.\n",
+  "extracted_at": "2025-06-13T08:55:49.579137",
+  "content_hash": "f3513e871e9f10bde4ee5f160f3e26a23ed4cd996607c46047acec5046f26663"
+}

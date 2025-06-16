@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "openbnb-org/mcp-server-airbnb",
+    "owner": "openbnb-org",
+    "repo_name": "mcp-server-airbnb",
+    "repo_url": "https://github.com/openbnb-org/mcp-server-airbnb",
+    "description": "[openbnb-org/mcp-server-airbnb](https://github.com/openbnb-org/mcp-server-airbnb): Facilitates Airbnb listing searches and detailed information retrieval without requiring an API key, while respecting robots.txt rules.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/openbnb-org/mcp-server-airbnb/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Airbnb MCP Server\n[![smithery badge](https://smithery.ai/badge/@openbnb-org/mcp-server-airbnb)](https://smithery.ai/server/@openbnb-org/mcp-server-airbnb)\n\nMCP Server for searching Airbnb and get listing details.\n\n## Tools\n\n1. `airbnb_search`\n   - Search for Airbnb listings\n   - Required Input: `location` (string)\n   - Optional Inputs:\n     - `placeId` (string)\n     - `checkin` (string, YYYY-MM-DD)\n     - `checkout` (string, YYYY-MM-DD)\n     - `adults` (number)\n     - `children` (number)\n     - `infants` (number)\n     - `pets` (number)\n     - `minPrice` (number)\n     - `maxPrice` (number)\n     - `cursor` (string)\n     - `ignoreRobotsText` (boolean)\n   - Returns: Array of listings with details like name, price, location, etc.\n\n2. `airbnb_listing_details`\n   - Get detailed information about a specific Airbnb listing\n   - Required Input: `id` (string)\n   - Optional Inputs:\n     - `checkin` (string, YYYY-MM-DD)\n     - `checkout` (string, YYYY-MM-DD)\n     - `adults` (number)\n     - `children` (number)\n     - `infants` (number)\n     - `pets` (number)\n     - `ignoreRobotsText` (boolean)\n   - Returns: Detailed listing information including description, host details, amenities, pricing, etc.\n\n## Features\n\n- Respects Airbnb's robots.txt rules\n- Uses cheerio for HTML parsing\n- No API key required\n- Returns structured JSON data\n- Reduces context load by flattening and picking data\n\n## Setup\n\n\n### Installing on Claude Desktop\nBefore starting make sure [Node.js](https://nodejs.org/) is installed on your desktop for `npx` to work.\n1. Go to: Settings > Developer > Edit Config\n\n2. Add the following to your `claude_desktop_config.json`:\n\n```json\n{\n  \"mcpServers\": {\n    \"airbnb\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"@openbnb/mcp-server-airbnb\"\n      ]\n    }\n  }\n}\n```\n\nTo ignore robots.txt for all requests, use this version with `--ignore-robots-txt` args\n\n```json\n{\n  \"mcpServers\": {\n    \"airbnb\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"@openbnb/mcp-server-airbnb\",\n        \"--ignore-robots-txt\"\n      ]\n    }\n  }\n}\n```\n3. Restart Claude Desktop and plan your next trip that include Airbnbs!\n\n### Other Option: Installing via Smithery\n\nTo install mcp-server-airbnb for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@openbnb-org/mcp-server-airbnb):\n\n```bash\nnpx -y @smithery/cli install @openbnb-org/mcp-server-airbnb --client claude\n```\n\n## Build (for devs)\n\n```bash\nnpm install\nnpm run build\n```\n\n## License\n\nThis MCP server is licensed under the MIT License.\n\n## Disclaimer\n\nAirbnb is a trademark of Airbnb, Inc.\nOpenBnB is not related to Airbnb, Inc. or its subsidiaries\n",
+  "extracted_at": "2025-06-13T08:57:01.295706",
+  "content_hash": "7858fbf48a12bdd676f6a29c7f68e711597e1e3a5c30a456b26e426408379941"
+}

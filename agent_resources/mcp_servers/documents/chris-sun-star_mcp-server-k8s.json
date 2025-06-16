@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "chris-sun-star/mcp-server-k8s",
+    "owner": "chris-sun-star",
+    "repo_name": "mcp-server-k8s",
+    "repo_url": "https://github.com/chris-sun-star/mcp-server-k8s",
+    "description": "[chris-sun-star/mcp-server-k8s](https://github.com/chris-sun-star/mcp-server-k8s): Facilitates Kubernetes integration with Claude Desktop through a simple MCP server setup.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/chris-sun-star/mcp-server-k8s/master/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# mcp-server-k8s\nA simple MCP server for Kubernetes\n\n\nhttps://github.com/user-attachments/assets/e36d8048-7abd-4529-8d78-086ae9cadea9\n\n\n\n\n## How to use this MCP server\nBy configuring the following contents in `~/Library/Application Support/Claude/claude_desktop_config.json`, and replace the directory with real project path, you can easily use it with Claude Desktop\n```\n{\n  \"mcpServers\": {\n    \"k8s\": {\n        \"command\": \"uv\",\n        \"args\": [\n            \"--directory\",\n            \"/path/to/mcp-server-k8s\",\n            \"run\",\n            \"main.py\"\n        ]\n    }\n  }\n}\n```\n",
+  "extracted_at": "2025-06-13T08:56:04.697302",
+  "content_hash": "dfbbed83b21aeed08866b7cbc0613463704e355fbd3ba85a47c1e65b2166979f"
+}

@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "jt-atan/Access-COM",
+    "owner": "jt-atan",
+    "repo_name": "Access-COM",
+    "repo_url": "https://github.com/jt-atan/Access-COM",
+    "description": "[jt-atan/Access-COM](https://github.com/jt-atan/Access-COM): Facilitates seamless interaction with 32-bit Microsoft Access databases through a Model Context Protocol tool, supporting SQL queries and linked table management.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": null,
+    "api_base_url": null
+  },
+  "readme_content": null,
+  "extracted_at": "2025-06-13T08:55:31.187554",
+  "content_hash": ""
+}

@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "Alirezawmoradi/github-follower-manager-mcp",
+    "owner": "Alirezawmoradi",
+    "repo_name": "github-follower-manager-mcp",
+    "repo_url": "https://github.com/Alirezawmoradi/github-follower-manager-mcp",
+    "description": "[Alirezawmoradi/github-follower-manager-mcp](https://github.com/Alirezawmoradi/github-follower-manager-mcp): Manage and analyze your GitHub follow relationships using the Model Context Protocol for seamless automation and natural language control.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/Alirezawmoradi/github-follower-manager-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# GitHub Follow Manager\n\n## Description\n\nGitHub Follow Manager is a tool designed to help you manage your GitHub followers using the Model Context Protocol (MCP) pattern. It allows you to check who follows you on GitHub, unfollow users who don't follow you back, and analyze follow relationships.\n\n## Features\n\n- ✅ Authenticates with GitHub using a personal access token\n- 👤 Retrieves the current authenticated user\n- 🔄 Lists users you follow who don't follow you back\n- 🔻 Allows bulk unfollowing\n- 📊 Generates a detailed report of all follow relationships\n\n## ✨ Why This Project?\n\nThis repo is perfect for:\n\n- Developers who want to clean up their GitHub following list\n- LLM enthusiasts exploring Claude Desktop + MCP\n- Automation fans who want **natural language control** of their tools\n\n## Prerequisites\n\n- Node.js (version 18 or higher)\n- npm (Node Package Manager)\n- A GitHub personal access token with appropriate scopes\n\n## 🚀 Getting Started\n\n### 1. Clone the Repo\n\n```bash\ngit clone <repository-url>\ncd follower-manager-mcp\n```\n\n### 2. Install the dependencies:\n\n```bash\nnpm install\n```\n\n### 3. Create a `.env` file in the root directory and add your GitHub personal access token:\n\n```\nGITHUB_TOKEN= your_github_token_here\n```\n\n### 4. Build the project:\n\n```bash\nnpm run build\n```\n\n### 5. Configure mcpServers\n\n```bash\n{\n  \"mcpServers\": {\n    \"github-follow-manager\": {\n      \"command\": \"node\",\n      \"args\": [\n        \"C:\\\\Path\\\\To\\\\github-follow-manager-mcp\\\\dist\\\\mcp-server.js\"\n      ],\n      \"env\": {\n        \"GITHUB_TOKEN\": \"your_personal_access_token_here\"\n      }\n    }\n  }\n}\n```\n\n##### Make sure your GitHub token has appropriate scopes such as: read:user, user:follow.\n\n## 🧪 Demo Prompt for Claude\n\nOnce everything is configured and Claude Desktop is running, try prompts like:\n\n- \"Initialize the GitHub follower manager.\"\n\n- \"Who am I following that doesn’t follow me back?\"\n\n- \"Unfollow all users who don’t follow me back.\"\n\nClaude will automatically use the MCP server to perform these actions!\n\n### 📜 License\n\nThis project is open-source and available under the [MIT license](https://opensource.org/licenses/MIT).\n\n### 📣 Help this repo grow\n\nIf you found this useful, please consider starring ⭐ the repo to help more people discover it.\n\n### 📬 Contact\n\nDeveloped by [Alireza Moradi]()\n\nReach out via [GitHub Issues](https://github.com/Alirezawmoradi/Github-RepoSweep/issues) for questions or suggestions.\n\n## 🙏 Credits\n\n- [Claude Desktop](https://claude.ai/)\n- [Model Context Protocol](https://github.com/modelcontextprotocol)\n- [GitHub REST API](https://docs.github.com/en/rest?apiVersion=2022-11-28)\n\n### 🔗 Keywords: \n**GitHub CLI** · **AI Assistant** · **Claude Desktop** · **MCP** · **GitHub API** · **TypeScript** · **Productivity** · **Automation** · **GitHub Bot**\n",
+  "extracted_at": "2025-06-13T08:56:55.901392",
+  "content_hash": "5df971ce8ae0be54fce901ceb525cf456a9f1babfff1a225e67b4c03daba677e"
+}

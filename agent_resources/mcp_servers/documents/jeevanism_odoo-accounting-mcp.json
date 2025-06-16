@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "jeevanism/odoo-accounting-mcp",
+    "owner": "jeevanism",
+    "repo_name": "odoo-accounting-mcp",
+    "repo_url": "https://github.com/jeevanism/odoo-accounting-mcp",
+    "description": "[jeevanism/odoo-accounting-mcp](https://github.com/jeevanism/odoo-accounting-mcp): Facilitates AI-driven analysis of Odoo accounting data through a secure MCP server integration.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/jeevanism/odoo-accounting-mcp/main/readme.md",
+    "api_base_url": null
+  },
+  "readme_content": "# 🧾 Odoo Accounting MCP Server\n\nThis is a simplified, non-production-ready Model Context Protocol (MCP) server designed for experimental integration with **Odoo Accounting** via XML-RPC. Specifically tailored for use with [Claude Desktop](https://claude.ai), this project focuses on enabling AI tools to query and analyze **account journal entries** for audit purposes. While it allows interaction with Odoo accounting data, its current scope is limited to this specific use case and is not intended for production environments. Future exploration might consider expanding to other accounting-related data, such as invoices, depending on the outcomes of the initial focus.\n\n---\n\n### 🔧 Example: Claude Detecting MCP Tool\n\n![MCP Tool Preview](assets/mcp_tool_preview.png)\n\n\n## 🚀 Key Features\n\n- **Secure Odoo Connection:** Establish a secure connection to your Odoo instance using environment variables or a dedicated configuration file.\n- **Accounting Data Tools:** Provides specialized tools to efficiently search and retrieve relevant accounting information.\n- **Claude AI Ready:** Fully compliant with the Model Context Protocol, ensuring smooth integration with Claude Desktop.\n- **RESTful API (via FastAPI):** Offers a simple and robust FastAPI server for exposing RESTful endpoints.\n- **Flexible Configuration:** Easily configure the server through Claude Desktop's configuration settings.\n\n---\n\n## 🛠️ Setup Guide\n\nFollow these steps to set up and run the Odoo Accounting MCP Server:\n\n### 1. Clone the Repository\n\n```bash\ngit clone https://github.com/your-username/odoo-accounting-mcp.git\ncd odoo-accounting-mcp\n```\n\n### 2. Configure Environment Variables\n\nCreate a `.env` file in the project's root directory and populate it with your Odoo connection details:\n\n```ini\nODOO_URL=http://localhost:8069\nODOO_DB=your_db_name\nODOO_USERNAME=your_odoo_user_name\nODOO_PASSWORD=your_odoo_password\n```\n\n### 3. Set Up Virtual Environment\n\nIt's recommended to use a virtual environment to manage project dependencies:\n\n```bash\npython -m venv .venv\n```\n\nActivate it:\n\n```bash\n.\\.venv\\Scripts ctivate\n```\n\n### 4. Install Dependencies\n\nInstall the required Python packages from the `requirements.txt` file:\n\n```bash\npython -m pip install -r requirements.txt\n```\n\n### 5. Run the Server\n\nStart the MCP server using the main Python script:\n\n```bash\npython main.py\n```\n\nThe server will typically start and be accessible at `http://localhost:8000`.\n\n---\n\n## ⚙️ Claude Desktop Integration\n\nYou don't need to manually run the MCP server when using Claude Desktop. Instead, configure Claude Desktop to manage the server lifecycle.\n\nUpdate your `claude_desktop_config.json` file with the following configuration (adjust the paths and Odoo credentials as necessary):\n\n```json\n{\n  \"mcpServers\": {\n    \"odoo\": {\n      \"command\": \"python\",\n      \"cwd\": \"D:/jeevan-projects/odoomcp/odoo_account_mcp\",\n      \"args\": [\"main.py\"],\n      \"env\": {\n        \"ODOO_URL\": \"http://localhost:8069\",\n        \"ODOO_DB\": \"your_db\",\n        \"ODOO_USERNAME\": \"admin\",\n        \"ODOO_PASSWORD\": \"your_password\"\n      }\n    }\n  }\n}\n```\n\n**Important Notes:**\n\n- Ensure the `cwd` path in the configuration points to the correct directory of your `odoo_account_mcp` project.\n- Replace the placeholder Odoo credentials with your actual Odoo instance details.\n\n---\n\n## 📜 License\n\nThis project is licensed under the MIT License.\n",
+  "extracted_at": "2025-06-13T08:56:20.084751",
+  "content_hash": "3f479cf9da1a4645779df8591f34cfcd77527c716fb0f5fc7572348133d21af0"
+}

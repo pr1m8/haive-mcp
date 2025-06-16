@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "jlgrimes/ptcg-mcp",
+    "owner": "jlgrimes",
+    "repo_name": "ptcg-mcp",
+    "repo_url": "https://github.com/jlgrimes/ptcg-mcp",
+    "description": "[jlgrimes/ptcg-mcp](https://github.com/jlgrimes/ptcg-mcp): Enables Claude to search and display Pokemon Trading Card Game cards with detailed filtering options.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/jlgrimes/ptcg-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Pokemon TCG Card Search MCP\n\nThis Model Context Protocol (MCP) server allows Claude to search and display Pokemon Trading Card Game cards.\n\n## Setup Instructions\n\n1. Update your Claude configuration file:\n\n   - Open `/Users/ABSOLUTE_PATH_HERE/Library/Application Support/Claude/claude_desktop_config.json`\n   - Add the following configuration (remove any existing MCP configurations):\n\n   ```json\n   {\n     \"mcpServers\": {\n       \"ptcg-mcp\": {\n         \"command\": \"node\",\n         \"args\": [\"ABSOLUTE_PATH_HERE/dist/index.js\"]\n       }\n     }\n   }\n   ```\n\n2. Quit Claude:\n\n   - Open Task Manager\n   - Find and quit Claude completely\n\n3. Restart Claude:\n   - The Pokemon TCG Card Search MCP will be automatically loaded\n   - You can now ask Claude questions about Pokemon cards\n\n## Usage\n\nOnce configured, you can ask Claude questions about Pokemon cards such as:\n\n- \"Show me standard-legal basic Pokemon with free retreat\"\n- \"Find water-type Pokemon with more than 120 HP\"\n- \"Search for Pikachu cards\"\n\nClaude will display the matching cards with their images and relevant information.\n\n## Features\n\n- Search cards by name, type, subtype, legality, and more\n- View high-resolution card images\n- Filter by various card attributes:\n  - Name (supports exact matching with `!` and wildcards with `*`)\n  - Subtypes (e.g., Basic, EX, GX, V, VMAX, etc.)\n  - Legalities (Standard, Expanded, Unlimited)\n  - Types (Water, Fire, Grass, etc.)\n  - Retreat cost\n  - HP\n  - National Pokedex numbers\n  - And more!\n\n## Example Queries\n\nHere are some example queries you can try:\n\n- \"Show me standard-legal basic Pokemon with free retreat\"\n- \"Find water-type Pokemon with more than 120 HP\"\n- \"Search for cards with 'char\\*' in their name\"\n- \"Show me banned cards in Standard format\"\n- \"Find EX Pokemon that evolve from Charmander\"\n\n## Query Syntax\n\n### Name Search\n\n- Regular search: `name:pikachu`\n- Exact match: `!name:pikachu`\n- Wildcard: `name:char*`\n- Preserve hyphens: `name:chien-pao`\n\n### Filters\n\n- Types: `types:water` or `-types:water` (exclude)\n- Subtypes: `subtypes:basic`\n- Legalities: `legalities.standard:legal`\n- HP: `hp:[100 TO 200]`\n- Retreat Cost: `convertedRetreatCost:0`\n\n### Range Queries\n\nUse `[` and `]` for inclusive ranges, `{` and `}` for exclusive ranges:\n\n- `hp:[100 TO 200]` - HP between 100 and 200 (inclusive)\n- `hp:{100 TO 200}` - HP between 100 and 200 (exclusive)\n- `hp:[* TO 100]` - HP up to 100\n- `hp:[100 TO *]` - HP 100 or higher\n\n## Response Format\n\nThe MCP returns card information including:\n\n- Card name\n- Set name\n- High-resolution card image\n- Card legalities\n- Other card details as requested\n\n## Notes\n\n- The MCP uses the Pokemon TCG API to fetch card data\n- Images are displayed directly from the Pokemon TCG API's CDN\n- All queries are case-insensitive\n- Multiple filters can be combined in a single query\n",
+  "extracted_at": "2025-06-13T08:55:52.038262",
+  "content_hash": "c4126437cbd7a655ce2fb207bb3b2777f66bd0bfa2bc94bbba637df70acb6e89"
+}

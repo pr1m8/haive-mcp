@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "93minki/weather-forecast-mcp-server",
+    "owner": "93minki",
+    "repo_name": "weather-forecast-mcp-server",
+    "repo_url": "https://github.com/93minki/weather-forecast-mcp-server",
+    "description": "[93minki/weather-forecast-mcp-server](https://github.com/93minki/weather-forecast-mcp-server): A TypeScript-based MCP server that manages and summarizes text notes using URIs and metadata.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/93minki/weather-forecast-mcp-server/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# weather-server MCP Server\n\nWeather MCP Server\n\nThis is a TypeScript-based MCP server that implements a simple notes system. It demonstrates core MCP concepts by providing:\n\n### 사용 방법\n\n1. `.env` 파일 생성 후 OPENWEATHER_API_KEY=API_KEY\n2. `npm run build` 명령어 실행\n3. `claude_desktop_config.json` 파일 수정 (빌드 후 생성되는 index.js 파일의 경로)\n\n```json\n{\n  \"mcpServers\": {\n    \"weather-server\": {\n      \"command\": \"node\",\n      \"args\": [\"/Users/{UserName}/Desktop/{Project-path}/build/index.js\"]\n    }\n  }\n}\n```\n",
+  "extracted_at": "2025-06-13T08:56:14.464763",
+  "content_hash": "2237c690028023294eb832ba4a2815f57c534de85e6ba91a43a1631803979f8e"
+}

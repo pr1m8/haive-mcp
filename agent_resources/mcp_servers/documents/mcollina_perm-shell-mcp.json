@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "mcollina/perm-shell-mcp",
+    "owner": "mcollina",
+    "repo_name": "perm-shell-mcp",
+    "repo_url": "https://github.com/mcollina/perm-shell-mcp",
+    "description": "[mcollina/perm-shell-mcp](https://github.com/mcollina/perm-shell-mcp): PermShell MCP enables secure execution of shell commands with explicit permission notifications, ensuring transparency and safety.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/mcollina/perm-shell-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# PermShell MCP\n\nA Model Context Protocol (MCP) server for executing shell commands with permission notifications.\n\n## Features\n\n- Execute shell commands with explicit permissions through growl notifications\n- Built on the Model Context Protocol for standardized LLM tools\n- Multiple safeguards to prevent unauthorized command execution\n- Transparent permission dialog shows exactly what commands will be executed\n\n## Installation\n\n```bash\n# Clone the repository\ngit clone https://github.com/yourusername/perm-shell-mcp.git\ncd perm-shell-mcp\n\n# Install dependencies\nnpm install\n\n# Build the project\nnpm run build\n```\n\n## Usage\n\n### As a standalone tool\n\n```bash\n# Start the server directly\nnpm start\n```\n\n### With Claude Desktop\n\nAdd the following configuration to your Claude Desktop configuration file:\n\n```json\n{\n  \"mcpServers\": {\n    \"permshell\": {\n      \"command\": \"node\",\n      \"args\": [\"/path/to/perm-shell-mcp/dist/index.js\"]\n    }\n  }\n}\n```\n\n### Available Tools\n\n#### execute-command\n\nExecutes a shell command with permission.\n\nExample:\n```\nCan you list the files in my home directory?\n```\n\n#### system-info\n\nRetrieves system information including OS, uptime, memory, disk, and CPU.\n\nExample:\n```\nWhat's my system information?\n```\n\n## Security\n\n- All commands require explicit permission through desktop notifications\n- Commands display with their working directory for full transparency\n- Timeout limits prevent runaway processes\n- Input sanitization prevents command injection\n\n## Development\n\n```bash\n# Run in watch mode for development\nnpm run dev\n```\n",
+  "extracted_at": "2025-06-13T08:56:32.320338",
+  "content_hash": "056e342731c7cae8231d39ba08d0dfb02e895b69c7b59196fee7ff58841d87f7"
+}

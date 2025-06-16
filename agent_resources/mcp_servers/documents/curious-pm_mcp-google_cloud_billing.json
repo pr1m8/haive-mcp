@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "curious-pm/mcp-google_cloud_billing",
+    "owner": "curious-pm",
+    "repo_name": "mcp-google_cloud_billing",
+    "repo_url": "https://github.com/curious-pm/mcp-google_cloud_billing",
+    "description": "[curious-pm/mcp-google_cloud_billing](https://github.com/curious-pm/mcp-google_cloud_billing): Facilitates integration with Google Cloud Billing API, enabling AI assistants to analyze and manage cloud costs efficiently.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": null,
+    "api_base_url": null
+  },
+  "readme_content": null,
+  "extracted_at": "2025-06-13T08:54:59.970215",
+  "content_hash": ""
+}

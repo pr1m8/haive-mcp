@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "ap425q/CutterMCP",
+    "owner": "ap425q",
+    "repo_name": "CutterMCP",
+    "repo_url": "https://github.com/ap425q/CutterMCP",
+    "description": "[ap425q/CutterMCP](https://github.com/ap425q/CutterMCP): Facilitates autonomous reverse engineering of applications by LLMs using Cutter's core functionalities.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/ap425q/CutterMCP/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)\n[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://www.linkedin.com/in/amey-pathak/)\n\n![cutter_MCP_logo](images/cutterMCP.png)\n\n\n# cutterMCP\ncutterMCP is an Model Context Protocol server for allowing LLMs to autonomously reverse engineer applications. It exposes numerous tools from core Cutter functionality to MCP clients.\n\n# Features\nMCP Server + Cutter Plugin\n\n- Decompile and analyze binaries in Cutter\n- Automatically rename methods and data\n- List methods, imports, and exports\n\n# Installation\n\n## Prerequisites\n- Install [Cutter](https://github.com/rizinorg/cutter)\n- Python3\n- MCP [SDK](https://github.com/modelcontextprotocol/python-sdk)\n\n## Cutter\nFirst, download the latest release from this repository. This contains the Cutter plugin and Python MCP client. Then, you can directly import the plugin into Cutter.\n\n1. Run Cutter\n2. Go to **Edit -> Preferences -> Plugins**\n3. Find the plugin directory location\n4. Copy `CutterMCPPlugin.py` from the downloaded release and paste it inside the **python** folder\n5. Restart Cutter\n6. If successful, you’ll see the plugin under **Windows -> Plugins** and a new widget in the bottom panel\n\n\n## MCP Clients\n\nTheoretically, any MCP client should work with cutterMCP. one example is given below.\n\n## Example 1: Claude Desktop\nTo set up Claude Desktop as a Cutter MCP client, go to `Claude` -> `Settings` -> `Developer` -> `Edit Config` -> `claude_desktop_config.json` and add the following:\n\nMacOS/Linux :\n```json\n{\n  \"mcpServers\": {\n    \"cutter\": {\n      \"command\": \"python\",\n      \"args\": [\n        \"/ABSOLUTE_PATH_TO/bridge_mcp_cutter.py\"\n      ]\n    }\n  }\n}\n```\n\nWindows :\n```json\n{\n  \"mcpServers\": {\n    \"cutter\": {\n      \"command\": \"python\",\n      \"args\": [\n        \"C:\\\\ABSOLUTE_PATH_TO\\\\bridge_mcp_cutter.py\"\n      ]\n    }\n  }\n}\n```\n",
+  "extracted_at": "2025-06-13T08:56:08.646135",
+  "content_hash": "7250f496b9c136c7ce0571aa5dc4dd7d0cc9cc4e5bfac40d0ea51252034ce04f"
+}

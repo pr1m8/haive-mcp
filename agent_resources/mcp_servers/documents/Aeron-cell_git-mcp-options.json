@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "Aeron-cell/git-mcp-options",
+    "owner": "Aeron-cell",
+    "repo_name": "git-mcp-options",
+    "repo_url": "https://github.com/Aeron-cell/git-mcp-options",
+    "description": "[Aeron-cell/git-mcp-options](https://github.com/Aeron-cell/git-mcp-options): Enhances Git operations with a standardized interface for AI assistants, integrating seamlessly with the MCP ecosystem.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/Aeron-cell/git-mcp-options/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Git MCP Server\n\nA Model Context Protocol (MCP) server that provides enhanced Git operations through a standardized interface. This server integrates with the MCP ecosystem to provide Git functionality to AI assistants.\n\n## Features\n\n- **Core Git Operations**: init, clone, status, add, commit, push, pull\n- **Branch Management**: list, create, delete, checkout\n- **Tag Operations**: list, create, delete\n- **Remote Management**: list, add, remove\n- **Stash Operations**: list, save, pop\n- **Bulk Actions**: Execute multiple Git operations in sequence\n- **GitHub Integration**: Built-in GitHub support via Personal Access Token\n- **Path Resolution**: Smart path handling with optional default path configuration\n- **Error Handling**: Comprehensive error handling with custom error types\n- **Repository Caching**: Efficient repository state management\n- **Performance Monitoring**: Built-in performance tracking\n\n## Installation\n\n1. Clone the repository:\n```bash\ngit clone https://github.com/yourusername/git-mcp-v2.git\ncd git-mcp-v2\n```\n\n2. Install dependencies:\n```bash\nnpm install\n```\n\n3. Build the project:\n```bash\nnpm run build\n```\n\n## Configuration\n\nAdd to your MCP settings file:\n\n```json\n{\n  \"mcpServers\": {\n    \"git-v2\": {\n      \"command\": \"node\",\n      \"args\": [\"path/to/git-mcp-v2/build/index.js\"],\n      \"env\": {\n        \"GIT_DEFAULT_PATH\": \"/path/to/default/git/directory\",\n        \"GITHUB_PERSONAL_ACCESS_TOKEN\": \"your-github-pat\"\n      }\n    }\n  }\n}\n```\n\n## Environment Variables\n\n- `GIT_DEFAULT_PATH`: (Optional) Default path for Git operations\n- `GITHUB_PERSONAL_ACCESS_TOKEN`: (Optional) GitHub Personal Access Token for GitHub operations\n\n## Available Tools\n\n### Basic Operations\n- `init`: Initialize a new Git repository\n- `clone`: Clone a repository\n- `status`: Get repository status\n- `add`: Stage files\n- `commit`: Create a commit\n- `push`: Push commits to remote\n- `pull`: Pull changes from remote\n\n### Branch Operations\n- `branch_list`: List all branches\n- `branch_create`: Create a new branch\n- `branch_delete`: Delete a branch\n- `checkout`: Switch branches or restore working tree files\n\n### Tag Operations\n- `tag_list`: List tags\n- `tag_create`: Create a tag\n- `tag_delete`: Delete a tag\n\n### Remote Operations\n- `remote_list`: List remotes\n- `remote_add`: Add a remote\n- `remote_remove`: Remove a remote\n\n### Stash Operations\n- `stash_list`: List stashes\n- `stash_save`: Save changes to stash\n- `stash_pop`: Apply and remove a stash\n\n### Bulk Operations\n- `bulk_action`: Execute multiple Git operations in sequence\n\n## Development\n\n```bash\n# Run tests\nnpm test\n\n# Run tests with coverage\nnpm run test:coverage\n\n# Run linter\nnpm run lint\n\n# Format code\nnpm run format\n```\n\n## License\n\nMIT\n\n## Contributing\n\n1. Fork the repository\n2. Create your feature branch (`git checkout -b feature/amazing-feature`)\n3. Commit your changes (`git commit -m 'Add some amazing feature'`)\n4. Push to the branch (`git push origin feature/amazing-feature`)\n5. Open a Pull Request\n",
+  "extracted_at": "2025-06-13T08:57:12.847086",
+  "content_hash": "b4cf8a90353112912a941d75d364761edd54d67290d5af79ff4ea19617470909"
+}

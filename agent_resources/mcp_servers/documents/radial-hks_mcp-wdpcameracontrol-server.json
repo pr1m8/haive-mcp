@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "radial-hks/mcp-wdpcameracontrol-server",
+    "owner": "radial-hks",
+    "repo_name": "mcp-wdpcameracontrol-server",
+    "repo_url": "https://github.com/radial-hks/mcp-wdpcameracontrol-server",
+    "description": "[radial-hks/mcp-wdpcameracontrol-server](https://github.com/radial-hks/mcp-wdpcameracontrol-server): A TypeScript-based MCP server implementing a simple notes system with resources, tools, and prompts for note management and summarization.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/radial-hks/mcp-wdpcameracontrol-server/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# mcp-wdpcameracontrol-server MCP Server\n\nA Model Context Protocol server\n\nThis is a TypeScript-based MCP server that implements a simple notes system. It demonstrates core MCP concepts by providing:\n\n- Resources representing text notes with URIs and metadata\n- Tools for creating new notes\n- Prompts for generating summaries of notes\n\n## Features\n\n### Resources\n- List and access notes via `note://` URIs\n- Each note has a title, content and metadata\n- Plain text mime type for simple content access\n\n### Tools\n- `create_note` - Create new text notes\n  - Takes title and content as required parameters\n  - Stores note in server state\n\n### Prompts\n- `summarize_notes` - Generate a summary of all stored notes\n  - Includes all note contents as embedded resources\n  - Returns structured prompt for LLM summarization\n- `Roo Code`\n  - model name: Actor\n    - Role definition: \n      - #[Role]\nYou are Roo, a mentally active, logically rigorous, and knowledgeable technical researcher, as well as a senior tour guide who is good at understanding customer needs, has excellent service capabilities, and attitude.\n#[Skill]\n-1. You are good at understanding users' needs and problems, and quickly providing the best solutions and answers. For example, you can quickly and accurately develop travel plans and routes for customers, vividly explain the history, culture, and customs of scenic spots to customers, and lead customers to visit scenic spots in a friendly and humane manner;\n-2. You are skilled in collecting information, obtaining context, and creating detailed plans to complete tasks requested by clients for review and approval before switching to another mode to implement solutions;\n-3. You focus on answering questions and have a broad understanding of many common sense knowledge, situational analysis, professional skills knowledge, and best practices.\n     - Specific behavior: -1. You need to ensure that your answers are based on evidence, authentic and credible, and cannot be self compiled;-2. Before answering a question, make sure to fully understand the problem. If you encounter a question or request that you do not understand, you can ask the user to provide a more detailed description.\n## Development\n\nInstall dependencies:\n```bash\nnpm install\n```\n\nBuild the server:\n```bash\nnpm run build\n```\n\nFor development with auto-rebuild:\n```bash\nnpm run watch\n```\n\n## Installation\n\nTo use with Claude Desktop, add the server config:\n\nOn MacOS: `~/Library/Application Support/Claude/claude_desktop_config.json`\nOn Windows: `%APPDATA%/Claude/claude_desktop_config.json`\n\n```json\n{\n  \"mcpServers\": {\n    \"mcp-wdpcameracontrol-server\": {\n      \"command\": \"/path/to/mcp-wdpcameracontrol-server/build/index.js\"\n    }\n  }\n}\n```\n\n### Debugging\n\nSince MCP servers communicate over stdio, debugging can be challenging. We recommend using the [MCP Inspector](https://github.com/modelcontextprotocol/inspector), which is available as a package script:\n\n```bash\nnpm run inspector\n```\n\nThe Inspector will provide a URL to access debugging tools in your browser.\n\n## Problems\n\nThe problems currently encountered:\n\n-1. Although methods focus_to_position and update_camera have been described in detail, the model still cannot fully distinguish which method to use in which situation.\n\n-2. The camera'around method has a problem that when the camera rotates around a point as the origin, it cannot always maintain the center position of the origin in the field of view.",
+  "extracted_at": "2025-06-13T08:55:56.885074",
+  "content_hash": "7a0a433330217b525b455103b6b228a6822fadb9d2fd91eb71e0bc026baf37e2"
+}

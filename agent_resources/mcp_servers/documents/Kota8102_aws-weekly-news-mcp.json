@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "Kota8102/aws-weekly-news-mcp",
+    "owner": "Kota8102",
+    "repo_name": "aws-weekly-news-mcp",
+    "repo_url": "https://github.com/Kota8102/aws-weekly-news-mcp",
+    "description": "[Kota8102/aws-weekly-news-mcp](https://github.com/Kota8102/aws-weekly-news-mcp): Facilitates access to Japanese 'Weekly AWS' blog articles through a dedicated MCP server.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": 0,
+    "last_updated": "2025-04-21T03:09:52Z",
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/Kota8102/aws-weekly-news-mcp/main/README.md",
+    "api_base_url": "https://api.github.com/repos/Kota8102/aws-weekly-news-mcp"
+  },
+  "readme_content": "# 週刊 AWS JP MCP Server\n\n日本語版『週刊 AWS』タグ記事を取得するためのMCPサーバー\n\n## 機能\n\n- 指定された日数内の「週刊AWS」日本語版ブログ記事のリストを取得します。\n-「週刊AWS」日本語版ブログの最新記事の詳細（本文コンテンツ含む）を取得します。\n-「週刊生成AI with AWS」日本語版ブログの最新記事の詳細（本文コンテンツ含む）を取得します。\n\n## 前提条件\n\n- Python 3.11以上\n- [uv](https://github.com/astral-sh/uv) - 高速Pythonパッケージインストーラー\n\n## インストール\n\nClaude DesktopやCursorなどのMCPをサポートするアプリケーションで使用するために、以下のような設定を行います（例: `~/.mcp/mcp.json`）:\n\n```json\n{\n  \"mcpServers\": {\n    \"custom.weekly-aws-jp-mcp-server\": {\n      \"command\": \"uv\",\n      \"args\": [\n        \"--directory\",\n        \"/path/to/mcp-awsnews-python\", // このリポジトリをクローンしたディレクトリへの絶対パスを指定してください\n        \"run\",\n        \"server.py\"\n      ]\n    }\n  }\n}\n```\n\n## ツールとリソース\n\nこのサーバーは以下のツールをMCPインターフェースを通じて提供します：\n\n- `get_weekly_jp_updates(days: int = 7, limit: int = 10)` - 指定された日数内の「週刊AWS」日本語版ブログ記事のリストを取得します。\n  - `days` - 何日前までの記事を取得するか (デフォルト: 7)\n  - `limit` - 最大取得件数 (デフォルト: 10)\n- `get_latest_jp_update_details()` - 「週刊AWS」日本語版ブログの最新記事の詳細(本文コンテンツ含む)を1件取得します。(「週刊生成AI with AWS」の記事は除外されます)\n- `get_latest_generative_ai_jp_update_details()` - 「週刊生成AI with AWS」日本語版ブログの最新記事の詳細(本文コンテンツ含む)を1件取得します。\n",
+  "extracted_at": "2025-06-13T08:54:44.751730",
+  "content_hash": "8dac5ae9d4f227f9d38fb79113b7e162d2bbf8cd9e7d2a5e6768ecf2783f0160"
+}

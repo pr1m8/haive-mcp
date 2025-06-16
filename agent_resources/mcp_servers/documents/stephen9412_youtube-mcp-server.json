@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "stephen9412/youtube-mcp-server",
+    "owner": "stephen9412",
+    "repo_name": "youtube-mcp-server",
+    "repo_url": "https://github.com/stephen9412/youtube-mcp-server",
+    "description": "[stephen9412/youtube-mcp-server](https://github.com/stephen9412/youtube-mcp-server): FastMCP server for YouTube offering unified video, channel, and playlist management tools for memo agents and automation workflows.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/stephen9412/youtube-mcp-server/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Runnable YouTube MCP Server\n\nA FastMCP server for YouTube: unified video/channel/playlist info, download, and management tools for memo agents and automation.\n\n---\n\n## Why this project?\n\nMost YouTube MCP servers available are either unmaintainable, fail to compile, or are implemented only in Python and provide only basic video download features.  \nWhen building my own memo agent, I found it difficult to automatically retrieve YouTube video information for summarization and automation.  \nThis project was created to solve that problem and provide a robust, extensible, and developer-friendly YouTube MCP server.\n\n---\n\n## ✨ Features\n\n- Unified access to YouTube video, channel, and playlist information\n- Download video/audio streams in various formats and qualities\n- Extract and process video thumbnails\n- Manage playlist content (add, remove, reorder)\n- Manage video privacy status (public/private/unlisted)\n- List available subtitle languages\n- Designed for integration with memo agents and automation workflows\n- Extensible, maintainable, and fully open source\n\n---\n\n## 🛠️ Available Tools\n\n| Tool Name            | Description                                         | Status      |\n|----------------------|-----------------------------------------------------|-------------|\n| describeVideo        | Get video information (selectable sections)         | ✅          |\n| getDownloadOptions   | Get available download formats/qualities            | ❌          |\n| downloadVideo        | Download video/audio stream                         | ❌          |\n| extractThumbnail     | Extract and process video thumbnail                 | ❌          |\n| listSubtitleLanguages| Get available subtitle languages for a video        | ❌          |\n| manageVideoStatus    | Manage video privacy status                         | ❌          |\n| describeChannel      | Get public channel information                      | ❌          |\n| describePlaylist     | Get public playlist information                     | ❌          |\n| managePlaylistItems  | Playlist content management (add/remove/reorder)    | ❌          |\n\n> Only `describeVideo` is currently tested and working. Others are implemented but not fully tested.\n\n---\n\n## 🚀 Installation\n\n### Prerequisites\n\n- Node.js 18+\n- YouTube Data API v3 key\n\n### Install\n\n```bash\nnpm install youtube-mcp-server\n```\n\n### Environment Variables\n\nCreate a `.env` file or set these variables in your environment:\n\n```text\nYOUTUBE_API_KEY=YOUR_YOUTUBE_API_KEY\nDOWNLOAD_BASE_DIR=./downloads\n```\n\n### Run in Development\n\n```bash\nnpm run dev\n```\n\n### Run in Production\n\n```bash\nnpm run build\nnpm start\n```\n\n---\n\n## 🧩 MCP Integration Example\n\n```json\n{\n  \"mcpServers\": {\n    \"youtube\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"tsx\",\n        \"/PATH/TO/YOUR_PROJECT/src/server.ts\"\n      ],\n      \"env\": {\n        \"YOUTUBE_API_KEY\": \"YOUR_YOUTUBE_API_KEY\"\n      }\n    }\n  }\n}\n```\n\n---\n\n## 🤝 Contributing\n\nContributions, issues and feature requests are welcome!  \nVisit the [issues page](https://github.com/stephen9412/youtube-mcp-server/issues).\n\n---\n\n## 📄 License\n\n[MIT License](LICENSE) - Copyright (c) 2025 Stephen J. Li\n\n---\n\n[中文版 README](README_zh-TW.md)\n",
+  "extracted_at": "2025-06-13T08:56:55.901332",
+  "content_hash": "b2c57b8daf1214bd85b8d98cdd8480a56d13ef43830baa01b530cc5660fc57b2"
+}

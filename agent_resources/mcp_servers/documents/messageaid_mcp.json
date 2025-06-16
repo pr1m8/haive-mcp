@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "messageaid/mcp",
+    "owner": "messageaid",
+    "repo_name": "mcp",
+    "repo_url": "https://github.com/messageaid/mcp",
+    "description": "[messageaid/mcp](https://github.com/messageaid/mcp): Facilitates message brokering across RabbitMQ, Azure Service Bus, and SQS with multi-broker support.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/messageaid/mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Broker MCP\n\nThis is the [Message Aid MCP server](https://messageaid.com/docs/reference/mcp). The goal is to support the three main brokers \nof Message Aid, RabbitMQ, Azure Service Bus, and SQS.\n\n## Resources\n\n| Resource      | Rabbit MQ | Azure Service Bus | SQS     |\n|---------------|-----------|-------------------|---------|\n| Queues        | ✅         | Planned           | Planned |\n| Topics        | ✅         | Planned           | Planned |\n| Subscriptions | Planned   | Planned           | Planned |\n\nA `broker` is in rabbitmq speak a HOST + VHOST\n\n- Queue: `rabbitmq://broker/queues/name`\n- Topic: `rabbitmq://broker/topics/name`\n  - An Exchange in RabbitMQ\n- Subscription: `rabbitmq://broker/subscription/base64(source, destinationType, destinationName, propertiesKey)`\n  - A Binding in RabbitMQ\n\n- `azure://broker/name`\n- `sqs://localhost/vhost/name`\n\n## Tools\n\n| Action      | Rabbit MQ | Azure Service Bus | SQS     |\n|-------------|-----------|-------------------|---------|\n| Purge Queue | ✅         | Planned           | Planned | \n\n\n## Usage\n\n| Transport  | ...                                                                                             |\n|------------|-------------------------------------------------------------------------------------------------|\n| STDIO      | ✅                                                                                               |\n| Streamable | [Planned](https://github.com/modelcontextprotocol/csharp-sdk/issues/157) (based on SDK Support) |\n\n### Via Docker\n\n```sh\ndocker run -i --rm \\\n  --env 'BROKER_URL=rabbitmq://guest:guest@localhost:15672/' \\\n  ghcr.io/messageaid/mcp\n```\n\n### Sample Json Config for Cursor, etc\n\n```json\n{\n  \"mcpServers\": {\n    \"messageAid\": {\n      \"command\": \"docker\",\n      \"args\": [\n        \"run\", \n        \"-i\", \n        \"--rm\", \n        \"--env 'BROKER_URL=rabbitmq://guest:guest@localhost:15672/'\",\n        \"docker pull ghcr.io/messageaid/mcp:latest\"]\n    }\n  }\n}\n```\n\n## Configuration\n\n| Env Var    | ...                                    |\n|------------|----------------------------------------|\n| BROKER_URL | The broker to connect to in URL format |\n| MCP_MODE   | ReadOnly                               | \n|            | MessageAllowed                         | \n|            | BrokerAllowed                          | \n\n## Building\n\nBuilt using dotnet and the [MCP C# SDK](https://github.com/modelcontextprotocol/csharp-sdk)\n\n```sh\ndocker build -t ghcr.io/messageaid/mcp -f Dockerfile .\n```\n\n\n\n## Licence\n\nThis MCP server is licensed under the BSL 1.1 License. For more details,\nsee the LICENSE file in the project repository.",
+  "extracted_at": "2025-06-13T08:56:05.900879",
+  "content_hash": "36ceadc0323310b72433dde706b35f66c95d49731463919114499765d173b305"
+}

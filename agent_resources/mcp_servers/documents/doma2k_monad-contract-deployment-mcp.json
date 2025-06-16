@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "doma2k/monad-contract-deployment-mcp",
+    "owner": "doma2k",
+    "repo_name": "monad-contract-deployment-mcp",
+    "repo_url": "https://github.com/doma2k/monad-contract-deployment-mcp",
+    "description": "[doma2k/monad-contract-deployment-mcp](https://github.com/doma2k/monad-contract-deployment-mcp): Facilitates the compilation and deployment of smart contracts within the Monad ecosystem, enabling interactions directly from chat prompts or compatible MCP clients.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/doma2k/monad-contract-deployment-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "> ⚠️ **Warning:** Noob builder, code could contain bugs and flaws.\n\n_For learning [**monad-sse-mcp**](https://github.com/monad-developers/monad-sse-mcp) and [**evm-mcp-serve**](https://github.com/mcpdotdirect/evm-mcp-server) repos was used as example_\n\n# 🚀 Monad Contracts: Unleash the Power! 🚀\n\n**Build** 🛠️, **Deploy** 📤, **Interact** 🤝 — All in the _Monad Universe_!\n**This is MCP server to compile and deploy contracts directly from chat promt or compatible MCP client.**\n\n> Project focus around smart contracts interactions.\n\n### ✨ Features\n\n- **Deploy contracts** single or multiple in one call by `compile-and-deploy`\n- **Resolve Address** from private with `resolve-signer-address`\n- **Check Balance** of wallet from dialog context with `get-balance`\n- .......\n\n### 💡 To implement\n\n- Deployed contracts Abi storage\n- Interaction and Event Monitoring logic\n\n## ⚙️ Supported connection types\n\nThe server uses the following default configuration:\n\n## How to use SSE server\n\n# Monad Contract Deployment MCP **DEMO**\n\n![Demo Animation](./public/gif.gif)\n\nPaste the following in the `mcp.json` file\n\n```json\n{\n  \"mcpServers\": {\n    ...\n    \"monad-mcp-sse\": {\n      \"url\": \"https://https://monad-contract-deployment-mcp.vercel.app/sse\"\n    }\n  }\n}\n```\n\n## Sample Client\n\n`script/test-client.mjs` contains a sample client to try invocations.\n\n```sh\nnode scripts/test-client.mjs http://localhost:3000\n```\n\n# 🚧 Project Status: Under Development\n\n> ⚠️ **Warning:** This project is currently under active development and is not yet stable. Features may change, and things may break without notice.\n",
+  "extracted_at": "2025-06-13T08:54:59.316045",
+  "content_hash": "7fd7e744cc136f7073cce5e55c16172b54c5df6e0b59c426ed70c9c65bd17fa8"
+}

@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "saginawj/mcp-reddit-companion",
+    "owner": "saginawj",
+    "repo_name": "mcp-reddit-companion",
+    "repo_url": "https://github.com/saginawj/mcp-reddit-companion",
+    "description": "[saginawj/mcp-reddit-companion](https://github.com/saginawj/mcp-reddit-companion): Enhance your Reddit experience with natural language interaction, enabling custom curated feeds and content analysis using your preferred LLM client.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/saginawj/mcp-reddit-companion/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "[![smithery badge](https://smithery.ai/badge/@saginawj/mcp-reddit-companion)](https://smithery.ai/server/@saginawj/mcp-reddit-companion)\n\n# MCP Reddit Companion\n\nAn MCP tool that enables natural language interaction with your personal Reddit experience. Create custom curated feeds on Reddit and use your favorite LLM client to analyze, summarize, and engage with content that matters to you.\n\n## Example LLM Commands\n\nHere are some example commands you can use with your LLM client:\n\n```python\n# Basic Feed Interaction\n\"Show me the latest posts from my 'tech-news' feed\"\n\"Summarize the top posts from my 'science' feed\"\n\"What are the trending topics in my 'programming' feed?\"\n\n# Content Analysis\n\"What are the common themes in my 'ai' feed?\"\n\"Which of my recent posts got the most engagement?\"\n\"Summarize the discussions in my 'philosophy' feed\"\n\n# Personal Activity\n\"Show me my recent Reddit activity\"\n\"What comments have I received on my posts?\"\n\"Are there any unread messages in my inbox?\"\n\n# Engagement Tracking\n\"How are my recent posts performing?\"\n\"Show me the most active discussions in my feeds\"\n\"What posts got the most comments in my 'news' feed?\"\n```\n\n## Prerequisites\n\n- Python 3.11+\n- Reddit account credentials (username, password)\n- Docker (optional, for containerized deployment)\n- An MCP-compatible LLM client (like Cursor)\n\n## Installation\n\n### Local Installation\n\n1. Clone the repository:\n```bash\ngit clone https://github.com/yourusername/mcp-reddit.git\ncd mcp-reddit\n```\n\n2. Install dependencies using uv:\n```bash\nuv pip install .\n```\n\n3. Create a `.env` file with your Reddit API credentials:\n```env\nREDDIT_CLIENT_ID=your_client_id\nREDDIT_CLIENT_SECRET=your_client_secret\nREDDIT_USERNAME=your_username\nREDDIT_PASSWORD=your_password\n```\n\n### Docker Installation\n\n1. Build the Docker image:\n```bash\ndocker build -t mcp-reddit .\n```\n\n2. Run the container (for passwords with special characters):\n```bash\ndocker run \\\n  -e REDDIT_CLIENT_ID='your_client_id' \\\n  -e REDDIT_CLIENT_SECRET='your_client_secret' \\\n  -e REDDIT_USERNAME='your_username' \\\n  -e REDDIT_PASSWORD='your_password' \\\n  mcp-reddit\n```\n\nNote: If your password contains special characters (like !, $, etc.), make sure to:\n1. Use single quotes around the password\n2. Escape any special characters with a backslash\n3. Or use double quotes and escape the special characters\n\nExample with special characters:\n```bash\ndocker run \\\n  -e REDDIT_CLIENT_ID='your_client_id' \\\n  -e REDDIT_CLIENT_SECRET='your_client_secret' \\\n  -e REDDIT_USERNAME='your_username' \\\n  -e REDDIT_PASSWORD='your\\!password' \\\n  mcp-reddit\n```\n\n## Usage\n\n### Local Usage\n\n1. Start the MCP server:\n```bash\nuv run mcp dev src/mcp_reddit_companion/server.py\n```\n\nor \n\n2. Install in Claude Desktop\n```bash\nuv run mcp install src/mcp_reddit_companion/server.py \n```\n\n### Docker Usage\n\nThe MCP server will start automatically when the container runs. Connect your LLM client to interact with your Reddit feeds.\n\n## Configuration\n\n### Cursor Integration\n\nTo use with Cursor, add the following to your `~/.cursor/mcp.json`:\n\n```json\n{\n  \"mcpServers\": {\n    \"reddit-companion\": {\n      \"command\": \"uv\",\n      \"args\": [\n        \"--directory\",\n        \"C:\\\\code\\\\personal\\\\mcp-reddit\",\n        \"run\",\n        \"mcp\",\n        \"dev\",\n        \"src/mcp_reddit_companion/server.py\"\n      ]\n    }\n  }\n}\n```\n\n## License\n\nMIT\n",
+  "extracted_at": "2025-06-13T08:56:54.178875",
+  "content_hash": "197089b9585f1780a13ae0b030ddae3ee5072dd0272eea65ad9f3f3270251229"
+}

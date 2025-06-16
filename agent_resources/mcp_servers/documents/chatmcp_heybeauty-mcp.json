@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "chatmcp/heybeauty-mcp",
+    "owner": "chatmcp",
+    "repo_name": "heybeauty-mcp",
+    "repo_url": "https://github.com/chatmcp/heybeauty-mcp",
+    "description": "[chatmcp/heybeauty-mcp](https://github.com/chatmcp/heybeauty-mcp): Facilitates virtual try-on experiences by leveraging HeyBeauty API to manage and execute try-on tasks with clothing resources.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": 16,
+    "last_updated": "2025-06-10T14:32:57Z",
+    "license": "MIT License",
+    "readme_url": "https://raw.githubusercontent.com/chatmcp/heybeauty-mcp/main/README.md",
+    "api_base_url": "https://api.github.com/repos/chatmcp/heybeauty-mcp"
+  },
+  "readme_content": "# HeyBeauty MCP Server\n\nHeyBeauty Virtual TryOn\n\nThis is a TypeScript-based MCP server that implements virtual tryon using HeyBeauty API. It demonstrates core MCP concepts by providing:\n\n- Resources representing clothes with URIs and metadata\n- Tools for submit tryon task and query task info.\n- Prompts for tryon cloth.\n\n## Quick Start\n\n1. apply for [HeyBeauty API Key](https://heybeauty.com/docs/api/introduction)\n\n2. add the server config to MCP Client config file\n\n```json\n{\n  \"mcpServers\": {\n    \"heybeauty-mcp\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"heybeauty-mcp\"],\n      \"env\": {\n        \"HEYBEAUTY_API_KEY\": \"your_heybeauty_api_key\"\n      }\n    }\n  }\n}\n```\n\n### Resources\n\n- List and access clothes via `cloth://` URIs\n- Each cloth has a id, name, description, image url and metadata\n- Plain text mime type for simple content access\n\n### Tools\n\n- `submit_tryon_task` - Submit a tryon task\n  - Takes user image url, cloth image url, cloth id and cloth description as required parameters\n  - Stores tryon task in server state\n- `query_tryon_task` - Query a tryon task\n  - Takes task id as required parameter\n  - Returns tryon task info\n\n### Prompts\n\n- `tryon_cloth` - Tryon cloth\n  - Takes user image url, cloth image url, cloth id and cloth description as required parameters\n  - Returns structured prompt for LLM tryon\n\n### Resources\n\n- `cloth://` - URI for clothes\n  - Each cloth has a id, name, description, image url and metadata\n\n## Development\n\nInstall dependencies:\n\n```bash\nnpm install\n```\n\nBuild the server:\n\n```bash\nnpm run build\n```\n\nFor development with auto-rebuild:\n\n```bash\nnpm run watch\n```\n\n## Installation\n\nTo use with Claude Desktop, add the server config:\n\nOn MacOS: `~/Library/Application Support/Claude/claude_desktop_config.json`\nOn Windows: `%APPDATA%/Claude/claude_desktop_config.json`\n\n```json\n{\n  \"mcpServers\": {\n    \"heybeauty-mcp\": {\n      \"command\": \"node\",\n      \"args\": [\"/path/to/heybeauty-mcp/build/index.js\"]\n    },\n    \"env\": {\n      \"HEYBEAUTY_API_KEY\": \"your_heybeauty_api_key\"\n    }\n  }\n}\n```\n\nFollow this document to [get HeyBeauty API Key](https://heybeauty.com/docs/api/introduction).\n\n### Debugging\n\nSince MCP servers communicate over stdio, debugging can be challenging. We recommend using the [MCP Inspector](https://github.com/modelcontextprotocol/inspector), which is available as a package script:\n\n```bash\nnpm run inspector\n```\n\nThe Inspector will provide a URL to access debugging tools in your browser.\n",
+  "extracted_at": "2025-06-13T08:54:42.973401",
+  "content_hash": "65b192cabba67977c09aa40805bc2e6c65a66d3e63e929f5b0979bc5a454f3ae"
+}

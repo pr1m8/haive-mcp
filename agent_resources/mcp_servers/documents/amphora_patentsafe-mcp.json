@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "amphora/patentsafe-mcp",
+    "owner": "amphora",
+    "repo_name": "patentsafe-mcp",
+    "repo_url": "https://github.com/amphora/patentsafe-mcp",
+    "description": "[amphora/patentsafe-mcp](https://github.com/amphora/patentsafe-mcp): Connects to PatentSafe to retrieve documents using raw Lucene queries.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/amphora/patentsafe-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# PatentSafe MCP\n\nThis is a MCP server for PatentSafe. It is used to connect to PatentSafe and retrieve documents.\n\n## Installation\n\nFor Claude, you can install the MCP server having a `~/Users/simonc~/Library/Application Support/Claude/claude_desktop_config.json`file which looks something like this on macOS with Homebrew and `uv` installed:\n\n```yml\n{\n  \"mcpServers\": {\n    \"USEFULNAME\": {\n      \"command\": \"/opt/homebrew/bin/uvx\",\n      \"args\": [\n        \"--from\",\n        \"git+ssh://git@github.com/amphora/patentsafe-mcp.git\",\n        \"patentsafe-mcp\",\n        \"PATENTSAFE_BASE_URL\",\n        \"PATENTSAFE_AUTH_TOKEN\"\n      ]\n    }\n  }\n}\n```\n\nYou'll need to replace:\n\n- `USEFULNAME` with a useful name for the server (e.g. `patentsafe`)\n- `PATENTSAFE_BASE_URL` with the base URL of your PatentSafe instance (e.g. `https://demo.morescience.com`)\n- `PATENTSAFE_AUTH_TOKEN` with your PatentSafe authentication token you can get from your user settings.\n\n## Usage\n\nWe've tested it with Claude, but it should work with any MCP client.\n\n## How it works (and debugging)\n\nThe MCP server does raw Lucene queries against the PatentSafe database, which is not something users often do. If you want to do a Lucene query, you can use the following URL:\n\n```\nhttps://PATENTSAFE_BASE_URL/ps/read/search.html?pq=1\n```\n\n## Limits \n\nOur initial testing shows that PatentSafe can easily return more documents than the LLM can process. So there's a `--max-chars` flag to limit the number of characters returned, default 500k.\n\n\n## Support\n\nThis is very much a work in progress. It works for us, and will likely work for you, but it's not production ready and is under active development.\n\nYou can raise issues directly with Amphora's support team in the usual way, or contribute to this GitHub project with pull requests, issues, discussion etc.\n\n## Future Work\n\n- Add support for exposing Metadata fields\n- Move the MCO server natively into PatentSafe (if that's the way clients evolve) \n  ",
+  "extracted_at": "2025-06-13T08:56:11.894493",
+  "content_hash": "1e1ce9e420412b077a74b5bdffc2c62864471b48e74e00be9a33704c93f5764d"
+}

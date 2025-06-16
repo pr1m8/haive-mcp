@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "ayush-rudani/google-search-mcp-server",
+    "owner": "ayush-rudani",
+    "repo_name": "google-search-mcp-server",
+    "repo_url": "https://github.com/ayush-rudani/google-search-mcp-server",
+    "description": "[ayush-rudani/google-search-mcp-server](https://github.com/ayush-rudani/google-search-mcp-server): Integrates with Google's Custom Search JSON API to provide advanced web search capabilities with structured results and rate limiting.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/ayush-rudani/google-search-mcp-server/master/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Google Search MCP Server\n\nAn MCP server implementation that integrates with Google's Custom Search JSON API, providing web search capabilities.\n\n## Features\n\n- **Web Search**: Search Google with comprehensive query options\n- **Advanced Filtering**: Control results by date, language, country, and safe search level\n- **Rate Limited**: Built-in rate limiting to prevent API quota exhaustion\n- **Structured Results**: Returns formatted search results with titles, URLs, and snippets\n\n## Tools\n\n- **google_search**\n  - Execute Google searches with advanced filtering options\n  - Inputs:\n    - `query` (string): Search terms (required)\n    - `num_results` (number, optional): Number of results (1-10, default: 5)\n    - `date_restrict` (string, optional): Filter by date (e.g., \"d1\" for last day)\n    - `language` (string, optional): 2-letter language code (e.g., \"en\")\n    - `country` (string, optional): 2-letter country code (e.g., \"us\")\n    - `safe_search` (string, optional): Safety level (\"off\", \"medium\", \"high\")\n\n## Configuration\n\n### Getting API Keys\n\n1. Create a Google Cloud project at [Google Cloud Console](https://console.cloud.google.com/)\n2. Activate the Custom Search JSON API for your project via the [API dashboard](https://console.cloud.google.com/apis/api/customsearch.googleapis.com)\n3. Generate an API key either through the Credentials section or following the [Custom Search API guide](https://developers.google.com/custom-search/v1/overview)\n4. Obtain a Search Engine ID by setting up a custom search engine in [Google's Programmable Search](https://programmablesearchengine.google.com/)\n\n### Environment Variables\n\nSet these before running the server:\n\n```bash\nexport GOOGLE_API_KEY=\"your-api-key\"\nexport GOOGLE_SEARCH_ENGINE_ID=\"your-search-engine-id\"\n```\n\n## Running from Local Repository\n\nTo run the server directly from source:\n\n1. **Clone the repository**\n\n   ```bash\n    git clone https://github.com/ayush-rudani/google-search-mcp-server.git\n    cd google-search-mcp-server\n   ```\n\n2. **Install dependencies**\n\n   ```bash\n    pnpm install\n    # or\n    npm install\n   ```\n\n3. **Build the project**\n\n   ```bash\n    pnpm run build\n    # or\n    npm run build\n   ```\n\n4. **Configure Claude Desktop**\n   Update your `claude_desktop_config.json`:\n\n   ```json\n   {\n     \"mcpServers\": {\n       \"google-search\": {\n         \"command\": \"/path/to/node\", // <--- Important to add the following, run in your terminal `echo \"$(which node)\"` to get the path\n         \"args\": [\"/full/path/to/google-search-mcp/index.js\"],\n         \"env\": {\n           \"GOOGLE_API_KEY\": \"your-api-key\",\n           \"GOOGLE_SEARCH_ENGINE_ID\": \"your-search-engine-id\"\n         }\n       }\n     }\n   }\n   ```\n\n   - Replace `/path/to/node` with the complete path to your Node.js executable (you can locate this by running the command `which node` in your terminal)\n\n5. **Test the server**\n   ```bash\n    export GOOGLE_API_KEY=your_api_key_here\n    export GOOGLE_SEARCH_ENGINE_ID=your_engine_id_here\n    node dist/index.js\n   ```\n\n## Rate Limits\n\nThe server enforces a rate limit of 10 requests per minute by default to prevent exceeding Google's API quotas. You can adjust this in the code if needed.\n\n## License\n\nThis MCP server is licensed under the MIT License. See the LICENSE file for details.\n",
+  "extracted_at": "2025-06-13T08:56:47.067481",
+  "content_hash": "85726232ac95c5dfd1ebad5415594c5a0a05028f631ede51f864d6a639936369"
+}

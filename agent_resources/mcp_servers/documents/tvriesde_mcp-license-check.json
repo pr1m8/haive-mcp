@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "tvriesde/mcp-license-check",
+    "owner": "tvriesde",
+    "repo_name": "mcp-license-check",
+    "repo_url": "https://github.com/tvriesde/mcp-license-check",
+    "description": "[tvriesde/mcp-license-check](https://github.com/tvriesde/mcp-license-check): Provides vehicle data based on Dutch license plates through a simple MCP server.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/tvriesde/mcp-license-check/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# MCP License Check\n\nSimple MCP Server which provides vehicle data based on dutch license plates.\n\n## How to Use with Claude Desktop\n\n1. Ensure [Node.js](https://nodejs.org/) is installed locally.\n\n2. Configure your `mcpServers` in your settings:\n\n    ```json\n    {\n      \"mcpServers\": {\n        \"vehicle-information\": {\n          \"command\": \"node\",\n          \"args\": [\n            \"C:/ABSOLUTE/PATH/TO/BUILD/DIRECTORY/index.js\"\n          ]\n        }\n      }\n    }\n    ```\n\n- Replace `C:/ABSOLUTE/PATH/TO/BUILD/DIRECTORY/index.js` with the actual path to your build directory.",
+  "extracted_at": "2025-06-13T08:57:05.034399",
+  "content_hash": "0aa63c62663219e7017c4b9f26c83d54bf7f24d2560b839202c3a0d7c1d3654f"
+}

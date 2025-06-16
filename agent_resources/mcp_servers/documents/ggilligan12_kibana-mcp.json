@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "ggilligan12/kibana-mcp",
+    "owner": "ggilligan12",
+    "repo_name": "kibana-mcp",
+    "repo_url": "https://github.com/ggilligan12/kibana-mcp",
+    "description": "[ggilligan12/kibana-mcp](https://github.com/ggilligan12/kibana-mcp): Facilitates AI-driven interaction with Kibana Security alerts by tagging, adjusting status, and retrieving alerts.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/ggilligan12/kibana-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Kibana MCP Server\n\n![Kibana MCP Demo](faster-server-demo.gif)\n\nModel Context Protocol (MCP) server for Kibana Security - manage alerts, rules, and exceptions via AI assistants.\n\n## Quick Start\n\n### 1. Clone and Build\n```bash\ngit clone https://github.com/ggilligan12/kibana-mcp.git\ncd kibana-mcp\ndocker build -t kibana-mcp .\n```\n\n### 2. Configure MCP Client\nAdd to your MCP client config (Claude Desktop, Cursor, etc.):\n\n**Option A: Using Environment Variables (Recommended)**\n\nFirst, set your credentials:\n```bash\nexport KIBANA_URL=\"https://your-kibana.example.com:5601\"\n\n# Option 1: API Key (recommended)\nexport KIBANA_API_KEY=\"your_base64_api_key\"\n\n# Option 2: Username/Password\n# export KIBANA_USERNAME=\"your_username\"\n# export KIBANA_PASSWORD=\"your_password\"\n```\n\nThen add to your MCP config:\n```json\n{\n  \"mcpServers\": {\n    \"kibana-mcp\": {\n      \"command\": \"docker\",\n      \"args\": [\"run\", \"-i\", \"--rm\", \"--network\", \"host\", \"-e\", \"KIBANA_URL\", \"-e\", \"KIBANA_API_KEY\", \"kibana-mcp\"]\n    }\n  }\n}\n```\n\nFor username/password, use:\n```json\n{\n  \"mcpServers\": {\n    \"kibana-mcp\": {\n      \"command\": \"docker\",\n      \"args\": [\"run\", \"-i\", \"--rm\", \"--network\", \"host\", \"-e\", \"KIBANA_URL\", \"-e\", \"KIBANA_USERNAME\", \"-e\", \"KIBANA_PASSWORD\", \"kibana-mcp\"]\n    }\n  }\n}\n```\n\n**Option B: Direct Credentials (Easier for Claude Desktop)**\n\nUsing API Key:\n```json\n{\n  \"mcpServers\": {\n    \"kibana-mcp\": {\n      \"command\": \"docker\",\n      \"args\": [\n        \"run\", \"-i\", \"--rm\", \"--network\", \"host\",\n        \"-e\", \"KIBANA_URL=https://your-kibana.example.com:5601\",\n        \"-e\", \"KIBANA_API_KEY=your_base64_api_key\",\n        \"kibana-mcp\"\n      ]\n    }\n  }\n}\n```\n\nUsing Username/Password:\n```json\n{\n  \"mcpServers\": {\n    \"kibana-mcp\": {\n      \"command\": \"docker\",\n      \"args\": [\n        \"run\", \"-i\", \"--rm\", \"--network\", \"host\",\n        \"-e\", \"KIBANA_URL=https://your-kibana.example.com:5601\",\n        \"-e\", \"KIBANA_USERNAME=your_username\",\n        \"-e\", \"KIBANA_PASSWORD=your_password\",\n        \"kibana-mcp\"\n      ]\n    }\n  }\n}\n```\n\n*Note: Option B is less secure but more convenient for tools like Claude Desktop where environment variables are harder to manage.*\n\n## Available Tools\n\n- **`get_alerts`** - Fetch security alerts\n- **`tag_alert`** - Add tags to alerts  \n- **`adjust_alert_status`** - Change alert status (open/acknowledged/closed)\n- **`find_rules`** - Search detection rules\n- **`get_rule_exceptions`** - Get rule exception items\n- **`add_rule_exception_items`** - Add exceptions to rules\n- **`create_exception_list`** - Create new exception lists\n- **`associate_shared_exception_list`** - Link exception lists to rules\n\n## Local Development\n\n```bash\n# Install dependencies\nuv sync\n\n# Set environment variables (see above)\n\n# Run locally\nuv run kibana-mcp\n```\n\n### Test Environment\n```bash\n# Start local Kibana/Elasticsearch with test data\npip install -r testing/requirements-dev.txt\n./testing/quickstart-test-env.sh\n\n# Access at http://localhost:5601 (elastic/elastic)\n```\n\n",
+  "extracted_at": "2025-06-13T08:56:25.554950",
+  "content_hash": "dfb5337645b378ceb550191a17510aced167631ad381e80dd61ab17c59839ab7"
+}

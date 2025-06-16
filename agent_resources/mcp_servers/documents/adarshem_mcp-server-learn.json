@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "adarshem/mcp-server-learn",
+    "owner": "adarshem",
+    "repo_name": "mcp-server-learn",
+    "repo_url": "https://github.com/adarshem/mcp-server-learn",
+    "description": "[adarshem/mcp-server-learn](https://github.com/adarshem/mcp-server-learn): A Node.js-based MCP server offering weather alerts and forecasts using the US National Weather Service API.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/adarshem/mcp-server-learn/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# MCP Weather Server\n\n[![smithery badge](https://smithery.ai/badge/@adarshem/mcp-server-learn)](https://smithery.ai/server/@adarshem/mcp-server-learn)\n\nThis project is a demo implementation of a Model Context Protocol (MCP) server that provides weather-related tools. The server exposes two tools:\n\n1. **get-alerts**: Fetches active weather alerts for a given US state.\n2. **get-forecast**: Provides a weather forecast for a specific location based on latitude and longitude.\n\n<a href=\"https://glama.ai/mcp/servers/@adarshem/mcp-server-learn\">\n  <img width=\"380\" height=\"200\" src=\"https://glama.ai/mcp/servers/@adarshem/mcp-server-learn/badge\" alt=\"Weather Server MCP server\" />\n</a>\n\n## Features\n- Built using Node.js.\n- Implements MCP tools for weather data retrieval.\n- Uses the US National Weather Service API for accurate and up-to-date weather information.\n\n## Prerequisites\n- Node.js installed on your system.\n- Familiarity with MCP concepts and tools.\n\n## Setup\n\n### Installing via Smithery\n\nTo install mcp-server-learn for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@adarshem/mcp-server-learn):\n\n```bash\nnpx -y @smithery/cli install @adarshem/mcp-server-learn --client claude\n```\n\n### Manual Installation\n1. Clone the repository:\n   ```bash\n   git clone <repository-url>\n   cd weather\n   ```\n\n2. Install dependencies using `pnpm` (as configured in the project):\n   ```bash\n   pnpm install\n   ```\n\n3. Build the project:\n   ```bash\n   pnpm build\n   ```\n\n## Configuration\n\nUpdate your `settings.json` file of VSCode to add this MCP server\n\n```json\n{\n    \"mcpServers\": {\n        \"weather\": {\n            \"command\": \"node\",\n            \"args\": [\n                \"/ABSOLUTE/PATH/TO/PARENT/FOLDER/weather/build/index.js\"\n            ]\n        }\n    }\n}\n```\n\n## Resources\n- [MCP Quickstart Guide](https://modelcontextprotocol.io/quickstart/server)\n- [US National Weather Service API](https://www.weather.gov/documentation/services-web-api)",
+  "extracted_at": "2025-06-13T08:57:02.569008",
+  "content_hash": "63ba668c4011c6d01b238a9e158eb5f864f02d61c453dfcaa821e96a3c24c473"
+}

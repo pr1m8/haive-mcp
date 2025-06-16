@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "dhrbtjr0331/nba-stats-predictor-mcp",
+    "owner": "dhrbtjr0331",
+    "repo_name": "nba-stats-predictor-mcp",
+    "repo_url": "https://github.com/dhrbtjr0331/nba-stats-predictor-mcp",
+    "description": "[dhrbtjr0331/nba-stats-predictor-mcp](https://github.com/dhrbtjr0331/nba-stats-predictor-mcp): Generates NBA player performance forecasts using real-time data analysis and advanced statistical modeling.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/dhrbtjr0331/nba-stats-predictor-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# MCP Server for NBA Stats Predictor Application \n\nAn MCP-powered tool for the NBA stats predictor app that generates player performance forecasts using real-time data analysis and advanced statistical modeling.\n\n[![Demo](https://img.youtube.com/vi/8uVuVz1Fbu0/0.jpg)](https://youtu.be/8uVuVz1Fbu0)\n## Installation\n\n### Prerequisites\n- Python 3.8+\n- pip\n- Claude Desktop\n\n### Step-by-Step Setup\n\n1. Clone this repository onto your local device\n\n2. Navigate to the project directory:\n   ```bash\n   cd nba-stats-predictor-application\n   ```\n\n3. Create a virtual environment:\n   ```bash\n   python3 -m venv venv\n   ```\n\n4. Activate the virtual environment:\n   ```bash\n   source venv/bin/activate\n   ```\n\n5. Install dependencies:\n   ```bash\n   pip install -r requirements.txt\n   ```\n\n6. Download the necessary data:\n   ```bash\n   python3 data_pipeline/download_data.py\n   ```\n\n7. Train the prediction model:\n   ```bash\n   python3 models/train_model.py\n   ```\n\n8. Start the FastAPI server:\n   ```bash\n   uvicorn api.fastapi_server:app --reload\n   ```\n\n9. Open a new terminal\n\n10. Return to the project directory\n\n11. Install UV package manager:\n    ```bash\n    curl -LsSf https://astral.sh/uv/install.sh | sh\n    ```\n\n12. Restart the terminal in this directory\n\n13. Run the MCP server:\n    ```bash\n    uv run mcp_main.py\n    ```\n\n14. Open another new terminal\n\n15. Configure Claude Desktop:\n    ```bash\n    code ~/Library/Application\\ Support/Claude/claude_desktop_config.json\n    ```\n    Note: If the file doesn't exist, create it.\n\n16. Add the following configuration to `claude_desktop_config.json`:\n    ```json\n    {\n        \"mcpServers\": {\n            \"NBA-stats-predictor\": {\n                \"command\": \"/PATH/TO/PROJECT/DIRECTORY/.venv/bin/uv\",\n                \"args\": [\n                    \"--directory\",\n                    \"/PATH/TO/PROJECT/DIRECTORY/\",\n                    \"run\",\n                    \"mcp_main.py\"\n                ]\n            }\n        }\n    }\n    ```\n    Remember to replace `/PATH/TO/PROJECT/DIRECTORY/` with the actual path to your project.\n\n17. You should now be able to use this MCP tool on Claude Desktop.\n\n## Usage\n\nOnce configured, you can use the NBA stats predictor tool in Claude Desktop to get predictions for player performance in upcoming games.\n\n## Troubleshooting\n\n- Make sure all paths in the configuration are correct\n- Ensure the virtual environment is activated before running commands\n- Check that all dependencies are properly installed\n- Verify that the FastAPI server is running before using the MCP tool\n",
+  "extracted_at": "2025-06-13T08:56:57.133798",
+  "content_hash": "0f065d026b1452bc1ee4e6e17367757880c4fa5b2accef97fb4b97ab9a9f33fc"
+}

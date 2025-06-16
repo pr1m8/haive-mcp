@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "wgr1984/ns-lookup-mcp",
+    "owner": "wgr1984",
+    "repo_name": "ns-lookup-mcp",
+    "repo_url": "https://github.com/wgr1984/ns-lookup-mcp",
+    "description": "[wgr1984/ns-lookup-mcp](https://github.com/wgr1984/ns-lookup-mcp): Provides a REST API for DNS lookups using the nslookup command, enabling easy integration of DNS resolution into applications.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/wgr1984/ns-lookup-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# NS Lookup MCP Server\n\nA simple MCP (Model Context Protocol) Server that exposes the nslookup command functionality. This service provides a REST API interface to perform DNS lookups, making it easy to integrate DNS resolution capabilities into your applications.\n\n## Features\n\n- Exposes nslookup command functionality via a REST API\n- Simple and focused microservice\n- Modern Python tooling with uv and pyproject.toml\n- Supports both forward and reverse DNS lookups\n- Configurable DNS server selection\n- Clean and concise output formatting\n\n## Requirements\n\n- Python 3.9 or higher\n- uv (Python package manager)\n\n## Installation\n\n1. Clone the repository\n2. Install dependencies using uv:\n```bash\nuv pip install -e .\n```\n\n## Usage\n\nStart the server:\n```bash\nuv run ns-lookup-mcp\n```\n\nDebug mode:\n```bash\nnpx @modelcontextprotocol/inspector uv run ns-lookup-mcp \n```\n\n### MCP Interface\n\n#### Tools\n\nThe server exposes the following tool:\n\n```json\n{\n  \"name\": \"nslookup\",\n  \"description\": \"Performs DNS lookups using the nslookup command. Supports both forward and reverse DNS lookups.\",\n  \"inputSchema\": {\n    \"type\": \"object\",\n    \"properties\": {\n      \"hostname\": {\n        \"type\": \"string\",\n        \"description\": \"Domain name or IP address to look up\"\n      },\n      \"server\": {\n        \"type\": \"string\",\n        \"description\": \"Optional DNS server to use for the lookup\"\n      }\n    },\n    \"required\": [\"hostname\"]\n  }\n}\n```\n\n#### Prompts\n\nThe server provides the following prompt:\n\n```json\n{\n  \"name\": \"nslookup\",\n  \"description\": \"Perform a DNS lookup using nslookup\",\n  \"arguments\": [\n    {\n      \"name\": \"hostname\",\n      \"description\": \"Domain name or IP address to look up\",\n      \"required\": true\n    },\n    {\n      \"name\": \"server\",\n      \"description\": \"Optional DNS server to use\",\n      \"required\": false\n    }\n  ]\n}\n```\n\n### MCP Client Configuration\n\nTo use this server with an MCP client, add the following configuration to your client's settings:\n\n```json\n{\n  \"mcpServers\": {\n    \"nslookup\": {\n      \"command\": \"uv\",\n      \"args\": [\n        \"run\",\n        \"--directory\",\n        \"[workspace]/ns-lookup-mcp\",\n        \"ns-lookup-mcp\"\n      ]\n    }\n  }\n}\n```\n\nReplace `[workspace]` with the actual path to your workspace directory.\n\n### Example Output\n\nThe server returns DNS lookup results in a clean, concise format:\n\n```\nDNS:    192.168.1.1\nName:   example.com\nAddress: 93.184.216.34\n```\n\n### Common DNS Servers\n\n- Google DNS: `8.8.8.8`\n- Cloudflare DNS: `1.1.1.1`\n- OpenDNS: `208.67.222.222`\n\n## License\n\nMIT ",
+  "extracted_at": "2025-06-13T08:56:36.836792",
+  "content_hash": "30b18e4bf5392bb768a1386403c3b5d45dc84a6f27796b3f2d28b5e54b044eda"
+}

@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "koudaiDemon/mcp-server-hand",
+    "owner": "koudaiDemon",
+    "repo_name": "mcp-server-hand",
+    "repo_url": "https://github.com/koudaiDemon/mcp-server-hand",
+    "description": "[koudaiDemon/mcp-server-hand](https://github.com/koudaiDemon/mcp-server-hand): Enhances user shopping experiences by analyzing conversations to provide personalized product recommendations through intelligent tag matching.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/koudaiDemon/mcp-server-hand/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Hand Marketing MCP Server\n\nThis MCP Server analyzes user conversations to accurately extract multi-dimensional tags, intelligently matches them with product tags from an industry database, and thereby provides users with highly tailored product recommendations that align with their needs—enhancing both shopping experience and conversion rates.\n\n## Features\n\n- Conversation Analysis & Tag Extraction: Function: Analyzes user dialogues to extract multi-dimensional tags (e.g., preferences, scenarios, budgets) via NLP.\n- Intelligent Tag Matching: Dynamically aligns user tags with product tags from an industry database using rule-based or ML-driven algorithms.\n- Scalability & Real-Time Processing: Supports cross-industry databases (e-commerce, travel, etc.).\n- Personalized Recommendation Engine: Generates highly tailored product recommendations based on matched tags, optimizing relevance and ranking.\n- Performance Optimization: Reduces decision fatigue by filtering irrelevant options.\n\n## Prerequisites\n\n- Get Hand Marketing MCP Server Auth Key\n\n## Getting started\n\n- Configure\n\nPlease set the value for auth key\n\n```json\n{\n  \"mcpServers\": {\n    \"hand-marketing-mcp-sse\": {\n      \"url\": \"https://mcp.linkcrm.cn/sse?key=xxxxx\"\n    }\n  }\n}\n```\n\n- Run\nUse Hand Marketing MCP Server in a MCP client, like 火山方舟/Cursor/Claude macOS app/Cherry Studio.\n",
+  "extracted_at": "2025-06-13T08:56:08.640998",
+  "content_hash": "ab50a543cef819375664ea0c43c3fcf883b439a0e3c4422552cf70f45a8898c4"
+}

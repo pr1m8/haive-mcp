@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "0xanpham/my-crypto-mcp",
+    "owner": "0xanpham",
+    "repo_name": "my-crypto-mcp",
+    "repo_url": "https://github.com/0xanpham/my-crypto-mcp",
+    "description": "[0xanpham/my-crypto-mcp](https://github.com/0xanpham/my-crypto-mcp): Provides real-time cryptocurrency data through Claude Desktop by connecting to the CoinMarketCap API.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/0xanpham/my-crypto-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# My Crypto MCP\n\nThis Model Context Protocol (MCP) server provides cryptocurrency information through Claude Desktop. It connects to the CoinMarketCap API to fetch real-time cryptocurrency data.\n\n## Features\n\n- Get current cryptocurrency information by symbol\n- View a sample cryptocurrency portfolio\n\n## Prerequisites\n\n- [Claude Desktop](https://claude.ai/desktop)\n- [Node.js](https://nodejs.org/) (v16 or later)\n- CoinMarketCap API key (get one at [coinmarketcap.com/api](https://coinmarketcap.com/api/))\n\n## Setup Instructions\n\n### 1. Install Dependencies\n\n```bash\nnpm install\n```\n\n### 2. Build the Project\n\n```bash\nnpm run build\n```\n\n### 3. Configure Claude Desktop\n\nAdd the MCP server to Claude Desktop by editing the Claude configuration file:\n\n1. Open Claude Desktop settings\n2. Add the following configuration:\n\n```json\n{\n  \"mcpServers\": {\n    \"crypto\": {\n      \"command\": \"node\",\n      \"args\": [\"/absolute/path/to/your/project/build/index.js\"],\n      \"env\": {\n        \"CMC_API_KEY\": \"your-coinmarketcap-api-key\"\n      }\n    }\n  }\n}\n```\n\n> **Important:** Replace `/absolute/path/to/your/project` with the actual path to your project directory and `your-coinmarketcap-api-key` with your actual CoinMarketCap API key.\n\n### 4. Restart Claude Desktop\n\nAfter adding the configuration, restart Claude Desktop to load the MCP server.\n\n## Using the Crypto MCP\n\nOnce configured, you can use the following commands in your chat with Claude:\n\n### Get Portfolio Information\n\n#### 1. Add Portfolio Resource\n\nAttach **portfolio** resource from the MCP using the attachment button in Claude Desktop.\n\n#### 2. Ask your own questions\n\nYou can now ask questions like:\n\n```\nWhat is my portfolio's current value?\n```\n\nClaude will fetch the latest information from the CoinMarketCap API and provide detailed information about your portfolio.\n\n##### Example Response\n\nHere's a sample of what Claude might return:\n\n```\nBased on your portfolio and current market prices, here's the value of your cryptocurrency holdings as of April 27, 2025:\n\nZK (ZKsync): 69,696 ZK × $0.06051 = $4,217.48\nBitcoin (BTC): 9,696 BTC × $94,361.18 = $914,904,201.28\nEthereum (ETH): 23,456 ETH × $1,803.33 = $42,288,825.48\n\nTotal portfolio value: $957,197,244.24\nYour portfolio is primarily dominated by your Bitcoin holdings, which represent over 95% of your total portfolio value. Would you like any additional information about market trends or recommendations for your portfolio?\n```\n\n## Development\n\n- Source code is in the src directory\n- The main MCP server is defined in index.ts\n- API interactions are handled in helper.ts\n\n## Troubleshooting\n\nIf you encounter issues:\n\n1. Check that your CoinMarketCap API key is valid\n2. Verify the path to the build file in Claude Desktop configuration\n3. Check console output for any error messages\n",
+  "extracted_at": "2025-06-13T08:55:42.288708",
+  "content_hash": "98b4856285c6dbd5af80e7177ce8aaba78ecf1cf0f4cb2262095ea3c67aa3753"
+}

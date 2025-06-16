@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "comitest22/linear-mcp",
+    "owner": "comitest22",
+    "repo_name": "linear-mcp",
+    "repo_url": "https://github.com/comitest22/linear-mcp",
+    "description": "[comitest22/linear-mcp](https://github.com/comitest22/linear-mcp): Facilitates interaction with the Linear API through a Model Context Protocol server, offering tools for ticket management and prioritization.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": null,
+    "api_base_url": null
+  },
+  "readme_content": null,
+  "extracted_at": "2025-06-13T08:54:38.542315",
+  "content_hash": ""
+}

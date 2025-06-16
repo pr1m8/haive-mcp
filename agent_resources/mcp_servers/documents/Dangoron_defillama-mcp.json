@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "Dangoron/defillama-mcp",
+    "owner": "Dangoron",
+    "repo_name": "defillama-mcp",
+    "repo_url": "https://github.com/Dangoron/defillama-mcp",
+    "description": "[Dangoron/defillama-mcp](https://github.com/Dangoron/defillama-mcp): Facilitates the execution of DeFiLlama data processing scripts through an MCP server configuration.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": null,
+    "api_base_url": null
+  },
+  "readme_content": null,
+  "extracted_at": "2025-06-13T08:55:11.858294",
+  "content_hash": ""
+}

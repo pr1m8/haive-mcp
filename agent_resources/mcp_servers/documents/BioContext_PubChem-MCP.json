@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "BioContext/PubChem-MCP",
+    "owner": "BioContext",
+    "repo_name": "PubChem-MCP",
+    "repo_url": "https://github.com/BioContext/PubChem-MCP",
+    "description": "[BioContext/PubChem-MCP](https://github.com/BioContext/PubChem-MCP): Access PubChem data for compounds, substances, and bioassays through a Model Context Protocol server.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/BioContext/PubChem-MCP/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# PubChem-MCP\n\nAn MCP (Model Context Protocol) server for accessing PubChem data. This server provides tools for querying the PubChem database for compounds, substances, bioassays, and related information.\n\n## Features\n\n* Search for compounds by name, structure, or identifier\n* Retrieve detailed information about compounds and substances\n* Access bioassay data and molecular properties\n* Query chemical classifications and cross-references\n* Compatible with any MCP client, including Claude for Desktop\n\n## Installation\n\n### Option 1: From GitHub\n\n```bash\n# Clone the repository\ngit clone https://github.com/BioContext/PubChem-MCP.git\ncd PubChem-MCP\n\n# Create a virtual environment\nuv venv\nsource .venv/bin/activate  # On Windows: .venv\\Scripts\\activate\n\n# Install dependencies\npip install -r requirements.txt\n```\n\n### Option 2: Using pip (Once published)\n\n```bash\npip install pubchem-mcp\n```\n\n## Usage\n\n### Running as a standalone server\n\n```bash\n# From source\npython -m mcp_server\n\n# If installed via pip\npubchem-mcp\n```\n\n### Using with Claude for Desktop\n\n1. Install Claude for Desktop\n2. Configure Claude for Desktop to use this server by editing `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS/Linux) or `%AppData%\\Claude\\claude_desktop_config.json` (Windows):\n\n```json\n{\n    \"mcpServers\": {\n        \"pubchem\": {\n            \"command\": \"python\",\n            \"args\": [\n                \"-m\",\n                \"mcp_server\"\n            ]\n        }\n    }\n}\n```\n\n3. Restart Claude for Desktop\n4. You can now use the PubChem tools in Claude\n\n### Example queries for Claude\n\n* \"Find information about aspirin in PubChem\"\n* \"What are the properties of compound CID 2244?\"\n* \"Show me the structure of paracetamol\"\n\n## Available Tools\n\n* `search_compound`: Search for compounds by name or identifier\n* `get_compound_details`: Get detailed information about a compound\n* `get_compound_properties`: Get physical and chemical properties of a compound\n* `search_bioassay`: Search for bioassays\n* `get_substance_details`: Get detailed information about a substance\n* And more...\n\n## Development\n\n```bash\n# Clone the repository\ngit clone https://github.com/BioContext/PubChem-MCP.git\ncd PubChem-MCP\n\n# Create a virtual environment\nuv venv\nsource .venv/bin/activate  # On Windows: .venv\\Scripts\\activate\n\n# Install development dependencies\npip install -e \".[dev]\"\n\n# Run tests\npytest\n```\n\n## License\n\nMIT License\n",
+  "extracted_at": "2025-06-13T08:55:26.166293",
+  "content_hash": "185ff8fdaea0429dbcd6c9b4f83eb670d9340c7a61567cd3c311ef9e091c0f3e"
+}

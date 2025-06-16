@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "Malove86/mcp-mysql-server",
+    "owner": "Malove86",
+    "repo_name": "mcp-mysql-server",
+    "repo_url": "https://github.com/Malove86/mcp-mysql-server",
+    "description": "[Malove86/mcp-mysql-server](https://github.com/Malove86/mcp-mysql-server): Facilitates AI model interactions with MySQL databases via a standardized interface, supporting both local and remote deployment modes.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/Malove86/mcp-mysql-server/master/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# mcp-mysql-server\n\n一个基于Model Context Protocol的MySQL数据库操作服务器。该服务器使AI模型能够通过标准化接口与MySQL数据库进行交互。\n\n## 安装\n\n```bash\nnpx @malove86/mcp-mysql-server\n```\n\n## 配置\n\n服务器支持两种部署模式：\n\n### 1. 本地运行模式\n\n在MCP设置配置文件中使用命令行运行：\n\n```json\n{\n  \"mcpServers\": {\n    \"mysql\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"@malove86/mcp-mysql-server\"],\n      \"env\": {\n        \"MYSQL_HOST\": \"your_host\",\n        \"MYSQL_USER\": \"your_user\",\n        \"MYSQL_PASSWORD\": \"your_password\",\n        \"MYSQL_DATABASE\": \"your_database\",\n        \"MYSQL_PORT\": \"3306\"\n      }\n    }\n  }\n}\n```\n\n### 2. 远程URL模式 (v0.2.2+)\n\n指向远程运行的MCP服务器：\n\n```json\n{\n  \"mcpServers\": {\n    \"mcp-mysql-server\": {\n      \"url\": \"http://your-server-address:port/mcp-mysql-server\"\n    }\n  }\n}\n```\n\n在远程服务器上，您需要设置环境变量后启动MCP服务器：\n\n```bash\n# 设置环境变量\nexport MYSQL_HOST=your_host\nexport MYSQL_USER=your_user\nexport MYSQL_PASSWORD=your_password\nexport MYSQL_DATABASE=your_database\nexport MYSQL_PORT=3306  # 可选，默认为3306\n\n# 启动服务器\nnpx @malove86/mcp-mysql-server\n```\n\n> 注意：MYSQL_PORT是可选的，默认值为3306。\n\n## 版本功能\n\n### v0.2.4+ 新特性\n- **多用户并发支持**：服务器现在可同时处理多个用户的请求\n- **高效连接池管理**：使用改进的连接池，支持最多50个并发连接\n- **请求级别隔离**：每个请求都有唯一标识符，便于跟踪和调试\n- **详细日志记录**：记录每个请求的执行过程和资源使用情况\n- **改进的错误处理**：更精确地捕获和报告数据库错误\n- **性能优化**：连接池复用和优化的连接管理提高处理速度\n\n### v0.2.2+ 特性\n- **自动数据库连接**：在服务器启动时，如果设置了环境变量，会自动尝试连接数据库\n- **无需客户端参数**：当使用URL模式时，客户端不需要提供数据库连接信息\n- **无感知数据库操作**：可以直接使用`list_tables`、`query`等工具，无需先调用`connect_db`\n- **更安全**：敏感的数据库凭据只在服务器端存在，不会暴露在客户端对话中\n- **优雅的容错**：即使初始连接失败，后续操作会自动重试连接\n\n## 可用工具\n\n### 1. connect_db\n使用提供的凭据建立与MySQL数据库的连接。如果已通过环境变量设置了连接，此工具是可选的。\n\n```json\n{\n  \"host\": \"localhost\",\n  \"user\": \"root\",\n  \"password\": \"your_password\",\n  \"database\": \"your_database\",\n  \"port\": 3306  // 可选，默认为3306\n}\n```\n\n### 2. query\n执行SELECT查询，支持可选的预处理语句参数。\n\n```json\n{\n  \"sql\": \"SELECT * FROM users WHERE id = ?\",\n  \"params\": [1]  // 可选参数\n}\n```\n\n### 3. list_tables\n列出已连接数据库中的所有表。\n\n```json\n{}  // 从v0.2.4开始不再需要任何参数\n```\n\n### 4. describe_table\n获取特定表的结构。\n\n```json\n{\n  \"table\": \"users\"\n}\n```\n\n## 功能特点\n\n- 安全的连接处理，自动清理\n- 支持预处理语句参数\n- 全面的错误处理和验证\n- TypeScript支持\n- 自动连接管理\n- 服务器环境变量配置\n- 支持URL远程连接模式\n- 多用户并发支持\n- 高性能连接池\n\n## 性能\n\n- 支持最多50个并发连接（可配置）\n- 连接池自动管理，提高资源利用率\n- 详细的请求跟踪和性能监控\n\n## 安全性\n\n- 使用预处理语句防止SQL注入\n- 通过环境变量支持安全密码处理\n- 执行前验证查询\n- 完成后自动关闭连接\n- URL模式下敏感凭据不暴露在客户端\n- 连接隔离，防止用户间数据泄露\n\n## 贡献\n\n欢迎贡献！请随时提交Pull Request到 https://github.com/Malove86/mcp-mysql-server.git\n\n## 许可证\n\nMIT ",
+  "extracted_at": "2025-06-13T08:55:30.964228",
+  "content_hash": "85f49a8aeeda1b959655c715d61e6e58c3c3676f8588d24c28e5b8acfcbeedb7"
+}

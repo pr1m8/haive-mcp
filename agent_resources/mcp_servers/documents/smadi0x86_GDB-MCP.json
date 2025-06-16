@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "smadi0x86/GDB-MCP",
+    "owner": "smadi0x86",
+    "repo_name": "GDB-MCP",
+    "repo_url": "https://github.com/smadi0x86/GDB-MCP",
+    "description": "[smadi0x86/GDB-MCP](https://github.com/smadi0x86/GDB-MCP): Facilitates LLM-driven debugging and analysis with GDB through an MCP server interface.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": null,
+    "api_base_url": null
+  },
+  "readme_content": null,
+  "extracted_at": "2025-06-13T08:55:06.822668",
+  "content_hash": ""
+}

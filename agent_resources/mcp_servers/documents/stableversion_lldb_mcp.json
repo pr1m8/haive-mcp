@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "stableversion/lldb_mcp",
+    "owner": "stableversion",
+    "repo_name": "lldb_mcp",
+    "repo_url": "https://github.com/stableversion/lldb_mcp",
+    "description": "[stableversion/lldb_mcp](https://github.com/stableversion/lldb_mcp): A streamlined LLDB MCP server with minimal dependencies, designed for efficient command execution and output capture.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/stableversion/lldb_mcp/master/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "## lldb_mcp\n\nA proper, simple lldb mcp server with minimal dependencies and all functionality! There are only two commands ```lldb_init``` and ```lldb```, no need to clutter your tools. Works remarkably well with o4-mini and Gemini 2.5 Pro. You remain fully in control.\n\nThe output is automagically captured, no need to copy paste.\n\n## Setup\n```bash\ngit clone https://github.com/stableversion/lldb_mcp\n```\n```bash\ncd lldb_mcp && python3 -m venv venv && source venv/bin/activate && pip3 install fastmcp\n```\n```json\n{\n  \"mcpServers\": {\n    \"lldb\": {\n      \"command\": \"/path/to/ldb_mcp/venv/bin/python\",\n      \"args\": [\"/path/to/ldb_mcp/lldb_mcp.py\"]\n    }\n  }\n}\n```\n```\n(lldb) command script import /path/to/lldb_mcp/lldb_server.py\n```\n\n## Architecture\nThe entire codebase is less than 200 lines of code, because:\n\n- **Synchronous LLDB:** Calling debugger.SetAsync(False) makes HandleCommand block and capture all output directly. This avoids complex event listeners (SBListener) and polling.\n- **Simple Controller:** The LLDBController just runs commands via HandleCommand and returns the full output/error it receives.\n- **Standard Libraries:** Uses Python's built-in socketserver and json\n\n## Safety\nlldb can execute ANY arbitrary commands, it should be prevented\n- You have to start the server in a lldb session manually\n- Some commands are blacklisted, check lldb_server.py\n- Chaining of commands is not allowed (o4-mini really likes to)\n\n## Notes\n- o4 mini has a tendency to hallucinate --address in memory commands.\n- Some commands \"succeeded\" without output, this is confusing for llms, so it returns \"Executed successfully\" instead.\n- \"Continue\" can run indefinitely until it hits a breakpoint, meaning the mcp can wait forever for output (skip and continue is your friend)\n",
+  "extracted_at": "2025-06-13T08:55:09.867141",
+  "content_hash": "36c1886da01db609bda31d1cf13d68b45d9b497f3134ecc87dc2691668656b15"
+}

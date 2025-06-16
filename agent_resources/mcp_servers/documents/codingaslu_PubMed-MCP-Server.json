@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "codingaslu/PubMed-MCP-Server",
+    "owner": "codingaslu",
+    "repo_name": "PubMed-MCP-Server",
+    "repo_url": "https://github.com/codingaslu/PubMed-MCP-Server",
+    "description": "[codingaslu/PubMed-MCP-Server](https://github.com/codingaslu/PubMed-MCP-Server): Leverages the FastMCP framework to asynchronously search PubMed for article abstracts using BioPython's Entrez module.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/codingaslu/PubMed-MCP-Server/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# PubMed MCP Server\n\nThis repository contains an MCP server that searches PubMed for article abstracts using BioPython's Entrez module. It leverages the FastMCP framework to provide asynchronous search capabilities for PubMed.\n\n## Features\n\n- **Search PubMed:** Query for articles based on a search term.\n- **Retrieve Abstracts:** Fetch abstracts of articles returned from PubMed.\n- **Asynchronous Operation:** Uses asynchronous execution (via `asyncio.to_thread`) to avoid blocking the server.\n\n## Prerequisites\n\n- Python 3.8 or higher\n- mcp[cli]\n- BioPython\n\n## Setup\n\n1. **Clone the Repository:**\n\n   ```bash\n   git clone PubMed-MCP-Server.git\n   cd PubMed-MCP-Server\n   ```\n\n2. **Install Dependencies:**\n\n   You can install the required packages using uv:\n\n   ```bash\n   uv add -r requirements.txt\n   ```\n\n3. **Configure Entrez Email:**\n\n   Ensure you have set a valid email address in the code (in `main.py`):\n\n   ```python\n   Entrez.email = \"give an email address\"\n   ```\n\n## Running the Server\n\nStart the PubMed MCP server by running:\n\n```bash\nuv run main.py\n```\n\nThis command starts the server using the `uv` command-line tool (as specified in your configuration).\n\n## Configuring the MCP Client\n\nTo configure your MCP client to connect to the PubMed MCP server, create or update your `config.json` file as follows:\n\n```json\n{\n  \"mcpServers\": {\n    \"pubmed\": {\n      \"command\": \"C:/Users/codingaslu/.local/bin/uv\",\n      \"args\": [\n        \"--directory\",\n        \"C:/Users/codingaslu/OneDrive/Desktop/pubmed-mcp-server\",\n        \"run\",\n        \"main.py\"\n      ]\n    }\n  }\n}\n```\n\n### Explanation of the Configuration\n\n- **command:**  \n  The full path to the command-line tool used to run the MCP server (in this case, `uv`).\n\n- **args:**  \n  - `--directory`: Specifies the working directory where the server is located.\n  - `\"C:/Users/aiany/OneDrive/Desktop/YT Video/pubmed-mcp-server\"`: The path to the server's root directory.\n  - `\"run\"` and `\"main.py\"`: The command and entry point to start the PubMed MCP server.\n\n## Usage\n\nOnce the server is running and your MCP client is configured, you can use the provided tool:\n\n- **Tool:** `search_pubmed`\n- **Parameters:**  \n  - `query`: The search term for PubMed (default is `\"endocarditis\"`).\n  - `max_results`: Maximum number of articles to retrieve (default is `10`).\n\n**Example Usage:**\n\n```python\nsearch_pubmed(query=\"endocarditis\", max_results=10)\n```\n\nThis will return a string with the abstracts of the articles separated by newlines.\n\n## License\n\nThis project is licensed under the [MIT License](LICENSE).\n\nYou can adjust paths and details as needed for your specific setup.\n",
+  "extracted_at": "2025-06-13T08:56:02.926585",
+  "content_hash": "503f5d255acfa930ca41179912479db875e5280721a65b16f21082f9ef98d4b5"
+}

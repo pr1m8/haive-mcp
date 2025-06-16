@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "aniketsingh98571/github-mcp",
+    "owner": "aniketsingh98571",
+    "repo_name": "github-mcp",
+    "repo_url": "https://github.com/aniketsingh98571/github-mcp",
+    "description": "[aniketsingh98571/github-mcp](https://github.com/aniketsingh98571/github-mcp): Facilitates seamless interaction with GitHub's API through a Model Control Protocol interface, enabling efficient repository management and user information retrieval.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/aniketsingh98571/github-mcp/master/Readme.md",
+    "api_base_url": null
+  },
+  "readme_content": "# GitHub MCP (Model Control Protocol)\n\nThis is a GitHub integration service that provides a Model Control Protocol (MCP) interface for interacting with GitHub's API.\n\n## Setup and Configuration\n\n### Prerequisites\n\n- Node.js installed on your system\n- A GitHub Personal Access Token (PAT)\n\n### Environment Setup\n\nThe MCP server uses environment variables configured directly in your Cursor/Claude Desktop MCP settings. No separate `.env` file is needed.\n\n## Running the MCP Server\n\nConfigure Cursor/Claude Desktop to use the MCP server by adding the following to your MCP configuration:\n\n```json\n{\n  \"mcpServers\": {\n    \"GitHub MCP\": {\n      \"command\": \"node\",\n      \"args\": [\"/path/to/your/github-mcp/src/index.js\"],\n      \"env\": {\n        \"GITHUB_TOKEN\": \"your_github_token_here\"\n      }\n    }\n  }\n}\n```\n\nReplace `/path/to/your/github-mcp` with the actual path to your GitHub MCP project directory.\n\n## Features\n\nThe GitHub MCP provides the following capabilities:\n\n- User information retrieval\n- Repository management\n- Repository name updates\n- And more GitHub API integrations\n\n## Development\n\n### Project Structure\n\n```\ngithub-mcp/\n├── src/\n│   └── index.js\n├── .env\n├── package.json\n└── Readme.md\n```\n",
+  "extracted_at": "2025-06-13T08:57:08.335981",
+  "content_hash": "7235873f1c470ccbe9d657dcd23e6a2c5b4c60621ba6c9ec31edb144864bccc3"
+}

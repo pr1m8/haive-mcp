@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "enkryptai/enkryptai-mcp-server",
+    "owner": "enkryptai",
+    "repo_name": "enkryptai-mcp-server",
+    "repo_url": "https://github.com/enkryptai/enkryptai-mcp-server",
+    "description": "[enkryptai/enkryptai-mcp-server](https://github.com/enkryptai/enkryptai-mcp-server): Integrate red-teaming, prompt auditing, and AI safety analysis into any MCP-compatible client with Enkrypt AI MCP Server.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/enkryptai/enkryptai-mcp-server/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Enkrypt AI MCP Server\r\n\r\nThe Enkrypt AI MCP Server allows you to integrate red-teaming, prompt auditing, and AI safety analysis directly into any [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction)–compatible client such as Claude Desktop or Cursor IDE.\r\n\r\nWith this server, you can analyze prompts, detect jailbreak attempts, simulate adversarial attacks, and bring AI safety tooling directly into your assistant-driven workflows.\r\n\r\n---\r\n\r\n## 🚀 Features\r\n\r\n- Real-time prompt risk analysis  \r\n- Red-teaming via adversarial prompt generation  \r\n- Tool-based LLM monitoring using the MCP standard  \r\n- Seamless integration with Claude Desktop, Cursor IDE, and other MCP clients\r\n\r\n---\r\n\r\n## 💠 Installation\r\n\r\nBefore getting started, ensure you have [`uv`](https://docs.astral.sh/uv/getting-started/installation/) installed on your machine.\r\n\r\n### 1. Clone the repository\r\n\r\n```bash\r\ngit clone https://github.com/enkryptai/enkryptai-mcp-server.git\r\ncd enkryptai-mcp-server\r\n```\r\n\r\n### 2. Install dependencies\r\n\r\n```bash\r\nuv pip install -e .\r\n```\r\n\r\n---\r\n\r\n## 🔑 Get Your API Key\r\n\r\nTo use the Enkrypt tools, you’ll need a free API key from:\r\n\r\n[https://app.enkryptai.com/settings/api](https://app.enkryptai.com/settings/api)\r\n\r\n---\r\n\r\n## ⚙️ Configuration\r\n\r\nYou can connect this MCP server to any MCP-compatible client. Here's how to do it with **Cursor** and **Claude Desktop**.\r\n\r\n---\r\n\r\n### 🖥️ Cursor\r\n\r\n1. Open **Settings** → **MCP** tab in Cursor  \r\n2. Click **\"Add new global MCP server\"**  \r\n3. Paste the following config into the `mcp.json` file:\r\n\r\n```json\r\n{\r\n  \"mcpServers\": {\r\n    \"EnkryptAI-MCP\": {\r\n      \"command\": \"uv\",\r\n      \"args\": [\r\n        \"--directory\",\r\n        \"PATH/TO/enkryptai-mcp-server\",\r\n        \"run\",\r\n        \"src/mcp_server.py\"\r\n      ],\r\n      \"env\": {\r\n        \"ENKRYPTAI_API_KEY\": \"YOUR ENKRYPTAI API KEY\"\r\n      }\r\n    }\r\n  }\r\n}\r\n```\r\n\r\nReplace:\r\n- `PATH/TO/enkryptai-mcp-server` with the absolute path to the cloned repo\r\n- `YOUR ENKRYPTAI API KEY` with your API key\r\n\r\nThe server will launch and appear in your MCP tools list.\r\n\r\n---\r\n\r\n### 💬 Claude Desktop\r\n\r\n1. Open the **Claude** menu in your system menu bar (not inside the app window)  \r\n2. Go to **Settings…** → **Developer** tab  \r\n3. Click **Edit Config**\r\n\r\nThis opens or creates the MCP config file at:\r\n- macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`\r\n- Windows: `%APPDATA%\\Claude\\claude_desktop_config.json`\r\n\r\nReplace the contents with:\r\n\r\n```json\r\n{\r\n  \"mcpServers\": {\r\n    \"EnkryptAI-MCP\": {\r\n      \"command\": \"uv\",\r\n      \"args\": [\r\n        \"--directory\",\r\n        \"PATH/TO/enkryptai-mcp-server\",\r\n        \"run\",\r\n        \"src/mcp_server.py\"\r\n      ],\r\n      \"env\": {\r\n        \"ENKRYPTAI_API_KEY\": \"YOUR ENKRYPTAI API KEY\"\r\n      }\r\n    }\r\n  }\r\n}\r\n```\r\n\r\nMake sure to:\r\n- Set the correct repo path\r\n- Paste in your API key\r\n\r\nFinally, restart Claude Desktop. Once it reloads, you’ll see a hammer icon in the chat box, indicating your MCP tools are active.\r\n",
+  "extracted_at": "2025-06-13T08:56:52.345432",
+  "content_hash": "2cdc4cd35f1c4217c9b1e2862f161d5eed42cc20f14e0f7849bbda0e949b17ea"
+}

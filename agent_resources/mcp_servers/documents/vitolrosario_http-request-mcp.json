@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "vitolrosario/http-request-mcp",
+    "owner": "vitolrosario",
+    "repo_name": "http-request-mcp",
+    "repo_url": "https://github.com/vitolrosario/http-request-mcp",
+    "description": "[vitolrosario/http-request-mcp](https://github.com/vitolrosario/http-request-mcp): Facilitates HTTP requests using the MCP server, supporting various HTTP methods for streamlined web interactions.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/vitolrosario/http-request-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# http-request-mcp\n\n## Overview\n\n`http-request-mcp` is a simple tool designed for making HTTP requests. It uses the MCP (Model Context Protocol) server to handle requests and supports various HTTP methods.\n\n## Installation\n\nTo install the necessary dependencies, use the following command:\n\n```bash\npnpm install\n```\n\n## Usage\n\nTo start the server, run:\n\n```bash\npnpm start\n```\n\n## Example config\nNPX \n```json\n{\n    \"mcpServers\": {\n        \"http-request\": {\n            \"command\": \"npx\",\n            \"args\": [\n                \"-y\",\n                \"@vrosario/http-request-mcp\",\n            ]\n        }\n    }\n}\n```\n\nAlternatively, you can install the HTTP Request MCP server using the VS Code CLI:\n\n```bash\n# For VS Code\ncode --add-mcp '{\"name\":\"http-request\",\"command\":\"npx\",\"args\":[\"-y\", \"@vrosario/http-request-mcp\"]}'\n```\n\n## Parameters\n\n- **URL**: The URL to make the request to.\n- **Method**: The HTTP method to use (GET, POST, PUT, DELETE).\n- **Headers**: Optional headers to include in the request.\n- **Body**: Optional body of the request.\n\n## License\n\nThis project is licensed under the ISC License.\n",
+  "extracted_at": "2025-06-13T08:57:03.738856",
+  "content_hash": "8ccfaaa5ee112476e76bdb6b276ebe02d271ff445e26100998e68825a7039352"
+}

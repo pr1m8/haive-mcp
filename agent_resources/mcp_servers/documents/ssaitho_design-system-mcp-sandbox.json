@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "ssaitho/design-system-mcp-sandbox",
+    "owner": "ssaitho",
+    "repo_name": "design-system-mcp-sandbox",
+    "repo_url": "https://github.com/ssaitho/design-system-mcp-sandbox",
+    "description": "[ssaitho/design-system-mcp-sandbox](https://github.com/ssaitho/design-system-mcp-sandbox): Facilitates retrieval of component information from a design system in a sandbox environment.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/ssaitho/design-system-mcp-sandbox/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# design-system-mcp-sandbox\n\nデザインシステムのコンポーネント情報を取得するための MCP サーバー（sandbox 環境）\n\n## セットアップ\n\n1. インストール\n\n```bash\nnpm install\n```\n\n2. ビルド\n\n```bash\nnpm run build\n```\n\n## 使い方\n\n### サーバーの起動（例：Cursor）\n\n```json\n{\n  \"mcpServers\": {\n    \"design-system-mcp-sandbox\": {\n      \"command\": \"node\",\n      \"args\": [\"/path/to/design-system-mcp-sandbox/dist/index.js\"],\n      \"env\": {\n        \"ROOT_DIR\": \"/path/to/your/design-system\"\n      }\n    }\n  }\n}\n```\n\n## 利用可能なツール\n\n### get_available_components\n\nデザインシステムで利用可能なすべてのコンポーネントの一覧を取得します。\n\n### get_component_files\n\n特定のコンポーネントに関連するファイルとその内容を取得します。\n",
+  "extracted_at": "2025-06-13T08:55:34.141236",
+  "content_hash": "33b3f633c70fd4702ff9492ef5e73412ac86fafa0de5fb6e7136820f480d23bd"
+}

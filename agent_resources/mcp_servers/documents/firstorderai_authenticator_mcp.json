@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "firstorderai/authenticator_mcp",
+    "owner": "firstorderai",
+    "repo_name": "authenticator_mcp",
+    "repo_url": "https://github.com/firstorderai/authenticator_mcp",
+    "description": "[firstorderai/authenticator_mcp](https://github.com/firstorderai/authenticator_mcp): Facilitates AI agents in securely accessing 2FA codes and passwords for automated login processes via the Authenticator App.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/firstorderai/authenticator_mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "<div align=\"center\">\n  <h1>Authenticator App MCP Server</h1>\n  <p>\n    🌐 Available in:\n    <a href=\"README.zh.md\">中文 (Chinese)</a>\n  </p>\n  <a href=\"https://smithery.ai/server/@firstorderai/authenticator_mcp\"><img alt=\"Smithery Badge\" src=\"https://smithery.ai/badge/@firstorderai/authenticator_mcp\"></a>\n</div>\n\n<br/>\n\nA secure MCP (Model Context Protocol) server that enables AI agents to interact with the Authenticator App. It provides seamless access to 2FA codes and passwords, allowing AI agents to assist with automated login processes while maintaining security. This tool bridges the gap between AI assistants and secure authentication, making it easier to manage your credentials across different platforms and websites.\n\n<a href=\"https://glama.ai/mcp/servers/@firstorderai/authenticator_mcp\">\n  <img width=\"380\" height=\"200\" src=\"https://glama.ai/mcp/servers/@firstorderai/authenticator_mcp/badge\" alt=\"Authenticator App Server MCP server\" />\n</a>\n\n## How it works\n\n1. Open your AI agent's integrated chat interface (such as Cursor's agent mode).\n2. Ask AI agent to retrieve your 2FA code or password for your desired website and account.\n3. AI agent will securely fetch these credentials, then can utilize them to automate your login process.\n\nThis MCP server is specifically designed for use with [Authenticator App · 2FA](#install-authenticator-app--2fa-desktop-version).\n\n[![Demo video](https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fyoutu.be%2F4zZqrES6FBc)](https://youtu.be/4zZqrES6FBc)\n\n## Getting Started\n\nMany AI clients use a configuration file to manage MCP servers.\n\nThe `authenticator-mcp` tool can be configured by adding the following to your configuration file.\n\n> NOTE: You will need to create a Authenticator App **access token** to use this server. Instructions on how to create a Authenticator App access token can be found [here](#creating-an-access-token).\n\n### MacOS / Linux\n\n```json\n{\n  \"mcpServers\": {\n    \"Authenticator App MCP\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"authenticator-mcp\", \"--access-token=YOUR-KEY\"]\n    }\n  }\n}\n```\n\n### Windows\n\n```json\n{\n  \"mcpServers\": {\n    \"Authenticator App MCP\": {\n      \"command\": \"cmd\",\n      \"args\": [\"/c\", \"npx\", \"-y\", \"authenticator-mcp\", \"--access-token=YOUR-KEY\"]\n    }\n  }\n}\n```\n\nOr you can set `AUTHENTICATOR_ACCESS_TOKEN` in the `env` field.\n\n## Install Authenticator App · 2FA Desktop version\n\n[<img src=\"https://firstorder.ai/store/msstore.svg\" alt=\"Download on the Microsoft Store\" height=\"50\" style=\"margin-right: 10px\">](https://apps.microsoft.com/detail/9n6gl0bvkphn?utm_source=mcp)&nbsp;&nbsp;&nbsp;[<img src=\"https://firstorder.ai/store/appstore_mac.svg\" alt=\"Download on the Mac App Store\" height=\"50\">](https://apps.apple.com/app/apple-store/id6470149516?pt=126691301&mt=8&platform=mac&utm_source=mcp)&nbsp;&nbsp;&nbsp;[<img src=\"https://firstorder.ai/store/download_deb.svg\" alt=\"Download the Ubuntu/Debian .deb\" height=\"50\">](https://firstorder.ai/downloads/authenticator.deb)\n\n## Creating an Access Token\n\n1. Launch the desktop version of `Authenticator App · 2FA`.\n2. Navigate to `Settings` and locate the `MCP Server` section.\n3. Enable the MCP Server by toggling it `ON`, then proceed to generate your access token.\n\nPlease note that the access token will only be displayed once. Be sure to copy it immediately and add it to your MCP client configuration.",
+  "extracted_at": "2025-06-13T08:55:14.386724",
+  "content_hash": "49cd8faac239f6b9e3a96bfb771209562e1ca8009bca4a0160a43d6edb7c9003"
+}

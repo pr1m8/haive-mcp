@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "kxkaloo/mcp",
+    "owner": "kxkaloo",
+    "repo_name": "mcp",
+    "repo_url": "https://github.com/kxkaloo/mcp",
+    "description": "[kxkaloo/mcp](https://github.com/kxkaloo/mcp): Enables AI models to extract structured data from websites using the Scrapezy MCP server.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/kxkaloo/mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# @scrapezy/mcp MCP Server\n\n<a href=\"https://glama.ai/mcp/servers/rnktqsouvy\">\n  <img width=\"380\" height=\"200\" src=\"https://glama.ai/mcp/servers/rnktqsouvy/badge\" alt=\"Scrapezy MCP server\" />\n</a>\n\n[![smithery badge](https://smithery.ai/badge/@Scrapezy/mcp)](https://smithery.ai/server/@Scrapezy/mcp)\n\nA Model Context Protocol server for [Scrapezy](https://scrapezy.com) that enables AI models to extract structured data from websites.\n\n## Features\n\n### Tools\n- `extract_structured_data` - Extract structured data from a website\n  - Takes URL and prompt as required parameters\n  - Returns structured data extracted from the website based on the prompt\n  - The prompt should clearly describe what data to extract from the website\n\n## Installation\n\n### Installing via Smithery\n\nTo install Scrapezy MCP Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@Scrapezy/mcp):\n\n```bash\nnpx -y @smithery/cli install @Scrapezy/mcp --client claude\n```\n\n### Manual Installation\n```bash\nnpm install -g @scrapezy/mcp\n```\n\n## Usage\n\n### API Key Setup\n\nThere are two ways to provide your Scrapezy API key:\n\n1. **Environment Variable:**\n   ```bash\n   export SCRAPEZY_API_KEY=your_api_key\n   npx @scrapezy/mcp\n   ```\n\n2. **Command-line Argument:**\n   ```bash\n   npx @scrapezy/mcp --api-key=your_api_key\n   ```\n\nTo use with Claude Desktop, add the server config:\n\nOn MacOS: `~/Library/Application Support/Claude/claude_desktop_config.json`\nOn Windows: `%APPDATA%/Claude/claude_desktop_config.json`\n\n```json\n{\n  \"mcpServers\": {\n    \"scrapezy\": {\n      \"command\": \"npx @scrapezy/mcp --api-key=your_api_key\"\n    }\n  }\n}\n```\n\n### Example Usage in Claude\n\nYou can use this tool in Claude with prompts like:\n\n```\nPlease extract product information from this page: https://example.com/product\nExtract the product name, price, description, and available colors.\n```\n\nClaude will use the MCP server to extract the requested structured data from the website.\n\n### Debugging\n\nSince MCP servers communicate over stdio, debugging can be challenging. We recommend using the [MCP Inspector](https://github.com/modelcontextprotocol/inspector), which is available as a package script:\n\n```bash\nnpm run inspector\n```\n\nThe Inspector will provide a URL to access debugging tools in your browser.\n\n## License\n\nMIT",
+  "extracted_at": "2025-06-13T08:54:47.539034",
+  "content_hash": "1037e7d4b181756d19b1be328304f3d8914383c9aab3148fd32ba4263902d42e"
+}

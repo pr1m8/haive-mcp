@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "Rakibulislamsarkar/twitter-mcp",
+    "owner": "Rakibulislamsarkar",
+    "repo_name": "twitter-mcp",
+    "repo_url": "https://github.com/Rakibulislamsarkar/twitter-mcp",
+    "description": "[Rakibulislamsarkar/twitter-mcp](https://github.com/Rakibulislamsarkar/twitter-mcp): Facilitates interaction with Twitter for posting and searching tweets via a Model Context Protocol server.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/Rakibulislamsarkar/twitter-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Twitter MCP Server\n\nThis MCP server allows Clients to interact with Twitter, enabling posting tweets and searching Twitter.\n\n\n## Quick Start\n\n1. Create a Twitter Developer account and get your API keys from [Twitter Developer Portal](https://developer.twitter.com/en/portal/dashboard)\n\n2. Add this configuration to your Claude Desktop config file:\n\n**Windows**: `%APPDATA%\\Claude\\claude_desktop_config.json`  \n**macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`\n\n```json\n{\n  \"mcpServers\": {\n    \"twitter-mcp\": {\n      \"command\": \"node\",\n      \"args\": [\n        \"actual path to your folder\\\\twitter-mcp\\\\build\\\\index.js\"\n    ],\n      \"env\": {\n        \"API_KEY\": \"your_api_key_here\",\n        \"API_SECRET_KEY\": \"your_api_secret_key_here\",\n        \"ACCESS_TOKEN\": \"your_access_token_here\",\n        \"ACCESS_TOKEN_SECRET\": \"your_access_token_secret_here\"\n      }\n    }\n  }\n}\n```\n\n3. Restart Claude Desktop (Simply closing and reopening the Claude desktop app won’t work — you need to go to the files and click the exit option instead.)\n\nThat's it! Claude can now interact with Twitter through two tools:\n\n- `post_tweet`: Post a new tweet\n- `search_tweets`: Search for tweets\n\n## Example Usage\n\nTry asking Claude:\n- \"Can you post a tweet saying 'Hello from Claude!'\"\n- \"Can you search for tweets about Claude AI?\"\n\n## Troubleshooting\n\nLogs can be found at:\n- **Windows**: `%APPDATA%\\Claude\\logs\\mcp-server-twitter.log`\n- **macOS**: `~/Library/Logs/Claude/mcp-server-twitter.log`\n\n\n## Development\n\nIf you want to contribute or run from source:\n\n1. Clone the repository:\n```bash\ngit clone https://github.com/Rakibulislamsarkar/twitter-mcp.git\ncd twitter-mcp\n```\n\n2. Install dependencies:\n```bash\nnpm install\n```\n\n3. Build:\n```bash\nnpm run build\n```\n\n4. Run:\n```bash\nnpm start\n```",
+  "extracted_at": "2025-06-13T08:56:57.153766",
+  "content_hash": "863c6f4528bfd0b36314776576c766340d6feaf23900ab0dd9f1a6dc7a4c28ed"
+}

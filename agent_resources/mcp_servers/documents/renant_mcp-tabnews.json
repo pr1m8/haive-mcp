@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "renant/mcp-tabnews",
+    "owner": "renant",
+    "repo_name": "mcp-tabnews",
+    "repo_url": "https://github.com/renant/mcp-tabnews",
+    "description": "[renant/mcp-tabnews](https://github.com/renant/mcp-tabnews): Facilitates seamless integration with TabNews by providing a suite of tools for content retrieval and analytics through the Model Context Protocol.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/renant/mcp-tabnews/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# MCP TabNews Integration\n\n[![smithery badge](https://smithery.ai/badge/@renant/mcp-tabnews)](https://smithery.ai/server/@renant/mcp-tabnews)\n\nA Model Context Protocol (MCP) integration for TabNews.\n\nThis MCP server is also available on [Smithery](https://smithery.ai/server/@renant/mcp-tabnews) for direct integration.\n\n## Available Tools\n\n- `checkStatusTool`: Check the status of the TabNews API.\n- `getContentsTool`: Get contents from TabNews.\n- `getContentsByUserTool`: Get contents from TabNews by user.\n- `getContentTool`: Get a content with body from TabNews by user and slug.\n- `getContentChildrenTool`: Get comments from TabNews by content.\n- `getAnalyticsUserCreatedTool`: Get the analytics of a user created contents from TabNews.\n- `getAnalyticsRootContentPublishedTool`: Get the analytics of a root content published from TabNews.\n- `getAnalyticsChildContentPublishedTool`: Get the analytics of a child content published from TabNews.\n- `getRssFeedTool`: Get the RSS feed from TabNews.\n\n# Integration with AI Tools\n\n## Inspect MCP Server Capabilities\n\nYou can inspect this MCP server's capabilities using Smithery:\n\n```bash\nnpx -y @smithery/cli@latest inspect @renant/mcp-tabnews\n```\n\nThis will show you all available tools, their parameters, and how to use them.\n\n## Setup\n\n### Manual Installation\n\n1. Make sure you're using Node.js v23+\n\n```bash\nnode -v\n#v23.11.0\n```\n\n2. Clone this repository:\n\n```bash\ngit clone https://github.com/renant/mcp-tabnews.git\ncd mcp-tabnews\n```\n\n3. Restore dependencies:\n\n```bash\nnpm ci\n```\n\n## Integration with AI Tools\n\n### Cursor Setup\n\n1. Open Cursor Settings\n2. Navigate to MCP section\n3. Click \"Add new MCP server\"\n4. Configure the server:\n\n   ```\n   Name = mcp-tabnews\n   Type = command\n   Command = node ABSOLUTE_PATH_TO_PROJECT/src/index.ts\n   ```\n\n   or if you prefer executing it from Smithery\n\n   ```\n   Name = mcp-tabnews\n   Type = command\n   Command = npm exec -- @smithery/cli@latest run @renant/mcp-tabnews\n   ```\n\nor configure directly from the Cursor's global MCP file located in `~/.cursor/mcp.json` and add the following:\n\n```json\n{\n  \"mcpServers\": {\n    \"mcp-tabnews\": {\n      \"command\": \"node\",\n      \"args\": [\"ABSOLUTE_PATH_TO_PROJECT/src/index.ts\"]\n    }\n  }\n}\n```\n\nor if you prefer executing it from Smithery\n\n```json\n{\n  \"mcpServers\": {\n    \"mcp-tabnews\": {\n      \"command\": \"npm\",\n      \"args\": [\n        \"exec\",\n        \"--\",\n        \"@smithery/cli@latest\",\n        \"run\",\n        \"@renant/mcp-tabnews\"\n      ]\n    }\n  }\n}\n```\n\n5. Make sure Cursor chat is in Agent mode by selecting \"Agent\" in the lower left side dropdown\n\n6. Go to the chat an ask any question about TabNews\n\n### Claude Desktop Setup\n\n#### Installing via Smithery\n\nTo install TabNews for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@renant/mcp-tabnews):\n\n```bash\nnpx -y @smithery/cli install @renant/mcp-tabnews --client claude\n```\n\n# Development\n\n## Features\n\n- Built with Model Context Protocol (MCP)\n- Type-safe with TypeScript and Zod schema validation\n- Native TypeScript support in Node.js without transpilation\n- Standard I/O transport for easy integration\n- Structured error handling\n\n## Contributing\n\nContributions are welcome! Please feel free to submit a Pull Request.\n\n## Author\n\n[Renan Teixeira](https://renant.is-a.dev)\n\n## License\n\nThis project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.\n",
+  "extracted_at": "2025-06-13T08:56:57.132754",
+  "content_hash": "15023fe3ed5f6b43377365c757d60bf2cca54558ae15428245008212b845eeec"
+}

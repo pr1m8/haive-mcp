@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "pj8/backlog-mcp-server",
+    "owner": "pj8",
+    "repo_name": "backlog-mcp-server",
+    "repo_url": "https://github.com/pj8/backlog-mcp-server",
+    "description": "[pj8/backlog-mcp-server](https://github.com/pj8/backlog-mcp-server): Facilitates seamless integration with Backlog for task management through MCP server capabilities.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/pj8/backlog-mcp-server/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "\r\n[公式のbacklog-mcp-server](https://github.com/nulab/backlog-mcp-server/blob/main/README.ja.md)がリリースされましたのでそちらをご利用ください。\r\n\r\n----\r\n\r\n\r\n## Requirements\r\n- Nodejs 20以上, NPM 10以上\r\n\r\n## 機能\r\n- [x] [課題情報の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-issue/)\r\n- [x] [課題コメントの取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-comment-list/)\r\n- [x] [課題添付ファイルのダウンロード](https://developer.nulab.com/ja/docs/backlog/api/2/get-issue-attachment/)\r\n- [x] [課題添付ファイル一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-list-of-issue-attachments/)\r\n- [x] [課題共有ファイル一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-list-of-linked-shared-files/)\r\n- [x] [課題の追加](https://developer.nulab.com/ja/docs/backlog/api/2/add-issue/)\r\n- [x] [課題情報の更新](https://developer.nulab.com/ja/docs/backlog/api/2/update-issue/)\r\n- [x] [課題コメントの追加](https://developer.nulab.com/ja/docs/backlog/api/2/add-comment/)\r\n- [x] [課題コメント情報の更新](https://developer.nulab.com/ja/docs/backlog/api/2/update-comment/)\r\n- [x] [種別一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-issue-type-list/)\r\n\r\n## Install\r\n\r\n- VSCode > CLINE > MCP Servers 設定画面 > Configure MCP Servers\r\n<img width=\"1064\" alt=\"Screenshot 2025-04-18 at 11 56 28\" src=\"https://github.com/user-attachments/assets/783b72a0-ba0f-4769-8222-d5754d48573d\" />\r\n\r\n- 下記のようにbacklog-mcp-serverの設定を追加します。\r\n  - BACKLOG_API_TOKENは、https://your-space-here.backlog.jp/EditApiSettings.action\r\n  - BACKLOG_SPACEは、 https://your-space-here.backlog.jp ならば、your-space-here です\r\n\r\n```jsonc\r\n{\r\n  \"mcpServers\": {\r\n    \"backlog\": {\r\n      \"autoApprove\": [\r\n        \"get_issue\",\r\n        \"get_issue_comments\",\r\n        \"get_issue_attachments\",\r\n        \"get_issue_attachment\",\r\n        \"get_issue_shared_files\",\r\n        \"get_issue_types\"\r\n      ],\r\n      \"disabled\": false,\r\n      \"timeout\": 60,\r\n      \"command\": \"npx\",\r\n      \"args\": [\r\n        \"-y\",\r\n        \"https://github.com/pj8/backlog-mcp-server\"\r\n      ],\r\n      \"env\": {\r\n        \"BACKLOG_API_TOKEN\": \"****\",\r\n        \"BACKLOG_SPACE\": \"your-space-here\"\r\n      },\r\n      \"transportType\": \"stdio\"\r\n    }\r\n  }\r\n}\r\n```\r\n\r\n## 使い方\r\n- CLINEにBacklog課題URLを与えて概要を説明させるなど\r\n",
+  "extracted_at": "2025-06-13T08:56:38.146731",
+  "content_hash": "79637dc13d40fd54ef64a548ed1671d3ff8dd9d8e51aea08d8d99c54c983622f"
+}

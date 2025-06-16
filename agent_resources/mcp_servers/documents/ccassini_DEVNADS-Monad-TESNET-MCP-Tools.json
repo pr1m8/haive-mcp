@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "ccassini/DEVNADS-Monad-TESNET-MCP-Tools",
+    "owner": "ccassini",
+    "repo_name": "DEVNADS-Monad-TESNET-MCP-Tools",
+    "repo_url": "https://github.com/ccassini/DEVNADS-Monad-TESNET-MCP-Tools",
+    "description": "[ccassini/DEVNADS-Monad-TESNET-MCP-Tools](https://github.com/ccassini/DEVNADS-Monad-TESNET-MCP-Tools): Interact with the Monad blockchain testnet using a Model Context Protocol server for wallet management, network insights, and token operations.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/ccassini/DEVNADS-Monad-TESNET-MCP-Tools/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Monad Tesnet MCP Server  Advanced Blockchain Toolkit \n\n[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)\n[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](VERSION)\n\nA Model Context Protocol server for interacting with the Monad blockchain testnet.\n\n## Features\n\n- Wallet balance checking\n- Network information\n- Transaction details\n- Token transfers and swaps\n- Staking capabilities\n\n## Installation\n\n```bash\ngit clone https://github.com/your-username/monad-mcp-server.git\ncd monad-mcp-server\nnpm install\n```\n\n## Security & Configuration\n\nFor security reasons, private keys are handled via environment variables. Before running the server:\n\n```bash\n# Linux/Mac\nexport PRIVATE_KEY=your_private_key_here\n\n# Windows\nset PRIVATE_KEY=your_private_key_here\n```\n\nNEVER hardcode private keys in your source code or commit them to your repository.\n\n## Usage\n\n```bash\nnpm run build\nnpm start\n```\n\n## Claude Integration\n\n```json\n{\n  \"mcpServers\": {\n    \"monad-mcp\": {\n      \"command\": \"node\",\n      \"args\": [\n        \"/path/to/your/project/build/index.js\"\n      ]\n    }\n  }\n}\n```\n\n## MCP Tools\n\n- `check-wallet-balances`: Get MON balances\n- `monad-network-info`: Network information\n- `transaction-details`: Transaction data\n- `transfer-mon`: Transfer tokens\n- `stake-apriori-mon`: Staking operations\n- `swap-mon-for-tokens`: DEX swaps\n\n## License\n\nMIT License\n\n## Acknowledgments\n\n- [Model Context Protocol](https://github.com/modelcontextprotocol/mcp)\n- [Monad Blockchain](https://monad.xyz/)\n- [Viem](https://viem.sh/)\n",
+  "extracted_at": "2025-06-13T08:55:39.151849",
+  "content_hash": "159d98d605cb829b1fa6dc1d49a4076d39f16f0c394e14f09bdec82e1cbe633a"
+}

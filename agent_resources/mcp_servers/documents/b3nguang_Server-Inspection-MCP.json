@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "b3nguang/Server-Inspection-MCP",
+    "owner": "b3nguang",
+    "repo_name": "Server-Inspection-MCP",
+    "repo_url": "https://github.com/b3nguang/Server-Inspection-MCP",
+    "description": "[b3nguang/Server-Inspection-MCP](https://github.com/b3nguang/Server-Inspection-MCP): Facilitates server inspection through an MCP program running on a PC, interfacing with server agents.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/b3nguang/Server-Inspection-MCP/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "---\n\n---\n\n# Server-Inspection-MCP\n服务器巡检 MCP\n\n服务器运行 agent 程序，PC 运行 MCP 程序\n\n```json\n{\n  \"mcpServers\": {\n    \"forensics ssh mcp\": {\n      \"command\": \"uv\",\n      \"args\": [\n        \"--directory\",\n        \"your_path\",\n        \"run\",\n        \"main.py\"\n      ]\n    }\n  }\n}\n```\n\n- [ ] ws 连接\n- [ ] rsa 加密\n\n",
+  "extracted_at": "2025-06-13T08:55:34.126409",
+  "content_hash": "95f9fc9da609ded726e109bf7439f194743270f8567c9027a73131c64b036851"
+}

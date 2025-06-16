@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "twinic/Twinic-server",
+    "owner": "twinic",
+    "repo_name": "Twinic-server",
+    "repo_url": "https://github.com/twinic/Twinic-server",
+    "description": "[twinic/Twinic-server](https://github.com/twinic/Twinic-server): Facilitates the installation and configuration of MCP servers through simple prompts, integrating with npm and PyPi.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/twinic/Twinic-server/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Twinic-server : configure MCP servers directly from prompts.\n<div style=\"margin-top: 10px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center;\">\n    <img src=\"https://img.shields.io/badge/python-3.10-blue?logo=python&logoColor=white\" />\n    <img src=\"https://img.shields.io/badge/npm-installed-red?logo=npm&logoColor=white\" />\n    <img src=\"https://img.shields.io/badge/typescript-✓-3178c6?logo=typescript&logoColor=white\" />\n    <img src=\"https://img.shields.io/badge/node.js-active-339933?logo=node.js&logoColor=white\" />\n    </div>\n\nThis server lets you install and configure other MCP servers just by asking. Install it and you can ask Claude to install MCP servers hosted in npm or PyPi for you. Requires `npx` and `uv` to be installed for node and Python servers respectively.\n\n![image]\n\n### How to Set Up?:\n\n1. Install Node.js if you don’t have it.\n\n2. Put this into your `claude_desktop_config.json` (either at `~/Library/Application Support/Claude` on macOS or `C:\\Users\\NAME\\AppData\\Roaming\\Claude` on Windows):\n\n```json\n  \"mcpServers\": {\n    \"twinic-server\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"@twinic/twinic-server\"\n      ]\n    }\n  }\n```\n3. Save the config file and restart Claude desktop.\n\n#### File location:\n\nmacOS:\n`~/Library/Application Support/Claude/claude_desktop_config.json`<br>\nWindows:\n`C:\\Users\\YOU\\AppData\\Roaming\\Claude\\claude_desktop_config.json`\n\n### Example prompts\n\n> Hey Claude, install the MCP server named mcp-server-fetch\n\n> Hey Claude, install the @modelcontextprotocol/server-filesystem package as an MCP server. Use ['/Users/pangloss/Desktop'] for the arguments\n\n> Hi Claude, please install the MCP server at /Users/pangloss/code/whatsapp-mcp, I'm too lazy to do it myself.\n\n> Install the server @modelcontextprotocol/server-github. Set the environment variable GITHUB_PERSONAL_ACCESS_TOKEN to '1234567890'\n",
+  "extracted_at": "2025-06-13T08:55:32.360807",
+  "content_hash": "b276aed06fee0c408aab4334909fe4e313b5056894b5b007322c711df36c008f"
+}

@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "kenken64/mcp-server-java",
+    "owner": "kenken64",
+    "repo_name": "mcp-server-java",
+    "repo_url": "https://github.com/kenken64/mcp-server-java",
+    "description": "[kenken64/mcp-server-java](https://github.com/kenken64/mcp-server-java): A Java-based MCP server designed for seamless integration with Claude Desktop applications.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/kenken64/mcp-server-java/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "\n## Build the project\n\n```\nmvn clean package\n```\n\n## Configure Claude Desktop\n\n```\n{\n    \"mcpServers\": {\n        \"java-mcp\": {\n            \"command\": \"java\",\n            \"args\": [\n                \"-jar\",\n                \"/home/kenneth/Projects/java-mcp-server/target/java-mcp-server-1.0-SNAPSHOT-with-dependencies.jar\"\n            ]\n        }\n    }\n}\n```",
+  "extracted_at": "2025-06-13T08:55:45.207113",
+  "content_hash": "5e83d68dfd6ebdcd979aa4b28a6cc492d3563fa56c620235d0af0dc03c495182"
+}

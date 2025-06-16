@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "letsbonk-ai/bonk-mcp",
+    "owner": "letsbonk-ai",
+    "repo_name": "bonk-mcp",
+    "repo_url": "https://github.com/letsbonk-ai/bonk-mcp",
+    "description": "[letsbonk-ai/bonk-mcp](https://github.com/letsbonk-ai/bonk-mcp): Facilitates token launching and trading on the LetsBonk platform using Solana blockchain capabilities.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/letsbonk-ai/bonk-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# bonk-mcp MCP server\n\nThe bonk-mcp server implements Solana blockchain functionality for the LetsBonk launchpad.\n\n\n## Features\n- Token launching: launch any token on letsbonk.fun\n- Token trading: buy/sell any token on letsbonk.fun\n\n## Configuration\n\nThe bonk-mcp server can be configured in Claude Desktop by adding it to the MCP servers configuration. You'll need to provide:\n- Path to the bonk-mcp directory\n- Environment variables:\n  - `KEYPAIR`: Your Solana keypair\n  - `RPC_URL`: Solana RPC endpoint (e.g., https://api.mainnet-beta.solana.com)\n\n## Quickstart\n\n### Install\n\n#### Claude Desktop\n\nOn MacOS: `~/Library/Application\\ Support/Claude/claude_desktop_config.json`\nOn Windows: `%APPDATA%/Claude/claude_desktop_config.json`\n\n<details>\n  <summary>Development/Unpublished Servers Configuration</summary>\n  \n  ```json\n  \"mcpServers\": {\n    \"bonk-mcp\": {\n      \"command\": \"uv\",\n      \"args\": [\n        \"--directory\",\n        \"<PATH_TO_BONK_MCP_DIRECTORY>/bonk-mcp\",\n        \"run\",\n        \"bonk-mcp\"\n      ],\n      \"env\": {\n        \"KEYPAIR\": \"<YOUR_SOLANA_KEYPAIR>\",\n        \"RPC_URL\": \"https://api.mainnet-beta.solana.com\"\n      }\n    }\n  }\n  ```\n</details>\n\n<details>\n  <summary>Published Servers Configuration</summary>\n  \n  ```json\n  \"mcpServers\": {\n    \"bonk-mcp\": {\n      \"command\": \"uvx\",\n      \"args\": [\n        \"bonk-mcp\"\n      ],\n      \"env\": {\n        \"KEYPAIR\": \"<YOUR_SOLANA_KEYPAIR>\",\n        \"RPC_URL\": \"https://api.mainnet-beta.solana.com\"\n      }\n    }\n  }\n  ```\n</details>\n\n## Development\n\n### Building and Publishing\n\nTo prepare the package for distribution:\n\n1. Sync dependencies and update lockfile:\n```bash\nuv sync\n```\n\n2. Build package distributions:\n```bash\nuv build\n```\n\nThis will create source and wheel distributions in the `dist/` directory.\n\n3. Publish to PyPI:\n```bash\nuv publish\n```\n\nNote: You'll need to set PyPI credentials via environment variables or command flags:\n- Token: `--token` or `UV_PUBLISH_TOKEN`\n- Or username/password: `--username`/`UV_PUBLISH_USERNAME` and `--password`/`UV_PUBLISH_PASSWORD`\n\n### Debugging\n\nSince MCP servers run over stdio, debugging can be challenging. For the best debugging\nexperience, we strongly recommend using the [MCP Inspector](https://github.com/modelcontextprotocol/inspector).\n\nYou can launch the MCP Inspector via [`npm`](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) with this command:\n\n```bash\nnpx @modelcontextprotocol/inspector uv --directory <PATH_TO_BONK_MCP_DIRECTORY>/bonk-mcp run bonk-mcp\n```\n\nUpon launching, the Inspector will display a URL that you can access in your browser to begin debugging.\n\n# Core contributor:\n[0xwckd](https://github.com/0xwckd)\n",
+  "extracted_at": "2025-06-13T08:55:40.460092",
+  "content_hash": "f1579ba74aa3056320db81ef5aa84e941c97c8a60d7d2cfe39740236c94c952e"
+}

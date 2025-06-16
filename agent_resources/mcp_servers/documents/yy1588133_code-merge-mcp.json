@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "yy1588133/code-merge-mcp",
+    "owner": "yy1588133",
+    "repo_name": "code-merge-mcp",
+    "repo_url": "https://github.com/yy1588133/code-merge-mcp",
+    "description": "[yy1588133/code-merge-mcp](https://github.com/yy1588133/code-merge-mcp): Facilitates code file extraction, merging, and analysis for large language models using the Model Context Protocol.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/yy1588133/code-merge-mcp/master/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/yy1588133-code-merge-mcp-badge.png)](https://mseep.ai/app/yy1588133-code-merge-mcp)\n\n# Code Merge MCP 服务器\n\nCode Merge MCP 是一个基于 Model Context Protocol (MCP) 的服务器实现，专为代码文件内容提取、合并和分析而设计。它提供了一套强大的工具，帮助大语言模型（如GPT、Claude）更有效地处理和分析代码库。\n\n## 核心功能\n\n- **文件树生成**：生成项目文件结构的树状视图\n- **代码合并**：将多个文件的内容合并为单一输出\n- **代码分析**：提供代码统计信息，如行数和函数数量\n- **智能过滤**：支持 .gitignore 规则和自定义黑名单\n\n## 技术架构\n\n本项目基于 Model Context Protocol (MCP) SDK 构建，使用 Node.js 实现。主要组件包括：\n\n- **MCP 服务器**：处理客户端请求并提供工具功能\n- **工具模块**：实现各种代码处理功能\n- **核心库**：提供文件系统操作和过滤功能\n\n## 工具说明\n\n### 1. `get_file_tree`\n\n生成项目文件结构的树状视图，支持多种过滤选项。\n\n**参数**：\n- `path`：目标目录路径\n- `use_gitignore`：是否使用 .gitignore 规则（可选）\n- `ignore_git`：是否忽略 .git 目录（可选）\n- `custom_blacklist`：自定义黑名单项目（可选）\n\n**示例输出**：\n```\nproject/\n├── src/\n│   ├── main.js\n│   └── utils/\n│       └── helper.js\n├── tests/\n│   └── test.js\n└── README.md\n```\n\n### 2. `merge_content`\n\n将多个文件的内容合并为单一输出，适合准备用于大语言模型的代码分析。\n\n**参数**：\n- `path`：目标文件或目录路径\n- `compress`：是否压缩输出（可选）\n- `use_gitignore`：是否使用 .gitignore 规则（可选）\n- `ignore_git`：是否忽略 .git 目录（可选）\n- `custom_blacklist`：自定义黑名单项目（可选）\n\n**输出**：包含合并后的文件内容和统计信息\n\n### 3. `analyze_code`\n\n分析代码文件并提供统计信息，如行数和函数数量。\n\n**参数**：\n- `path`：目标文件或目录路径\n- `language`：可选的语言过滤器\n- `countLines`：是否统计代码行数\n- `countFunctions`：是否统计函数数量\n\n**输出**：包含代码分析结果的统计信息\n\n## 安装与使用\n\n### 环境要求\n\n- Node.js (v16.x 或更高版本推荐)\n- npm (通常随 Node.js 一起安装)\n\n### 从 Git 仓库获取项目\n\n```bash\n# 克隆仓库\ngit clone https://github.com/yourusername/code-merge-mcp.git\ncd code-merge-mcp\n\n# 安装依赖\nnpm install\n```\n\n### VS Code 配置\n\n在 VS Code 的 mcp_settings.json 中添加：\n\n```json\n{\n  \"mcpServers\": {\n    \"code-merge\": {\n      \"command\": \"node\",\n      \"args\": [\n        \"<项目完整路径>/src/main.js\"\n      ],\n    }\n  }\n}\n```\n\n将 `<项目完整路径>` 替换为实际路径，例如 `C:\\Users\\username\\code-merge-mcp`。\n\n\n## 项目结构\n\n```\ncode-merge-mcp/\n├── bin/                # 可执行文件目录\n│   ├── cli.js           # 命令行入口点\n│   └── mcp-server.js    # MCP服务器入口点\n├── src/\n│   ├── core/           # 核心功能模块\n│   │   ├── compressor.js   # 内容压缩\n│   │   ├── file-lister.js  # 文件列表生成\n│   │   ├── file-reader.js  # 文件读取\n│   │   └── filter.js       # 文件过滤\n│   ├── tools/          # 工具实现\n│   │   ├── analyze_code.js  # 代码分析工具\n│   │   ├── get_file_tree.js # 文件树生成工具\n│   │   └── merge_content.js # 内容合并工具\n│   ├── main.js         # 主入口点\n│   └── mcp-server.js   # MCP 服务器实现\n├── package.json        # 项目配置\n└── README.md           # 项目文档\n```\n\n## 贡献指南\n\n欢迎提交 Issue 和 Pull Request 来改进这个工具。在提交代码前，请确保：\n\n1. 代码符合项目的编码规范\n2. 添加适当的测试用例\n3. 更新相关文档\n\n## 许可证\n\nMIT License\n\n## 致谢\n\n本项目基于 [TownBoats/codeMerge](https://github.com/TownBoats/codeMerge) 开发，感谢原作者的贡献。\n",
+  "extracted_at": "2025-06-13T08:55:05.324603",
+  "content_hash": "85240a55edae526fc1646e8c9060cc09ed63686bacb557a8fe492824a2c5627e"
+}

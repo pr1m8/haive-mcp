@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "CaptainCrouton89/alaria-wiki-mcp",
+    "owner": "CaptainCrouton89",
+    "repo_name": "alaria-wiki-mcp",
+    "repo_url": "https://github.com/CaptainCrouton89/alaria-wiki-mcp",
+    "description": "[CaptainCrouton89/alaria-wiki-mcp](https://github.com/CaptainCrouton89/alaria-wiki-mcp): A boilerplate for creating an MCP server that stores and retrieves information using vector embeddings, enabling semantic search and integration with AI assistants like Claude.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/CaptainCrouton89/alaria-wiki-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# MCP Embedding Storage Server Boilerplate\n\nA starter template for building an MCP server that stores and retrieves information using vector embeddings. This boilerplate provides the foundation for creating your own embedding-based knowledge store that can integrate with Claude or other MCP-compatible AI assistants.\n\n## Purpose\n\nThis boilerplate helps you quickly start building:\n\n- A personal knowledge base that remembers information for your AI assistant\n- A semantic search interface for your documents or knowledge\n- A vector store integration for AI assistants\n\n## Features\n\n- Store content with automatically generated embeddings\n- Search content using semantic similarity\n- Access content through both tools and resources\n- Use pre-defined prompts for common operations\n\n## How It Works\n\nThis MCP server template connects to vector embedding APIs to:\n\n1. Process content and break it into sections\n2. Generate embeddings for each section\n3. Store both the content and embeddings in a database\n4. Enable semantic search using vector similarity\n\nWhen you search, the system finds the most relevant sections of stored content based on the semantic similarity of your query to the stored embeddings.\n\n## Getting Started\n\n```bash\n# Clone the boilerplate\ngit clone https://github.com/yourusername/mcp-embedding-storage-boilerplate.git\ncd mcp-embedding-storage-boilerplate\n\n# Install dependencies\npnpm install\n\n# Build the project\npnpm run build\n\n# Start the server\npnpm start\n```\n\n## Configuring for Development\n\nAfter cloning and building, you'll need to:\n\n1. Update the `package.json` with your project details\n2. Modify the API integration in `src/` to use your preferred embedding service\n3. Customize the tools and resources in `src/index.ts`\n\n## Usage with Claude for Desktop\n\nAdd the following configuration to your `claude_desktop_config.json` file:\n\n```json\n{\n  \"mcpServers\": {\n    \"your-embedding-storage\": {\n      \"command\": \"node /path/to/your/dist/index.js\"\n    }\n  }\n}\n```\n\nThen restart Claude for Desktop to connect to the server.\n\n## Implementing Tools\n\n### store-content\n\nStores content with automatically generated embeddings.\n\nParameters:\n\n- `content`: The content to store\n- `path`: Unique identifier path for the content\n- `type` (optional): Content type (e.g., 'markdown')\n- `source` (optional): Source of the content\n- `parentPath` (optional): Path of the parent content (if applicable)\n\n### search-content\n\nSearches for content using vector similarity.\n\nParameters:\n\n- `query`: The search query\n- `maxMatches` (optional): Maximum number of matches to return\n\n## Implementing Resources\n\n### search://{query}\n\nResource template for searching content.\n\nExample usage: `search://machine learning basics`\n\n## Implementing Prompts\n\n### store-new-content\n\nA prompt to help store new content with embeddings.\n\nParameters:\n\n- `path`: Unique identifier path for the content\n- `content`: The content to store\n\n### search-knowledge\n\nA prompt to search for knowledge.\n\nParameters:\n\n- `query`: The search query\n\n## Integration Options\n\nYou can integrate this boilerplate with various embedding APIs and vector databases:\n\n1. OpenAI Embeddings API\n2. Hugging Face embedding models\n3. Chroma, Pinecone, or other vector databases\n4. Vercel AI SDK\n\n## License\n\nMIT\n",
+  "extracted_at": "2025-06-13T08:56:13.162066",
+  "content_hash": "3925a9a2a190be2dcc2c3265a858dd3fb0e9d5184e6c8ffeb2a0e5bede60856b"
+}

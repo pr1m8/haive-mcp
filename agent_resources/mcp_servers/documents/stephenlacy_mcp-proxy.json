@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "stephenlacy/mcp-proxy",
+    "owner": "stephenlacy",
+    "repo_name": "mcp-proxy",
+    "repo_url": "https://github.com/stephenlacy/mcp-proxy",
+    "description": "[stephenlacy/mcp-proxy](https://github.com/stephenlacy/mcp-proxy): A fast Rust-based proxy facilitating bidirectional communication between stdio and SSE for MCP servers.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/stephenlacy/mcp-proxy/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# mcp-proxy\n> A Rust bidirectional MCP proxy between stdio and SSE with OAuth. Based initially on [sparfenyuk/mcp-proxy](https://github.com/sparfenyuk/mcp-proxy)\n\n## Features\n- Connect to a remote server over SSE and expose it as a stdio server\n- Connect to a local server using stdio and expose it as an SSE server\n- Fast startup with minimal memory usage\n- OAuth support for remote servers\n\n## Usage\n\n### Installing\n\n```bash\n# from crates.io\ncargo install rmcp-proxy\n\ncargo install --git https://github.com/stephenlacy/mcp-proxy\n```\n\n### Building\n\n```bash\ncargo build --release\n```\n\n### Running\n\nThe proxy can operate in two modes:\n\n#### 1. SSE Client Mode\n\nConnect to a remote MCP server over SSE and expose it as a stdio server.\n\nThis allows a local client such as Claude or Cursor connect to a remote server running on SSE.\n\n##### Example\n\n```bash\nmcp-proxy http://localhost:8080/sse\nmcp-proxy --headers Authorization 'Bearer YOUR_TOKEN' http://localhost:8080/sse\n```\n\n##### Using with Claude or Cursor\n\n```json\n{\n  \"mcpServers\": {\n    \"mcp-proxy\": {\n      \"command\": \"mcp-proxy\",\n      \"args\": [\"http://example.com/sse\"]\n    }\n  }\n}\n```\n\n#### 2. Stdio Client Mode\n\nConnect to a local command using stdio and expose it as an SSE server.\n\nThis allows remote SSE connections to a local stdio server.\n\n```bash\nmcp-proxy --sse-port 8080 -- your-command --arg1 value1 --arg2 value2\nmcp-proxy --sse-port 8080 -e KEY VALUE -e ANOTHER_KEY ANOTHER_VALUE -- your-command --arg1 value1 --arg2 value2\nmcp-proxy --sse-port 8080 python mcp_server.py\nmcp-proxy --sse-port 8080 -- npx -y @modelcontextprotocol/server-everything\n```\n\n\n#### Clearing auth\n\nIf you are having auth issues you can delete the auth config with:\n\n```\nrm -rf ~/.mcp-auth\n```\n\n#### Logs\nThe underlying `rmcp` library dumps excessive logs to stdout. I recommend suppressing them with:\n\n```bash\nRUST_LOG=error mcp-proxy ...\n```\n\n#### Using as a library\n\n```rust\nuse rmcp::{\n    ServiceExt,\n    model::{ClientCapabilities, ClientInfo},\n    transport::{sse::SseTransport, stdio},\n};\n\nuse rmcp_proxy::proxy_handler::ProxyHandler;\n\n// Create SSE transport\nlet transport = SseTransport::start(&config.url).await?;\n\nlet client_info = ClientInfo {\n    protocol_version: Default::default(),\n    capabilities: ClientCapabilities::builder()\n        .enable_experimental()\n        .enable_roots()\n        .enable_roots_list_changed()\n        .enable_sampling()\n        .build(),\n    ..Default::default()\n};\n\n// Create client service with transport\nlet client = client_info.serve(transport).await?;\n\n// Get server info\nlet server_info = client.peer_info();\ninfo!(\"Connected to server: {}\", server_info.server_info.name);\n\n// Create proxy handler\nlet proxy_handler = ProxyHandler::new(client);\n\n// Create stdio transport\nlet stdio_transport = stdio();\n\n// Create server with proxy handler and stdio transport\nlet server = proxy_handler.serve(stdio_transport).await?;\n\n```\n\n\n## License\n\nMIT\n",
+  "extracted_at": "2025-06-13T08:55:02.446003",
+  "content_hash": "bf1dc623d7e69e2cee11665d5f336507dac7a65b3fac35ba17b5a0398a068ede"
+}

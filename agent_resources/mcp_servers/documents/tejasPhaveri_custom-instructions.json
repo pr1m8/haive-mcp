@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "tejasPhaveri/custom-instructions",
+    "owner": "tejasPhaveri",
+    "repo_name": "custom-instructions",
+    "repo_url": "https://github.com/tejasPhaveri/custom-instructions",
+    "description": "[tejasPhaveri/custom-instructions](https://github.com/tejasPhaveri/custom-instructions): Enhances the ultimatememory system with Context7 and Sequential Thinking MCP tools for improved memory management and task execution.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/tejasPhaveri/custom-instructions/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "I updated the [ultimatememory system](https://github.com/freezscholte/AI-Codex/blob/main/docs/Prompts/Cline/Ultimate%20Memory%20Bank%20System/Ultimate_Memory_Bank_System.md) from @freezscholte, to enhance scalability, collaboration, and tool optimization.\n\nDeeply integrated Context7 and Sequential Thinking MCP tools across all protocols to improve accuracy and reasoning in memory management and task execution.\n\n**Changes and Additions in Simple Terms:**\n- **Before (Old Instructions):** The original system focused on basic memory management with a structure for organizing project information, tasks, and decisions. It had protocols for analyzing, planning, and executing tasks but lacked advanced tools for technical accuracy and complex reasoning.\n- **After (New Instructions):** The updated system adds two powerful tools:\n  - **Context7 Tool:** Helps get the latest information on software libraries and technologies to keep technical details accurate and up-to-date.\n  - **Sequential Thinking Tool:** Breaks down complicated problems into step-by-step thinking to make decisions clearer and more logical.\n- **New Features:** Added support for very large projects with a tiered memory system, improved teamwork between multiple AI agents, and updated all workflows to use these new tools for better results.\n\nHighly, highly recommend using these custom instructions with grok 3 as it actually follows the instructions exactly.\n\n\nAdd theese mcp servers.\n\n{\n  \"mcpServers\": {\n    \"sequential-thinking\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"@modelcontextprotocol/server-sequential-thinking\"\n      ]\n    },\n    \"context7\": {\n      \"command\": \"bunx\",\n      \"args\": [\"-y\", \"@upstash/context7-mcp@latest\"]\n    }\n  }\n}\n\n\nUpdates\n\nWill implement git to local commit after every task ",
+  "extracted_at": "2025-06-13T08:56:11.890964",
+  "content_hash": "5051b61f9bc443dcb144832859f6419eab0d40ddc30da5ffe9f92fcc2430d9bb"
+}

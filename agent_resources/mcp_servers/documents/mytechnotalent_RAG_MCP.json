@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "mytechnotalent/RAG_MCP",
+    "owner": "mytechnotalent",
+    "repo_name": "RAG_MCP",
+    "repo_url": "https://github.com/mytechnotalent/RAG_MCP",
+    "description": "[mytechnotalent/RAG_MCP](https://github.com/mytechnotalent/RAG_MCP): A semantic PDF search server utilizing OCR, FAISS, and transformers for intelligent query responses.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": null,
+    "api_base_url": null
+  },
+  "readme_content": null,
+  "extracted_at": "2025-06-13T08:56:47.286405",
+  "content_hash": ""
+}

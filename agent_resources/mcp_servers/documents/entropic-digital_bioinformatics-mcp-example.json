@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "entropic-digital/bioinformatics-mcp-example",
+    "owner": "entropic-digital",
+    "repo_name": "bioinformatics-mcp-example",
+    "repo_url": "https://github.com/entropic-digital/bioinformatics-mcp-example",
+    "description": "[entropic-digital/bioinformatics-mcp-example](https://github.com/entropic-digital/bioinformatics-mcp-example): Facilitates bioinformatics tasks by integrating with Claude Desktop through a Docker-based MCP server.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/entropic-digital/bioinformatics-mcp-example/master/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "1. Build docker stuff\n```bash\ndocker build -t biotools-mcp .\n```\n2. Add it to claude_desktop_config.json\nclaude_desktop_config.json\n```\n{\n  \"mcpServers\": {\n    \"biotools-mcp\": {\n      \"command\": \"docker\",\n      \"args\": [\n        \"run\",\n        \"--rm\",\n        \"-i\",\n        \"-v\",\n        \"path/to/this/github/repo:/app\",\n        \"biotools-mcp\"\n      ]\n    }\n  }\n}\n```\n3. You can also run it with something like Cursor.\n",
+  "extracted_at": "2025-06-13T08:56:01.775642",
+  "content_hash": "5b3d39b9994eedff9115e5d864c47fe6881e0f409f87ed08214dd502f9888c2b"
+}

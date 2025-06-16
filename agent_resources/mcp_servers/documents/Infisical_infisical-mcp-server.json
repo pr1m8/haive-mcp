@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "Infisical/infisical-mcp-server",
+    "owner": "Infisical",
+    "repo_name": "infisical-mcp-server",
+    "repo_url": "https://github.com/Infisical/infisical-mcp-server",
+    "description": "[Infisical/infisical-mcp-server](https://github.com/Infisical/infisical-mcp-server): Integrate with Infisical APIs using the Model Context Protocol for managing secrets and projects.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/Infisical/infisical-mcp-server/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Infisical Model Context Protocol\n\nThe Infisical [Model Context Protocol](https://modelcontextprotocol.com/) server allows you to integrate with Infisical APIs through function calling. This protocol supports various tools to interact with Infisical.\n\n## Setup\n\n### Environment variables\n\nIn order to use the MCP server, you must first set the environment variables required for authentication.\n\n- `INFISICAL_UNIVERSAL_AUTH_CLIENT_ID`: The Machine Identity universal auth client ID that will be used for authentication\n- `INFISICAL_UNIVERSAL_AUTH_CLIENT_SECRET`: The Machine Identity universal auth client secret that will be used for authentication.\n- `INFISICAL_HOST_URL`: **Optionally** set a custom host URL. This is useful if you're self-hosting Infisical or you're on dedicated infrastructure. Defaults to `https://app.infisical.com`\n\nTo run the Infisical MCP server using npx, use the following command:\n\n```bash\nnpx -y @infisical/mcp\n```\n\n### Usage with Claude Desktop\n\nAdd the following to your `claude_desktop_config.json`. See [here](https://modelcontextprotocol.io/quickstart/user) for more details.\n\n```json\n{\n  \"mcpServers\": {\n    \"infisical\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"@infisical/mcp\"],\n      \"env\": {\n        \"INFISICAL_HOST_URL\": \"https://<custom-host-url>.com\", // Optional\n        \"INFISICAL_UNIVERSAL_AUTH_CLIENT_ID\": \"<machine-identity-universal-auth-client-id>\",\n        \"INFISICAL_UNIVERSAL_AUTH_CLIENT_SECRET\": \"<machine-identity-universal-auth-client-secret\"\n      }\n    }\n  }\n}\n```\n\n## Available tools\n\n| Tool                        | Description                             |\n| --------------------------- | --------------------------------------- |\n| `create-secret`             | Create a new secret                     |\n| `delete-secret`             | Delete a secret                         |\n| `update-secret`             | Update a secret                         |\n| `list-secrets`              | Lists all secrets                       |\n| `get-secret`                | Get a single secret                     |\n| `create-project`            | Create a new project                    |\n| `create-environment`        | Create a new environment                |\n| `create-folder`             | Create a new folder                     |\n| `invite-members-to-project` | Invite one or more members to a project |\n\n## Debugging the Server\n\nTo debug your server, you can use the [MCP Inspector](https://modelcontextprotocol.io/docs/tools/inspector).\n\nFirst build the server\n\n```bash\nnpm run build\n```\n\nRun the following command in your terminal:\n\n```bash\n# Start MCP Inspector and server\nnpx @modelcontextprotocol/inspector node dist/index.js\n```\n\n### Instructions\n\n1. Set the environment variables as described in the [Environment Variables ](#environment-variables) step.\n2. Run the command to start the MCP Inspector.\n3. Open the MCP Inspector UI in your browser and click Connect to start the MCP server.\n4. You can see all the available tools and test them individually.\n",
+  "extracted_at": "2025-06-13T08:56:23.003437",
+  "content_hash": "ff3623e1b9da9ad7c8f91a2c7abe7d7c0d21c3f5db70957a94bc5c71db627db0"
+}

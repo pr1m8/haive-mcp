@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "MorDavid/ExternalAttacker-MCP",
+    "owner": "MorDavid",
+    "repo_name": "ExternalAttacker-MCP",
+    "repo_url": "https://github.com/MorDavid/ExternalAttacker-MCP",
+    "description": "[MorDavid/ExternalAttacker-MCP](https://github.com/MorDavid/ExternalAttacker-MCP): ExternalAttacker integrates automated reconnaissance tools with a natural language interface for comprehensive external attack surface management.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/MorDavid/ExternalAttacker-MCP/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# ExternalAttacker MCP Server\n\n![ExternalAttacker-MCP](/images/ExternalAttacker-MCP-Banner.png)\n\n## Model Context Protocol (MCP) Server for External Attack Surface Management\n\nExternalAttacker is a powerful integration that brings automated scanning capabilities with natural language interface for comprehensive external attack surface management and reconnaissance.\n\n> 🔍 **Automated Attack Surface Management with AI!**  \n> Scan domains, analyze infrastructure, and discover vulnerabilities using natural language.\n\n## 🔍 What is ExternalAttacker?\n\nExternalAttacker combines the power of:\n\n* **Automated Scanning**: Comprehensive toolset for external reconnaissance\n* **Model Context Protocol (MCP)**: An open protocol for creating custom AI tools\n* **Natural Language Processing**: Convert plain English queries into scanning commands\n\n## 📱 Community\n\nJoin our Telegram channel for updates, tips, and discussion:\n- **Telegram**: [https://t.me/root_sec](https://t.me/root_sec)\n\n## ✨ Features\n\n* **Natural Language Interface**: Run scans using plain English\n* **Comprehensive Scanning Categories**:\n  * 🌐 Subdomain Discovery (subfinder)\n  * 🔢 Port Scanning (naabu)\n  * 🌍 HTTP Analysis (httpx)\n  * 🛡️ CDN Detection (cdncheck)\n  * 🔐 TLS Analysis (tlsx)\n  * 📁 Directory Fuzzing (ffuf, gobuster)\n  * 📝 DNS Enumeration (dnsx)\n\n## 📋 Prerequisites\n\n* Python 3.8 or higher\n* Go (for installing tools)\n* MCP Client\n\n## 🔧 Installation\n\n1. Clone this repository:\n    ```bash\n    git clone https://github.com/mordavid/ExternalAttacker-MCP.git\n    cd ExternalAttacker\n    ```\n\n2. Install Python dependencies:\n   ```bash\n   pip install -r requirements.txt\n   ```\n\n3. Install required Go tools:\n   ```bash\n   go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest\n   go install -v github.com/projectdiscovery/naabu/v2/cmd/naabu@latest\n   go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest\n   go install -v github.com/projectdiscovery/cdncheck/cmd/cdncheck@latest\n   go install -v github.com/projectdiscovery/tlsx/cmd/tlsx@latest\n   go install -v github.com/ffuf/ffuf@latest\n   go install github.com/OJ/gobuster/v3@latest\n   go install -v github.com/projectdiscovery/dnsx/cmd/dnsx@latest\n   ```\n\n4. Run ExternalAttacker-App.py\n    ```bash\n    python ExternalAttacker-App.py\n    # Access http://localhost:6991\n    ```\n\n5. Configure the MCP Server\n    ```bash\n    \"mcpServers\": {\n        \"ExternalAttacker-MCP\": {\n            \"command\": \"python\",\n            \"args\": [\n                \"<Your_Path>\\\\ExternalAttacker-MCP.py\"\n            ]\n        }\n    }\n    ```\n\n## 🚀 Usage\n\nExample queries you can ask through the MCP:\n\n* \"Scan example.com for subdomains\"\n* \"Check open ports on 192.168.1.1\"\n* \"Analyze HTTP services on test.com\"\n* \"Check if domain.com uses a CDN\"\n* \"Analyze SSL configuration of site.com\"\n* \"Fuzz endpoints on target.com\"\n\n## 📜 License\n\nMIT License\n\n## 🙏 Acknowledgments\n\n* The ProjectDiscovery team for their excellent security tools\n* The MCP community for advancing AI-powered tooling\n\n---\n\n_Note: This is a security tool. Please use responsibly and only on systems you have permission to test._",
+  "extracted_at": "2025-06-13T08:56:52.300054",
+  "content_hash": "8d0919620cfdf2905c879738dd1442bf0311ee6008d1b991d81756d1b6115fcf"
+}

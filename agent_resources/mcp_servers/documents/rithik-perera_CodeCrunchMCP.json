@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "rithik-perera/CodeCrunchMCP",
+    "owner": "rithik-perera",
+    "repo_name": "CodeCrunchMCP",
+    "repo_url": "https://github.com/rithik-perera/CodeCrunchMCP",
+    "description": "[rithik-perera/CodeCrunchMCP](https://github.com/rithik-perera/CodeCrunchMCP): Analyze and visualize Azure usage data from CSV files, providing insights and summaries through an MCP server interface.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/rithik-perera/CodeCrunchMCP/master/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Azure Usage MCP Server\n\nThis is a Model Context Protocol (MCP) server for analyzing Azure usage data from CSV files. It provides insights, summaries, and visualizations of Azure cost and usage patterns.\n\n## Features\n\n- Analyze Azure usage data from CSV files\n- Generate cost summaries and visualizations\n- Identify top services and regions by cost\n- Respond to natural language queries about Azure usage\n- Fully compatible with the Model Context Protocol (MCP)\n\n## Setup\n\n1. Install the required dependencies:\n   ```\n   pip install -r requirements.txt\n   ```\n\n2. Place your Azure usage CSV file in the `data` directory (the default file is `BCAzureUsage 1.csv`).\n\n3. Run the server:\n   ```\n   python claude_mcp.py\n   ```\n\n## Configuration for Claude or other AI assistants\n\nYou can configure this MCP server in your AI assistant configuration using the following format:\n\n```json\n{\n  \"mcpServers\": {\n    \"azure-usage-analyzer\": {\n      \"command\": \"python\",\n      \"args\": [\"claude_mcp.py\"],\n      \"cwd\": \"path/to/mcp-server\",\n      \"env\": {}\n    }\n  }\n}\n```\n\n## MCP Protocol Support\n\nThis server implements the Model Context Protocol (MCP) version 2024-11-05. It supports the following MCP methods:\n\n- `initialize`: Establishes a connection with the MCP client\n- `search`: Processes natural language queries about Azure usage data\n\n## API Endpoints\n\n### GET /\n\nReturns basic server information and available endpoints.\n\n### POST /context\n\nProcesses Azure usage data and provides insights based on a specific query.\n\n**Request format:**\n```json\n{\n  \"query\": \"Show me Azure usage by region\",\n  \"params\": {\n    \"dataset\": \"BCAzureUsage 1.csv\"\n  }\n}\n```\n\n### POST /search\n\nGeneral-purpose search endpoint for querying Azure usage data.\n\n**Request format:**\n```json\n{\n  \"query\": \"What are my top costs by region?\"\n}\n```\n\n## Example Queries\n\n- \"Show me Azure usage by region\"\n- \"What are my top costs?\"\n- \"Analyze service type usage\"\n- \"Which services cost the most?\"\n",
+  "extracted_at": "2025-06-13T08:55:21.023042",
+  "content_hash": "df73b491763950d49cab2ee057b3555f4c75fbd2d662a581318269c146389b12"
+}

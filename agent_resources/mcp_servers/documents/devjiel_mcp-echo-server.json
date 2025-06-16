@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "devjiel/mcp-echo-server",
+    "owner": "devjiel",
+    "repo_name": "mcp-echo-server",
+    "repo_url": "https://github.com/devjiel/mcp-echo-server",
+    "description": "[devjiel/mcp-echo-server](https://github.com/devjiel/mcp-echo-server): An MCP server that echoes back text messages for testing and development purposes.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/devjiel/mcp-echo-server/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# MCP Echo Server\n\nA simple MCP (Messaging Control Protocol) server that echoes back text messages.\n\n## Features\n\n- Echo a message\n\n## Installation\n\n```bash\n# Install dependencies\nnpm install\n```\n\n## Usage\n\n### Development\n\n```bash\n# Build server\nnpm run build\n```\n\n## Declare MCP server\n\n```json\n{\n  \"mcpServers\": {\n    \"echo-mcp-server\": {\n      \"command\": \"node\",\n      \"args\": [\"<absolute-path-to-project-folder>/dist/index.js\"]\n    }\n  }\n}\n```\n",
+  "extracted_at": "2025-06-13T08:57:05.023542",
+  "content_hash": "de025980d131c57797469512aec84876e4e43ee8d686fe0b302ba04c737a3fb5"
+}

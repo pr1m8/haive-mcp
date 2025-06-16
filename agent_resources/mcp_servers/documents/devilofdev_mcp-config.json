@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "devilofdev/mcp-config",
+    "owner": "devilofdev",
+    "repo_name": "mcp-config",
+    "repo_url": "https://github.com/devilofdev/mcp-config",
+    "description": "[devilofdev/mcp-config](https://github.com/devilofdev/mcp-config): Facilitates the configuration and management of multiple MCP servers, including filesystem, Obsidian, and Git integrations.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/devilofdev/mcp-config/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# MCP Configuration\n\nI am currently using filesystem, Obsidian, fetch, and Git\n\n## Claude\n\n### 1. clone repositories\n\n`mcp-obsidian`\n\n> http://github.com/MarkusPfundstein/mcp-obsidian.git\n\n- install Obsidian Community Plugin: `Local Rest API`\n\n`modelcontextprotocol/servers`\n\n> https://github.com/modelcontextprotocol/servers.git\n\n### 2. edit claude_desktop_config.json\n\n```json\n{\n  \"mcpServers\": {\n    \"filesystem\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"@modelcontextprotocol/server-filesystem\",\n        \"/Users/devilofdev/dev/\"\n      ]\n    },\n    \"obsidian\": {\n      \"command\": \"/opt/homebrew/bin/uv\",\n      \"args\": [\n        \"--directory\",\n        \"/Users/devilofdev/dev/mcp/mcp-obsidian\",\n        \"run\",\n        \"mcp-obsidian\"\n      ],\n      \"env\": {\n        \"OBSIDIAN_API_KEY\": \"\"\n      }\n    },\n    \"fetch\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"@tokenizin/mcp-npx-fetch\"],\n      \"env\": {}\n    },\n    \"mcp-server-youtube-transcript\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"@smithery/cli@latest\",\n        \"run\",\n        \"@kimtaeyoon83/mcp-server-youtube-transcript\"\n      ]\n    },\n    \"git\": {\n      \"command\": \"uv\",\n      \"args\": [\n        \"--directory\",\n        \"/Users/devilofdev/dev/mcp/servers/src/git\",\n        \"run\",\n        \"mcp-server-git\"\n      ]\n    }\n  }\n}\n```\n\n### 3. install uv\n\n```bash\n# for mac\nbrew install uv\n```\n",
+  "extracted_at": "2025-06-13T08:56:08.678538",
+  "content_hash": "69fbbe1534be7dac1aa74e929fca0483e380cbb5aa10e940bd1f8758d6861dbb"
+}

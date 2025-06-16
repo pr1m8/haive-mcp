@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "Ankit2533/research",
+    "owner": "Ankit2533",
+    "repo_name": "research",
+    "repo_url": "https://github.com/Ankit2533/research",
+    "description": "[Ankit2533/research](https://github.com/Ankit2533/research): A multi-agent deep researcher leveraging MCP to perform comprehensive web searches with Linkup and CrewAI orchestration.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": null,
+    "api_base_url": null
+  },
+  "readme_content": null,
+  "extracted_at": "2025-06-13T08:54:38.295992",
+  "content_hash": ""
+}

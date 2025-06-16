@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "tqvthu-works/mysql-mcp-server",
+    "owner": "tqvthu-works",
+    "repo_name": "mysql-mcp-server",
+    "repo_url": "https://github.com/tqvthu-works/mysql-mcp-server",
+    "description": "[tqvthu-works/mysql-mcp-server](https://github.com/tqvthu-works/mysql-mcp-server): Facilitates interaction with MySQL databases in Cursor IDE through a Model Context Protocol server.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/tqvthu-works/mysql-mcp-server/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# MySQL MCP Server\n\nA Model Context Protocol (MCP) server for interacting with MySQL databases in Cursor IDE.\n\n## Features\n- Execute SQL queries (read-only by default).\n- Inspect database schemas.\n- Configurable write permissions.\n\n## Installation\n```bash\nnpm install\n```\n\n## Configuration\n``` bash\nCreate .env with:\nMYSQL_HOST=localhost\nMYSQL_PORT=3306\nMYSQL_USER=your_username\nMYSQL_PASS=your_password\nMYSQL_DB=your_database\nALLOW_INSERT_OPERATION=false\nALLOW_UPDATE_OPERATION=false\nALLOW_DELETE_OPERATION=false\n```\n\n## Usage in Cursor\n``` bash\nAdd to .cursor/mcp.json\n{\n  \"mcpServers\": {\n    \"mysqlMcpServer\": {\n      \"command\": \"npx\",\n      \"args\": [\"ts-node\", \"path/to/src/index.ts\"],\n      \"env\": {\n        \"MYSQL_HOST\": \"<host>\",\n        \"MYSQL_PORT\": \"<port>\",\n        \"MYSQL_USER\": \"<user>\",\n        \"MYSQL_PASS\": \"<pass>\",\n        \"MYSQL_DB\": \"db\",\n        \"ALLOW_INSERT_OPERATION\": \"false\",\n        \"ALLOW_UPDATE_OPERATION\": \"false\",\n        \"ALLOW_DELETE_OPERATION\": \"false\"\n      }\n    }\n  }\n}\n```\n## License\nMIT\n",
+  "extracted_at": "2025-06-13T08:55:29.027803",
+  "content_hash": "7dbe3629b667d75dda689b15eb6187db2d44369744e71744045054f39bd1b601"
+}

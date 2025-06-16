@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "RagaviManohar/Ragavi-ImmoBricks",
+    "owner": "RagaviManohar",
+    "repo_name": "Ragavi-ImmoBricks",
+    "repo_url": "https://github.com/RagaviManohar/Ragavi-ImmoBricks",
+    "description": "[RagaviManohar/Ragavi-ImmoBricks](https://github.com/RagaviManohar/Ragavi-ImmoBricks): Facilitates communication between AI coding tools and Figma design files for efficient code generation based on design specifications.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/RagaviManohar/Ragavi-ImmoBricks/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "## Getting Started\n\nFirst, run the development server:\n\n```bash\nnpm run dev\n# or\nyarn dev\n# or\npnpm dev\n# or\nbun dev\n```\n\n## Steps to Run Figma MCP with Cursor\n1. Clone Figma-Context-MCP(https://github.com/GLips/Figma-Context-MCP) repo\n\n2. Login into Figma\n  - Go to \"Help and account\" -> \"Account settings\" -> Go to \"Security\" Tab\n  - Under the \"Personal access token\" section, click on \"Generate New Token\"\n\n3. Create `.env` and paste the newly created personal access token in the key `FIGMA_API_KEY`\n\n4. Install packages with `yarn` or `npm` or `pnpm`\n\n5. Finally start the project, by default the application will run in port 3333\n\n\n​The Figma-Context-MCP is an open-source Model Context Protocol (MCP) server that facilitates communication between AI-powered coding tools, such as Cursor, and Figma design files. By integrating this server, these tools can access and interpret Figma design data, enabling more accurate and efficient code generation based on design specifications. ​\n\nThis integration allows AI coding agents to programmatically read and implement UI designs from Figma, streamlining the development process and reducing the need for manual coding. The server is designed to enhance the capabilities of AI copilots by providing them with detailed layout information from Figma, resulting in cleaner and more precise HTML and CSS outputs.\n\n## Cursor settings for Figma MCP\n1. Open Cursor application on your mac\n\n2. Go to \"Settings\" -> \"Cursor Settings\" -> Go to \"MCP\" tab\n  - Click \"Add new global MCP server\"\n  - This will open `mcp.json` file, paste the below snippet\n\n```bash\n  {\n    \"mcpServers\": {\n      \"Figma MCP\": {\n        \"url\": \"http://localhost:3333/sse\"\n      }\n    }\n  }\n```\n\n3. If the Figma-Context-MCP(https://github.com/GLips/Figma-Context-MCP) repo is up and running, you can able to view Connection as success in Cursor.\n\n## Example Prompt\nCreate a \"pixel perfect\" new component as \"Badge\" from below figma link\nhttps://www.figma.com/design/9GnS5AlvbNzpIr92f6qPEI/IMMO-Design-System--2.0-?node-id=7185-147595&t=Q1gjkJ4IgYmmbAC3-4\n\n- create stories for this badge component using storybook\n- use libraries like shadcn, tailwind, lucide-react etc\n- Refer my package.json to see what are the existing libraries and try to use those alone.\n- But if you're adding any new libraries final give me the NPM command\n",
+  "extracted_at": "2025-06-13T08:56:19.917137",
+  "content_hash": "0aacde82a17e386e3eb514fa18e9767d7f0e7f11712f1c79ca53e49bee86e18b"
+}

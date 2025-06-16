@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "wangyafu/haiguitangmcp",
+    "owner": "wangyafu",
+    "repo_name": "haiguitangmcp",
+    "repo_url": "https://github.com/wangyafu/haiguitangmcp",
+    "description": "[wangyafu/haiguitangmcp](https://github.com/wangyafu/haiguitangmcp): Facilitates solo play of the Turtlesoup game by having a large language model act as the game host.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/wangyafu/haiguitangmcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "## 介绍\r\n\r\n本项目旨在让大语言模型扮演海龟汤游戏主持人，使你独自一人也能享受海龟汤游戏的快乐。\r\n\r\n## 快速开始\r\n\r\n在使用本项目前，你需要确保你的电脑上已经安装了Python和uv。\r\n\r\n\r\n你首先需要克隆整个项目，然后运行uv sync安装依赖。\r\n\r\n```bash\r\ngit clone https://github.com/wangyafu/haiguitangmcp/\r\ncd haiguitangmcp\r\nuv sync\r\n```\r\n\r\n其次，你需要修改配置文件（假设你将项目安装在了E盘）\r\n\r\n### 在vscode中配置\r\n\r\n```json\r\n\"mcp\":{\r\n    \"servers\":{\r\n        \"haiguitang-mcp\": {\r\n                \"type\": \"stdio\",\r\n                \"command\": \"uv\",\r\n                \"args\": [\r\n                    \"--directory\",\r\n                    \"E:\\\\haiguitangmcp\\\\haiguitang_mcp\",\r\n                    \"run\",\r\n                    \"server.py\"\r\n                ]\r\n            }\r\n    }\r\n}\r\n\r\n\r\n```\r\n\r\n### 在cherry studio中进行配置\r\n\r\n```json\r\n\"mcpServers\": {\r\n    \r\n    \"haiguitang\": {\r\n      \"isActive\": true,\r\n      \"name\": \"海龟汤MCP服务器\",\r\n      \"description\": \"和用户玩海龟汤\",\r\n      \"registryUrl\": \"\",\r\n      \"command\": \"uv\",\r\n      \"args\": [\r\n        \"--directory\",\r\n        \"E:/haiguitangmcp/haiguitang_mcp\",\r\n        \"run\",\r\n        \"server.py\"\r\n      ]\r\n    },\r\n   \r\n}\r\n\r\n```\r\n\r\n上述的\"E:/haiguitangmcp/haiguitang_mcp\"表示server.py所在的路径。\r\n\r\n在其他mcp client中的配置方法类似。\r\n\r\n## mcp相关内容\r\n\r\n本项目提供了三个工具:\r\n\r\n- `get_prompt`: 获取海龟汤游戏的完整玩法说明\r\n- `get_puzzle`: 获取一个特定谜题的完整内容，需要提供谜题标题作为参数\r\n- `list_puzzles_tool`: 列出所有可用的谜题列表\r\n\r\n同时，本项目还提供了以下资源:\r\n\r\n- `puzzles://{puzzle_title}`: 获取特定谜题的信息\r\n\r\n以及一个提示模板:\r\n\r\n- `game_rules`: 提供海龟汤游戏规则的提示模板\r\n\r\n## 游戏规则\r\n\r\n在本游戏中：\r\n\r\n- 海龟汤是一种情景推理游戏，谜题本身并没有很强的逻辑性，注重能否发现关键线索重现情景\r\n- 出题人提出一个看似不合常理的问题和情景（谜面），猜题者通过提问缩小范围并最终揭示完整故事情节（谜底）\r\n- 猜题者可以提出任何问题，出题人主要用\"是\"、\"不是\"、\"是也不是\"或\"没有关系\"来回答\r\n- 当问题中既有对的地方也有不对的地方时，出题人会回答\"是也不是\"\r\n- 当问题与谜题核心情节无关时，出题人会回答\"没有关系\"\r\n- 猜题者可以通过在消息开头加上\"汤底\"来尝试描述完整情景\r\n- 当猜题者掌握了关键线索时，出题人会提醒猜题者归纳线索，形成对谜底的完整描述\r\n- 猜题者可以请求引导和提示，出题人会给予尚未掌握的线索\r\n- 当猜题者的描述大致包含了谜题的关键情景时，出题人会确认\"完全正确\"\r\n\r\n\r\n### 小技巧\r\n\r\n- 从基本问题开始，如谜题涉及人数、死者的死因等。\r\n- 注意谜面中的每一个细节，它们可能是关键线索\r\n- 当你感到困惑时，尝试从不同角度思考问题\r\n- 记录已经确认的线索，以便归纳整理\r\n\r\n## 关于谜题\r\n\r\n目前本项目已经提供了35个谜题。\r\n本人曾开发[海龟汤模拟器](https://www.hgtang.com)，该网站有评分功能。目前的35个谜题来自于我和一些热心用户为该网站搜集的谜题。依据该网站上各谜题的评分，推荐游玩的谜题如下：\r\n\r\n- 忠诚的狗\r\n- 100元钱\r\n- 爱犬\r\n- 治病\r\n- 祭日\r\n- 电梯里的人\r\n- 延迟死亡\r\n- 生意\r\n- 裤子破了\r\n- 要好的朋友\r\n\r\n欢迎你为本项目贡献更多的谜题。你可以在haiguitang_mcp/puzzles文件夹中加入新的谜题文件然后发起Pull Request。\r\n\r\n注意：\r\n\r\n- 如果你希望用户游玩之前有所预警，你可以在标题，也就是谜题文件的名称中注明。\r\n- 请注意海龟汤的版权问题。\r\n- 你可以在海龟汤文件中添加作者和提交者信息。\r\n\r\n",
+  "extracted_at": "2025-06-13T08:55:52.040317",
+  "content_hash": "8fc5cf34e9bee5f0b9c89df3a7a7a61a99e4f0038dc1b122bd79eb5794e5b315"
+}

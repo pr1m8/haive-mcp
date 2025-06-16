@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "anurag-dhamala/os-info-mcp-server",
+    "owner": "anurag-dhamala",
+    "repo_name": "os-info-mcp-server",
+    "repo_url": "https://github.com/anurag-dhamala/os-info-mcp-server",
+    "description": "[anurag-dhamala/os-info-mcp-server](https://github.com/anurag-dhamala/os-info-mcp-server): Provides real-time operating system information through an MCP server interface.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/anurag-dhamala/os-info-mcp-server/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# MCP server for os info\n\nMCP server for getting up-to-date information about your operating system\n\n\n## Setup\n\nIf you clone this repo, then you can use the config below:\n\n```json\n{\n  \"mcpServers\": {\n    \"os-info\": {\n        \"command\": \"path_to_your_node\",\n        \"args\": [\n            \"location_to_your_dist/index.js\"\n        ]\n    }\n  }\n}\n\n```\n\nYou can also use <b>npx</b>.\n\n```json\n{\n  \"mcpServers\": {\n    \"os-info\": {\n        \"command\": \"path_to_your_npx\",\n        \"args\": [\n            \"os-info-mcp-server\"\n        ]\n    }\n  }\n}\n\n```\n\n\n\n\n## Example Prompts\n\nGive me my os info\n\nWhat is my operating system\n\n...\n",
+  "extracted_at": "2025-06-13T08:56:29.900948",
+  "content_hash": "bba41b7ee30e23800a6c8973f5432451791d8ca1c43a58a1daea5e920d1cfa65"
+}

@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "waii-ai/waii-mcp-server",
+    "owner": "waii-ai",
+    "repo_name": "waii-mcp-server",
+    "repo_url": "https://github.com/waii-ai/waii-mcp-server",
+    "description": "[waii-ai/waii-mcp-server](https://github.com/waii-ai/waii-mcp-server): Facilitates natural language interaction with databases, enabling Language Models to execute queries and process data through WAII.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/waii-ai/waii-mcp-server/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# WAII MCP Server\n\nA Model Context Protocol server that provides database interaction capabilities through WAII. This server enables Language Models to interact with databases, execute queries, and process database content through natural language.\n\n![mcp](https://github.com/user-attachments/assets/f4dde80c-59f5-4f0b-ae47-dd440b900a18)\n\n## Available Tools\n\n### database\nInteract with databases through WAII's natural language interface.\n\n**Arguments:**\n- `database-key` (string, required): Your database connection string\n- `api-key` (string, required): Your WAII API key\n- `url` (string, required): WAII API endpoint URL\n\n## Installation\n\n### Using uv/uvx (recommended)\nWhen using uv/uvx no specific installation is needed. You can directly run the server using either approach:\n\nUsing `uv`:\n```bash\nuv run -m mcp_server_waii \\\n  --url \"YOUR_WAII_URL\" \\\n  --api-key \"YOUR_API_KEY\" \\\n  --database-key \"YOUR_DATABASE_CONNECTION_STRING\"\n```\n\n### Using pip\nAlternatively, you can install mcp-server-waii via pip:\n\n```bash\npip install mcp-server-waii\n```\n\nAfter installation, you can run it as a module:\n```bash\npython -m mcp_server_waii \\\n  --url \"YOUR_WAII_URL\" \\\n  --api-key \"YOUR_API_KEY\" \\\n  --database-key \"YOUR_DATABASE_CONNECTION_STRING\"\n```\n\n## Requirements\n\n- Python 3.10 or higher\n- A WAII account with API access\n- Database credentials supported by WAII\n\n## Configuration\n\n### Configure for Claude.app\n\nThere are several ways to configure the server for Claude:\n\n#### 1. Using uvx (Recommended)\n```json\n{\n    \"mcpServers\": {\n        \"waii\": {\n            \"command\": \"uvx\",\n            \"args\": [\n                \"mcp_server_waii\",\n                \"--url\",\n                \"YOUR_WAII_URL\",\n                \"--api-key\",\n                \"YOUR_API_KEY\",\n                \"--database-key\",\n                \"YOUR_DATABASE_CONNECTION_STRING\"\n            ]\n        }\n    }\n}\n```\n\n#### 2. Using Python installation\n```json\n{\n    \"mcpServers\": {\n        \"waii\": {\n            \"command\": \"python\",\n            \"args\": [\n                \"-m\",\n                \"mcp_server_waii\",\n                \"--url\",\n                \"YOUR_WAII_URL\",\n                \"--api-key\",\n                \"YOUR_API_KEY\",\n                \"--database-key\",\n                \"YOUR_DATABASE_CONNECTION_STRING\"\n            ]\n        }\n    }\n}\n```\n\n#### Example Values:\n- `YOUR_WAII_URL`: e.g., \"http://WAII_URL/api/\"\n- `YOUR_API_KEY`: Your WAII API key\n- `YOUR_DATABASE_CONNECTION_STRING`: e.g., \"snowflake://USER@HOST/DB?role=ROLE&warehouse=WAREHOUSE\"\n\n## Features\n\n- Natural language to SQL conversion\n- Database schema understanding and management\n- Query execution and result formatting\n- Automatic query optimization suggestions\n- Data visualization capabilities\n\n## Development\n\nTo set up the development environment:\n\n1. Clone the repository\n```bash\ngit clone https://github.com/waii-ai/mcp-server-waii.git\ncd mcp-server-waii\n```\n\n2. Install in development mode:\n```bash\nuv pip install -e .\n```\n\n## Support\n\nFor support:\n1. Check the [GitHub Issues](https://github.com/waii-ai/mcp-server-waii/issues)\n2. Contact WAII support for API-related questions\n3. Open a new issue if you find a bug\n\n## License\n\nApache License 2.0 - see LICENSE file for details. \n",
+  "extracted_at": "2025-06-13T08:55:27.760224",
+  "content_hash": "33a06adc82ad1b52fa51adde3652b6553776fa59d998202802d447e0bf8ce368"
+}

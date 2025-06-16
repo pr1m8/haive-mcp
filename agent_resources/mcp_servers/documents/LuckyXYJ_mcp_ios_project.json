@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "LuckyXYJ/mcp_ios_project",
+    "owner": "LuckyXYJ",
+    "repo_name": "mcp_ios_project",
+    "repo_url": "https://github.com/LuckyXYJ/mcp_ios_project",
+    "description": "[LuckyXYJ/mcp_ios_project](https://github.com/LuckyXYJ/mcp_ios_project): An MCP server configured for iOS projects, utilizing Python scripts for server execution.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/LuckyXYJ/mcp_ios_project/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "## cursor 配置\r\n\r\n```\r\n{\r\n  \"mcpServers\": {\r\n    \"iospi\": {\r\n      \"command\": \"uv\",\r\n      \"args\": [\r\n        \"--directory\",\r\n        \".{路径}/mcp_ios_project/mcp_ios_project\",\r\n        \"run\",\r\n        \"server.py\"\r\n      ]\r\n    }\r\n  }\r\n}\r\n```\r\n\r\n\r\n\r\n\r\n\r\n",
+  "extracted_at": "2025-06-13T08:54:53.679113",
+  "content_hash": "b0ef94d5b95f12534a8ba46272ca0f9a2a6f0692eaac251401720b3d31994cda"
+}

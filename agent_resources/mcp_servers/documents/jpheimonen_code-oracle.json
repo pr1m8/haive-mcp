@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "jpheimonen/code-oracle",
+    "owner": "jpheimonen",
+    "repo_name": "code-oracle",
+    "repo_url": "https://github.com/jpheimonen/code-oracle",
+    "description": "[jpheimonen/code-oracle](https://github.com/jpheimonen/code-oracle): Code Oracle leverages AI to efficiently locate code within large codebases using Gemini 2.5 Flash, integrating seamlessly as an MCP server in Cursor.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/jpheimonen/code-oracle/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Code Oracle\n\nA Python tool for locating code using Gemini 2.5 Flash. Capable of shifting through large amounts of code to locate the answer to your query.\n\n## Features\n\n- Uses AI to help locate code in a codebase\n\n## Installation\n\n```bash\nuv install\n```\n\n## Usage\n\n```bash\nuv run main.py\n``` \n\n## Using as MCP in Cursor\n\nTo use Code Oracle as a Model Context Protocol (MCP) server in Cursor:\n\n1. Clone this repository\n2. Have `uv` installed\n2. Create an `mcp.json` file in your Cursor configuration directory with the following content:\n\n```json\n{\n  \"mcpServers\": {\n    \"code-oracle\": {\n      \"command\": \"/path/to/run_mcp.sh\",\n      \"env\": {\n        \"GEMINI_API_KEY\": \"your-gemini-key\"\n      }\n    }\n  }\n}\n```\n\nMake sure to:\n- Replace `/path/to/run_mcp.sh` with the actual path to the `run_mcp.sh` script in this repo\n- Set your Gemini API key in the environment variables\n\nAfter configuration, Code Oracle will be available as a tool when using Cursor. \n\n",
+  "extracted_at": "2025-06-13T08:55:03.993635",
+  "content_hash": "790a374e4e2ee994da9eb784c7c554396c7cab9e5ec0f53f4cc7c7a5cd40df0e"
+}

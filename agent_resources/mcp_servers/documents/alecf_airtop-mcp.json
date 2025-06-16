@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "alecf/airtop-mcp",
+    "owner": "alecf",
+    "repo_name": "airtop-mcp",
+    "repo_url": "https://github.com/alecf/airtop-mcp",
+    "description": "[alecf/airtop-mcp](https://github.com/alecf/airtop-mcp): Facilitates interaction with Airtop's browser automation service through a Model Context Protocol server.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/alecf/airtop-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Airtop MCP Server\n\nA Model Context Protocol (MCP) server that provides tools for interacting with Airtop's browser automation service.\n\n## Usage\n\n### Development\n\n1. Clone the repository\n2. Install dependencies:\n   ```bash\n   npm install\n   ```\n3. Set your Airtop API key:\n   ```bash\n   export AIRTOP_API_KEY=your_api_key_here\n   ```\n4. Start the development server:\n   ```bash\n   npm run dev -- --server\n   ```\n\n### Use in Claude (Native MacOS)\n\nGo into the Claude app, open up Settings -> Developer -> Edit Config\n\nAdd the following:\n(replace `your_api_key_here` with your Airtop API key)\n\n```json\n{\n  \"mcpServers\": {\n    \"airtop\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"airtop-mcp@latest\"],\n      \"env\": {\n        \"AIRTOP_API_KEY\": \"your_api_key_here\"\n      }\n    }\n  }\n}\n```\n\n## Available Tools\n\n- `createSession`: Create a new Airtop browser session\n- `createWindow`: Create a new browser window in the session\n- `pageQuery`: Query the current page content using AI\n- `terminateSession`: Terminate an Airtop browser session\n- `paginatedExtraction`: Extract data from a paginated list\n\n## Configuration\n\nThe server runs on port 3456 by default. You can change this by setting the `PORT` environment variable.\n\n## License\n\nISC\n",
+  "extracted_at": "2025-06-13T08:55:55.147704",
+  "content_hash": "a16219b55dea99ae698acf2d0ab4ce44ae6d24351bdd8ada3f523c5584ed4c4c"
+}

@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "uupt-mcp/uupt-mcp-server",
+    "owner": "uupt-mcp",
+    "repo_name": "uupt-mcp-server",
+    "repo_url": "https://github.com/uupt-mcp/uupt-mcp-server",
+    "description": "[uupt-mcp/uupt-mcp-server](https://github.com/uupt-mcp/uupt-mcp-server): Facilitates order creation on the uupt.com platform using the MCP protocol, enhancing integration with delivery services.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/uupt-mcp/uupt-mcp-server/master/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# UU跑腿 MCP Server\n\n一个轻量级的MCP Server，用于通过MCP协议在uupt.com开放平台创建订单\nhttps://open.uupt.com/\n\n## 产品介绍\n\nUU跑腿核心API现已全面兼容MCP协议，是国内首家兼容MCP协议的配送服务商。UU跑腿已经完成核心API接口和MCP协议的对接，涵盖询价、发单、订单详情、配送员实时位置等功能。作为国内首家支持MCP协议的配送服务商，UU跑腿MCP Server发布后，智能体开发者仅需简单配置，就可以在大模型中快速接入配送服务，实现一句话发单的能力，大幅降低了智能体应用开发过程中调用配送服务相关能力的门槛，显著提升了智能体应用的开发效率。\n\n## 功能介绍\n\n### 地址询价\n\n获取订单价格。\n\n#### 输入参数\n\n- `fromAddress`：发货地址\n- `toAddress`：收货人地址\n- `adCode`：订单区域编码\n- `sendType`：订单类型\n\n#### 输出参数\n\n- `priceToken`：金额令牌（提交订单使用）\n- `needPayMoney`：实际支付金额\n\n### 地址发单\n\n#### 输入参数\n\n- `priceToken`：金额令牌（计算订单价格接口返回的`price_token`）\n- `receiverPhone`：收件人电话（手机号码）\n\n#### 输出参数\n\n- `orderCode`：UU订单号\n\n### 取消订单\n\n#### 输入参数\n\n- `orderCode`：UU订单号\n- `reason`：取消原因\n\n#### 输出参数\n\n- `deductFee`：扣除费用（单位：分）\n\n### 查询订单\n\n#### 输入参数\n\n- `orderCode`：UU订单号\n\n#### 输出参数\n\n- `fromAddress`：发货地址\n- `toAddress`：收货人地址\n- `distance`：配送距离\n- `state`：当前状态\n\n## 创建应用和秘钥\n\n### 注册开放平台\n\n1. 注册UU跑腿开放平台账号。\n2. 注册成功后登录，进入“我的首页”。\n\n### 添加应用\n\n1. 点击左侧菜单栏“我的应用”。\n2. 创建应用并获得秘钥。\n\n### 查看应用秘钥\n\n1. 系统已集成UU跑腿配送，应用秘钥配置至发单系统即可使用。\n2. 未集成开发者进行接口对接。\n\n## 快速开始\n\n### 配置Python本地环境\n\n建议使用Python 3.11版本。\n\n### 安装命令\n\n```bash\npip3 install -i https://mirrors.aliyun.com/pypi/simple/ uupt-mcp-server\n```\n\n### 更新命令\n\n```bash\npip3 install -U -i https://mirrors.aliyun.com/pypi/simple/ uupt-mcp-server\n```\n\n### 查看安装是否成功\n\n```bash\npip3 list\n```\n\n### 配置`mcpService`\n\n```json\n{\n  \"mcpServers\": {\n    \"uupt-mcp-server\": {\n      \"disabled\": false,\n      \"timeout\": 60,\n      \"command\": \"python\",\n      \"args\": [\n        \"-m\",\n        \"uupt-mcp-server\"\n      ],\n      \"env\": {\n        \"APP_ID\": \"您的APP_ID\",\n        \"APP_SECRET\": \"您的APP_SECRET\",\n        \"OPEN_ID\": \"您的OPEN_ID\",\n        \"OPENAPI_URL_BASE\": \"https://openapi.uupt.com/v2_0/\"\n      },\n      \"transportType\": \"stdio\"\n    }\n  }\n}\n```\n\n### 示例\n\n![示例图](https://open.uupt.com/img/mcp-demo-1.584e5cae.png)\n![示例图](https://open.uupt.com/img/mcp-demo-2.70f7dcf2.png)",
+  "extracted_at": "2025-06-13T08:56:20.007405",
+  "content_hash": "2c427aee3ea5f18d1480317f790a815df7577ab648a81498cd3d0c7c1f3d4a80"
+}

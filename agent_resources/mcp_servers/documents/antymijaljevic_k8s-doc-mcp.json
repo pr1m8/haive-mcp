@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "antymijaljevic/k8s-doc-mcp",
+    "owner": "antymijaljevic",
+    "repo_name": "k8s-doc-mcp",
+    "repo_url": "https://github.com/antymijaljevic/k8s-doc-mcp",
+    "description": "[antymijaljevic/k8s-doc-mcp](https://github.com/antymijaljevic/k8s-doc-mcp): A Python-based MCP server for managing and summarizing sticky notes using the Model Context Protocol SDK.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/antymijaljevic/k8s-doc-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Kubernetes Documentation MCP Server\n\nA Kubernetes documentation assistant built with the MCP (Model Context Protocol) Python SDK.\n\n## Features\n\n- Fetch and convert Kubernetes documentation to Markdown format\n- Get related/recommended documentation pages\n\n## Installation\n\n1. Install the `uv` package manager:\n   ```bash\n   curl -LsSf https://astral.sh/uv/install.sh | sh\n   ```\n\n2. Initialize the project and install dependencies:\n   ```bash\n   uv init .\n   uv add \"mcp[cli]\" requests beautifulsoup4 markdown\n   ```\n\n3. Install the MCP server:\n   ```bash\n   uv run mcp install main.py\n   ```\n\n## Usage\n\nStart the MCP server:\n```bash\nuv run python main.py\n```\n\nThis will add json definition to Claude Desktop (to MPC Host/Client) like this and run server in background.\n```json\n{\n  \"mcpServers\": {\n    \"k8s-doc\": {\n      \"command\": \"uv\",\n      \"args\": [\n        \"run\",\n        \"--with\",\n        \"mcp[cli]\",\n        \"mcp\",\n        \"run\",\n        \"/<path-to>/k8s-doc-mcp/main.py\"\n      ]\n    }\n  }\n}\n```\n\n### Available Tools\n\n- `read_documentation(url)`: Fetch and convert a Kubernetes documentation page to Markdown format\n- `recommend(url)`: Get recommended Kubernetes documentation pages related to a specified URL\n\n### Examples\n\n1. read_documentation\nAccess and understand the content of specific Kubernetes documentation pages.\n\nHow to https://kubernetes.io/docs/tasks/tls/certificate-issue-client-csr/?\nHow to https://kubernetes.io/docs/tasks/administer-cluster/cluster-upgrade/?\n\n\n2. recommend\nFind other pages related to a topic, typically starting from a page you've just read or are interested in.\n\n\"Can you recommend other pages related to this URL: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/?\"\n\"What other documentation pages are related to the one about Deployments (https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)?\"\n\"Based on the information about Services, what other pages might be relevant? (Page: https://kubernetes.io/docs/concepts/services-networking/service/)\"\n\"Explore related topics starting from the documentation on Pods (https://kubernetes.io/docs/concepts/workloads/pods/).\"\n\n## Resources\n\n- [MCP Python SDK Documentation](https://github.com/modelcontextprotocol/python-sdk)\n- [uv Package Manager](https://docs.astral.sh/uv/getting-started/installation/)\n- [Kubernetes Documentation](https://kubernetes.io/docs/)\n",
+  "extracted_at": "2025-06-13T08:55:02.440346",
+  "content_hash": "bdef57f37d0e95534aec22c96f4b0389886d1636d19c2c484eb9383942d72fa3"
+}

@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "larryhudson/mcp-server-example-image-block",
+    "owner": "larryhudson",
+    "repo_name": "mcp-server-example-image-block",
+    "repo_url": "https://github.com/larryhudson/mcp-server-example-image-block",
+    "description": "[larryhudson/mcp-server-example-image-block](https://github.com/larryhudson/mcp-server-example-image-block): Provides a random image retrieval service using the Lorem Picsum API, demonstrating MCP server capabilities with image blocks.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/larryhudson/mcp-server-example-image-block/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Example MCP Server with image blocks\n\n## Overview\n\nAn example MCP server that returns a random image from the [Lorem Picsum API](https://picsum.photos/). This is just an example to show how MCP servers can return image blocks.\n\nSee also: [Image Content in the Model Context Protocol specification](https://modelcontextprotocol.io/specification/2025-03-26/server/tools#image-content)\n\n## Usage\n \n### Using with VS Code\n\nAdd this to your settings JSON file:\n\n```json\n{\n  \"mcp\": {\n    \"servers\": {\n      \"random_image\": {\n        \"command\": \"npx\",\n        \"args\": [\n          \"-y\",\n          \"@larryhudson/mcp-server-example-image-block\"\n        ],\n      }\n    }\n  }\n}\n```\n\n### Using with Claude or other MCP-compatible applications\n\nAdd this to your MCP configuration JSON file:\n\n```json\n{\n  \"mcpServers\": {\n    \"random_image\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"@larryhudson/mcp-server-example-image-block\"],\n    }\n  }\n}\n```\n\n## Available Tools\n\n- `get_random_image` - get a random image using the Lorem Picsum API.\n\n## Technical Details\n\nBuilt with:\n- **Model Context Protocol (MCP)**: Framework for allowing AI assistants to interact with external tools\n- **TypeScript**: For type safety and better developer experience\n\n## Development\n\nYou can use the Model Context Protocol inspector to try out the server:\n\n```bash\nnpx @modelcontextprotocol/inspector npx tsx src/index.ts\n```\n\n## License\n\nMIT",
+  "extracted_at": "2025-06-13T08:54:52.219418",
+  "content_hash": "e0a75af79f207cee940ab2abf70185ca83101e49926ee1e33869907ea3456120"
+}

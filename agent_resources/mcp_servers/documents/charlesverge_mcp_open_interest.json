@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "charlesverge/mcp_open_interest",
+    "owner": "charlesverge",
+    "repo_name": "mcp_open_interest",
+    "repo_url": "https://github.com/charlesverge/mcp_open_interest",
+    "description": "[charlesverge/mcp_open_interest](https://github.com/charlesverge/mcp_open_interest): Analyzes options open interest data to calculate market sentiment using put/call ratios for specified stock symbols.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/charlesverge/mcp_open_interest/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Open Interest Analysis MCP Server\n\nThis is an MCP (Message Control Protocol) server that retrieves options open interest data from Alpha Vantage and calculates the put/call ratio to determine market sentiment for a given stock symbol.\n\nYou can use the prompts.\n`Calculate the max pain for symbol NVDA`\n\n`Calculate put call ratio for symbol NVDA`\n\n## Screenshots\n\n![Max Pain Example](max-pain.png)\n\n![Put Call Ratio Example](market-sentiment.png)\n\n## Claude Desktop Setup\n\n1. Install the required dependencies:\n\n```bash\npip install -r requirements.txt\n```\n\n2. Set up your Alpha Vantage API key:\n\n   - Get an API key from [Alpha Vantage](https://www.alphavantage.co/support/#api-key)\n   - Create a `.env` file in the root directory\n\n3. Add to your Claude Desktop config file (`claude_desktop_config.json`):\n   Add the following configuration to your `claude_desktop_config.json` file under the root JSON object:\n\n```{\n  \"mcpServers\": {\n    \"openinterest_stdio\": {\n      \"command\": \"/dir/to/python\",\n      \"args\": [\"/dir/mcp_open_interest/main.py\"],\n      \"env\": {\n        \"ALPHAVANTAGE_KEY\": \"your_api_key_here\"\n      }\n    },\n  }\n}\n```\n\n## Sentiment Interpretation\n\n- **Bullish**: Put/Call ratio < 1.0\n- **Bearish**: Put/Call ratio > 1.0\n",
+  "extracted_at": "2025-06-13T08:55:43.475929",
+  "content_hash": "6d6ab408ecfb3c471b7d8e28fdd12f542d7f212328c7b5614495bf31ba1b8c89"
+}

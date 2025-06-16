@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "enomoto11/aws-cost-notifier-mcp-server",
+    "owner": "enomoto11",
+    "repo_name": "aws-cost-notifier-mcp-server",
+    "repo_url": "https://github.com/enomoto11/aws-cost-notifier-mcp-server",
+    "description": "[enomoto11/aws-cost-notifier-mcp-server](https://github.com/enomoto11/aws-cost-notifier-mcp-server): Monitors daily AWS costs and generates GitHub Issue reports for cost analysis and comparison.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/enomoto11/aws-cost-notifier-mcp-server/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# AWS Cost Notifier MCP Server\n\nAWSの月間コストを取得し、サービス別の内訳を表示するMCPサーバーです。\n日次でコストの変動を監視し、前日比較のレポートをGitHub Issueとして自動作成します。\n\n## 機能\n\n- 日次のAWSコスト総額の取得\n- サービス別のコスト内訳\n- カテゴリー別のコスト集計（EC2、セキュリティ、管理、ストレージなど）\n- 前日比較による変動の分析\n- コスト情報のJSON形式での出力\n- GitHub Issueへの自動レポート投稿\n\n## セットアップ\n\n1. リポジトリのクローン:\n```bash\ngit clone https://github.com/yourusername/aws-cost-notifier-mcp-server.git\ncd aws-cost-notifier-mcp-server\n```\n\n2. 依存パッケージのインストール:\n```bash\nnpm install\n```\n\n3. 環境変数の設定:\n   - `.env.example`を`.env`にコピー\n   ```bash\n   cp .env.example .env\n   ```\n   - `.env`ファイルを編集して必要な情報を設定\n   ```\n   # AWS Configuration\n   AWS_PROFILE=default\n   AWS_REGION=ap-northeast-1\n   AWS_SDK_LOAD_CONFIG=1\n\n   # GitHub Configuration\n   GITHUB_TOKEN=your_github_token_here\n\n   # Target Repository\n   GITHUB_OWNER=your_organization_or_username\n   GITHUB_REPO=your_repository_name\n   ```\n\n4. TypeScriptのビルド:\n```bash\nnpm run build\n```\n\n## 実行方法\n\n### 直接実行\n\n```bash\nnode build/index.js\n```\n\n### Cursor MCPサーバーとして実行\n\n1. `.cursor/mcp.json`に以下の設定を追加:\n```json\n{\n  \"mcpServers\": {\n    \"aws-cost-notifier\": {\n      \"command\": \"node\",\n      \"args\": [\"build/index.js\"],\n      \"cwd\": \"/path/to/aws-cost-notifier-mcp-server\",\n      \"env\": {\n        \"AWS_PROFILE\": \"default\",\n        \"AWS_REGION\": \"ap-northeast-1\",\n        \"AWS_SDK_LOAD_CONFIG\": \"1\",\n        \"GITHUB_TOKEN\": \"your_github_token\",\n        \"GITHUB_OWNER\": \"your_organization_or_username\",\n        \"GITHUB_REPO\": \"your_repository_name\"\n      }\n    }\n  }\n}\n```\n\n2. Cursorで実行:\n```bash\nmcp aws-cost-notifier\n```\n\n## 開発環境\n\n### VSCode\n\nこのプロジェクトにはVSCode用の推奨設定が含まれています：\n\n1. 推奨拡張機能:\n- ESLint\n- Prettier\n- TypeScript and JavaScript Language Features\n\n2. デバッグ設定:\n- F5キーでTypeScriptコードを直接デバッグ実行できます\n- 環境変数は`.env`ファイルから自動的に読み込まれます\n\n3. 自動フォーマット:\n- ファイル保存時に自動フォーマット\n- ESLintの自動修正が有効\n\n## 出力形式\n\n```json\n{\n  \"summary\": {\n    \"period\": {\n      \"start\": \"2025-04-19\",\n      \"end\": \"2025-04-20\"\n    },\n    \"totalCost\": \"32.14\",\n    \"previousTotalCost\": \"31.98\",\n    \"changePercentage\": \"+0.5\",\n    \"currency\": \"USD\"\n  },\n  \"categories\": [\n    {\n      \"name\": \"ec2\",\n      \"current\": \"22.97\",\n      \"previous\": \"22.50\",\n      \"changePercentage\": \"+2.1\",\n      \"percentage\": \"71.5\"\n    }\n  ],\n  \"details\": [\n    {\n      \"service\": \"Amazon Elastic Compute Cloud\",\n      \"current\": \"21.7158\",\n      \"previous\": \"21.2345\",\n      \"changePercentage\": \"+2.3\",\n      \"unit\": \"USD\"\n    }\n  ]\n}\n```\n\n## 注意事項\n\n- コストは推定値であり、確定額は月末の請求書で確認してください\n- AWS Cost Explorerの料金が発生する可能性があります\n- 前日比は日次の変動を示しており、月間の傾向とは異なる可能性があります\n- GitHubのAPI制限に注意してください ",
+  "extracted_at": "2025-06-13T08:56:21.733571",
+  "content_hash": "517de73338029cccdfc12838d078f8f4d768ae049a6787d0f160412433bde87a"
+}

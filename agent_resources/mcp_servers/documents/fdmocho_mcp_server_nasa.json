@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "fdmocho/mcp_server_nasa",
+    "owner": "fdmocho",
+    "repo_name": "mcp_server_nasa",
+    "repo_url": "https://github.com/fdmocho/mcp_server_nasa",
+    "description": "[fdmocho/mcp_server_nasa](https://github.com/fdmocho/mcp_server_nasa): Facilitates integration with NASA's Near Earth Object API, enabling date-specific data retrieval through an MCP server setup.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/fdmocho/mcp_server_nasa/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# MCP Server for NASA API integration. \n\n**NASA NEO** API request by date\n- Near Earth Object information retrieval by date\n\n**Clone repo and run:**\n```bash\nuv install\n```\n\n**Add you mcp server config to your LLM** \n\nExample Claude config file (_claude_desktop_config.json_)\n```JSON\n{\n    \"mcpServers\": {\n        \"nasa\": {\n            \"command\": \"uv\",\n                \"args\": [\n                    \"--directory\",\n                    \"<PATH TO YOUR PY>\",\n                    \"run\",\n                    \"main.py\"\n                ]\n        }\n    }\n}\n```\n\n**Tools:**\n\n_getNeo()_\n- add your own api key in apiconfig.py (eg: apiconfig.example.py)\n\n```JSON\n{\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"getNeo\",\n    \"arguments\": {\n      \"start_date\": \"<START_DATE>\",\n      \"end_date\": \"<END_DATE>\"\n    },\n    \"_meta\": {\n      \"progressToken\": 0\n    }\n  }\n}\n```\n### Other instructions (uv examples)\n\n**Create environment**\n```Bash\nuv init mcp-server-demo\n\ncd mcp-server-demo\n\nuv add \"mcp[cli]\"\n\nuv run mcp\n```\n\n**Usage**: _mcp [OPTIONS] COMMAND [ARGS]_\n\n### MCP development tools\n\n- Options\n\n--help\n\n**Commands**\n\n_**version**_   > Show the MCP version\n\n_**dev**_   > Run a MCP server with the MCP Inspector\n\n_**run**_   > Run a MCP Server\n\n_**install**_   > Install a MCP server in the Claude desktop app\n\n**Example** _(open **MCP** dev **Inspector**)_:\n```Bash\nuv run mcp dev <MYPYTHONFILE>\n\n# Example output:\nStarting MCP inspector...\n⚙️ Proxy server listening on port <PORT>\n🔍 MCP Inspector is up and running at http://127.0.0.1:<PORT> 🚀\n\n```",
+  "extracted_at": "2025-06-13T08:56:43.263544",
+  "content_hash": "dc20117c2782a48fb891fa45fb2ad56f03e58a48fe4d34fb77f625b6ea137fb1"
+}

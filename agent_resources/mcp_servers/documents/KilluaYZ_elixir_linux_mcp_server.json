@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "KilluaYZ/elixir_linux_mcp_server",
+    "owner": "KilluaYZ",
+    "repo_name": "elixir_linux_mcp_server",
+    "repo_url": "https://github.com/KilluaYZ/elixir_linux_mcp_server",
+    "description": "[KilluaYZ/elixir_linux_mcp_server](https://github.com/KilluaYZ/elixir_linux_mcp_server): Facilitates precise Linux source code queries using Elixir for LLMs.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/KilluaYZ/elixir_linux_mcp_server/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Elixir Linux MCP Server\n\n该项目是适配于Elixir查看Linux代码的MCP服务器，能够让LLM更精准地读代码\n\n# 依赖条件\n\n- 本地配置[Elixir](https://github.com/bootlin/elixir)并根据其教程建立索引\n- 安装了python和uv\n- 已经clone了一个Linux仓库到本地\n\n# 使用方法\n\n将以下json代码粘贴到mcp的配置中：\n\n```json\n{\n  \"mcpServers\": {\n    \"linux_source_code_query\": {\n      \"command\": \"uv\",\n      \"args\": [\n        \"--directory\",\n        \"/path/to/elixir_linux_mcp_server\",\n        \"run\",\n        \"main.py\"\n      ],\n      \"env\": {\n        \"LXR_BASE_DIR\": \"/srv/elixir-data/\",\n        \"REPO_DIR\": \"/path/to/linux\"\n      }\n    }\n  }\n}\n```\n一般来说elixir建好索引项目的目录结构如下：\n\n```\n/srv/elixir-data\n└── linux\n    ├── data\n    └── repo\n```\n\n环境变量`LXR_BASE_DIR`指向elixir项目的根目录`/srv/elixir-data`\n环境变量`REPO_DIR`指向你clone下来的Linux源码项目\n\n",
+  "extracted_at": "2025-06-13T08:56:31.125769",
+  "content_hash": "33326a728dd80c95385a12e5c6ee97e01c4dc40d72a28afdc883ee37ae2bd5ad"
+}

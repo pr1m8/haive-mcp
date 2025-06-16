@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "Foxhunt/gitlab-mcp-server",
+    "owner": "Foxhunt",
+    "repo_name": "gitlab-mcp-server",
+    "repo_url": "https://github.com/Foxhunt/gitlab-mcp-server",
+    "description": "[Foxhunt/gitlab-mcp-server](https://github.com/Foxhunt/gitlab-mcp-server): A TypeScript-based server for managing and interacting with GitLab data, including projects, issues, and wiki pages.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/Foxhunt/gitlab-mcp-server/master/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# GitLab MCP Server\n\ninteract with a GitLab server.\n\nThis is a TypeScript-based MCP server that interacts with a self-hosted GitLab instance. The server provides tools to fetch and manage GitLab data, specifically projects, issues, and issue notes (comments). The available tools are: `list_projects`, `get_issues`, `get_issue_notes`, `search`, `get_issue`, `get_todos`, `get_wiki_page`, and `list_wiki_pages`.\n\n## Features\n\nThis GitLab MCP server provides the following tools:\n\n- **`list_projects`**: Lists all projects accessible to the user.\n- **`get_issues`**: Gets issues for a specific project, with basic filtering.\n- **`get_issue_notes`**: Gets notes (comments) for a specific issue.\n- **`search`**: Searches for projects and issues based on a search term.\n- **`get_issue`**: Retrieves a specific issue from a project using its ID and IID.\n- **`get_todos`**: Retrieves a list of to-do items with optional filters.\n- **`get_wiki_page`**: Retrieves a specific wiki page by project ID and slug.\n- **`list_wiki_pages`**: Retrieves all wiki pages for a given project.\n\n## Development\n\nInstall dependencies:\n\n```bash\nnpm install\n```\n\nBuild the server:\n\n```bash\nnpm run build\n```\n\nFor development with auto-rebuild:\n\n```bash\nnpm run watch\n```\n\n## Installation\n\nTo use with Claude Desktop, add the server config:\n\n```json\n{\n  \"mcpServers\": {\n    \"gitlab-server\": {\n      \"command\": \"/path/to/gitlab-server/build/index.js\"\n    }\n  }\n}\n```\n\n### Debugging\n\nSince MCP servers communicate over stdio, debugging can be challenging. We recommend using the [MCP Inspector](https://github.com/modelcontextprotocol/inspector), which is available as a package script:\n\n```bash\nnpm run inspector\n```\n\nThe Inspector will provide a URL to access debugging tools in your browser.\n\n### GitLab API Documentation\n\nhttps://gitlab.com/gitlab-org/gitlab/-/tree/master/doc/api\nhttps://gitlab.com/gitlab-org/gitlab/-/raw/master/doc/api/rest/_index.md\nhttps://gitlab.com/gitlab-org/gitlab/-/raw/master/doc/api/rest/authentication.md\nhttps://gitlab.com/gitlab-org/gitlab/-/raw/master/doc/api/projects.md\nhttps://gitlab.com/gitlab-org/gitlab/-/raw/master/doc/api/issues.md\nhttps://gitlab.com/gitlab-org/gitlab/-/raw/master/doc/api/notes.md\nhttps://gitlab.com/gitlab-org/gitlab/-/raw/master/doc/api/issue_links.md\nhttps://gitlab.com/gitlab-org/gitlab/-/raw/master/doc/api/search.md\nhttps://gitlab.com/gitlab-org/gitlab/-/raw/master/doc/api/wikis.md\n",
+  "extracted_at": "2025-06-13T08:57:12.897565",
+  "content_hash": "16d008f471706d05d639b632b6dd8023165787a62ed870cd702e1b0093552cc8"
+}

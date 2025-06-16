@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "johnhenry/hackernews-mcp",
+    "owner": "johnhenry",
+    "repo_name": "hackernews-mcp",
+    "repo_url": "https://github.com/johnhenry/hackernews-mcp",
+    "description": "[johnhenry/hackernews-mcp](https://github.com/johnhenry/hackernews-mcp): A template for creating new MCP servers with features like sandboxed JavaScript execution and debug logging.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/johnhenry/hackernews-mcp/main/readme.md",
+    "api_base_url": null
+  },
+  "readme_content": "# MCP Server Template\n\nA Template for createing a new MCP server.\n\nSimply fill out the appropriate details in package.json.\n\nExport tools, prompts, and resources from `tools.mjs`, `prompts.mjs`, and `resources.mjs` respectively.\n\n## Features\n\n- Execute arbitrary JavaScript code in a sandboxed environment.\n- Time-limited execution (10 second default) to prevent runaway scripts.\n- Debug mode for verbose logging.\n\n## Installation\n\n### Prerequisites\n\n- node/npx\n\n### Installation\n\nPublish the package to npm is beyond the scope of this template, but once published you can install it using:\n\n```json\n{\n  \"mcpServers\": {\n    ...\n    \"<mcp server name>\": {\n      \"command\": \"npx\",\n      \"args\": [ \"-y\", \"<npm published package name>\" ],\n    }\n  }\n}\n```\n\nOr you can install it locally for development:\n\n```json\n{\n  \"mcpServers\": {\n    ...\n    \"<mcp server name>\": {\n      \"command\": \"<path to node>\",\n      \"args\": [ \"<this directory>/index.mjs\" ],\n    }\n  }\n}\n```\n",
+  "extracted_at": "2025-06-13T08:55:43.662113",
+  "content_hash": "c1798ecdc6c6c24d88efcd4afff85833f3800238ca54206f6bd0bddf2eb5ab82"
+}

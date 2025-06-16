@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "gkhays/mcp-sbom-server",
+    "owner": "gkhays",
+    "repo_name": "mcp-sbom-server",
+    "repo_url": "https://github.com/gkhays/mcp-sbom-server",
+    "description": "[gkhays/mcp-sbom-server](https://github.com/gkhays/mcp-sbom-server): Generates a Software Bill of Materials (SBOM) using Trivy scans, outputting in CycloneDX format.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/gkhays/mcp-sbom-server/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# MCP SBOM Server\n\n[![Python](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/)\n[![MCP](https://img.shields.io/badge/MCP-1.6-CC5500.svg)](https://www.anthropic.com/news/model-context-protocol)\n\nMCP server to perform a Trivy scan and produce an SBOM in CycloneDX format.\n\n## Installation\n\n### Prerequisites\n\nInstall the following.\n\n- [uv](https://github.com/astral-sh/uv)\n- [trivy](https://github.com/aquasecurity/trivy)\n- [Node.js](https://nodejs.org/en)\n\n## MCP Clients\n\n### Configuration\n\n```json\n\"mcpServers\": {\n        \"mcp-sbom\": {\n            \"command\": \"uv\",\n            \"args\": [\n                \"--directory\",\n                \"/path/to/mcp-sbom\",\n                \"run\",\n                \"mcp-sbom\"\n            ]\n        }\n    }\n```\n\n## Building\n\n> [!NOTE]\n> This project employs `uv`.\n\n1. Synchronize dependencies and update the lockfile.\n```\nuv sync\n```\n\n## Debugging\n\n### MCP Inspector\n\nUse [MCP Inspector](https://github.com/modelcontextprotocol/inspector).\n\nLaunch the MCP Inspector as follows:\n\n```\nnpx @modelcontextprotocol/inspector uv --directory /path/to/mcp-sbom run mcp-sbom\n```\n\n![MCP Inspector](docs/mcp-inspector.png)\n\n### Windows\n\nWhen running on Windows, use paths of the style:\n\n```console\nC:/Users/gkh/src/mcp-sbom-server/src/mcp_sbom\n```\n",
+  "extracted_at": "2025-06-13T08:56:25.578701",
+  "content_hash": "2fc4f02841a54fb8c5dae5a17e993e4ed42b35942010c16e992cc05403496c73"
+}

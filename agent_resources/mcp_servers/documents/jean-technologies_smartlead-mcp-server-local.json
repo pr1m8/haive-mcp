@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "jean-technologies/smartlead-mcp-server-local",
+    "owner": "jean-technologies",
+    "repo_name": "smartlead-mcp-server-local",
+    "repo_url": "https://github.com/jean-technologies/smartlead-mcp-server-local",
+    "description": "[jean-technologies/smartlead-mcp-server-local](https://github.com/jean-technologies/smartlead-mcp-server-local): Facilitates seamless interaction with Smartlead's email marketing features through a simplified MCP server interface, supporting AI assistants and automation tools.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/jean-technologies/smartlead-mcp-server-local/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Smartlead Simplified MCP Server\n\n[![smithery badge](https://smithery.ai/badge/@jean-technologies/smartlead-mcp-server-local)](https://smithery.ai/server/@jean-technologies/smartlead-mcp-server-local)\n\nThis application provides a simplified interface to the Smartlead API, allowing AI assistants and automation tools to interact with Smartlead's email marketing features. We welcome contribution from the community.\n\n**Licensing:** All features are now enabled by default with maximum permissiveness! No license key required.\n\n> **For developer details:** See [DEVELOPER_ONBOARDING.md](./DEVELOPER_ONBOARDING.md)\n\n## Quick Start\n\n### Installation\n```bash\nnpm install smartlead-mcp-server@1.2.1\n```\n\nor use directly with npx (no installation needed):\n\n\n### Installing via Smithery\n\nTo install Smartlead Campaign Management Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@jean-technologies/smartlead-mcp-server-local):\n\n```bash\nnpx -y @smithery/cli install @jean-technologies/smartlead-mcp-server-local --client claude\n```\n\n### With Claude:\n```bash\nnpx smartlead-mcp-server start\n```\n\n### With n8n:\n```bash\nnpx smartlead-mcp-server sse\n```\n\nFirst run will prompt for your Smartlead API Key. No license key is required.\n\n## Integration Examples\n\n### Claude Extension:\n```json\n{\n  \"mcpServers\": {\n    \"smartlead\": {\n      \"command\": \"npx\",\n      \"args\": [\"smartlead-mcp-server\", \"start\"],\n      \"env\": {\n        \"SMARTLEAD_API_KEY\": \"your_api_key_here\"\n      }\n    }\n  }\n}\n```\n\n### n8n Setup:\n1. Start the server: `npx smartlead-mcp-server sse`\n2. Configure n8n MCP Client node with:\n   - SSE URL: `http://localhost:3000/sse`\n   - Message URL: `http://localhost:3000/message`\n\n## Available Features\n\n**All features are now enabled by default, including:**\n- Campaign & Lead Management\n- Statistics and Analytics\n- Smart Delivery & Webhooks\n- n8n Integration\n- Client Management\n- Smart Senders\n- Download Tracking and Analytics\n\n## New Download Tracking Features\n\nThis release adds new download tracking capabilities:\n\n### Download Campaign Data\nDownload campaign data with tracking using the `smartlead_download_campaign_data` tool:\n```json\n{\n  \"campaign_id\": 12345,\n  \"download_type\": \"analytics\", // \"analytics\", \"leads\", \"sequence\", \"full_export\"\n  \"format\": \"json\", // \"json\" or \"csv\"\n  \"user_id\": \"optional-user-identifier\"\n}\n```\n\n### View Download Statistics\nView download statistics using the `smartlead_view_download_statistics` tool:\n```json\n{\n  \"time_period\": \"all\", // \"all\", \"today\", \"week\", \"month\"\n  \"group_by\": \"type\" // \"type\", \"format\", \"campaign\", \"date\"\n}\n```\n\nAll downloads are tracked in `~/.smartlead-mcp/downloads.json` for analytics.\n\n## Need Help?\n\n- Run `npx smartlead-mcp-server config` to set up credentials\n- Use `--api-key` option for non-interactive setup\n- Contact: jonathan@jeantechnologies.com\n- Website: [jeantechnologies.com](https://jeantechnologies.com)\n\n## License\n\nThis software is proprietary and confidential. Unauthorized copying, redistribution, or use of this software, in whole or in part, via any medium, is strictly prohibited without the express permission of Jean Technologies.\n\nCopyright © 2025 Jean Technologies. All rights reserved.\n",
+  "extracted_at": "2025-06-13T08:56:18.534492",
+  "content_hash": "0fd3dce89676401ebef0a8c64d3e77e9090fd3b3ef21ca85b556a27cffdcc7ad"
+}

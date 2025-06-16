@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "hiroooo000/mydockers",
+    "owner": "hiroooo000",
+    "repo_name": "mydockers",
+    "repo_url": "https://github.com/hiroooo000/mydockers",
+    "description": "[hiroooo000/mydockers](https://github.com/hiroooo000/mydockers): Facilitates browser automation using Playwright within a Dockerized MCP server environment.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/hiroooo000/mydockers/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# MYDOCKER\n\n## 1. playwright-mcp\n\nbuild\n```bash\ndocker build -t playwright-mcp .\n```\n\nsettings.json\n```json\n{\n  \"mcpServers\": {\n    \"playwright\": {\n      \"command\": \"docker\",\n      \"args\": [\"run\", \"-i\", \"--rm\", \"playwright-mcp\"]\n    }\n  }\n}\n```",
+  "extracted_at": "2025-06-13T08:54:56.473607",
+  "content_hash": "1450acce01f1b9403abf06b5326e9e5c3ce0e7a9730da79e6916a9c2fad9895b"
+}

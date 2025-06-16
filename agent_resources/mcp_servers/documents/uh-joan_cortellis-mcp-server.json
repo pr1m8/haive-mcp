@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "uh-joan/cortellis-mcp-server",
+    "owner": "uh-joan",
+    "repo_name": "cortellis-mcp-server",
+    "repo_url": "https://github.com/uh-joan/cortellis-mcp-server",
+    "description": "[uh-joan/cortellis-mcp-server](https://github.com/uh-joan/cortellis-mcp-server): Facilitates drug search and ontology exploration within the Cortellis database, offering comprehensive drug development insights and financial data.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": null,
+    "api_base_url": null
+  },
+  "readme_content": null,
+  "extracted_at": "2025-06-13T08:56:03.447295",
+  "content_hash": ""
+}

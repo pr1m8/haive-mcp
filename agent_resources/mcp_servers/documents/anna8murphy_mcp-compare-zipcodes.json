@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "anna8murphy/mcp-compare-zipcodes",
+    "owner": "anna8murphy",
+    "repo_name": "mcp-compare-zipcodes",
+    "repo_url": "https://github.com/anna8murphy/mcp-compare-zipcodes",
+    "description": "[anna8murphy/mcp-compare-zipcodes](https://github.com/anna8murphy/mcp-compare-zipcodes): Facilitates demographic comparison between ZIP Code Tabulation Areas using z-score analysis for age, gender, and ethnicity distributions.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/anna8murphy/mcp-compare-zipcodes/master/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Compare-Zipcodes MCP Server\r\n---\r\nA FastMCP-compatible **Model Context Protocol (MCP)** server for comparing zipcode-level demographic distributions. It includes a tool for detecting statistically significant differences in population segments—based on age, gender, and ethnicity—between two ZIP Code Tabulation Areas (ZCTAs), using z-score analysis over synthetic census data. \r\n\r\nThis repository also includes instructions on how to integrate the MCP server with Claude Desktop.\r\n\r\n## Features\r\n\r\n- Compares zip code demographics based on `age` x `gender` x `ethnicity` using Z-score based anomaly detection\r\n- Synthetic population and household census data integration via `.pkl` files generated from [AgentTorch](https://github.com/AgentTorch/AgentTorch)\r\n\r\n---\r\n\r\n## Installation\r\n\r\n```bash\r\ngit clone https://github.com/anna8murphy/mcp-compare-zipcodes.git\r\ncd mcp-compare-zipcodes\r\n```\r\n\r\n```bash\r\n# install uv\r\ncurl -LsSf https://astral.sh/uv/install.sh | sh\r\n\r\n# set up environment\r\nuv venv\r\nsource .venv/bin/activate\r\nuv add \"mcp[cli]\" httpx\r\n```\r\n\r\n## Start the server\r\n\r\nRun the server:\r\n\r\n```bash\r\nuv run compare-zipcodes.py\r\n```\r\n\r\nRunning the server will make the `compare_regions` tool available, which returns a summary of statistically significant demographic differences (z-score > 2) between two ZIP codes based on age, gender, and ethnicity groupings.\r\n\r\n## Usage on Claude Desktop\r\nOpen the Claude for Desktop App configuration in a text editor: \r\n\r\n`~/Library/Application\\ Support/Claude/claude_desktop_config.json`\r\n\r\nAdd the server:\r\n```bash\r\n{\r\n    \"mcpServers\": {\r\n        \"mcp-compare-zipcodes\": {\r\n            \"command\": \"uv\",\r\n            \"args\": [\r\n                \"--directory\",\r\n                \"/ABSOLUTE/PATH/TO/PARENT/FOLDER/mcp-compare-zipcodes\",\r\n                \"run\",\r\n                \"compare-zipcodes.py\"\r\n            ]\r\n        }\r\n    }\r\n}\r\n```\r\n\r\n**Example Prompt:** Compare the demographic statistics of the following zipcodes: 02139 and 10036.\r\n\r\n### Project Structure\r\n```plaintext\r\nmcp-compare-zipcodes/\r\n├── README.md              # documentation\r\n├── compare-zipcodes.py    # main script for Claude integration\r\n├── server.py              # MCP server implementation\r\n├── pyproject.toml         # Python project configuration\r\n└── uv.lock                # uv package manager lock file\r\n\r\n",
+  "extracted_at": "2025-06-13T08:56:15.879580",
+  "content_hash": "ef12e536945f022e6d2f84fec6694cc255df5ff677f76e470ee3b8825c8dd65d"
+}

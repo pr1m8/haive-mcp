@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "stevengonsalvez/todoist-mcp",
+    "owner": "stevengonsalvez",
+    "repo_name": "todoist-mcp",
+    "repo_url": "https://github.com/stevengonsalvez/todoist-mcp",
+    "description": "[stevengonsalvez/todoist-mcp](https://github.com/stevengonsalvez/todoist-mcp): Facilitates advanced task and project management on Todoist through MCP-compatible clients, enhancing productivity and collaboration.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/stevengonsalvez/todoist-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Todoist MCP Server\n\n[![smithery badge](https://smithery.ai/badge/@stevengonsalvez/todoist-mcp)](https://smithery.ai/server/@stevengonsalvez/todoist-mcp)\n\nA Model Context Protocol (MCP) server for Todoist, enabling advanced task and project management via Claude Desktop and other MCP-compatible clients.\n\n## Requirements\n- Node.js (v18 or higher recommended)\n- npm or yarn\n- A Todoist account\n- A Todoist API token (see https://todoist.com/prefs/integrations)\n\n## Features\n- List, create, update, complete, reopen, and delete tasks\n- List, create, update, archive, unarchive, and delete projects\n- List, create, update, and delete sections\n- List, create, update, and delete labels\n- List, create, update, and delete comments\n- Manage shared labels\n- Fetch project collaborators\n\n## All Features\n- **Tasks**: List, get, create, update, complete, reopen, delete\n- **Projects**: List, get, create, update, archive, unarchive, delete\n- **Sections**: List (by project), get, create, update, delete\n- **Labels**: List, get, create, update, delete, manage shared labels\n- **Comments**: List (by task/project), get, create, update, delete\n- **Collaborators**: List project collaborators\n\n## Installation\n\n### For Claude Desktop (JSON)\nIf published as an npm package, you can use it directly with npx in your Claude Desktop configuration:\n\n```json\n{\n  \"mcpServers\": {\n    \"todoist\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"todoist-mcp\"\n      ],\n      \"env\": {\n        \"TODOIST_API_TOKEN\": \"your_todoist_token\"\n      }\n    }\n  }\n}\n```\n- Set the `TODOIST_API_TOKEN` as shown.\n\n### Manual Installation\n1. Clone the repository:\n   ```sh\n   git clone https://github.com/yourusername/todoist-mcp.git\n   cd todoist-mcp\n   ```\n2. Install dependencies:\n   ```sh\n   npm install\n   # or\n   yarn install\n   ```\n3. Build the project:\n   ```sh\n   npm run build\n   # or\n   yarn build\n   ```\n4. Set your Todoist API token as an environment variable (see above).\n5. Run the built server:\n   ```sh\n   node dist/server.js\n   ```\n6. Configure Claude Desktop to use your local build by adding this to your config file:\n   ```json\n   {\n     \"mcpServers\": {\n       \"todoist\": {\n         \"command\": \"node\",\n         \"args\": [\n           \"/path/to/todoist-mcp/dist/server.js\"\n         ],\n         \"env\": {\n           \"TODOIST_API_TOKEN\": \"your_todoist_token\"\n         }\n       }\n     }\n   }\n   ```\n\n## Usage Examples\n- **Get top priority tasks:**\n  > \"Show me my top priority tasks.\"\n- **Create and classify labels:**\n  > \"Create labels for my tasks and classify them by project or urgency.\"\n- **Organize tasks by section:**\n  > \"Move all tasks with the label 'urgent' to the 'Today' section.\"\n- **Project management:**\n  > \"Create a new project called 'Personal Growth' and add a section 'Reading List'.\"\n- **Collaborator overview:**\n  > \"List all collaborators for the project 'Team Launch'.\"\n- **Comment management:**\n  > \"Add a comment to the task 'Prepare slides' with the content 'Remember to include Q2 results.'\"\n\n## License\nThis project is licensed under the MIT License. See [LICENSE](LICENSE) for details. ",
+  "extracted_at": "2025-06-13T08:56:38.149569",
+  "content_hash": "12802020b47ee5ede6a62f4e46aba261aa74f956c16962e8032a499fad2fc037"
+}

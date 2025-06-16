@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "daoch4n/mcp-git",
+    "owner": "daoch4n",
+    "repo_name": "mcp-git",
+    "repo_url": "https://github.com/daoch4n/mcp-git",
+    "description": "[daoch4n/mcp-git](https://github.com/daoch4n/mcp-git): A TypeScript-based MCP server that facilitates Git operations by managing text notes with URIs and metadata, offering tools for note creation and summarization prompts.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": null,
+    "api_base_url": null
+  },
+  "readme_content": null,
+  "extracted_at": "2025-06-13T08:57:08.019550",
+  "content_hash": ""
+}

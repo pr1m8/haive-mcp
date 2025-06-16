@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "tsainte/wordpress-automation-mcp",
+    "owner": "tsainte",
+    "repo_name": "wordpress-automation-mcp",
+    "repo_url": "https://github.com/tsainte/wordpress-automation-mcp",
+    "description": "[tsainte/wordpress-automation-mcp](https://github.com/tsainte/wordpress-automation-mcp): Automate WordPress post management with a Python-based MCP server, offering CRUD operations and post status handling.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/tsainte/wordpress-automation-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Wordpress Automation MCP\n\nThis is a [MCP tool](https://modelcontextprotocol.io/introduction) to interact with Wordpress posts. \n\n## Tech Stack\n- Python 3.13\n- UV\n\n## Features\n- Connect to WordPress sites using environment variables or direct credentials\n- Create, read, update, and delete posts\n- Support for post status (draft, publish, etc.)\n- Pagination support for listing posts\n\n## Usage\n\nYou must specify the environment variables in your MCP configuration:\n\n```json \n{\n    \"mcpServers\": {\n        \"wordpress\": {\n            \"command\": \"uv\",\n            \"args\": [\n                \"--directory\", \n                \"/path/to/wordpress-automation-mcp\",\n                \"run\",\n                \"main.py\"\n            ],\n            \"env\": {\n                \"WP_SITE_URL\": \"https://your-wordpress-site.com\",\n                \"WP_USERNAME\": \"your-username\",\n                \"WP_APP_PASSWORD\": \"your-app-password\"\n            }\n        }\n    }\n  }\n```",
+  "extracted_at": "2025-06-13T08:55:18.188618",
+  "content_hash": "f1bcb6119fcdcd9f576e054a928ab6af8293b2d6a3bb6f1ae41c551340ab3d88"
+}

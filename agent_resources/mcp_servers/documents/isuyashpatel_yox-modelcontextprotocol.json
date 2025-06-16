@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "isuyashpatel/yox-modelcontextprotocol",
+    "owner": "isuyashpatel",
+    "repo_name": "yox-modelcontextprotocol",
+    "repo_url": "https://github.com/isuyashpatel/yox-modelcontextprotocol",
+    "description": "[isuyashpatel/yox-modelcontextprotocol](https://github.com/isuyashpatel/yox-modelcontextprotocol): Facilitates the setup and configuration of MCP servers using Node.js for streamlined integration.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/isuyashpatel/yox-modelcontextprotocol/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# yox-modelcontextprotocol\r\n- modelcontextprotocol/anthropic \r\n\r\n\r\n\r\n## claude-desktop-config\r\n\r\n```Js\r\n//file-location:C:\\Users\\ASUS\\AppData\\Roaming\\Claude\r\n{\r\n    \"mcpServers\": {\r\n        \"weather\": {\r\n            \"command\": \"node\",\r\n            \"args\": [\r\n                \"C:\\\\PATH\\\\TO\\\\PARENT\\\\FOLDER\\\\weather\\\\build\\\\index.js\" //change\r\n            ]\r\n        }\r\n    }\r\n}\r\n```\r\n\r\n\r\n\r\n![config-success](image.png)\r\n#### (resources: https://modelcontextprotocol.io/quickstart/server#node)",
+  "extracted_at": "2025-06-13T08:55:45.232985",
+  "content_hash": "a30979a45289d7613f8f0cf2a026df0a5743d28dffa0ace63195e793e3662f1f"
+}

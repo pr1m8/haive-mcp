@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "fastomop/omcp_a2a",
+    "owner": "fastomop",
+    "repo_name": "omcp_a2a",
+    "repo_url": "https://github.com/fastomop/omcp_a2a",
+    "description": "[fastomop/omcp_a2a](https://github.com/fastomop/omcp_a2a): Facilitates LLM-driven analysis of healthcare data in OMOP format through modular MCP servers and A2A protocol integration.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/fastomop/omcp_a2a/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Agent2Agent OMCP\n\n## MCP Server\n\nThe MCP (Model-Context-Protocol) server provides a set of tools for interacting with OMOP CDM databases and generating SQL queries using natural language processing. The server is built using FastMCP and integrates with Ollama for LLM capabilities.\n\n### Features\n\n#### SQL Server Tools\n- `Execute_SQL_Query`: Execute SQL queries against an OMOP database and return results in CSV format\n- `Test_Connection`: Test if a database connection is valid\n- `Get_OMOP_Schema`: Get the OMOP CDM schema information for prompting\n\n#### Validation Server Tools\n- `Validate_SQL_Query`: Validate SQL queries against OMOP CDM validation rules\n\n#### Ollama Server Tools\n- `Generate_SQL`: Generate SQL from natural language using an LLM, incorporating medical concept codes\n- `Generate_Explanation`: Generate an explanation for an SQL query\n- `Generate_Answer`: Generate a natural language answer based on query, SQL, and results\n- `List_Available_Models`: List available LLM models from Ollama\n\n### Configuration\n\nThe server uses a configuration file (`config/config.json`) that specifies:\n- Database connection strings\n- Schema directory location\n- Ollama API settings\n- OMOP CDM validation rules and schema files\n\n### Medical Concept Integration\n\nThe SQL generation tool accepts medical concepts in the following format:\n```json\n{\n    \"conditions\": [\n        {\n            \"concept_id\": 12345,\n            \"concept_name\": \"Diabetes\",\n            \"vocabulary_id\": \"SNOMED\"\n        }\n    ],\n    \"drugs\": [\n        {\n            \"concept_id\": 11111,\n            \"concept_name\": \"Metformin\",\n            \"vocabulary_id\": \"RxNorm\"\n        }\n    ],\n    \"measurements\": [\n        {\n            \"concept_id\": 22222,\n            \"concept_name\": \"Blood Pressure\",\n            \"vocabulary_id\": \"LOINC\"\n        }\n    ]\n}\n```\n\n### Requirements\n\n- Python 3.13 or higher\n- PostgreSQL database with OMOP CDM schema\n- Ollama running locally for LLM capabilities\n\n### Dependencies\n\n- mcp\n- httpx\n- sqlalchemy\n- pydantic\n- pydantic-settings\n- python-multipart\n- sse-starlette\n\n### Usage\n\nThe MCP server can be used as a standalone service or integrated into other applications. To use it:\n\n1. Ensure all dependencies are installed:\n```bash\nuv pip install -e .\n```\n\n2. Configure the database connection and other settings in `config/config.json`\n\n3. Start the server:\n```python\nfrom src.unified_mcp import mcp\nmcp.run(transport=\"stdio\")\n```\n\n### Example\n\n```python\n# Generate SQL with medical concepts\nmedical_concepts = {\n    \"conditions\": [\n        {\"concept_id\": 12345, \"concept_name\": \"Diabetes\", \"vocabulary_id\": \"SNOMED\"}\n    ]\n}\n\nschema = mcp.tools[\"Get_OMOP_Schema\"]()\nsql_query, confidence = await mcp.tools[\"Generate_SQL\"](\n    prompt=\"Find all patients with diabetes\",\n    medical_concepts=medical_concepts,\n    schema=schema\n)\n\n# Validate the generated SQL\nvalidation_result = mcp.tools[\"Validate_SQL_Query\"](sql_query)\n\n# Execute the query if valid\nif validation_result[\"is_valid\"]:\n    results = mcp.tools[\"Execute_SQL_Query\"](sql_query)\n```\n",
+  "extracted_at": "2025-06-13T08:55:56.894122",
+  "content_hash": "dd894c639fc9c4ebcd0ac0a99c8df8d9a6cd31a721070498de22c5bf8d7b1098"
+}

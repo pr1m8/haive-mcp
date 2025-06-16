@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "peschinskiy/yandex-maps-mcp",
+    "owner": "peschinskiy",
+    "repo_name": "yandex-maps-mcp",
+    "repo_url": "https://github.com/peschinskiy/yandex-maps-mcp",
+    "description": "[peschinskiy/yandex-maps-mcp](https://github.com/peschinskiy/yandex-maps-mcp): Facilitates map rendering and geocoding via Yandex Maps APIs, enabling location-based queries and visualizations.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/peschinskiy/yandex-maps-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Yandex Maps MCP Server\n\nMCP Server for the Yandex Maps API.\n\n> \"Show me the map of Berlin\"\n\n> \"Show me location of ...\"\n\n<p align=\"center\">\n  <img src=\"https://raw.githubusercontent.com/peschinskiy/yandex-maps-mcp/main/example-usage.png\" width=\"60%\" alt=\"Yandex Maps MCP Screenshot\">\n</p>\n\n## Tools\n\n1. `maps_geocode`\n   - Convert address to coordinates\n   - Inputs:\n     - `country` (string) - The country name\n     - `lang` (string) - Language code (e.g., 'ru_RU', 'en_US')\n     - `state` (string, optional) - The state, region or province name\n     - `city` (string, optional) - The city or locality name\n     - `district` (string, optional) - The district or neighborhood within the city\n     - `street` (string, optional) - The street name\n     - `house_number` (string, optional) - The house or building number\n   - Returns: location, formatted_address, address_components\n\n2. `maps_reverse_geocode`\n   - Convert coordinates to address\n   - Inputs:\n     - `latitude` (number)\n     - `longitude` (number)\n     - `lang` (string) - Language code (e.g., 'ru_RU', 'en_US')\n   - Returns: location, formatted_address, address_components\n\n3. `maps_render`\n   - Render a map as a png image\n   - Inputs:\n     - `latitude` (number) - Latitude coordinate of map center\n     - `longitude` (number) - Longitude coordinate of map center\n     - `latitude_span` (number) - Height of map image in degrees\n     - `longitude_span` (number) - Width of map image in degrees\n     - `lang` (string) - Language code (e.g., 'ru_RU', 'en_US')\n     - `placemarks` (array, optional) - Array of placemarks to display on the map with style \"pm2rdm\"\n       - Each placemark should have `latitude` and `longitude` properties\n   - Returns: PNG image of the map\n\n## Setup\n\n### API Keys\nYou'll need two Yandex Maps API keys:\n\n1. \"JavaScript and Geocoder API\" key for geocoding functions\n2. Static API key for map rendering\n\nTo generate API keys:\n1. Open https://developer.tech.yandex.ru/ and authorize\n2. Click \"Connect APIs\". Choose \"JavaScript and Geocoder API\" and fill the form\n3. Navigate to API's dashboard page and copy API key there\n4. Repeat from step 2 for Static API.\n\n### Local Run\n\n1. Clone the repository\n2. Install dependencies:\n   ```bash\n   npm install\n   ```\n3. Set your API keys:\n   ```bash\n   export YANDEX_MAPS_API_KEY=\"your-geocoder-api-key\"\n   export YANDEX_MAPS_STATIC_API_KEY=\"your-static-api-key\"\n   ```\n4. Build server\n   ```bash\n   npm run build\n   ```\n4. Run the server:\n   ```bash\n   node dist/index.js\n   ```\n\n### Usage with Claude Desktop\n\nAdd the following to your `claude_desktop_config.json`:\n\n```json\n{\n  \"mcpServers\": {\n    \"yandex-maps\": {\n      \"command\": \"node\",\n      \"args\": [\n        \"path/to/index.js\"\n      ],\n      \"env\": {\n        \"YANDEX_MAPS_API_KEY\": \"<YOUR_GEOCODER_API_KEY>\",\n        \"YANDEX_MAPS_STATIC_API_KEY\": \"<YOUR_STATIC_API_KEY>\"\n      }\n    }\n  }\n}\n```\n\n## Known Limitations\n\nYandex Maps Places API has no free tier, which means that LLMs cannot retrieve organization addresses and coordinates through the Yandex Maps MCP. It can only geocode places whose addresses or coordinates are already known to the model or retrieved from other sources such as explicit user input, Web Search, or third-party MCPs.\n\n## License\n\nThis project is licensed under the MIT License - see the [LICENSE](https://github.com/peschinskiy/yandex-maps-mcp/blob/main/LICENSE) file for details.\n",
+  "extracted_at": "2025-06-13T08:56:13.165862",
+  "content_hash": "5c4019f4d79d13d6913af52cf3f8de243606b08e7f61c8a6c4a175259452fd86"
+}

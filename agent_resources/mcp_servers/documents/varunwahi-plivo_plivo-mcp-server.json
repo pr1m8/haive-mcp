@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "varunwahi-plivo/plivo-mcp-server",
+    "owner": "varunwahi-plivo",
+    "repo_name": "plivo-mcp-server",
+    "repo_url": "https://github.com/varunwahi-plivo/plivo-mcp-server",
+    "description": "[varunwahi-plivo/plivo-mcp-server](https://github.com/varunwahi-plivo/plivo-mcp-server): Facilitates SMS messaging through Plivo's API using the Message Control Protocol.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/varunwahi-plivo/plivo-mcp-server/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Plivo MCP Server\n\nA Message Control Protocol (MCP) server implementation for sending SMS messages via Plivo's API.\n\n## Installation\n\n1. Install dependencies:\n   ```bash\n   pip install fastmcp plivo\n   ```\n\n2. Configure Claude Desktop:\n   ```json\n   {\n     \"mcpServers\": {\n       \"plivo\": {\n         \"command\": \"python\",\n         \"args\": [\"server.py\"],\n         \"env\": {\n           \"PLIVO_AUTH_ID\": \"your_auth_id\",\n           \"PLIVO_AUTH_TOKEN\": \"your_auth_token\", \n           \"MY_NUMBER\": \"your_plivo_number\"\n         }\n       }\n     }\n   }\n   ```\n\n",
+  "extracted_at": "2025-06-13T08:55:13.022753",
+  "content_hash": "d6225851938cdca431a4562b2b10f5d20bedba6ef7e3628ef431a9a799fff23b"
+}
