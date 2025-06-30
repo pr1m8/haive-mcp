@@ -1,6 +1,6 @@
-"""Haive MCP Package - Message Control Protocol implementation for agent communication.
+"""Haive MCP Package - Model Context Protocol implementation for agent communication.
 
-This package provides a comprehensive implementation of the Message Control Protocol (MCP),
+This package provides a comprehensive implementation of the Model Context Protocol (MCP),
 which enables standardized communication between Haive agents, tools, and external systems.
 The MCP implementation facilitates secure, reliable, and efficient message exchange in
 distributed AI systems.
@@ -104,9 +104,9 @@ if MCP_AVAILABLE:
     __all__.extend(
         [
             "MCPClient",
+            "MCPProtocol",
             "MCPServer",
             "Message",
             "MessageType",
-            "MCPProtocol",
         ]
     )
