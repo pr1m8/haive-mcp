@@ -1,15 +1,64 @@
-"""
-MCP configuration types for flexible server management.
+"""MCP configuration types for flexible server management.
+
+This module provides Pydantic models for configuring Model Context Protocol (MCP)
+servers and their integration with Haive agents. It includes comprehensive validation
+and type safety for all MCP-related configurations.
+
+The configuration system supports:
+    - Multiple transport types (stdio, SSE, HTTP streaming)
+    - Server-specific settings and capabilities
+    - Environment variables and authentication
+    - Discovery and filtering options
+    - Health monitoring and retry logic
+
+Classes:
+    MCPTransport: Enumeration of supported MCP transport types
+    MCPServerConfig: Configuration for individual MCP servers
+    MCPConfig: Complete MCP configuration for agents
+
+Example:
+    Creating an MCP server configuration::
+
+        from haive.mcp.config import MCPConfig, MCPServerConfig, MCPTransport
+
+        # Configure a filesystem MCP server
+        fs_server = MCPServerConfig(
+            name="filesystem",
+            transport=MCPTransport.STDIO,
+            command="npx",
+            args=["-y", "@modelcontextprotocol/server-filesystem"],
+            capabilities=["file_read", "file_write", "directory_list"],
+            category="filesystem",
+            description="Local filesystem operations"
+        )
+
+        # Create complete MCP config
+        config = MCPConfig(
+            enabled=True,
+            servers={"filesystem": fs_server},
+            auto_discover=True,
+            lazy_init=True
+        )
+
+Note:
+    All configuration models use Pydantic v2 for validation and serialization.
 """
 
 from enum import Enum
-from typing import Any, Dict, List, Optional, Union
 
 from pydantic import BaseModel, Field
 
 
 class MCPTransport(str, Enum):
-    """MCP transport types."""
+    """MCP transport types.
+
+    Defines the communication transport mechanisms supported by MCP servers.
+
+    Attributes:
+        STDIO: Standard input/output communication (default for CLI-based servers)
+        SSE: Server-Sent Events for HTTP-based streaming
+        STREAMABLE_HTTP: HTTP streaming for continuous data transfer
+    """
 
     STDIO = "stdio"
     SSE = "sse"
@@ -17,7 +66,42 @@ class MCPTransport(str, Enum):
 
 
 class MCPServerConfig(BaseModel):
-    """Configuration for a single MCP server."""
+    """Configuration for a single MCP server.
+
+    Represents the complete configuration needed to connect to and use an MCP server.
+    Supports multiple transport types and provides extensive customization options.
+
+    Attributes:
+        name: Unique identifier for the server
+        enabled: Whether this server should be activated
+        transport: Communication transport type (stdio, sse, streamable_http)
+        command: Executable command for stdio transport
+        args: Command arguments for stdio transport
+        url: Server URL for HTTP-based transports
+        env: Environment variables to set when starting server
+        api_key: Optional API key for authentication
+        category: Server category for organization (e.g., "filesystem", "database")
+        description: Human-readable description of server functionality
+        capabilities: List of capabilities provided by the server
+        timeout: Connection timeout in seconds
+        retry_attempts: Number of retry attempts on connection failure
+        auto_start: Whether to automatically start the server
+        health_check_interval: Interval for health checks in seconds
+
+    Example:
+        Creating a GitHub MCP server config::
+
+            config = MCPServerConfig(
+                name="github",
+                transport="stdio",
+                command="npx",
+                args=["-y", "@modelcontextprotocol/server-github"],
+                env={"GITHUB_TOKEN": "your_token"},
+                capabilities=["repo_access", "issue_management"],
+                category="development",
+                description="GitHub repository operations"
+            )
+    """
 
     # Basic identification
     name: str = Field(..., description="Server name")
@@ -25,22 +109,22 @@ class MCPServerConfig(BaseModel):
 
     # Connection configuration
     transport: MCPTransport = Field(default=MCPTransport.STDIO)
-    command: Optional[str] = Field(None, description="Command to start server")
-    args: Optional[List[str]] = Field(
+    command: str | None = Field(None, description="Command to start server")
+    args: list[str] | None = Field(
         default_factory=list, description="Command arguments"
     )
-    url: Optional[str] = Field(None, description="URL for HTTP-based transports")
+    url: str | None = Field(None, description="URL for HTTP-based transports")
 
     # Environment and authentication
-    env: Dict[str, str] = Field(
+    env: dict[str, str] = Field(
         default_factory=dict, description="Environment variables"
     )
-    api_key: Optional[str] = Field(None, description="API key if required")
+    api_key: str | None = Field(None, description="API key if required")
 
     # Metadata
-    category: Optional[str] = Field(None, description="Server category")
-    description: Optional[str] = Field(None, description="Server description")
-    capabilities: List[str] = Field(
+    category: str | None = Field(None, description="Server category")
+    description: str | None = Field(None, description="Server description")
+    capabilities: list[str] = Field(
         default_factory=list, description="Server capabilities"
     )
 
@@ -48,7 +132,7 @@ class MCPServerConfig(BaseModel):
     timeout: int = Field(default=30, description="Connection timeout in seconds")
     retry_attempts: int = Field(default=3, description="Retry attempts on failure")
     auto_start: bool = Field(default=True, description="Auto-start server on init")
-    health_check_interval: Optional[int] = Field(
+    health_check_interval: int | None = Field(
         None, description="Health check interval in seconds"
     )
 
@@ -67,19 +151,17 @@ class MCPConfig(BaseModel):
     lazy_init: bool = Field(default=True, description="Initialize servers on-demand")
 
     # Server configurations
-    servers: Dict[str, MCPServerConfig] = Field(default_factory=dict)
+    servers: dict[str, MCPServerConfig] = Field(default_factory=dict)
 
     # Discovery settings
-    discovery_paths: List[str] = Field(
+    discovery_paths: list[str] = Field(
         default_factory=lambda: ["~/.mcp/servers", ".mcp/servers", "mcp_servers"],
         description="Paths to search for server configs",
     )
 
     # Filtering
-    categories: Optional[List[str]] = Field(
-        None, description="Filter servers by category"
-    )
-    required_capabilities: Optional[List[str]] = Field(
+    categories: list[str] | None = Field(None, description="Filter servers by category")
+    required_capabilities: list[str] | None = Field(
         None, description="Required capabilities"
     )
 
@@ -95,12 +177,10 @@ class MCPConfig(BaseModel):
     )
 
     # Callbacks (stored as strings, resolved at runtime)
-    on_server_connected: Optional[str] = Field(
+    on_server_connected: str | None = Field(
         None, description="Callback when server connects"
     )
-    on_server_failed: Optional[str] = Field(
-        None, description="Callback when server fails"
-    )
-    on_tool_discovered: Optional[str] = Field(
+    on_server_failed: str | None = Field(None, description="Callback when server fails")
+    on_tool_discovered: str | None = Field(
         None, description="Callback when tool is discovered"
     )
