@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""
-Enhanced MCP Repository Extractor with README Processing
+"""Enhanced MCP Repository Extractor with README Processing
 
 This script:
 1. Extracts repository URLs from awesome-mcp-servers
@@ -10,7 +9,6 @@ This script:
 """
 
 import asyncio
-import base64
 import hashlib
 import json
 import os
@@ -18,13 +16,10 @@ import re
 from datetime import datetime
 from enum import Enum
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Set, Tuple, Union
-from urllib.parse import urlparse
+from typing import Any
 
 import aiohttp
-import requests
 import yaml
-from bs4 import BeautifulSoup
 from langchain_core.documents import Document
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 from rich.console import Console
@@ -108,25 +103,25 @@ class MCPServerMetadata(BaseModel):
     owner: str = Field(..., description="GitHub owner/organization")
     repo_name: str = Field(..., description="Repository name")
     repo_url: str = Field(..., description="Full GitHub repository URL")
-    description: Optional[str] = Field(None, description="Server description")
+    description: str | None = Field(None, description="Server description")
     category: MCPCategory = Field(MCPCategory.OTHER, description="Server category")
-    languages: List[MCPLanguage] = Field(
+    languages: list[MCPLanguage] = Field(
         default_factory=list, description="Programming languages used"
     )
     is_official: bool = Field(
         False, description="Whether this is an official implementation"
     )
-    platforms: List[MCPPlatform] = Field(
+    platforms: list[MCPPlatform] = Field(
         default_factory=list, description="Supported platforms"
     )
-    scopes: List[MCPScope] = Field(
+    scopes: list[MCPScope] = Field(
         default_factory=list, description="Server scopes (cloud/local/embedded)"
     )
-    stars: Optional[int] = Field(None, description="GitHub stars count")
-    last_updated: Optional[datetime] = Field(None, description="Last update timestamp")
-    license: Optional[str] = Field(None, description="License type")
-    readme_url: Optional[str] = Field(None, description="README URL")
-    api_base_url: Optional[str] = Field(None, description="GitHub API base URL")
+    stars: int | None = Field(None, description="GitHub stars count")
+    last_updated: datetime | None = Field(None, description="Last update timestamp")
+    license: str | None = Field(None, description="License type")
+    readme_url: str | None = Field(None, description="README URL")
+    api_base_url: str | None = Field(None, description="GitHub API base URL")
 
     @field_validator("repo_url")
     @classmethod
@@ -140,7 +135,7 @@ class MCPServerMetadata(BaseModel):
         """Generate unique ID for this server"""
         return f"{self.owner}/{self.repo_name}"
 
-    def to_langchain_metadata(self) -> Dict[str, Any]:
+    def to_langchain_metadata(self) -> dict[str, Any]:
         """Convert to LangChain Document metadata format"""
         return {
             "source": self.repo_url,
@@ -167,13 +162,11 @@ class MCPServerDocument(BaseModel):
     model_config = ConfigDict(extra="forbid", validate_assignment=True)
 
     metadata: MCPServerMetadata = Field(..., description="Server metadata")
-    readme_content: Optional[str] = Field(None, description="README content")
+    readme_content: str | None = Field(None, description="README content")
     extracted_at: datetime = Field(
         default_factory=datetime.now, description="Extraction timestamp"
     )
-    content_hash: Optional[str] = Field(
-        None, description="SHA256 hash of README content"
-    )
+    content_hash: str | None = Field(None, description="SHA256 hash of README content")
 
     def compute_content_hash(self) -> str:
         """Compute SHA256 hash of README content"""
@@ -205,9 +198,9 @@ class ExtractionStats(BaseModel):
     total_found: int = 0
     successfully_extracted: int = 0
     failed_extractions: int = 0
-    categories: Dict[str, int] = Field(default_factory=dict)
-    languages: Dict[str, int] = Field(default_factory=dict)
-    extraction_duration: Optional[float] = None
+    categories: dict[str, int] = Field(default_factory=dict)
+    languages: dict[str, int] = Field(default_factory=dict)
+    extraction_duration: float | None = None
 
 
 class MCPRepositoryExtractor:
@@ -286,7 +279,7 @@ class MCPRepositoryExtractor:
 
         self.stats = ExtractionStats()
 
-    async def extract_repositories_from_readme(self) -> List[MCPServerMetadata]:
+    async def extract_repositories_from_readme(self) -> list[MCPServerMetadata]:
         """Extract repository information from the awesome-mcp-servers README"""
         try:
             # Fetch the raw README content
@@ -369,7 +362,7 @@ class MCPRepositoryExtractor:
             console.print(f"[red]Error extracting repositories: {e}[/red]")
             return []
 
-    async def fetch_readme_content(self, metadata: MCPServerMetadata) -> Optional[str]:
+    async def fetch_readme_content(self, metadata: MCPServerMetadata) -> str | None:
         """Fetch README content from GitHub"""
         try:
             # Try multiple README file names
@@ -441,7 +434,7 @@ class MCPRepositoryExtractor:
 
     async def process_repository(
         self, metadata: MCPServerMetadata
-    ) -> Optional[MCPServerDocument]:
+    ) -> MCPServerDocument | None:
         """Process a single repository"""
         try:
             # Fetch README content
@@ -466,7 +459,7 @@ class MCPRepositoryExtractor:
             )
             return None
 
-    def save_documents(self, documents: List[MCPServerDocument]) -> None:
+    def save_documents(self, documents: list[MCPServerDocument]) -> None:
         """Save documents in various formats"""
         # Save as LangChain documents
         langchain_docs = []
@@ -535,7 +528,7 @@ class MCPRepositoryExtractor:
             yaml.dump(yaml_data, default_flow_style=False), encoding="utf-8"
         )
 
-    def generate_statistics_report(self, documents: List[MCPServerDocument]) -> None:
+    def generate_statistics_report(self, documents: list[MCPServerDocument]) -> None:
         """Generate statistics report"""
         # Update stats
         self.stats.successfully_extracted = len(
@@ -590,7 +583,7 @@ class MCPRepositoryExtractor:
 
         console.print("\n", lang_table)
 
-    async def extract_all(self) -> List[MCPServerDocument]:
+    async def extract_all(self) -> list[MCPServerDocument]:
         """Main extraction method"""
         start_time = datetime.now()
 
@@ -654,7 +647,7 @@ class MCPRepositoryExtractor:
             # Generate statistics
             self.generate_statistics_report(documents)
 
-            console.print(f"\n[green]✓ Extraction complete![/green]")
+            console.print("\n[green]✓ Extraction complete![/green]")
             console.print(f"Duration: {duration:.2f} seconds")
             console.print(f"Output directory: {self.output_dir}")
 
@@ -665,19 +658,18 @@ def create_agent_loader(output_dir: str = "agent_resources/mcp_servers") -> call
     """Create a loader function for agents to access MCP documents"""
 
     def load_mcp_documents(
-        category: Optional[MCPCategory] = None,
-        language: Optional[MCPLanguage] = None,
-        search_query: Optional[str] = None,
-    ) -> List[Document]:
+        category: MCPCategory | None = None,
+        language: MCPLanguage | None = None,
+        search_query: str | None = None,
+    ) -> list[Document]:
         """Load MCP server documents with optional filtering"""
-
         # Load all documents
         all_docs_path = Path(output_dir) / "all_mcp_documents.json"
 
         if not all_docs_path.exists():
             return []
 
-        with open(all_docs_path, "r", encoding="utf-8") as f:
+        with open(all_docs_path, encoding="utf-8") as f:
             docs_data = json.load(f)
 
         # Convert to MCPServerDocument objects
