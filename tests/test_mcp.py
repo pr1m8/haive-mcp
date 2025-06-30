@@ -1,7 +1,5 @@
 """Tests for the MCP module."""
 
-import pytest
-
 
 def test_mcp_import() -> None:
     """Test that the MCP module can be imported."""
