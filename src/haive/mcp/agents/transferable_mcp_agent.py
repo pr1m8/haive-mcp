@@ -121,7 +121,7 @@ class TransferableMCPAgent(MCPMixin, SimpleAgent):
                 "filesystem_read_file",
                 {"path": "/path/to/file"}
             )
-    "
+    """
     
     # Class-level shared resources
     _shared_mcp_clients: ClassVar[Dict[str, Any]] = {}
@@ -228,7 +228,7 @@ class TransferableMCPAgent(MCPMixin, SimpleAgent):
     async def _sync_from_shared_client(self):
         """Sync tools and resources from shared client.
         
-        When reusing a shared client, this method ensures the agent's local
+        When reusing a shared client, this method ensures the agent local
         state is synchronized with the tools and resources available from
         the shared client. This maintains consistency across all agents
         using the same client.
@@ -634,43 +634,6 @@ class TransferableMCPAgent(MCPMixin, SimpleAgent):
             
         Raises:
             ValueError: If num_agents < 1
-            
-        Example:
-            Creating a collaborative team::
-            
-                from haive.mcp.config import MCPConfig, MCPServerConfig
-                
-                # Configure MCP with multiple servers
-                config = MCPConfig(
-                    enabled=True,
-                    servers={
-                        "filesystem": MCPServerConfig(...),
-                        "github": MCPServerConfig(...),
-                        "database": MCPServerConfig(...)
-                    }
-                )
-                
-                # Create team of 5 collaborative agents
-                team = TransferableMCPAgent.create_collaborative_agents(
-                    engine=engine,
-                    mcp_config=config,
-                    num_agents=5,
-                    shared_client=True  # Share resources
-                )
-                
-                # Initialize all agents
-                for agent in team:
-                    await agent.setup()
-                
-                # Agents can now work together efficiently
-                leader = team[0]
-                workers = team[1:]
-                
-                # Leader coordinates the team
-                await leader.collaborate_with_agents(
-                    workers,
-                    "Process customer data pipeline"
-                )
         """
         agents = []
         pool_key = f"collaborative_{id(mcp_config)}"

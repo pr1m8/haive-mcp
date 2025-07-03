@@ -139,7 +139,7 @@ class MCPDocumentationAgent(MCPMixin, DocumentAgent):
             # Get implementation code
             implementation = guide["implementation_code"]
             print(implementation)
-    "
+    """
     
     # MCP documentation loader
     doc_loader: MCPDocumentationLoader = Field(
@@ -447,7 +447,7 @@ class MCPDocumentationAgent(MCPMixin, DocumentAgent):
         
         Creates a comprehensive guide including configurations, setup instructions,
         and implementation code for integrating multiple MCP servers into an agent.
-        Processes each server's documentation and combines them into a unified guide.
+        Processes each server documentation and combines them into a unified guide.
         
         Args:
             server_names: List of full MCP server names to include
@@ -680,9 +680,10 @@ class MCPDocumentationAgent(MCPMixin, DocumentAgent):
         if not mcp_config:
             return ""
         
-        code = f'''"""
-{agent_type.capitalize()} agent with MCP integration.
-"""
+        # Generate the docstring separately to avoid nested triple quotes
+        docstring = f'"""\n{agent_type.capitalize()} agent with MCP integration.\n"""'
+        
+        code = f'''{docstring}
 
 from haive.core.engine.aug_llm import AugLLMConfig
 from haive.core.models.llm.base import LLMConfig

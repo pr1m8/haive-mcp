@@ -1,4 +1,7 @@
-# haive-mcp
+# Haive MCP Package
+
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Poetry](https://img.shields.io/badge/dependency-poetry-blue.svg)](https://python-poetry.org/)
 
 Model Context Protocol (MCP) integration for the Haive framework, providing type-safe access to MCP servers and their tools, resources, and prompts.
 
@@ -24,13 +27,15 @@ This integration supports the full MCP ecosystem with type checking, automatic d
 
 ## Installation
 
+The package is part of the Haive ecosystem and should be installed via Poetry:
+
 ```bash
-# Install the package
-cd packages/haive-mcp
+# Install the entire Haive package (recommended)
 poetry install
 
-# Install MCP adapter dependencies
-poetry add langchain-mcp-adapters
+# Or install just the MCP package dependencies
+cd packages/haive-mcp
+poetry install
 ```
 
 ## Quick Start

@@ -1,0 +1,36 @@
+[
+  {
+    "example": "basic_mcp_agent_fixed.py",
+    "status": "error",
+    "return_code": 1,
+    "error": "/home/will/Projects/haive/backend/haive/.venv/lib/python3.12/site-packages/pydantic/_internal/_config.py:373: UserWarning: Valid config keys have changed in V2:\n* 'fields' has been removed\n  warnings.warn(message, UserWarning)\n/home/will/Projects/haive/backend/haive/.venv/lib/python3.12/site-packages/pydantic/_internal/_config.py:373: UserWarning: Valid config keys have changed in V2:\n* 'fields' has been removed\n  warnings.warn(message, UserWarning)\n\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 Traceback (most recent "
+  },
+  {
+    "example": "complete_mcp_integration.py",
+    "status": "running",
+    "pid": 1277054,
+    "output_file": "example_outputs/complete_mcp_integration.py_20250702_193526.log",
+    "error_file": "example_outputs/complete_mcp_integration.py_20250702_193526.err"
+  },
+  {
+    "example": "mcp_documentation_example.py",
+    "status": "running",
+    "pid": 1277101,
+    "output_file": "example_outputs/mcp_documentation_example.py_20250702_193529.log",
+    "error_file": "example_outputs/mcp_documentation_example.py_20250702_193529.err"
+  },
+  {
+    "example": "ai_enhanced_coding.py",
+    "status": "running",
+    "pid": 1277176,
+    "output_file": "example_outputs/ai_enhanced_coding.py_20250702_193532.log",
+    "error_file": "example_outputs/ai_enhanced_coding.py_20250702_193532.err"
+  },
+  {
+    "example": "procedural_mcp_addition.py",
+    "status": "running",
+    "pid": 1277264,
+    "output_file": "example_outputs/procedural_mcp_addition.py_20250702_193535.log",
+    "error_file": "example_outputs/procedural_mcp_addition.py_20250702_193535.err"
+  }
+]

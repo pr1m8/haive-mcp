@@ -119,19 +119,21 @@ class MCPAgent(MCPMixin, SimpleAgent):
         default=None, description="MCP configuration for connecting to MCP servers"
     )
 
-    def __init__(self, **kwargs):
-        """Initialize MCP-enabled agent."""
-        super().__init__(**kwargs)
-
+    def setup_agent(self):
+        """Override setup_agent to configure MCP after base setup."""
+        # Call parent setup_agent first
+        super().setup_agent()
+        
         # Setup MCP after base initialization
         if self.mcp_config and self.mcp_config.enabled:
             self.setup_mcp()
 
     async def setup(self):
-        """Setup agent including MCP initialization."""
-        # Run parent setup first
-        await super().setup()
-
+        """Setup agent including MCP initialization.
+        
+        This async setup method should be called after agent creation
+        to initialize MCP connections.
+        """
         # Initialize MCP if configured
         if (
             self.mcp_config

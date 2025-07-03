@@ -79,7 +79,7 @@ class MCPServerAnalyzer:
                     print(f"Server: {config.name}")
                     print(f"Transport: {config.transport}")
                     print(f"Capabilities: {config.capabilities}")
-    "
+    """
     
     def __init__(self):
         """Initialize the MCP server analyzer.
@@ -111,7 +111,7 @@ class MCPServerAnalyzer:
             Checking various objects::
             
                 # Dictionary config
-                config = {"command": "npx", "args": [...]}}
+                config = {"command": "npx", "args": [...]}
                 assert analyzer.can_analyze(config) == True
                 
                 # Non-MCP object
@@ -459,41 +459,10 @@ class MCPServerAnalyzer:
         return discovered
     
     def create_component_info(self, server_config: MCPServerConfig) -> Dict[str, Any]:
-        """Create component info for registration with component discovery.
-        
-        Generates a standardized component information dictionary for
-        registering an MCP server with the Haive component discovery system.
-        
-        Args:
-            server_config: MCP server configuration to register
-            
-        Returns:
-            Dict[str, Any]: Component info containing:
-                - name: Server name
-                - component_type: "mcp"
-                - capabilities: List of server capabilities
-                - capability_categories: ["integration"]
-                - tags: Including "mcp" and category if present
-                - description: Server description or generated default
-                - config: Full server configuration as dict
-                - transport: Transport type (stdio, sse, etc.)
-                - enabled: Whether server is enabled
-                
-        Example:
-            Registering with component system::
-            
-                info = analyzer.create_component_info(server_config)
-                
-                # Use with component registry
-                registry.register_component(
-                    component=server_config,
-                    component_type=ComponentType.MCP,
-                    metadata=ComponentMetadata(**info)
-                )
-        """
+        """Create component info for registration with component discovery."""
         return {
             "name": server_config.name,
-            "component_type": "mcp",
+            "component_type": "mcp", 
             "capabilities": server_config.capabilities,
             "capability_categories": ["integration"],
             "tags": ["mcp", server_config.category] if server_config.category else ["mcp"],

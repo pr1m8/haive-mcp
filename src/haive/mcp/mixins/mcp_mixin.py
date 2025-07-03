@@ -85,18 +85,17 @@ class MCPMixin(BaseModel):
     _failed_servers: Set[str] = PrivateAttr(default_factory=set)
     _server_health: Dict[str, Dict[str, Any]] = PrivateAttr(default_factory=dict)
 
-    def __init__(self, **kwargs):
-        """Initialize MCP mixin."""
-        super().__init__(**kwargs)
-
-        # Initialize MCP on startup if configured and not lazy
-        if (
-            self.mcp_config
-            and self.mcp_config.enabled
-            and not self.mcp_config.lazy_init
-        ):
-            # Schedule initialization after the event loop starts
-            asyncio.create_task(self.initialize_mcp())
+    def model_post_init(self, __context) -> None:
+        """Initialize MCP mixin after model initialization."""
+        # Call parent's model_post_init if it exists
+        try:
+            super().model_post_init(__context)
+        except AttributeError:
+            # Parent doesn't have model_post_init
+            pass
+        
+        # Note: We don't auto-initialize here because we can't run async code
+        # in model_post_init. Users should call initialize_mcp() or setup()
 
     def setup_mcp(self):
         """Setup MCP after agent initialization."""
