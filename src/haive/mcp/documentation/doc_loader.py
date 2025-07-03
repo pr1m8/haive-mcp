@@ -74,44 +74,48 @@ class MCPDocumentationLoader:
         Initialize the documentation loader.
 
         Args:
-            resources_path: Path to the agent_resources directory
+            resources_path: Path to the data directory containing MCP servers
         """
         if resources_path is None:
-            # Default to the package's agent_resources directory
+            # Default to the package's data directory
             resources_path = (
-                Path(__file__).parent.parent.parent.parent.parent / "agent_resources"
+                Path(__file__).parent.parent.parent.parent.parent / "data"
             )
 
         self.resources_path = resources_path
         self.mcp_servers_path = self.resources_path / "mcp_servers"
         self._loaded_docs: Dict[str, Any] = {}
 
-    def load_all_mcp_documents(self) -> List[Dict[str, Any]]:
+    def load_all_mcp_documents(self) -> Dict[str, Dict[str, Any]]:
         """
         Load all MCP server documentation from the stored JSON.
 
         Returns:
-            List of MCP server documentation dictionaries
+            Dictionary mapping server names to documentation dictionaries
         """
         all_docs_path = self.mcp_servers_path / "all_mcp_documents.json"
 
         if not all_docs_path.exists():
             logger.error(f"MCP documents file not found: {all_docs_path}")
-            return []
+            return {}
 
         try:
             with open(all_docs_path, "r") as f:
-                docs = json.load(f)
+                docs_list = json.load(f)
 
-            # Cache the loaded documents
-            for doc in docs:
+            # Convert list to dictionary and cache
+            docs_dict = {}
+            for doc in docs_list:
                 if doc.get("metadata", {}).get("name"):
-                    self._loaded_docs[doc["metadata"]["name"]] = doc
+                    name = doc["metadata"]["name"]
+                    docs_dict[name] = doc
+                    self._loaded_docs[name] = doc
 
-            return docs
+            logger.info(f"Loaded {len(docs_dict)} MCP server documents")
+            return docs_dict
         except Exception as e:
             logger.error(f"Failed to load MCP documents: {e}")
-            return []
+            return {}
 
     def get_server_documentation(self, server_name: str) -> Optional[Dict[str, Any]]:
         """
