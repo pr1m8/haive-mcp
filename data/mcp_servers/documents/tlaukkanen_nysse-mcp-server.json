@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "tlaukkanen/nysse-mcp-server",
+    "owner": "tlaukkanen",
+    "repo_name": "nysse-mcp-server",
+    "repo_url": "https://github.com/tlaukkanen/nysse-mcp-server",
+    "description": "[tlaukkanen/nysse-mcp-server](https://github.com/tlaukkanen/nysse-mcp-server): Facilitates AI agents in accessing real-time bus traffic information for Tampere's public transport system.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/tlaukkanen/nysse-mcp-server/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Tampere Bus MCP Server\r\n\r\nThis is a Model Context Protocol (MCP) server that provides tools for AI agents to access bus traffic information for Tampere's public transport system. This enables AI assistants to answer questions like \"When is the next bus stopping at Tuotekatu bus stop?\"\r\n\r\n## Features\r\n\r\n- Search for bus stops by name\r\n- Get real-time information about upcoming bus arrivals at specific stops\r\n- Access to complete Tampere region bus stop database\r\n\r\n## Prerequisites\r\n\r\n- Node.js 18 or higher\r\n- Access credentials for the Waltti GTFS-RT API (optional for development)\r\n\r\n## Setup for VS Code as NPX MCP Server\r\n\r\nAdd to your MCP servers:\r\n\r\n```\r\n{\r\n  \"mcpServers\": {\r\n    \"nysse-bus-tracker\": {\r\n      \"command\": \"npx\",\r\n      \"args\": [\r\n        \"-y\",\r\n        \"nysse-mcp-server\"\r\n      ],\r\n      \"env\": {\r\n        \"WALTTI_CLIENT_ID\": \"YOUR_CLIENT_ID_HERE\",\r\n        \"WALTTI_CLIENT_SECRET\": \"YOUR_CLIENT_SECRET_HERE\"\r\n      }\r\n    }\r\n  }\r\n}\r\n```\r\n\r\n## Running the Server with inspector\r\n\r\nAdd the WALTTI credentials to package.json command line or to your environment variables and build and run with inspector task:\r\n```\r\nnpm run inspector\r\n```\r\n\r\n## Available Tools\r\n\r\nThe server provides the following MCP tools for AI agents:\r\n\r\n## License\r\n\r\nISC\r\n",
+  "extracted_at": "2025-06-13T08:56:14.474721",
+  "content_hash": "51d77f8886db1902f39f86fc34a4789ef016d65f612fde5b3d59f42fcd84bb6b"
+}

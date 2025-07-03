@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "dbeltra/scryfall-mcp",
+    "owner": "dbeltra",
+    "repo_name": "scryfall-mcp",
+    "repo_url": "https://github.com/dbeltra/scryfall-mcp",
+    "description": "[dbeltra/scryfall-mcp](https://github.com/dbeltra/scryfall-mcp): Interfaces with the Scryfall API to fetch and display detailed Magic: The Gathering card data.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": 0,
+    "last_updated": "2025-04-24T11:30:43Z",
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/dbeltra/scryfall-mcp/main/README.md",
+    "api_base_url": "https://api.github.com/repos/dbeltra/scryfall-mcp"
+  },
+  "readme_content": "![Tests](https://github.com/dbeltra/scryfall-mcp/actions/workflows/ci.yml/badge.svg)\n[![codecov](https://codecov.io/gh/dbeltra/scryfall-mcp/branch/main/graph/badge.svg)](https://codecov.io/gh/dbeltra/scryfall-mcp)\n\n\n# MCP Server – Scryfall API Interface\n\nThis is an [MCP](https://modelcontextprotocol.io/) server that interfaces with the [Scryfall API](https://scryfall.com/docs/api) to fetch and display detailed Magic: The Gathering card data. It supports searching cards by name, color, type, and text content.\n\n## Features\n\n- Search MTG cards via Scryfall by:\n  - Card name\n  - Color(s)\n  - Type line\n  - Oracle text\n- Detailed card data output:\n  - Oracle text, mana cost, colors\n  - Type, power/toughness, rarity\n  - Set name\n  - Prices in USD/EUR (regular and foil)\n\n## Project Setup\n\nThis project uses [`uv`](https://github.com/astral-sh/uv) for Python environment and dependency management. All dependencies are declared in `pyproject.toml`.\n\n### Requirements\n\n- Python 3.12+\n- [uv](https://github.com/astral-sh/uv) (install with `cargo install uv`)\n\n### Installation\n\n```bash\nuv venv\nsource .venv/bin/activate  # or `.venv/Scripts/activate` on Windows\nuv pip install -r pyproject.toml\n```\n\n### Running the project\n\nRunning the project with `uv run scryfall.py \"Atraxa\"` should display the scryfall results for the Atraxa card in the console, however this is intended to be ran by an MCP host, like Claude Desktop.\n\n### Integration with Claude Desktop\n\nClaude Desktop can run the MCP server to interact with the Scryfall API and use the results. You need to install or update to the latest [Claude](https://claude.ai/download) version and create the `claude_desktop_config.json` file if it doesn't exist yet:\n\n`~/Library/Application\\ Support/Claude/claude_desktop_config.json` in MacOS\n`$env:AppData\\Claude\\claude_desktop_config.json` in Windows\n\n```json\n{\n    \"mcpServers\": {\n        \"scryfall\": {\n            \"command\": \"/ABSOLUTE/PATH/TO/BIN/uv\",\n            \"args\": [\n                \"--directory\",\n                \"/ABSOLUTE/PATH/TO/mcp-server\",\n                \"run\",\n                \"scryfall.py\"\n            ]\n        }\n    }\n}\n```\n\n## Testing\n\nThis project uses [pytest](https://pytest.org) for unit testing. Tests are located in the `tests/` directory.\n\n### Running Tests\nTo run the full test suite:\n\n```bash\npytest\n```\n\nTo run a specific test:\n\n```bash\npytest tests/test_scryfall.py::test_get_cards_no_query\n```\n\n",
+  "extracted_at": "2025-06-13T08:54:44.764323",
+  "content_hash": "5be74a804564905ac7e09e8cdcf39a62613c4975c38e60adc0870e2c12f813f4"
+}

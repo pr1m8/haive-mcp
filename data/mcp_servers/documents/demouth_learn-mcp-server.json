@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "demouth/learn-mcp-server",
+    "owner": "demouth",
+    "repo_name": "learn-mcp-server",
+    "repo_url": "https://github.com/demouth/learn-mcp-server",
+    "description": "[demouth/learn-mcp-server](https://github.com/demouth/learn-mcp-server): A simple MCP server implementation for educational purposes, supporting basic arithmetic operations and integration with Claude Desktop.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/demouth/learn-mcp-server/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# learn-mcp-server\n\nThis repository provides a simple MCP (Model Context Protocol) server implementation for educational purposes.\nThe server supports basic arithmetic operations (addition, subtraction, multiplication, division), and this README describes how to use it from Claude Desktop.\n\n## step 1\n\nBuild source code from this repository.\n\n```sh\n$ go build ./\n```\n\n\n## step 2\n\nIn the Claude for Desktop App configuration file, include the following:\n\n```json\n{\n  \"mcpServers\": {\n    \"calculator\": {\n      \"command\": \"/path/to/github.com/demouth/learn-mcp-server/learn-mcp-server\",\n      \"args\": []\n    }\n  }\n}\n```\n\nsee https://modelcontextprotocol.io/quickstart/server\n\n\n## step 3\n\nRestart Claude for Desktop.\n\n\n## step 4\n\nAsk the following question in Claude for Desktop:\n\n```\nWhat is the answer to the following formula?\n1234 x 56789\n```\n\n![screenshot](screenshot.png)\n\nLogs are output to the following directory:\n\n```\n~/Library/Logs/Claude/\n```\n\nThe following log will be output:\n\n```\n2025-04-08T15:08:36.443Z [calculator] [info] Message from client: {\"method\":\"tools/call\",\"params\":{\"name\":\"calculate\",\"arguments\":{\"operation\":\"multiply\",\"x\":1234,\"y\":56789}},\"jsonrpc\":\"2.0\",\"id\":35}\n2025-04-08T15:08:36.443Z [calculator] [info] Message from server: {\"jsonrpc\":\"2.0\",\"id\":35,\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"70077626.00\"}]}}\n```\n\n## Examples\n\nIn this example, the browser is on autopilot to search confluence, and the AI answers based on the content.\n\n![confluence_search](docs/confluence_search.gif)\n\n",
+  "extracted_at": "2025-06-13T08:56:44.474714",
+  "content_hash": "3ed14dbdc6f9f7a03da4d1faff9b4268e865f1f9eecee73d93080bce3c87bfad"
+}

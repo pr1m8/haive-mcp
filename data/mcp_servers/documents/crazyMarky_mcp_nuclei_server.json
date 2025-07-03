@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "crazyMarky/mcp_nuclei_server",
+    "owner": "crazyMarky",
+    "repo_name": "mcp_nuclei_server",
+    "repo_url": "https://github.com/crazyMarky/mcp_nuclei_server",
+    "description": "[crazyMarky/mcp_nuclei_server](https://github.com/crazyMarky/mcp_nuclei_server): Facilitates vulnerability scanning using Nuclei with MCP protocol integration, offering configurable filtering and JSON output.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/crazyMarky/mcp_nuclei_server/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# MCP Nuclei Server\n\n[![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/)\n[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)\n[![Stars](https://img.shields.io/github/stars/yourusername/mcp_nuclei_server.svg?style=social)](https://github.com/crazyMarky/mcp_nuclei_server)\n[![中文文档](https://img.shields.io/badge/中文文档-README.zh--cn.md-blue)](README.zh-cn.md)\n\nA Nuclei security scanning server based on MCP (Model Control Protocol), providing convenient vulnerability scanning services.\n\n## Project Introduction\n\nMCP Nuclei Server is a Nuclei security scanning service developed based on the MCP protocol. It allows large language models to execute Nuclei security scans, supporting various scanning options and result output formats.\n\nKey Features:\n- Support for Nuclei security scanning\n- Configurable template and tag filtering\n- Support for severity-based vulnerability filtering\n- JSON format output results\n- Easy-to-integrate MCP service\n\n## Installation Guide\n\n### Prerequisites\n\n- Python 3.8 or higher\n- Nuclei binary (installed and configured)\n\n### Installation Steps\n\n1. Clone the repository:\n```bash\ngit clone https://github.com/crazyMarky/mcp_nuclei_server.git\ncd mcp_nuclei_server\n```\n\n2. Install UV and activate environment:\n```bash\ncurl -LsSf https://astral.sh/uv/install.sh | sh # Linux/Mac\npowershell -ExecutionPolicy ByPass -c \"irm https://astral.sh/uv/install.ps1 | iex\"  # Windows\n```\n\n3. Install dependencies:\n```bash\n# Create and activate virtual environment\nuv venv\nsource .venv/bin/activate\n# Install mcp related packages\nuv pip install mcp\n```\n\n## Usage Guide\n\n### MCP Configuration (Example for CLINE)\n\n1. Reference MCP JSON configuration:\n```json\n{\n  \"mcpServers\": {\n    \"nuclei_mcp_server\": {\n      \"command\": \"/path/to/uv\", # path to uv\n      \"args\": [\n        \"--directory\",\n        \"/path/to/nuclei_mcp_server/\",\n        \"run\",\n        \"main.py\"\n      ],\n      \"env\": {\n        \"NUCLEI_BIN_PATH\": \"/path/to/nuclei\"\n      }\n    }\n  }\n}\n```\n\n### Usage Example\n![Example](./DOCS/示例.jpeg \"CLINE usage example\")\n\n### Parameter Description\n\n- `target`: Target URL or IP address\n- `templates`: List of specific templates to use (optional)\n- `severity`: Vulnerability severity filter (critical, high, medium, low, info)\n- `template_tags`: Template tag filter (optional)\n- `output_format`: Output format (default: \"json\")\n\n## Output Format\n\nScan results are returned in JSON format with the following fields:\n\n```json\n{\n    \"success\": true,\n    \"target\": \"https://example.com\",\n    \"time_cost_seconds\": 10.5,\n    \"results\": [\n        {\n            \"template\": \"template-name\",\n            \"severity\": \"high\",\n            \"matched_at\": \"https://example.com/path\",\n            \"info\": {\n                \"name\": \"Vulnerability Name\",\n                \"description\": \"Vulnerability Description\"\n            }\n        }\n    ]\n}\n```\n\n## Contributing\n\nIssues and Pull Requests are welcome!\n\n1. Fork the project\n2. Create your feature branch (`git checkout -b feature/AmazingFeature`)\n3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)\n4. Push to the branch (`git push origin feature/AmazingFeature`)\n5. Open a Pull Request\n\n## License\n\nThis project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details\n\n## Contact\n\nFor any questions or suggestions, please contact us through:\n- Submit an Issue ",
+  "extracted_at": "2025-06-13T08:56:49.793216",
+  "content_hash": "35f174ed4f3b59cc37a7b927c6aa3898a5bbc3593bff0800f5f315b0d4f24586"
+}

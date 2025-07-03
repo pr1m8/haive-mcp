@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "mcp-for-dev/mcp-google-search",
+    "owner": "mcp-for-dev",
+    "repo_name": "mcp-google-search",
+    "repo_url": "https://github.com/mcp-for-dev/mcp-google-search",
+    "description": "[mcp-for-dev/mcp-google-search](https://github.com/mcp-for-dev/mcp-google-search): Facilitates web search and content extraction using Google Custom Search API, providing structured results for enhanced data retrieval.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/mcp-for-dev/mcp-google-search/master/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# MCP Server for Google Search\n\nA Model Context Protocol server that provides web search capabilities using Google Custom Search API and webpage content extraction functionality.\n\n## Tools\n\n### Search\nPerform web searches using Google Custom Search API:\n- Search the entire web or specific sites\n- Control number of results (1-10)\n- Get structured results with title, link, and snippet\n\n### Webpage Reader\nExtract content from any webpage:\n- Fetch and parse webpage content\n- Extract page title and main text\n- Clean content by removing scripts and styles\n- Return structured data with title, text, and URL\n\n## Installation\n\n### Get Google API Key and Search Engine ID\n\n1. Create a Google Cloud Project:\n   - Go to [Google Cloud Console](https://console.cloud.google.com/)\n   - Create a new project or select an existing one\n   - Enable billing for your project\n\n2. Enable Custom Search API:\n   - Go to [API Library](https://console.cloud.google.com/apis/library)\n   - Search for \"Custom Search API\"\n   - Click \"Enable\"\n\n3. Get API Key:\n   - Go to [Credentials](https://console.cloud.google.com/apis/credentials)\n   - Click \"Create Credentials\" > \"API Key\"\n   - Copy your API key\n   - (Optional) Restrict the API key to only Custom Search API\n\n4. Create Custom Search Engine:\n   - Go to [Programmable Search Engine](https://programmablesearchengine.google.com/create/new)\n   - Enter the sites you want to search (use www.google.com for general web search)\n   - Click \"Create\"\n   - On the next page, click \"Customize\"\n   - In the settings, enable \"Search the entire web\"\n   - Copy your Search Engine ID (cx)\n\n### Client Configuration\n\nTo use with Claude Desktop, add the server config with your Google API credentials:\n\nOn MacOS: `~/Library/Application Support/Claude/claude_desktop_config.json`\nOn Windows: `%APPDATA%/Claude/claude_desktop_config.json`\n\n```json\n{\n  \"mcpServers\": {\n    \"google-search\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"@mcp-for-dev/mcp-google-search\"],\n      \"env\": {\n        \"GOOGLE_API_KEY\": \"your-api-key-here\",\n        \"GOOGLE_SEARCH_ENGINE_ID\": \"your-search-engine-id-here\"\n      }\n    }\n  }\n}\n```\n",
+  "extracted_at": "2025-06-13T08:56:47.061298",
+  "content_hash": "a5ea5b33a9d6f84af0209c38bdf22cdda4c5162798af60cf416159def9e4ddd4"
+}

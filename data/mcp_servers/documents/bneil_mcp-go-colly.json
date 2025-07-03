@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "bneil/mcp-go-colly",
+    "owner": "bneil",
+    "repo_name": "mcp-go-colly",
+    "repo_url": "https://github.com/bneil/mcp-go-colly",
+    "description": "[bneil/mcp-go-colly](https://github.com/bneil/mcp-go-colly): A sophisticated web crawling framework integrating MCP with Colly for flexible and extensible web content extraction in LLM applications.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/bneil/mcp-go-colly/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# MCP Go Colly Crawler\n[![smithery badge](https://smithery.ai/badge/@bneil/mcp-go-colly)](https://smithery.ai/server/@bneil/mcp-go-colly)\n\n## Overview\nMCP Go Colly is a sophisticated web crawling framework that integrates the Model Context Protocol (MCP) with the powerful Colly web scraping library. This project aims to provide a flexible and extensible solution for extracting web content for large language model (LLM) applications.\n\n## Features\n- Concurrent web crawling with configurable depth and domain restrictions\n- MCP server integration for tool-based crawling\n- Graceful shutdown handling\n- Robust error handling and result formatting\n- Support for both single URL and batch URL crawling\n\n## Building from Source\n\n### Prerequisites\n- Go 1.21 or later\n- Make (for using Makefile commands)\n\n### Installation\n\n1. Clone the repository:\n```bash\ngit clone https://github.com/yourusername/mcp-go-colly.git\ncd mcp-go-colly\n```\n\n2. Install dependencies:\n```bash\nmake deps\n```\n\n### Building\n\nThe project includes a Makefile with several useful commands:\n\n```bash\n# Build the binary (outputs to bin/mcp-go-colly)\nmake build\n\n# Build for all platforms (Linux, Windows, macOS)\nmake build-all\n\n# Run tests\nmake test\n\n# Clean build artifacts\nmake clean\n\n# Format code\nmake fmt\n\n# Run linter\nmake lint\n```\n\nAll binaries will be generated in the `bin/` directory.\n\nThen you need to add the following configuration to the `claude_desktop_config.json` file:\n\n```json\n{\n  \"mcpServers\": {\n    \"web-scraper\": {\n      \"command\": \"<add path here>/mcp-go-colly/bin/mcp-go-colly\"\n    }\n  }\n}\n```\n\n## Usage\n\n### As an MCP Tool\n\nThe crawler is implemented as an MCP tool that can be called with the following parameters:\n\n```json\n{\n    \"urls\": [\"https://example.com\"],  // Single URL or array of URLs\n    \"max_depth\": 2                    // Optional: Maximum crawl depth (default: 2)\n}\n```\n\n### Example MCP Tool Call\n\n```go\nresult, err := crawlerTool.Call(ctx, mcp.CallToolRequest{\n    Params: struct{ Arguments map[string]interface{} }{\n        Arguments: map[string]interface{}{\n            \"urls\": []string{\"https://example.com\"},\n            \"max_depth\": 2,\n        },\n    },\n})\n```\n\n## Configuration Options\n- `max_depth`: Set maximum crawl depth (default: 2)\n- `urls`: Single URL string or array of URLs to crawl\n- Domain restrictions are automatically applied based on the provided URLs\n\n## Contributing\n1. Fork the repository\n2. Create your feature branch\n3. Commit your changes\n4. Push to the branch\n5. Create a Pull Request\n\n## License\nMIT\n\n## Acknowledgments\n- Colly Web Scraping Framework\n- Mark3 Labs MCP Project\n",
+  "extracted_at": "2025-06-13T08:54:53.673260",
+  "content_hash": "97cb4c50026d5c0f6f8a9d3fff959312a1e32edb0af283e813d3bbe94da02868"
+}

@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "lijian-ui/vcenter-mcp-server",
+    "owner": "lijian-ui",
+    "repo_name": "vcenter-mcp-server",
+    "repo_url": "https://github.com/lijian-ui/vcenter-mcp-server",
+    "description": "[lijian-ui/vcenter-mcp-server](https://github.com/lijian-ui/vcenter-mcp-server): Facilitates seamless integration with vCenter Server for efficient virtual machine management, including migration and information retrieval.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/lijian-ui/vcenter-mcp-server/master/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# vCenter-mcp-server\n\n#### 介绍\nvCenter-mcp-server 是一款专为 vCenter Server 设计的 MCP（Model Context Protocol）服务器工具，旨在简化虚拟机管理任务。通过与 vCenter Server 的无缝集成，该工具为用户提供了一个高效、便捷的接口，以执行虚拟机迁移和查询等操作。\n\n#### 功能特性\n- vCenter Server 连接：支持与 vCenter Server 的稳定连接，确保对虚拟化环境的全面访问。\n- 虚拟机迁移：允许用户将虚拟机从一台宿主机迁移到另一台宿主机，支持单个虚拟机、多个虚拟机以及整个宿主机的批量迁移。\n- 虚拟机信息查询：提供宿主机上虚拟机的详细信息查询功能，帮助用户快速了解虚拟机状态。\n\n#### 主要功能\n- 创建虚拟机：\n- 迁移虚拟机：支持多种迁移场景，满足不同用户需求。\n- 列出虚拟机信息：清晰展示宿主机上各虚拟机的关键信息。\n\n更多功能持续更新中\n\n\n#### 使用说明\n\n 1.  克隆代码：从 Gitee 仓库克隆项目代码。\n```\ngit@gitee.com:rooky-top/vcenter-mcp-server.git\n```\n\n2.  安装依赖：使用 pip 安装项目所需的依赖。\n\n```\npip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple\n```\n\n3.  修改配置文件 ：修改 `.env` 文件，填写 vCenter Server 的连接信息。\n```\nVCENTER_HOST=192.168.103.66\nVCENTER_USER=administrator@vsphere.local\nVCENTER_PASSWORD=Password\n```\n  **配置说明** \n| 配置项  | 说明  | 必填  |\n|---|---|---|\n| VCENTER_HOST  | vCenter服务器地址\t  |  是 |\n| VCENTER_USER  |  登录用户名\t | 是  |\n|  VCENTER_PASSWORD |登录密码\t   | 是  |\n3.  运行服务器：推荐使用 mcp-proxy 以 SSE 模式运行服务。\n```\n mcp-proxy --sse-host=0.0.0.0 --sse-port=8080 uv run vMotion_server.py \n```\n4.  配置 MCP 客户端：在 MCP 客户端配置文件中添加 vCenter-mcp 服务器的配置。\n```\n{\n  \"mcpServers\": {\n    \"vCenter-mcp\": {\n      \"url\": \"http://localhost:8080/sse\"\n    }\n  }\n}\n```\n\n\n\n\n#### 工具说明\n\n1.创建虚拟机\n```\n{\n    \"host_ip\": 宿主机IP地址,\n    \"vm_name\": 虚拟机名称,\n    \"cpu_count\": CPU数量,\n    \"memory_mb\": 内存大小（MB）,\n    \"disk_size_gb\": 硬盘大小（GB），\n    \"datastore_name\": 硬盘存放的datastore名称,\n    \"network_name\":网络名称\n}\n```\n![输入图片说明](png/screenshot_2025-04-25_11-22-16.png)\n\n2.迁移虚拟机\n\n支持：\n- 传入单个虚拟机名称字符串，迁移该虚拟机到目标主机\n- 传入多个虚拟机名称列表，迁移这些虚拟机到目标主机\n- 传入宿主机IP字符串，批量迁移该宿主机下所有虚拟机到目标主机\n\n```\n{\n    \"vm_names_or_source_host_ip\":  单个虚拟机名称（str）、多个虚拟机名称列表（list[str]）或宿主机IP（str）,\n    \"target_host_ip\": 目标宿主机IP地址\n}\n```\n![输入图片说明](png/screenshot_2025-04-25_11-27-43.png)\n\n3.列出虚拟机\n```\n{\n    \"host_name\": ESXi 宿主机的名称或 IP 地址\n}\n```\n![输入图片说明](png/screenshot_2025-04-25_11-29-03.png)\n\n4.关闭宿主机(DELL务器)\n```\n{\n    \"host_name\": ESXi 宿主机的名称或 IP 地址\n}\n```\n\n4.开启宿主机(DELL务器)\n```\n{\n    \"bmc_ip\": ESXi 宿主机的idrac IP 地址\n}\n```\n\n#### 参与贡献\n\n1.  Fork 本仓库\n2.  新建 Feat_xxx 分支\n3.  提交代码\n4.  新建 Pull Request\n\n\n#### 特技\n\n1.  使用 Readme\\_XXX.md 来支持不同的语言，例如 Readme\\_en.md, Readme\\_zh.md\n2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)\n3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目\n4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目\n5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)\n6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)\n",
+  "extracted_at": "2025-06-13T08:56:04.702717",
+  "content_hash": "f29c3af2f3daeecdaa91e77a0ca5b3c50d3562b3a2f7d6accc945cada5251ef6"
+}

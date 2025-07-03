@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "raj-mehra/figma-mcp",
+    "owner": "raj-mehra",
+    "repo_name": "figma-mcp",
+    "repo_url": "https://github.com/raj-mehra/figma-mcp",
+    "description": "[raj-mehra/figma-mcp](https://github.com/raj-mehra/figma-mcp): Facilitates interaction with Figma design files by extracting design tokens and components for integration with Cursor IDE.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": 0,
+    "last_updated": "2025-04-13T08:19:56Z",
+    "license": "MIT License",
+    "readme_url": "https://raw.githubusercontent.com/raj-mehra/figma-mcp/main/README.md",
+    "api_base_url": "https://api.github.com/repos/raj-mehra/figma-mcp"
+  },
+  "readme_content": "# Figma MCP Server\n\nA Model Context Protocol (MCP) server that provides tools for interacting with Figma design files. It allows Cursor IDE to connect and fetch design tokens and components from Figma files.\n\n## Features\n\n- Parse Figma URLs to extract file keys and node IDs\n- Fetch design tokens from Figma files, including:\n  - Colors (fill and stroke styles)\n  - Typography (text styles)\n  - Spacing (grid styles)\n  - Effects (effect styles)\n- Integration with Cursor IDE\n\n## Prerequisites\n\n- Python 3.9 or higher\n- Figma Access Token (get it from your Figma account settings)\n\n## Installation\n\n### Quick Setup (Unix/Linux/macOS)\n\n1. Clone the repository:\n```bash\ngit clone https://github.com/yourusername/figma-mcp.git\ncd figma-mcp\n```\n\n2. Make the setup script executable and run it:\n```bash\nchmod +x setup.sh\n```\n```bash\n./setup.sh\n```\n\nThe setup script will:\n- Check for Python 3.9+ and pip\n- Create a virtual environment\n- Install all dependencies\n- Create a .env file for your Figma access token\n\n### Manual Setup\n\n1. Clone the repository:\n```bash\ngit clone https://github.com/yourusername/figma-mcp.git\ncd figma-mcp\n```\n\n2. Create a virtual environment and activate it:\n```bash\npython -m venv .venv\nsource .venv/bin/activate  # On Windows, use: .venv\\Scripts\\activate\n```\n\n3. Install dependencies:\n```bash\npip install -r requirements.txt\n```\n\n4. Create a `.env` file in the root directory with your Figma access token:\n```\nFIGMA_ACCESS_TOKEN=your_figma_access_token\n```\n\n## Usage\n\n1. Start the server:\n```bash\npython src/main.py --transport sse --port YOUR_PORT \n```\n\nThe server will start on port 8000 by default.\n\nOnce the server has started Go to Cursor Settings > MCP > Add new Global MCP Server\n\nPaste the following in the JSON\n```\n{\n  \"mcpServers\": { \n    \"figma\": {\n      \"url\": \"http://localhost:4000/sse\",\n      \"env\": {\n        \"FIGMA_ACCESS_TOKEN\": \"YOUR_FIGMA_TOKEN\"\n      }\n    }\n  }\n}\n```\n\n## Available Tools\n\n1. `figma_fetch`\n   - Fetches design tokens and components from a Figma file\n   - Parameters:\n     - `fileKey` (required): Figma file key\n     - `nodeId` (optional): Specific node ID to fetch\n     - `queryType` (optional): Type of data to fetch (design-tokens, components)\n\n2. `figma_url_parse`\n   - Parses a Figma URL to extract file key and node ID\n   - Parameters:\n     - `figmaUrl` (required): Figma URL to parse\n\n3. `mood`\n   - A simple tool to check the server's mood\n   - Parameters:\n     - `question` (required): Any question about the server's mood\n\n## Example Usage\n\nThe design tokens will be returned in a structured JSON format:\n```json\n{\n  \"colors\": {\n    \"token-name\": {\n      \"name\": \"token-name\",\n      \"styleType\": \"fill\",\n      ...\n    }\n  },\n  \"typography\": {\n    ...\n  },\n  \"spacing\": {\n    ...\n  },\n  \"effects\": {\n    ...\n  }\n}\n```\n\n## Development\n\nThe project uses:\n- Python 3.9+\n- httpx for async HTTP requests\n- click for CLI interface\n- anyio for async I/O\n- mcp for the Model Context Protocol implementation\n\n## License\n\nThis project is licensed under the MIT License - see the LICENSE file for details. ",
+  "extracted_at": "2025-06-13T08:54:46.335148",
+  "content_hash": "cd5d02703526848fef62b7228fe37a43d8a96f0d86a0d299e572d60deac7e841"
+}

@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "aradtamako/DnfApiServer",
+    "owner": "aradtamako",
+    "repo_name": "DnfApiServer",
+    "repo_url": "https://github.com/aradtamako/DnfApiServer",
+    "description": "[aradtamako/DnfApiServer](https://github.com/aradtamako/DnfApiServer): Facilitates interaction with DNF APIs through an MCP server setup, enabling seamless integration with tools like Copilot and Claude.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/aradtamako/DnfApiServer/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# DNF MCP Server\n![image](https://github.com/user-attachments/assets/926a47c5-db5f-471f-ac66-00b4e1fd0c5f)\n\n# 使い方\n1. [Node.js](https://nodejs.org/ja) をインストールする\n2. [Releases](https://github.com/aradtamako/DnfApiServer/releases) から build.zip をダウンロードする\n3. Copilot や Claude などで MCP サーバを指定する\n\n```json\n{\n  \"mcpServers\": {\n    \"dnfApiServer\": {\n      \"command\": \"node\",\n      \"args\": [\n        \"C:\\\\Users\\\\user01\\\\Downloads\\\\build\\\\index.js\"\n      ]\n    }\n  }\n}\n```\n\n以上\n\n# Official API Docs\n- https://developers.neople.co.kr/contents/apiDocs/df\n- https://www.dfoneople.com/developers/contents/apiDocs\n",
+  "extracted_at": "2025-06-13T08:55:02.440684",
+  "content_hash": "572e5f046ec1afe0e96821971978021372cca50c36bd304f41cd801f4efd2551"
+}

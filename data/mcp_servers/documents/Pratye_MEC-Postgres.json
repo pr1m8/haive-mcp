@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "Pratye/MEC-Postgres",
+    "owner": "Pratye",
+    "repo_name": "MEC-Postgres",
+    "repo_url": "https://github.com/Pratye/MEC-Postgres",
+    "description": "[Pratye/MEC-Postgres](https://github.com/Pratye/MEC-Postgres): Facilitates read and write operations on PostgreSQL databases, allowing LLMs to interact with database schemas and execute SQL queries.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/Pratye/MEC-Postgres/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# MEC PostgreSQL\n\nA Model Context Protocol server that provides read and write access to PostgreSQL databases. This server enables LLMs to inspect database schemas and execute read and write queries.\n\n## Components\n\n### Tools\n\n- **query**\n  - Execute read-only SQL queries against the connected database\n  - Input: `sql` (string): The SQL query to execute\n  - All queries are executed within a READ ONLY transaction\n- **uploadCsv**\n  - Upload and process a CSV file into database tables\n  - Input: `sql` (string): The SQL query to execute\n  - All queries are executed within a READ AND WRITE transaction\n\n### Resources\n\nThe server provides schema information for each table in the database:\n\n- **Table Schemas** (`postgres://<host>/<table>/schema`)\n  - JSON schema information for each table\n  - Includes column names and data types\n  - Automatically discovered from database metadata\n\n## Usage with Claude Desktop\n\nTo use this server with the Claude Desktop app, add the following configuration to the \"mcpServers\" section of your `claude_desktop_config.json`:\n\n### Docker\n\n* when running docker on macos, use host.docker.internal if the server is running on the host network (eg localhost)\n* username/password can be added to the postgresql url with `postgresql://user:password@host:port/db-name`\n\n```json\n{\n  \"mcpServers\": {\n    \"postgres\": {\n      \"command\": \"docker\",\n      \"args\": [\n        \"run\", \n        \"-i\", \n        \"--rm\", \n        \"mcp/postgres\", \n        \"postgresql://host.docker.internal:5432/mydb\"]\n    }\n  }\n}\n```\n\nReplace `/mydb` with your database name.\n\n## Building\n\nDocker:\n\n```sh\ndocker build -t mcp/postgres -f src/postgres/Dockerfile . \n```\n\n## License\n\nThis MCP server is licensed under the MIT License. This means you are free to use, modify, and distribute the software, subject to the terms and conditions of the MIT License. For more details, please see the LICENSE file in the project repository.\n",
+  "extracted_at": "2025-06-13T08:55:30.844990",
+  "content_hash": "04fd654636a499e2ef1ef49e537072f9ac30f97bba1e9a0277971ae61ed65b09"
+}

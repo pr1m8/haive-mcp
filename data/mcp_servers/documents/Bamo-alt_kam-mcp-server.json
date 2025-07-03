@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "Bamo-alt/kam-mcp-server",
+    "owner": "Bamo-alt",
+    "repo_name": "kam-mcp-server",
+    "repo_url": "https://github.com/Bamo-alt/kam-mcp-server",
+    "description": "[Bamo-alt/kam-mcp-server](https://github.com/Bamo-alt/kam-mcp-server): A Model Context Protocol server utilizing the mcp-framework, designed for creating and managing point, line, and surface-based elements.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/Bamo-alt/kam-mcp-server/master/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# kam-mcp-server\n\n> [Kam-MCP-Server](https://github.com/Bamo-alt/kam-mcp-server)\n\nA Model Context Protocol (MCP) server built with mcp-framework.\n\n## Quick Start\n\n```bash\n# Install dependencies\nnpm install\n\n# Build the project\nnpm run build\n\n```\n\n## Project Structure\n\n```\nkam-mcp-server/\n├── build/\n├── src/\n│   ├── tools/        # MCP Tools\n│   │   └── CreatePointBasedElementTool.ts\n│   │   └── CreateLineBasedElementTool.ts\n│   │   └── CreateSurfaceBasedElementTool.ts\n│   │   └── GetCurrentViewElementsTool.ts\n│   │   └── GetAvailableFamilyTypesTool.ts\n│   │   └── DeleteElementTool.ts\n│   │   └── GetElementByIdTool.ts\n│   ├── resources/    # MCP Resources\n│   │   └── KamDocResourceResource.ts\n│   └── index.ts      # Server entry point\n├── package.json\n└── tsconfig.json\n```\n\n## Publishing to npm\n\n1. Update your package.json:\n\n   - Ensure `name` is unique and follows npm naming conventions\n   - Set appropriate `version`\n   - Add `description`, `author`, `license`, etc.\n   - Check `bin` points to the correct entry file\n\n2. Build and test locally:\n\n   ```bash\n   yarn build\n   npm link\n   kam-mcp-server  # Test your CLI locally\n   ```\n\n3. Login to npm (create account if necessary):\n\n   ```bash\n   npm login\n   ```\n\n4. Publish your package:\n   ```bash\n   npm publish\n   ```\n\nAfter publishing, users can add it to their claude desktop client (read below) or run it with npx\n\n## Using with Claude Desktop\n\n### After Publishing\n\nAdd this configuration to your Claude Desktop config file:\n\n**MacOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`\n**Windows**: `%APPDATA%/Claude/claude_desktop_config.json`\n\n```json\n{\n  \"mcpServers\": {\n    \"kam-mcp-server\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"kam-mcp-server\", \"--port=9099\"]\n    }\n  }\n}\n```\n\n## Building and Testing\n\n1. Make changes to your tools\n2. Run `yarn build` to compile\n3. The server will automatically load your tools on startup\n",
+  "extracted_at": "2025-06-13T08:55:48.261184",
+  "content_hash": "7a445647fe6be655fbed11acb546d582b74dd7033d48b52decf3d820bab677b6"
+}

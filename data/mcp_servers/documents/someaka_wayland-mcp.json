@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "someaka/wayland-mcp",
+    "owner": "someaka",
+    "repo_name": "wayland-mcp",
+    "repo_url": "https://github.com/someaka/wayland-mcp",
+    "description": "[someaka/wayland-mcp](https://github.com/someaka/wayland-mcp): Wayland MCP Server offers screenshot, analysis, and input control tools tailored for modern Linux desktops.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/someaka/wayland-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "\n\n# 🚀 Wayland MCP Server\n\n[![Status: WIP](https://img.shields.io/badge/status-WIP-yellow)](https://github.com/someaka/wayland-mcp)\n[![License: GPL3](https://img.shields.io/badge/license-GPL3-blue)](#license)\n\n> **Note:** This package was created because existing screenshot solutions didn't work reliably on my Wayland setup.\n> **Wayland MCP** provides screenshot, analysis, mouse and keyboard control tools for modern Linux desktops.\n\n---\n\n## ✨ Features\n\n- **📸 Screenshot & Analysis**\n  - Custom VLM integration for image analysis\n  - Image comparison capabilities\n\n- **🖱️ Input Simulation**\n  - Mouse control (move, click, drag, scroll)\n  - Keyboard input (typing, key presses)\n  - Action chaining for complex sequences\n\n---\n\n## ⚠️ Security Warning\n\n> **WARNING:** Enabling input control gives the MCP server full access to your mouse and keyboard.\n> Only use with trusted MCP servers and models.\n\n---\n\n## 🚀 Quick Start\n\n### 🔧 Input Control Setup\n```bash\n./setup.sh\n```\n[View setup.sh on GitHub](https://github.com/someaka/wayland-mcp/blob/main/setup.sh)\n\nConfigures permissions for `evemu-event` to control input devices.\n\n### ⚙️ MCP Server Configuration\nAdd to your MCP server config (`.roo/mcp.json`):\n```json\n{\n  \"mcpServers\": {\n    \"wayland-screenshot\": {\n      \"command\": \"uvx\",\n      \"args\": [\"wayland-mcp\"],\n      \"env\": {\n        \"OPENROUTER_API_KEY\": \"your-api-key\",\n        \"VLM_MODEL\": \"qwen/qwen2.5-vl-72b-instruct:free\",\n        \"XDG_RUNTIME_DIR\": \"/run/user/1000\",\n        \"WAYLAND_MCP_PORT\": \"4999\",\n        \"DISPLAY\": \":0\",\n        \"WAYLAND_DISPLAY\": \"wayland-0\",\n        \"XDG_SESSION_TYPE\": \"wayland\"\n      }\n    }\n  }\n}\n```\n\n---\n\n## 🛠️ Development\n```bash\ngit clone https://github.com/someaka/wayland-mcp\ncd wayland-mcp\npip install -e .\n```\n\n---\n\n## 📜 License\n\nGPL 3\n",
+  "extracted_at": "2025-06-13T08:56:31.139214",
+  "content_hash": "97d80ef16220882b349aa3276470b7d0945cf041112f4016eb2209f5fa917000"
+}

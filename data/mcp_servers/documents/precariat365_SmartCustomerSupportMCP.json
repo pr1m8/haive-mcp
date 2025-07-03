@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "precariat365/SmartCustomerSupportMCP",
+    "owner": "precariat365",
+    "repo_name": "SmartCustomerSupportMCP",
+    "repo_url": "https://github.com/precariat365/SmartCustomerSupportMCP",
+    "description": "[precariat365/SmartCustomerSupportMCP](https://github.com/precariat365/SmartCustomerSupportMCP): A smart customer support system leveraging the MCP framework to demonstrate intelligent Q&A services, human agent handover, order information retrieval, and product knowledge management.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/precariat365/SmartCustomerSupportMCP/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# 智能客服示例\n\n这是一个基于MCP框架的智能客服系统示例项目，用于演示如何构建和部署智能客服应用。\n\n文档：https://mp.weixin.qq.com/s/gz3ZL_3XD8sfxustNQvK2g\n\n## 功能特点\n\n- 智能问答服务\n- 人工客服转接\n- 订单信息查询\n- 产品知识库管理\n\n## 系统要求\n\n- Python >= 3.10\n- MCP框架 >= 1.6.0\n\n## 安装\n\n1. 创建并激活虚拟环境（推荐）：\n```bash\nuv venv \nsource .venv/bin/activate  # Linux/macOS\n```\n\n2. 安装依赖：\n```bash\nuv pip install .\n```\n\n## 使用方法\n1. 运行\n- 以stdio方式运行，需要以--stdio启动\n```bash\nuv --directory /opt/apps/python_project/SmartCustomerSupportMCP run mcp-smart-customer-support --stdio\n```\nor\n```bash\n python start.py --stdio\n ```\n\n- 以sse方式运行，直接启动即可,默认端口9000\n```bash\nuv --directory /opt/apps/python_project/SmartCustomerSupportMCP run mcp-smart-customer-support\n```\nor\n```bash\n python start.py \n ```\n\n2. stdio方式使用inspector：\n```bash\nnpx @modelcontextprotocol/inspector uv --directory /opt/apps/python_project/SmartCustomerSupportMCP run mcp-smart-customer-support --stdio\n```\n3. 使用Vscode或Claude等桌面应用\n```json\n\n{\n  \"mcpServers\": {\n      \"SmartCustomerSupportMCP\": {\n        \"command\": \"uv\",\n        \"args\": [\n          \"--directory\",\n          \"/opt/apps/python_project/SmartCustomerSupportMCP\", \n          \"run\",\n          \"mcp-smart-customer-support\",\n          \"--stdio\"\n        ]\n    }\n  }\n}    \n```\n\n**增加环境变量信息**\n```json\n{\n  \"mcpServers\": {\n      \"SmartCustomerSupportMCP\": {\n        \"command\": \"uv\",\n        \"args\": [\n          \"--directory\",\n          \"/opt/apps/python_project/SmartCustomerSupportMCP\", \n          \"run\",\n          \"mcp-smart-customer-support\",\n          \"--stdio\"\n        ],\n        \"env\": {\n          \"MYSQL_HOST\": \"192.168.xxx.xxx\",\n          \"MYSQL_PORT\": \"3306\",\n          \"MYSQL_USER\": \"root\",\n          \"MYSQL_PASSWORD\": \"root\",\n          \"MYSQL_DATABASE\": \"a_llm\",\n          \"MYSQL_ROLE\": \"admin\"\n       }\n    }\n  }\n}  \n        \n```\n\n## 项目结构\n\n```\nsrc/mcp_smart_customer_support/\n├── __init__.py          # 包初始化文件\n├── mcp_server.py        # MCP服务器实现\n├── human_customer_service.py  # 人工客服处理模块\n├── order_operations.py  # 订单操作相关功能\n└── product_knowledge.py # 产品知识库管理\n```\n\n## 作者\n\nggguo (admin@precariat.tech)\n\n## 许可证\n\n本项目采用MIT许可证。",
+  "extracted_at": "2025-06-13T08:56:18.582115",
+  "content_hash": "62e8637956e4a38dfdbe819b9228d2ffe233eb0e03be4cc1f309ce84b1dfb552"
+}

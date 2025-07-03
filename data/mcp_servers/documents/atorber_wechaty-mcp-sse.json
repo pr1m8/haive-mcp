@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "atorber/wechaty-mcp-sse",
+    "owner": "atorber",
+    "repo_name": "wechaty-mcp-sse",
+    "repo_url": "https://github.com/atorber/wechaty-mcp-sse",
+    "description": "[atorber/wechaty-mcp-sse](https://github.com/atorber/wechaty-mcp-sse): Facilitates seamless integration between Wechaty and large language models like Claude, enabling message sending and contact querying via a TypeScript-based MCP server.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/atorber/wechaty-mcp-sse/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# WECHATY-MCP-SSE\n\n基于TypeScript实现的wechaty-mcp-sse服务器，提供Wechaty相关功能，用于连接Claude等大型语言模型和Wechaty。\n\n[chat-wechat](https://github.com/atorber/chat-wechat)的MCP版本，MCP使的这一实现极大简化。\n\n## 功能\n\n- 使用昵称查询好友信息\n\n- 使用群名称查询群信息\n\n- 向好友发送消息\n\n- 向群发送消息\n\n## MCP配置信息\n\n```\n{\n  \"mcpServers\": {\n    \"wechaty-mcp-sse\": {\n      \"url\": \"http://localhost:8083/sse\"\n    }\n  }\n}\n```\n\n## 使用示例\n\n- 查询好友信息\n\n<img src=\"./docs/findfriend.png\" alt=\"查找好友\" height=\"300\" />\n\n- 发送消息给好友\n\n<img src=\"./docs/sendmsg.png\" alt=\"发送消息\" height=\"300\" />\n\n## 安装与运行\n\n1. 安装依赖\n\n```bash\ncd mcp-sse-server\nnpm install\n```\n\n2. 创建环境配置文件\n\n```bash\ncp .env.example .env\n```\n\n3. 启动开发服务器\n\n```bash\nnpm run dev\n```\n\n4. 构建生产版本\n\n```bash\nnpm run build\n```\n\n5. 启动生产服务器\n\n```bash\nnpm start\n```\n\n## MCP工具说明\n\n1. **findFriend**: 查找好友\n\n   - 参数:\n     - nickname: 好友昵称（必填）\n   - 返回:\n     - 成功：返回好友列表，格式为：`{ content: [{ type: \"text\", text: \"[{\\\"wxid\\\":\\\"xxx\\\",\\\"name\\\":\\\"xxx\\\",\\\"index\\\":1}, ...]\" }] }`\n     - 失败：`{ content: [{ type: \"text\", text: \"「{nickname}」用户不存在\" }] }`\n\n2. **findRoomByTopic**: 查找群组\n\n   - 参数:\n     - topic: 群组名称（必填）\n   - 返回:\n     - 成功：返回群组列表，格式为：`{ content: [{ type: \"text\", text: \"[{\\\"wxid\\\":\\\"xxx\\\",\\\"name\\\":\\\"xxx\\\"}]\" }] }`\n     - 失败：返回空列表\n\n3. **sendMessageToFriendByNickname**: 使用昵称向好友发送消息\n\n   - 参数: \n     - nickname: 好友昵称（必填）\n     - message: 消息内容（必填）\n   - 返回: \n     - 成功：`{ content: [{ type: \"text\", text: \"消息发送消息到「{nickname}」成功，发送时间 {timestamp}\" }] }`\n     - 失败：`{ content: [{ type: \"text\", text: \"「{nickname}」用户不存在\" }] }`\n     - 多个匹配：`{ content: [{ type: \"text\", text: \"「{nickname}」用户存在多个，请使用微信ID发送消息或指定发送给第几个好友\" }, { type: \"text\", text: \"[{\\\"wxid\\\":\\\"xxx\\\",\\\"name\\\":\\\"xxx\\\",\\\"index\\\":1}, ...]\" }] }`\n\n4. **sendMessageToRoomByTopic**: 使用群名称向群组发送消息\n\n   - 参数: \n     - topic: 群组名称（必填）\n     - message: 消息内容（必填）\n   - 返回: \n     - 成功：`{ content: [{ type: \"text\", text: \"消息发送消息到「{topic}」成功，发送时间 {timestamp}\" }] }`\n     - 失败：`{ content: [{ type: \"text\", text: \"「{topic}」群组不存在\" }] }`\n     - 多个匹配：`{ content: [{ type: \"text\", text: \"「{topic}」群组存在多个，请使用微信ID发送消息或指定发送给第几个群组\" }, { type: \"text\", text: \"[{\\\"wxid\\\":\\\"xxx\\\",\\\"name\\\":\\\"xxx\\\",\\\"index\\\":1}, ...]\" }] }`\n\n5. **sendMessageToFriendByWxId**: 使用微信ID向好友发送消息\n\n   - 参数:\n     - wxid: 好友的微信ID（必填）\n     - message: 消息内容（必填）\n   - 返回:\n     - 成功：`{ content: [{ type: \"text\", text: \"消息发送消息到「{wxid}」成功，发送时间 {timestamp}\" }] }`\n     - 失败：`{ content: [{ type: \"text\", text: \"「{wxid}」用户不存在\" }] }`\n\n6. **sendMessageToRoomByWxId**: 使用微信ID向群组发送消息\n\n   - 参数:\n     - wxid: 群组的微信ID（必填）\n     - message: 消息内容（必填）\n   - 返回:\n     - 成功：`{ content: [{ type: \"text\", text: \"消息发送消息到「{wxid}」成功，发送时间 {timestamp}\" }] }`\n     - 失败：`{ content: [{ type: \"text\", text: \"「{wxid}」群组不存在\" }] }`\n\n## 容器化部署\n\n可使用 Docker 进行容器化部署，示例 Dockerfile 如下：\n\n```dockerfile\nFROM node:18-alpine\n\nWORKDIR /app\n\nCOPY package*.json ./\nRUN npm ci --only=production\n\nCOPY dist/ ./dist/\n\nEXPOSE 8083\n\nUSER node\n\nCMD [\"node\", \"dist/index.js\"]\n```\n",
+  "extracted_at": "2025-06-13T08:55:14.374512",
+  "content_hash": "84abebb93070212fd53d67a55a23bba362c9ba77042d7b46f30e67877caeeff7"
+}

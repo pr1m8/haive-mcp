@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "stolostron/server-foundation-dev-context",
+    "owner": "stolostron",
+    "repo_name": "server-foundation-dev-context",
+    "repo_url": "https://github.com/stolostron/server-foundation-dev-context",
+    "description": "[stolostron/server-foundation-dev-context](https://github.com/stolostron/server-foundation-dev-context): Facilitates the setup and management of server foundation repositories through an MCP server integration with code agents.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/stolostron/server-foundation-dev-context/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# How to use\n\nOpen a empty directory, and run the following command:\n\nAdd the following mcp server to your code agent tool:\n\n```json\n{\n  \"mcpServers\": {\n    \"playbookmcp\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"playbookmcp@latest\",\n        \"--playbook-repo\",\n        \"git@github.com:stolostron/server-foundation-agent-playbook.git\"\n      ]\n    }\n  }\n}\n```\n\nChat with the agent:\n\n```\nplaybookmcp_start: setup up all server foundation repos, my github username is {your github username}\n```\n\nYou will see the agent creates the `workplace` directory, and clone the repos you need.\n\n# Contributing\n\n```shell\ngit clone git@github.com:stolostron/server-foundation-agent-playbook.git\n```\n\nUse `--context-path` to point to the path of the server-foundation-agent-playbook repo.\n\n```json\n{\n  \"mcpServers\": {\n    \"playbookmcp-dev\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"playbookmcp@latest\",\n        \"--playbook-path\",\n        \"<the path to the server-foundation-agent-playbook repo>\"\n      ]\n    }\n  }\n}\n```\n",
+  "extracted_at": "2025-06-13T08:56:07.191000",
+  "content_hash": "4c664049d53d1d4274ef296421b8b0413e7ba80fee4dcf7da1e6029db21eca88"
+}

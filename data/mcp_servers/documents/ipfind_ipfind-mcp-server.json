@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "ipfind/ipfind-mcp-server",
+    "owner": "ipfind",
+    "repo_name": "ipfind-mcp-server",
+    "repo_url": "https://github.com/ipfind/ipfind-mcp-server",
+    "description": "[ipfind/ipfind-mcp-server](https://github.com/ipfind/ipfind-mcp-server): Facilitates AI assistants in retrieving IP address locations via the IP Find API.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/ipfind/ipfind-mcp-server/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# IP Find MCP Server\n\nA Model Context Protocol server that enables AI assistants to use IP Find. \n\n## How It Works\n\nThe MCP server:\n\n-   Connects to your IP Find API and allows AI Assistants to get locations of IP Addresses.\n\n## Usage with Claude Desktop\n\n### Prerequisites\n\n-   NodeJS\n-   MCP Client (like Claude Desktop App)\n-   IP Find API Key\n\n### Installation\n\nTo use this server with the Claude Desktop app, add the following configuration to the \"mcpServers\" section of your `claude_desktop_config.json`:\n\n```json\n{\n    \"mcpServers\": {\n        \"ipfind\": {\n            \"command\": \"npx\",\n            \"args\": [\"-y\", \"@ipfind/ipfind-mcp-server\"],\n            \"env\": {\n                \"IPFIND_API_KEY\": \"<API KEY GOES HERE>\"\n            }\n        }\n    }\n}\n```\n\n-   `IPFIND_API_KEY` - You can generate an API key at IPfind.com.",
+  "extracted_at": "2025-06-13T08:56:15.784354",
+  "content_hash": "ac8c9f1ef268757bbcea2ecc19111625d52c73f4131c21eaddf1a14a158c33be"
+}

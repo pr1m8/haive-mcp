@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "Lala-0x3f/mj-mcp",
+    "owner": "Lala-0x3f",
+    "repo_name": "mj-mcp",
+    "repo_url": "https://github.com/Lala-0x3f/mj-mcp",
+    "description": "[Lala-0x3f/mj-mcp](https://github.com/Lala-0x3f/mj-mcp): Facilitates image generation using Midjourney through an MCP server interface.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": 0,
+    "last_updated": "2025-04-23T00:16:03Z",
+    "license": "GNU General Public License v3.0",
+    "readme_url": "https://raw.githubusercontent.com/Lala-0x3f/mj-mcp/main/README.md",
+    "api_base_url": "https://api.github.com/repos/Lala-0x3f/mj-mcp"
+  },
+  "readme_content": "# Midjourney MCP\n\nA MCP server implementation for generating images with Midjourney.\n\n\n\n```json\n{\n    \"mcpServers\": {\n        \"midjourney\": {\n            \"command\": \"uvx\",\n            \"args\": [\n                \"midjourney-mcp\"\n            ]\n        }\n    }\n\n}\n```\n\n\n- `TOKEN_R`: Midjourney auth token R\n- `TOKEN_I`: Midjourney auth token I\n- `API_BASE`: Midjourney API base URL (optional, defaults to \"midjourney.com\")\n- `SUFFIX`: Midjourney suffix (optional, defaults to \"--v 6.1\")\n\n\n## API\n\nThe server provides the following tool:\n\n- `generating_image(prompt: str, aspect_ratio: str) -> str`\n  - `prompt`: Description of the image you want to generate\n  - `aspect_ratio`: Aspect ratio of the image (e.g. \"16:9\")\n\n## License\n\nThis project is licensed under the GNU General Public License v3.0 (GPL-3.0). This means:",
+  "extracted_at": "2025-06-13T08:54:42.979580",
+  "content_hash": "979aef47dfd7f35cb1b621198c0ee1c01f09adebcc8b2f3f78b8881b2fe918ed"
+}

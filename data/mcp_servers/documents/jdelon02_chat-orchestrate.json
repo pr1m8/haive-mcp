@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "jdelon02/chat-orchestrate",
+    "owner": "jdelon02",
+    "repo_name": "chat-orchestrate",
+    "repo_url": "https://github.com/jdelon02/chat-orchestrate",
+    "description": "[jdelon02/chat-orchestrate](https://github.com/jdelon02/chat-orchestrate): A versatile MCP server built with mcp-framework, enabling the creation and integration of custom tools for enhanced functionality.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/jdelon02/chat-orchestrate/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# MCP Orchestrator\n\nThe MCP Orchestrator is a tool designed to manage and execute multiple tools in a coordinated manner. It provides a framework for defining workflows and dependencies between tools.\n\n## Features\n\n- Define workflows with multiple steps\n- Specify dependencies between steps\n- Pass context data between steps\n\n## Installation\n\nTo install the MCP Orchestrator, use the following command:\n\n```bash\npip install mcp-orchestrator\n```\n\n## Using the Orchestrate Chain Tool\n\nThe `orchestrate_chain` tool allows you to execute a sequence of tools in a defined order with dependencies. Here's how to use it:\n\n```json\n{\n    \"steps\": [\n        {\n            \"name\": \"step1\",\n            \"tools\": [\"tool1\", \"tool2\"],\n            \"depends_on\": []\n        },\n        {\n            \"name\": \"step2\",\n            \"tools\": [\"tool3\"],\n            \"depends_on\": [\"step1\"]\n        }\n    ],\n    \"initial_context\": {\n        \"key\": \"value\"\n    }\n}\n```\n\n### Configuration Properties:\n\n- `steps`: Array of step configurations\n  - `name`: Unique identifier for the step\n  - `tools`: Array of tool names to execute in this step\n  - `depends_on`: Array of step names that must complete before this step runs\n- `initial_context`: Optional object with initial context data passed to the first step\n\nSteps will execute in order based on their dependencies. Steps with no dependencies run first, followed by steps whose dependencies have been satisfied.",
+  "extracted_at": "2025-06-13T08:55:46.437851",
+  "content_hash": "787a45c8e8fd90c65b64321a8f71ef55140402b5ba8b70d65dc7146dd21c6a68"
+}

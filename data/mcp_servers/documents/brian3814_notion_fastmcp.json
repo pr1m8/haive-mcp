@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "brian3814/notion_fastmcp",
+    "owner": "brian3814",
+    "repo_name": "notion_fastmcp",
+    "repo_url": "https://github.com/brian3814/notion_fastmcp",
+    "description": "[brian3814/notion_fastmcp](https://github.com/brian3814/notion_fastmcp): Facilitates task management in Notion through an MCP server integration with Cursor IDE.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/brian3814/notion_fastmcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "## Prerequisites\n\n- Python 3.10 or higher\n- A Notion account with an API integration set up\n- Notion database with tasks (required properties: \"Task\", \"Checkbox\", \"Deadline\")\n- Cursor IDE\n\n## Installation\n1. Create a virtual environment and install dependencies:\n   ```bash\n   uv venv\n   source .venv/bin/activate  # On Windows: .venv\\Scripts\\activate\n   uv pip install -e .\n   ```\n\n2. Set up `.env` file in the project root:\n   ```\n   NOTION_API_KEY=your_notion_api_key\n   NOTION_DATABASE_ID=your_database_id\n   NOTION_BASE_URL=https://api.notion.com/v1\n   NOTION_VERSION=2022-06-28\n   ```\n\n## Setting Up Notion Integration\n\n1. Go to [Notion Integrations](https://www.notion.so/my-integrations)\n2. Create a new integration and note the API key\n3. Share your database with the integration\n4. Get your database ID from the URL (it's the part after the workspace name and before the question mark)\n\n## Adding to Cursor Settings\n\n1. Open Cursor IDE\n2. Open Settings (⌘+shift+p), navigate to \"MCP\" tab\n4. Click \"Add new global MCP server\"\n5. Configure the Notion MCP with the following settings:\n  ```json\n    {\n      \"mcpServers\": {\n        \"myNotionMcp\":{\n          \"command\": \"{path-to-venv-python}\",\n          \"args\": [\"-m\", \"notion_mcp\"]\n        }\n      }\n    }\n  ```\n6. Save the settings\n\n## Usage\n\nOnce configured, you can use the Notion MCP in Cursor by asking the AI assistant questions like:\n\n- \"What tasks should I complete this week?\"\n- \"Show me my todos for today\"\n- \"What are all my pending tasks?\"\n\n## Troubleshooting\n\n- Ensure your `.env` file is properly configured with the correct Notion API key and database ID\n- Check that your Notion database has the required properties: \"Task\", \"Checkbox\", and \"Deadline\"\n- Make sure your Notion integration has been granted access to your database\n- If you encounter any issues, try restarting Cursor\n\n## License\n\nMIT\n",
+  "extracted_at": "2025-06-13T08:56:10.145339",
+  "content_hash": "fddcff25bd35564c8c7d2b803ead5c84f27494f4e8dc2e53f8e15fddc19e55e7"
+}

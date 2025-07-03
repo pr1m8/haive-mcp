@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "mgd1984/cursor-rules",
+    "owner": "mgd1984",
+    "repo_name": "cursor-rules",
+    "repo_url": "https://github.com/mgd1984/cursor-rules",
+    "description": "[mgd1984/cursor-rules](https://github.com/mgd1984/cursor-rules): Facilitates the integration of Cursor Rules MCP server for consistent development guidance in Next.js applications with TypeScript.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/mgd1984/cursor-rules/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Cursor Rules Configuration\n\nThis directory contains configuration and documentation for integrating the Cursor Rules MCP server via gitmcp.io.\n\n## Configuration\n\nThe `.cursor/mcp.json` file defines custom MCP servers. We added:\n\n```json\n{\n  \"mcpServers\": {\n    \"Cursor Rules\": {\n      \"url\": \"https://gitmcp.io/mgd1984/cursor-rules\"\n    }\n  }\n}\n```\n\nThis tells the Cursor chat integration to fetch rules from the `Cursor Rules` server hosted on gitmcp.io.\n\n## Rebuilding the Ruleset\n\nTo rebuild or refresh the ruleset locally, run the following commands in your project root:\n\n```bash\n# Clone the rules repository\ngit clone --depth=1 https://gitmcp.io/mgd1984/cursor-rules.git temp\n\n# Copy the rules into the .cursor folder\ncp -R temp/.cursor/rules .cursor/rules\n\n# Clean up the temporary clone\nrm -rf temp\n```\n\nAlternatively, if you have a CLI available, you can use:\n\n```bash\ncursor mcp fetch --server \"Cursor Rules\"\n```\n\nEnsure to commit any updated rules into your repository to keep them in sync.\n\n## Overview\n\nThis repository contains a template for Cursor Rules that can be used to provide consistent guidance when developing Next.js applications with TypeScript. The rules cover architecture, state management, error handling, styling, and more.\n\n## Getting Started\n\n1. Clone this repository\n2. Copy the `.cursor` directory to your Next.js project\n3. Customize the rules to fit your specific project needs\n\n## Rule Categories\n\n- **Architecture**: Project structure, tech stack, and file organization\n- **Memory/State**: Data fetching and state management patterns\n- **Error Handling**: Error handling strategies\n- **Performance**: Optimization techniques\n- **Workflow**: Development process preferences\n- **Preferences**: Code style, naming conventions, and Tailwind usage\n\n## Usage\n\nTo activate a rule in Cursor chat:\n1. Reference it directly: `@architecture/001-project-overview`\n2. Or use the rule picker by typing `@` and selecting from the list\n\n## License\n\nMIT ",
+  "extracted_at": "2025-06-13T08:55:48.193241",
+  "content_hash": "90430d379b4b57bb98806733a8013ac6bf6a571614ff29edc177a803d6a8dfd4"
+}

@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "SebastianBoehler/domain-check-mcp",
+    "owner": "SebastianBoehler",
+    "repo_name": "domain-check-mcp",
+    "repo_url": "https://github.com/SebastianBoehler/domain-check-mcp",
+    "description": "[SebastianBoehler/domain-check-mcp](https://github.com/SebastianBoehler/domain-check-mcp): Facilitates domain availability checks and recommendations using IONOS endpoints.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/SebastianBoehler/domain-check-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Domain Check MCP Server\n\nA Model Context Protocol (MCP) server for checking domain availability using IONOS endpoints.\n\n## Important Legal Notice\n\nThe IONOS API endpoints used in this project are:\n\n- **Not publicly documented**\n- **Used at your own risk**\n\nThis project is provided for educational purposes only. Usage of these endpoints may violate IONOS's Terms of Service. The author assumes no liability for any legal consequences resulting from the use of this software.\n\n## Installation\n\n```bash\nnpm install -g domain-check-mcp\n```\n\nOr using npx:\n\n```bash\nnpx domain-check-mcp\n```\n\n## Available Tools\n\n- `check_domain_availability` - Checks if a domain is available\n- `get_domain_recommendations` - Gets alternative domain suggestions\n- `get_sedo_offers` - Checks Sedo marketplace for domain offers\n\n## Recommended MCP Configuration\n\nTo use the `domain-check-mcp` server in your windsuf/mcp_config.json, configure it as follows:\n\n```json\n{\n  \"mcpServers\": {\n    \"domain\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"domain-check-mcp\"]\n    }\n  }\n}\n```\n\nThis will launch the domain MCP server using `npx` directly, ensuring you always use the latest published version.\n\n## Quick Start\n\n1. Install (if not using npx):\n   ```sh\n   npm install -g domain-check-mcp\n   # or\n   bun add -g domain-check-mcp\n   ```\n2. Or run directly (recommended):\n   ```sh\n   npx -y domain-check-mcp\n   ```\n\n## Development\n\n- For local development, build with:\n  ```sh\n  bun run build\n  # or\n  npm run build\n  ```\n- Then run:\n  ```sh\n  node build/index.js\n  ```\n\n## Configuration\n\nRefer to the example above for the recommended setup in `mcp_config.json`.\n\n## Disclaimer\n\nThe author assumes no liability for any legal consequences resulting from the use of this software.\n",
+  "extracted_at": "2025-06-13T08:56:46.924997",
+  "content_hash": "8dab4d61c6d6ac101c72f1aec8db2becd4acbae550a1ff9aa3d70c4cb6f5fb8e"
+}

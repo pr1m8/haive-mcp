@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "alvinveroy/aider-mcp-client",
+    "owner": "alvinveroy",
+    "repo_name": "aider-mcp-client",
+    "repo_url": "https://github.com/alvinveroy/aider-mcp-client",
+    "description": "[alvinveroy/aider-mcp-client](https://github.com/alvinveroy/aider-mcp-client): A Python tool that integrates MCP with Aider to fetch library documentation and enhance AI-assisted coding workflows.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": null,
+    "api_base_url": null
+  },
+  "readme_content": null,
+  "extracted_at": "2025-06-13T08:55:32.703877",
+  "content_hash": ""
+}

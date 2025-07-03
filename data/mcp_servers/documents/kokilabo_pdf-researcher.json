@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "kokilabo/pdf-researcher",
+    "owner": "kokilabo",
+    "repo_name": "pdf-researcher",
+    "repo_url": "https://github.com/kokilabo/pdf-researcher",
+    "description": "[kokilabo/pdf-researcher](https://github.com/kokilabo/pdf-researcher): A specialized MCP server designed for searching PDF documents using the Brave Search API.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/kokilabo/pdf-researcher/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# PDF検索MCPサーバー\n\n## 概要\n\nPDF検索に特化したMCPサーバーです。\n\n**※注意:** 現在開発途中であり、機能や仕様は変更される可能性があります。\n\n## デモ\n\nhttps://github.com/user-attachments/assets/877163ad-5a5d-484f-839a-9b1355f1b71a\n\n## 技術スタック\n\nこのプロジェクトで使用している主な技術スタックは以下の通り\n\n-   **プログラミング言語:** Python 3.13\n-   **パッケージ管理/仮想環境:** uv\n-   **外部API:** Brave Search API\n-   **コアライブラリ:** FastMCP\n\n## 使い方\n\n### インストール\n\n1.  リポジトリをクローンします\n    ```bash\n    git clone https://github.com/kokilabo/pdf-researcher.git\n    ```\n2.  仮想環境を設定します\n    ```bash\n    cd pdf-researcher\n    uv init\n    ```\n3.  必要なパッケージをインストールします\n    ```bash\n    uv add fastapi fastmcp httpx python-dotenv uvicorn\n    ```\n4.  `.env`ファイルを作成し、Brave Search APIキーを設定します\n    ```bash\n    BRAVE_API_KEY=your_api_key\n    ```\n5.  以下のコードをMCPクライアントに追加してください\n```json\n{\n    \"mcpServers\": {\n        \"PDFSearcher\": {\n            \"command\": \"uv\",\n            \"args\": [\n                \"run\",\n                \"--with\",\n                \"fastmcp\",\n                \"fastmcp\",\n                \"run\",\n                \"/path/to/pdf-researcher/app/server.py\"\n            ]\n        }\n    }\n}\n\n```\n",
+  "extracted_at": "2025-06-13T08:56:44.496005",
+  "content_hash": "580530cf9e91a9e65b60b4174111328e85447c871f96e2330b278a80db20c55b"
+}

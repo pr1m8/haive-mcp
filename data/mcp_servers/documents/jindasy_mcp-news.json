@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "jindasy/mcp-news",
+    "owner": "jindasy",
+    "repo_name": "mcp-news",
+    "repo_url": "https://github.com/jindasy/mcp-news",
+    "description": "[jindasy/mcp-news](https://github.com/jindasy/mcp-news): Facilitates news article retrieval through a FastMCP server utilizing NewsAPI.org for keyword, date range, and source-based searches.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/jindasy/mcp-news/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# News MCP Server\n\nThis is a **FastMCP** server that provides news articles using the [NewsAPI.org](https://newsapi.org/) service.\n\nIt exposes a tool `get_news()` to fetch news based on search query, date range, and news source.\n\n---\n\n## Features\n\n- Search news articles by **keyword** (`q`).\n- Filter by **date range** (`from`, `to`).\n- Filter by specific **news source** (`sources`, default: `abc-news`).\n\n## Configuration\nGetting an API Key from [NewsAPI.org](https://newsapi.org/) \n\n### Usage with Claude Desktop\nAdd this to your claude_desktop_config.json:\n\n```\n{\n    \"mcpServers\": {\n        \"news\": {\n            \"command\": \"uv\",\n            \"args\": [\n                \"--directory\",\n                \"/PATH/TO/YOUR/news\",\n                \"run\",\n                \"news.py\"\n            ]\n        },\n    }\n}\n```",
+  "extracted_at": "2025-06-13T08:56:45.773352",
+  "content_hash": "c3ac36aedf78e90708269ddf64c899ec5c8086fe726929e6d1f64d5c0d0e5279"
+}

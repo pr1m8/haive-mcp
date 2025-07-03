@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "Antipas/4oimage-mcp",
+    "owner": "Antipas",
+    "repo_name": "4oimage-mcp",
+    "repo_url": "https://github.com/Antipas/4oimage-mcp",
+    "description": "[Antipas/4oimage-mcp](https://github.com/Antipas/4oimage-mcp): Integrates with 4o-image API to enable AI-driven image generation and editing through text prompts.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": 4,
+    "last_updated": "2025-05-26T22:44:07Z",
+    "license": "MIT License",
+    "readme_url": "https://raw.githubusercontent.com/Antipas/4oimage-mcp/main/README.md",
+    "api_base_url": "https://api.github.com/repos/Antipas/4oimage-mcp"
+  },
+  "readme_content": "# 4o-image MCP Server\n\nAn MCP server implementation that integrates with 4o-image API, enabling LLMs and other AI systems to generate and edit images through a standardized protocol. Create high-quality art, 3D characters, and custom images using simple text prompts.\n\n<a href=\"https://glama.ai/mcp/servers/@Antipas/4oimage-mcp\">\n  <img width=\"380\" height=\"200\" src=\"https://glama.ai/mcp/servers/@Antipas/4oimage-mcp/badge\" alt=\"mcp-4o-Image-Generator MCP server\" />\n</a>\n\n[![npm version](https://img.shields.io/npm/v/4oimage-mcp.svg)](https://www.npmjs.com/package/4oimage-mcp)\n[![Node.js Version](https://img.shields.io/node/v/4oimage-mcp.svg)](https://nodejs.org)\n[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)\n\n## Features\n\n* **Text-to-Image Generation**: Create images from text descriptions with AI\n* **Image Editing**: Transform existing images using text prompts\n* **Real-time Progress Updates**: Get feedback on generation status\n* **Browser Integration**: Automatically open generated images in your default browser\n\n\n## Tools\n\n* **generateImage**\n  * Generate images based on text prompts with optional image editing\n  * Inputs:\n    * `prompt` (string, required): Text description of the desired image\n    * `imageBase64` (string, optional): Base64-encoded image for editing or style transfer\n\n## Configuration\n\n### Getting an API Key\n\n1. Register for an account at [4o-image.app](https://4o-image.app/dashboard/)\n2. Obtain your API key from the user dashboard\n3. Set the API key as an environment variable when running the server\n\n### Usage with Claude Desktop\n\nAdd this to your `claude_desktop_config.json`:\n\n```json\n{\n  \"mcpServers\": {\n    \"4o-image\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"4oimage-mcp\"\n      ],\n      \"env\": {\n        \"API_KEY\": \"YOUR_API_KEY_HERE\"\n      }\n    }\n  }\n}\n```\n\n## Example Usage\n\nHere's an example of using this MCP server with Claude:\n\n```\nGenerate an image of a dog running on the beach at sunset\n```\n\nClaude will use the MCP server to generate the image, which will automatically open in your default browser. You'll also get a direct link to the image in Claude's response.\n\nFor image editing, you can include a base image and prompt Claude to modify it:\n\n```\nEdit this image to make the sky more dramatic with storm clouds\n```\n\n## License\n\nThis MCP server is licensed under the MIT License. You are free to use, modify, and distribute the software, subject to the terms and conditions of the MIT License.",
+  "extracted_at": "2025-06-13T08:54:44.736502",
+  "content_hash": "ca90025c36821762992f104cff20679b10fcf5b5488e6c96eb8462bda9be3fde"
+}

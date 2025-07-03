@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "hrishabhn/flight-mcp",
+    "owner": "hrishabhn",
+    "repo_name": "flight-mcp",
+    "repo_url": "https://github.com/hrishabhn/flight-mcp",
+    "description": "[hrishabhn/flight-mcp](https://github.com/hrishabhn/flight-mcp): Facilitates flight queries and bookings using the RapidAPI Skyscanner API through the Model Context Protocol.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/hrishabhn/flight-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Travel Agent MCP\n\nThis is an implementation of the Model Context Protocol (MCP) for the [RapidAPI Skyscanner API](https://rapidapi.com/Champlion/api/skyscanner89). The MCP protocol is used to query flights and make bookings.\n\n## Tools\n\n-   `getDate` - Get the current date.\n-   `flightsAutoComplete` - Get airport data from the given query.\n-   `flightsOneWay` - Get one-way flight data from the given query.\n\n## Running in Claude\n\nTo run this code in Claude, follow the instructions found [here](https://modelcontextprotocol.io/quickstart/user) and add the following to the config:\n\n```json\n{\n    \"mcpServers\": {\n        \"Travel Agent\": {\n            \"type\": \"stdio\",\n            \"command\": \"npx\",\n            \"args\": [\"supergateway\", \"--sse\", \"https://michelin-mcp.deno.dev\"]\n        }\n    }\n}\n```\n",
+  "extracted_at": "2025-06-13T08:56:59.975803",
+  "content_hash": "413a1ad9299beb7f728763cdc932d9d4a5d60c564ffb1d0d43c11499788f3b71"
+}

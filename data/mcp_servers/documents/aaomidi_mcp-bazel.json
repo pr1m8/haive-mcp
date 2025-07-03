@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "aaomidi/mcp-bazel",
+    "owner": "aaomidi",
+    "repo_name": "mcp-bazel",
+    "repo_url": "https://github.com/aaomidi/mcp-bazel",
+    "description": "[aaomidi/mcp-bazel](https://github.com/aaomidi/mcp-bazel): Facilitates Bazel project interactions by providing build, test, and dependency analysis tools.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/aaomidi/mcp-bazel/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Bazel MCP Server\n\nThis project provides a Model Context Protocol (MCP) server that exposes tools for interacting with Bazel projects.\n\n**Status:** 🚧 Under Active Development 🚧\n\nFeatures and interfaces may change.\n\n## Features\n\nThis server currently provides the following tools:\n\n*   **`build`:** Builds a specified Bazel target.\n*   **`deps`:** Finds the dependencies of a given Bazel target, with an optional depth parameter.\n*   **`rdeps` (Reverse Dependencies):** Finds all Bazel targets that depend on a given target or file path, with an optional depth parameter.\n*   **`sources`:** Finds the direct source files associated with a given Bazel target.\n*   **`test`:** Runs tests for a specified Bazel target.\n\n## Usage with Claude Desktop\n\nThis server is designed to be used as a tool provider for applications like the Claude Desktop app.\n\n### 1. Installation\n\nInstall the server using `go install`:\n\n```bash\n# Ensure your Go environment is set up (GOPATH, GOBIN, etc.)\ngo install github.com/aaomidi/mcp-bazel@latest\n```\n\nThis command compiles and installs the `mcp-bazel` binary. By default, it's placed in your `$GOPATH/bin` directory or `$HOME/go/bin` if `GOPATH` is not set. Make sure this location is in your system's `PATH` or note the full path to the binary for the next step.\n\n### 2. Configuration\n\nAdd the following configuration to your Claude Desktop settings file (`claude_desktop_config.json`). You can usually find this file via the app's settings menu (\"Open Config Folder\").\n\nModify the `\"command\"` path to point to the actual location where `go install` placed the `mcp-bazel` binary on your system.\n\n```json\n{\n  \"mcpServers\": {\n    \"mcp-bazel\": {\n      \"command\": \"/path/to/your/go/bin/mcp-bazel\"\n    }\n  }\n}\n```\n\n### 3. Restart Claude Desktop\n\nAfter saving the configuration file, restart the Claude Desktop app. The Bazel tools should now be available.\n",
+  "extracted_at": "2025-06-13T08:54:58.025170",
+  "content_hash": "7838efdee5952a235a0dbb7e849a64b813be58b9f3f3281a0677cbcc99a2b4ec"
+}

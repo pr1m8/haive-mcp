@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "wewei/skill-set",
+    "owner": "wewei",
+    "repo_name": "skill-set",
+    "repo_url": "https://github.com/wewei/skill-set",
+    "description": "[wewei/skill-set](https://github.com/wewei/skill-set): A Model Context Protocol server built with mcp-framework, enabling the creation and integration of custom tools for enhanced functionality.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/wewei/skill-set/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# mcp-skill-set\n\nA Model Context Protocol (MCP) server built with mcp-framework.\n\n## Quick Start\n\n```bash\n# Install dependencies\nnpm install\n\n# Build the project\nnpm run build\n\n```\n\n## Project Structure\n\n```\nmcp-skill-set/\n├── src/\n│   ├── tools/        # MCP Tools\n│   │   └── ExampleTool.ts\n│   └── index.ts      # Server entry point\n├── package.json\n└── tsconfig.json\n```\n\n## Adding Components\n\nThe project comes with an example tool in `src/tools/ExampleTool.ts`. You can add more tools using the CLI:\n\n```bash\n# Add a new tool\nmcp add tool my-tool\n\n# Example tools you might create:\nmcp add tool data-processor\nmcp add tool api-client\nmcp add tool file-handler\n```\n\n## Tool Development\n\nExample tool structure:\n\n```typescript\nimport { MCPTool } from \"mcp-framework\";\nimport { z } from \"zod\";\n\ninterface MyToolInput {\n  message: string;\n}\n\nclass MyTool extends MCPTool<MyToolInput> {\n  name = \"my_tool\";\n  description = \"Describes what your tool does\";\n\n  schema = {\n    message: {\n      type: z.string(),\n      description: \"Description of this input parameter\",\n    },\n  };\n\n  async execute(input: MyToolInput) {\n    // Your tool logic here\n    return `Processed: ${input.message}`;\n  }\n}\n\nexport default MyTool;\n```\n\n## Publishing to npm\n\n1. Update your package.json:\n   - Ensure `name` is unique and follows npm naming conventions\n   - Set appropriate `version`\n   - Add `description`, `author`, `license`, etc.\n   - Check `bin` points to the correct entry file\n\n2. Build and test locally:\n   ```bash\n   npm run build\n   npm link\n   mcp-skill-set  # Test your CLI locally\n   ```\n\n3. Login to npm (create account if necessary):\n   ```bash\n   npm login\n   ```\n\n4. Publish your package:\n   ```bash\n   npm publish\n   ```\n\nAfter publishing, users can add it to their claude desktop client (read below) or run it with npx\n```\n\n## Using with Claude Desktop\n\n### Local Development\n\nAdd this configuration to your Claude Desktop config file:\n\n**MacOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`\n**Windows**: `%APPDATA%/Claude/claude_desktop_config.json`\n\n```json\n{\n  \"mcpServers\": {\n    \"mcp-skill-set\": {\n      \"command\": \"node\",\n      \"args\":[\"/absolute/path/to/mcp-skill-set/dist/index.js\"]\n    }\n  }\n}\n```\n\n### After Publishing\n\nAdd this configuration to your Claude Desktop config file:\n\n**MacOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`\n**Windows**: `%APPDATA%/Claude/claude_desktop_config.json`\n\n```json\n{\n  \"mcpServers\": {\n    \"mcp-skill-set\": {\n      \"command\": \"npx\",\n      \"args\": [\"mcp-skill-set\"]\n    }\n  }\n}\n```\n\n## Building and Testing\n\n1. Make changes to your tools\n2. Run `npm run build` to compile\n3. The server will automatically load your tools on startup\n\n## Learn More\n\n- [MCP Framework Github](https://github.com/QuantGeekDev/mcp-framework)\n- [MCP Framework Docs](https://mcp-framework.com)\n",
+  "extracted_at": "2025-06-13T08:55:48.168180",
+  "content_hash": "9fad5f98f34b82f5a04d87c80c50c4d7e391e39ce80b83a2e4a576288b915941"
+}

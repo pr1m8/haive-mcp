@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "madhavarora1988/mcp_sqlite_poc",
+    "owner": "madhavarora1988",
+    "repo_name": "mcp_sqlite_poc",
+    "repo_url": "https://github.com/madhavarora1988/mcp_sqlite_poc",
+    "description": "[madhavarora1988/mcp_sqlite_poc](https://github.com/madhavarora1988/mcp_sqlite_poc): Facilitates AI model interactions with SQLite databases through a Model Context Protocol server, offering query execution, schema discovery, and feedback collection.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/madhavarora1988/mcp_sqlite_poc/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# SQLite MCP Server\n\nA Model Context Protocol (MCP) server implementation for SQLite databases, allowing AI models to interact with SQLite databases through standardized tools.\n\n## Features\n\n- **Query Execution**: Execute SQL queries with built-in validation and safety checks\n- **Schema Discovery**: List tables and describe table schemas\n- **Row Counting**: Count rows in specified tables\n- **Sample Data**: Insert sample data for demonstration purposes (when not in read-only mode)\n- **Automatic Initialization**: Creates a sample database with products, customers, orders, and feedback if none exists\n- **Read-Only Mode**: Option to restrict to read-only operations for safety\n- **Feedback Collection**: Tool to collect user feedback and store it in the database\n\n## Requirements\n\n- Python 3.8+\n- Dependencies listed in `requirements.txt`\n\n## Installation\n\n1. Clone this repository\n2. Install dependencies:\n\n```bash\npip install -r requirements.txt\n```\n\n3. Configure environment variables (optional):\n   - Copy `.env.example` to `.env` (or use the existing `.env` file)\n   - Modify settings as needed\n\n## Usage\n\n### Starting the Server\n\n```bash\npython server.py\n```\n\nThe server will start on port 8080 (or the port specified in your `.env` file).\n\n### Configuration Options\n\nConfigure the server by editing the `.env` file:\n\n```\nDB_PATH=sample.db         # Path to your SQLite database file\nMCP_PORT=8080             # Port to run the MCP server on\nREAD_ONLY=true            # Set to false to allow write operations\n```\n\n### Using with Claude Desktop\n\nAdd this server to your Claude Desktop configuration:\n\n```json\n{\n\"mcpServers\": {\n\t\t\"sqlite\": {\n\t\t\t\"command\": \"<Path to UV>\",\n\t\t\t\"args\": [\n\t\t\t\t\"--directory\",\n\t\t\t\t\"<Absolute Path to Project Workspace>\",\n\t\t\t\t\"run\",\n\t\t\t\t\"server.py\"\n\t\t\t]\n\t\t}\n\t}\n}\n```\n\n### Available Tools\n\nThe MCP server provides the following tools:\n\n1. **execute_query** - Execute SQL queries on the database\n2. **list_tables** - List all tables in the database\n3. **describe_table** - Get the schema for a specific table\n4. **count_rows** - Count rows in a specific table\n5. **insert_sample_data** - Insert sample data (disabled in read-only mode)\n6. **add_feedback** - Add user feedback to the feedback table (disabled in read-only mode)\n\n## Sample Database Schema\n\nThe sample database includes:\n\n### Products Table\n- id (INTEGER, PRIMARY KEY)\n- name (TEXT, NOT NULL)\n- description (TEXT)\n- price (REAL, NOT NULL)\n- category (TEXT)\n- in_stock (BOOLEAN)\n\n### Customers Table\n- id (INTEGER, PRIMARY KEY)\n- name (TEXT, NOT NULL)\n- email (TEXT, UNIQUE)\n- signup_date (TEXT)\n\n### Orders Table\n- id (INTEGER, PRIMARY KEY)\n- customer_id (INTEGER, FOREIGN KEY)\n- order_date (TEXT)\n- total_amount (REAL)\n\n### Feedback Table\n- id (INTEGER, PRIMARY KEY)\n- user (TEXT, NOT NULL)\n- email (TEXT, NOT NULL)\n- feedback (TEXT, NOT NULL)\n- submission_date (TEXT, DEFAULT CURRENT_TIMESTAMP)\n\n## Security Considerations\n\n- SQL queries are validated to prevent dangerous operations\n- In read-only mode, all data modification operations are blocked\n- Consider running in read-only mode for production use\n\n## License\n\nMIT License ",
+  "extracted_at": "2025-06-13T08:55:08.004426",
+  "content_hash": "7da4f2447bd857e8d24a107c279359768fc627264ad8cfc20868f5c4c0dc2b64"
+}

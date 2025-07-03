@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "JordanDalton/PodscanMcpServer",
+    "owner": "JordanDalton",
+    "repo_name": "PodscanMcpServer",
+    "repo_url": "https://github.com/JordanDalton/PodscanMcpServer",
+    "description": "[JordanDalton/PodscanMcpServer](https://github.com/JordanDalton/PodscanMcpServer): Podscan MCP Server enables seamless integration with Podscan's API for efficient podcast data retrieval.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/JordanDalton/PodscanMcpServer/main/readme.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Podscan MCP Server Guide\n\nRegister for a free API key at [Podscan](https://podscan.fm/).\n\nTo build the MCP server, run:\n\n```\nnpm install && npm run build\n```\n\nThis will compile the typescript files and produce a build directory plus it will output the json you can copy/paste into your MCP client (Claude Desktop, Windsurf, Cursor, etc.)\n\nIf all things go well, this will produce an output similar to this:\n\n```json\n{\n  \"mcpServers\": {\n    \"podscan\": {\n      \"command\": \"node\",\n      \"args\": [\n        \"<thePathToYour>/build/index.js\"\n      ],\n      \"env\": [\n        {\n          \"API_KEY\": \"<REPLACE>\"\n        }\n      ]\n    }\n  }\n}\n```\n\n## MCPGen\nThis MCP Server was generated using [MCPGen](https://mcpgen.jordandalton.com/).",
+  "extracted_at": "2025-06-13T08:56:24.399235",
+  "content_hash": "cc661ac5e095e051974a77cf21ffbb78c5cc2ecac518f2bae4c0f632612f835d"
+}

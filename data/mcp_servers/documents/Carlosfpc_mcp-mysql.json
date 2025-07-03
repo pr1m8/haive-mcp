@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "Carlosfpc/mcp-mysql",
+    "owner": "Carlosfpc",
+    "repo_name": "mcp-mysql",
+    "repo_url": "https://github.com/Carlosfpc/mcp-mysql",
+    "description": "[Carlosfpc/mcp-mysql](https://github.com/Carlosfpc/mcp-mysql): Facilitates secure MySQL connections via SSH tunneling, enabling controlled database operations through an MCP server.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/Carlosfpc/mcp-mysql/master/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# MCP MySQL Server\n\nServidor MCP para conexión MySQL con túnel SSH.\n\n## Requisitos Previos\n\n- Node.js (versión 14 o superior)\n- Acceso SSH al servidor remoto\n- Cliente MySQL\n- Cursor IDE\n\n## Instalación\n\n1. Clona este repositorio:\n```bash\ngit clone [URL_DEL_REPOSITORIO]\ncd [NOMBRE_DEL_DIRECTORIO]\n```\n\n2. Crea el archivo de configuración:\n```bash\ncp mcp-config.env.example mcp-config.env\n```\n\n3. Configura las variables en `mcp-config.env`:\n\n### Variables de Configuración MySQL\n```env\n# Configuración de conexión MySQL\nMYSQL_HOST=127.0.0.1     # Host de MySQL (por defecto localhost)\nMYSQL_PORT=3306          # Puerto de MySQL (por defecto 3306)\nMYSQL_USER=              # Tu usuario de MySQL\nMYSQL_PASS=              # Tu contraseña de MySQL\nMYSQL_DB=                # Nombre de la base de datos\n\n# Permisos de operaciones\nALLOW_INSERT_OPERATION=false    # Permitir operaciones INSERT\nALLOW_UPDATE_OPERATION=false    # Permitir operaciones UPDATE\nALLOW_DELETE_OPERATION=false    # Permitir operaciones DELETE\nALLOW_SELECT_OPERATION=true     # Permitir operaciones SELECT (consultas)\n\n# Configuración SSH para túnel\nSSH_HOST=                # Hostname del servidor SSH\nSSH_USER=                # Usuario SSH\nSSH_PORT_MAPPING=3306:127.0.0.1:3306  # Mapeo de puertos para el túnel SSH\n```\n\n4. Instala las dependencias:\n```bash\nnpm install\n```\n\n## Configuración en Cursor IDE\n\n1. Localiza o crea el archivo `mcp.json` en la ruta `C:\\Users\\[TU_USUARIO]\\.cursor\\mcp.json`\n2. Añade la siguiente configuración (ajusta la ruta a la ubicación donde clonaste el repositorio):\n\n```json\n{\n  \"mcpServers\": {\n    \"MySQL\": {\n      \"transportType\": \"stdio\",\n      \"command\": \"npm\",\n      \"args\": [\"--silent\", \"--prefix\", \"RUTA_A_TU_PROYECTO\", \"run\", \"start-mcp\"]\n    }\n  }\n}\n```\n\nPor ejemplo, si clonaste el proyecto en `C:\\proyectos\\mcp-mysql`, la configuración sería:\n```json\n{\n  \"mcpServers\": {\n    \"MySQL\": {\n      \"transportType\": \"stdio\",\n      \"command\": \"npm\",\n      \"args\": [\"--silent\", \"--prefix\", \"C:\\\\proyectos\\\\mcp-mysql\", \"run\", \"start-mcp\"]\n    }\n  }\n}\n```\n\n## Uso\n\nPara iniciar el servidor:\n```bash\nnpm run start-mcp\n```\n\n## Estructura del Proyecto\n\n- `start-mcp.js`: Script principal que inicia el túnel SSH y el servidor MCP\n- `mcp-config.env`: Archivo de configuración (no incluido en el repositorio)\n- `package.json`: Definición de dependencias y scripts\n\n## Notas Importantes\n\n- No modifiques las versiones de las dependencias en package.json para mantener la compatibilidad\n- Asegúrate de tener acceso SSH configurado correctamente\n- No compartas tu archivo mcp-config.env\n- Por defecto, solo las operaciones SELECT están habilitadas. Modifica los permisos según tus necesidades\n- El túnel SSH es necesario para conexiones a bases de datos remotas. Si estás usando una base de datos local, puedes dejar la configuración SSH vacía ",
+  "extracted_at": "2025-06-13T08:55:27.856543",
+  "content_hash": "71cac84ab13f85282fd911577a2d82d1cef0d9ff39dcb6c9fc0da1ae25b50b56"
+}

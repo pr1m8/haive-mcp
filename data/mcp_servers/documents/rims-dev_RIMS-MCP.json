@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "rims-dev/RIMS-MCP",
+    "owner": "rims-dev",
+    "repo_name": "RIMS-MCP",
+    "repo_url": "https://github.com/rims-dev/RIMS-MCP",
+    "description": "[rims-dev/RIMS-MCP](https://github.com/rims-dev/RIMS-MCP): Facilitates the retrieval of RIMS information through a dedicated MCP server.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/rims-dev/RIMS-MCP/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# RIMS MCP\n\n## example\n\nQ : ルールの概要を教えて\n\nA : 今年の競技課題は「Asia Traveler」です。この競技では、ロボットが「苗」を回収し、指定されたゾーンに配置した後、国境を越えて別のゾーンに移動し、リングを回収してポールに配置するという一連のタスクを3分以内に行います。競技は赤チームと青チームの対戦形式で行われ、各チームは戦略を駆使して勝利を目指します。  \n詳細なルールや競技の進行については、公式ルールブック（最新版はこちら）をご参照ください。\n\n## 🔨 Setup\n\n### `.env`の設定\n\n以下のように`.env`ファイルを作成してください。  \nWEB_PAGE_URLの末尾には`/`を忘れずに追加してください。\n\n```env\nAPI_ENDPOINT=https://rims.tourobo.net\nWEB_PAGE_URL=https://tourobo.net/\nCOMPETITION_ID=nNzAy\n```\n\n### ⚙️ VSCode Copilot / Claude Desktopの設定\n\n#### VSCode Copilot (setting.json)\n\n`API_ENDPOINT`、`WEB_PAGE_URL`、`COMPETITION_ID`は大会ごとに異なりますので、適宜変更してください。\nなお、`WEB_PAGE_URL`は、末尾に`/`を追加してください。（例：`https://tourobo.net/`）\n\n```json\n{\n  \"mcp\": {\n    \"servers\": {\n      \"rims-mcp\": {\n        \"command\": \"docker\",\n        \"args\": [\n          \"run\",\n          \"-i\",\n          \"--rm\",\n          \"-e\", \"API_ENDPOINT={{API_ENDPOINT}}\",\n          \"-e\", \"WEB_PAGE_URL={{WEB_PAGE_URL}}\",\n          \"-e\", \"COMPETITION_ID={{COMPETITION_ID}}\",\n          \"xyzme01/rims-mcp\"\n        ],\n        \"alwaysAllow\": [\n          \"get_faq\",\n          \"get_rules\",\n          \"get_faq_keyword\",\n          \"get_news_list\",\n          \"get_news_article\",\n          \"get_team_list\"\n        ]\n      }\n    }\n  }\n}\n```\n\n#### Claude Desktop (claude_desktop_config.json)\n\n`API_ENDPOINT`、`WEB_PAGE_URL`、`COMPETITION_ID`は大会ごとに異なりますので、適宜変更してください。\nなお、`WEB_PAGE_URL`は、末尾に`/`を追加してください。（例：`https://tourobo.net/`）\n\n```json\n{\n    \"mcpServers\": {\n        \"rims-mcp\": {\n            \"command\": \"docker\",\n            \"args\": [\n                \"run\",\n                \"-i\",\n                \"--rm\",\n                \"-e\", \"API_ENDPOINT={{API_ENDPOINT}}\",\n                \"-e\", \"WEB_PAGE_URL={{WEB_PAGE_URL}}\",\n                \"-e\", \"COMPETITION_ID={{COMPETITION_ID}}\",\n                \"xyzme01/rims-mcp\"\n            ],\n            \"alwaysAllow\": [\n                \"get_faq\",\n                \"get_rules\",\n                \"get_faq_keyword\",\n                \"get_news_list\",\n                \"get_news_article\",\n                \"get_team_list\"\n            ]\n        }\n    }\n}\n```\n\n## Dockerへのビルド方法\n\n```bash\n# Dockerイメージのビルド\ndocker build -t xyzme01/rims-mcp:latest .\n\n# Docker Hubへのプッシュ\ndocker push xyzme01/rims-mcp:latest\n```\n\n## ローカルでの実行方法\n\n```bash\npython3 -m venv .venv\nsource .venv/bin/activate\npip install -r requirements.txt\npython rims_mcp_client.py\n```\n",
+  "extracted_at": "2025-06-13T08:57:05.055798",
+  "content_hash": "64317dc7949185a78f39750d8dbe0969c4f45ad9ab6203ae9d3a24811d928884"
+}

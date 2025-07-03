@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "nodetec/nostr-code-snippet-mcp",
+    "owner": "nodetec",
+    "repo_name": "nostr-code-snippet-mcp",
+    "repo_url": "https://github.com/nodetec/nostr-code-snippet-mcp",
+    "description": "[nodetec/nostr-code-snippet-mcp](https://github.com/nodetec/nostr-code-snippet-mcp): Facilitates the execution of code snippets via a node-based MCP server.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/nodetec/nostr-code-snippet-mcp/master/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# 🤖 nostr-code-snippet-mcp\n\n[video demo](https://v.nostr.build/RSMqDK9pwTIm6bxu.mp4)\n\nAdd this to your claude config file:\n\n```json\n{\n  \"mcpServers\": {\n    \"nostr-code-snippet-mcp\": {\n      \"command\": \"node\",\n      \"args\": [\"/Users/<path to>/nostr-code-snippet-mcp/dist/index.js\"],\n      \"env\": {\n        \"NSEC\": \"<some nsec>\",\n        \"RELAYS\": \"wss://relay.damus.io,wss://relay.snort.social\"\n      }\n    }\n  }\n}\n```\n\n**NOTE**: be sure to replace `<path to>` with the path to wherever you cloned the repo\n\nThe configuration file location depends on your operating system:\n\n- macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`\n- Linux: `~/.config/Claude/claude_desktop_config.json`\n- Windows: `%APPDATA%/Claude/claude_desktop_config.json`\n\n## Development\n\nInstall dependencies:\n\n```bash\nnpm install\n```\n\nBuild the project:\n\n```bash\nnpm run build\n```\n\nRun the inspector:\n\n```bash\nnpm run inspect\n```\n",
+  "extracted_at": "2025-06-13T08:55:06.577905",
+  "content_hash": "d092c46f0d3791f8526b510331c69055a4c0abd48f4c478b079368eff024bd3e"
+}

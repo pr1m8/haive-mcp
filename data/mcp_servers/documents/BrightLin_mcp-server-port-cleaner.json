@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "BrightLin/mcp-server-port-cleaner",
+    "owner": "BrightLin",
+    "repo_name": "mcp-server-port-cleaner",
+    "repo_url": "https://github.com/BrightLin/mcp-server-port-cleaner",
+    "description": "[BrightLin/mcp-server-port-cleaner](https://github.com/BrightLin/mcp-server-port-cleaner): Node.js server for resolving port conflicts by terminating processes occupying specified ports, ensuring smooth development workflows.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/BrightLin/mcp-server-port-cleaner/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# MCP Port Cleaner Server\n\nNode.js server implementing Model Context Protocol (MCP) for port cleanup operations in development environments.\n\n## Features\n\n- Finds and terminates processes occupying specified ports\n- Scans and lists all processes occupying specified ports (cross-platform support)\n- Safe input parameter validation using Zod schema\n- Detailed error handling and response formatting\n- Standard MCP protocol compliance for tool registration and request processing\n\n## Tools\n\n### port_scan\n\n**Description**: Scans and lists all processes occupying a specified port (cross-platform support).\n\n**Input Parameters**:\n\n```json\n{\n  \"port\": {\n    \"type\": \"integer\",\n    \"description\": \"scan process by specify port\",\n    \"minimum\": 1,\n    \"maximum\": 65535\n  }\n}\n```\n\n**Response**:\n- Success: Returns list of processes with details (PID, name, user, protocol)\n- Failure: Returns error information\n- Port not occupied: Returns appropriate notification\n\n### port_clean\n\n**Description**: Finds and terminates processes occupying a specified port to resolve development environment port conflicts.\n\n**Input Parameters**:\n\n```json\n{\n  \"port\": {\n    \"type\": \"integer\",\n    \"description\": \"clean process by specify port\",\n    \"minimum\": 1,\n    \"maximum\": 65535\n  }\n}\n```\n\n**Response**:\n- Success: Returns list of terminated process IDs\n- Failure: Returns error information\n- Port not occupied: Returns appropriate notification\n\n## Usage Examples\n\n### With Claude Desktop or Trae.cn\n\n#### Docker Configuration\n\nTODO\n\n#### NPX Configuration\n\n```json\n{\n  \"mcpServers\": {\n    \"port-cleaner\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"mcp-server-port-cleaner\"\n      ]\n    }\n  }\n}\n```\n\nor install globally:\n\n```bash\nnpm install -g mcp-server-port-cleaner\n```\n\nand then:\n\n```json\n{\n  \"mcpServers\": {\n    \"port-cleaner\": {\n      \"command\": \"mcp-server-port-cleaner\"\n    }\n  }\n}\n```\n\n## Implementation Details\n\nThe server implements the following components:\n\n1. **PortCleanerService**: Core business logic for port cleanup operations\n2. **PortScannerService**: Cross-platform port scanning functionality\n3. **MCP Server Integration**: Standard MCP protocol implementation with:\n   - Tool registration (`port_clean`, `port_scan`)\n   - Request handling\n   - Input validation\n4. **Error Handling**: Comprehensive error handling at both service and server levels\n\n## Error Handling\n\nThe server provides detailed error responses in all failure scenarios:\n- Invalid input parameters\n- Process termination failures\n- Unexpected runtime errors\n\n## Development Notes\n\n- The service uses platform-specific commands:\n  - Linux/Unix: `lsof`, `kill`, `netstat`\n  - Windows: `netstat`, `tasklist`, `taskkill`\n- Cross-platform compatibility implemented with process detection\n- The cleanup implementation terminates processes with SIGKILL (-9)\n\n## License\n\nThis MCP server is licensed under the MIT License. This means you are free to use, modify, and distribute the software, subject to the terms and conditions of the MIT License. For more details, please see the LICENSE file in the project repository.\n",
+  "extracted_at": "2025-06-13T08:57:02.494734",
+  "content_hash": "77ece975460d3a4c566627deea6e371da2a3a0c83b95899a7db980ac5f7cbec9"
+}

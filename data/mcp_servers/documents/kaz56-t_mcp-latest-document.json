@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "kaz56-t/mcp-latest-document",
+    "owner": "kaz56-t",
+    "repo_name": "mcp-latest-document",
+    "repo_url": "https://github.com/kaz56-t/mcp-latest-document",
+    "description": "[kaz56-t/mcp-latest-document](https://github.com/kaz56-t/mcp-latest-document): A Model Context Protocol server offering access to the latest documentation for various services.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/kaz56-t/mcp-latest-document/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# MCP Latest Document\n\nA Model Context Protocol server that provides access to the latest documentation for various services.\n\n## Requirements\n1. Python 3.10 or higher\n2. uv\n\n## Configuration\n\n### Configure for Claude Desktop\n1. clone this repository\n2. Download [Claude Desktop](https://claude.ai/download).\n3. Launch Claude and go to Settings > Developer > Edit Config.\n4. Modify `claude_desktop_config.json` with:\n\n```json\n{\n    \"mcpServers\": {\n        \"latest_document\": {\n            \"command\": \"uv\",\n            \"args\": [\n                \"--directory\",\n                \"<YOUR_PATH_TO_MCP_LATEST_DOCUMENT>\",\n                \"run\",\n                \"src/mcp_latest_document/server.py\"\n            ],\n            \"env\": {\n                \"TOOLS\": \"React, ChakraUI\",\n                \"URLS\":\"https://api.openai.com/v1\"\n            }\n        }\n    }\n}\n```\n\n4. Relaunch Claude Desktop.\n\n\n## Available Tools\n\n- `get_html_content` - Get the HTML content as markdown of a URL\n  - Required arguments:\n    - `url` (string): The URL to fetch content from\n\n- `find_link_by_keyword` - Find URL links by keyword\n  - Required arguments:\n    - `keyword` (string): Keyword to search for in links and URLs\n\n## Available Resources\n\n- `links://` - Get all available document links\n\n\n## Debugging\n\nYou can use the MCP inspector to debug the server:\n\n```bash\nuv run mcp dev ./src/mcp_latest_document/server.py\n```\n\n## For developer\n## How to test\n1. `uv run mcp dev src/mcp_latest_document/server.py`\n\n### How to deploy (To be automated)\n1. `uv run -m build`\n2. `uv run -m twine upload dist/*`\n\n## Contributing\n\nWe encourage contributions to help expand and improve mcp-latest-document. Whether you want to add new documentation sources, enhance existing functionality, or improve documentation, your input is valuable.\n\nPull requests are welcome! Feel free to contribute new ideas, bug fixes, or enhancements.\n\n## License\n\nmcp-latest-document is licensed under the MIT License. This means you are free to use, modify, and distribute the software, subject to the terms and conditions of the MIT License.\n",
+  "extracted_at": "2025-06-13T08:56:13.179233",
+  "content_hash": "4cabd86f76f628bf6c87a7bf60a0ca3a611272e055cc488d3e252ceeba813d32"
+}

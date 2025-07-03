@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "naebo/mcp-external-recon-server",
+    "owner": "naebo",
+    "repo_name": "mcp-external-recon-server",
+    "repo_url": "https://github.com/naebo/mcp-external-recon-server",
+    "description": "[naebo/mcp-external-recon-server](https://github.com/naebo/mcp-external-recon-server): Conducts active external reconnaissance with DNS enumeration, subdomain discovery, and SSL certificate inspection for offensive security engagements.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/naebo/mcp-external-recon-server/master/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# External Reconnaissance MCP Server\n\nA Model Context Protocol (MCP) server for performing active external reconnaissance activities against a domain. This tool provides a simple suite of reconnaissance capabilities including DNS enumeration, subdomain discovery, email security analysis, and SSL certificate inspection.\n\n## Want to build your own?\nThis project was created as a PoC for my tutorial on creating your own MCP server [here](https://nae-bo.medium.com/building-your-first-offensive-security-mcp-server-dd655e258d5f)\n\n> [!CAUTION]\n> This is intended solely as a demonstration and is not production-ready. Use at your own risk. Only use MCPs that you trust to run on your machine. While this is a relatively benign tool, it does run OS commands. Do not target systems that you do not have permission to target.\n\n## Features\n\n- DNS Reconnaissance\n  - Comprehensive DNS record enumeration (A, AAAA, MX, NS, SOA, TXT, SRV)\n  - DNS zone transfer attempts\n  - Subdomain enumeration & bruteforcing\n- Domain Information\n  - WHOIS lookups\n  - HTTP headers analysis\n- Email Security Assessment\n\n### System Requirements\nThe following tools need to be installed on your system:\n- dig (DNS lookup utility)\n- whois\n- dnsrecon\n\n### Required Files\nA subdomain wordlist has been supplied for brute-forcing, add to the list or replace for your own. (Note there is currently a limitation with very long wordlists).\n- dns-wordlist.txt\n\n## Usage\nFor using a pre-built server, instructions from here: https://modelcontextprotocol.io/quickstart/user\n\n1. Download Claude for Desktop\n2. Install uv\n```bash\ncurl -LsSf https://astral.sh/uv/install.sh | sh\n```\n3. Download this repo and add to Claude for Desktop config\n    - Claude for Desktop > Settings > Developer > Edit config\n    This will create a configuration file at:\n```bash\nmacOS: ~/Library/Application Support/Claude/claude_desktop_config.json\nWindows: %APPDATA%\\Claude\\claude_desktop_config.json\n```\nOpen up the configuration file in any text editor. Replace the file contents with this:\n```bash\n{\n\t\"mcpServers\": {\n\t\t\"external-recon\": {\n\t\t\t\"command\": \"/ABSOLUTE/PATH/TO/PARENT/FOLDER/uv\",\n\t\t\t\"args\": [\n\t\t\t\t\"--directory\",\n\t\t\t\t\"/ABSOLUTE/PATH/TO/PARENT/FOLDER/mcp-external-recon-server\",\n\t\t\t\t\"run\",\n\t\t\t\t\"external-recon.py\"\n\t\t\t]\n\t\t}\n}}\n```\n4. Relaunch Claude for Desktop\nYou should now see two icons in the chat bar, a hammer which shows the tools available and a connection icon which shows the prompt defined and the input required (domain name)\n\n5. Select the external-recon setup prompt and supply the target domain, you can then ask Claude to peform external recon and away she goes!\n\n## Security Considerations\n\n1. Only use against authorised targets\n2. Follow responsible disclosure practices\n3. Respect target system's resources\n\n## Contributing\n\nContributions are welcome! Please feel free to submit pull requests.\n\n## Disclaimer\n\nThis tool is for educational and authorized testing purposes only. Users are responsible for ensuring they have permission to test target systems.\n",
+  "extracted_at": "2025-06-13T08:56:51.163832",
+  "content_hash": "fdcc03435d16e1349e200f0c865e64dfa47ca34cbfa1c9ff97248490460ad77b"
+}

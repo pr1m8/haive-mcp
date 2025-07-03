@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "salamentic/google-flights-mcp",
+    "owner": "salamentic",
+    "repo_name": "google-flights-mcp",
+    "repo_url": "https://github.com/salamentic/google-flights-mcp",
+    "description": "[salamentic/google-flights-mcp](https://github.com/salamentic/google-flights-mcp): Facilitates travel agent-level flight planning using the fast-flights API, offering seamless integration with Claude Desktop.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/salamentic/google-flights-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Flight Planner MCP Server\n\nA Model Context Protocol server that creates travel agent-level flight plans using the fast-flights API.\n\n## Features\n\n- Search for one-way and round-trip flights\n- Create comprehensive travel plans based on trip parameters\n- Get airport code information\n- Use templates for common travel queries\n\n## Installation\n\n1. Make sure you have Python 3.10 or higher installed\n2. Install the required packages:\n\n```bash\npip install mcp fast-flights\n```\n\n## Usage\n\n### Running the Server\n\nYou can run the server directly:\n\n```bash\npython flight_planner_server.py\n```\n\n### Integrating with Claude Desktop\n\n1. Install [Claude Desktop](https://claude.ai/download)\n2. Create or edit your Claude Desktop configuration file:\n   - macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`\n   - Windows: `%APPDATA%\\Claude\\claude_desktop_config.json`\n\n3. Add the flight-planner server configuration:\n\n```json\n{\n  \"mcpServers\": {\n    \"flight-planner\": {\n      \"command\": \"python\",\n      \"args\": [\n        \"/PATH/TO/flight_planner_server.py\"\n      ],\n      \"env\": {\n        \"PYTHONPATH\": \"/PATH/TO/PROJECT\"\n      }\n    }\n  }\n}\n```\n\n4. Replace `/PATH/TO/` with the actual path to your server file\n5. Restart Claude Desktop\n\n### Using the MCP Inspector\n\nFor testing and development, you can use the MCP Inspector:\n\n```bash\n# Install the inspector\nnpm install -g @modelcontextprotocol/inspector\n\n# Run the inspector with your server\nnpx @modelcontextprotocol/inspector python flight_planner_server.py\n```\n\n## Available Tools\n\n- `search_one_way_flights`: Search for one-way flights between airports\n- `search_round_trip_flights`: Search for round-trip flights between airports  \n- `create_travel_plan`: Generate a comprehensive travel plan\n\n## Available Resources\n\n- `airport_codes://{query}`: Get airport code information based on a search query\n\n## Available Prompts\n\n- `flight_search_prompt`: Template for searching flights\n- `travel_plan_prompt`: Template for creating a comprehensive travel plan\n\n## Example Queries for Claude\n\nOnce integrated with Claude Desktop, you can ask things like:\n\n- \"What flights are available from NYC to SFO on 2025-04-15?\"\n- \"Can you create a travel plan for my business trip from LAX to TPE from 2025-05-01 to 2025-05-08?\"\n- \"Help me find airport codes for Tokyo.\"\n- \"What's the best time to book flights from Boston to London for a summer vacation?\"\n\n## License\n\nMIT\n",
+  "extracted_at": "2025-06-13T08:57:01.333885",
+  "content_hash": "b690edf92eff1a60bff9c3b748840242c46ef10678d88e1a82d801ed3f5dbb1d"
+}

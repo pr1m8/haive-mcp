@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "priyankark/a11y-mcp",
+    "owner": "priyankark",
+    "repo_name": "a11y-mcp",
+    "repo_url": "https://github.com/priyankark/a11y-mcp",
+    "description": "[priyankark/a11y-mcp](https://github.com/priyankark/a11y-mcp): Conducts comprehensive accessibility audits on webpages using axe-core, integrating seamlessly with AI assistants to address a11y issues.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/priyankark/a11y-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# A11y MCP Server\n\nAn MCP (Model Context Protocol) server for performing accessibility audits on webpages using axe-core. Use the results in an agentic loop with your favorite AI assistants (Cline/Cursor/GH Copilot) and let them fix a11y issues for you!\n\n## Features\n\n- Perform detailed accessibility audits on any webpage\n- Get a summary of accessibility issues\n- Filter audits by specific WCAG criteria\n- Include HTML snippets in the results for easier debugging\n\n## Installation\n\n```bash\n# Install globally\nnpm install -g a11y-mcp\n\n# Or use directly with npx\nnpx a11y-mcp\n```\n\n## Configuration\n\nTo use this MCP server with Cline, you need to add it to your MCP settings configuration file.\n\n### MCP configuration \n\nAdd the following to the `mcpServers` object:\n\n```json\n{\n  \"mcpServers\": {\n    \"a11y\": {\n      \"command\": \"npx\",\n      \"args\": [\"a11y-mcp\"],\n      \"disabled\": false,\n      \"autoApprove\": []\n    }\n  }\n}\n```\n\n## Available Tools\n\n### audit_webpage\n\nPerforms a detailed accessibility audit on a webpage.\n\n**Parameters:**\n- `url` (required): URL of the webpage to audit\n- `includeHtml` (optional): Whether to include HTML snippets in the results (default: false)\n- `tags` (optional): Array of specific accessibility tags to check (e.g., wcag2a, wcag2aa, wcag21a, best-practice)\n\n**Example:**\n```\nUse the a11y MCP server to audit example.com for accessibility issues\n```\n\n### get_summary\n\nGets a summary of accessibility issues for a webpage.\n\n**Parameters:**\n- `url` (required): URL of the webpage to audit\n\n**Example:**\n```\nGive me an accessibility summary of example.com\n```\n\n## Example Usage\n\nOnce configured, you can ask Claude to use the MCP server to perform accessibility audits:\n\n1. \"Can you check example.com for accessibility issues?\"\n2. \"Audit my website at https://mywebsite.com for WCAG 2.1 AA compliance\"\n3. \"Give me a summary of accessibility issues on https://example.com\"\n4. \"Check if my local development server at http://localhost:3000 has any critical accessibility problems\"\n\n## Development\n\nTo run the server locally for development:\n\n```bash\nnpm start\n```\n\n## Releasing\n\nThis project includes a release script to help with versioning and publishing to npm. The script handles version bumping, running tests, git tagging, and npm publishing.\n\nTo release a new version:\n\n```bash\n# Make sure the script is executable\nchmod +x release.sh\n\n# Release a patch version (default)\n./release.sh\n\n# Release a minor version\n./release.sh --minor\n\n# Release a major version\n./release.sh --major\n\n# Release a specific version\n./release.sh --version=1.2.3\n\n# Skip git operations\n./release.sh --skip-git\n\n# Dry run (no changes will be made)\n./release.sh --dry-run\n\n# Force release even with uncommitted changes\n./release.sh --force\n```\n\nFor more information, run:\n\n```bash\n./release.sh --help\n```\n\n## License\nMPL 2.0\n\n## Credits\nThis project builds atop the awesome work done by [axe-core](https://github.com/dequelabs/axe-core)\n",
+  "extracted_at": "2025-06-13T08:55:05.203468",
+  "content_hash": "4708f280886b7780055109bad5e3cb2b39607235450a9e125abfe306bfc08c1c"
+}

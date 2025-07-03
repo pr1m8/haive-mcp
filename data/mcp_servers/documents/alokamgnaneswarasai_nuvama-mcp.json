@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "alokamgnaneswarasai/nuvama-mcp",
+    "owner": "alokamgnaneswarasai",
+    "repo_name": "nuvama-mcp",
+    "repo_url": "https://github.com/alokamgnaneswarasai/nuvama-mcp",
+    "description": "[alokamgnaneswarasai/nuvama-mcp](https://github.com/alokamgnaneswarasai/nuvama-mcp): Integrates Nuvama's trading platform with Claude AI, enabling direct interaction and trading through a FastMCP server.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/alokamgnaneswarasai/nuvama-mcp/master/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Nuvama-MCP 🛠️\n\nThis project integrates Nuvama's trading platform with Claude AI using the MCP framework, allows you to interact with nuvama trading platform directly through claude AI.\n\n## Features ✨\n\n- 📈 Place buy and sell orders for stocks.\n- 📊 Fetch and display holdings from the API.\n- ⚡ FastMCP server integration for easy tool access.\n\n## Project Structure 📂\n\n- **index.py**: Contains the core logic for interacting with the trading API.\n- **trade_mcp_server.py**: Implements a FastMCP server to expose trading functionalities as tools.\n- **.gitignore**: Specifies files and directories to be ignored by Git.\n\n## Prerequisites ✅\n\n- 🐍 Python 3.x installed on your system.\n- 📦 Required Python packages installed (e.g., FastMCP, APIConnect).\n- 🔑 API credentials (API key, secret, and request ID).\n- 📄 A CSV file containing stock symbols and exchange details.\n\n## Setup Instructions 🛠️\n\n1. Clone the repository to your local machine.\n2. Install the required Python packages:\n   ```bash\n   pip install -r requirements.txt\n   ```\n3. Update the following placeholders in `index.py`:\n   - `api_key`: Your API key.\n   - `api_secret`: Your API secret.\n   - `request_id`: Your request ID.\n   - `settings_file`: Path to your settings file.\n   - `csv_file_path`: Path to your instruments CSV file.\n\n4. Run the FastMCP server:\n   ```bash\n   uv run trade_mcp_server.py\n   ```\n\n## Using the MCP Tools 🛠️\n\nThe FastMCP server exposes the following tools:\n- 🛒 **buyorder**: Place a buy order.\n- 🛍️ **sellorder**: Place a sell order.\n\nYou can call these tools directly from the MCP interface.\n\n## Configuring Claude for MCP Integration 🤖\n\nTo enable Claude to recognize the MCP tools, create a configuration file (e.g., `claude_config.json`) in the appropriate directory and add the following content:\n\n```json\n{\n    \"mcpServers\": {\n        \"trade\": {\n            \"command\": \"<path_to_uv_executable>\",\n            \"args\": [\n                \"--directory\",\n                \"<path_to_trade_directory>\",\n                \"run\",\n                \"trade_server.py\"\n            ]\n        }\n    }\n}\n```\n\nReplace `<path_to_uv_executable>` with the path to your `uv.exe` file and `<path_to_trade_directory>` with the path to your project directory. Place this configuration file in the relevant location for Claude to detect it.\n\nThis configuration allows Claude to interact with the MCP tools, enabling you to place orders directly from Claude using Natural Language.\n\nHappy Trading! 🚀\n",
+  "extracted_at": "2025-06-13T08:55:43.600442",
+  "content_hash": "3a5c809428464872361e736362a568f86c5a445981d135cdabc0978871469e33"
+}

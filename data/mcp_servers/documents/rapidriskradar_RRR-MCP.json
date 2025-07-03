@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "rapidriskradar/RRR-MCP",
+    "owner": "rapidriskradar",
+    "repo_name": "RRR-MCP",
+    "repo_url": "https://github.com/rapidriskradar/RRR-MCP",
+    "description": "[rapidriskradar/RRR-MCP](https://github.com/rapidriskradar/RRR-MCP): Facilitates the execution of RRR scripts through a configurable MCP server interface.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/rapidriskradar/RRR-MCP/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "\n{\n    \"mcpServers\": {\n        \"rrr\": {\n            \"command\": \"/Absolute/Path/uv\",\n            \"args\": [\n                \"--directory\",\n                \"/Absolute/Path/RRR\",\n                \"run\",\n                \"rrr.py\",\n                \"<api_key>\"\n            ]\n        }\n    }\n}",
+  "extracted_at": "2025-06-13T08:55:07.961845",
+  "content_hash": "ad79f269dd72811b6bf00ff1e976010136a0ddc4a438d65e1c00c1d8a8b28336"
+}

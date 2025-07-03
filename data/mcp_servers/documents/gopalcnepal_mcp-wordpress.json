@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "gopalcnepal/mcp-wordpress",
+    "owner": "gopalcnepal",
+    "repo_name": "mcp-wordpress",
+    "repo_url": "https://github.com/gopalcnepal/mcp-wordpress",
+    "description": "[gopalcnepal/mcp-wordpress](https://github.com/gopalcnepal/mcp-wordpress): Facilitates interaction with WordPress sites by fetching posts, pages, and categories using the REST API.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/gopalcnepal/mcp-wordpress/master/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# WordPress MCP Server\n\nA Model Context Protocol (MCP) server for interacting with WordPress sites. This server provides tools to fetch posts, pages, categories, and site information from any WordPress installation with REST API enabled.\n\n## Prerequisites\n\n- Python 3.13 \n- WordPress site with REST API enabled\n- UV package installer (recommended)\n\n## Installation\n\n1. Install UV (Universal Virtualenv):\n```bash\ncurl -LsSf https://astral.sh/uv/install.sh | sh\n```\n\n2. Clone the repository:\n```bash\ngit clone <repository-url>\ncd wordpress\n```\n\n3. Create and activate a virtual environment:\n```bash\nuv venv\nsource .venv/bin/activate  # On Windows, use `.venv\\Scripts\\activate`\n```\n\n4. Install dependencies using UV:\n```bash\nuv add \"mcp[cli]\" httpx\n```\n\n## Configuration\n\n1. Create a `.env` file in the project root:\n```bash\nWORDPRESS_URL=\"https://your-wordpress-site.com\"\n```\n\n## Usage\n\nUsing Claude for Desktop:\n   - First, start the server:\n   ```bash\n   uv run main.py\n   ```\n   - In Claude for Desktop, go to Settings > Developer\n   - Click \"Edit Config\"\n   - Alternative Edit config approach using VSCode in Mac/Windows:\n       ```\n       # For Mac Users\n       code ~/Library/Application\\ Support/Claude/claude_desktop_config.json\n    \n       # For Windows Users\n       code $env:AppData\\Claude\\claude_desktop_config.json\n       ```\n   - Add the file to config:\n   \n    {\n        \"mcpServers\": {\n            \"weather\": {\n                \"command\": \"uv\",\n                \"args\": [\n                    \"--directory\",\n                    \"/ABSOLUTE/PATH/TO/PARENT/FOLDER/wordpress\",\n                    \"run\",\n                    \"main.py\"\n                ]\n            }\n        }\n    }\n\nThe server provides these testable tools:\n- `fetch_wordpress_info`: Get basic site information\n- `fetch_posts`: Get recent posts\n- `fetch_categories`: List all categories\n- `fetch_posts_by_category`: Get posts in a specific category\n- `fetch_pages`: Get site pages\n- `fetch_post_by_id`: Get a specific post\n- `fetch_page_by_id`: Get a specific page\n\n## Error Handling\n\nThe server includes robust error handling for:\n- Invalid JSON responses\n- Network errors\n- WordPress API errors\n- Invalid URLs\n- API authentication issues\n",
+  "extracted_at": "2025-06-13T08:55:17.004551",
+  "content_hash": "6fb45026acfe2ce26f685b3a374926c4735f97d2297d47374fe9454c7a68bc1f"
+}

@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "loyaniu/moodle-mcp",
+    "owner": "loyaniu",
+    "repo_name": "moodle-mcp",
+    "repo_url": "https://github.com/loyaniu/moodle-mcp",
+    "description": "[loyaniu/moodle-mcp](https://github.com/loyaniu/moodle-mcp): Facilitates interaction with Moodle LMS through a Model Context Protocol server, offering features like retrieving upcoming events.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/loyaniu/moodle-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Moodle-MCP\n\n> A Model Context Protocol (MCP) server implementation that provides capabilities to interact with Moodle LMS.\n>\n> **Warning:** This project is still in development, only some functions are available.\n\n## Features\n\n- [x] Get upcoming events from Moodle\n\n## API Reference\n\nFor available Moodle API functions, please refer to the [official documentation](https://docs.moodle.org/dev/Web_service_API_functions).\n\n## Setup Instructions\n\n### Method 1: Using `mcp` CLI (recommended)\n\n1. Create your own `.env` file from `.env.example`\n2. Assume you have `uv` installed, run `uv add \"mcp[cli]\"` to install the MCP CLI tools\n3. Run `mcp install main.py -f .env` to add the moodle-mcp server to Claude app\n\n### Method 2: Using `uvx`\n\nGo to Claude > Settings > Developer > Edit Config > claude_desktop_config.json to include the following\n\n```json\n{\n  \"mcpServers\": {\n    \"moodle-mcp\": {\n      \"command\": \"uvx\",\n      \"args\": [\"moodle-mcp\"],\n      \"env\": {\n        \"MOODLE_URL\": \"https://{your-moodle-url}/webservice/rest/server.php\",\n        \"MOODLE_TOKEN\": \"{your-moodle-token}\"\n      }\n    }\n  }\n}\n```\n\n## Authentication\n\n### Getting your Moodle token\n\n1. Navigate to your Moodle token management page `https://{your-moodle-url}/user/managetoken.php`\n2. Use the token with `Moodle mobile web service` in the `Service` column\n3. Add this token to your `.env` file\n",
+  "extracted_at": "2025-06-13T08:55:18.190185",
+  "content_hash": "b28f709710544a7fa464b9a0db9a296152af35af6eb477fe77cb41b0fa82b014"
+}

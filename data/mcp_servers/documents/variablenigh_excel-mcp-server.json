@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "variablenigh/excel-mcp-server",
+    "owner": "variablenigh",
+    "repo_name": "excel-mcp-server",
+    "repo_url": "https://github.com/variablenigh/excel-mcp-server",
+    "description": "[variablenigh/excel-mcp-server](https://github.com/variablenigh/excel-mcp-server): Facilitates reading and writing spreadsheet data to MS Excel files using the Model Context Protocol.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": null,
+    "api_base_url": null
+  },
+  "readme_content": null,
+  "extracted_at": "2025-06-13T08:55:26.490145",
+  "content_hash": ""
+}

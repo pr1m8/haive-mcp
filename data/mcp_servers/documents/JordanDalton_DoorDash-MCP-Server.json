@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "JordanDalton/DoorDash-MCP-Server",
+    "owner": "JordanDalton",
+    "repo_name": "DoorDash-MCP-Server",
+    "repo_url": "https://github.com/JordanDalton/DoorDash-MCP-Server",
+    "description": "[JordanDalton/DoorDash-MCP-Server](https://github.com/JordanDalton/DoorDash-MCP-Server): Facilitates integration with DoorDash through a customizable MCP server setup.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/JordanDalton/DoorDash-MCP-Server/main/readme.md",
+    "api_base_url": null
+  },
+  "readme_content": "# MCP Server Guide\n\nTo build the MCP server, run:\n\n```\nnpm install && npm run build\n```\n\nThis will compile the typescript files and produce a build directory plus it will output the json you can copy/paste into your MCP client (Claude Desktop, Windsurf, Cursor, etc.)\n\nIf all things go well, this will produce an output similar to this:\n\n```json\n{\n  \"mcpServers\": {\n    \"doordash\": {\n      \"command\": \"node\",\n      \"args\": [\n        \"<thePathToYour>/build/index.js\"\n      ],\n      \"env\": [\n        {\n          \"DOORDASH_API_KEY\": \"<REPLACE>\"\n        }\n      ]\n    }\n  }\n}\n```\n\n## Support & Feedback\nIf things do not compile, or you have more advanced needs, please reach out to me at, jordan@daltonsolutions.com.\n\n## Sharing\n\nIf you have found value in this service please share it on social media. You can tag me [@jordandalton](https://x.com/jordankdalton) on X, or [jdcarnivore](https://www.reddit.com/user/jdcarnivore) on Reddit.",
+  "extracted_at": "2025-06-13T08:57:00.113986",
+  "content_hash": "2a025ee7a12fb6df2fd732c456a61313de640081c108d958491b6227f3487308"
+}

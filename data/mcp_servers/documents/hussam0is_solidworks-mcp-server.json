@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "hussam0is/solidworks-mcp-server",
+    "owner": "hussam0is",
+    "repo_name": "solidworks-mcp-server",
+    "repo_url": "https://github.com/hussam0is/solidworks-mcp-server",
+    "description": "[hussam0is/solidworks-mcp-server](https://github.com/hussam0is/solidworks-mcp-server): Enables AI assistants to perform CAD operations in SolidWorks through natural language requests.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": null,
+    "api_base_url": null
+  },
+  "readme_content": null,
+  "extracted_at": "2025-06-13T08:55:53.985173",
+  "content_hash": ""
+}

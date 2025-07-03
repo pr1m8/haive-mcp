@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "albertdow/mcp-datapi",
+    "owner": "albertdow",
+    "repo_name": "mcp-datapi",
+    "repo_url": "https://github.com/albertdow/mcp-datapi",
+    "description": "[albertdow/mcp-datapi](https://github.com/albertdow/mcp-datapi): Facilitates access to ECMWF's Climate Data Store catalogues and job statuses through an MCP server interface.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/albertdow/mcp-datapi/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Climate Data Store (CDS) MCP Server\n\n## Overview\n\nA Model Context Protocol (MCP) server implementation that provides the LLM an\ninterface to retrieve [CDS](https://cds.climate.copernicus.eu/) catalogue data and job statuses.\nThe underlying API is `datapi` - docs found [here](https://ecmwf-projects.github.io/datapi/).\n\n## Features\n\n- Tools:\n  - `get_jobs`: find the jobs available, optionally add a filter based on status.\n    Returns a list of job ids.\n  - `download_job_result`: downloads the job result using job id.\n  - `get_all_collections`: gets all available collection ids in the catalogue.\n  - `get_collection_by_id`: fetches information for a specified collection.\n  - `submit_job`: submits a download request.\n\n- Environment variable support using `.env`.\n\n## Prerequisites\n\n- Python 3.13 or higher.\n- CDS API Key: [here](https://cds.climate.copernicus.eu/)\n- MCP Host/Client: tested on Claude Desktop and the MCP Inspector.\n\n## Installation\n\n- Clone the repository:\n\n```bash\ngit clone git@github.com:albertdow/mcp-datapi.git\ncd mcp-datapi\n```\n\n- Install dependencies (using `uv`):\n\n```bash\nuv add \"mcp[cli]\" datapi python-dotenv\n```\n\n- Setup CDS API key by creating a `.env` file and adding the following:\n\n```bash\nDATAPI_URL=<DATAPI_URL>\nDATAPI_KEY=<DATAPI_KEY>\n```\n\nDetails on CDS API key setup can be found [here](https://cds.climate.copernicus.eu/how-to-api).\n\n## Usage\n\n### Dev Mode with MCP Inspector\n\nTest the server locally:\n\n```bash\nmcp dev datapi_server.py\n```\n\n### Integrate with Claude Desktop\n\n```bash\nmcp install datapi_server.py --name \"DatapiServer\" -f .env\n```\n\nOr directly put add to your `claude_desktop_config.json`:\n\n```json\n{\n    \"mcpServers\": {\n        \"DatapiServer\": {\n            \"command\": \"uv\",\n            \"args\": [\n                \"--directory\",\n                \"mcp-datapi\",\n                \"run\",\n                \"mcp_datapi/datapi_server.py\"\n            ],\n            \"env\": {\n                \"DATAPI_URL\": \"<DATAPI_URL>\",\n                \"DATAPI_KEY\": \"<DATAPI_KEY>\"\n            }\n        }\n    }\n}\n```\n\nNote:\n\n- I had to specify the path to `uv`, e.g. `/Users/username/.local/bin/uv`.\n",
+  "extracted_at": "2025-06-13T08:55:20.904556",
+  "content_hash": "5c0def8bc9a7e20aff96a1ad39b5990f709a275e2e203ac44185f931f8f11d2e"
+}

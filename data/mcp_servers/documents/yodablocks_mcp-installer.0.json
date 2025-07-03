@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "yodablocks/mcp-installer.0",
+    "owner": "yodablocks",
+    "repo_name": "mcp-installer.0",
+    "repo_url": "https://github.com/yodablocks/mcp-installer.0",
+    "description": "[yodablocks/mcp-installer.0](https://github.com/yodablocks/mcp-installer.0): Facilitates the installation of MCP servers from npm or PyPi using Claude, streamlining server setup processes.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/yodablocks/mcp-installer.0/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# mcp-installer - A MCP Server to install MCP Servers\n\nThis server is a server that installs other MCP servers for you. Install it, and you can ask Claude to install MCP servers hosted in npm or PyPi for you. Requires `npx` and `uv` to be installed for node and Python servers respectively.\n\n### How to install:\n\nPut this into your `claude_desktop_config.json` (either at `~/Library/Application Support/Claude` on macOS or `C:\\Users\\NAME\\AppData\\Roaming\\Claude` on Windows):\n\n```json\n  \"mcpServers\": {\n    \"mcp-installer\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"@yodablocks/mcp-installer\"\n      ]\n    }\n  }\n```\n\n### Example prompts\n\n> - Hey Claude, install the MCP server named mcp-server-fetch </br>\n> - Hey Claude, install the @modelcontextprotocol/server-filesystem package as an MCP server. Use ['/Users/yodablocks/Desktop'] for the arguments </br>\n> - Hi Claude, please install the MCP server at /Users/anibetts/code/mcp-youtube, I'm too lazy to do it myself. </br>\n> - Install the server @modelcontextprotocol/server-github. Set the environment variable GITHUB_PERSONAL_ACCESS_TOKEN to '1234567890'\n",
+  "extracted_at": "2025-06-13T08:54:56.454606",
+  "content_hash": "9dbd2c6616306f89b2e48dd48ab3c34983383eabba811c2cb736b15cff9961e9"
+}

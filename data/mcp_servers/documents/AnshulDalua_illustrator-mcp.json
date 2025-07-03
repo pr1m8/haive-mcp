@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "AnshulDalua/illustrator-mcp",
+    "owner": "AnshulDalua",
+    "repo_name": "illustrator-mcp",
+    "repo_url": "https://github.com/AnshulDalua/illustrator-mcp",
+    "description": "[AnshulDalua/illustrator-mcp](https://github.com/AnshulDalua/illustrator-mcp): Facilitates script execution in Adobe Illustrator via MCP, leveraging JavaScript and AppleScript on MacOS.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": 1,
+    "last_updated": "2025-04-11T19:35:27Z",
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/AnshulDalua/illustrator-mcp/main/README.md",
+    "api_base_url": "https://api.github.com/repos/AnshulDalua/illustrator-mcp"
+  },
+  "readme_content": "# Illustrator MCP Server\nAdobe Illustrator is compatible with JavaScript. In fact, some super big stuff you need to programmatically generate with these scripts. Bots are good at JavaScript.\n\nThis MCP server let's bots send scripts straight to Illustrator and look at the result.\n\nSince it depends on AppleScript, it's only compatible with MacOS. and I've only tested it with Claude Desktop.\n`~/Library/Application\\ Support/Claude/claude_desktop_config.json`\n\n```\n{\n    \"mcpServers\": {\n        \"illustrator\": {\n            \"command\": \"uv\",\n            \"args\": [\n                \"--directory\",\n                \"/Users/you/code/mcp/illustrator-mcp-server\",\n                \"run\",\n                \"illustrator\"\n            ]\n        }\n    }\n}\n```\n",
+  "extracted_at": "2025-06-13T08:54:46.343631",
+  "content_hash": "2af6ecf1088665a6357d465b8b5a6924dd77a4d3b40c45e89f03c8caa8ad9fdd"
+}

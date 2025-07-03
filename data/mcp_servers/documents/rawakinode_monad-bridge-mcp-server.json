@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "rawakinode/monad-bridge-mcp-server",
+    "owner": "rawakinode",
+    "repo_name": "monad-bridge-mcp-server",
+    "repo_url": "https://github.com/rawakinode/monad-bridge-mcp-server",
+    "description": "[rawakinode/monad-bridge-mcp-server](https://github.com/rawakinode/monad-bridge-mcp-server): Facilitates bridging between Ethereum Sepolia and Monad Testnet networks using the Wormhole bridge.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/rawakinode/monad-bridge-mcp-server/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "<<<<<<< HEAD\n# monad-bridge-mcp-server\nMonad MCP server for Bridge tools\n=======\n\n# Monad Bridge MCP Server\n\nA lightweight Model Context Protocol (MCP) server that enables bridging functionality between Ethereum Sepolia and Monad Testnet networks using the Wormhole bridge.\n\n## 🚀 Supported Capabilities\n\nThis MCP server provides the following tools:\n\n- `get-wallet-address`: Get wallet address from private key.\n- `get-eth-balance`: Check ETH balance on Sepolia testnet.\n- `get-mon-balance`: Check MON balance on Monad testnet.\n- `bridge-sepolia-wmon-to-monad`: Bridge wrapped MON (wMON) on Sepolia to MON on Monad.\n- `bridge-monad-to-sepolia-wmon`: Bridge MON from Monad to wMON on Sepolia.\n\n## 🛠 Configuration\n\nMake sure to set up your `claude_dekstop_config.json` file with the following environment variable:\n\n```json\n{\n  \"mcpServers\": {\n    \"monad-mcp\": {\n      \"command\": \"node\",\n      \"args\": [\n        \"<your-local-path>monad-bridge-mcp-server\\\\build\\\\index.js\"\n      ],\n      \"env\": {\n        \"PRIVATE_KEY\": \"<your-private-key>\" \n      }\n    }\n  }\n}\n\n```\n\n## 🧱 Server Initialization\n\n```ts\nconst server = new McpServer({\n  name: \"monad-mcp\",\n  version: \"0.1.0\",\n  capabilities: [\n    \"get-wallet-address\",\n    \"get-eth-balance\",\n    \"get-mon-balance\",\n    \"bridge-sepolia-wmon-to-monad\",\n    \"bridge-monad-to-sepolia-wmon\",\n  ]\n});\n```\n\n## 🔗 Important Links\n\n- [View on Etherscan Sepolia](https://sepolia.etherscan.io/)\n- [View on Monad Testnet Explorer](https://testnet.monadexplorer.com/)\n- [Wormhole Scan (Testnet)](https://wormholescan.io/?network=Testnet)\n\n## 📦 Repository\n\nDeveloped by [Rawakinode](https://github.com/rawakinode)\n>>>>>>> 0bbb652 (new commit)\n",
+  "extracted_at": "2025-06-13T08:55:42.223025",
+  "content_hash": "a7e211c2f213aad4e632a11159276d01b40e573280ce63229c470a94e7bbc194"
+}

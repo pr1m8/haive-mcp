@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "elhadjaoui/pr_reviewer",
+    "owner": "elhadjaoui",
+    "repo_name": "pr_reviewer",
+    "repo_url": "https://github.com/elhadjaoui/pr_reviewer",
+    "description": "[elhadjaoui/pr_reviewer](https://github.com/elhadjaoui/pr_reviewer): An MCP server that integrates with Claude Desktop to analyze GitHub Pull Requests and automatically saves reviews to Google Drive.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/elhadjaoui/pr_reviewer/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# MCP Server\n\n\n\nThis project implements an MCP (Model Context Protocol) server integrated with Claude Desktop. The server automatically analyzes your Pull Requests, reviews your changes, and adds comments directly to the modified files. It can also approve and merge your PRs. Additionally, the review is saved to a Google Doc in your Google Drive.\n\n\n## Prerequisites\n\nBefore running the MCP server, ensure you have the following libraries installed:\n\n- `requests` \n- `python-dotenv` \n- `mcp[cli]` \n- `pydrive` \n\n\nIf additional libraries are required, install them using `pip`  or `uv` as needed.\n\n## How to Run the MCP Server\n\nFollow these steps to set up and run the MCP server:\n\n\n## Claude Desktop Configuration\n\nAfter cloning  the repository, you'll need to configure Claude Desktop to run the MCP server.\n1. [Download](https://claude.ai/download) Claude Desktop\n2. Open **Settings** → **Developer**.\n3. Click **Edit Config**, then paste the following code:\n\n```json\n{\n  \"mcpServers\": {\n    \"pr_reviewer\": {\n      \"command\": \"uv\",\n      \"args\": [\n        \"--directory\",\n        \"/path/to/mcp/project\",\n        \"run\",\n        \"pr-analyzer.py\"\n      ]\n    }\n  }\n}\n```\n\n> **Note:**  \n> If you don't have [uv](https://docs.astral.sh/uv/getting-started/installation/) installed, you can modify the config to use `python` instead of `uv` to run the MCP.\n\n---\n\n## GitHub Setup\n\nTo generate a GitHub token:\n\n1. Log in to your GitHub account and navigate to **Settings** → **Developer Settings** → **Personal Access Tokens**.\n2. Click **Generate New Token** (choose the **classic** version).\n3. Provide a name for the token and enable the following permissions:\n   - `read:org`\n   - `read:repo_hook`\n   - `repo`\n4. Click **Generate** to create the token.\n5. Save the token, you will need it in the `.env` file later.\n\n---\n\n## Google Drive Setup\n\nTo enable Google Drive access, make sure you set up authentication.\n\nFollow this [guide](https://d35mpxyw7m7k7g.cloudfront.net/bigdata_1/Get+Authentication+for+Google+Service+API+.pdf) to obtain your credentials.\n\n---\n\n## Creating the `.env` File\n\nCreate a `.env` file in the project directory and add the following:\n\n```env\nGITHUB_TOKEN=\"\"\nGOOGLE_PARENT_FOLDER_ID=\"\" # optional\n```\n\n`GOOGLE_PARENT_FOLDER_ID` is the ID of the Google Drive folder where your generated reviews will be organized.  \n You can find it as the last part of the URL in a link like:  \n`https://drive.google.com/drive/folders/<folder_id>`\n\n## Demo\n\n[![Watch the video](/pr_reviewer/thumb.png)](https://www.youtube.com/watch?v=Jr7fcfBEWPQ&ab_channel=MohamedElhadjaoui)\n\n",
+  "extracted_at": "2025-06-13T08:55:32.362159",
+  "content_hash": "be06bbc32dc81d2129fa928b2fdee4fd34f2a42d319f78b5c46a35742ce65061"
+}

@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "melihteke/Subnet-Calculator-MCP-Server",
+    "owner": "melihteke",
+    "repo_name": "Subnet-Calculator-MCP-Server",
+    "repo_url": "https://github.com/melihteke/Subnet-Calculator-MCP-Server",
+    "description": "[melihteke/Subnet-Calculator-MCP-Server](https://github.com/melihteke/Subnet-Calculator-MCP-Server): Facilitates subnet calculations using CIDR notation through an MCP server with SSE transport.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/melihteke/Subnet-Calculator-MCP-Server/master/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Subnet Calculator MCP Server\n![alt text](images/image-8.png)\nThis project provides a simple MCP (Model Context Protocol) server for calculating subnet details based on a given CIDR (Classless Inter-Domain Routing) notation. It uses the FastMCP library to expose the subnet calculation functionality as a tool.\n\n## Features\n1. Calculate subnet details for a given CIDR.\n2. Provides:\n- Network address\n- Broadcast address\n- Netmask\n- Wildcard mask\n- Usable host range\n- Number of usable hosts\n3. Runs as an MCP server with SSE (Server-Sent Events) transport.\n\n## Requirements\n- Python 3.7+\n- fastmcp library\n\n## Installation\n- Clone the repository or copy the script.\n- Install the required dependencies:\n```sh\npip install fastmcp mcp[cli]\n```\n\n## Usage\nTHis MCP runs with SSE transport mode.\n\nRun the MCP server:\n```sh\npython main.py\n```\n\n## How to add this Server to your MCP Client\n\n### Goose MCP Client\n- Click Menu (\"...\" icon) and select Advanced settings:\n\n![alt text](images/image.png)\n\n![alt text](images/image-1.png)\n\n- Go extentions section\n\n![alt text](images/image-2.png)\n\n- Select \"Add custom extentions\"\n\n![alt text](images/image-3.png)\n\n- Select Server-Sent Events as Type\n- Select a random ID\n- Select Name for the MCP Server\n- Sleect Description\n- Enter URI : https://mcp-subnet-calculator.mteke.com/sse\n- Click Add button\n\n![alt text](images/image-5.png)\n\nNow the MCP Server(extention is added and enabled)\n![alt text](images/image-6.png)\n\nNow the MCP server is activated:\n![alt text](images/image-7.png)\n\n\nYou can watch the video to demonstrate how to enable mcp server on Goose Client App:\n[![Watch the demo](https://img.youtube.com/vi/SZ-UcUz4_Bk/0.jpg)](https://www.youtube.com/shorts/SZ-UcUz4_Bk)\n\n\n\n### Claude Desktop MCP Client\n- Select Claude Desktop Settings\n- Select Developer and Edit config\n- Change claude_desktop_config.json content to below\n```sh\n{\n  \"mcpServers\": {\n    \"mcp-subnet-calculator-sse\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"supergateway\",\n        \"--sse\",\n        \"https://mcp-subnet-calculator.mteke.com/sse\"\n      ]\n    }\n  }\n}\n```\n- Close Claude Desktop App completely and restart it\n\nYou can watch the video to demonstrate how to enable mcp server on Claude Desktop Client App:\n\n[![Watch the demo](https://img.youtube.com/vi/o2qw11WIHsA/0.jpg)](https://youtu.be/o2qw11WIHsA)\n\n\nHow to add Subnet Calculator MCP Server to your Goose Client\n\n[![Watch the demo](https://img.youtube.com/vi/V-7QSZjYh0U/0.jpg)](https://youtu.be/V-7QSZjYh0U)\n\n\nHow to add Subnet Calculator MCP Server to N8N Instance\n\n[![Watch the demo](https://img.youtube.com/vi/utFyDyKUIxg/0.jpg)](https://youtu.be/utFyDyKUIxg)\n\n",
+  "extracted_at": "2025-06-13T08:56:07.274862",
+  "content_hash": "2fe7f721486148bf23537c7d7f732fc30373a51d4ba43c2205447b0a282e3960"
+}

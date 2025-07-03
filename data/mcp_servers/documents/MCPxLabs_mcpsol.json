@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "MCPxLabs/mcpsol",
+    "owner": "MCPxLabs",
+    "repo_name": "mcpsol",
+    "repo_url": "https://github.com/MCPxLabs/mcpsol",
+    "description": "[MCPxLabs/mcpsol](https://github.com/MCPxLabs/mcpsol): Facilitates AI-driven interactions with the Solana blockchain, enabling seamless execution of transactions and management of wallets through a standardized interface.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": null,
+    "api_base_url": null
+  },
+  "readme_content": null,
+  "extracted_at": "2025-06-13T08:55:41.068322",
+  "content_hash": ""
+}

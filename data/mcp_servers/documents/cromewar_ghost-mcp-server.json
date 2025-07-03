@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "cromewar/ghost-mcp-server",
+    "owner": "cromewar",
+    "repo_name": "ghost-mcp-server",
+    "repo_url": "https://github.com/cromewar/ghost-mcp-server",
+    "description": "[cromewar/ghost-mcp-server](https://github.com/cromewar/ghost-mcp-server): Facilitates seamless blog posting to Ghost CMS using Claude AI via the FastMCP framework.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/cromewar/ghost-mcp-server/master/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Ghost MCP Server\n\nA server that integrates Ghost CMS with Claude AI through the FastMCP framework.\n\n## Requirements\n\n- Python 3.11+\n- [uv](https://github.com/astral-sh/uv) - Required to run this server\n\n## Setup\n\n1. Clone the repository\n2. Create a virtual environment (optional but recommended):\n   ```bash\n   uv venv\n   source .venv/bin/activate  # On Windows: .venv\\Scripts\\activate\n   ```\n3. Install dependencies using uv (dependencies are defined in pyproject.toml):\n   ```bash\n   uv pip install .\n   ```\n4. Set up environment variables by copying `.env.example` to `.env`:\n   ```bash\n   cp .env.example .env\n   ```\n5. Configure your `.env` file with your Ghost API credentials:\n   ```\n   GHOST_API_KEY=your_ghost_api_key_here\n   GHOST_API_URL=https://your-ghost-blog.com/ghost/api/admin/posts\n   GHOST_API_VERSION=v5.116.1\n   ```\n\n## Claude Desktop Configuration\n\nTo use this server with Claude Desktop, you need to configure it in Claude's MCP settings:\n\n1. Open Claude Desktop\n2. Go to Settings > Developer > MCP Servers\n3. Add a new MCP Server configuration similar to:\n\n```json\n{\n  \"mcpServers\": {\n    \"ghost-mcp\": {\n      \"command\": \"/path/to/your/uv\",\n      \"args\": [\n        \"--directory\",\n        \"/path/to/your/ghost-mcp\",\n        \"run\",\n        \"mcp_server.py\"\n      ]\n    }\n  }\n}\n```\n\nReplace `/path/to/your/uv` with the actual path to your uv executable and `/path/to/your/ghost-mcp` with the absolute path to this project directory.\n\n## Usage\n\nOnce configured, you can use the `ghost_post` tool from Claude to create blog posts directly in your Ghost CMS:\n\n```\nCreate a blog post with title \"My First Post\" and content \"Hello, world!\"\n```\n\nThe tool supports the following parameters:\n- title: The title of the blog post\n- content: Markdown content for the post\n- author_id: ID of the author (default: \"1\")\n- tags: List of tag names\n- status: Post status (draft, published)\n- feature_image: URL for the post's cover image\n- code_language: Default language for code blocks\n",
+  "extracted_at": "2025-06-13T08:55:16.998057",
+  "content_hash": "f42cb1863d955ed0db384c3f48b0b553c87fc2eb067656cc8b3dcf9d11fb5aee"
+}

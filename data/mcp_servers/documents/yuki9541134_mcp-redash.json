@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "yuki9541134/mcp-redash",
+    "owner": "yuki9541134",
+    "repo_name": "mcp-redash",
+    "repo_url": "https://github.com/yuki9541134/mcp-redash",
+    "description": "[yuki9541134/mcp-redash](https://github.com/yuki9541134/mcp-redash): Facilitates SQL query execution and data source management through Redash API integration.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/yuki9541134/mcp-redash/master/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Redash MCPサーバー\n\nRedash APIのMCPサーバーで、クエリの実行、結果の取得などの機能を提供します。\n\n## ツール\n\n1. `execute_query_and_wait`\n   * クエリを実行し、結果が利用可能になるまで待機します\n   * 入力パラメータ:\n     * `data_source_id` (数値): クエリを実行するデータソースのID\n     * `query` (文字列): 実行するSQLクエリ\n   * 戻り値: 利用可能になったクエリ結果\n\n2. `list_data_sources`\n   * 利用可能なすべてのデータソースを一覧表示します\n   * 入力パラメータ: なし\n   * 戻り値: データソースの配列\n\n3. `get_data_source`\n   * 特定のデータソースに関する詳細を取得します\n   * 入力パラメータ:\n     * `data_source_id` (数値): データソースのID\n   * 戻り値: データソースの詳細情報\n\n## セットアップ\n\n### APIキー\n\nRedash APIキーを取得してください。\n\n1. Redashにログイン\n2. 「Edit Profile」をクリック\n3. APIキーをコピーする\n\n### 環境変数\n\n以下の環境変数が必要です:\n\n* `REDASH_API_KEY`: RedashのAPIキー\n* `REDASH_BASE_URL`: RedashのURL（例: https://redash.example.com）\n\n### git clone\n\nこのリポジトリをローカルにcloneしてください\n\n### npxで利用する場合\n\nビルドとnpxコマンドの登録を行ってください\n\n```sh\nnpm install\nnpm run build\nnpm link\n```\n\nClaude DesktopまたはCursorのMCP設定に以下を追加してください\n\n```json\n{\n  \"mcpServers\": {\n    \"redash\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"mcp-redash\"\n      ],\n      \"env\": {\n        \"REDASH_API_KEY\": \"<YOUR_API_KEY>\",\n        \"REDASH_BASE_URL\": \"https://redash.example.com\"\n      }\n    }\n  }\n}\n```\n\n### Dockerで利用する場合\n\nビルドを行ってください\n\n```sh\ndocker build -t yuki9541134/mcp-redash .\n```\n\nClaude DesktopまたはCursorのMCP設定に以下を追加してください\n\n```json\n{\n  \"mcpServers\": {\n    \"redash\": {\n      \"command\": \"docker\",\n      \"args\": [\n        \"run\",\n        \"-i\",\n        \"--rm\",\n        \"-e\", \"REDASH_API_KEY\",\n        \"-e\", \"REDASH_BASE_URL\",\n        \"yuki9541134/mcp-redash\"\n      ],\n      \"env\": {\n        \"REDASH_API_KEY\": \"<YOUR_API_KEY>\",\n        \"REDASH_BASE_URL\": \"https://redash.example.com\"\n      }\n    }\n  }\n}\n```\n",
+  "extracted_at": "2025-06-13T08:56:25.669848",
+  "content_hash": "2dd8e3dff228e9a9ed87ef7b64894e9096074415977575c7d292f7e9d49bb10d"
+}

@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "kennyfong19931/mcp-hk-transport-eta",
+    "owner": "kennyfong19931",
+    "repo_name": "mcp-hk-transport-eta",
+    "repo_url": "https://github.com/kennyfong19931/mcp-hk-transport-eta",
+    "description": "[kennyfong19931/mcp-hk-transport-eta](https://github.com/kennyfong19931/mcp-hk-transport-eta): Facilitates real-time public transport ETA retrieval in Hong Kong via an MCP server.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/kennyfong19931/mcp-hk-transport-eta/main/readme.md",
+    "api_base_url": null
+  },
+  "readme_content": "# mcp-hk-transport-eta\n\nThis is an MCP server for API from [siri-shortcut-hk-bus-eta](https://github.com/kennyfong19931/siri-shortcut-hk-bus-eta) repo. It allows mcp clients to find Hong Kong transport route and next arrival.\n\n#### Features\n\n- [x] Get route list with route no.\n- [x] Get eta from stop\n\n## Usage\n\n### Claude Desktop Configuration\n\n```json\n{\n  \"mcpServers\": {\n    \"hk-transport-eta\": {\n      \"type\": \"stdio\",\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"mcp-hk-transport-eta\"\n      ]\n    }\n  }\n}\n```\n\n## Development\n\n### Setting up Development Environment\n\nTo set up the development environment, follow these steps:\n\n1. Install dependencies:\n\n   ```sh\n   npm install\n   ```\n\n1. Start the model context protocol development server:\n\n   ```sh\n   npm run inspect\n   ```\n",
+  "extracted_at": "2025-06-13T08:57:00.167115",
+  "content_hash": "67d88d660294ed810631990dbb96d683e0566848424cb04a9ca56e108a4d08c0"
+}

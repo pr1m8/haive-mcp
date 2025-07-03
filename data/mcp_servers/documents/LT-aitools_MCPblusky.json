@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "LT-aitools/MCPblusky",
+    "owner": "LT-aitools",
+    "repo_name": "MCPblusky",
+    "repo_url": "https://github.com/LT-aitools/MCPblusky",
+    "description": "[LT-aitools/MCPblusky](https://github.com/LT-aitools/MCPblusky): Connects to Bluesky and enables natural language interaction with ATProtocol features, enhancing LLM applications with contextual data from Bluesky.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": null,
+    "api_base_url": null
+  },
+  "readme_content": null,
+  "extracted_at": "2025-06-13T08:56:54.557361",
+  "content_hash": ""
+}

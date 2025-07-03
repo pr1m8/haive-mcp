@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "bourbonkk/k8s-pilot",
+    "owner": "bourbonkk",
+    "repo_name": "k8s-pilot",
+    "repo_url": "https://github.com/bourbonkk/k8s-pilot",
+    "description": "[bourbonkk/k8s-pilot](https://github.com/bourbonkk/k8s-pilot): Centralized control plane server for managing multiple Kubernetes clusters with intuitive APIs and multi-cluster context switching.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/bourbonkk/k8s-pilot/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "\n![k8s-pilot-ci](https://github.com/user-attachments/assets/e2bc58d2-5ede-448b-bf4f-a3bb2c02cea4)\n\n\n[![smithery badge](https://smithery.ai/badge/@bourbonkk/k8s-pilot)](https://smithery.ai/server/@bourbonkk/k8s-pilot) [![Verified on MseeP](https://mseep.ai/badge.svg)](https://mseep.ai/app/8645910c-340b-4f56-a03e-2c90d115a76f)\n\n**The Central Pilot for Your Kubernetes Fleets ✈️✈️**\n\n`k8s_pilot` is a lightweight, centralized control plane server for managing **multiple Kubernetes clusters** at once.  \nWith powerful tools and intuitive APIs, you can observe and control all your clusters from one cockpit.\n\n---\n\n## 🚀 Overview\n\n- 🔄 Supports **multi-cluster context switching**\n- 🔧 Enables **CRUD operations** on most common Kubernetes resources\n- ⚙️ Powered by [MCP](https://modelcontextprotocol.io/) for Claude AI and beyond\n\n---\n\n## 🧰 Prerequisites\n\n- Python **3.13** or higher\n- [`uv`](https://github.com/astral-sh/uv) package manager\n- Access to Kubernetes clusters (`~/.kube/config` or in-cluster config)\n\n```bash\n# Install uv (if not installed)\n\n# For MacOS\nbrew install uv\n\n# For Linux\ncurl -LsSf https://astral.sh/uv/install.sh | sh\n```\n\n## Installation\n\n```bash\n# Clone the repository\ngit clone https://github.com/bourbonkk/k8s-pilot.git\ncd k8s-pilot\n\n# Launch with uv + MCP\nuv run --with mcp[cli] mcp run k8s_pilot.py\n```\n\n## Usage with Claude Desktop\n\nUse this config to run k8s_pilot MCP server from within Claude:\n\n```json\n{\n  \"mcpServers\": {\n    \"k8s_pilot\": {\n      \"command\": \"uv\",\n      \"args\": [\n        \"--directory\",\n        \"<path-to-cloned-repo>/k8s-pilot\",\n        \"run\",\n        \"--with\",\n        \"mcp[cli]\",\n        \"mcp\",\n        \"run\",\n        \"k8s_pilot.py\"\n      ]\n    }\n  }\n}\n```\n\nReplace <path-to-cloned-repo> with the actual directory where you cloned the repo.\n\n## Scenario\nCreate a Deployment using the nginx:latest image in the pypy namespace, and also create a Service that connects to it.\n![deploy와 서비스생성(영어](https://github.com/user-attachments/assets/eddc4ddf-ead9-47f2-aabc-e4e9e80a1e83)\n\n\n## Key Features\n\n### Multi-Cluster Management\n\n- Seamlessly interact with multiple Kubernetes clusters\n- Perform context-aware operations\n- Easily switch between clusters via MCP prompts\n\n### Resource Control\n\n- View, create, update, delete:\n    - Deployments, Services, Pods\n    - ConfigMaps, Secrets, Ingresses\n    - StatefulSets, DaemonSets\n    - Roles, ClusterRoles\n    - PersistentVolumes & Claims\n\n### Namespace Operations\n\n- Create/delete namespaces\n- List all resources in a namespace\n- Manage labels and resource quotas\n\n### Node Management\n\n- View node details and conditions\n- Cordon/uncordon, label/taint nodes\n- List pods per node\n\n# License\n\nThis project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.\n",
+  "extracted_at": "2025-06-13T08:56:07.163881",
+  "content_hash": "a38346211121a231152de2653e5a376af3e56aef28e624e5d51cdaa48c8d42a7"
+}

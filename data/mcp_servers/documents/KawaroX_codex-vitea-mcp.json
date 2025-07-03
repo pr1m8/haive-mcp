@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "KawaroX/codex-vitea-mcp",
+    "owner": "KawaroX",
+    "repo_name": "codex-vitea-mcp",
+    "repo_url": "https://github.com/KawaroX/codex-vitea-mcp",
+    "description": "[KawaroX/codex-vitea-mcp](https://github.com/KawaroX/codex-vitea-mcp): A specialized MCP server for ViteaOS that connects AI assistants with MongoDB to manage personal information, including item location, travel time estimation, contact management, biodata analysis, and task tracking.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/KawaroX/codex-vitea-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Codex Vitea MCP\n\nViteaOS 个人信息管理系统的专用 MCP 服务器，用于连接 AI 助手与 MongoDB 数据库。\n\n## 主要功能\n\n- **物品查找**：轻松查询物品位置、容器和状态\n- **出行时间估算**：基于历史行走速度数据计算路线时间\n- **联系人管理**：查询联系人信息、笔记和关系\n- **生物数据分析**：记录和分析各类生理指标和测量记录\n- **任务跟踪**：管理待办事项、截止日期和优先级\n\n## 安装\n\n```bash\n# 克隆仓库\ngit clone https://github.com/yourusername/codex-vitea-mcp.git\ncd codex-vitea-mcp\n\n# 安装依赖\nnpm install\n\n# 构建项目\nnpm run build\n```\n\n## 使用方法\n\n### 基本用法\n\n```bash\n# 使用MongoDB连接URL启动服务器\nnpm start mongodb+srv://username:password@cluster.mongodb.net/database\n\n# 以只读模式连接\nnpm start mongodb+srv://username:password@cluster.mongodb.net/database --read-only\n```\n\n### 环境变量配置\n\n```bash\n# 设置MongoDB连接URI\nexport MCP_MONGODB_URI=\"mongodb+srv://username:password@cluster.mongodb.net/database\"\n\n# 启用只读模式\nexport MCP_MONGODB_READONLY=\"true\"\n\n# 运行服务器\nnpm start\n```\n\n## 与 Claude Desktop 集成\n\n在 Claude Desktop 的配置文件中添加服务器配置：\n\n**MacOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`  \n**Windows**: `%APPDATA%/Claude/claude_desktop_config.json`\n\n```json\n{\n  \"mcpServers\": {\n    \"vitea\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"codex-vitea-mcp\",\n      ],\n      \"env\": [\n        \"MCP_MONGODB_URI\": \"mongodb+srv://username:password@cluster.mongodb.net/database\",\n        \"AMAP_API_KEY\": \"YOU_API_KEY\",\n        \"MCP_MONGODB_READONLY\": false\n      ]\n    }\n  }\n}\n```\n\n## 特色工具\n\n### 查找物品\n\n```\nfind_item(itemName=\"眼药水\")\n```\n\n### 估算出行时间\n\n```\nestimate_time(origin=\"宿舍\", destination=\"主楼\")\n```\n\n### 获取待办任务\n\n```\nget_pending_tasks()\n```\n\n### 查询联系人\n\n```\nquery_contact(search=\"王\")\n```\n\n### 获取最新生物数据\n\n```\nget_latest_biodata(measurementType=\"走路速度\")\n```\n\n## 开发\n\n```bash\n# 观察模式，自动重新编译\nnpm run watch\n\n# 使用MCP Inspector进行调试\nnpm run inspector\n```\n\n## 许可证\n\nMIT\n",
+  "extracted_at": "2025-06-13T08:56:11.920642",
+  "content_hash": "02c1bcf58089d9fc0070e79d07d6a16685de9377c8689bb2acc6d752a6651b41"
+}

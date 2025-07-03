@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "bossdong955/weibo-mcp-server",
+    "owner": "bossdong955",
+    "repo_name": "weibo-mcp-server",
+    "repo_url": "https://github.com/bossdong955/weibo-mcp-server",
+    "description": "[bossdong955/weibo-mcp-server](https://github.com/bossdong955/weibo-mcp-server): Facilitates retrieval of the top N trending topics on Weibo with support for stdio and SSE modes.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/bossdong955/weibo-mcp-server/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# weibo-mcp-server\n\n一个获取前N微博热搜的MCP服务，支持stdio和sse模式调用。\n\n## 配置方式\n\n### 安装依赖\n\n```\ngit clone https://github.com/bossdong955/weibo-mcp-server.git\n\ncd weibo-mcp-server\n\nconda create -n weibo-mcp-server python=3.11\nconda activate weibo-mcp-server\npip install -r requirements.txt\n```\n\n### stdio模式\n配置文件内容如下：\n```json\n{\n  \"mcpServers\": {\n    \"weiboresou\": {\n      \"disabled\": false,\n      \"timeout\": 60,\n      \"command\": \"conda\",\n      \"args\": [\n        \"run\",\n        \"-n\",\n        \"mcp\",\n        \"--no-capture-output\",\n        \"mcp\",\n        \"run\",\n        \"文件的绝对路径/resou_stdio.py\"\n      ],\n      \"transportType\": \"stdio\"\n    }\n  }\n}\n```\n在vscode中下载`cline`插件并配置`Installed`服务 ，将上面`json`粘贴到配置文件即可。\n\n![image2](assets/image2.png)\n\n### sse模式\n\n首先运行`python`程序\n\n```\npython resou_sse.py\n```\n\n在vscode中下载`cline`插件并配置`Remote Servers`服务 ，ip和端口根据实际情况设置。\n\n![image.png](assets/image.png)\n\n**制作不易，如果对你有帮助的话，请给作者点个stars**。",
+  "extracted_at": "2025-06-13T08:56:55.867926",
+  "content_hash": "900062b2585614d6ef4b7310cf51043e4b976825686feca4a2e51c18ce3f6817"
+}

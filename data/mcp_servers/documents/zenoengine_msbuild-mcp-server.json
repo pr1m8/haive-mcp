@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "zenoengine/msbuild-mcp-server",
+    "owner": "zenoengine",
+    "repo_name": "msbuild-mcp-server",
+    "repo_url": "https://github.com/zenoengine/msbuild-mcp-server",
+    "description": "[zenoengine/msbuild-mcp-server](https://github.com/zenoengine/msbuild-mcp-server): Automates MSBuild project builds with dynamic discovery and customizable configurations, integrating seamlessly with various MCP clients.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/zenoengine/msbuild-mcp-server/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# MSBuild MCP Server\n\nA lightweight MCP (Model Context Protocol) server for automating MSBuild projects and solutions builds. It dynamically locates MSBuild and provides customizable build configuration options.\n\n## Features\n\n- **Dynamic MSBuild Discovery**: Automatically detects the MSBuild executable, ensuring compatibility with various Visual Studio installations.\n- **Customizable Build Settings**: Easily configure build options such as configuration, platform, verbosity level, parallel build CPU count, NuGet restore, and additional command-line arguments through LLM-driven tool invocation.\n- **Clear Error Reporting**: Filters and presents concise, relevant error messages upon build failures.\n- **MCP Client Compatibility**: Supports seamless integration with popular MCP clients such as VSCode, Cursor, Windsurf, and more. Configuration snippets for these clients are provided in the documentation.\n- **Cross-Language Support**: Supports MSBuild-compatible projects, including .sln, .csproj, and .vcxproj files, enabling builds for languages like C#, C++, and more across Windows platforms.\n\n## Prerequisites\n\nEnsure the following prerequisites are installed:\n\n- Python 3.11 or higher\n- Visual Studio or Visual Studio Build Tools (for MSBuild)\n- [`uv`](https://docs.astral.sh/uv/getting-started/installation/) (recommended)\n\n## Registering the MCP Server\n\nEnsure `uv` is installed.\n\nIn the MCP settings of your AI tools (e.g., Cursor, Windsurf, Claude Desktop, etc.), add the following configuration:\n\n```json\n{\n  \"mcpServers\": {\n    \"msbuild-mcp-server\": {\n      \"command\": \"uvx\",\n      \"args\": [\n        \"msbuild-mcp-server@latest\"\n      ]\n    }\n  }\n}\n```\n\nPlace this snippet in your client configuration file:\n- [**VSCode**](https://code.visualstudio.com/docs/copilot/chat/mcp-servers): `.vscode/mcp.json`\n- **Cursor**: `~/.cursor/mcp.json` or `<project-root>/.cursor/mcp.json`\n- **Windsurf**: `~/.codeium/windsurf/mcp_config.json`\n\nRestart your tool to ensure that the `msbuild-mcp-server` and its provided tools are properly registered.\n\n# Agent Prompt Examples\n\nAI agents can trigger builds using natural language like:\n\n- **Basic Project Build**  \n  > *\"Build this solution at `C:/Path/To/Project.sln` using `Release|x64`.\"*\n\n- **Unreal Engine Build**  \n  > *\"Build the solution located at `C:/Projects/MyGame/MyGame.sln` using `Development Editor|Win64`.\"*\n\n## License\n\nThis project is licensed under the MIT License.\n\n",
+  "extracted_at": "2025-06-13T08:54:54.959934",
+  "content_hash": "44fb7852601be721ee727276a280d8057c7541abe7345527ee4cc34f93728b9f"
+}

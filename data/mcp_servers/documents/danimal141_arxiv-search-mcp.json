@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "danimal141/arxiv-search-mcp",
+    "owner": "danimal141",
+    "repo_name": "arxiv-search-mcp",
+    "repo_url": "https://github.com/danimal141/arxiv-search-mcp",
+    "description": "[danimal141/arxiv-search-mcp](https://github.com/danimal141/arxiv-search-mcp): Facilitates searching and retrieving academic papers from arXiv.org with customizable parameters.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/danimal141/arxiv-search-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/danimal141-arxiv-search-mcp-badge.png)](https://mseep.ai/app/danimal141-arxiv-search-mcp)\n\n# arXiv Search MCP Server\n\nAn MCP server that provides tools to search and fetch papers from arXiv.org.\n\n## Features\n\n- Search papers by category\n- Get latest papers sorted by submission date\n- Formatted output with title, authors, summary, and link\n\n## Development\n\n### Prerequisites\n\n- [Deno](https://deno.land/) installed on your system\n- MCP compatible environment\n\n### Setup\n\n1. Clone the repository\n2. Install dependencies:\n```bash\ndeno cache --reload src/main.ts\n```\n\n### Running the Server\n\nDevelopment mode with file watching:\n```bash\ndeno task dev\n```\n\nBuild executable:\n```bash\ndeno task compile\n```\n\n## Integration with Claude Desktop\n\nAdd the following configuration to your `claude_desktop_config.json`:\n\n```json\n{\n  \"mcpServers\": {\n    \"arxiv-search-mcp\": {\n      \"command\": \"/path/to/dir/arxiv-search-mcp/bin/arxiv-search-mcp\"\n    }\n  }\n}\n```\n\nReplace `/path/to/dir` with the actual path to your compiled binary.\n\n## Usage\n\nExample usage screenshot:\n![Sample usage with Claude](images/sample_use.png)\n\nThe server provides a tool named `search_arxiv` that accepts the following parameters:\n\n```typescript\n{\n  \"category\": string,    // arXiv category (e.g., cs.AI, cs.LG, astro-ph)\n  \"max_results\": number  // Number of papers to fetch (1-100, default: 5)\n}\n```\n\n### Example\n\nRequest:\n```json\n{\n  \"category\": \"cs.AI\",\n  \"max_results\": 5\n}\n```\n\nThis will return the 5 most recent papers from the Artificial Intelligence category.\n\n### Available Categories\n\nSome popular arXiv categories:\n\n- `cs.AI`: Artificial Intelligence\n- `cs.LG`: Machine Learning\n- `cs.CL`: Computation and Language\n- `cs.CV`: Computer Vision\n- `cs.NE`: Neural and Evolutionary Computing\n- `cs.RO`: Robotics\n- `astro-ph`: Astrophysics\n- `physics`: Physics\n- `math`: Mathematics\n- `q-bio`: Quantitative Biology\n\nFor a complete list of categories, visit [arXiv taxonomy](https://arxiv.org/category_taxonomy).\n\n## License\n\nThis project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.\n",
+  "extracted_at": "2025-06-13T08:56:44.490909",
+  "content_hash": "4ae9ea2be18f373cab20bcf5a8f927494a0444c1f2c2bdeb5111f0792d29b104"
+}

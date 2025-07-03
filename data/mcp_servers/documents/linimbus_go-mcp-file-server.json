@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "linimbus/go-mcp-file-server",
+    "owner": "linimbus",
+    "repo_name": "go-mcp-file-server",
+    "repo_url": "https://github.com/linimbus/go-mcp-file-server",
+    "description": "[linimbus/go-mcp-file-server](https://github.com/linimbus/go-mcp-file-server): A Go-based MCP server for local file system management with APIs for querying and opening files, utilizing SQLite3 for file indexing and supporting remote calls via MCP client.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/linimbus/go-mcp-file-server/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Go-MCP-File-Server\n\n[简体中文](./README_zh.md)\n\n[![Download Go Mcp FIle Server](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/go-mcp-file-system-server/files/latest/download)\n\n基于GoMcp 开发的一个本地文件系统mcp server，提供了查询和文件打开两个api，本软件基于sqlite3存储文件索引，支持界面操作和mcp client 远程调用。\n\n```\n{\n  \"mcpServers\": {\n    \"filesystem\" : {\n      \"url\" : \"http://localhost:8888/sse\"\n    }\n  }\n}\n```\n\n\n## Video\n\n[Operation Demo Video](https://www.youtube.com/watch?v=oMo8kId1DGo)\n\n",
+  "extracted_at": "2025-06-13T08:55:37.963616",
+  "content_hash": "a19153fa6011a80ba83600d24809bccd5f67e06d4e376746752151bd870ccf8a"
+}

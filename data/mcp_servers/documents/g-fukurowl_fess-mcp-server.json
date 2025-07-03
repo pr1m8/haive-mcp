@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "g-fukurowl/fess-mcp-server",
+    "owner": "g-fukurowl",
+    "repo_name": "fess-mcp-server",
+    "repo_url": "https://github.com/g-fukurowl/fess-mcp-server",
+    "description": "[g-fukurowl/fess-mcp-server](https://github.com/g-fukurowl/fess-mcp-server): Middleware server that integrates with the Fess search engine to enable information retrieval via MCP clients.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/g-fukurowl/fess-mcp-server/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Fess MCP Server\n\nFess MCP Server is a middleware server that integrates with the Fess search engine.\nBy registering it in the settings of MCP clients such as Claude for Desktop, it enables agents to obtain information using Fess. Fess is an open-source full-text search server provided under the Apache License. Commercial support is also available. For more details, please refer to the official website.\nhttps://fess.codelibs.org/ja/\n\n\n# Setup\n\n## Fess Setup\nFor the setup procedure of the Fess server itself, please refer to the official Fess documentation.\nhttps://qiita.com/g_fukurowl/items/a00dbbad737d3e775108\n\nThe following article may also be helpful:\nhttps://qiita.com/g_fukurowl/items/a00dbbad737d3e775108\n\n## Fess MCP Server Setup\n### Using Docker\nStart the server with the following command:\n\n```bash\ndocker-compose up -d\n```\n\n### Without Docker\nHere we show the setup procedure using uv.\nuv is a fast Python package manager. While not required, we recommend using it.\n\n```powershell\n# Install uv\nirm https://astral.sh/uv/install.ps1 | iex\n```\n\n```powershell\n# Activate virtual environment\n.\\.venv\\Scripts\\activate.bat\n```\n\n```powershell\n# Install dependencies\nuv pip install -e .\n```\n\n```powershell\n# Start MCP server\nuv run .\\fess_mcp_server.py\n```\n\n## Configuration\n### Fess Server Connection Settings\nThe URL of the Fess server that Fess MCP Server accesses is set as the environment variable Fess_API_BASE.\nPlease modify this variable according to your environment before starting Fess MCP Server.\nIf running as a Docker container, edit docker-compose.yaml and change the relevant settings.\n\n### Claude for Desktop Connection Settings\nFess MCP Server starts on port 8000 by default.\nIf Fess MCP Server is running on localhost on port 8000, edit claude_desktop_config.json as follows:\n```json\n{\n  \"mcpServers\": {\n    \"fess-search-sse\": {\n        \"command\": \"npx\",\n        \"args\": [\n          \"-y\",\n          \"mcp-remote\",\n          \"http://localhost:8000/sse\"\n        ]\n      }\n  }\n}\n```\n\n## Testing\n\n### Without Docker\nHere we show the testing procedure using uv.\n\n```powershell\n# Install development dependencies:\nuv pip install -e \".[test]\"\n```\n\n```powershell\n# Run unit tests:\nuv run pytest -v tests/unit/ -s\n```\n\n```powershell\n# Run integration tests (requires communication with Fess server):\nuv run pytest -v tests/integration/ -s\n```\n\n```powershell\n# Generate coverage report:\nuv run pytest --cov=fess_mcp_server --cov-report=html\n```\n\n### Running Tests in Docker Container\n\n```powershell\n# Build test Docker image:\ndocker build -t fess-mcp-server-test -f Dockerfile.test .\n```\n\n```powershell\n# Run unit tests:\ndocker run --rm fess-mcp-server-test pytest -v tests/unit/ -s\n```\n\n```powershell\n# Run integration tests (requires communication with Fess server):\ndocker run --rm --network host fess-mcp-server-test pytest -v tests/integration/ -s\n```\n\n```powershell\n# Generate coverage report:\ndocker run --rm -v ${PWD}/coverage:/app/coverage fess-mcp-server-test pytest --cov=fess_mcp_server --cov-report=html\n```\n\n\n### Test Execution Options\n\n- `-v`: Show verbose output\n- `-s`: Show standard output\n- `--cov`: Generate coverage report\n- `--cov-report=html`: Generate HTML coverage report\n\n\n\n## License\n\nMIT License\n",
+  "extracted_at": "2025-06-13T08:56:46.951048",
+  "content_hash": "c19f1e7977244239cd6882a36ca1de9593252dd4bd4f59423abb9e736d0e6715"
+}

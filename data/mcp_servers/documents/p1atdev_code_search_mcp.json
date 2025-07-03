@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "p1atdev/code_search_mcp",
+    "owner": "p1atdev",
+    "repo_name": "code_search_mcp",
+    "repo_url": "https://github.com/p1atdev/code_search_mcp",
+    "description": "[p1atdev/code_search_mcp](https://github.com/p1atdev/code_search_mcp): Facilitates code search functionality through an MCP server setup, enabling efficient code retrieval and analysis.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/p1atdev/code_search_mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# code_search_mcp\n\nTo install dependencies:\n\n```bash\nbun install\n```\n\nTo run:\n\n```bash\nbun run build\n```\n\nThen `dist/server` will be created. \n\n## Configuration\n\n`claude_desktop_config.json`:\n\n```\n{\n    \"mcpServers\": {\n        \"code_search\": {\n            \"command\": \"ABSOLUTE/PATH/TO/code_search_mcp/dist/server\"\n        }\n    }\n}\n```\n\nFor development, you can run without building:\n\n`.vscode/mcp.json`:\n\n```json\n{\n    \"servers\": {\n        \"code_search\": {\n            \"type\": \"stdio\",\n            \"command\": \"bun\",\n            \"args\": [\n                \"run\",\n                \"/ABSOLUTE/PATH/TO/code_search_mcp/server.ts\"\n            ]\n        }\n    }\n}\n```",
+  "extracted_at": "2025-06-13T08:56:46.933844",
+  "content_hash": "36f8ee26a2169af5ebc6509e92379569c220e941a24adf64b4ef161484d2dab8"
+}

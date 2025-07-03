@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "roastedculti/metoro-mcp-server",
+    "owner": "roastedculti",
+    "repo_name": "metoro-mcp-server",
+    "repo_url": "https://github.com/roastedculti/metoro-mcp-server",
+    "description": "[roastedculti/metoro-mcp-server](https://github.com/roastedculti/metoro-mcp-server): Facilitates interaction with Kubernetes clusters through the Claude Desktop App by leveraging the Model Context Protocol.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": null,
+    "api_base_url": null
+  },
+  "readme_content": null,
+  "extracted_at": "2025-06-13T08:55:26.598534",
+  "content_hash": ""
+}

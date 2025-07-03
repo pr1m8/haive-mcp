@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "curious-pm/mcp-digital_ocean_billing",
+    "owner": "curious-pm",
+    "repo_name": "mcp-digital_ocean_billing",
+    "repo_url": "https://github.com/curious-pm/mcp-digital_ocean_billing",
+    "description": "[curious-pm/mcp-digital_ocean_billing](https://github.com/curious-pm/mcp-digital_ocean_billing): Facilitates seamless integration with Digital Ocean's Billing API, offering tools for viewing account balances, billing history, and invoices.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": null,
+    "api_base_url": null
+  },
+  "readme_content": null,
+  "extracted_at": "2025-06-13T08:54:59.956982",
+  "content_hash": ""
+}

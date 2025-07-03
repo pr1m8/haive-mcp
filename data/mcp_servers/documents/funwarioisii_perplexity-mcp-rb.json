@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "funwarioisii/perplexity-mcp-rb",
+    "owner": "funwarioisii",
+    "repo_name": "perplexity-mcp-rb",
+    "repo_url": "https://github.com/funwarioisii/perplexity-mcp-rb",
+    "description": "[funwarioisii/perplexity-mcp-rb](https://github.com/funwarioisii/perplexity-mcp-rb): Facilitates web search operations through a Perplexity-based MCP server.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/funwarioisii/perplexity-mcp-rb/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "MCP Server for web search using Perplexity.\n\ninspired by https://github.com/jsonallen/perplexity-mcp\n\n## Usage\n\n```json\n{\n  \"mcpServers\": {\n    \"perplexity\": {\n      \"command\": \"/path/to/perplexity-mcp-rb/perplexity_mcp.rb\",\n      \"env\": {\n        \"PERPLEXITY_API_KEY\": \"pplx-xxxx\"\n      },\n    }\n  }\n}\n```\n",
+  "extracted_at": "2025-06-13T08:56:45.730789",
+  "content_hash": "776f91551c3ec239837cb12f9a1958fe505144719154a9fbd40b4542f8a6eaab"
+}

@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "u1f992/mcp-gamecube-bridge",
+    "owner": "u1f992",
+    "repo_name": "mcp-gamecube-bridge",
+    "repo_url": "https://github.com/u1f992/mcp-gamecube-bridge",
+    "description": "[u1f992/mcp-gamecube-bridge](https://github.com/u1f992/mcp-gamecube-bridge): Facilitates Nintendo GameCube operations for clients through an MCP bridge.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/u1f992/mcp-gamecube-bridge/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# mcp-gamecube-bridge\n\n[MCP](https://modelcontextprotocol.io/) bridge of [Jiangtun](https://github.com/u1f992/jiangtun). Grant Nintendo GameCube operation functionality to clients.\n\nBug: Python interpreter process remains after exiting Claude Desktop, use `ps` and `kill` to exit.\n\n![](./screenshot.png)\n\n```\n$ uv venv\n$ uv sync\n$ source .venv/bin/activate\n$ python main.py\nusage: main.py [-h] [--serial-port SERIAL_PORT] [--camera CAMERA] [--skip-frames SKIP_FRAMES]\n\noptions:\n  -h, --help            show this help message and exit\n  --serial-port SERIAL_PORT\n  --camera CAMERA\n  --skip-frames SKIP_FRAMES\n\navailable ports:\n  ['/dev/ttyS31', '/dev/ttyS30', '/dev/ttyS29', '/dev/ttyS28', '/dev/ttyS27', '/dev/ttyS26', '/dev/ttyS25', '/dev/ttyS24', '/dev/ttyS23', '/dev/ttyS22', '/dev/ttyS21', '/dev/ttyS20', '/dev/ttyS19', '/dev/ttyS18', '/dev/ttyS17', '/dev/ttyS16', '/dev/ttyS15',\n  '/dev/ttyS14', '/dev/ttyS13', '/dev/ttyS12', '/dev/ttyS11', '/dev/ttyS10', '/dev/ttyS9', '/dev/ttyS8', '/dev/ttyS7', '/dev/ttyS6', '/dev/ttyS5', '/dev/ttyS4', '/dev/ttyS3', '/dev/ttyS2', '/dev/ttyS1', '/dev/ttyS0', '/dev/ttyACM1']\n\navailable cameras:\n  ['/dev/video0', '/dev/video1', '/dev/video2', '/dev/video3', '/dev/video12', '/dev/video13']\n```\n\n##### claude_desktop_config.json\n\n```json\n{\n  \"mcpServers\": {\n    \"filesystem\": {\n      \"command\": \"/home/u1f992/Documents/mcp-gamecube-bridge/.venv/bin/python\",\n      \"args\": [\n        \"/home/u1f992/Documents/mcp-gamecube-bridge/main.py\",\n        \"--serial-port\",\n        \"/dev/ttyACM0\",\n        \"--camera\",\n        \"/dev/video8\"\n      ]\n    }\n  }\n}\n```\n",
+  "extracted_at": "2025-06-13T08:55:49.448299",
+  "content_hash": "ddcf3b5ac718da28dd059e5a6c7e8cca07ed505e7e06fef5736d93b5bed3a14b"
+}

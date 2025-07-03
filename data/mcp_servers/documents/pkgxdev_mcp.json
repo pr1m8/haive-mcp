@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "pkgxdev/mcp",
+    "owner": "pkgxdev",
+    "repo_name": "mcp",
+    "repo_url": "https://github.com/pkgxdev/mcp",
+    "description": "[pkgxdev/mcp](https://github.com/pkgxdev/mcp): Facilitates AI-driven execution of any Open Source tool via pkgx, with a focus on security and sandboxing.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/pkgxdev/mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# `pkgx` MCP\n\nA [Model Context Protocol] server that can run any Open Source tool via\n`pkgx`.\n\n## Usage\n\n1. Install [`pkgx`] (or not, we download it for you if you don’t)\n2. `git clone https://github.com/pkgxdev/pkgx-mcp`\n3. Consume in an MCP client (see below for configuration examples)\n\n### Cursor/Claude Configuation\n\n- `~/.cursor/mcp.json`:\n- `~/Library/Application Support/Claude/claude_desktop_config.json`\n\n```json\n{\n  \"mcpServers\": {\n    \"pkgx\": {\n      \"command\": \"/path/to/pkgx-mcp/main.ts\"\n    }\n  }\n}\n```\n\nOr without `pkgx`, but *with* `npx`:\n\n```json\n{\n  \"mcpServers\": {\n    \"pkgx\": {\n      \"command\": \"npx\",\n      \"args\": [\"ts-node\", \"/path/to/pkgx-mcp/main.ts\"]\n    }\n  }\n}\n```\n\n### MCP Inspector\n\n```sh\nnpx @modelcontextprotocol/inspector ts-node ./main.ts\n```\n\n## Suggested Prompts\n\n```text\nUse pkgx to run a series of git commands and generate statistics about this\nrepository.\n```\n\n## Security\n\nSecurity? Hah.\n\nBut seriously, this is a dangerous tool. You are letting AI read any file on\nyour computer†. We have the decency to run `pkgx` in a sandbox so at least a\nrogue AI can’t run `rm -rf /`. But we have not restricted reads because that\nseemed too limiting.\n\nWe need the MCP protocol to advance to allow the user to be prompted with UI\nto approve certain things that the AI cannot by itself do or something like\nthat.\n\nIn the meantime USE WITH ABSURD AMOUNTS OF CAUTION.\n\n> † well, on macOS at least we prevent reads to `~/.ssh` and `~/.aws`, PRs\n> welcome to exclude more and add Linux sandboxing.\n\n> [!IMPORTANT]\n>\n> The AI cannot write to your file system.\n>\n> On macOS anyway. On Linux we need you to PR that for us.\n\n[Model Context Protocol]: https://github.com/modelcontextprotocol\n[`pkgx`]: https://pkgx.sh\n",
+  "extracted_at": "2025-06-13T08:55:09.744791",
+  "content_hash": "f351af07da13e572f14892952306c4734f5ca505151348bb1a329be87e8677d1"
+}

@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "magicp-mhl/newsnow",
+    "owner": "magicp-mhl",
+    "repo_name": "newsnow",
+    "repo_url": "https://github.com/magicp-mhl/newsnow",
+    "description": "[magicp-mhl/newsnow](https://github.com/magicp-mhl/newsnow): Facilitates elegant real-time news reading with adaptive scraping and MCP server support for seamless integration.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/magicp-mhl/newsnow/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# NewsNow\n\n![](/public/og-image.png)\n\nEnglish | [简体中文](README.zh-CN.md) | [日本語](README.ja-JP.md)\n\n> [!NOTE]\n> This is a demo version currently supporting Chinese only. A full-featured version with better customization and English content support will be released later.\n\n**_Elegant reading of real-time and hottest news_**\n\n## Features\n\n- Clean and elegant UI design for optimal reading experience\n- Real-time updates on trending news\n- GitHub OAuth login with data synchronization\n- 30-minute default cache duration (logged-in users can force refresh)\n- Adaptive scraping interval (minimum 2 minutes) based on source update frequency to optimize resource usage and prevent IP bans\n- support MCP server\n\n```json\n{\n  \"mcpServers\": {\n    \"newsnow\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"newsnow-mcp-server\"\n      ],\n      \"env\": {\n        \"BASE_URL\": \"https://newsnow.busiyi.world\"\n      }\n    }\n  }\n}\n```\nYou can change the `BASE_URL` to your own domain.\n\n## Deployment\n\n### Basic Deployment\n\nFor deployments without login and caching:\n\n1. Fork this repository\n2. Import to platforms like Cloudflare Page or Vercel\n\n### Cloudflare Page Configuration\n\n- Build command: `pnpm run build`\n- Output directory: `dist/output/public`\n\n### GitHub OAuth Setup\n\n1. [Create a GitHub App](https://github.com/settings/applications/new)\n2. No special permissions required\n3. Set callback URL to: `https://your-domain.com/api/oauth/github` (replace `your-domain` with your actual domain)\n4. Obtain Client ID and Client Secret\n\n### Environment Variables\n\nRefer to `example.env.server`. For local development, rename it to `.env.server` and configure:\n\n```env\n# Github Client ID\nG_CLIENT_ID=\n# Github Client Secret\nG_CLIENT_SECRET=\n# JWT Secret, usually the same as Client Secret\nJWT_SECRET=\n# Initialize database, must be set to true on first run, can be turned off afterward\nINIT_TABLE=true\n# Whether to enable cache\nENABLE_CACHE=true\n```\n\n### Database Support\n\nSupported database connectors: https://db0.unjs.io/connectors\n**Cloudflare D1 Database** is recommended.\n\n1. Create D1 database in Cloudflare Worker dashboard\n2. Configure database_id and database_name in wrangler.toml\n3. If wrangler.toml doesn't exist, rename example.wrangler.toml and modify configurations\n4. Changes will take effect on next deployment\n\n### Docker Deployment\n\nIn project root directory:\n\n```sh\ndocker compose up\n```\n\nYou can also set Environment Variables in `docker-compose.yml`.\n\n## Development\n\n> [!Note]\n> Requires Node.js >= 20\n\n```sh\ncorepack enable\npnpm i\npnpm dev\n```\n\n### Adding Data Sources\n\nRefer to `shared/sources` and `server/sources` directories. The project provides complete type definitions and a clean architecture.\n\nFor detailed instructions on how to add new sources, see [CONTRIBUTING.md](CONTRIBUTING.md).\n\n## Roadmap\n\n- Add **multi-language support** (English, Chinese, more to come).\n- Improve **personalization options** (category-based news, saved preferences).\n- Expand **data sources** to cover global news in multiple languages.\n\n**_release when ready_**\n![](https://testmnbbs.oss-cn-zhangjiakou.aliyuncs.com/pic/20250328172146_rec_.gif?x-oss-process=base_webp)\n\n## Contributing\n\nContributions are welcome! Feel free to submit pull requests or create issues for feature requests and bug reports.\n\nSee [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines on how to contribute, especially for adding new data sources.\n\n## License\n\n[MIT](./LICENSE) © ourongxing\n",
+  "extracted_at": "2025-06-13T08:54:47.531520",
+  "content_hash": "21de26f828061d4cf9f0d9acb7618f2d07c52a282743e811fe679bee8b9c14f1"
+}

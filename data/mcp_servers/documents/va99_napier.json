@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "va99/napier",
+    "owner": "va99",
+    "repo_name": "napier",
+    "repo_url": "https://github.com/va99/napier",
+    "description": "[va99/napier](https://github.com/va99/napier): Napier facilitates the installation of MCP servers through prompt-based commands, streamlining the setup process for npm and PyPi hosted servers.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/va99/napier/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Napier - configure MCP directly from prompts.\n\nThis server is a server that installs other MCP servers for you. Install it, and you can ask Claude to install MCP servers hosted in npm or PyPi for you. Requires `npx` and `uv` to be installed for node and Python servers respectively.\n\n![image]\n\n### How to install:\n\nPut this into your `claude_desktop_config.json` (either at `~/Library/Application Support/Claude` on macOS or `C:\\Users\\NAME\\AppData\\Roaming\\Claude` on Windows):\n\n```json\n  \"mcpServers\": {\n    \"napier-mcp\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"napier-mcp\"\n      ]\n    }\n  }\n```\n\n### Example prompts\n\n> Hey Claude, install the MCP server named mcp-server-fetch\n\n> Hey Claude, install the @modelcontextprotocol/server-filesystem package as an MCP server. Use ['/Users/pangloss/Desktop'] for the arguments\n\n> Hi Claude, please install the MCP server at /Users/pangloss/code/whatsapp-mcp, I'm too lazy to do it myself.\n\n> Install the server @modelcontextprotocol/server-github. Set the environment variable GITHUB_PERSONAL_ACCESS_TOKEN to '1234567890'\n",
+  "extracted_at": "2025-06-13T08:57:03.761769",
+  "content_hash": "8ba7680afab5f29b9bd024466a80b66c6ea4e3d60df95ffa8dde241713b1b2e1"
+}

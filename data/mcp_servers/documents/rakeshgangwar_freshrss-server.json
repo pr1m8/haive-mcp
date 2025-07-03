@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "rakeshgangwar/freshrss-server",
+    "owner": "rakeshgangwar",
+    "repo_name": "freshrss-server",
+    "repo_url": "https://github.com/rakeshgangwar/freshrss-server",
+    "description": "[rakeshgangwar/freshrss-server](https://github.com/rakeshgangwar/freshrss-server): Facilitates AI interaction with FreshRSS feeds via the Fever API, enabling feed management and item retrieval.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/rakeshgangwar/freshrss-server/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# FreshRSS MCP Server\n\nA Model Context Protocol server for interacting with FreshRSS feeds via the Fever API.\n\nThis TypeScript-based MCP server allows AI assistants to interact with your FreshRSS instance, enabling them to:\n\n- List and browse your RSS feeds\n- Fetch unread items\n- Mark items as read/unread\n- Get items from specific feeds\n\n## Features\n\n### Tools\n\n- `list_feeds` - List all feed subscriptions\n- `get_feed_groups` - Get feed groups\n- `get_unread` - Get unread items\n- `get_feed_items` - Get items from a specific feed\n- `mark_item_read` - Mark an item as read\n- `mark_item_unread` - Mark an item as unread\n- `mark_feed_read` - Mark all items in a feed as read\n- `get_items` - Get specific items by their IDs\n\n## Requirements\n\n- A running FreshRSS instance with API access enabled\n- API endpoint URL, username, and password for your FreshRSS instance\n\n## Development\n\nInstall dependencies:\n```bash\nnpm install\n```\n\nBuild the server:\n```bash\nnpm run build\n```\n\nFor development with auto-rebuild:\n```bash\nnpm run watch\n```\n\n### Environment Variables\n\nYou need to set the following environment variables:\n\n- `FRESHRSS_API_URL`: URL to your FreshRSS instance (e.g., \"https://rss.example.com\")\n- `FRESHRSS_USERNAME`: Your FreshRSS username\n- `FRESHRSS_PASSWORD`: Your FreshRSS password\n\n## Installation\n\nTo use with Claude Desktop, add the server config:\n\nOn MacOS: `~/Library/Application Support/Claude/claude_desktop_config.json`\nOn Windows: `%APPDATA%/Claude/claude_desktop_config.json`\n\n```json\n{\n  \"mcpServers\": {\n    \"freshrss\": {\n      \"command\": \"node\",\n      \"args\": [\"/path/to/freshrss-server/build/index.js\"],\n      \"env\": {\n        \"FRESHRSS_API_URL\": \"https://your-freshrss-instance.com\",\n        \"FRESHRSS_USERNAME\": \"your-username\",\n        \"FRESHRSS_PASSWORD\": \"your-password\"\n      }\n    }\n  }\n}\n```\n\nFor Cline MCP integration, add to your MCP settings:\n\n```json\n{\n  \"mcpServers\": {\n    \"freshrss\": {\n      \"command\": \"node\",\n      \"args\": [\"/path/to/freshrss-server/build/index.js\"],\n      \"env\": {\n        \"FRESHRSS_API_URL\": \"https://your-freshrss-instance.com\",\n        \"FRESHRSS_USERNAME\": \"your-username\",\n        \"FRESHRSS_PASSWORD\": \"your-password\"\n      }\n    }\n  }\n}\n```\n\n### Debugging\n\nSince MCP servers communicate over stdio, debugging can be challenging. We recommend using the [MCP Inspector](https://github.com/modelcontextprotocol/inspector), which is available as a package script:\n\n```bash\nnpm run inspector\n```\n\nThe Inspector will provide a URL to access debugging tools in your browser.\n\n## Security Note\n\nThis server requires your FreshRSS credentials. For security:\n- Never commit your credentials to version control\n- Always use environment variables for sensitive information\n- Consider using a dedicated FreshRSS account with appropriate permissions\n\n## License\n\nThis project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.\n\n## Contributing\n\nContributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for details.\n",
+  "extracted_at": "2025-06-13T08:55:19.418269",
+  "content_hash": "ea0725e0e90dde9b8ec158962f9005b85b1d86f44c7e8c279611a79d1688528b"
+}

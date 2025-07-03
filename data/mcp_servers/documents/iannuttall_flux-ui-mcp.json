@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "iannuttall/flux-ui-mcp",
+    "owner": "iannuttall",
+    "repo_name": "flux-ui-mcp",
+    "repo_url": "https://github.com/iannuttall/flux-ui-mcp",
+    "description": "[iannuttall/flux-ui-mcp](https://github.com/iannuttall/flux-ui-mcp): A TypeScript-based server offering AI assistants access to Flux UI component documentation and examples through the Model Context Protocol.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/iannuttall/flux-ui-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Flux UI MCP Server\n\nMCP server for Flux UI component references\n\nThis is a TypeScript-based MCP server that provides reference information for Flux UI components. It implements a Model Context Protocol (MCP) server that helps AI assistants access Flux UI component documentation and examples.\n\n## Features\n\n### Tools\n\n- `list_flux_components` - Get a list of all available Flux UI components\n- `get_flux_component_details` - Get detailed information about a specific component\n- `get_flux_component_examples` - Get usage examples for a specific component\n- `search_flux_components` - Search for components by keyword\n\n### Functionality\n\nThis server scrapes and caches information from:\n- The official Flux UI documentation site (https://fluxui.dev)\n\nIt provides structured data including:\n- Component descriptions\n- Usage examples\n- Props\n- Code samples\n\n## Development\n\nInstall dependencies:\n```bash\nnpm install\n```\n\nBuild the server:\n```bash\nnpm run build\n```\n\nFor development with auto-rebuild:\n```bash\nnpm run watch\n```\n\n## Installation\n\n### Claude Desktop Configuration\n\nTo use with Claude Desktop, add the server config:\n\nOn MacOS: `~/Library/Application Support/Claude/claude_desktop_config.json`\nOn Windows: `%APPDATA%/Claude/claude_desktop_config.json`\n\n#### Option 1: Using local build\n\n```json\n{\n  \"mcpServers\": {\n    \"fluxui-server\": {\n      \"command\": \"/path/to/fluxui-mcp-server/build/index.js\"\n    }\n  }\n}\n```\n\n#### Option 2: Using npx command\n\n```json\n{\n  \"mcpServers\": {\n    \"fluxui-server\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"fluxui-mcp-server\"]\n    }\n  }\n}\n```\n\n### Windsurf Configuration\n\nAdd this to your `./codeium/windsurf/model_config.json`:\n\n```json\n{\n  \"mcpServers\": {\n    \"fluxui-server\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"fluxui-mcp-server\"]\n    }\n  }\n}\n```\n\n### Cursor Configuration\n\nAdd this to your `.cursor/mcp.json`:\n\n```json\n{\n  \"mcpServers\": {\n    \"fluxui-server\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"fluxui-mcp-server\"]\n    }\n  }\n}\n```\n\n### Debugging\n\nSince MCP servers communicate over stdio, debugging can be challenging. We recommend using the [MCP Inspector](https://github.com/modelcontextprotocol/inspector), which is available as a package script:\n\n```bash\nnpm run inspector\n```\n\nThe Inspector will provide a URL to access debugging tools in your browser. ",
+  "extracted_at": "2025-06-13T08:56:07.163714",
+  "content_hash": "11b2a7c4590c43e7e9f6a3c0777a221a1b3188044558f17f29f61f96778b8566"
+}

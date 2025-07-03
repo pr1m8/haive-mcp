@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "kartikgajjar/mcp-server",
+    "owner": "kartikgajjar",
+    "repo_name": "mcp-server",
+    "repo_url": "https://github.com/kartikgajjar/mcp-server",
+    "description": "[kartikgajjar/mcp-server](https://github.com/kartikgajjar/mcp-server): Facilitates integration with Elastic Search through a demo MCP server setup.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": null,
+    "api_base_url": null
+  },
+  "readme_content": null,
+  "extracted_at": "2025-06-13T08:56:07.494939",
+  "content_hash": ""
+}

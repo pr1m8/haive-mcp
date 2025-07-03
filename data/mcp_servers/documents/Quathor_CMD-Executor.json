@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "Quathor/CMD-Executor",
+    "owner": "Quathor",
+    "repo_name": "CMD-Executor",
+    "repo_url": "https://github.com/Quathor/CMD-Executor",
+    "description": "[Quathor/CMD-Executor](https://github.com/Quathor/CMD-Executor): Facilitates remote execution of Windows CMD commands via the MCP protocol, ensuring secure and configurable command execution.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/Quathor/CMD-Executor/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# CMD Executor\n\n这是一个基于 `mcp.server` 框架的 Windows CMD 命令执行工具，允许通过 MCP 协议远程执行 CMD 命令。\n\n## 功能特性\n\n*   **远程命令执行：** 通过 `mcp.server` 提供的接口，安全地执行 Windows CMD 命令。\n*   **可配置的工作目录：**\n    *  在调用 `execute` 方法时，显式地传入 `cwd` 参数。\n    *  如果未指定 `cwd` 参数，则优先使用项目根目录下的 `.env` 文件中定义的 `SANDBOX_PATH` 环境变量。\n*   **UTF-8 JSON 响应：** 返回的 JSON 响应使用 UTF-8 编码，直接包含 Unicode 字符。\n*   **错误处理：** 详细的错误处理和日志记录，方便问题排查。\n\n## 依赖\n\n*   **python-dotenv**：用于加载 `.env` 文件中的环境变量。  \n*   **fast-mcp**：`mcp.server` 的一个快速实现。\n\n您可以使用 `requirements.txt` 文件来安装所有依赖：\n\n```bash\npip install -r requirements.txt\n```\n\n## 安装步骤\n\n1.  **克隆仓库：** 将此仓库克隆到您的本地计算机。\n2.  **安装依赖：** 运行 `pip install -r requirements.txt` 安装所有依赖。\n3.  **配置 `.env` (建议)：** 在项目根目录下创建一个 `.env` 文件，并设置 `SANDBOX_PATH` 环境变量，以指定默认的工作目录：\n\n    ```dotenv\n    SANDBOX_PATH=Your_Desired_Path\n    ```\n\n## 配置说明\n\n在您的 MCP 客户端的配置文件中添加或修改以下内容，以注册此服务器：\n\n```json\n{\n    \"mcpServers\": {\n        \"name\": { \n            \"type\": \"stdio\",\n            \"command\": \"your-path/python.exe\",\n            \"args\": [\n                \"your-program-path/main.py\"\n            ]\n        }\n    }\n}\n```\n\n**注意：**\n\n*   请将 `your-path/python.exe` 替换为您的 Python 解释器的实际路径。\n*   请将 `your-program-path/main.py` 替换为 `main.py` 文件的实际路径。\n*   `name` 字段可以替换为您喜欢的任何名称。\n\n## 安全声明\n\n**请务必注意：**\n\n*   **本工具具有潜在的安全风险。** 允许远程执行 CMD 命令意味着攻击者可能利用此工具执行恶意操作，例如修改系统文件、安装恶意软件等。\n*   **请勿在生产环境中使用。** 本工具主要用于学习和演示目的，请勿在生产环境中使用。\n*   **请采取必要的安全措施。** 如果您必须使用此工具，请确保采取必要的安全措施，例如限制访问权限、使用强密码、定期审查日志等。\n*   **您将承担所有风险。** 使用本工具所产生的一切后果由您自行承担，作者不承担任何责任。\n\n## 许可\n\n本项目使用 [MIT 许可证](LICENSE)。\n\n",
+  "extracted_at": "2025-06-13T08:55:07.990816",
+  "content_hash": "c9f4a170bfbd037dbdeae8de92d25803a0f7f91241858b4283f86298f2c109d8"
+}

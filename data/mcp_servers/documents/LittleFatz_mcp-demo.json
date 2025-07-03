@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "LittleFatz/mcp-demo",
+    "owner": "LittleFatz",
+    "repo_name": "mcp-demo",
+    "repo_url": "https://github.com/LittleFatz/mcp-demo",
+    "description": "[LittleFatz/mcp-demo](https://github.com/LittleFatz/mcp-demo): Facilitates file operations like counting, searching, and content analysis through an MCP server, enabling LLMs to access and interact with the filesystem.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/LittleFatz/mcp-demo/master/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# 文件操作 MCP 服务器\n\n这是一个符合[Model Context Protocol (MCP)](https://modelcontextprotocol.io/)规范的服务器，提供文件统计、搜索和内容分析功能。此服务器可以被LLM（如Claude、GPT等）调用，以实现访问文件系统的能力。\n\n## 功能\n\n服务器提供以下工具：\n- `count_files`: 统计指定目录中的文件数量\n- `search_files`: 根据文件名模式搜索文件\n- `search_content`: 在文件内容中搜索文本\n\n服务器还提供以下资源：\n- `file://{file_path}`: 读取指定文件的内容\n\n服务器提供以下提示模板：\n- `analyze_directory`: 用于分析目录中的文件组成\n\n## 安装\n\n1. 安装 uv (如果尚未安装):\n\n```bash\npip install uv\n```\n\n2. 使用 uv 创建虚拟环境并安装依赖:\n\n```bash\nuv venv\nuv pip install -r requirements.txt\n```\n\n## 使用方法\n\n### 运行服务器\n\n使用提供的脚本启动服务器：\n\n```bash\nchmod +x run_server.sh\n./run_server.sh\n```\n\n或者直接运行：\n\n```bash\nuv run python file_server.py\n```\n\n### 与LLM集成\n\n此MCP服务器可以通过MCP协议连接到支持MCP的LLM应用程序（如Claude Desktop）。在Claude Desktop中，您可以通过以下方式配置服务器：\n\n1. 打开Claude Desktop配置文件（`~/Library/Application Support/Claude/claude_desktop_config.json`）\n2. 添加服务器配置：\n\n```json\n{\n  \"mcpServers\": {\n    \"file-tools\": {\n      \"command\": \"uv\",\n      \"args\": [\n        \"--directory\",\n        \"/绝对路径/到/项目文件夹\",\n        \"run\",\n        \"python\",\n        \"file_server.py\"\n      ]\n    }\n  }\n}\n```\n\n3. 重启Claude Desktop应用\n\n### 使用示例\n\n一旦连接到LLM，您可以通过以下方式使用服务器功能：\n\n- 统计目录中的文件：\n  \"请统计/Users/username/Documents目录中有多少个文件\"\n\n- 搜索特定类型的文件：\n  \"找出/Users/username/projects目录中所有的Python文件\"\n\n- 搜索文件内容：\n  \"在/Users/username/projects目录中找出所有包含'import tensorflow'的Python文件\"\n\n- 读取文件内容：\n  \"请读取并分析/Users/username/project/main.py文件\"\n\n## MCP协议\n\nMCP（Model Context Protocol）是一个开放标准，用于定义AI模型如何与外部工具和资源交互。您可以在[官方网站](https://modelcontextprotocol.io/)了解更多。\n\n## 许可证\n\nMIT\n",
+  "extracted_at": "2025-06-13T08:57:02.588526",
+  "content_hash": "5c7dda23f7d597b2b247ddb532b46858f8af1fa3b9814ebb4cfb9d850686bf6b"
+}

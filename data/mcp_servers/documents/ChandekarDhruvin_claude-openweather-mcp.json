@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "ChandekarDhruvin/claude-openweather-mcp",
+    "owner": "ChandekarDhruvin",
+    "repo_name": "claude-openweather-mcp",
+    "repo_url": "https://github.com/ChandekarDhruvin/claude-openweather-mcp",
+    "description": "[ChandekarDhruvin/claude-openweather-mcp](https://github.com/ChandekarDhruvin/claude-openweather-mcp): Facilitates real-time weather data interaction for Claude using OpenWeather API through a Python-based MCP server.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/ChandekarDhruvin/claude-openweather-mcp/master/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "## 🌦️ Claude Weather Agent (MCP-Enabled)\r\n\r\nThis project enables Claude to interact with **live weather data** (current + forecast) using the OpenWeather API via an **MCP (Multi-Command Protocol) server**.\r\n\r\nIt includes:\r\n- FastMCP server using Python\r\n- Weather tools (`get_weather` and `get_forecast`)\r\n- Environment variable-based API security\r\n- Easy integration with `claude_desktop_config.py`\r\n\r\n---\r\n\r\n### 🚀 How to Run the MCP Server\r\n\r\n1. **Clone this repo** and navigate into it:\r\n\r\n```bash\r\ngit clone https://github.com/ChandekarDhruvin/claude-openweather-mcp.git\r\ncd claude-weather-agent/weather\r\n```\r\n\r\n2. **Install dependencies:**\r\n\r\n```bash\r\npip install -r requirements.txt\r\n```\r\n\r\n3. **Create a `.env` file** in the same directory as `weather.py`:\r\n\r\n```env\r\nOPENWEATHER_API_KEY=your_openweather_api_key\r\n```\r\n\r\n4. **Start the MCP server manually (for testing):**\r\n\r\n```bash\r\npython weather.py\r\n```\r\n\r\n---\r\n\r\n### 🧠 Tools Exposed to Claude\r\n\r\n| Tool           | Parameters                | Description                                |\r\n|----------------|---------------------------|--------------------------------------------|\r\n| `get_weather`  | `city: str`, `country: str = \"IN\"` | Returns current weather conditions.         |\r\n| `get_forecast` | `city: str`, `country: str = \"IN\"` | Provides a 5-day forecast (around noon).    |\r\n\r\n---\r\n\r\n### 🛠️ Claude Integration: `claude_desktop_config.py`\r\n\r\nAdd the following to your Claude config to auto-start the MCP server:\r\n\r\n```json\r\n{\r\n  \"mcpServers\": {\r\n    \"weather\": {\r\n      \"command\": \"C:\\\\path\\\\to\\\\uv.exe\",\r\n      \"args\": [\r\n        \"--directory\",\r\n        \"C:\\\\path\\\\to\\\\weather\\\\folder\",\r\n        \"run\",\r\n        \"C:\\\\path\\\\to\\\\weather\\\\weather.py\"\r\n      ]\r\n    }\r\n  }\r\n}\r\n```\r\n\r\n> 📝 **Note:** You must adjust the path to match your local Python virtual environment and directory structure.\r\n\r\n---\r\n\r\n### 📂 Project Structure\r\n\r\n```\r\nweather/\r\n├── weather.py            # Main FastMCP server with weather tools\r\n├── .env                  # Contains the OpenWeather API key\r\n├── requirements.txt      # Dependencies\r\n└── README.md             # You're reading it!\r\n```\r\n\r\n---\r\n\r\n### 🔒 Environment Variables\r\n\r\nUsing `python-dotenv`, we securely load the OpenWeather API key from a `.env` file.\r\n\r\n```python\r\nfrom dotenv import load_dotenv\r\nimport os\r\n\r\nload_dotenv()\r\nOPENWEATHER_API_KEY = os.getenv(\"OPENWEATHER_API_KEY\")\r\n```\r\n\r\n---\r\n\r\n### ✅ Requirements\r\n\r\nAdd this in your `requirements.txt`:\r\n\r\n```txt\r\nhttpx\r\npython-dotenv\r\nfastmcp\r\n```\r\n\r\n---\r\n\r\n### \r\n![Screenshot 2025-04-14 145544](https://github.com/user-attachments/assets/500ade03-bcb6-493a-8a28-74ffdcf8f085)\r\n\r\n\r\n```\r\nUser: What's the weather like in Mumbai today?\r\nClaude: \r\nCurrent weather in Mumbai, IN:\r\nCondition: Clear (clear sky)\r\nTemperature: 32°C (Feels like 35°C)\r\nHumidity: 58%\r\nWind Speed: 3.5 m/s\r\n```\r\n\r\n---\r\n# Reference\r\nhttps://modelcontextprotocol.io/\r\n",
+  "extracted_at": "2025-06-13T08:56:14.616305",
+  "content_hash": "7eba34ae3154b0da31924b4a5c74ad6d370d47e570c20c6987b2f8214d5321c6"
+}

@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "shivaji43/gibwork-mcp",
+    "owner": "shivaji43",
+    "repo_name": "gibwork-mcp",
+    "repo_url": "https://github.com/shivaji43/gibwork-mcp",
+    "description": "[shivaji43/gibwork-mcp](https://github.com/shivaji43/gibwork-mcp): Facilitates task management on the GibWork platform using the Model Context Protocol.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/shivaji43/gibwork-mcp/master/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# GibWork MCP Server\n\nA Model Context Protocol (MCP) server implementation for interacting with the GibWork platform. This server provides tools for managing tasks on the GibWork platform through an MCP.\n\n## Features\n\n- **Task Management**: Create, retrieve, and search tasks on the GibWork platform\n- **MCP Protocol**: Implements the Model Context Protocol for standardized tool interactions\n\n## Prerequisites\n\n- Node.js (latest LTS version recommended)\n- pnpm package manager (version 10.5.2 or higher)\n- Solana private key (for task creation)\n\n## Installation\n\n1. Clone the repository:\n```bash\ngit clone <repository-url>\ncd gibwork-mcp\n```\n\n2. Install dependencies:\n```bash\npnpm install\n```\n\n3. Create a `.env` file in the root directory and add your Solana private key:\n```\nSOLANA_PRIVATE_KEY=your_private_key_here\n```\n\n4. Configure Claude Desktop:\n   - Open Claude Desktop settings\n   - Navigate to Developer settings\n   - Edit the configuration file at:\n     - Windows: `%APPDATA%\\Claude\\claude_desktop_config.json`\n     - macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`\n   - Add the following configuration:\n   ```json\n   {\n     \"mcpServers\": {\n       \"gibwork\": {\n         \"command\": \"C:\\\\Program Files\\\\nodejs\\\\node\",\n         \"args\": [\"C:\\\\path\\\\to\\\\gibwork-mcp\\\\dist\\\\index.js\"]\n       }\n     }\n   }\n   ```\n   Note: Adjust the paths according to your system configuration.\n\nFor more detailed information about MCP configuration, visit [Model Context Protocol Quickstart Guide](https://modelcontextprotocol.io/quickstart/user).\n\n## Project Structure\n\n```\ngibwork-mcp/\n├── src/\n│   ├── index.ts      # Main server implementation\n│   └── utils.ts      # Utility functions for API interactions\n├── dist/             # Compiled JavaScript output\n├── package.json      # Project dependencies and scripts\n└── tsconfig.json     # TypeScript configuration\n```\n\n## Available Tools\n\nThe server implements the following MCP tools:\n\n1. **get-tasks-by-id**\n   - Fetches a specific task by its ID\n   - Parameters: `id` (string)\n\n2. **get-tasks**\n   - Retrieves tasks with pagination and filtering\n   - Parameters:\n     - `page` (number, default: 1)\n     - `limit` (number, default: 15)\n     - `pageAll` (boolean, default: false)\n     - `search` (string, default: '')\n     - `orderBy` (string, default: '')\n     - `tags` (string[], default: [])\n\n3. **create-task**\n   - Creates a new task on the GibWork platform\n   - Parameters:\n     - `title` (string)\n     - `content` (string)\n     - `requirements` (string)\n     - `tags` (string[])\n     - `payer` (string)\n     - `token` (object)\n\n## Development\n\n1. Build the project:\n```bash\npnpm build\n```\n\n2. Run the development server:\n```bash\npnpm dev\n```\n\n## Configuration\n\nThe server is configured to run with the following settings:\n- API Base URL: `https://api2.gib.work`\n- Module System: ES Modules\n- Target: ES2022\n- Strict Type Checking: Enabled\n\n## Security\n\n- The `.env` file containing sensitive information is excluded from version control\n- Solana private key should be kept secure and never committed to the repository\n\n## License\n\nISC License\n",
+  "extracted_at": "2025-06-13T08:57:02.592396",
+  "content_hash": "4678af65c4d633281b86c81a8302f8c27a010c50d12fda469ea06494b4bc6d6a"
+}

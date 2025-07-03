@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "asirulnik/mcp-law-office-db",
+    "owner": "asirulnik",
+    "repo_name": "mcp-law-office-db",
+    "repo_url": "https://github.com/asirulnik/mcp-law-office-db",
+    "description": "[asirulnik/mcp-law-office-db](https://github.com/asirulnik/mcp-law-office-db): Facilitates efficient management of law office databases, focusing on client records, case filing, time tracking, and invoice management.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": null,
+    "api_base_url": null
+  },
+  "readme_content": null,
+  "extracted_at": "2025-06-13T08:55:29.667509",
+  "content_hash": ""
+}

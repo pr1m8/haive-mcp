@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "winterfx/mcpcli",
+    "owner": "winterfx",
+    "repo_name": "mcpcli",
+    "repo_url": "https://github.com/winterfx/mcpcli",
+    "description": "[winterfx/mcpcli](https://github.com/winterfx/mcpcli): A command-line interface for managing and interacting with multiple MCP servers, offering features like tool invocation and server inspection.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/winterfx/mcpcli/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# MCP-CLI\n\nMCP-CLI is a command-line tool for managing and interacting with MCP (Machine Conversation Protocol) servers.\n\n## Features\n\n- Manage multiple MCP servers\n- Interactive command-line interface\n- Support for viewing and calling server Tools\n- Support for viewing server Prompts and Resources\n- Support for tool invocation\n\n## Installation\n```bash\ngo install github.com/yourusername/mcp-cli@latest\n```\n\n## Configuration\n\nCreate configuration file `~/.mcp-cli.json`:\n\n```json\n{\n  \"mcpServers\": {\n    \"playwright\": {\n      \"command\": \"npx\",\n      \"args\": [\"@playwright/mcp@latest\"]\n    }\n    ...\n  }\n}\n```\n\n## Usage\n\n### List All Servers\n```bash\n$ mcp-cli server list\n```\n\n| Server Name | Command | Args | Environment |\n|------------|---------|------|-------------|\n| playwright | npx | @playwright/mcp@latest | |\n\n### Inspect Server\n```bash\n$ ./mcp-cli server inspect -n playwright\nInspecting server: {Command:npx Args:[@playwright/mcp@latest] Env:map[]}\nInitializing MCP client...\nEntering interactive shell for server: playwright\nType 'help' for available commands, 'exit' to quit\n\nplaywright> tools\ntotal 21 tools\n```\n\n| NAME | DESCRIPTION | PARAMETERS |\n|------|------------|------------|\n| browser_close | Close the page | `{\"type\": \"object\", \"properties\": {}}` |\n| browser_wait | Wait for a specified time in seconds | `{\"type\": \"object\", \"properties\": {\"time\": {\"description\": \"The time to wait in seconds\", \"type\": \"number\"}}, \"required\": [\"time\"]}` |\n\n### Interactive Commands\n```bash\n> tools     # Show available tools\n> prompts   # Show available prompts\n> resources # Show available resources\n> call tool-name {\"param\": \"value\"}  # Call a tool\n> help      # Show help information\n> exit      # Exit\n```\n\n### Tool Call Example\n![](./doc/tool.png)\n\n## License\n\nMIT License\n",
+  "extracted_at": "2025-06-13T08:56:31.114001",
+  "content_hash": "16a017141e28ac34163164ed8ccd1b1e80827f1aee403f91bc03f81432883e92"
+}

@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "Leonelberio/the-wordpress-mcp-server",
+    "owner": "Leonelberio",
+    "repo_name": "the-wordpress-mcp-server",
+    "repo_url": "https://github.com/Leonelberio/the-wordpress-mcp-server",
+    "description": "[Leonelberio/the-wordpress-mcp-server](https://github.com/Leonelberio/the-wordpress-mcp-server): Facilitates seamless interaction with WordPress sites via JSON-RPC 2.0, enabling post creation, retrieval, and updates through the WordPress REST API.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/Leonelberio/the-wordpress-mcp-server/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# WordPress MCP Server\n\nA Model Context Protocol (MCP) server for WordPress integration, compatible with Windows, macOS, and Linux.\n\n## Overview\n\nThis MCP server enables interaction with WordPress sites through the WordPress REST API. It provides tools for creating, retrieving, and updating posts using JSON-RPC 2.0 protocol.\n\n## Installation\n\n1. Clone the repository\n2. Install dependencies:\n```bash\nnpm install\n```\n3. Build the project:\n```bash\nnpm run build\n```\n\n## Configuration\n\nAdd the server to your MCP settings file with environment variables for WordPress credentials:\n\n```json\n{\n  \"mcpServers\": {\n    \"wordpress\": {\n      \"command\": \"node\",\n      \"args\": [\"path/to/build/index.js\"],\n      \"env\": {\n        \"WORDPRESS_SITE_URL\": \"https://your-wordpress-site.com\",\n        \"WORDPRESS_USERNAME\": \"your-username\",\n        \"WORDPRESS_PASSWORD\": \"your-app-password\"\n      }\n    }\n  }\n}\n```\n\nThe environment variables are:\n- WORDPRESS_SITE_URL: Your WordPress site URL\n- WORDPRESS_USERNAME: WordPress username\n- WORDPRESS_PASSWORD: WordPress application password\n\nYou can also provide these credentials in the request parameters if you prefer not to use environment variables.\n\n## Available Methods\n\n### create_post\nCreates a new WordPress post.\n\nParameters:\n- siteUrl: (optional if set in env) WordPress site URL\n- username: (optional if set in env) WordPress username\n- password: (optional if set in env) WordPress application password\n- title: Post title\n- content: Post content\n- status: (optional) 'draft' | 'publish' | 'private' (default: 'draft')\n\n### get_posts\nRetrieves WordPress posts.\n\nParameters:\n- siteUrl: (optional if set in env) WordPress site URL\n- username: (optional if set in env) WordPress username\n- password: (optional if set in env) WordPress application password\n- perPage: (optional) Number of posts per page (default: 10)\n- page: (optional) Page number (default: 1)\n\n### update_post\nUpdates an existing WordPress post.\n\nParameters:\n- siteUrl: (optional if set in env) WordPress site URL\n- username: (optional if set in env) WordPress username\n- password: (optional if set in env) WordPress application password\n- postId: ID of the post to update\n- title: (optional) New post title\n- content: (optional) New post content\n- status: (optional) 'draft' | 'publish' | 'private'\n\n## Security Note\n\nFor security, it's recommended to use WordPress application passwords instead of your main account password. You can generate an application password in your WordPress dashboard under Users → Security → Application Passwords.\n\n## Example Usage\n\nUsing environment variables:\n```json\n{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"create_post\",\n  \"params\": {\n    \"title\": \"My New Post\",\n    \"content\": \"Hello World!\",\n    \"status\": \"draft\"\n  }\n}\n```\n\nWithout environment variables:\n```json\n{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"create_post\",\n  \"params\": {\n    \"siteUrl\": \"https://your-wordpress-site.com\",\n    \"username\": \"your-username\",\n    \"password\": \"your-app-password\",\n    \"title\": \"My New Post\",\n    \"content\": \"Hello World!\",\n    \"status\": \"draft\"\n  }\n}\n```\n\n## Requirements\n\n- Node.js 20.0.0 or higher\n- WordPress site with REST API enabled\n- WordPress application password for authentication\n\n## License\n\nMIT License - See LICENSE file for details\n",
+  "extracted_at": "2025-06-13T08:55:18.176547",
+  "content_hash": "7575bd323f844f3569e70ce971275aa2618f6edfac59fefd6f6e18c8de5481d5"
+}

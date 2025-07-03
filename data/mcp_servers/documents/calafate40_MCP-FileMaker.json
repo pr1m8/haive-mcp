@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "calafate40/MCP-FileMaker",
+    "owner": "calafate40",
+    "repo_name": "MCP-FileMaker",
+    "repo_url": "https://github.com/calafate40/MCP-FileMaker",
+    "description": "[calafate40/MCP-FileMaker](https://github.com/calafate40/MCP-FileMaker): Facilitates access to FileMaker databases via the Model Context Protocol with token-based authentication and record search capabilities.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/calafate40/MCP-FileMaker/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# FileMaker Data API MCP Server\n\nFileMaker Data API を Model Context Protocol（MCP）に対応させるサーバー実装です。FileMaker データベースへのアクセスを提供します。\n\n## 機能\n\n- トークンベースの認証管理\n- レイアウトメタデータの取得\n- レコードの検索機能\n\n## Tools\n\n- **get_token**\n\n  - FileMaker Data API のトークンを取得\n  - 入力:\n    - 認証情報は環境変数から自動的に取得\n\n- **abandon_token**\n\n  - FileMaker Data API のトークンを破棄\n  - 入力:\n    - `token` (string): 破棄するトークン\n\n- **get_layout_metadata**\n\n  - レイアウトのメタデータを取得\n  - 入力:\n    - `token` (string): 有効なアクセストークン\n\n- **find_records**\n  - データベースのレコードを検索\n  - 入力:\n    - `token` (string): 有効なアクセストークン\n    - `fieldName` (string): 検索対象のフィールド名\n    - `searchText` (string): 検索テキスト\n\n## インストール\n\n```bash\nnpm install\n```\n\n## ビルド\n\n```bash\nnpm run build\n```\n\n## 設定\n\n### 環境変数の設定\n\n以下の環境変数を設定する必要があります：\n\n- `FILEMAKER_SERVER`: FileMaker サーバーのホスト名\n- `FILEMAKER_DATABASE`: データベース名(ファイル名)\n- `FILEMAKER_USERNAME`: ユーザー名\n- `FILEMAKER_PASSWORD`: パスワード\n\n### クライアントアプリでの使用方法：例としてclaude_desktop\n\n`claude_desktop_config.json`に以下を記述して追加：\n\n```json\n{\n  \"mcpServers\": {\n    \"filemaker\": {\n      \"command\": \"node\",\n      \"args\": [\"</ABSOLUTE/PATH/TO/>filemaker/build/index.js\"],\n      \"env\": {\n        \"FILEMAKER_SERVER\": \"your-server-host\",\n        \"FILEMAKER_DATABASE\": \"your-database\",\n        \"FILEMAKER_LAYOUT\": \"target-layout\",\n        \"FILEMAKER_USERNAME\": \"your-username\",\n        \"FILEMAKER_PASSWORD\": \"your-password\"\n      }\n    }\n  }\n}\n```\n\n## 依存関係\n\n- Node.js\n- TypeScript\n- @modelcontextprotocol/sdk: ^1.8.0\n- zod: ^3.24.2\n\n## ライセンス\n\nISC\n\n## 注意事項\n\n- FileMaker Server が稼働している必要があります\n- FileMaker Data API が有効化されている必要があります\n- 適切な認証情報（ユーザー名、パスワード）が必要です\n- API アクセスに必要な権限が付与されている必要があります\n",
+  "extracted_at": "2025-06-13T08:55:18.119041",
+  "content_hash": "eddbf51d7ec68aa722dfcc3679f3a2e79076d207335c56e60e9c0af7fa15b0a8"
+}

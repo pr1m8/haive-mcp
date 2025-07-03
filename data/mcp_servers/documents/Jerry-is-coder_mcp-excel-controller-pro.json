@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "Jerry-is-coder/mcp-excel-controller-pro",
+    "owner": "Jerry-is-coder",
+    "repo_name": "mcp-excel-controller-pro",
+    "repo_url": "https://github.com/Jerry-is-coder/mcp-excel-controller-pro",
+    "description": "[Jerry-is-coder/mcp-excel-controller-pro](https://github.com/Jerry-is-coder/mcp-excel-controller-pro): Facilitates advanced Excel file manipulation, including reading, writing, and sheet management, within a Node.js environment.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/Jerry-is-coder/mcp-excel-controller-pro/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# mcp-excel-controller-pro\n\n# ExcelController\n\nExcelController는 **Model Context Protocol (MCP) 서버**로, Excel 파일을 읽고, 쓰고, 수정할 수 있게 해주는 도구입니다.  \nNode.js 환경에서 실행되며 강력한 Excel 파일 조작 기능을 제공합니다.\n\n---\n\n## ✨ Features (English)\n\n- 📄 **Excel file reading**: Read Excel file contents using the `read_excel` tool\n- ✍️ **Excel bulk data update**: Update large datasets in open or closed Excel files with the `bulk_update_excel` tool\n- 📂 **Excel file opening**: Open files with the Excel application\n- 📑 **Sheet management**: Add (`add_sheet`), rename (`rename_sheet`), or delete (`delete_sheet`) sheets\n- 🔍 **Open file management**: List currently open Excel files (`list_open_excel_files`) and close them (`close_excel_file`)\n- 🔧 **Open file handling**: Modify Excel files even while open via COM interface\n- 📋 **Backup functionality**: Optional automatic backup creation before file modifications\n\n---\n\n## ✨ 주요 기능 (한국어)\n\n- 📄 **엑셀 파일 읽기**: `read_excel` 도구로 특정 경로의 엑셀 파일 내용 읽기\n- ✍️ **엑셀 파일 대량 데이터 업데이트**: `bulk_update_excel` 도구로 열려있거나 닫혀있는 Excel 파일에 데이터 일괄 업데이트\n- 📂 **엑셀 파일 열기**: 프로그램에서 Excel 애플리케이션으로 파일 실행\n- 📑 **시트 관리**: 시트 추가(`add_sheet`), 이름 변경(`rename_sheet`), 삭제(`delete_sheet`) 기능\n- 🔍 **열린 파일 관리**: 현재 PC에서 열려있는 Excel 파일 목록 조회(`list_open_excel_files`)와 닫기(`close_excel_file`)\n- 🔧 **열린 파일 처리**: Excel에서 열려있는 파일도 COM 인터페이스를 통해 수정 가능\n- 📋 **백업 기능**: 파일 수정 전 자동 백업 생성 옵션 제공\n\n---\n\n## 📦 설치\n\n### 요구사항\n\n- 시스템에 Microsoft Excel이 설치되어 있어야 합니다\n\n### MCP 설정에 추가\n\nMCP 설정 파일에 다음을 추가하세요:\n\n```json\n{\n  \"mcpServers\": {\n    \"excel-controller\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"mcp-excel-controller-pro\",\n        \"C:\\\\Users\\\\user\\\\Desktop\"\n      ]\n    }\n  }\n}",
+  "extracted_at": "2025-06-13T08:57:03.761713",
+  "content_hash": "882b1d493549a3aa590d011b953367510a1f77b0eee156494fe9207d845f999b"
+}

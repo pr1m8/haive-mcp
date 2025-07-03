@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "sebastianbachmaier/save-filesystem-mcp",
+    "owner": "sebastianbachmaier",
+    "repo_name": "save-filesystem-mcp",
+    "repo_url": "https://github.com/sebastianbachmaier/save-filesystem-mcp",
+    "description": "[sebastianbachmaier/save-filesystem-mcp](https://github.com/sebastianbachmaier/save-filesystem-mcp): A filesystem MCP server enabling secure file operations within a designated root directory, preventing unauthorized access beyond specified boundaries.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/sebastianbachmaier/save-filesystem-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# Filesystem MCP\n\n\n> [!WARNING]\n> Should not be able to modify files in other folders then specified root folder but this needs to be seen ...\n\n\nSimple filesystem MCP that allows to create, read, update and delete files in a specified root folder. The root folder is specified as an argument to the node call.\nThe agent should not be able to modify files in other folders outside the root folder (not guaranteed though).\n\n### How to install:\n\n> [!TIP]\n> You need > Node.js 12 to run this MCP. You might need to use it over nvm or similar.\n\nModify e.g. your Clause MCP config e.g. under MAC via (see also [claude documentation](https://modelcontextprotocol.io/quickstart/user)):\n\n```\n~/Library/Application\\ Support/Claude/claude_desktop_config.json\n```\n\nand add the server:\n\n```json\n{\n    \"mcpServers\": {\n        \"save-filesystem-mcp\": {\n            \"command\": \"node\",\n            \"args\": [\n                \"PATH_TO_FOLDER/save-filesystem-mcp/build/index.js\",\n                \"ABSOLUTE_FOLDER_FOR_CLAUDE_TO_WORK_WITH\"\n            ]\n        }\n    }\n}\n```\n\nThen start claude and ask it to code a game for you. It will use the MCP to create, read, update and delete files in the specified root folder.\n",
+  "extracted_at": "2025-06-13T08:55:37.890624",
+  "content_hash": "89c85998bebe86415e44437fc82578e15b1f1dcfc8dbdbed04a41c957bcb727f"
+}

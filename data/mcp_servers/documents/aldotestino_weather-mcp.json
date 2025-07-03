@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "aldotestino/weather-mcp",
+    "owner": "aldotestino",
+    "repo_name": "weather-mcp",
+    "repo_url": "https://github.com/aldotestino/weather-mcp",
+    "description": "[aldotestino/weather-mcp](https://github.com/aldotestino/weather-mcp): Provides real-time weather and geolocation data for seamless integration with AI-native environments using the OpenWeather API.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/aldotestino/weather-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# 🌤️ Weather MCP\n\n*Weather MCP* is a modular, MCP-compatible service that delivers real-time weather and geolocation data using the OpenWeather API. Built with the Model Context Protocol (MCP) SDK, it’s designed for seamless integration with AI-native environments like Claude Desktop and Ollama (with Qwen 2.5), enabling context-aware applications to access live weather insights effortlessly.\n\n## 🚀 Prerequisites\n\nBefore getting started, make sure the following tools are installed on your system:\n\n- 📦 [Node.js](https://nodejs.org/)\n- 🔁 [pnpm](https://pnpm.io/)\n- 🛠️ [Go](https://go.dev/) (required for `mcphost` with Ollama + Qwen 2.5)\n\n## ⚙️ Setup Instructions\n\n### 1. Clone the Repository\n\n```\ngit clone https://github.com/aldotestino/weather-mcp.git\ncd weather-mcp\n```\n\n### 2. Install Dependencies\n\nInstall all necessary packages using `pnpm`:\n\n```\npnpm install\n```\n\n### 3. 🔐 Add Your OpenWeather API Key\n\nWeather MCP requires a valid [OpenWeather API key](https://openweathermap.org/api). The API key should be set in the `env` object of your MCP configuration JSON file:\n\n```json\n{\n  \"env\": {\n    \"OPENWEATHER_API_KEY\": \"your_api_key_here\"\n  }\n}\n```\n\n> 💡 Tip: Use the provided `mcp.config.example.json` file as a template.\n\n### 4. Build the Project\n\nCompile the TypeScript source code:\n\n```\npnpm run build\n```\n\n## 🧠 Integration with Claude Desktop\n\n### 1. Locate Your Configuration File\n\n- **macOS**\n\n```\ncode ~/Library/Application\\ Support/Claude/claude_desktop_config.json\n```\n\n- **Windows**\n\n```\ncode $env:AppData\\Claude\\claude_desktop_config.json\n```\n\n### 2. Register the Weather MCP Server\n\nAdd or modify the `\"mcpServers\"` section like so:\n\n```json\n{\n  \"mcpServers\": {\n    \"weather\": {\n      \"command\": \"node\",\n      \"args\": [\n        \"/absolute/path/to/weather-mcp/build/index.js\"\n      ],\n      \"env\": {\n        \"OPENWEATHER_API_KEY\": \"your_api_key_here\"\n      }\n    }\n  }\n}\n```\n\n> 📁 Replace `/absolute/path/to/...` with the actual path to your local project directory.\n\n### 3. Restart Claude Desktop\n\nSave the file and restart Claude Desktop for changes to take effect.\n\n## 🤖 Integration with Ollama + Qwen 2.5\n\n### 1. Install MCP Host\n\n```\ngo install github.com/mark3labs/mcphost@latest\n```\n\n### 2. Start the MCP Host\n\nRun the server with your local config:\n\n```\nmcphost -m ollama:qwen2.5 --config \"./mcp.config.json\"\n```\n\n> 💡 Tip: Add the MCP Server configuration to `~/.mcp.json` to omit the `--config` parameter.\n",
+  "extracted_at": "2025-06-13T08:56:17.184142",
+  "content_hash": "630c72ccaef87fbea547b02539b6d075e6f3e65147a98f0944182f94a9ee1613"
+}

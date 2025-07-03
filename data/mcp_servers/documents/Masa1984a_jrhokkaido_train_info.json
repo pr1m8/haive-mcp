@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "Masa1984a/jrhokkaido_train_info",
+    "owner": "Masa1984a",
+    "repo_name": "jrhokkaido_train_info",
+    "repo_url": "https://github.com/Masa1984a/jrhokkaido_train_info",
+    "description": "[Masa1984a/jrhokkaido_train_info](https://github.com/Masa1984a/jrhokkaido_train_info): Provides real-time train operation information for JR Hokkaido, including delays and cancellations, across various regions.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/Masa1984a/jrhokkaido_train_info/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# JR北海道列車運行情報取得ツール\n\nJR北海道の列車運行情報を取得するMCPサーバです。各エリア（札幌近郊、道央、道南、道北、道東、北海道新幹線）の運行情報を取得し、遅延や運休などの情報を提供します。\n\n## 機能\n\n### Tool機能\n- JR北海道の公式サイトから各エリアの運行情報を取得\n- 「遅延」「運休」などの情報をカテゴリ分け\n- エリア指定による情報取得（札幌/道央/道南/道北/道東/北海道新幹線）\n- 漢字表記とローマ字コードの両方をサポート\n\n### Prompt機能\n- `check_all_areas` - 全エリアの運行状況を確認\n- `check_specific_area` - 特定エリアの運行状況を確認\n- `delay_impact_analysis` - 遅延状況の分析\n\n## 要件\n- Python 3.8以上\n- 必要なパッケージは`requirements.txt`に記載\n\n## インストール\n```bash\ngit clone https://github.com/Masa1984a/jrhokkaido_train_info.git\n```\n\n## 使い方 (Windows Claude for Desktop)\nClaudeの「claude_desktop_config.json」について、下記を参考にして追記する。\n```json\n{\n  \"mcpServers\": {\n    \"jrhokkaido-train-info\": {\n      \"command\": \"uv\",\n      \"args\": [\n        \"--directory\",\n        \"C:\\\\<your folder>\\\\jrhokkaido_train_info\", \n        \"run\",\n        \"jrhokkaido_train_info.py\"\n      ],\n      \"workingDirectory\": \"C:\\\\<your folder>\\\\jrhokkaido_train_info\"\n    }\n  }\n}\n```\nClaudeを再起動すると使えるようになります。\n\n具体的には下記のように使用できます。\n![alt text](Image/Image.gif)\n\n### Prompt機能の使い方\n\nClaudeの入力フィールドに下記のようなプロンプトを入力できます：\n\n1. 全エリアの確認:\n```\n/check_all_areas\n```\n\n2. 特定エリアの確認:\n```\n/check_specific_area 札幌\n```\n\n3. 遅延分析:\n```\n/delay_impact_analysis\n```\n\nClaude for desktopでは「MCPから添付」ボタンを押下して使います。\n![alt text](Image/Image2.gif)\n\n## ライセンス\n\nMIT\n\n## 謝辞\n\nこのツールはJR北海道の公式運行情報ページの情報を利用しています。\nTinjyuuさん、hfujikawa77さんが公開されているMCPサーバをかなり参考にしています。\n- https://github.com/tinjyuu/\n- https://github.com/hfujikawa77/\n",
+  "extracted_at": "2025-06-13T08:57:03.780353",
+  "content_hash": "0fb5c71f9afbab94e5abaee935ebe8ca5c62df2ad22f322cebe734206ec369d0"
+}

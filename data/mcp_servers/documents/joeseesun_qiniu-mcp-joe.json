@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "joeseesun/qiniu-mcp-joe",
+    "owner": "joeseesun",
+    "repo_name": "qiniu-mcp-joe",
+    "repo_url": "https://github.com/joeseesun/qiniu-mcp-joe",
+    "description": "[joeseesun/qiniu-mcp-joe](https://github.com/joeseesun/qiniu-mcp-joe): Facilitates file uploads to Qiniu Cloud Storage, providing a seamless integration for managing media assets.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/joeseesun/qiniu-mcp-joe/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# 七牛云存储 MCP 服务\n\n用于上传文件到七牛云存储的MCP服务\n\n## 安装指南\n\n1. 克隆仓库\n2. 创建并激活虚拟环境:\n   ```bash\n   python3 -m venv venv\n   source venv/bin/activate\n   ```\n3. 安装依赖:\n   ```bash\n   pip install -r requirements.txt\n   ```\n4. 配置环境变量:\n   ```bash\n   export QINIU_ACCESS_KEY=\"你的AccessKey\"\n   export QINIU_SECRET_KEY=\"你的SecretKey\" \n   export QINIU_BUCKET_NAME=\"joemarkdown\"\n   export QINIU_DOMAIN=\"https://img.t5t6.com\"\n   ```\n5. 启动服务:\n   ```bash\n   python server.py\n   ```\n\n## 配置说明\n\n1. 复制示例配置文件:\n   ```bash\n   cp .env.example .env\n   ```\n2. 编辑`.env`文件填写你的七牛云凭证\n3. 切勿将`.env`文件提交到版本控制\n\n示例`.env`内容:\n```\nQINIU_ACCESS_KEY=你的AccessKey\nQINIU_SECRET_KEY=你的SecretKey\nQINIU_BUCKET_NAME=你的存储空间名称\nQINIU_DOMAIN=https://你的域名\n```\n\n## 使用方法\n\n1. 克隆项目后首次运行:\n```bash\n# 进入项目目录\ncd qiniu_mcp_server\n\n# 创建虚拟环境\npython3 -m venv venv\n\n# 激活环境 (Linux/Mac)\nsource venv/bin/activate\n\n# 安装依赖\npip install -r requirements.txt\n\n# 复制并配置.env文件\ncp .env.example .env\nnano .env  # 编辑填入你的七牛云凭证\n\n# 启动服务\npython server.py\n```\n\n2. 日常使用:\n```bash\ncd qiniu_mcp_server\nsource venv/bin/activate  # 激活环境\npython server.py          # 启动服务\n```\n\n3. 调用上传接口示例:\n```python\nfrom mcp import McpClient\n\nclient = McpClient(\"qiniu_mcp\")\nurl = client.use_tool(\"upload_file\", {\n    \"file_path\": \"/path/to/your/file.jpg\"\n})\nprint(\"文件URL:\", url)\n```\n\n服务提供以下工具:\n- `upload_file(file_path: str) -> str`: 上传文件并返回公开访问URL\n\n## Trae 集成配置\n\n在Trae的配置文件中添加以下内容(请替换实际路径和凭证):\n\n```json\n{\n  \"mcpServers\": {\n    \"qiniu_mcp\": {\n      \"command\": \"python\",\n      \"args\": [\n        \"/path/to/qiniu_mcp_server/server.py\"\n      ],\n      \"env\": {\n        \"QINIU_ACCESS_KEY\": \"你的AccessKey\",\n        \"QINIU_SECRET_KEY\": \"你的SecretKey\",\n        \"QINIU_BUCKET_NAME\": \"你的存储空间名称\",\n        \"QINIU_DOMAIN\": \"https://你的域名\"\n      }\n    }\n  }\n}\n```\n\n注意: 实际使用时请确保:\n1. 替换`/path/to/`为实际服务器路径\n2. 使用真实的凭证信息替换示例值\n3. 妥善保管凭证信息\n",
+  "extracted_at": "2025-06-13T08:54:59.332921",
+  "content_hash": "35f67d515640725ec1ec73ca3b72ab9fa7952fa225a4c87f38ae87184b3e7015"
+}

@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "tangshuang/mcp-bone",
+    "owner": "tangshuang",
+    "repo_name": "mcp-bone",
+    "repo_url": "https://github.com/tangshuang/mcp-bone",
+    "description": "[tangshuang/mcp-bone](https://github.com/tangshuang/mcp-bone): Facilitates connection to MCP Bone for tool registration and parsing LLM completion text into tool calls.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": 0,
+    "last_updated": "2025-04-28T04:45:02Z",
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/tangshuang/mcp-bone/main/README.md",
+    "api_base_url": "https://api.github.com/repos/tangshuang/mcp-bone"
+  },
+  "readme_content": "# MCP Server of MCP Bone\n\n## What's MCP Bone?\n\nMCP Bone is a online service that provides a set of tools for MCP. [Home Page](https://store.tangshuang.net?scope=mcp-bone)\nOn MCP Bone, you can register other MCP Servers, get function calling tools JSON or XML-style prompt text and later call tools easily. [Read Usage](https://store.tangshuang.net/wiki/mcp-bone?scope=mcp-bone)\n\nThis package is a Node.js module that provides a MCP Server connect to MCP Bone. You can use it to connect to MCP Bone and get the tools JSON.\n\nAlso, you can use this package as a parser SDK to parse completion text to tool_calls.\n\n## Setup\n\n### Access Token\n\nGet an Access Token:\n1. go to https://store.tangshuang.net?scope=mcp-bone\n2. register an account and log in\n3. go to https://store.tangshuang.net/product/58/entry?scope=mcp-bone to create a new App\n4. go to the App's `Certificate` menu page to create a new certificate\n5. copy the `Access Token`\n\n### NPX\n\n```\n{\n    \"mcpServers\": {\n        \"mcp-bone\": {\n            \"command\": \"npx\",\n            \"args\": [\n                \"-y\",\n                \"mcp-bone\"\n            ],\n            \"env\": {\n                \"MCP_BONE_ACCESS_TOKEN\": \"\"\n            }\n        }\n    }\n}\n```\n\n### Parser\n\n```js\nimport {\n    extractAndParseToolsToJson,\n    extractAndParseToolsXmlToJson,\n    extractAndParseToolsTextToJson,\n} from 'mcp-bone';\n\nconst tools = extractAndParseToolsTextToJson(text);\nconst tools = extractAndParseToolsXmlToJson(text);\nconst tools = extractAndParseToolsToJson(text);\n```\n\nThese tools are used after LLM completions whic does not support function calling to parse the text into tools JSON. If the result is an empty array, it means that the LLM did not generate any tools.\n",
+  "extracted_at": "2025-06-13T08:54:41.300957",
+  "content_hash": "9324f4064f3e94c0c600ae7fd02091e8b8cae5caea4135b41ddb7193d72a98b7"
+}

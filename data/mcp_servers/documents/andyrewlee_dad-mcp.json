@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "andyrewlee/dad-mcp",
+    "owner": "andyrewlee",
+    "repo_name": "dad-mcp",
+    "repo_url": "https://github.com/andyrewlee/dad-mcp",
+    "description": "[andyrewlee/dad-mcp](https://github.com/andyrewlee/dad-mcp): Enhance home education with a remote MCP server that integrates AI for creative learning experiences.",
+    "category": "Other",
+    "languages": ["Other"],
+    "is_official": false,
+    "platforms": ["Cross-Platform"],
+    "scopes": ["local"],
+    "stars": null,
+    "last_updated": null,
+    "license": null,
+    "readme_url": "https://raw.githubusercontent.com/andyrewlee/dad-mcp/main/README.md",
+    "api_base_url": null
+  },
+  "readme_content": "# DadMCP\n\nSpark your kid's creativity with AI-powered education at home. Remote MCP server for dad-powered learning.\n\n## Connecting to Remote MCP Server\n\n```\n{\n  \"mcpServers\": {\n    \"DadMCP\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"mcp-remote\",\n        \"https://dadmcp.com/sse?token=YourAccessToken\"\n      ]\n    }\n  }\n}\n```\n\n## Running Locally\n\nSet up local Supabase\n\n```\nnpx supabase@beta start\nnpx supabase@beta reset\nnpx supabase@beta gen types typescript --local > lib/database.types.ts\n```\n\nUpdate .env.local\n\n```\nNEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54321\nNEXT_PUBLIC_SUPABASE_ANON_KEY=YourSupabaseAnonKey\nREDIS_URL=redis://localhost:6379\nREPLICATE_API_TOKEN=YouReplicateApiToken\n```\n\nRun Redis, install dependencies and run Next.js server\n\n```\nredis-server\npnpm i\npnpm run dev\n```\n",
+  "extracted_at": "2025-06-13T08:56:01.668538",
+  "content_hash": "0261a45f6c592c0064cea7baa5b8e4db88c383283c3b02ed408df12f76b352e4"
+}
