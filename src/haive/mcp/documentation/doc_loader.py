@@ -101,15 +101,26 @@ class MCPDocumentationLoader:
 
         try:
             with open(all_docs_path, "r") as f:
-                docs_list = json.load(f)
+                data = json.load(f)
 
-            # Convert list to dictionary and cache
-            docs_dict = {}
-            for doc in docs_list:
-                if doc.get("metadata", {}).get("name"):
-                    name = doc["metadata"]["name"]
-                    docs_dict[name] = doc
-                    self._loaded_docs[name] = doc
+            # Handle both old list format and new structured format
+            if isinstance(data, list):
+                # Old format: list of documents
+                docs_dict = {}
+                for doc in data:
+                    if doc.get("metadata", {}).get("name"):
+                        name = doc["metadata"]["name"]
+                        docs_dict[name] = doc
+                        self._loaded_docs[name] = doc
+            else:
+                # New format: {metadata: {...}, servers: {...}}
+                if "servers" in data:
+                    docs_dict = data["servers"]
+                    self._loaded_docs = docs_dict.copy()
+                else:
+                    # Fallback: treat as direct dictionary
+                    docs_dict = data
+                    self._loaded_docs = docs_dict.copy()
 
             logger.info(f"Loaded {len(docs_dict)} MCP server documents")
             return docs_dict
@@ -148,7 +159,14 @@ class MCPDocumentationLoader:
 
         matching = []
         for server_doc in self._loaded_docs.values():
-            server_category = server_doc.get("metadata", {}).get("category", "")
+            # Handle both old and new format
+            if "metadata" in server_doc:
+                # Old format
+                server_category = server_doc.get("metadata", {}).get("category", "")
+            else:
+                # New format
+                server_category = server_doc.get("category", "")
+            
             if category.lower() in server_category.lower():
                 matching.append(server_doc)
 
@@ -169,8 +187,15 @@ class MCPDocumentationLoader:
 
         matching = []
         for server_doc in self._loaded_docs.values():
-            description = server_doc.get("metadata", {}).get("description", "")
-            readme = server_doc.get("readme_content", "")
+            # Handle both old and new format
+            if "metadata" in server_doc:
+                # Old format
+                description = server_doc.get("metadata", {}).get("description", "")
+                readme = server_doc.get("readme_content", "")
+            else:
+                # New format
+                description = server_doc.get("description", "")
+                readme = server_doc.get("documentation", "")
 
             if (
                 capability.lower() in description.lower()
@@ -238,22 +263,49 @@ class MCPDocumentationLoader:
         Returns:
             Extracted setup information
         """
-        metadata = server_doc.get("metadata", {})
-        readme = server_doc.get("readme_content", "")
-
-        setup_info = {
-            "name": metadata.get("name", ""),
-            "repo_url": metadata.get("repo_url", ""),
-            "description": metadata.get("description", ""),
-            "category": metadata.get("category", ""),
-            "platforms": metadata.get("platforms", []),
-            "languages": metadata.get("languages", []),
-            "license": metadata.get("license", ""),
-            "installation": self._extract_installation_steps(readme),
-            "configuration": self._extract_configuration(readme),
-            "usage": self._extract_usage_examples(readme),
-            "dependencies": self._extract_dependencies(readme),
-        }
+        # Handle both old and new format
+        if "metadata" in server_doc:
+            # Old format
+            metadata = server_doc.get("metadata", {})
+            readme = server_doc.get("readme_content", "")
+            setup_info = {
+                "name": metadata.get("name", ""),
+                "repo_url": metadata.get("repo_url", ""),
+                "description": metadata.get("description", ""),
+                "category": metadata.get("category", ""),
+                "platforms": metadata.get("platforms", []),
+                "languages": metadata.get("languages", []),
+                "license": metadata.get("license", ""),
+                "installation": self._extract_installation_steps(readme),
+                "configuration": self._extract_configuration(readme),
+                "usage": self._extract_usage_examples(readme),
+                "dependencies": self._extract_dependencies(readme),
+            }
+        else:
+            # New format
+            readme = server_doc.get("documentation", "")
+            meta = server_doc.get("metadata", {})
+            setup_info = {
+                "name": server_doc.get("name", ""),
+                "repo_url": server_doc.get("repository", ""),
+                "description": server_doc.get("description", ""),
+                "category": server_doc.get("category", ""),
+                "platforms": [],
+                "languages": [],
+                "license": "",
+                "stars": meta.get("stars"),
+                "last_updated": meta.get("last_updated"),
+                "is_official": meta.get("is_official", False),
+                "npm_package": meta.get("npm_package"),
+                "install_command": meta.get("install_command"),
+                "setup_instructions": meta.get("setup_instructions"),
+                "transport_types": meta.get("transport_types", []),
+                "capabilities": meta.get("capabilities", []),
+                "dependencies": meta.get("dependencies", []),
+                "installation": self._extract_installation_steps(readme),
+                "configuration": self._extract_configuration(readme),
+                "usage": self._extract_usage_examples(readme),
+            }
 
         return setup_info
 
