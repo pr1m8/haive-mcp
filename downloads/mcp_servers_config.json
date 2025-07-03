@@ -1,0 +1,6597 @@
+{
+  "generated_at": "2025-07-03T00:57:40.400215",
+  "mcpServers": {
+    "linear-mcp": {
+      "command": "npx mkusaka/linear-mcp",
+      "args": [],
+      "env": {},
+      "source": "mkusaka/linear-mcp",
+      "method": "data_collection"
+    },
+    "pubnub-mcp-server": {
+      "command": "npx stephenlb/pubnub-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "stephenlb/pubnub-mcp-server",
+      "method": "data_collection"
+    },
+    "research": {
+      "command": "npx Ankit2533/research",
+      "args": [],
+      "env": {},
+      "source": "Ankit2533/research",
+      "method": "data_collection"
+    },
+    "cdata-jdbc-mcp-server": {
+      "command": "npx CDataSoftware/cdata-jdbc-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "CDataSoftware/cdata-jdbc-mcp-server",
+      "method": "data_collection"
+    },
+    "Notion-Goose-MCP": {
+      "command": "npx kylewoolstenhulme-block/Notion-Goose-MCP",
+      "args": [],
+      "env": {},
+      "source": "kylewoolstenhulme-block/Notion-Goose-MCP",
+      "method": "data_collection"
+    },
+    "multi-agentic_deepresearch": {
+      "command": "npx Ankit2533/multi-agentic_deepresearch",
+      "args": [],
+      "env": {},
+      "source": "Ankit2533/multi-agentic_deepresearch",
+      "method": "data_collection"
+    },
+    "remote-mcp-server": {
+      "command": "npx LiTschii/remote-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "LiTschii/remote-mcp-server",
+      "method": "data_collection"
+    },
+    "jira-mcp": {
+      "command": "npx raj-mehra/jira-mcp",
+      "args": [],
+      "env": {},
+      "source": "raj-mehra/jira-mcp",
+      "method": "data_collection"
+    },
+    "mcp-claude-weather": {
+      "command": "npx AlexShan2008/mcp-claude-weather",
+      "args": [],
+      "env": {},
+      "source": "AlexShan2008/mcp-claude-weather",
+      "method": "data_collection"
+    },
+    "mcp": {
+      "command": "npx taskade/mcp",
+      "args": [],
+      "env": {},
+      "source": "taskade/mcp",
+      "method": "data_collection"
+    },
+    "redshift-utils-mcp": {
+      "command": "npx vinodismyname/redshift-utils-mcp",
+      "args": [],
+      "env": {},
+      "source": "vinodismyname/redshift-utils-mcp",
+      "method": "data_collection"
+    },
+    "openweather-mcp": {
+      "command": "npx frostming/openweather-mcp",
+      "args": [],
+      "env": {},
+      "source": "frostming/openweather-mcp",
+      "method": "data_collection"
+    },
+    "jan-stripe": {
+      "command": "npx jasiekkk/jan-stripe",
+      "args": [],
+      "env": {},
+      "source": "jasiekkk/jan-stripe",
+      "method": "data_collection"
+    },
+    "curl-mcp": {
+      "command": "npx MartinPSDev/curl-mcp",
+      "args": [],
+      "env": {},
+      "source": "MartinPSDev/curl-mcp",
+      "method": "data_collection"
+    },
+    "stocks-mcp": {
+      "command": "npx natifridman/stocks-mcp",
+      "args": [],
+      "env": {},
+      "source": "natifridman/stocks-mcp",
+      "method": "data_collection"
+    },
+    "shopware-mcp": {
+      "command": "npx dithom/shopware-mcp",
+      "args": [],
+      "env": {},
+      "source": "dithom/shopware-mcp",
+      "method": "data_collection"
+    },
+    "remote-mcp-authless": {
+      "command": "npx shankarpriyank/remote-mcp-server-authless",
+      "args": [],
+      "env": {},
+      "source": "shankarpriyank/remote-mcp-server-authless",
+      "method": "data_collection"
+    },
+    "openapi-integrator-mcp": {
+      "command": "npx slot181/openapi-integrator-mcp",
+      "args": [],
+      "env": {},
+      "source": "slot181/openapi-integrator-mcp",
+      "method": "data_collection"
+    },
+    "crypto-rss-mcp": {
+      "command": "npx kukapay/crypto-rss-mcp",
+      "args": [],
+      "env": {},
+      "source": "kukapay/crypto-rss-mcp",
+      "method": "data_collection"
+    },
+    "NihFix.Postgres.Mcp": {
+      "command": "npx AlekseyKapustyanenko/NihFix.Postgres.Mcp",
+      "args": [],
+      "env": {},
+      "source": "AlekseyKapustyanenko/NihFix.Postgres.Mcp",
+      "method": "data_collection"
+    },
+    "mcp-for-copilot": {
+      "command": "npx CrewAakash/mcp-server-for-copilot",
+      "args": [],
+      "env": {},
+      "source": "CrewAakash/mcp-server-for-copilot",
+      "method": "data_collection"
+    },
+    "etherscan-mcp": {
+      "command": "npx xiaok/etherscan-mcp",
+      "args": [],
+      "env": {},
+      "source": "xiaok/etherscan-mcp",
+      "method": "data_collection"
+    },
+    "prometheus-mcp-server": {
+      "command": "npx shaxiaozz/prometheus-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "shaxiaozz/prometheus-mcp-server",
+      "method": "data_collection"
+    },
+    "MCP-Storybook-Image-Generator": {
+      "command": "npx falahgs/MCP-Storybook-Image-Generator",
+      "args": [],
+      "env": {},
+      "source": "falahgs/MCP-Storybook-Image-Generator",
+      "method": "data_collection"
+    },
+    "MCP-Reasoner": {
+      "command": "npx MCP-Reasoner/MCP-Reasoner",
+      "args": [],
+      "env": {},
+      "source": "MCP-Reasoner/MCP-Reasoner",
+      "method": "data_collection"
+    },
+    "Azure-DevOps": {
+      "command": "npx AzureDevOpsAPI/Azure-DevOps",
+      "args": [],
+      "env": {},
+      "source": "AzureDevOpsAPI/Azure-DevOps",
+      "method": "data_collection"
+    },
+    "mcp-terraform-aws-provider-docs": {
+      "command": "npx Excoriate/mcp-terraform-aws-provider-docs",
+      "args": [],
+      "env": {},
+      "source": "Excoriate/mcp-terraform-aws-provider-docs",
+      "method": "data_collection"
+    },
+    "mcp-bone": {
+      "command": "npx tangshuang/mcp-bone",
+      "args": [],
+      "env": {},
+      "source": "tangshuang/mcp-bone",
+      "method": "data_collection"
+    },
+    "spotify-mcp": {
+      "command": "npx belljustin/spotify-mcp",
+      "args": [],
+      "env": {},
+      "source": "belljustin/spotify-mcp",
+      "method": "data_collection"
+    },
+    "sharepoint": {
+      "command": "npx Zerg00s/server-sharepoint",
+      "args": [],
+      "env": {},
+      "source": "Zerg00s/server-sharepoint",
+      "method": "data_collection"
+    },
+    "newsnow-mcp-server": {
+      "command": "npx ourongxing/newsnow-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "ourongxing/newsnow-mcp-server",
+      "method": "data_collection"
+    },
+    "vibe-mcp": {
+      "command": "npx trevhud/vibe-mcp",
+      "args": [],
+      "env": {},
+      "source": "trevhud/vibe-mcp",
+      "method": "data_collection"
+    },
+    "mcp-news": {
+      "command": "npx jindasy/mcp-news",
+      "args": [],
+      "env": {},
+      "source": "jindasy/mcp-news",
+      "method": "data_collection"
+    },
+    "freepik-mcp-server": {
+      "command": "npx Toos00/freepik-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "Toos00/freepik-mcp-server",
+      "method": "data_collection"
+    },
+    "heybeauty-mcp": {
+      "command": "npx chatmcp/heybeauty-mcp",
+      "args": [],
+      "env": {},
+      "source": "chatmcp/heybeauty-mcp",
+      "method": "data_collection"
+    },
+    "exia-mcp": {
+      "command": "npx kokushin/exia-mcp",
+      "args": [],
+      "env": {},
+      "source": "kokushin/exia-mcp",
+      "method": "data_collection"
+    },
+    "prompt-character-mcp-server": {
+      "command": "npx molmolkky/prompt-character-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "molmolkky/prompt-character-mcp-server",
+      "method": "data_collection"
+    },
+    "MCP-Server-Cybersecurity-News": {
+      "command": "npx enggpt-it/MCP-Server-Cybersecurity-News",
+      "args": [],
+      "env": {},
+      "source": "enggpt-it/MCP-Server-Cybersecurity-News",
+      "method": "data_collection"
+    },
+    "mcp-nftgo-api": {
+      "command": "npx NFTGo/mcp-nftgo-api",
+      "args": [],
+      "env": {},
+      "source": "NFTGo/mcp-nftgo-api",
+      "method": "data_collection"
+    },
+    "mj-mcp": {
+      "command": "npx Lala-0x3f/mj-mcp",
+      "args": [],
+      "env": {},
+      "source": "Lala-0x3f/mj-mcp",
+      "method": "data_collection"
+    },
+    "mcp-osrs": {
+      "command": "npx JayArrowz/mcp-osrs",
+      "args": [],
+      "env": {},
+      "source": "JayArrowz/mcp-osrs",
+      "method": "data_collection"
+    },
+    "youtube-mcp": {
+      "command": "npx RohitMidha23/youtube-mcp",
+      "args": [],
+      "env": {},
+      "source": "RohitMidha23/youtube-mcp",
+      "method": "data_collection"
+    },
+    "podcast-xyzrank-mcp": {
+      "command": "npx Otto-J/podcast-xyzrank-mcp",
+      "args": [],
+      "env": {},
+      "source": "Otto-J/podcast-xyzrank-mcp",
+      "method": "data_collection"
+    },
+    "hotpepper-gourmet-mcp-server": {
+      "command": "npx miyamo2/hotpepper-gourmet-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "miyamo2/hotpepper-gourmet-mcp-server",
+      "method": "data_collection"
+    },
+    "4oimage-mcp": {
+      "command": "npx Antipas/4oimage-mcp",
+      "args": [],
+      "env": {},
+      "source": "Antipas/4oimage-mcp",
+      "method": "data_collection"
+    },
+    "ae-mcp": {
+      "command": "npx sunqirui1987/ae-mcp",
+      "args": [],
+      "env": {},
+      "source": "sunqirui1987/ae-mcp",
+      "method": "data_collection"
+    },
+    "ygocdb-mcp": {
+      "command": "npx lieyanqzu/ygocdb-mcp",
+      "args": [],
+      "env": {},
+      "source": "lieyanqzu/ygocdb-mcp",
+      "method": "data_collection"
+    },
+    "scryfall-mcp": {
+      "command": "npx dbeltra/scryfall-mcp",
+      "args": [],
+      "env": {},
+      "source": "dbeltra/scryfall-mcp",
+      "method": "data_collection"
+    },
+    "aws-weekly-news-mcp": {
+      "command": "npx Kota8102/aws-weekly-news-mcp",
+      "args": [],
+      "env": {},
+      "source": "Kota8102/aws-weekly-news-mcp",
+      "method": "data_collection"
+    },
+    "mcp-nicovideo-snapshot-search": {
+      "command": "npx x0x0b/mcp-nicovideo-snapshot-search",
+      "args": [],
+      "env": {},
+      "source": "x0x0b/mcp-nicovideo-snapshot-search",
+      "method": "data_collection"
+    },
+    "jlcpcb-parts-mcp": {
+      "command": "npx nvsofts/jlcpcb-parts-mcp",
+      "args": [],
+      "env": {},
+      "source": "nvsofts/jlcpcb-parts-mcp",
+      "method": "data_collection"
+    },
+    "BangumiMCP": {
+      "command": "npx Ukenn2112/BangumiMCP",
+      "args": [],
+      "env": {},
+      "source": "Ukenn2112/BangumiMCP",
+      "method": "data_collection"
+    },
+    "gemini-vision-art-studio": {
+      "command": "npx falahgs/gemini-vision-art-studio",
+      "args": [],
+      "env": {},
+      "source": "falahgs/gemini-vision-art-studio",
+      "method": "data_collection"
+    },
+    "mcp-mtg-assistant": {
+      "command": "npx 0010aor/mcp-mtg-assistant",
+      "args": [],
+      "env": {},
+      "source": "0010aor/mcp-mtg-assistant",
+      "method": "data_collection"
+    },
+    "biblegateway-votd-mcp": {
+      "command": "npx cmathgit/biblegateway-votd-mcp",
+      "args": [],
+      "env": {},
+      "source": "cmathgit/biblegateway-votd-mcp",
+      "method": "data_collection"
+    },
+    "SuperColliderMCP": {
+      "command": "npx Tok/SuperColliderMCP",
+      "args": [],
+      "env": {},
+      "source": "Tok/SuperColliderMCP",
+      "method": "data_collection"
+    },
+    "figma-mcp": {
+      "command": "npx raj-mehra/figma-mcp",
+      "args": [],
+      "env": {},
+      "source": "raj-mehra/figma-mcp",
+      "method": "data_collection"
+    },
+    "uk-science-museum-group-mcp": {
+      "command": "npx opensourcedev90s/uk-science-museum-group-mcp",
+      "args": [],
+      "env": {},
+      "source": "opensourcedev90s/uk-science-museum-group-mcp",
+      "method": "data_collection"
+    },
+    "illustrator-mcp": {
+      "command": "npx AnshulDalua/illustrator-mcp",
+      "args": [],
+      "env": {},
+      "source": "AnshulDalua/illustrator-mcp",
+      "method": "data_collection"
+    },
+    "mcp-server": {
+      "command": "npx kartikgajjar/mcp-server",
+      "args": [],
+      "env": {},
+      "source": "kartikgajjar/mcp-server",
+      "method": "data_collection"
+    },
+    "python-mcp-server": {
+      "command": "npx giannisalinetti/python-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "giannisalinetti/python-mcp-server",
+      "method": "data_collection"
+    },
+    "browser-use-mcp": {
+      "command": "npx mhazarabad/browser-use-mcp",
+      "args": [],
+      "env": {},
+      "source": "mhazarabad/browser-use-mcp",
+      "method": "data_collection"
+    },
+    "mcp-google-search": {
+      "command": "npx mcp-for-dev/mcp-google-search",
+      "args": [],
+      "env": {},
+      "source": "mcp-for-dev/mcp-google-search",
+      "method": "data_collection"
+    },
+    "web-scraping-with-mcp": {
+      "command": "npx luminati-io/web-scraping-with-mcp",
+      "args": [],
+      "env": {},
+      "source": "luminati-io/web-scraping-with-mcp",
+      "method": "data_collection"
+    },
+    "newsnow": {
+      "command": "npx magicp-mhl/newsnow",
+      "args": [],
+      "env": {},
+      "source": "magicp-mhl/newsnow",
+      "method": "data_collection"
+    },
+    "deepwiki-mcp": {
+      "command": "npx regenrek/deepwiki-mcp",
+      "args": [],
+      "env": {},
+      "source": "regenrek/deepwiki-mcp",
+      "method": "data_collection"
+    },
+    "bing-cn-mcp-server": {
+      "command": "npx yan5236/bing-cn-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "yan5236/bing-cn-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-playwright-test": {
+      "command": "npx w1561778301/mcp-playwright-test",
+      "args": [],
+      "env": {},
+      "source": "w1561778301/mcp-playwright-test",
+      "method": "data_collection"
+    },
+    "DOC-Server-MCP": {
+      "command": "npx xinlei413/DOC-Server-MCP",
+      "args": [],
+      "env": {},
+      "source": "xinlei413/DOC-Server-MCP",
+      "method": "data_collection"
+    },
+    "grain-mcp-server": {
+      "command": "npx eadm/grain-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "eadm/grain-mcp-server",
+      "method": "data_collection"
+    },
+    "xhs-mcp": {
+      "command": "npx jobsonlook/xhs-mcp",
+      "args": [],
+      "env": {},
+      "source": "jobsonlook/xhs-mcp",
+      "method": "data_collection"
+    },
+    "VerbilioMCP": {
+      "command": "npx mohdsuhail007/VerbilioMCP",
+      "args": [],
+      "env": {},
+      "source": "mohdsuhail007/VerbilioMCP",
+      "method": "data_collection"
+    },
+    "redbook-mcp": {
+      "command": "npx myzxlin/redbook-mcp",
+      "args": [],
+      "env": {},
+      "source": "myzxlin/redbook-mcp",
+      "method": "data_collection"
+    },
+    "mcp-example-image-block": {
+      "command": "npx larryhudson/mcp-server-example-image-block",
+      "args": [],
+      "env": {},
+      "source": "larryhudson/mcp-server-example-image-block",
+      "method": "data_collection"
+    },
+    "mcp-agent": {
+      "command": "npx Elvis720/mcp-agent",
+      "args": [],
+      "env": {},
+      "source": "Elvis720/mcp-agent",
+      "method": "data_collection"
+    },
+    "MCP-DOC-Server-OpenRouter": {
+      "command": "npx xinlei413/MCP-DOC-Server-OpenRouter",
+      "args": [],
+      "env": {},
+      "source": "xinlei413/MCP-DOC-Server-OpenRouter",
+      "method": "data_collection"
+    },
+    "mcp-brave-search": {
+      "command": "npx thomasvan/mcp-brave-search",
+      "args": [],
+      "env": {},
+      "source": "thomasvan/mcp-brave-search",
+      "method": "data_collection"
+    },
+    "ultimate-android-mcp": {
+      "command": "npx oddlyspaced/ultimate-android-mcp",
+      "args": [],
+      "env": {},
+      "source": "oddlyspaced/ultimate-android-mcp",
+      "method": "data_collection"
+    },
+    "a11ymcp": {
+      "command": "npx ronantakizawa/a11ymcp",
+      "args": [],
+      "env": {},
+      "source": "ronantakizawa/a11ymcp",
+      "method": "data_collection"
+    },
+    "hamibot-mcp-server": {
+      "command": "npx hamibot/hamibot-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "hamibot/hamibot-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp_droid": {
+      "command": "npx YantaoMou/mcp_droid",
+      "args": [],
+      "env": {},
+      "source": "YantaoMou/mcp_droid",
+      "method": "data_collection"
+    },
+    "mcp_ios_project": {
+      "command": "npx LuckyXYJ/mcp_ios_project",
+      "args": [],
+      "env": {},
+      "source": "LuckyXYJ/mcp_ios_project",
+      "method": "data_collection"
+    },
+    "yingdao_mcp_server": {
+      "command": "npx ying-dao/yingdao_mcp_server",
+      "args": [],
+      "env": {},
+      "source": "ying-dao/yingdao_mcp_server",
+      "method": "data_collection"
+    },
+    "aipower-rpa-mcp-server": {
+      "command": "npx catinair/aipower-rpa-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "catinair/aipower-rpa-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-go-colly": {
+      "command": "npx bneil/mcp-go-colly",
+      "args": [],
+      "env": {},
+      "source": "bneil/mcp-go-colly",
+      "method": "data_collection"
+    },
+    "tradingview-chart-mcp": {
+      "command": "npx ertugrul59/tradingview-chart-mcp",
+      "args": [],
+      "env": {},
+      "source": "ertugrul59/tradingview-chart-mcp",
+      "method": "data_collection"
+    },
+    "mcp-url2markdown": {
+      "command": "npx sungithubid/mcp-url2markdown",
+      "args": [],
+      "env": {},
+      "source": "sungithubid/mcp-url2markdown",
+      "method": "data_collection"
+    },
+    "data-mcp-server": {
+      "command": "npx NexusX-MCP/data-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "NexusX-MCP/data-mcp-server",
+      "method": "data_collection"
+    },
+    "playwright-trace-mcp": {
+      "command": "npx korwabs/playwright-trace-mcp",
+      "args": [],
+      "env": {},
+      "source": "korwabs/playwright-trace-mcp",
+      "method": "data_collection"
+    },
+    "msbuild-mcp-server": {
+      "command": "npx zenoengine/msbuild-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "zenoengine/msbuild-mcp-server",
+      "method": "data_collection"
+    },
+    "gitlab-mcp-server": {
+      "command": "npx Foxhunt/gitlab-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "Foxhunt/gitlab-mcp-server",
+      "method": "data_collection"
+    },
+    "perplexity-mcp": {
+      "command": "npx gabelul/perplexity-mcp",
+      "args": [],
+      "env": {},
+      "source": "gabelul/perplexity-mcp",
+      "method": "data_collection"
+    },
+    "horologic-mcp": {
+      "command": "npx yoda-digital/horologic-mcp",
+      "args": [],
+      "env": {},
+      "source": "yoda-digital/horologic-mcp",
+      "method": "data_collection"
+    },
+    "fastapi-mcp-workshop": {
+      "command": "npx Miura55/fastapi-mcp-workshop",
+      "args": [],
+      "env": {},
+      "source": "Miura55/fastapi-mcp-workshop",
+      "method": "data_collection"
+    },
+    "airflow-mcp": {
+      "command": "npx hipposys-ltd/airflow-mcp",
+      "args": [],
+      "env": {},
+      "source": "hipposys-ltd/airflow-mcp",
+      "method": "data_collection"
+    },
+    "harness-mcp": {
+      "command": "npx vistaarjuneja/harness-mcp",
+      "args": [],
+      "env": {},
+      "source": "vistaarjuneja/harness-mcp",
+      "method": "data_collection"
+    },
+    "nexuscontroller": {
+      "command": "npx ankit1057/nexuscontroller",
+      "args": [],
+      "env": {},
+      "source": "ankit1057/nexuscontroller",
+      "method": "data_collection"
+    },
+    "mcp-installer.0": {
+      "command": "npx yodablocks/mcp-installer.0",
+      "args": [],
+      "env": {},
+      "source": "yodablocks/mcp-installer.0",
+      "method": "data_collection"
+    },
+    "claude-code-mcp-docker": {
+      "command": "npx akr4/claude-code-mcp-docker",
+      "args": [],
+      "env": {},
+      "source": "akr4/claude-code-mcp-docker",
+      "method": "data_collection"
+    },
+    "mcp-cf-deploy": {
+      "command": "npx sakomws/mcp-cf-deploy",
+      "args": [],
+      "env": {},
+      "source": "sakomws/mcp-cf-deploy",
+      "method": "data_collection"
+    },
+    "mydockers": {
+      "command": "npx hiroooo000/mydockers",
+      "args": [],
+      "env": {},
+      "source": "hiroooo000/mydockers",
+      "method": "data_collection"
+    },
+    "webhook-trigger": {
+      "command": "npx dandacompany/webhook-trigger",
+      "args": [],
+      "env": {},
+      "source": "dandacompany/webhook-trigger",
+      "method": "data_collection"
+    },
+    "base-builder-mcp": {
+      "command": "npx base/base-builder-mcp",
+      "args": [],
+      "env": {},
+      "source": "base/base-builder-mcp",
+      "method": "data_collection"
+    },
+    "mcp-helmfile": {
+      "command": "npx snowsky/mcp-helmfile",
+      "args": [],
+      "env": {},
+      "source": "snowsky/mcp-helmfile",
+      "method": "data_collection"
+    },
+    "buildkite-mcp-server": {
+      "command": "npx buildkite/buildkite-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "buildkite/buildkite-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-examples": {
+      "command": "npx bsmith925/mcp-examples",
+      "args": [],
+      "env": {},
+      "source": "bsmith925/mcp-examples",
+      "method": "data_collection"
+    },
+    "lean-docker-mcp": {
+      "command": "npx misanthropic-ai/lean-docker-mcp",
+      "args": [],
+      "env": {},
+      "source": "misanthropic-ai/lean-docker-mcp",
+      "method": "data_collection"
+    },
+    "docker-mcp": {
+      "command": "npx cpecf/docker-mcp",
+      "args": [],
+      "env": {},
+      "source": "cpecf/docker-mcp",
+      "method": "data_collection"
+    },
+    "mcp-bazel": {
+      "command": "npx aaomidi/mcp-bazel",
+      "args": [],
+      "env": {},
+      "source": "aaomidi/mcp-bazel",
+      "method": "data_collection"
+    },
+    "mcp_server_manager": {
+      "command": "npx ThomasRohde/mcp_server_manager",
+      "args": [],
+      "env": {},
+      "source": "ThomasRohde/mcp_server_manager",
+      "method": "data_collection"
+    },
+    "spring-rest-to-mcp": {
+      "command": "npx addozhang/spring-rest-to-mcp",
+      "args": [],
+      "env": {},
+      "source": "addozhang/spring-rest-to-mcp",
+      "method": "data_collection"
+    },
+    "QuickMCP": {
+      "command": "npx gunpal5/QuickMCP",
+      "args": [],
+      "env": {},
+      "source": "gunpal5/QuickMCP",
+      "method": "data_collection"
+    },
+    "buildkite-mcp": {
+      "command": "npx Drew-Goddyn/buildkite-mcp",
+      "args": [],
+      "env": {},
+      "source": "Drew-Goddyn/buildkite-mcp",
+      "method": "data_collection"
+    },
+    "mcp-jvm-build-tools": {
+      "command": "npx thepragmatik/mcp-server-jvm-build-tools",
+      "args": [],
+      "env": {},
+      "source": "thepragmatik/mcp-server-jvm-build-tools",
+      "method": "data_collection"
+    },
+    "containerinc-mcp": {
+      "command": "npx f-inc/containerinc-mcp",
+      "args": [],
+      "env": {},
+      "source": "f-inc/containerinc-mcp",
+      "method": "data_collection"
+    },
+    "monad-contract-deployment-mcp": {
+      "command": "npx doma2k/monad-contract-deployment-mcp",
+      "args": [],
+      "env": {},
+      "source": "doma2k/monad-contract-deployment-mcp",
+      "method": "data_collection"
+    },
+    "MonDeployer": {
+      "command": "npx adrianmonad/MonDeployer",
+      "args": [],
+      "env": {},
+      "source": "adrianmonad/MonDeployer",
+      "method": "data_collection"
+    },
+    "aws-security-mcp": {
+      "command": "npx groovyBugify/aws-security-mcp",
+      "args": [],
+      "env": {},
+      "source": "groovyBugify/aws-security-mcp",
+      "method": "data_collection"
+    },
+    "qiniu-mcp-joe": {
+      "command": "npx joeseesun/qiniu-mcp-joe",
+      "args": [],
+      "env": {},
+      "source": "joeseesun/qiniu-mcp-joe",
+      "method": "data_collection"
+    },
+    "cos-mcp": {
+      "command": "npx Tencent/cos-mcp",
+      "args": [],
+      "env": {},
+      "source": "Tencent/cos-mcp",
+      "method": "data_collection"
+    },
+    "blue-bridge": {
+      "command": "npx Azure/blue-bridge",
+      "args": [],
+      "env": {},
+      "source": "Azure/blue-bridge",
+      "method": "data_collection"
+    },
+    "digitalocean-mcp": {
+      "command": "npx oliverbenns/digitalocean-mcp",
+      "args": [],
+      "env": {},
+      "source": "oliverbenns/digitalocean-mcp",
+      "method": "data_collection"
+    },
+    "mcp-google_cloud_billing": {
+      "command": "npx curious-pm/mcp-google_cloud_billing",
+      "args": [],
+      "env": {},
+      "source": "curious-pm/mcp-google_cloud_billing",
+      "method": "data_collection"
+    },
+    "mcp-digital_ocean_billing": {
+      "command": "npx curious-pm/mcp-digital_ocean_billing",
+      "args": [],
+      "env": {},
+      "source": "curious-pm/mcp-digital_ocean_billing",
+      "method": "data_collection"
+    },
+    "bizflycloud-mcp-server": {
+      "command": "npx bizflycloud/bizflycloud-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "bizflycloud/bizflycloud-mcp-server",
+      "method": "data_collection"
+    },
+    "py-az-mcp": {
+      "command": "npx JCallico/py-az-mcp",
+      "args": [],
+      "env": {},
+      "source": "JCallico/py-az-mcp",
+      "method": "data_collection"
+    },
+    "supabase-mcp": {
+      "command": "npx leeb003/supabase-mcp",
+      "args": [],
+      "env": {},
+      "source": "leeb003/supabase-mcp",
+      "method": "data_collection"
+    },
+    "cf-example-remote-mcp-server": {
+      "command": "npx noahseger/cf-example-remote-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "noahseger/cf-example-remote-mcp-server",
+      "method": "data_collection"
+    },
+    "cloudflare-remote-mcp-server": {
+      "command": "npx nhc/cloudflare-remote-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "nhc/cloudflare-remote-mcp-server",
+      "method": "data_collection"
+    },
+    "my-aws-cost-explorer": {
+      "command": "npx sanxxit/my-aws-cost-explorer",
+      "args": [],
+      "env": {},
+      "source": "sanxxit/my-aws-cost-explorer",
+      "method": "data_collection"
+    },
+    "AWS-cost-explorer-with-MCP-server": {
+      "command": "npx sanxxit/AWS-cost-explorer-with-MCP-server",
+      "args": [],
+      "env": {},
+      "source": "sanxxit/AWS-cost-explorer-with-MCP-server",
+      "method": "data_collection"
+    },
+    "lion-mcp-server": {
+      "command": "npx trilliwon/lion-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "trilliwon/lion-mcp-server",
+      "method": "data_collection"
+    },
+    "me_mcp_server": {
+      "command": "npx jhgaylor/me_mcp_server",
+      "args": [],
+      "env": {},
+      "source": "jhgaylor/me_mcp_server",
+      "method": "data_collection"
+    },
+    "aws-monthly-cost-report-mcp-server": {
+      "command": "npx bocchiczennie/aws-monthly-cost-report-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "bocchiczennie/aws-monthly-cost-report-mcp-server",
+      "method": "data_collection"
+    },
+    "FastlyMCP": {
+      "command": "npx Arodoid/FastlyMCP",
+      "args": [],
+      "env": {},
+      "source": "Arodoid/FastlyMCP",
+      "method": "data_collection"
+    },
+    "fastmcp-gsuite": {
+      "command": "npx tumf/fastmcp-gsuite",
+      "args": [],
+      "env": {},
+      "source": "tumf/fastmcp-gsuite",
+      "method": "data_collection"
+    },
+    "ntnx-mcp": {
+      "command": "npx atalhens/ntnx-mcp",
+      "args": [],
+      "env": {},
+      "source": "atalhens/ntnx-mcp",
+      "method": "data_collection"
+    },
+    "DnfApiServer": {
+      "command": "npx aradtamako/DnfApiServer",
+      "args": [],
+      "env": {},
+      "source": "aradtamako/DnfApiServer",
+      "method": "data_collection"
+    },
+    "MCP": {
+      "command": "npx bittush8789/MCP",
+      "args": [],
+      "env": {},
+      "source": "bittush8789/MCP",
+      "method": "data_collection"
+    },
+    "k8s-doc-mcp": {
+      "command": "npx antymijaljevic/k8s-doc-mcp",
+      "args": [],
+      "env": {},
+      "source": "antymijaljevic/k8s-doc-mcp",
+      "method": "data_collection"
+    },
+    "mcp-proxy": {
+      "command": "npx stephenlacy/mcp-proxy",
+      "args": [],
+      "env": {},
+      "source": "stephenlacy/mcp-proxy",
+      "method": "data_collection"
+    },
+    "MCP_OA": {
+      "command": "npx dhylan01/MCP_OA",
+      "args": [],
+      "env": {},
+      "source": "dhylan01/MCP_OA",
+      "method": "data_collection"
+    },
+    "ast-mcp-server": {
+      "command": "npx angrysky56/ast-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "angrysky56/ast-mcp-server",
+      "method": "data_collection"
+    },
+    "code-reviewer-mcp": {
+      "command": "npx joaomj/code-reviewer-mcp",
+      "args": [],
+      "env": {},
+      "source": "joaomj/code-reviewer-mcp",
+      "method": "data_collection"
+    },
+    "go-archer": {
+      "command": "npx shaydo-deriv/go-archer",
+      "args": [],
+      "env": {},
+      "source": "shaydo-deriv/go-archer",
+      "method": "data_collection"
+    },
+    "RR.MCP": {
+      "command": "npx RaRdq/RR.MCP",
+      "args": [],
+      "env": {},
+      "source": "RaRdq/RR.MCP",
+      "method": "data_collection"
+    },
+    "code-reasoning": {
+      "command": "npx mettamatt/code-reasoning",
+      "args": [],
+      "env": {},
+      "source": "mettamatt/code-reasoning",
+      "method": "data_collection"
+    },
+    "code-oracle": {
+      "command": "npx jpheimonen/code-oracle",
+      "args": [],
+      "env": {},
+      "source": "jpheimonen/code-oracle",
+      "method": "data_collection"
+    },
+    "fuel-mcp-server": {
+      "command": "npx FuelLabs/fuel-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "FuelLabs/fuel-mcp-server",
+      "method": "data_collection"
+    },
+    "code-context-provider-mcp": {
+      "command": "npx AB498/code-context-provider-mcp",
+      "args": [],
+      "env": {},
+      "source": "AB498/code-context-provider-mcp",
+      "method": "data_collection"
+    },
+    "gh-self-reviewer": {
+      "command": "npx alesr/gh-self-reviewer",
+      "args": [],
+      "env": {},
+      "source": "alesr/gh-self-reviewer",
+      "method": "data_collection"
+    },
+    "vuesage": {
+      "command": "npx lq0910/vuesage",
+      "args": [],
+      "env": {},
+      "source": "lq0910/vuesage",
+      "method": "data_collection"
+    },
+    "ghidra_mcp": {
+      "command": "npx Bamimore-Tomi/ghidra_mcp",
+      "args": [],
+      "env": {},
+      "source": "Bamimore-Tomi/ghidra_mcp",
+      "method": "data_collection"
+    },
+    "mcp-clean-code": {
+      "command": "npx aidalinfo/mcp-clean-code",
+      "args": [],
+      "env": {},
+      "source": "aidalinfo/mcp-clean-code",
+      "method": "data_collection"
+    },
+    "repo-explorer": {
+      "command": "npx DocNR/repo-explorer",
+      "args": [],
+      "env": {},
+      "source": "DocNR/repo-explorer",
+      "method": "data_collection"
+    },
+    "code-merge-mcp": {
+      "command": "npx yy1588133/code-merge-mcp",
+      "args": [],
+      "env": {},
+      "source": "yy1588133/code-merge-mcp",
+      "method": "data_collection"
+    },
+    "typescript-analyzer-mcp": {
+      "command": "npx davidleathers113/typescript-analyzer-mcp",
+      "args": [],
+      "env": {},
+      "source": "davidleathers113/typescript-analyzer-mcp",
+      "method": "data_collection"
+    },
+    "a11y-mcp": {
+      "command": "npx priyankark/a11y-mcp",
+      "args": [],
+      "env": {},
+      "source": "priyankark/a11y-mcp",
+      "method": "data_collection"
+    },
+    "unit-test-generator-mcp-server": {
+      "command": "npx hanqizheng/unit-test-generator-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "hanqizheng/unit-test-generator-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-jacoco-reporter": {
+      "command": "npx crisschan/mcp-jacoco-reporter",
+      "args": [],
+      "env": {},
+      "source": "crisschan/mcp-jacoco-reporter",
+      "method": "data_collection"
+    },
+    "software-checker-mcp": {
+      "command": "npx Tomatio13/software-checker-mcp",
+      "args": [],
+      "env": {},
+      "source": "Tomatio13/software-checker-mcp",
+      "method": "data_collection"
+    },
+    "GDB-MCP": {
+      "command": "npx smadi0x86/GDB-MCP",
+      "args": [],
+      "env": {},
+      "source": "smadi0x86/GDB-MCP",
+      "method": "data_collection"
+    },
+    "code-scanner-server": {
+      "command": "npx Ixe1/code-scanner-server",
+      "args": [],
+      "env": {},
+      "source": "Ixe1/code-scanner-server",
+      "method": "data_collection"
+    },
+    "jadx-mcp-plugin": {
+      "command": "npx mobilehackinglab/jadx-mcp-plugin",
+      "args": [],
+      "env": {},
+      "source": "mobilehackinglab/jadx-mcp-plugin",
+      "method": "data_collection"
+    },
+    "code-cleanup": {
+      "command": "npx first-to-fly/code-cleanup",
+      "args": [],
+      "env": {},
+      "source": "first-to-fly/code-cleanup",
+      "method": "data_collection"
+    },
+    "mcp-gopls": {
+      "command": "npx hloiseaufcms/mcp-gopls",
+      "args": [],
+      "env": {},
+      "source": "hloiseaufcms/mcp-gopls",
+      "method": "data_collection"
+    },
+    "repro-root-mcp-issue": {
+      "command": "npx irvinebroque/repro-root-mcp-issue",
+      "args": [],
+      "env": {},
+      "source": "irvinebroque/repro-root-mcp-issue",
+      "method": "data_collection"
+    },
+    "mcp-tester": {
+      "command": "npx r-huijts/mcp-server-tester",
+      "args": [],
+      "env": {},
+      "source": "r-huijts/mcp-server-tester",
+      "method": "data_collection"
+    },
+    "nostr-code-snippet-mcp": {
+      "command": "npx nodetec/nostr-code-snippet-mcp",
+      "args": [],
+      "env": {},
+      "source": "nodetec/nostr-code-snippet-mcp",
+      "method": "data_collection"
+    },
+    "github-code-index-mcp-server": {
+      "command": "npx BangNGH/github-code-index-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "BangNGH/github-code-index-mcp-server",
+      "method": "data_collection"
+    },
+    "codelogic-mcp-server": {
+      "command": "npx CodeLogicIncEngineering/codelogic-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "CodeLogicIncEngineering/codelogic-mcp-server",
+      "method": "data_collection"
+    },
+    "RRR-MCP": {
+      "command": "npx rapidriskradar/RRR-MCP",
+      "args": [],
+      "env": {},
+      "source": "rapidriskradar/RRR-MCP",
+      "method": "data_collection"
+    },
+    "CMD-Executor": {
+      "command": "npx Quathor/CMD-Executor",
+      "args": [],
+      "env": {},
+      "source": "Quathor/CMD-Executor",
+      "method": "data_collection"
+    },
+    "mcp-matlab-executor": {
+      "command": "npx JSFrouws/mcp-matlab-executor",
+      "args": [],
+      "env": {},
+      "source": "JSFrouws/mcp-matlab-executor",
+      "method": "data_collection"
+    },
+    "python_sandbox_mcp_server": {
+      "command": "npx cloudywu0410/python_sandbox_mcp_server",
+      "args": [],
+      "env": {},
+      "source": "cloudywu0410/python_sandbox_mcp_server",
+      "method": "data_collection"
+    },
+    "postgresql-mcp-server": {
+      "command": "npx 1Levick3/postgresql-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "1Levick3/postgresql-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp_sqlite_poc": {
+      "command": "npx madhavarora1988/mcp_sqlite_poc",
+      "args": [],
+      "env": {},
+      "source": "madhavarora1988/mcp_sqlite_poc",
+      "method": "data_collection"
+    },
+    "mcp-sequentialthinking-qa": {
+      "command": "npx spences10/mcp-sequentialthinking-qa",
+      "args": [],
+      "env": {},
+      "source": "spences10/mcp-sequentialthinking-qa",
+      "method": "data_collection"
+    },
+    "K-MCP": {
+      "command": "npx Stoicmehedi/K-MCP",
+      "args": [],
+      "env": {},
+      "source": "Stoicmehedi/K-MCP",
+      "method": "data_collection"
+    },
+    "ssh-mcp": {
+      "command": "npx tufantunc/ssh-mcp",
+      "args": [],
+      "env": {},
+      "source": "tufantunc/ssh-mcp",
+      "method": "data_collection"
+    },
+    "node-code-sandbox-mcp": {
+      "command": "npx alfonsograziano/node-code-sandbox-mcp",
+      "args": [],
+      "env": {},
+      "source": "alfonsograziano/node-code-sandbox-mcp",
+      "method": "data_collection"
+    },
+    "enrichment-mcp": {
+      "command": "npx synackpwn/enrichment-mcp",
+      "args": [],
+      "env": {},
+      "source": "synackpwn/enrichment-mcp",
+      "method": "data_collection"
+    },
+    "isolator-mcp": {
+      "command": "npx Ompragash/isolator-mcp",
+      "args": [],
+      "env": {},
+      "source": "Ompragash/isolator-mcp",
+      "method": "data_collection"
+    },
+    "lldb_mcp": {
+      "command": "npx stableversion/lldb_mcp",
+      "args": [],
+      "env": {},
+      "source": "stableversion/lldb_mcp",
+      "method": "data_collection"
+    },
+    "extreme-p-mcp": {
+      "command": "npx koido/extreme-p-mcp",
+      "args": [],
+      "env": {},
+      "source": "koido/extreme-p-mcp",
+      "method": "data_collection"
+    },
+    "mcp-search-engine": {
+      "command": "npx harshini-ns/mcp-search-engine",
+      "args": [],
+      "env": {},
+      "source": "harshini-ns/mcp-search-engine",
+      "method": "data_collection"
+    },
+    "mcp-experiments": {
+      "command": "npx jordanperr/mcp-experiments",
+      "args": [],
+      "env": {},
+      "source": "jordanperr/mcp-experiments",
+      "method": "data_collection"
+    },
+    "aws-postgress-mcp-server": {
+      "command": "npx T1nker-1220/aws-postgress-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "T1nker-1220/aws-postgress-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-mathematica": {
+      "command": "npx texra-ai/mcp-server-mathematica",
+      "args": [],
+      "env": {},
+      "source": "texra-ai/mcp-server-mathematica",
+      "method": "data_collection"
+    },
+    "mcp-docker-code-interpreter": {
+      "command": "npx svngoku/mcp-docker-code-interpreter",
+      "args": [],
+      "env": {},
+      "source": "svngoku/mcp-docker-code-interpreter",
+      "method": "data_collection"
+    },
+    "db2-mcp": {
+      "command": "npx longxiangzhu/db2-mcp",
+      "args": [],
+      "env": {},
+      "source": "longxiangzhu/db2-mcp",
+      "method": "data_collection"
+    },
+    "sandbox-mcp": {
+      "command": "npx pottekkat/sandbox-mcp",
+      "args": [],
+      "env": {},
+      "source": "pottekkat/sandbox-mcp",
+      "method": "data_collection"
+    },
+    "mcp-zap-server": {
+      "command": "npx dtkmn/mcp-zap-server",
+      "args": [],
+      "env": {},
+      "source": "dtkmn/mcp-zap-server",
+      "method": "data_collection"
+    },
+    "nodejs": {
+      "command": "npx liuchongchong1995/nodejs",
+      "args": [],
+      "env": {},
+      "source": "liuchongchong1995/nodejs",
+      "method": "data_collection"
+    },
+    "mcp_quickstart": {
+      "command": "npx chrisjmendez/mcp_quickstart",
+      "args": [],
+      "env": {},
+      "source": "chrisjmendez/mcp_quickstart",
+      "method": "data_collection"
+    },
+    "defillama-mcp": {
+      "command": "npx Dangoron/defillama-mcp",
+      "args": [],
+      "env": {},
+      "source": "Dangoron/defillama-mcp",
+      "method": "data_collection"
+    },
+    "chunker-mcp": {
+      "command": "npx tarjeir/chunker-mcp",
+      "args": [],
+      "env": {},
+      "source": "tarjeir/chunker-mcp",
+      "method": "data_collection"
+    },
+    "python-interpreter-mcp": {
+      "command": "npx bimalpaudels/python-interpreter-mcp",
+      "args": [],
+      "env": {},
+      "source": "bimalpaudels/python-interpreter-mcp",
+      "method": "data_collection"
+    },
+    "vimble-mcp": {
+      "command": "npx johnhenry/vimble-mcp",
+      "args": [],
+      "env": {},
+      "source": "johnhenry/vimble-mcp",
+      "method": "data_collection"
+    },
+    "tlon-mcp-server": {
+      "command": "npx jamesacklin/tlon-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "jamesacklin/tlon-mcp-server",
+      "method": "data_collection"
+    },
+    "plivo-mcp-server": {
+      "command": "npx varunwahi-plivo/plivo-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "varunwahi-plivo/plivo-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-whatsapp-message": {
+      "command": "npx deuslirio/mcp-server-whatsapp-message",
+      "args": [],
+      "env": {},
+      "source": "deuslirio/mcp-server-whatsapp-message",
+      "method": "data_collection"
+    },
+    "twitter-mcp-server": {
+      "command": "npx theo-nash/twitter-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "theo-nash/twitter-mcp-server",
+      "method": "data_collection"
+    },
+    "ERAV3-GMAILMCP": {
+      "command": "npx sudhakarmlal/ERAV3-GMAILMCP",
+      "args": [],
+      "env": {},
+      "source": "sudhakarmlal/ERAV3-GMAILMCP",
+      "method": "data_collection"
+    },
+    "WA-MCP": {
+      "command": "npx operation-hp/WA-MCP",
+      "args": [],
+      "env": {},
+      "source": "operation-hp/WA-MCP",
+      "method": "data_collection"
+    },
+    "Napier-mcp": {
+      "command": "npx va99/Napier-mcp",
+      "args": [],
+      "env": {},
+      "source": "va99/Napier-mcp",
+      "method": "data_collection"
+    },
+    "alertmcp": {
+      "command": "npx kousunh/alertmcp",
+      "args": [],
+      "env": {},
+      "source": "kousunh/alertmcp",
+      "method": "data_collection"
+    },
+    "zammad-mcp-go": {
+      "command": "npx arush15june/zammad-mcp-go",
+      "args": [],
+      "env": {},
+      "source": "arush15june/zammad-mcp-go",
+      "method": "data_collection"
+    },
+    "tg_mcp": {
+      "command": "npx leshchenko1979/tg_mcp",
+      "args": [],
+      "env": {},
+      "source": "leshchenko1979/tg_mcp",
+      "method": "data_collection"
+    },
+    "zendesk-mcp-kon": {
+      "command": "npx nicekon/zendesk-mcp-server-kon",
+      "args": [],
+      "env": {},
+      "source": "nicekon/zendesk-mcp-server-kon",
+      "method": "data_collection"
+    },
+    "wechaty-mcp-sse": {
+      "command": "npx atorber/wechaty-mcp-sse",
+      "args": [],
+      "env": {},
+      "source": "atorber/wechaty-mcp-sse",
+      "method": "data_collection"
+    },
+    "authenticator_mcp": {
+      "command": "npx firstorderai/authenticator_mcp",
+      "args": [],
+      "env": {},
+      "source": "firstorderai/authenticator_mcp",
+      "method": "data_collection"
+    },
+    "mcp-status-observer": {
+      "command": "npx imprvhub/mcp-status-observer",
+      "args": [],
+      "env": {},
+      "source": "imprvhub/mcp-status-observer",
+      "method": "data_collection"
+    },
+    "whatsapp-mcp": {
+      "command": "npx Escorza07/whatsapp-mcp",
+      "args": [],
+      "env": {},
+      "source": "Escorza07/whatsapp-mcp",
+      "method": "data_collection"
+    },
+    "mcp_email_reader": {
+      "command": "npx karateboss/mcp_email_reader",
+      "args": [],
+      "env": {},
+      "source": "karateboss/mcp_email_reader",
+      "method": "data_collection"
+    },
+    "sturdy-octo-fortnight": {
+      "command": "npx tituslhy/sturdy-octo-fortnight",
+      "args": [],
+      "env": {},
+      "source": "tituslhy/sturdy-octo-fortnight",
+      "method": "data_collection"
+    },
+    "webhook-mcp": {
+      "command": "npx noobnooc/webhook-mcp",
+      "args": [],
+      "env": {},
+      "source": "noobnooc/webhook-mcp",
+      "method": "data_collection"
+    },
+    "coda-mcp": {
+      "command": "npx orellazri/coda-mcp",
+      "args": [],
+      "env": {},
+      "source": "orellazri/coda-mcp",
+      "method": "data_collection"
+    },
+    "mcp-jira-cloud-v2": {
+      "command": "npx scho-to/mcp-jira-cloud-v2",
+      "args": [],
+      "env": {},
+      "source": "scho-to/mcp-jira-cloud-v2",
+      "method": "data_collection"
+    },
+    "mcp-monday-qi": {
+      "command": "npx YajieQi123/mcp-server-monday-qi",
+      "args": [],
+      "env": {},
+      "source": "YajieQi123/mcp-server-monday-qi",
+      "method": "data_collection"
+    },
+    "webhook-tester-mcp": {
+      "command": "npx alimo7amed93/webhook-tester-mcp",
+      "args": [],
+      "env": {},
+      "source": "alimo7amed93/webhook-tester-mcp",
+      "method": "data_collection"
+    },
+    "mcp-gmail-extension": {
+      "command": "npx Escorza07/mcp-gmail-extension",
+      "args": [],
+      "env": {},
+      "source": "Escorza07/mcp-gmail-extension",
+      "method": "data_collection"
+    },
+    "findymail-mcp-server": {
+      "command": "npx Meerkats-Ai/findymail-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "Meerkats-Ai/findymail-mcp-server",
+      "method": "data_collection"
+    },
+    "sipgateio-mcp": {
+      "command": "npx BlackMac/sipgateio-mcp",
+      "args": [],
+      "env": {},
+      "source": "BlackMac/sipgateio-mcp",
+      "method": "data_collection"
+    },
+    "whatsapp-mcp-n8n": {
+      "command": "npx TharanaBope/whatsapp-mcp-n8n",
+      "args": [],
+      "env": {},
+      "source": "TharanaBope/whatsapp-mcp-n8n",
+      "method": "data_collection"
+    },
+    "dooray-mcp": {
+      "command": "npx mskim8717/dooray-mcp",
+      "args": [],
+      "env": {},
+      "source": "mskim8717/dooray-mcp",
+      "method": "data_collection"
+    },
+    "Discord-webhook-MCP": {
+      "command": "npx futuyu/Discord-webhook-MCP",
+      "args": [],
+      "env": {},
+      "source": "futuyu/Discord-webhook-MCP",
+      "method": "data_collection"
+    },
+    "hiworks-mcp": {
+      "command": "npx beylessai/hiworks-mcp",
+      "args": [],
+      "env": {},
+      "source": "beylessai/hiworks-mcp",
+      "method": "data_collection"
+    },
+    "telnyx-mcp-server": {
+      "command": "npx team-telnyx/telnyx-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "team-telnyx/telnyx-mcp-server",
+      "method": "data_collection"
+    },
+    "limesurvey-mcp": {
+      "command": "npx edgarrmondragon/limesurvey-mcp",
+      "args": [],
+      "env": {},
+      "source": "edgarrmondragon/limesurvey-mcp",
+      "method": "data_collection"
+    },
+    "mcp-woocommerce-thoy": {
+      "command": "npx thoy-le-duc/mcp-woocommerce-thoy",
+      "args": [],
+      "env": {},
+      "source": "thoy-le-duc/mcp-woocommerce-thoy",
+      "method": "data_collection"
+    },
+    "Elementor-MCP": {
+      "command": "npx aguaitech/Elementor-MCP",
+      "args": [],
+      "env": {},
+      "source": "aguaitech/Elementor-MCP",
+      "method": "data_collection"
+    },
+    "wp-wordpress-remote-proxy": {
+      "command": "npx galatanovidiu/wp-wordpress-remote-proxy",
+      "args": [],
+      "env": {},
+      "source": "galatanovidiu/wp-wordpress-remote-proxy",
+      "method": "data_collection"
+    },
+    "ghost-mcp-server": {
+      "command": "npx cromewar/ghost-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "cromewar/ghost-mcp-server",
+      "method": "data_collection"
+    },
+    "bootiful-wordpress-mcp-server": {
+      "command": "npx PragmaTech-GmbH/bootiful-wordpress-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "PragmaTech-GmbH/bootiful-wordpress-mcp-server",
+      "method": "data_collection"
+    },
+    "sharepoint-mcp": {
+      "command": "npx BCusack/sharepoint-mcp",
+      "args": [],
+      "env": {},
+      "source": "BCusack/sharepoint-mcp",
+      "method": "data_collection"
+    },
+    "hugo-mcp": {
+      "command": "npx SunnyCloudYang/hugo-mcp",
+      "args": [],
+      "env": {},
+      "source": "SunnyCloudYang/hugo-mcp",
+      "method": "data_collection"
+    },
+    "directus-mcp": {
+      "command": "npx pixelsock/directus-mcp",
+      "args": [],
+      "env": {},
+      "source": "pixelsock/directus-mcp",
+      "method": "data_collection"
+    },
+    "mcp-wordpress": {
+      "command": "npx gopalcnepal/mcp-wordpress",
+      "args": [],
+      "env": {},
+      "source": "gopalcnepal/mcp-wordpress",
+      "method": "data_collection"
+    },
+    "figma-mcp-server": {
+      "command": "npx larryhudson/figma-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "larryhudson/figma-mcp-server",
+      "method": "data_collection"
+    },
+    "paprika-3-mcp": {
+      "command": "npx soggycactus/paprika-3-mcp",
+      "args": [],
+      "env": {},
+      "source": "soggycactus/paprika-3-mcp",
+      "method": "data_collection"
+    },
+    "pocketbase-mcp": {
+      "command": "npx mrwyndham/pocketbase-mcp",
+      "args": [],
+      "env": {},
+      "source": "mrwyndham/pocketbase-mcp",
+      "method": "data_collection"
+    },
+    "wordpress-mcp": {
+      "command": "npx jpollock/wordpress-mcp",
+      "args": [],
+      "env": {},
+      "source": "jpollock/wordpress-mcp",
+      "method": "data_collection"
+    },
+    "MCP-FileMaker": {
+      "command": "npx calafate40/MCP-FileMaker",
+      "args": [],
+      "env": {},
+      "source": "calafate40/MCP-FileMaker",
+      "method": "data_collection"
+    },
+    "microcms-api-mcp-server": {
+      "command": "npx burnworks/microcms-api-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "burnworks/microcms-api-mcp-server",
+      "method": "data_collection"
+    },
+    "moodle-mcp": {
+      "command": "npx loyaniu/moodle-mcp",
+      "args": [],
+      "env": {},
+      "source": "loyaniu/moodle-mcp",
+      "method": "data_collection"
+    },
+    "the-wordpress-mcp-server": {
+      "command": "npx Leonelberio/the-wordpress-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "Leonelberio/the-wordpress-mcp-server",
+      "method": "data_collection"
+    },
+    "wordpress-automation-mcp": {
+      "command": "npx tsainte/wordpress-automation-mcp",
+      "args": [],
+      "env": {},
+      "source": "tsainte/wordpress-automation-mcp",
+      "method": "data_collection"
+    },
+    "mcp-gdrive-server": {
+      "command": "npx tonioshikanlu/mcp-gdrive-server",
+      "args": [],
+      "env": {},
+      "source": "tonioshikanlu/mcp-gdrive-server",
+      "method": "data_collection"
+    },
+    "WordPress-MCP": {
+      "command": "npx Utsav-Ladani/WordPress-MCP",
+      "args": [],
+      "env": {},
+      "source": "Utsav-Ladani/WordPress-MCP",
+      "method": "data_collection"
+    },
+    "Nocodb-MCP-Server": {
+      "command": "npx granthooks/Nocodb-MCP-Server",
+      "args": [],
+      "env": {},
+      "source": "granthooks/Nocodb-MCP-Server",
+      "method": "data_collection"
+    },
+    "directus-mcp-server": {
+      "command": "npx rijkvanzanten/directus-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "rijkvanzanten/directus-mcp-server",
+      "method": "data_collection"
+    },
+    "storyblok-mcp": {
+      "command": "npx harlley/storyblok-mcp",
+      "args": [],
+      "env": {},
+      "source": "harlley/storyblok-mcp",
+      "method": "data_collection"
+    },
+    "tandoor-mcp-server": {
+      "command": "npx starbuck93/tandoor-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "starbuck93/tandoor-mcp-server",
+      "method": "data_collection"
+    },
+    "office-editor-mcp": {
+      "command": "npx theWDY/office-editor-mcp",
+      "args": [],
+      "env": {},
+      "source": "theWDY/office-editor-mcp",
+      "method": "data_collection"
+    },
+    "claude-canvas-mcp": {
+      "command": "npx johnnyrobot/claude-canvas-mcp",
+      "args": [],
+      "env": {},
+      "source": "johnnyrobot/claude-canvas-mcp",
+      "method": "data_collection"
+    },
+    "freshrss-server": {
+      "command": "npx rakeshgangwar/freshrss-server",
+      "args": [],
+      "env": {},
+      "source": "rakeshgangwar/freshrss-server",
+      "method": "data_collection"
+    },
+    "eclass-mcp-server": {
+      "command": "npx sdi2200262/eclass-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "sdi2200262/eclass-mcp-server",
+      "method": "data_collection"
+    },
+    "go-mcp-mysql": {
+      "command": "npx rotatingshov/go-mcp-mysql",
+      "args": [],
+      "env": {},
+      "source": "rotatingshov/go-mcp-mysql",
+      "method": "data_collection"
+    },
+    "maxcompute-mcp-server": {
+      "command": "npx datafe/maxcompute-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "datafe/maxcompute-mcp-server",
+      "method": "data_collection"
+    },
+    "glue-mcp": {
+      "command": "npx atcol/glue-mcp",
+      "args": [],
+      "env": {},
+      "source": "atcol/glue-mcp",
+      "method": "data_collection"
+    },
+    "gis-dataconvertersion-mcp": {
+      "command": "npx ronantakizawa/gis-dataconvertersion-mcp",
+      "args": [],
+      "env": {},
+      "source": "ronantakizawa/gis-dataconvertersion-mcp",
+      "method": "data_collection"
+    },
+    "mcp-datapi": {
+      "command": "npx albertdow/mcp-datapi",
+      "args": [],
+      "env": {},
+      "source": "albertdow/mcp-datapi",
+      "method": "data_collection"
+    },
+    "mcp-kql-server": {
+      "command": "npx 4R9UN/mcp-kql-server",
+      "args": [],
+      "env": {},
+      "source": "4R9UN/mcp-kql-server",
+      "method": "data_collection"
+    },
+    "lancedb-mcp-server": {
+      "command": "npx lancedb/lancedb-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "lancedb/lancedb-mcp-server",
+      "method": "data_collection"
+    },
+    "archy-mcp": {
+      "command": "npx phxdev1/archy-mcp",
+      "args": [],
+      "env": {},
+      "source": "phxdev1/archy-mcp",
+      "method": "data_collection"
+    },
+    "CodeCrunchMCP": {
+      "command": "npx rithik-perera/CodeCrunchMCP",
+      "args": [],
+      "env": {},
+      "source": "rithik-perera/CodeCrunchMCP",
+      "method": "data_collection"
+    },
+    "xlsm-mcp-server": {
+      "command": "npx orlando2019/xlsm-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "orlando2019/xlsm-mcp-server",
+      "method": "data_collection"
+    },
+    "underdoc-tutorial-expense-analytics-mcp-sqlite": {
+      "command": "npx under-doc/underdoc-tutorial-expense-analytics-mcp-sqlite",
+      "args": [],
+      "env": {},
+      "source": "under-doc/underdoc-tutorial-expense-analytics-mcp-sqlite",
+      "method": "data_collection"
+    },
+    "builtwith-mcp-server": {
+      "command": "npx Meerkats-Ai/builtwith-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "Meerkats-Ai/builtwith-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-adonet-server": {
+      "command": "npx OpenLinkSoftware/mcp-adonet-server",
+      "args": [],
+      "env": {},
+      "source": "OpenLinkSoftware/mcp-adonet-server",
+      "method": "data_collection"
+    },
+    "mcp-altibase": {
+      "command": "npx hesslee/mcp-server-altibase",
+      "args": [],
+      "env": {},
+      "source": "hesslee/mcp-server-altibase",
+      "method": "data_collection"
+    },
+    "mcp-teradata": {
+      "command": "npx arturborycki/mcp-teradata",
+      "args": [],
+      "env": {},
+      "source": "arturborycki/mcp-teradata",
+      "method": "data_collection"
+    },
+    "plainsignal-mcp": {
+      "command": "npx plainsignal/plainsignal-mcp",
+      "args": [],
+      "env": {},
+      "source": "plainsignal/plainsignal-mcp",
+      "method": "data_collection"
+    },
+    "kcve": {
+      "command": "npx mattfoster/kcve",
+      "args": [],
+      "env": {},
+      "source": "mattfoster/kcve",
+      "method": "data_collection"
+    },
+    "dart-mcp": {
+      "command": "npx 2geonhyup/dart-mcp",
+      "args": [],
+      "env": {},
+      "source": "2geonhyup/dart-mcp",
+      "method": "data_collection"
+    },
+    "duckdb-mcp-server": {
+      "command": "npx mustafahasankhan/duckdb-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "mustafahasankhan/duckdb-mcp-server",
+      "method": "data_collection"
+    },
+    "DuckDB-RAG-MCP-Sample": {
+      "command": "npx nananaman/DuckDB-RAG-MCP-Sample",
+      "args": [],
+      "env": {},
+      "source": "nananaman/DuckDB-RAG-MCP-Sample",
+      "method": "data_collection"
+    },
+    "Deep-Fusion-Research-": {
+      "command": "npx future3OOO/Deep-Fusion-Research-",
+      "args": [],
+      "env": {},
+      "source": "future3OOO/Deep-Fusion-Research-",
+      "method": "data_collection"
+    },
+    "databricks-genie-mcp": {
+      "command": "npx alexxx-db/databricks-genie-mcp",
+      "args": [],
+      "env": {},
+      "source": "alexxx-db/databricks-genie-mcp",
+      "method": "data_collection"
+    },
+    "GeoDataProcessor-MCP": {
+      "command": "npx MpLebron/GeoDataProcessor-MCP",
+      "args": [],
+      "env": {},
+      "source": "MpLebron/GeoDataProcessor-MCP",
+      "method": "data_collection"
+    },
+    "PubChem-MCP": {
+      "command": "npx BioContext/PubChem-MCP",
+      "args": [],
+      "env": {},
+      "source": "BioContext/PubChem-MCP",
+      "method": "data_collection"
+    },
+    "estat-mcp-server": {
+      "command": "npx cygkichi/estat-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "cygkichi/estat-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-alchemy": {
+      "command": "npx mamisoa/mcp-alchemy",
+      "args": [],
+      "env": {},
+      "source": "mamisoa/mcp-alchemy",
+      "method": "data_collection"
+    },
+    "excel-mcp-server": {
+      "command": "npx variablenigh/excel-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "variablenigh/excel-mcp-server",
+      "method": "data_collection"
+    },
+    "metoro-mcp-server": {
+      "command": "npx roastedculti/metoro-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "roastedculti/metoro-mcp-server",
+      "method": "data_collection"
+    },
+    "metabase-mcp": {
+      "command": "npx cheukyin175/metabase-mcp",
+      "args": [],
+      "env": {},
+      "source": "cheukyin175/metabase-mcp",
+      "method": "data_collection"
+    },
+    "mcp_mongodb": {
+      "command": "npx tkz24589/mcp_mongodb",
+      "args": [],
+      "env": {},
+      "source": "tkz24589/mcp_mongodb",
+      "method": "data_collection"
+    },
+    "mcp-node-mssql": {
+      "command": "npx cwilby/mcp-node-mssql",
+      "args": [],
+      "env": {},
+      "source": "cwilby/mcp-node-mssql",
+      "method": "data_collection"
+    },
+    "dm-mcp-server": {
+      "command": "npx wangzhaobo168/dm-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "wangzhaobo168/dm-mcp-server",
+      "method": "data_collection"
+    },
+    "doris-mcp-server": {
+      "command": "npx NomotoK/doris-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "NomotoK/doris-mcp-server",
+      "method": "data_collection"
+    },
+    "waii-mcp-server": {
+      "command": "npx waii-ai/waii-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "waii-ai/waii-mcp-server",
+      "method": "data_collection"
+    },
+    "MCP-Server-with-Claude-Ai": {
+      "command": "npx affannahmed/MCP-Server-with-Claude-Ai",
+      "args": [],
+      "env": {},
+      "source": "affannahmed/MCP-Server-with-Claude-Ai",
+      "method": "data_collection"
+    },
+    "ydb-mcp": {
+      "command": "npx ydb-platform/ydb-mcp",
+      "args": [],
+      "env": {},
+      "source": "ydb-platform/ydb-mcp",
+      "method": "data_collection"
+    },
+    "redshift-mcp-server": {
+      "command": "npx Moonlight-CL/redshift-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "Moonlight-CL/redshift-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-mysql": {
+      "command": "npx cnosuke/mcp-mysql",
+      "args": [],
+      "env": {},
+      "source": "cnosuke/mcp-mysql",
+      "method": "data_collection"
+    },
+    "MCO-postgres": {
+      "command": "npx orlando2019/MCO-postgres",
+      "args": [],
+      "env": {},
+      "source": "orlando2019/MCO-postgres",
+      "method": "data_collection"
+    },
+    "-mysql_mcp_server": {
+      "command": "npx Jite-J/-mysql_mcp_server",
+      "args": [],
+      "env": {},
+      "source": "Jite-J/-mysql_mcp_server",
+      "method": "data_collection"
+    },
+    "sql-mcp": {
+      "command": "npx hmn53/sql-mcp",
+      "args": [],
+      "env": {},
+      "source": "hmn53/sql-mcp",
+      "method": "data_collection"
+    },
+    "mcp-snowflake-reader-ts": {
+      "command": "npx fnf-deepHeading/mcp-snowflake-reader-ts",
+      "args": [],
+      "env": {},
+      "source": "fnf-deepHeading/mcp-snowflake-reader-ts",
+      "method": "data_collection"
+    },
+    "mysql-mcp-modification": {
+      "command": "npx shensiqi0701/mysql-mcp-server-modification",
+      "args": [],
+      "env": {},
+      "source": "shensiqi0701/mysql-mcp-server-modification",
+      "method": "data_collection"
+    },
+    "typesense-mcp-server": {
+      "command": "npx avarant/typesense-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "avarant/typesense-mcp-server",
+      "method": "data_collection"
+    },
+    "mysql-mcp-server": {
+      "command": "npx allizwellai/mysql-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "allizwellai/mysql-mcp-server",
+      "method": "data_collection"
+    },
+    "MCP-MySQL-implementation": {
+      "command": "npx shensiqi0701/MCP-MySQL-server-implementation",
+      "args": [],
+      "env": {},
+      "source": "shensiqi0701/MCP-MySQL-server-implementation",
+      "method": "data_collection"
+    },
+    "mysql-schema-explorer-mcp": {
+      "command": "npx shibayu36/mysql-schema-explorer-mcp",
+      "args": [],
+      "env": {},
+      "source": "shibayu36/mysql-schema-explorer-mcp",
+      "method": "data_collection"
+    },
+    "mcp-law-office-db": {
+      "command": "npx asirulnik/mcp-law-office-db",
+      "args": [],
+      "env": {},
+      "source": "asirulnik/mcp-law-office-db",
+      "method": "data_collection"
+    },
+    "neon-mcp-loc": {
+      "command": "npx adam2211/neon-mcp-loc",
+      "args": [],
+      "env": {},
+      "source": "adam2211/neon-mcp-loc",
+      "method": "data_collection"
+    },
+    "mcp-mongo": {
+      "command": "npx achrekarom12/mcp-mongo",
+      "args": [],
+      "env": {},
+      "source": "achrekarom12/mcp-mongo",
+      "method": "data_collection"
+    },
+    "neo4j-mcp": {
+      "command": "npx nature-lover-iv/neo4j-mcp",
+      "args": [],
+      "env": {},
+      "source": "nature-lover-iv/neo4j-mcp",
+      "method": "data_collection"
+    },
+    "ChemBL-MCP": {
+      "command": "npx BioContext/ChemBL-MCP",
+      "args": [],
+      "env": {},
+      "source": "BioContext/ChemBL-MCP",
+      "method": "data_collection"
+    },
+    "Access-COM": {
+      "command": "npx jt-atan/Access-COM",
+      "args": [],
+      "env": {},
+      "source": "jt-atan/Access-COM",
+      "method": "data_collection"
+    },
+    "alibabacloud-adbpg-mcp-server": {
+      "command": "npx aliyun/alibabacloud-adbpg-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "aliyun/alibabacloud-adbpg-mcp-server",
+      "method": "data_collection"
+    },
+    "MCP_Java_PSQL": {
+      "command": "npx RichardHFYU/MCP_Java_PSQL",
+      "args": [],
+      "env": {},
+      "source": "RichardHFYU/MCP_Java_PSQL",
+      "method": "data_collection"
+    },
+    "MEC-Postgres": {
+      "command": "npx Pratye/MEC-Postgres",
+      "args": [],
+      "env": {},
+      "source": "Pratye/MEC-Postgres",
+      "method": "data_collection"
+    },
+    "mcp-mysql-server": {
+      "command": "npx Malove86/mcp-mysql-server",
+      "args": [],
+      "env": {},
+      "source": "Malove86/mcp-mysql-server",
+      "method": "data_collection"
+    },
+    "sequentialthinking": {
+      "command": "npx CristianCiubancan/sequentialthinking",
+      "args": [],
+      "env": {},
+      "source": "CristianCiubancan/sequentialthinking",
+      "method": "data_collection"
+    },
+    "mcp-splunk": {
+      "command": "npx jkosik/mcp-server-splunk",
+      "args": [],
+      "env": {},
+      "source": "jkosik/mcp-server-splunk",
+      "method": "data_collection"
+    },
+    "Twinic-server": {
+      "command": "npx twinic/Twinic-server",
+      "args": [],
+      "env": {},
+      "source": "twinic/Twinic-server",
+      "method": "data_collection"
+    },
+    "ej-mcp-gdrive": {
+      "command": "npx ejoyee/ej-mcp-server-gdrive",
+      "args": [],
+      "env": {},
+      "source": "ejoyee/ej-mcp-server-gdrive",
+      "method": "data_collection"
+    },
+    "deno-kv-mcp": {
+      "command": "npx joshuayoes/deno-kv-mcp",
+      "args": [],
+      "env": {},
+      "source": "joshuayoes/deno-kv-mcp",
+      "method": "data_collection"
+    },
+    "pr_reviewer": {
+      "command": "npx elhadjaoui/pr_reviewer",
+      "args": [],
+      "env": {},
+      "source": "elhadjaoui/pr_reviewer",
+      "method": "data_collection"
+    },
+    "skeet-local": {
+      "command": "npx skeet-build/skeet-local",
+      "args": [],
+      "env": {},
+      "source": "skeet-build/skeet-local",
+      "method": "data_collection"
+    },
+    "mcp-google-sheets": {
+      "command": "npx Demontie/mcp-google-sheets",
+      "args": [],
+      "env": {},
+      "source": "Demontie/mcp-google-sheets",
+      "method": "data_collection"
+    },
+    "aider-mcp-client": {
+      "command": "npx alvinveroy/aider-mcp-client",
+      "args": [],
+      "env": {},
+      "source": "alvinveroy/aider-mcp-client",
+      "method": "data_collection"
+    },
+    "octolis-tech-support": {
+      "command": "npx slavahatnuke/octolis-tech-support",
+      "args": [],
+      "env": {},
+      "source": "slavahatnuke/octolis-tech-support",
+      "method": "data_collection"
+    },
+    "visa-mcp": {
+      "command": "npx Hizuki1030/visa-mcp",
+      "args": [],
+      "env": {},
+      "source": "Hizuki1030/visa-mcp",
+      "method": "data_collection"
+    },
+    "pref-editor-mcp-server": {
+      "command": "npx charlesmuchene/pref-editor-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "charlesmuchene/pref-editor-mcp-server",
+      "method": "data_collection"
+    },
+    "Server-Inspection-MCP": {
+      "command": "npx b3nguang/Server-Inspection-MCP",
+      "args": [],
+      "env": {},
+      "source": "b3nguang/Server-Inspection-MCP",
+      "method": "data_collection"
+    },
+    "design-system-mcp-sandbox": {
+      "command": "npx ssaitho/design-system-mcp-sandbox",
+      "args": [],
+      "env": {},
+      "source": "ssaitho/design-system-mcp-sandbox",
+      "method": "data_collection"
+    },
+    "patch-file-mcp": {
+      "command": "npx PyneSys/patch-file-mcp",
+      "args": [],
+      "env": {},
+      "source": "PyneSys/patch-file-mcp",
+      "method": "data_collection"
+    },
+    "mcp-sharepoint": {
+      "command": "npx Sofias-ai/mcp-sharepoint",
+      "args": [],
+      "env": {},
+      "source": "Sofias-ai/mcp-sharepoint",
+      "method": "data_collection"
+    },
+    "review-toolkit-mcp": {
+      "command": "npx ZebraRoy/review-toolkit-mcp",
+      "args": [],
+      "env": {},
+      "source": "ZebraRoy/review-toolkit-mcp",
+      "method": "data_collection"
+    },
+    "mcp-sever-google-sheets": {
+      "command": "npx Aryan1718/mcp-sever-google-sheets",
+      "args": [],
+      "env": {},
+      "source": "Aryan1718/mcp-sever-google-sheets",
+      "method": "data_collection"
+    },
+    "mcp-get-installed-apps": {
+      "command": "npx Xutaotaotao/mcp-get-installed-apps",
+      "args": [],
+      "env": {},
+      "source": "Xutaotaotao/mcp-get-installed-apps",
+      "method": "data_collection"
+    },
+    "version_checker_mcp": {
+      "command": "npx ai-wes/version_checker_mcp",
+      "args": [],
+      "env": {},
+      "source": "ai-wes/version_checker_mcp",
+      "method": "data_collection"
+    },
+    "poly-mcp-client": {
+      "command": "npx yo-ban/poly-mcp-client",
+      "args": [],
+      "env": {},
+      "source": "yo-ban/poly-mcp-client",
+      "method": "data_collection"
+    },
+    "lifx-api-mcp-server": {
+      "command": "npx furey/lifx-api-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "furey/lifx-api-mcp-server",
+      "method": "data_collection"
+    },
+    "simple-mcp-fileserver": {
+      "command": "npx aezizhu/simple-mcp-fileserver",
+      "args": [],
+      "env": {},
+      "source": "aezizhu/simple-mcp-fileserver",
+      "method": "data_collection"
+    },
+    "switch-bot-mcp-server": {
+      "command": "npx yasu89/switch-bot-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "yasu89/switch-bot-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-implement": {
+      "command": "npx iamkaia/mcp-server-implement",
+      "args": [],
+      "env": {},
+      "source": "iamkaia/mcp-server-implement",
+      "method": "data_collection"
+    },
+    "mcpm": {
+      "command": "npx dotku/mcpm",
+      "args": [],
+      "env": {},
+      "source": "dotku/mcpm",
+      "method": "data_collection"
+    },
+    "mcp_ai_local_memory": {
+      "command": "npx mhappy78/mcp_ai_local_memory",
+      "args": [],
+      "env": {},
+      "source": "mhappy78/mcp_ai_local_memory",
+      "method": "data_collection"
+    },
+    "porkbun-mcp-server": {
+      "command": "npx miraclebakelaser/porkbun-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "miraclebakelaser/porkbun-mcp-server",
+      "method": "data_collection"
+    },
+    "pr_creator_mcp": {
+      "command": "npx urijan44/pr_creator_mcp",
+      "args": [],
+      "env": {},
+      "source": "urijan44/pr_creator_mcp",
+      "method": "data_collection"
+    },
+    "pihole-mcp-server": {
+      "command": "npx sbarbett/pihole-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "sbarbett/pihole-mcp-server",
+      "method": "data_collection"
+    },
+    "filesystem": {
+      "command": "npx MVA-MCP-servers/filesystem",
+      "args": [],
+      "env": {},
+      "source": "MVA-MCP-servers/filesystem",
+      "method": "data_collection"
+    },
+    "filesystem-server": {
+      "command": "npx yinzhouzhi/filesystem-server",
+      "args": [],
+      "env": {},
+      "source": "yinzhouzhi/filesystem-server",
+      "method": "data_collection"
+    },
+    "mcp-filesystem-extended": {
+      "command": "npx CyberT33N/mcp-filesystem-extended",
+      "args": [],
+      "env": {},
+      "source": "CyberT33N/mcp-filesystem-extended",
+      "method": "data_collection"
+    },
+    "mcp-wsl-filesystem": {
+      "command": "npx webconsulting/mcp-server-wsl-filesystem",
+      "args": [],
+      "env": {},
+      "source": "webconsulting/mcp-server-wsl-filesystem",
+      "method": "data_collection"
+    },
+    "mcp_server_filesystem_01": {
+      "command": "npx asirulnik/mcp_server_filesystem_01",
+      "args": [],
+      "env": {},
+      "source": "asirulnik/mcp_server_filesystem_01",
+      "method": "data_collection"
+    },
+    "MCPJavaFileSystem": {
+      "command": "npx stephanj/MCPJavaFileSystem",
+      "args": [],
+      "env": {},
+      "source": "stephanj/MCPJavaFileSystem",
+      "method": "data_collection"
+    },
+    "readonly-filesystem-mcp": {
+      "command": "npx danielsuguimoto/readonly-filesystem-mcp",
+      "args": [],
+      "env": {},
+      "source": "danielsuguimoto/readonly-filesystem-mcp",
+      "method": "data_collection"
+    },
+    "filesystem-mcp-server": {
+      "command": "npx cyanheads/filesystem-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "cyanheads/filesystem-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-file-server": {
+      "command": "npx abhishekloiwal/mcp-file-server",
+      "args": [],
+      "env": {},
+      "source": "abhishekloiwal/mcp-file-server",
+      "method": "data_collection"
+    },
+    "filesystem-mcp": {
+      "command": "npx 0kenx/filesystem-mcp",
+      "args": [],
+      "env": {},
+      "source": "0kenx/filesystem-mcp",
+      "method": "data_collection"
+    },
+    "filesystemcustom_final": {
+      "command": "npx alexissinglaire/filesystemcustom_final",
+      "args": [],
+      "env": {},
+      "source": "alexissinglaire/filesystemcustom_final",
+      "method": "data_collection"
+    },
+    "Filesystem-MCP-Server-SSE": {
+      "command": "npx ysthink/Filesystem-MCP-Server-SSE",
+      "args": [],
+      "env": {},
+      "source": "ysthink/Filesystem-MCP-Server-SSE",
+      "method": "data_collection"
+    },
+    "mcp-disk-usage": {
+      "command": "npx u1i/mcp-server-disk-usage",
+      "args": [],
+      "env": {},
+      "source": "u1i/mcp-server-disk-usage",
+      "method": "data_collection"
+    },
+    "filesystemcustom-test": {
+      "command": "npx alexissinglaire/filesystemcustom-test",
+      "args": [],
+      "env": {},
+      "source": "alexissinglaire/filesystemcustom-test",
+      "method": "data_collection"
+    },
+    "save-filesystem-mcp": {
+      "command": "npx sebastianbachmaier/save-filesystem-mcp",
+      "args": [],
+      "env": {},
+      "source": "sebastianbachmaier/save-filesystem-mcp",
+      "method": "data_collection"
+    },
+    "MCP-SynoLink": {
+      "command": "npx Do-Boo/MCP-SynoLink",
+      "args": [],
+      "env": {},
+      "source": "Do-Boo/MCP-SynoLink",
+      "method": "data_collection"
+    },
+    "mcp-ipfs": {
+      "command": "npx alexbakers/mcp-ipfs",
+      "args": [],
+      "env": {},
+      "source": "alexbakers/mcp-ipfs",
+      "method": "data_collection"
+    },
+    "mcp-filesystem": {
+      "command": "npx mateicanavra/mcp-filesystem",
+      "args": [],
+      "env": {},
+      "source": "mateicanavra/mcp-filesystem",
+      "method": "data_collection"
+    },
+    "mcp_cli_filesystem": {
+      "command": "npx RIKTESH89/mcp_cli_filesystem",
+      "args": [],
+      "env": {},
+      "source": "RIKTESH89/mcp_cli_filesystem",
+      "method": "data_collection"
+    },
+    "go-mcp-file-server": {
+      "command": "npx linimbus/go-mcp-file-server",
+      "args": [],
+      "env": {},
+      "source": "linimbus/go-mcp-file-server",
+      "method": "data_collection"
+    },
+    "mcp-file-navigator": {
+      "command": "npx Priyonuj/mcp-file-navigator",
+      "args": [],
+      "env": {},
+      "source": "Priyonuj/mcp-file-navigator",
+      "method": "data_collection"
+    },
+    "mcp-filesys": {
+      "command": "npx DenizkarayusufogluGit/mcp-filesys",
+      "args": [],
+      "env": {},
+      "source": "DenizkarayusufogluGit/mcp-filesys",
+      "method": "data_collection"
+    },
+    "mcp-ipfs-server": {
+      "command": "npx AleksanStark/mcp-ipfs-server",
+      "args": [],
+      "env": {},
+      "source": "AleksanStark/mcp-ipfs-server",
+      "method": "data_collection"
+    },
+    "filesystem-android": {
+      "command": "npx SDILogin/filesystem-android",
+      "args": [],
+      "env": {},
+      "source": "SDILogin/filesystem-android",
+      "method": "data_collection"
+    },
+    "oss-mcp": {
+      "command": "npx 1yhy/oss-mcp",
+      "args": [],
+      "env": {},
+      "source": "1yhy/oss-mcp",
+      "method": "data_collection"
+    },
+    "local_file_organizer": {
+      "command": "npx diganto-deb/local_file_organizer",
+      "args": [],
+      "env": {},
+      "source": "diganto-deb/local_file_organizer",
+      "method": "data_collection"
+    },
+    "DEVNADS-Monad-TESNET-MCP-Tools": {
+      "command": "npx ccassini/DEVNADS-Monad-TESNET-MCP-Tools",
+      "args": [],
+      "env": {},
+      "source": "ccassini/DEVNADS-Monad-TESNET-MCP-Tools",
+      "method": "data_collection"
+    },
+    "mcp-monad": {
+      "command": "npx SheriffOladejo/mcp-monad",
+      "args": [],
+      "env": {},
+      "source": "SheriffOladejo/mcp-monad",
+      "method": "data_collection"
+    },
+    "bonk-mcp": {
+      "command": "npx letsbonk-ai/bonk-mcp",
+      "args": [],
+      "env": {},
+      "source": "letsbonk-ai/bonk-mcp",
+      "method": "data_collection"
+    },
+    "zerodha-trade": {
+      "command": "npx mvk24199/zerodha-trade",
+      "args": [],
+      "env": {},
+      "source": "mvk24199/zerodha-trade",
+      "method": "data_collection"
+    },
+    "mcp-investec-sapb-simple": {
+      "command": "npx acambitsis/mcp-investec-sapb-simple",
+      "args": [],
+      "env": {},
+      "source": "acambitsis/mcp-investec-sapb-simple",
+      "method": "data_collection"
+    },
+    "wealthy-mcp": {
+      "command": "npx wealthy/wealthy-mcp",
+      "args": [],
+      "env": {},
+      "source": "wealthy/wealthy-mcp",
+      "method": "data_collection"
+    },
+    "finData-mcp-server": {
+      "command": "npx zlinzzzz/finData-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "zlinzzzz/finData-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-yahoo-finance": {
+      "command": "npx leoncuhk/mcp-yahoo-finance",
+      "args": [],
+      "env": {},
+      "source": "leoncuhk/mcp-yahoo-finance",
+      "method": "data_collection"
+    },
+    "monad-mcp-magiceden": {
+      "command": "npx Sifu213/monad-mcp-magiceden",
+      "args": [],
+      "env": {},
+      "source": "Sifu213/monad-mcp-magiceden",
+      "method": "data_collection"
+    },
+    "mcpsol": {
+      "command": "npx MCPxLabs/mcpsol",
+      "args": [],
+      "env": {},
+      "source": "MCPxLabs/mcpsol",
+      "method": "data_collection"
+    },
+    "my-red-envelope": {
+      "command": "npx atompsv/my-red-envelope",
+      "args": [],
+      "env": {},
+      "source": "atompsv/my-red-envelope",
+      "method": "data_collection"
+    },
+    "monad-mcp-server": {
+      "command": "npx Veenoway/monad-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "Veenoway/monad-mcp-server",
+      "method": "data_collection"
+    },
+    "Onfinance-MCP-Polymarket": {
+      "command": "npx AyushRatan1/Onfinance-MCP-Polymarket",
+      "args": [],
+      "env": {},
+      "source": "AyushRatan1/Onfinance-MCP-Polymarket",
+      "method": "data_collection"
+    },
+    "monad-mcp": {
+      "command": "npx AlexVagrant/monad-mcp",
+      "args": [],
+      "env": {},
+      "source": "AlexVagrant/monad-mcp",
+      "method": "data_collection"
+    },
+    "pnz-mcp-server": {
+      "command": "npx apimatic/pnz-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "apimatic/pnz-mcp-server",
+      "method": "data_collection"
+    },
+    "etf-flow-mcp": {
+      "command": "npx kukapay/etf-flow-mcp",
+      "args": [],
+      "env": {},
+      "source": "kukapay/etf-flow-mcp",
+      "method": "data_collection"
+    },
+    "Rootdata-MCP": {
+      "command": "npx nvmmonkey/Rootdata-MCP",
+      "args": [],
+      "env": {},
+      "source": "nvmmonkey/Rootdata-MCP",
+      "method": "data_collection"
+    },
+    "monad-bridge-mcp-server": {
+      "command": "npx rawakinode/monad-bridge-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "rawakinode/monad-bridge-mcp-server",
+      "method": "data_collection"
+    },
+    "metamask-mcp": {
+      "command": "npx Xiawpohr/metamask-mcp",
+      "args": [],
+      "env": {},
+      "source": "Xiawpohr/metamask-mcp",
+      "method": "data_collection"
+    },
+    "my-crypto-mcp": {
+      "command": "npx 0xanpham/my-crypto-mcp",
+      "args": [],
+      "env": {},
+      "source": "0xanpham/my-crypto-mcp",
+      "method": "data_collection"
+    },
+    "financial-markets-analyser": {
+      "command": "npx DuneRaccoon/financial-markets-analyser",
+      "args": [],
+      "env": {},
+      "source": "DuneRaccoon/financial-markets-analyser",
+      "method": "data_collection"
+    },
+    "alpaca-mcp-server": {
+      "command": "npx MardiantoS/alpaca-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "MardiantoS/alpaca-mcp-server",
+      "method": "data_collection"
+    },
+    "nuvama-mcp": {
+      "command": "npx alokamgnaneswarasai/nuvama-mcp",
+      "args": [],
+      "env": {},
+      "source": "alokamgnaneswarasai/nuvama-mcp",
+      "method": "data_collection"
+    },
+    "mcp_open_interest": {
+      "command": "npx charlesverge/mcp_open_interest",
+      "args": [],
+      "env": {},
+      "source": "charlesverge/mcp_open_interest",
+      "method": "data_collection"
+    },
+    "shardeum-mcp-server": {
+      "command": "npx abdulazeem-tk4vr/shardeum-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "abdulazeem-tk4vr/shardeum-mcp-server",
+      "method": "data_collection"
+    },
+    "archethic-uco-mcp": {
+      "command": "npx redDwarf03/archethic-uco-mcp",
+      "args": [],
+      "env": {},
+      "source": "redDwarf03/archethic-uco-mcp",
+      "method": "data_collection"
+    },
+    "mcp-economic": {
+      "command": "npx AI-Strategy-Enablement/mcp-economic",
+      "args": [],
+      "env": {},
+      "source": "AI-Strategy-Enablement/mcp-economic",
+      "method": "data_collection"
+    },
+    "hackernews-mcp": {
+      "command": "npx johnhenry/hackernews-mcp",
+      "args": [],
+      "env": {},
+      "source": "johnhenry/hackernews-mcp",
+      "method": "data_collection"
+    },
+    "YO-mcp": {
+      "command": "npx CristianCiubancan/YO-mcp",
+      "args": [],
+      "env": {},
+      "source": "CristianCiubancan/YO-mcp",
+      "method": "data_collection"
+    },
+    "HSIPL_auto_fastmcp": {
+      "command": "npx macchen-yu/HSIPL_auto_fastmcp",
+      "args": [],
+      "env": {},
+      "source": "macchen-yu/HSIPL_auto_fastmcp",
+      "method": "data_collection"
+    },
+    "Make_MCP": {
+      "command": "npx RoryMB/Make_MCP",
+      "args": [],
+      "env": {},
+      "source": "RoryMB/Make_MCP",
+      "method": "data_collection"
+    },
+    "oneroster-ts": {
+      "command": "npx trilogy-group/oneroster-ts",
+      "args": [],
+      "env": {},
+      "source": "trilogy-group/oneroster-ts",
+      "method": "data_collection"
+    },
+    "laravel": {
+      "command": "npx php-mcp/laravel",
+      "args": [],
+      "env": {},
+      "source": "php-mcp/laravel",
+      "method": "data_collection"
+    },
+    "server": {
+      "command": "npx php-mcp/server",
+      "args": [],
+      "env": {},
+      "source": "php-mcp/server",
+      "method": "data_collection"
+    },
+    "MCP-study": {
+      "command": "npx ArisaTaki/MCP-study",
+      "args": [],
+      "env": {},
+      "source": "ArisaTaki/MCP-study",
+      "method": "data_collection"
+    },
+    "mcp-java": {
+      "command": "npx kenken64/mcp-server-java",
+      "args": [],
+      "env": {},
+      "source": "kenken64/mcp-server-java",
+      "method": "data_collection"
+    },
+    "Remote-MCP": {
+      "command": "npx RemoteMCP/Remote-MCP",
+      "args": [],
+      "env": {},
+      "source": "RemoteMCP/Remote-MCP",
+      "method": "data_collection"
+    },
+    "yox-modelcontextprotocol": {
+      "command": "npx isuyashpatel/yox-modelcontextprotocol",
+      "args": [],
+      "env": {},
+      "source": "isuyashpatel/yox-modelcontextprotocol",
+      "method": "data_collection"
+    },
+    "Spring-Boot-Sample-MCP-Server": {
+      "command": "npx tobiassteidle/Spring-Boot-Sample-MCP-Server",
+      "args": [],
+      "env": {},
+      "source": "tobiassteidle/Spring-Boot-Sample-MCP-Server",
+      "method": "data_collection"
+    },
+    "Spring_MCP_Server": {
+      "command": "npx deepanshu-rawat6/Spring_MCP_Server",
+      "args": [],
+      "env": {},
+      "source": "deepanshu-rawat6/Spring_MCP_Server",
+      "method": "data_collection"
+    },
+    "mcp-example": {
+      "command": "npx xRadne/mcp-example",
+      "args": [],
+      "env": {},
+      "source": "xRadne/mcp-example",
+      "method": "data_collection"
+    },
+    "todo-mcp-server": {
+      "command": "npx idsulik/todo-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "idsulik/todo-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-template": {
+      "command": "npx larryhudson/mcp-server-template",
+      "args": [],
+      "env": {},
+      "source": "larryhudson/mcp-server-template",
+      "method": "data_collection"
+    },
+    "unity-mcp-for-editor": {
+      "command": "npx sinkect/unity-mcp-for-editor",
+      "args": [],
+      "env": {},
+      "source": "sinkect/unity-mcp-for-editor",
+      "method": "data_collection"
+    },
+    "unity-mcp-for-server": {
+      "command": "npx sinkect/unity-mcp-for-server",
+      "args": [],
+      "env": {},
+      "source": "sinkect/unity-mcp-for-server",
+      "method": "data_collection"
+    },
+    "jira-mcp-server": {
+      "command": "npx necto-pro/jira-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "necto-pro/jira-mcp-server",
+      "method": "data_collection"
+    },
+    "chat-orchestrate": {
+      "command": "npx jdelon02/chat-orchestrate",
+      "args": [],
+      "env": {},
+      "source": "jdelon02/chat-orchestrate",
+      "method": "data_collection"
+    },
+    "pydanticai_mcp_neo4j": {
+      "command": "npx Whaleylaw/pydanticai_mcp_neo4j",
+      "args": [],
+      "env": {},
+      "source": "Whaleylaw/pydanticai_mcp_neo4j",
+      "method": "data_collection"
+    },
+    "ynab_mcp": {
+      "command": "npx ivorpad/ynab_mcp",
+      "args": [],
+      "env": {},
+      "source": "ivorpad/ynab_mcp",
+      "method": "data_collection"
+    },
+    "mcp-playground": {
+      "command": "npx Yordi23/mcp-playground",
+      "args": [],
+      "env": {},
+      "source": "Yordi23/mcp-playground",
+      "method": "data_collection"
+    },
+    "kam-mcp-server": {
+      "command": "npx Bamo-alt/kam-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "Bamo-alt/kam-mcp-server",
+      "method": "data_collection"
+    },
+    "handsome-python": {
+      "command": "npx Yantha6/handsome-server-python",
+      "args": [],
+      "env": {},
+      "source": "Yantha6/handsome-server-python",
+      "method": "data_collection"
+    },
+    "hello-world-mcp": {
+      "command": "npx johnnyrootio/hello-world-mcp",
+      "args": [],
+      "env": {},
+      "source": "johnnyrootio/hello-world-mcp",
+      "method": "data_collection"
+    },
+    "openapi-mcpgenerator": {
+      "command": "npx vincent-pli/openapi-mcpserver-generator",
+      "args": [],
+      "env": {},
+      "source": "vincent-pli/openapi-mcpserver-generator",
+      "method": "data_collection"
+    },
+    "cursor-rules": {
+      "command": "npx mgd1984/cursor-rules",
+      "args": [],
+      "env": {},
+      "source": "mgd1984/cursor-rules",
+      "method": "data_collection"
+    },
+    "skill-set": {
+      "command": "npx wewei/skill-set",
+      "args": [],
+      "env": {},
+      "source": "wewei/skill-set",
+      "method": "data_collection"
+    },
+    "ebitengine-mcp": {
+      "command": "npx sedyh/ebitengine-mcp",
+      "args": [],
+      "env": {},
+      "source": "sedyh/ebitengine-mcp",
+      "method": "data_collection"
+    },
+    "ecovacs-mcp": {
+      "command": "npx ecovacs-ai/ecovacs-mcp",
+      "args": [],
+      "env": {},
+      "source": "ecovacs-ai/ecovacs-mcp",
+      "method": "data_collection"
+    },
+    "defold-mcp": {
+      "command": "npx ChadAragorn/defold-mcp",
+      "args": [],
+      "env": {},
+      "source": "ChadAragorn/defold-mcp",
+      "method": "data_collection"
+    },
+    "mcp-runescape": {
+      "command": "npx stefan-xyz/mcp-server-runescape",
+      "args": [],
+      "env": {},
+      "source": "stefan-xyz/mcp-server-runescape",
+      "method": "data_collection"
+    },
+    "ddnet-mcpserver": {
+      "command": "npx SilverHi/ddnet-mcpserver",
+      "args": [],
+      "env": {},
+      "source": "SilverHi/ddnet-mcpserver",
+      "method": "data_collection"
+    },
+    "mcp-gameboy": {
+      "command": "npx mario-andreschak/mcp-gameboy",
+      "args": [],
+      "env": {},
+      "source": "mario-andreschak/mcp-gameboy",
+      "method": "data_collection"
+    },
+    "mcp-janken-server": {
+      "command": "npx Takashi-Matsumura/mcp-janken-server",
+      "args": [],
+      "env": {},
+      "source": "Takashi-Matsumura/mcp-janken-server",
+      "method": "data_collection"
+    },
+    "Lemonade-Stand-MCP-Server": {
+      "command": "npx jimmcq/Lemonade-Stand-MCP-Server",
+      "args": [],
+      "env": {},
+      "source": "jimmcq/Lemonade-Stand-MCP-Server",
+      "method": "data_collection"
+    },
+    "mcp-gamecube-bridge": {
+      "command": "npx u1f992/mcp-gamecube-bridge",
+      "args": [],
+      "env": {},
+      "source": "u1f992/mcp-gamecube-bridge",
+      "method": "data_collection"
+    },
+    "mcp-chess-poc": {
+      "command": "npx matthijn/mcp-chess-poc",
+      "args": [],
+      "env": {},
+      "source": "matthijn/mcp-chess-poc",
+      "method": "data_collection"
+    },
+    "Aurora-4X-MCP": {
+      "command": "npx thirionlogan/Aurora-4X-MCP",
+      "args": [],
+      "env": {},
+      "source": "thirionlogan/Aurora-4X-MCP",
+      "method": "data_collection"
+    },
+    "ReyxGPT": {
+      "command": "npx ChrisMethsillo/ReyxGPT",
+      "args": [],
+      "env": {},
+      "source": "ChrisMethsillo/ReyxGPT",
+      "method": "data_collection"
+    },
+    "minecraft-mcp-pixel": {
+      "command": "npx Jeremy-Min-Yang/minecraft-mcp-server-pixel",
+      "args": [],
+      "env": {},
+      "source": "Jeremy-Min-Yang/minecraft-mcp-server-pixel",
+      "method": "data_collection"
+    },
+    "cs2-rcon-mcp": {
+      "command": "npx v9rt3x/cs2-rcon-mcp",
+      "args": [],
+      "env": {},
+      "source": "v9rt3x/cs2-rcon-mcp",
+      "method": "data_collection"
+    },
+    "slotdemo": {
+      "command": "npx passontw/slotdemo",
+      "args": [],
+      "env": {},
+      "source": "passontw/slotdemo",
+      "method": "data_collection"
+    },
+    "6510emu_in_c": {
+      "command": "npx andrzejsliwa/6510emu_in_c",
+      "args": [],
+      "env": {},
+      "source": "andrzejsliwa/6510emu_in_c",
+      "method": "data_collection"
+    },
+    "sample_mcp_pokemon": {
+      "command": "npx 8tako8tako8/sample_mcp_pokemon",
+      "args": [],
+      "env": {},
+      "source": "8tako8tako8/sample_mcp_pokemon",
+      "method": "data_collection"
+    },
+    "d2-mcp": {
+      "command": "npx h0rv/d2-mcp",
+      "args": [],
+      "env": {},
+      "source": "h0rv/d2-mcp",
+      "method": "data_collection"
+    },
+    "mcp-bedrock-agent": {
+      "command": "npx kyopark2014/mcp-bedrock-agent",
+      "args": [],
+      "env": {},
+      "source": "kyopark2014/mcp-bedrock-agent",
+      "method": "data_collection"
+    },
+    "formula1-mcp": {
+      "command": "npx Panth1823/formula1-mcp",
+      "args": [],
+      "env": {},
+      "source": "Panth1823/formula1-mcp",
+      "method": "data_collection"
+    },
+    "pocket-cavalry": {
+      "command": "npx hahanikan/pocket-cavalry",
+      "args": [],
+      "env": {},
+      "source": "hahanikan/pocket-cavalry",
+      "method": "data_collection"
+    },
+    "bgg-mcp-server": {
+      "command": "npx attilad/bgg-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "attilad/bgg-mcp-server",
+      "method": "data_collection"
+    },
+    "ptcg-mcp": {
+      "command": "npx jlgrimes/ptcg-mcp",
+      "args": [],
+      "env": {},
+      "source": "jlgrimes/ptcg-mcp",
+      "method": "data_collection"
+    },
+    "mcp-game-helper": {
+      "command": "npx xhulz/mcp-game-helper",
+      "args": [],
+      "env": {},
+      "source": "xhulz/mcp-game-helper",
+      "method": "data_collection"
+    },
+    "UnrealMCPBridge": {
+      "command": "npx appleweed/UnrealMCPBridge",
+      "args": [],
+      "env": {},
+      "source": "appleweed/UnrealMCPBridge",
+      "method": "data_collection"
+    },
+    "haiguitangmcp": {
+      "command": "npx wangyafu/haiguitangmcp",
+      "args": [],
+      "env": {},
+      "source": "wangyafu/haiguitangmcp",
+      "method": "data_collection"
+    },
+    "zaturn": {
+      "command": "npx kdqed/zaturn",
+      "args": [],
+      "env": {},
+      "source": "kdqed/zaturn",
+      "method": "data_collection"
+    },
+    "mcp_godot_rag": {
+      "command": "npx weekitmo/mcp_godot_rag",
+      "args": [],
+      "env": {},
+      "source": "weekitmo/mcp_godot_rag",
+      "method": "data_collection"
+    },
+    "modbus-mcp": {
+      "command": "npx kukapay/modbus-mcp",
+      "args": [],
+      "env": {},
+      "source": "kukapay/modbus-mcp",
+      "method": "data_collection"
+    },
+    "particle-mcp-server": {
+      "command": "npx zradlicz/particle-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "zradlicz/particle-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-arduino-server": {
+      "command": "npx Volt23/mcp-arduino-server",
+      "args": [],
+      "env": {},
+      "source": "Volt23/mcp-arduino-server",
+      "method": "data_collection"
+    },
+    "iotdb-mcp-TreeModel": {
+      "command": "npx xiangmy21/iotdb-mcp-server-TreeModel",
+      "args": [],
+      "env": {},
+      "source": "xiangmy21/iotdb-mcp-server-TreeModel",
+      "method": "data_collection"
+    },
+    "home-assistant-mcp": {
+      "command": "npx liorfranko/home-assistant-mcp",
+      "args": [],
+      "env": {},
+      "source": "liorfranko/home-assistant-mcp",
+      "method": "data_collection"
+    },
+    "esp-rainmaker-mcp": {
+      "command": "npx dhavalgujar/esp-rainmaker-mcp",
+      "args": [],
+      "env": {},
+      "source": "dhavalgujar/esp-rainmaker-mcp",
+      "method": "data_collection"
+    },
+    "solidworks-mcp-server": {
+      "command": "npx hussam0is/solidworks-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "hussam0is/solidworks-mcp-server",
+      "method": "data_collection"
+    },
+    "adb-mcp": {
+      "command": "npx srmorete/adb-mcp",
+      "args": [],
+      "env": {},
+      "source": "srmorete/adb-mcp",
+      "method": "data_collection"
+    },
+    "ioehub-mqtt-mcp-server": {
+      "command": "npx ioehub/ioehub-mqtt-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "ioehub/ioehub-mqtt-mcp-server",
+      "method": "data_collection"
+    },
+    "lifx-lan-mcp": {
+      "command": "npx simon-duchastel/lifx-lan-mcp",
+      "args": [],
+      "env": {},
+      "source": "simon-duchastel/lifx-lan-mcp",
+      "method": "data_collection"
+    },
+    "py-ue5-mcp-server": {
+      "command": "npx edi3on/py-ue5-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "edi3on/py-ue5-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-adb": {
+      "command": "npx isseikz/mcp-adb",
+      "args": [],
+      "env": {},
+      "source": "isseikz/mcp-adb",
+      "method": "data_collection"
+    },
+    "mcp_control_table_lamp": {
+      "command": "npx shelwyn/mcp_control_table_lamp",
+      "args": [],
+      "env": {},
+      "source": "shelwyn/mcp_control_table_lamp",
+      "method": "data_collection"
+    },
+    "device-info-mcp": {
+      "command": "npx Guidogl/device-info-mcp",
+      "args": [],
+      "env": {},
+      "source": "Guidogl/device-info-mcp",
+      "method": "data_collection"
+    },
+    "iotdb-mcp-server": {
+      "command": "npx apache/iotdb-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "apache/iotdb-mcp-server",
+      "method": "data_collection"
+    },
+    "airtop-mcp": {
+      "command": "npx alecf/airtop-mcp",
+      "args": [],
+      "env": {},
+      "source": "alecf/airtop-mcp",
+      "method": "data_collection"
+    },
+    "isaac-sim-mcp": {
+      "command": "npx omni-mcp/isaac-sim-mcp",
+      "args": [],
+      "env": {},
+      "source": "omni-mcp/isaac-sim-mcp",
+      "method": "data_collection"
+    },
+    "iotdb_mcp_server": {
+      "command": "npx JackieTien97/iotdb_mcp_server",
+      "args": [],
+      "env": {},
+      "source": "JackieTien97/iotdb_mcp_server",
+      "method": "data_collection"
+    },
+    "android-adb-controller": {
+      "command": "npx sankhodeep/android-adb-controller",
+      "args": [],
+      "env": {},
+      "source": "sankhodeep/android-adb-controller",
+      "method": "data_collection"
+    },
+    "mcp-android-adb-server": {
+      "command": "npx github-hewei/mcp-android-adb-server",
+      "args": [],
+      "env": {},
+      "source": "github-hewei/mcp-android-adb-server",
+      "method": "data_collection"
+    },
+    "adb_mcp_server": {
+      "command": "npx wolfcoming/adb_mcp_server",
+      "args": [],
+      "env": {},
+      "source": "wolfcoming/adb_mcp_server",
+      "method": "data_collection"
+    },
+    "simctl-mcp": {
+      "command": "npx ambar/simctl-mcp",
+      "args": [],
+      "env": {},
+      "source": "ambar/simctl-mcp",
+      "method": "data_collection"
+    },
+    "altium-mcp": {
+      "command": "npx coffeenmusic/altium-mcp",
+      "args": [],
+      "env": {},
+      "source": "coffeenmusic/altium-mcp",
+      "method": "data_collection"
+    },
+    "opcua-mcp": {
+      "command": "npx kukapay/opcua-mcp",
+      "args": [],
+      "env": {},
+      "source": "kukapay/opcua-mcp",
+      "method": "data_collection"
+    },
+    "CAD-MCP": {
+      "command": "npx HuaLuAI/CAD-MCP",
+      "args": [],
+      "env": {},
+      "source": "HuaLuAI/CAD-MCP",
+      "method": "data_collection"
+    },
+    "esp-mcp": {
+      "command": "npx horw/esp-mcp",
+      "args": [],
+      "env": {},
+      "source": "horw/esp-mcp",
+      "method": "data_collection"
+    },
+    "mcp-wdpcameracontrol-server": {
+      "command": "npx radial-hks/mcp-wdpcameracontrol-server",
+      "args": [],
+      "env": {},
+      "source": "radial-hks/mcp-wdpcameracontrol-server",
+      "method": "data_collection"
+    },
+    "mcp-nodemcu": {
+      "command": "npx amanasmuei/mcp-server-nodemcu",
+      "args": [],
+      "env": {},
+      "source": "amanasmuei/mcp-server-nodemcu",
+      "method": "data_collection"
+    },
+    "elektron-mcp": {
+      "command": "npx zerubeus/elektron-mcp",
+      "args": [],
+      "env": {},
+      "source": "zerubeus/elektron-mcp",
+      "method": "data_collection"
+    },
+    "nature-remo-mcp-server": {
+      "command": "npx noboru-i/nature-remo-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "noboru-i/nature-remo-mcp-server",
+      "method": "data_collection"
+    },
+    "omcp_a2a": {
+      "command": "npx fastomop/omcp_a2a",
+      "args": [],
+      "env": {},
+      "source": "fastomop/omcp_a2a",
+      "method": "data_collection"
+    },
+    "openehr-mcp-server": {
+      "command": "npx deak-ai/openehr-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "deak-ai/openehr-mcp-server",
+      "method": "data_collection"
+    },
+    "myweight-mcp-server": {
+      "command": "npx shinichi-takayanagi/myweight-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "shinichi-takayanagi/myweight-mcp-server",
+      "method": "data_collection"
+    },
+    "mcps": {
+      "command": "npx gosset-ai/mcps",
+      "args": [],
+      "env": {},
+      "source": "gosset-ai/mcps",
+      "method": "data_collection"
+    },
+    "gaggiuino-mcp": {
+      "command": "npx AndrewKlement/gaggiuino-mcp",
+      "args": [],
+      "env": {},
+      "source": "AndrewKlement/gaggiuino-mcp",
+      "method": "data_collection"
+    },
+    "BioContext-main": {
+      "command": "npx BioContext/BioContext-main",
+      "args": [],
+      "env": {},
+      "source": "BioContext/BioContext-main",
+      "method": "data_collection"
+    },
+    "oura-mcp": {
+      "command": "npx johnie/oura-mcp",
+      "args": [],
+      "env": {},
+      "source": "johnie/oura-mcp",
+      "method": "data_collection"
+    },
+    "Translationx-mcp-server": {
+      "command": "npx Deep-Intelligent-Pharma/Translationx-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "Deep-Intelligent-Pharma/Translationx-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-lims": {
+      "command": "npx sheffler/mcp-server-lims",
+      "args": [],
+      "env": {},
+      "source": "sheffler/mcp-server-lims",
+      "method": "data_collection"
+    },
+    "dad-mcp": {
+      "command": "npx andyrewlee/dad-mcp",
+      "args": [],
+      "env": {},
+      "source": "andyrewlee/dad-mcp",
+      "method": "data_collection"
+    },
+    "bioinformatics-mcp-example": {
+      "command": "npx entropic-digital/bioinformatics-mcp-example",
+      "args": [],
+      "env": {},
+      "source": "entropic-digital/bioinformatics-mcp-example",
+      "method": "data_collection"
+    },
+    "ClinicalTrials-MCP-Server": {
+      "command": "npx JackKuo666/ClinicalTrials-MCP-Server",
+      "args": [],
+      "env": {},
+      "source": "JackKuo666/ClinicalTrials-MCP-Server",
+      "method": "data_collection"
+    },
+    "DICOM-MCP": {
+      "command": "npx shaunporwal/DICOM-MCP",
+      "args": [],
+      "env": {},
+      "source": "shaunporwal/DICOM-MCP",
+      "method": "data_collection"
+    },
+    "health-record-mcp": {
+      "command": "npx jmandel/health-record-mcp",
+      "args": [],
+      "env": {},
+      "source": "jmandel/health-record-mcp",
+      "method": "data_collection"
+    },
+    "PubMed-MCP-Server": {
+      "command": "npx codingaslu/PubMed-MCP-Server",
+      "args": [],
+      "env": {},
+      "source": "codingaslu/PubMed-MCP-Server",
+      "method": "data_collection"
+    },
+    "dank-mcp": {
+      "command": "npx AgentDank/dank-mcp",
+      "args": [],
+      "env": {},
+      "source": "AgentDank/dank-mcp",
+      "method": "data_collection"
+    },
+    "biomcp": {
+      "command": "npx genomoncology/biomcp",
+      "args": [],
+      "env": {},
+      "source": "genomoncology/biomcp",
+      "method": "data_collection"
+    },
+    "PubTator-MCP-Server": {
+      "command": "npx JackKuo666/PubTator-MCP-Server",
+      "args": [],
+      "env": {},
+      "source": "JackKuo666/PubTator-MCP-Server",
+      "method": "data_collection"
+    },
+    "fooddb": {
+      "command": "npx eiz/fooddb",
+      "args": [],
+      "env": {},
+      "source": "eiz/fooddb",
+      "method": "data_collection"
+    },
+    "open-dental-mcp": {
+      "command": "npx AojdevStudio/open-dental-mcp",
+      "args": [],
+      "env": {},
+      "source": "AojdevStudio/open-dental-mcp",
+      "method": "data_collection"
+    },
+    "bicscan-mcp": {
+      "command": "npx ahnlabio/bicscan-mcp",
+      "args": [],
+      "env": {},
+      "source": "ahnlabio/bicscan-mcp",
+      "method": "data_collection"
+    },
+    "mcp-cerebra-legal-server": {
+      "command": "npx yoda-digital/mcp-cerebra-legal-server",
+      "args": [],
+      "env": {},
+      "source": "yoda-digital/mcp-cerebra-legal-server",
+      "method": "data_collection"
+    },
+    "cortellis-mcp-server": {
+      "command": "npx uh-joan/cortellis-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "uh-joan/cortellis-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-malaysia-prayer-time": {
+      "command": "npx amanasmuei/mcp-server-malaysia-prayer-time",
+      "args": [],
+      "env": {},
+      "source": "amanasmuei/mcp-server-malaysia-prayer-time",
+      "method": "data_collection"
+    },
+    "medadapt-content-server": {
+      "command": "npx ryoureddy/medadapt-content-server",
+      "args": [],
+      "env": {},
+      "source": "ryoureddy/medadapt-content-server",
+      "method": "data_collection"
+    },
+    "medifinder-mcp": {
+      "command": "npx MediFinderBot/medifinder-mcp",
+      "args": [],
+      "env": {},
+      "source": "MediFinderBot/medifinder-mcp",
+      "method": "data_collection"
+    },
+    "molecule-mcp": {
+      "command": "npx ChatMol/molecule-mcp",
+      "args": [],
+      "env": {},
+      "source": "ChatMol/molecule-mcp",
+      "method": "data_collection"
+    },
+    "climatiq-mcp-server": {
+      "command": "npx jagan-shanmugam/climatiq-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "jagan-shanmugam/climatiq-mcp-server",
+      "method": "data_collection"
+    },
+    "8sleep-mcp": {
+      "command": "npx elizabethtrykin/8sleep-mcp",
+      "args": [],
+      "env": {},
+      "source": "elizabethtrykin/8sleep-mcp",
+      "method": "data_collection"
+    },
+    "vcenter-mcp-server": {
+      "command": "npx lijian-ui/vcenter-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "lijian-ui/vcenter-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-k8s": {
+      "command": "npx chris-sun-star/mcp-server-k8s",
+      "args": [],
+      "env": {},
+      "source": "chris-sun-star/mcp-server-k8s",
+      "method": "data_collection"
+    },
+    "agentbay": {
+      "command": "npx Michael98671/agentbay",
+      "args": [],
+      "env": {},
+      "source": "Michael98671/agentbay",
+      "method": "data_collection"
+    },
+    "VPS-MCP-SERVER": {
+      "command": "npx LuizBranco-ClickHype/VPS-MCP-SERVER",
+      "args": [],
+      "env": {},
+      "source": "LuizBranco-ClickHype/VPS-MCP-SERVER",
+      "method": "data_collection"
+    },
+    "consul-mcp-server": {
+      "command": "npx kocierik/consul-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "kocierik/consul-mcp-server",
+      "method": "data_collection"
+    },
+    "restate-mcp-server": {
+      "command": "npx pcholakov/restate-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "pcholakov/restate-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-nomad": {
+      "command": "npx kocierik/mcp-nomad",
+      "args": [],
+      "env": {},
+      "source": "kocierik/mcp-nomad",
+      "method": "data_collection"
+    },
+    "mcp-s3-server": {
+      "command": "npx FunnyPuppet/mcp-s3-server",
+      "args": [],
+      "env": {},
+      "source": "FunnyPuppet/mcp-s3-server",
+      "method": "data_collection"
+    },
+    "ares-devops-mcp": {
+      "command": "npx Cognitive-Stack/ares-devops-mcp",
+      "args": [],
+      "env": {},
+      "source": "Cognitive-Stack/ares-devops-mcp",
+      "method": "data_collection"
+    },
+    "mcp-kubernetes": {
+      "command": "npx kmathur/mcp-server-kubernetes",
+      "args": [],
+      "env": {},
+      "source": "kmathur/mcp-server-kubernetes",
+      "method": "data_collection"
+    },
+    "mcpserver": {
+      "command": "npx ravi-accolite/mcpserver",
+      "args": [],
+      "env": {},
+      "source": "ravi-accolite/mcpserver",
+      "method": "data_collection"
+    },
+    "alibaba-cloud-ops-mcp-server": {
+      "command": "npx aliyun/alibaba-cloud-ops-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "aliyun/alibaba-cloud-ops-mcp-server",
+      "method": "data_collection"
+    },
+    "k8s-pilot": {
+      "command": "npx bourbonkk/k8s-pilot",
+      "args": [],
+      "env": {},
+      "source": "bourbonkk/k8s-pilot",
+      "method": "data_collection"
+    },
+    "ProxmoxMCP-advance": {
+      "command": "npx Markermav/ProxmoxMCP-advance",
+      "args": [],
+      "env": {},
+      "source": "Markermav/ProxmoxMCP-advance",
+      "method": "data_collection"
+    },
+    "flux-ui-mcp": {
+      "command": "npx iannuttall/flux-ui-mcp",
+      "args": [],
+      "env": {},
+      "source": "iannuttall/flux-ui-mcp",
+      "method": "data_collection"
+    },
+    "mns-mcp-server": {
+      "command": "npx Houlong66/mns-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "Houlong66/mns-mcp-server",
+      "method": "data_collection"
+    },
+    "Subnet-Calculator-MCP-Server": {
+      "command": "npx melihteke/Subnet-Calculator-MCP-Server",
+      "args": [],
+      "env": {},
+      "source": "melihteke/Subnet-Calculator-MCP-Server",
+      "method": "data_collection"
+    },
+    "foundation-dev-context": {
+      "command": "npx stolostron/server-foundation-dev-context",
+      "args": [],
+      "env": {},
+      "source": "stolostron/server-foundation-dev-context",
+      "method": "data_collection"
+    },
+    "netbox-mcp-server": {
+      "command": "npx ardecode/netbox-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "ardecode/netbox-mcp-server",
+      "method": "data_collection"
+    },
+    "CutterMCP": {
+      "command": "npx ap425q/CutterMCP",
+      "args": [],
+      "env": {},
+      "source": "ap425q/CutterMCP",
+      "method": "data_collection"
+    },
+    "mcp-nodejs": {
+      "command": "npx cappt-team/mcp-server-nodejs",
+      "args": [],
+      "env": {},
+      "source": "cappt-team/mcp-server-nodejs",
+      "method": "data_collection"
+    },
+    "mcp-config": {
+      "command": "npx devilofdev/mcp-config",
+      "args": [],
+      "env": {},
+      "source": "devilofdev/mcp-config",
+      "method": "data_collection"
+    },
+    "mcp-hand": {
+      "command": "npx koudaiDemon/mcp-server-hand",
+      "args": [],
+      "env": {},
+      "source": "koudaiDemon/mcp-server-hand",
+      "method": "data_collection"
+    },
+    "mcp-dataverse": {
+      "command": "npx gdcc/mcp-dataverse",
+      "args": [],
+      "env": {},
+      "source": "gdcc/mcp-dataverse",
+      "method": "data_collection"
+    },
+    "cognigraph-mcp-server": {
+      "command": "npx xsp52Hz/cognigraph-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "xsp52Hz/cognigraph-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-ipfs-context": {
+      "command": "npx johnhenry/mcp-server-ipfs-context",
+      "args": [],
+      "env": {},
+      "source": "johnhenry/mcp-server-ipfs-context",
+      "method": "data_collection"
+    },
+    "duckdb-hybrid-doc-search": {
+      "command": "npx upamune/duckdb-hybrid-doc-search",
+      "args": [],
+      "env": {},
+      "source": "upamune/duckdb-hybrid-doc-search",
+      "method": "data_collection"
+    },
+    "mcp-memory-bank": {
+      "command": "npx ipospelov/mcp-memory-bank",
+      "args": [],
+      "env": {},
+      "source": "ipospelov/mcp-memory-bank",
+      "method": "data_collection"
+    },
+    "notion_fastmcp": {
+      "command": "npx brian3814/notion_fastmcp",
+      "args": [],
+      "env": {},
+      "source": "brian3814/notion_fastmcp",
+      "method": "data_collection"
+    },
+    "mcp-sample": {
+      "command": "npx KerolIA98/mcp-sample",
+      "args": [],
+      "env": {},
+      "source": "KerolIA98/mcp-sample",
+      "method": "data_collection"
+    },
+    "mcp-memory": {
+      "command": "npx mkusaka/mcp-server-memory",
+      "args": [],
+      "env": {},
+      "source": "mkusaka/mcp-server-memory",
+      "method": "data_collection"
+    },
+    "arc-mcp-server": {
+      "command": "npx Arc-Computer/arc-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "Arc-Computer/arc-mcp-server",
+      "method": "data_collection"
+    },
+    "code-explorer-mcp": {
+      "command": "npx jordankamto/code-explorer-mcp",
+      "args": [],
+      "env": {},
+      "source": "jordankamto/code-explorer-mcp",
+      "method": "data_collection"
+    },
+    "xgmem": {
+      "command": "npx meetdhanani17/xgmem",
+      "args": [],
+      "env": {},
+      "source": "meetdhanani17/xgmem",
+      "method": "data_collection"
+    },
+    "git-github.com-jodli-factorio-modding-api": {
+      "command": "npx jodli/git-github.com-jodli-factorio-modding-api",
+      "args": [],
+      "env": {},
+      "source": "jodli/git-github.com-jodli-factorio-modding-api",
+      "method": "data_collection"
+    },
+    "chatdb": {
+      "command": "npx Svtter/chatdb",
+      "args": [],
+      "env": {},
+      "source": "Svtter/chatdb",
+      "method": "data_collection"
+    },
+    "custom-instructions": {
+      "command": "npx tejasPhaveri/custom-instructions",
+      "args": [],
+      "env": {},
+      "source": "tejasPhaveri/custom-instructions",
+      "method": "data_collection"
+    },
+    "mcp-wikijs": {
+      "command": "npx Im-neko/mcp-wikijs",
+      "args": [],
+      "env": {},
+      "source": "Im-neko/mcp-wikijs",
+      "method": "data_collection"
+    },
+    "mcp-obsidian": {
+      "command": "npx fazer-ai/mcp-obsidian",
+      "args": [],
+      "env": {},
+      "source": "fazer-ai/mcp-obsidian",
+      "method": "data_collection"
+    },
+    "mcp-read-json": {
+      "command": "npx fmicalizzi/mcp-read-json",
+      "args": [],
+      "env": {},
+      "source": "fmicalizzi/mcp-read-json",
+      "method": "data_collection"
+    },
+    "project-mem-mcp": {
+      "command": "npx PyneSys/project-mem-mcp",
+      "args": [],
+      "env": {},
+      "source": "PyneSys/project-mem-mcp",
+      "method": "data_collection"
+    },
+    "mcp-temple": {
+      "command": "npx ndlxp2008/mcp-temple",
+      "args": [],
+      "env": {},
+      "source": "ndlxp2008/mcp-temple",
+      "method": "data_collection"
+    },
+    "mcp-playbook": {
+      "command": "npx dwarvesf/mcp-playbook",
+      "args": [],
+      "env": {},
+      "source": "dwarvesf/mcp-playbook",
+      "method": "data_collection"
+    },
+    "patentsafe-mcp": {
+      "command": "npx amphora/patentsafe-mcp",
+      "args": [],
+      "env": {},
+      "source": "amphora/patentsafe-mcp",
+      "method": "data_collection"
+    },
+    "codex-vitea-mcp": {
+      "command": "npx KawaroX/codex-vitea-mcp",
+      "args": [],
+      "env": {},
+      "source": "KawaroX/codex-vitea-mcp",
+      "method": "data_collection"
+    },
+    "git-mcp": {
+      "command": "npx Svtter/git-mcp",
+      "args": [],
+      "env": {},
+      "source": "Svtter/git-mcp",
+      "method": "data_collection"
+    },
+    "doc-lib-mcp": {
+      "command": "npx shifusen329/doc-lib-mcp",
+      "args": [],
+      "env": {},
+      "source": "shifusen329/doc-lib-mcp",
+      "method": "data_collection"
+    },
+    "taskflow-memory-server": {
+      "command": "npx kiranraathod/taskflow-memory-server",
+      "args": [],
+      "env": {},
+      "source": "kiranraathod/taskflow-memory-server",
+      "method": "data_collection"
+    },
+    "mcp-latest-document": {
+      "command": "npx kaz56-t/mcp-latest-document",
+      "args": [],
+      "env": {},
+      "source": "kaz56-t/mcp-latest-document",
+      "method": "data_collection"
+    },
+    "NeoCoder-neo4j-ai-workflow": {
+      "command": "npx angrysky56/NeoCoder-neo4j-ai-workflow",
+      "args": [],
+      "env": {},
+      "source": "angrysky56/NeoCoder-neo4j-ai-workflow",
+      "method": "data_collection"
+    },
+    "alaria-wiki-mcp": {
+      "command": "npx CaptainCrouton89/alaria-wiki-mcp",
+      "args": [],
+      "env": {},
+      "source": "CaptainCrouton89/alaria-wiki-mcp",
+      "method": "data_collection"
+    },
+    "mcp-boilerplate": {
+      "command": "npx CaptainCrouton89/mcp-boilerplate",
+      "args": [],
+      "env": {},
+      "source": "CaptainCrouton89/mcp-boilerplate",
+      "method": "data_collection"
+    },
+    "mcp_tianditu": {
+      "command": "npx bailaohe/mcp_tianditu",
+      "args": [],
+      "env": {},
+      "source": "bailaohe/mcp_tianditu",
+      "method": "data_collection"
+    },
+    "yandex-maps-mcp": {
+      "command": "npx peschinskiy/yandex-maps-mcp",
+      "args": [],
+      "env": {},
+      "source": "peschinskiy/yandex-maps-mcp",
+      "method": "data_collection"
+    },
+    "google-map-mcp": {
+      "command": "npx RikGmee/google-map-mcp",
+      "args": [],
+      "env": {},
+      "source": "RikGmee/google-map-mcp",
+      "method": "data_collection"
+    },
+    "amap-mcp-server": {
+      "command": "npx sugarforever/amap-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "sugarforever/amap-mcp-server",
+      "method": "data_collection"
+    },
+    "naver-map-mcp": {
+      "command": "npx num2k/naver-map-mcp",
+      "args": [],
+      "env": {},
+      "source": "num2k/naver-map-mcp",
+      "method": "data_collection"
+    },
+    "mcp-dndzgz": {
+      "command": "npx danilat/mcp-dndzgz",
+      "args": [],
+      "env": {},
+      "source": "danilat/mcp-dndzgz",
+      "method": "data_collection"
+    },
+    "weather-forecast-mcp-server": {
+      "command": "npx 93minki/weather-forecast-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "93minki/weather-forecast-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-geo": {
+      "command": "npx id100700/mcp-geo",
+      "args": [],
+      "env": {},
+      "source": "id100700/mcp-geo",
+      "method": "data_collection"
+    },
+    "mcp-geocoder-rosetta": {
+      "command": "npx richardschrammcom/mcp-geocoder-rosetta",
+      "args": [],
+      "env": {},
+      "source": "richardschrammcom/mcp-geocoder-rosetta",
+      "method": "data_collection"
+    },
+    "nysse-mcp-server": {
+      "command": "npx tlaukkanen/nysse-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "tlaukkanen/nysse-mcp-server",
+      "method": "data_collection"
+    },
+    "citystack-agent-kumbh-nashik": {
+      "command": "npx ankushdeore/citystack-agent-kumbh-nashik",
+      "args": [],
+      "env": {},
+      "source": "ankushdeore/citystack-agent-kumbh-nashik",
+      "method": "data_collection"
+    },
+    "mcp-openweathermap": {
+      "command": "npx leonhardholz/mcp-openweathermap",
+      "args": [],
+      "env": {},
+      "source": "leonhardholz/mcp-openweathermap",
+      "method": "data_collection"
+    },
+    "taiwan-cwa-mcp-server": {
+      "command": "npx stephen9412/taiwan-cwa-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "stephen9412/taiwan-cwa-mcp-server",
+      "method": "data_collection"
+    },
+    "claude-openweather-mcp": {
+      "command": "npx ChandekarDhruvin/claude-openweather-mcp",
+      "args": [],
+      "env": {},
+      "source": "ChandekarDhruvin/claude-openweather-mcp",
+      "method": "data_collection"
+    },
+    "wheather-mcp-server": {
+      "command": "npx sneharao/wheather-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "sneharao/wheather-mcp-server",
+      "method": "data_collection"
+    },
+    "tb-mcp-geo": {
+      "command": "npx tb280320889/tb-mcp-geo",
+      "args": [],
+      "env": {},
+      "source": "tb280320889/tb-mcp-geo",
+      "method": "data_collection"
+    },
+    "mcp-compare-zipcodes": {
+      "command": "npx anna8murphy/mcp-compare-zipcodes",
+      "args": [],
+      "env": {},
+      "source": "anna8murphy/mcp-compare-zipcodes",
+      "method": "data_collection"
+    },
+    "mcp-proj": {
+      "command": "npx radial-hks/mcp-server-proj",
+      "args": [],
+      "env": {},
+      "source": "radial-hks/mcp-server-proj",
+      "method": "data_collection"
+    },
+    "ipfind-mcp-server": {
+      "command": "npx ipfind/ipfind-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "ipfind/ipfind-mcp-server",
+      "method": "data_collection"
+    },
+    "qgis_mcp_modify1": {
+      "command": "npx syauqi-uqi/qgis_mcp_modify1",
+      "args": [],
+      "env": {},
+      "source": "syauqi-uqi/qgis_mcp_modify1",
+      "method": "data_collection"
+    },
+    "location-mcp-server": {
+      "command": "npx sokyran/location-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "sokyran/location-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-naver-map": {
+      "command": "npx yeonupark/mcp-naver-map",
+      "args": [],
+      "env": {},
+      "source": "yeonupark/mcp-naver-map",
+      "method": "data_collection"
+    },
+    "amap-weather-mcp-server": {
+      "command": "npx ACAne0320/amap-weather-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "ACAne0320/amap-weather-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-weather-server": {
+      "command": "npx HZreal/mcp-weather-server",
+      "args": [],
+      "env": {},
+      "source": "HZreal/mcp-weather-server",
+      "method": "data_collection"
+    },
+    "weather": {
+      "command": "npx ma3u/weather",
+      "args": [],
+      "env": {},
+      "source": "ma3u/weather",
+      "method": "data_collection"
+    },
+    "weather-mcp": {
+      "command": "npx aldotestino/weather-mcp",
+      "args": [],
+      "env": {},
+      "source": "aldotestino/weather-mcp",
+      "method": "data_collection"
+    },
+    "jp-weather-mcp-server": {
+      "command": "npx hiroaqii/jp-weather-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "hiroaqii/jp-weather-mcp-server",
+      "method": "data_collection"
+    },
+    "cwa-mcp-server": {
+      "command": "npx lincw/cwa-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "lincw/cwa-mcp-server",
+      "method": "data_collection"
+    },
+    "dwd-mcp-server": {
+      "command": "npx lincw/dwd-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "lincw/dwd-mcp-server",
+      "method": "data_collection"
+    },
+    "zapdelivery": {
+      "command": "npx edupoli/zapdelivery",
+      "args": [],
+      "env": {},
+      "source": "edupoli/zapdelivery",
+      "method": "data_collection"
+    },
+    "rocketreach-mcp-server": {
+      "command": "npx Meerkats-Ai/rocketreach-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "Meerkats-Ai/rocketreach-mcp-server",
+      "method": "data_collection"
+    },
+    "prospeo-mcp-server": {
+      "command": "npx Meerkats-Ai/prospeo-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "Meerkats-Ai/prospeo-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-close-server": {
+      "command": "npx ShiftEngineering/mcp-close-server",
+      "args": [],
+      "env": {},
+      "source": "ShiftEngineering/mcp-close-server",
+      "method": "data_collection"
+    },
+    "smartlead-mcp-server": {
+      "command": "npx Meerkats-Ai/smartlead-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "Meerkats-Ai/smartlead-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-teamtailor": {
+      "command": "npx crunchloop/mcp-teamtailor",
+      "args": [],
+      "env": {},
+      "source": "crunchloop/mcp-teamtailor",
+      "method": "data_collection"
+    },
+    "Hubspot-MCP": {
+      "command": "npx deezsecc/Hubspot-MCP",
+      "args": [],
+      "env": {},
+      "source": "deezsecc/Hubspot-MCP",
+      "method": "data_collection"
+    },
+    "simple_shopify": {
+      "command": "npx beswindev/simple_shopify",
+      "args": [],
+      "env": {},
+      "source": "beswindev/simple_shopify",
+      "method": "data_collection"
+    },
+    "mcp-metricool": {
+      "command": "npx metricool/mcp-metricool",
+      "args": [],
+      "env": {},
+      "source": "metricool/mcp-metricool",
+      "method": "data_collection"
+    },
+    "smartlead-mcp-local": {
+      "command": "npx jean-technologies/smartlead-mcp-server-local",
+      "args": [],
+      "env": {},
+      "source": "jean-technologies/smartlead-mcp-server-local",
+      "method": "data_collection"
+    },
+    "docusign-test-js-sdk-public": {
+      "command": "npx MGDS01/docusign-test-js-sdk-public",
+      "args": [],
+      "env": {},
+      "source": "MGDS01/docusign-test-js-sdk-public",
+      "method": "data_collection"
+    },
+    "producthunt-mcp-server": {
+      "command": "npx jaipandya/producthunt-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "jaipandya/producthunt-mcp-server",
+      "method": "data_collection"
+    },
+    "SmartCustomerSupportMCP": {
+      "command": "npx precariat365/SmartCustomerSupportMCP",
+      "args": [],
+      "env": {},
+      "source": "precariat365/SmartCustomerSupportMCP",
+      "method": "data_collection"
+    },
+    "linkedin-jobs-mcp-server": {
+      "command": "npx Rom7699/linkedin-jobs-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "Rom7699/linkedin-jobs-mcp-server",
+      "method": "data_collection"
+    },
+    "pay-up": {
+      "command": "npx ShreyeshArangath/pay-up",
+      "args": [],
+      "env": {},
+      "source": "ShreyeshArangath/pay-up",
+      "method": "data_collection"
+    },
+    "uupt-mcp-server": {
+      "command": "npx uupt-mcp/uupt-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "uupt-mcp/uupt-mcp-server",
+      "method": "data_collection"
+    },
+    "airtable-mcp": {
+      "command": "npx alexbruf/airtable-mcp",
+      "args": [],
+      "env": {},
+      "source": "alexbruf/airtable-mcp",
+      "method": "data_collection"
+    },
+    "Ragavi-ImmoBricks": {
+      "command": "npx RagaviManohar/Ragavi-ImmoBricks",
+      "args": [],
+      "env": {},
+      "source": "RagaviManohar/Ragavi-ImmoBricks",
+      "method": "data_collection"
+    },
+    "odoo-accounting-mcp": {
+      "command": "npx jeevanism/odoo-accounting-mcp",
+      "args": [],
+      "env": {},
+      "source": "jeevanism/odoo-accounting-mcp",
+      "method": "data_collection"
+    },
+    "mcp-shopify": {
+      "command": "npx sarayd/mcp-shopify",
+      "args": [],
+      "env": {},
+      "source": "sarayd/mcp-shopify",
+      "method": "data_collection"
+    },
+    "mixpanel-mcp-server": {
+      "command": "npx ciaraadkins/mixpanel-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "ciaraadkins/mixpanel-mcp-server",
+      "method": "data_collection"
+    },
+    "jobspy-mcp-server": {
+      "command": "npx borgius/jobspy-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "borgius/jobspy-mcp-server",
+      "method": "data_collection"
+    },
+    "mixpanel-mcp-wrapper": {
+      "command": "npx ciaraadkins/mixpanel-mcp-wrapper",
+      "args": [],
+      "env": {},
+      "source": "ciaraadkins/mixpanel-mcp-wrapper",
+      "method": "data_collection"
+    },
+    "jobnimbus-mcp-server": {
+      "command": "npx clykins90/jobnimbus-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "clykins90/jobnimbus-mcp-server",
+      "method": "data_collection"
+    },
+    "Gemini-Email-Subject-Generator-MCP": {
+      "command": "npx falahgs/Gemini-Email-Subject-Generator-MCP",
+      "args": [],
+      "env": {},
+      "source": "falahgs/Gemini-Email-Subject-Generator-MCP",
+      "method": "data_collection"
+    },
+    "serper-productos": {
+      "command": "npx davalmeyda/serper-productos",
+      "args": [],
+      "env": {},
+      "source": "davalmeyda/serper-productos",
+      "method": "data_collection"
+    },
+    "attio-js": {
+      "command": "npx d-stoll/attio-js",
+      "args": [],
+      "env": {},
+      "source": "d-stoll/attio-js",
+      "method": "data_collection"
+    },
+    "hubspot-mcp-server": {
+      "command": "npx NaorAIdeas/hubspot-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "NaorAIdeas/hubspot-mcp-server",
+      "method": "data_collection"
+    },
+    "seo-mcp": {
+      "command": "npx cnych/seo-mcp",
+      "args": [],
+      "env": {},
+      "source": "cnych/seo-mcp",
+      "method": "data_collection"
+    },
+    "apollo-io-mcp-server": {
+      "command": "npx edwardchoh/apollo-io-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "edwardchoh/apollo-io-mcp-server",
+      "method": "data_collection"
+    },
+    "Offorte Proposal Software": {
+      "command": "npx Offorte Proposal Software",
+      "args": [],
+      "env": {},
+      "source": "Offorte Proposal Software",
+      "method": "data_collection"
+    },
+    "alibabacloud-observability-mcp-server": {
+      "command": "npx aliyun/alibabacloud-observability-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "aliyun/alibabacloud-observability-mcp-server",
+      "method": "data_collection"
+    },
+    "aws-cost-notifier-mcp-server": {
+      "command": "npx enomoto11/aws-cost-notifier-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "enomoto11/aws-cost-notifier-mcp-server",
+      "method": "data_collection"
+    },
+    "air-mcp": {
+      "command": "npx binalyze/air-mcp",
+      "args": [],
+      "env": {},
+      "source": "binalyze/air-mcp",
+      "method": "data_collection"
+    },
+    "mcp-rollbar-server": {
+      "command": "npx hiyorineko/mcp-rollbar-server",
+      "args": [],
+      "env": {},
+      "source": "hiyorineko/mcp-rollbar-server",
+      "method": "data_collection"
+    },
+    "akhq-mcp-server": {
+      "command": "npx saarw/akhq-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "saarw/akhq-mcp-server",
+      "method": "data_collection"
+    },
+    "weather-mcp-server": {
+      "command": "npx Chazzychouse/weather-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "Chazzychouse/weather-mcp-server",
+      "method": "data_collection"
+    },
+    "shadow-cljs-mcp": {
+      "command": "npx Bigsy/shadow-cljs-mcp",
+      "args": [],
+      "env": {},
+      "source": "Bigsy/shadow-cljs-mcp",
+      "method": "data_collection"
+    },
+    "pprof-analyzer-mcp": {
+      "command": "npx ZephyrDeng/pprof-analyzer-mcp",
+      "args": [],
+      "env": {},
+      "source": "ZephyrDeng/pprof-analyzer-mcp",
+      "method": "data_collection"
+    },
+    "sentry-mcp-server": {
+      "command": "npx srcgrp/sentry-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "srcgrp/sentry-mcp-server",
+      "method": "data_collection"
+    },
+    "VictoriaMetrics-mcp-server": {
+      "command": "npx yincongcyincong/VictoriaMetrics-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "yincongcyincong/VictoriaMetrics-mcp-server",
+      "method": "data_collection"
+    },
+    "infisical-mcp-server": {
+      "command": "npx Infisical/infisical-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "Infisical/infisical-mcp-server",
+      "method": "data_collection"
+    },
+    "tempo-mcp-server": {
+      "command": "npx scottlepp/tempo-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "scottlepp/tempo-mcp-server",
+      "method": "data_collection"
+    },
+    "cline-community": {
+      "command": "npx cline/cline-community",
+      "args": [],
+      "env": {},
+      "source": "cline/cline-community",
+      "method": "data_collection"
+    },
+    "loki-mcp": {
+      "command": "npx scottlepp/loki-mcp",
+      "args": [],
+      "env": {},
+      "source": "scottlepp/loki-mcp",
+      "method": "data_collection"
+    },
+    "groundlight-mcp-server": {
+      "command": "npx groundlight/groundlight-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "groundlight/groundlight-mcp-server",
+      "method": "data_collection"
+    },
+    "otx-mcp": {
+      "command": "npx mrwadams/otx-mcp",
+      "args": [],
+      "env": {},
+      "source": "mrwadams/otx-mcp",
+      "method": "data_collection"
+    },
+    "honeybadger-mcp": {
+      "command": "npx bobtista/honeybadger-mcp",
+      "args": [],
+      "env": {},
+      "source": "bobtista/honeybadger-mcp",
+      "method": "data_collection"
+    },
+    "cloudrun-logs-mcp": {
+      "command": "npx maito1201/cloudrun-logs-mcp",
+      "args": [],
+      "env": {},
+      "source": "maito1201/cloudrun-logs-mcp",
+      "method": "data_collection"
+    },
+    "mcp-glances": {
+      "command": "npx Lee-1024/mcp-glances",
+      "args": [],
+      "env": {},
+      "source": "Lee-1024/mcp-glances",
+      "method": "data_collection"
+    },
+    "impact-mcp-server": {
+      "command": "npx jalexspringer/impact-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "jalexspringer/impact-mcp-server",
+      "method": "data_collection"
+    },
+    "PodscanMcpServer": {
+      "command": "npx JordanDalton/PodscanMcpServer",
+      "args": [],
+      "env": {},
+      "source": "JordanDalton/PodscanMcpServer",
+      "method": "data_collection"
+    },
+    "querypie-mcp-server": {
+      "command": "npx querypie/querypie-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "querypie/querypie-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-telemetry": {
+      "command": "npx xprilion/mcp-telemetry",
+      "args": [],
+      "env": {},
+      "source": "xprilion/mcp-telemetry",
+      "method": "data_collection"
+    },
+    "simple-loki-mcp": {
+      "command": "npx ghrud92/simple-loki-mcp",
+      "args": [],
+      "env": {},
+      "source": "ghrud92/simple-loki-mcp",
+      "method": "data_collection"
+    },
+    "kibana-mcp": {
+      "command": "npx ggilligan12/kibana-mcp",
+      "args": [],
+      "env": {},
+      "source": "ggilligan12/kibana-mcp",
+      "method": "data_collection"
+    },
+    "mcp-redash": {
+      "command": "npx yuki9541134/mcp-redash",
+      "args": [],
+      "env": {},
+      "source": "yuki9541134/mcp-redash",
+      "method": "data_collection"
+    },
+    "suzieq-mcp": {
+      "command": "npx PovedaAqui/suzieq-mcp",
+      "args": [],
+      "env": {},
+      "source": "PovedaAqui/suzieq-mcp",
+      "method": "data_collection"
+    },
+    "mcp_pagerduty": {
+      "command": "npx naveen09/mcp_pagerduty",
+      "args": [],
+      "env": {},
+      "source": "naveen09/mcp_pagerduty",
+      "method": "data_collection"
+    },
+    "jvm-diagnostics-mcp": {
+      "command": "npx brunoborges/jvm-diagnostics-mcp",
+      "args": [],
+      "env": {},
+      "source": "brunoborges/jvm-diagnostics-mcp",
+      "method": "data_collection"
+    },
+    "mcp-sbom-server": {
+      "command": "npx gkhays/mcp-sbom-server",
+      "args": [],
+      "env": {},
+      "source": "gkhays/mcp-sbom-server",
+      "method": "data_collection"
+    },
+    "imagemagic-mcp": {
+      "command": "npx aimino/imagemagic-mcp",
+      "args": [],
+      "env": {},
+      "source": "aimino/imagemagic-mcp",
+      "method": "data_collection"
+    },
+    "Mureka-mcp": {
+      "command": "npx SkyworkAI/Mureka-mcp",
+      "args": [],
+      "env": {},
+      "source": "SkyworkAI/Mureka-mcp",
+      "method": "data_collection"
+    },
+    "mcp-image-generator": {
+      "command": "npx joshmouch/mcp-image-generator",
+      "args": [],
+      "env": {},
+      "source": "joshmouch/mcp-image-generator",
+      "method": "data_collection"
+    },
+    "json2video-mcp-server": {
+      "command": "npx omergocmen/json2video-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "omergocmen/json2video-mcp-server",
+      "method": "data_collection"
+    },
+    "ali-flux-mcp": {
+      "command": "npx echozyr2001/ali-flux-mcp",
+      "args": [],
+      "env": {},
+      "source": "echozyr2001/ali-flux-mcp",
+      "method": "data_collection"
+    },
+    "jimeng-mcp": {
+      "command": "npx c-rick/jimeng-mcp",
+      "args": [],
+      "env": {},
+      "source": "c-rick/jimeng-mcp",
+      "method": "data_collection"
+    },
+    "imagen3-mcp": {
+      "command": "npx hamflx/imagen3-mcp",
+      "args": [],
+      "env": {},
+      "source": "hamflx/imagen3-mcp",
+      "method": "data_collection"
+    },
+    "mcp-video-extraction": {
+      "command": "npx SealinGp/mcp-video-extraction",
+      "args": [],
+      "env": {},
+      "source": "SealinGp/mcp-video-extraction",
+      "method": "data_collection"
+    },
+    "mcp-draw": {
+      "command": "npx kdr/mcp-draw",
+      "args": [],
+      "env": {},
+      "source": "kdr/mcp-draw",
+      "method": "data_collection"
+    },
+    "mcp-gpt-image": {
+      "command": "npx 4kk11/mcp-gpt-image",
+      "args": [],
+      "env": {},
+      "source": "4kk11/mcp-gpt-image",
+      "method": "data_collection"
+    },
+    "mcp-chart": {
+      "command": "npx antvis/mcp-server-chart",
+      "args": [],
+      "env": {},
+      "source": "antvis/mcp-server-chart",
+      "method": "data_collection"
+    },
+    "mcp-image-processor": {
+      "command": "npx HYPERVAPOR/mcp-image-processor",
+      "args": [],
+      "env": {},
+      "source": "HYPERVAPOR/mcp-image-processor",
+      "method": "data_collection"
+    },
+    "gemini-img-gen-MCP": {
+      "command": "npx MalluBeast69/gemini-img-gen-MCP",
+      "args": [],
+      "env": {},
+      "source": "MalluBeast69/gemini-img-gen-MCP",
+      "method": "data_collection"
+    },
+    "mcp_3d_relief": {
+      "command": "npx Bigchx/mcp_3d_relief",
+      "args": [],
+      "env": {},
+      "source": "Bigchx/mcp_3d_relief",
+      "method": "data_collection"
+    },
+    "mcp-3d-style-cartoon-gen-server": {
+      "command": "npx falahgs/mcp-3d-style-cartoon-gen-server",
+      "args": [],
+      "env": {},
+      "source": "falahgs/mcp-3d-style-cartoon-gen-server",
+      "method": "data_collection"
+    },
+    "hh-mcp-comfyui": {
+      "command": "npx zjf2671/hh-mcp-comfyui",
+      "args": [],
+      "env": {},
+      "source": "zjf2671/hh-mcp-comfyui",
+      "method": "data_collection"
+    },
+    "mcp_video_recognition": {
+      "command": "npx mario-andreschak/mcp_video_recognition",
+      "args": [],
+      "env": {},
+      "source": "mario-andreschak/mcp_video_recognition",
+      "method": "data_collection"
+    },
+    "lipsync-mcp": {
+      "command": "npx Flyworks-AI/lipsync-mcp",
+      "args": [],
+      "env": {},
+      "source": "Flyworks-AI/lipsync-mcp",
+      "method": "data_collection"
+    },
+    "youtube-mp3-mcp": {
+      "command": "npx bads1de/youtube-mp3-mcp",
+      "args": [],
+      "env": {},
+      "source": "bads1de/youtube-mp3-mcp",
+      "method": "data_collection"
+    },
+    "mcp_vms": {
+      "command": "npx jyjune/mcp_vms",
+      "args": [],
+      "env": {},
+      "source": "jyjune/mcp_vms",
+      "method": "data_collection"
+    },
+    "elevenlabs-mcp": {
+      "command": "npx nguyendinhsinh361/elevenlabs-mcp",
+      "args": [],
+      "env": {},
+      "source": "nguyendinhsinh361/elevenlabs-mcp",
+      "method": "data_collection"
+    },
+    "mcp_video_analysis": {
+      "command": "npx tjh19971228/mcp_video_analysis",
+      "args": [],
+      "env": {},
+      "source": "tjh19971228/mcp_video_analysis",
+      "method": "data_collection"
+    },
+    "textin-mcp": {
+      "command": "npx intsig-textin/textin-mcp",
+      "args": [],
+      "env": {},
+      "source": "intsig-textin/textin-mcp",
+      "method": "data_collection"
+    },
+    "PixVerse-MCP": {
+      "command": "npx PixVerseAI/PixVerse-MCP",
+      "args": [],
+      "env": {},
+      "source": "PixVerseAI/PixVerse-MCP",
+      "method": "data_collection"
+    },
+    "mcp-minimax-music-server": {
+      "command": "npx falahgs/mcp-minimax-music-server",
+      "args": [],
+      "env": {},
+      "source": "falahgs/mcp-minimax-music-server",
+      "method": "data_collection"
+    },
+    "mcp_adobe_premiere": {
+      "command": "npx morim3/mcp_adobe_premiere",
+      "args": [],
+      "env": {},
+      "source": "morim3/mcp_adobe_premiere",
+      "method": "data_collection"
+    },
+    "google-photos-mcp": {
+      "command": "npx savethepolarbears/google-photos-mcp",
+      "args": [],
+      "env": {},
+      "source": "savethepolarbears/google-photos-mcp",
+      "method": "data_collection"
+    },
+    "playlist-mcp": {
+      "command": "npx luebken/playlist-mcp",
+      "args": [],
+      "env": {},
+      "source": "luebken/playlist-mcp",
+      "method": "data_collection"
+    },
+    "mcp-midi": {
+      "command": "npx sandst1/mcp-server-midi",
+      "args": [],
+      "env": {},
+      "source": "sandst1/mcp-server-midi",
+      "method": "data_collection"
+    },
+    "image-gen3-google-mcp-server": {
+      "command": "npx falahgs/image-gen3-google-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "falahgs/image-gen3-google-mcp-server",
+      "method": "data_collection"
+    },
+    "os-info-mcp-server": {
+      "command": "npx anurag-dhamala/os-info-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "anurag-dhamala/os-info-mcp-server",
+      "method": "data_collection"
+    },
+    "cli": {
+      "command": "npx magicuidesign/cli",
+      "args": [],
+      "env": {},
+      "source": "magicuidesign/cli",
+      "method": "data_collection"
+    },
+    "ssh-mcp-server": {
+      "command": "npx classfang/ssh-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "classfang/ssh-mcp-server",
+      "method": "data_collection"
+    },
+    "mcpcli": {
+      "command": "npx winterfx/mcpcli",
+      "args": [],
+      "env": {},
+      "source": "winterfx/mcpcli",
+      "method": "data_collection"
+    },
+    "i18n-mcp-server": {
+      "command": "npx reinier-millo/i18n-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "reinier-millo/i18n-mcp-server",
+      "method": "data_collection"
+    },
+    "ping-mcp-server": {
+      "command": "npx sadeghtkd/ping-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "sadeghtkd/ping-mcp-server",
+      "method": "data_collection"
+    },
+    "mini-cursor": {
+      "command": "npx the-nine-nation/mini-cursor",
+      "args": [],
+      "env": {},
+      "source": "the-nine-nation/mini-cursor",
+      "method": "data_collection"
+    },
+    "tailor-mcp": {
+      "command": "npx tailor-platform/tailor-mcp",
+      "args": [],
+      "env": {},
+      "source": "tailor-platform/tailor-mcp",
+      "method": "data_collection"
+    },
+    "mcp-sqlite-client": {
+      "command": "npx calvinw/mcp-sqlite-client",
+      "args": [],
+      "env": {},
+      "source": "calvinw/mcp-sqlite-client",
+      "method": "data_collection"
+    },
+    "elixir_linux_mcp_server": {
+      "command": "npx KilluaYZ/elixir_linux_mcp_server",
+      "args": [],
+      "env": {},
+      "source": "KilluaYZ/elixir_linux_mcp_server",
+      "method": "data_collection"
+    },
+    "mcp-terminal-client": {
+      "command": "npx dolwinf/mcp-terminal-client",
+      "args": [],
+      "env": {},
+      "source": "dolwinf/mcp-terminal-client",
+      "method": "data_collection"
+    },
+    "OSV-MCP": {
+      "command": "npx EdenYavin/OSV-MCP",
+      "args": [],
+      "env": {},
+      "source": "EdenYavin/OSV-MCP",
+      "method": "data_collection"
+    },
+    "wayland-mcp": {
+      "command": "npx someaka/wayland-mcp",
+      "args": [],
+      "env": {},
+      "source": "someaka/wayland-mcp",
+      "method": "data_collection"
+    },
+    "perm-shell-mcp": {
+      "command": "npx mcollina/perm-shell-mcp",
+      "args": [],
+      "env": {},
+      "source": "mcollina/perm-shell-mcp",
+      "method": "data_collection"
+    },
+    "computer-control-mcp": {
+      "command": "npx AB498/computer-control-mcp",
+      "args": [],
+      "env": {},
+      "source": "AB498/computer-control-mcp",
+      "method": "data_collection"
+    },
+    "mcp-macos-use": {
+      "command": "npx mediar-ai/mcp-server-macos-use",
+      "args": [],
+      "env": {},
+      "source": "mediar-ai/mcp-server-macos-use",
+      "method": "data_collection"
+    },
+    "mcp-unix-shell": {
+      "command": "npx gamunu/mcp-unix-shell",
+      "args": [],
+      "env": {},
+      "source": "gamunu/mcp-unix-shell",
+      "method": "data_collection"
+    },
+    "mcp-cline": {
+      "command": "npx shkna1368/mcp-cline",
+      "args": [],
+      "env": {},
+      "source": "shkna1368/mcp-cline",
+      "method": "data_collection"
+    },
+    "remote-mcp": {
+      "command": "npx krishanka/remote-mcp",
+      "args": [],
+      "env": {},
+      "source": "krishanka/remote-mcp",
+      "method": "data_collection"
+    },
+    "m2m-mcp-ssh-server": {
+      "command": "npx Machine-To-Machine/m2m-mcp-server-ssh-server",
+      "args": [],
+      "env": {},
+      "source": "Machine-To-Machine/m2m-mcp-server-ssh-server",
+      "method": "data_collection"
+    },
+    "mcp-cli": {
+      "command": "npx Deniscartin/mcp-cli",
+      "args": [],
+      "env": {},
+      "source": "Deniscartin/mcp-cli",
+      "method": "data_collection"
+    },
+    "m2m-mcp-ssh-client": {
+      "command": "npx Machine-To-Machine/m2m-mcp-server-ssh-client",
+      "args": [],
+      "env": {},
+      "source": "Machine-To-Machine/m2m-mcp-server-ssh-client",
+      "method": "data_collection"
+    },
+    "tailscale-mcp-server": {
+      "command": "npx paulsmith/tailscale-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "paulsmith/tailscale-mcp-server",
+      "method": "data_collection"
+    },
+    "tabby-mcp-server": {
+      "command": "npx thuanpham582002/tabby-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "thuanpham582002/tabby-mcp-server",
+      "method": "data_collection"
+    },
+    "mermaid-cli-server": {
+      "command": "npx Ryuhei-So/mermaid-cli-server",
+      "args": [],
+      "env": {},
+      "source": "Ryuhei-So/mermaid-cli-server",
+      "method": "data_collection"
+    },
+    "ns-lookup-mcp": {
+      "command": "npx wgr1984/ns-lookup-mcp",
+      "args": [],
+      "env": {},
+      "source": "wgr1984/ns-lookup-mcp",
+      "method": "data_collection"
+    },
+    "mcp-terminal": {
+      "command": "npx GeLi2001/mcp-terminal",
+      "args": [],
+      "env": {},
+      "source": "GeLi2001/mcp-terminal",
+      "method": "data_collection"
+    },
+    "MCP-Kali-Server": {
+      "command": "npx Wh0am123/MCP-Kali-Server",
+      "args": [],
+      "env": {},
+      "source": "Wh0am123/MCP-Kali-Server",
+      "method": "data_collection"
+    },
+    "OmniTaskAgent": {
+      "command": "npx ACNet-AI/OmniTaskAgent",
+      "args": [],
+      "env": {},
+      "source": "ACNet-AI/OmniTaskAgent",
+      "method": "data_collection"
+    },
+    "volar_docs": {
+      "command": "npx linshu123/volar_docs",
+      "args": [],
+      "env": {},
+      "source": "linshu123/volar_docs",
+      "method": "data_collection"
+    },
+    "kanban-mcp": {
+      "command": "npx eyalzh/kanban-mcp",
+      "args": [],
+      "env": {},
+      "source": "eyalzh/kanban-mcp",
+      "method": "data_collection"
+    },
+    "reclaim-mcp-server": {
+      "command": "npx jj3ny/reclaim-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "jj3ny/reclaim-mcp-server",
+      "method": "data_collection"
+    },
+    "giga-mcp": {
+      "command": "npx namanyayg/giga-mcp",
+      "args": [],
+      "env": {},
+      "source": "namanyayg/giga-mcp",
+      "method": "data_collection"
+    },
+    "Gantt-server": {
+      "command": "npx Moss-G/Gantt-server",
+      "args": [],
+      "env": {},
+      "source": "Moss-G/Gantt-server",
+      "method": "data_collection"
+    },
+    "backlog-mcp-server": {
+      "command": "npx nulab/backlog-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "nulab/backlog-mcp-server",
+      "method": "data_collection"
+    },
+    "backlog-manager-mcp": {
+      "command": "npx danielscholl/backlog-manager-mcp",
+      "args": [],
+      "env": {},
+      "source": "danielscholl/backlog-manager-mcp",
+      "method": "data_collection"
+    },
+    "todoist-mcp": {
+      "command": "npx stevengonsalvez/todoist-mcp",
+      "args": [],
+      "env": {},
+      "source": "stevengonsalvez/todoist-mcp",
+      "method": "data_collection"
+    },
+    "page_control_mcp": {
+      "command": "npx thezuck/page_control_mcp",
+      "args": [],
+      "env": {},
+      "source": "thezuck/page_control_mcp",
+      "method": "data_collection"
+    },
+    "TAMA-MCP": {
+      "command": "npx Gitreceiver/TAMA-MCP",
+      "args": [],
+      "env": {},
+      "source": "Gitreceiver/TAMA-MCP",
+      "method": "data_collection"
+    },
+    "advanced-backlog-mcp-server": {
+      "command": "npx digitalcube/advanced-backlog-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "digitalcube/advanced-backlog-mcp-server",
+      "method": "data_collection"
+    },
+    "ticktick-mcp": {
+      "command": "npx TickTeam/ticktick-mcp",
+      "args": [],
+      "env": {},
+      "source": "TickTeam/ticktick-mcp",
+      "method": "data_collection"
+    },
+    "mcp-todoist": {
+      "command": "npx stevengonsalvez/mcp-todoist",
+      "args": [],
+      "env": {},
+      "source": "stevengonsalvez/mcp-todoist",
+      "method": "data_collection"
+    },
+    "clickup-mcp": {
+      "command": "npx bravoure/clickup-mcp",
+      "args": [],
+      "env": {},
+      "source": "bravoure/clickup-mcp",
+      "method": "data_collection"
+    },
+    "housecallpro-mcp-server": {
+      "command": "npx service-hero/housecallpro-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "service-hero/housecallpro-mcp-server",
+      "method": "data_collection"
+    },
+    "sentry-issues-mcp": {
+      "command": "npx Leee62/sentry-issues-mcp",
+      "args": [],
+      "env": {},
+      "source": "Leee62/sentry-issues-mcp",
+      "method": "data_collection"
+    },
+    "mcp-nav": {
+      "command": "npx alepenavargas/mcp-nav",
+      "args": [],
+      "env": {},
+      "source": "alepenavargas/mcp-nav",
+      "method": "data_collection"
+    },
+    "task-manager-mcp": {
+      "command": "npx tradesdontlie/task-manager-mcp",
+      "args": [],
+      "env": {},
+      "source": "tradesdontlie/task-manager-mcp",
+      "method": "data_collection"
+    },
+    "togello-mcp-server": {
+      "command": "npx Toru-Takagi/togello-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "Toru-Takagi/togello-mcp-server",
+      "method": "data_collection"
+    },
+    "clockify-mcp-server": {
+      "command": "npx https-eduardo/clockify-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "https-eduardo/clockify-mcp-server",
+      "method": "data_collection"
+    },
+    "simple-task-master": {
+      "command": "npx curiousguyinhis30s/simple-task-master",
+      "args": [],
+      "env": {},
+      "source": "curiousguyinhis30s/simple-task-master",
+      "method": "data_collection"
+    },
+    "youtrack-mcp": {
+      "command": "npx tonyzorin/youtrack-mcp",
+      "args": [],
+      "env": {},
+      "source": "tonyzorin/youtrack-mcp",
+      "method": "data_collection"
+    },
+    "dida-mcp-server": {
+      "command": "npx zhongwencool/dida-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "zhongwencool/dida-mcp-server",
+      "method": "data_collection"
+    },
+    "rundeck-mcp-server": {
+      "command": "npx vanisoul/rundeck-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "vanisoul/rundeck-mcp-server",
+      "method": "data_collection"
+    },
+    "trello-report-mcp": {
+      "command": "npx GuilhermeBarroso-sys/trello-report-mcp",
+      "args": [],
+      "env": {},
+      "source": "GuilhermeBarroso-sys/trello-report-mcp",
+      "method": "data_collection"
+    },
+    "linear-mcp-again": {
+      "command": "npx larryhudson/linear-mcp-server-again",
+      "args": [],
+      "env": {},
+      "source": "larryhudson/linear-mcp-server-again",
+      "method": "data_collection"
+    },
+    "calendar-mcp-server": {
+      "command": "npx menma-at-here/calendar-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "menma-at-here/calendar-mcp-server",
+      "method": "data_collection"
+    },
+    "concrete-properties-mcp": {
+      "command": "npx GreatApo/concrete-properties-mcp",
+      "args": [],
+      "env": {},
+      "source": "GreatApo/concrete-properties-mcp",
+      "method": "data_collection"
+    },
+    "NCBI-MCP": {
+      "command": "npx GooTec/NCBI-MCP",
+      "args": [],
+      "env": {},
+      "source": "GooTec/NCBI-MCP",
+      "method": "data_collection"
+    },
+    "molecule_mcp": {
+      "command": "npx leelasd/molecule_mcp",
+      "args": [],
+      "env": {},
+      "source": "leelasd/molecule_mcp",
+      "method": "data_collection"
+    },
+    "ios-forensics-mcp": {
+      "command": "npx RLabs-Inc/ios-forensics-mcp",
+      "args": [],
+      "env": {},
+      "source": "RLabs-Inc/ios-forensics-mcp",
+      "method": "data_collection"
+    },
+    "liftover-mcp": {
+      "command": "npx koido/liftover-mcp",
+      "args": [],
+      "env": {},
+      "source": "koido/liftover-mcp",
+      "method": "data_collection"
+    },
+    "CelestialMCP": {
+      "command": "npx Rkm1999/CelestialMCP",
+      "args": [],
+      "env": {},
+      "source": "Rkm1999/CelestialMCP",
+      "method": "data_collection"
+    },
+    "AstroMCP": {
+      "command": "npx simpolism/AstroMCP",
+      "args": [],
+      "env": {},
+      "source": "simpolism/AstroMCP",
+      "method": "data_collection"
+    },
+    "mathsIA_API": {
+      "command": "npx Nicolassaint/mathsIA_API",
+      "args": [],
+      "env": {},
+      "source": "Nicolassaint/mathsIA_API",
+      "method": "data_collection"
+    },
+    "my_experiment": {
+      "command": "npx Xinruims/my_experiment",
+      "args": [],
+      "env": {},
+      "source": "Xinruims/my_experiment",
+      "method": "data_collection"
+    },
+    "ArxivMCP": {
+      "command": "npx liuyixin-louis/ArxivMCP",
+      "args": [],
+      "env": {},
+      "source": "liuyixin-louis/ArxivMCP",
+      "method": "data_collection"
+    },
+    "gnnepcsaft_mcp_server": {
+      "command": "npx wildsonbbl/gnnepcsaft_mcp_server",
+      "args": [],
+      "env": {},
+      "source": "wildsonbbl/gnnepcsaft_mcp_server",
+      "method": "data_collection"
+    },
+    "paperpal": {
+      "command": "npx mila-iqia/paperpal",
+      "args": [],
+      "env": {},
+      "source": "mila-iqia/paperpal",
+      "method": "data_collection"
+    },
+    "mcp-lab": {
+      "command": "npx rperezll/mcp-lab",
+      "args": [],
+      "env": {},
+      "source": "rperezll/mcp-lab",
+      "method": "data_collection"
+    },
+    "Brave-Gemini-Research-MCP-Server": {
+      "command": "npx falahgs/Brave-Gemini-Research-MCP-Server",
+      "args": [],
+      "env": {},
+      "source": "falahgs/Brave-Gemini-Research-MCP-Server",
+      "method": "data_collection"
+    },
+    "modelica_simulation_mcp_server": {
+      "command": "npx Orthogonalpub/modelica_simulation_mcp_server",
+      "args": [],
+      "env": {},
+      "source": "Orthogonalpub/modelica_simulation_mcp_server",
+      "method": "data_collection"
+    },
+    "openMM-Doc-MCP": {
+      "command": "npx ytworks/openMM-Doc-MCP",
+      "args": [],
+      "env": {},
+      "source": "ytworks/openMM-Doc-MCP",
+      "method": "data_collection"
+    },
+    "kaggle-mcp": {
+      "command": "npx arrismo/kaggle-mcp",
+      "args": [],
+      "env": {},
+      "source": "arrismo/kaggle-mcp",
+      "method": "data_collection"
+    },
+    "scanpy-mcp": {
+      "command": "npx huang-sh/scanpy-mcp",
+      "args": [],
+      "env": {},
+      "source": "huang-sh/scanpy-mcp",
+      "method": "data_collection"
+    },
+    "jupyter-earth-mcp-server": {
+      "command": "npx datalayer/jupyter-earth-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "datalayer/jupyter-earth-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp_server_nasa": {
+      "command": "npx fdmocho/mcp_server_nasa",
+      "args": [],
+      "env": {},
+      "source": "fdmocho/mcp_server_nasa",
+      "method": "data_collection"
+    },
+    "arxiv_mcp": {
+      "command": "npx hiyenwong/arxiv_mcp",
+      "args": [],
+      "env": {},
+      "source": "hiyenwong/arxiv_mcp",
+      "method": "data_collection"
+    },
+    "learn-mcp-server": {
+      "command": "npx demouth/learn-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "demouth/learn-mcp-server",
+      "method": "data_collection"
+    },
+    "climate-triage-mcp": {
+      "command": "npx Codeshark-NET/climate-triage-mcp",
+      "args": [],
+      "env": {},
+      "source": "Codeshark-NET/climate-triage-mcp",
+      "method": "data_collection"
+    },
+    "10XResearcher": {
+      "command": "npx chcharcharlie/10XResearcher",
+      "args": [],
+      "env": {},
+      "source": "chcharcharlie/10XResearcher",
+      "method": "data_collection"
+    },
+    "arxiv-latex-mcp": {
+      "command": "npx takashiishida/arxiv-latex-mcp",
+      "args": [],
+      "env": {},
+      "source": "takashiishida/arxiv-latex-mcp",
+      "method": "data_collection"
+    },
+    "PubChem-MCP-Server": {
+      "command": "npx JackKuo666/PubChem-MCP-Server",
+      "args": [],
+      "env": {},
+      "source": "JackKuo666/PubChem-MCP-Server",
+      "method": "data_collection"
+    },
+    "arxiv-search-mcp": {
+      "command": "npx danimal141/arxiv-search-mcp",
+      "args": [],
+      "env": {},
+      "source": "danimal141/arxiv-search-mcp",
+      "method": "data_collection"
+    },
+    "project-rules": {
+      "command": "npx sebastien-le-paris/project-rules",
+      "args": [],
+      "env": {},
+      "source": "sebastien-le-paris/project-rules",
+      "method": "data_collection"
+    },
+    "pdf-researcher": {
+      "command": "npx kokilabo/pdf-researcher",
+      "args": [],
+      "env": {},
+      "source": "kokilabo/pdf-researcher",
+      "method": "data_collection"
+    },
+    "deep-search-mcp": {
+      "command": "npx joaomj/deep-search-mcp",
+      "args": [],
+      "env": {},
+      "source": "joaomj/deep-search-mcp",
+      "method": "data_collection"
+    },
+    "portfolio-mcp-server": {
+      "command": "npx jarondonp/portfolio-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "jarondonp/portfolio-mcp-server",
+      "method": "data_collection"
+    },
+    "meiliseachmcp": {
+      "command": "npx dealwallet1/meiliseachmcp",
+      "args": [],
+      "env": {},
+      "source": "dealwallet1/meiliseachmcp",
+      "method": "data_collection"
+    },
+    "mcp-search-mojeek": {
+      "command": "npx marioalexandreantunes/mcp-search-mojeek",
+      "args": [],
+      "env": {},
+      "source": "marioalexandreantunes/mcp-search-mojeek",
+      "method": "data_collection"
+    },
+    "perplexity-mcp-rb": {
+      "command": "npx funwarioisii/perplexity-mcp-rb",
+      "args": [],
+      "env": {},
+      "source": "funwarioisii/perplexity-mcp-rb",
+      "method": "data_collection"
+    },
+    "zoomeye-mcp-server": {
+      "command": "npx help116114/zoomeye-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "help116114/zoomeye-mcp-server",
+      "method": "data_collection"
+    },
+    "searxng-mcp-server": {
+      "command": "npx The-AI-Workshops/searxng-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "The-AI-Workshops/searxng-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-salesforce-code-search": {
+      "command": "npx atskimura/mcp-salesforce-code-search",
+      "args": [],
+      "env": {},
+      "source": "atskimura/mcp-salesforce-code-search",
+      "method": "data_collection"
+    },
+    "mcp-search-console-ts": {
+      "command": "npx jmchat/mcp-search-console-ts",
+      "args": [],
+      "env": {},
+      "source": "jmchat/mcp-search-console-ts",
+      "method": "data_collection"
+    },
+    "ddg_search": {
+      "command": "npx OEvortex/ddg_search",
+      "args": [],
+      "env": {},
+      "source": "OEvortex/ddg_search",
+      "method": "data_collection"
+    },
+    "bocha-search-mcp": {
+      "command": "npx BochaAI/bocha-search-mcp",
+      "args": [],
+      "env": {},
+      "source": "BochaAI/bocha-search-mcp",
+      "method": "data_collection"
+    },
+    "searxng-mcp-bridge": {
+      "command": "npx nitish-raj/searxng-mcp-bridge",
+      "args": [],
+      "env": {},
+      "source": "nitish-raj/searxng-mcp-bridge",
+      "method": "data_collection"
+    },
+    "RAG_MCP": {
+      "command": "npx mytechnotalent/RAG_MCP",
+      "args": [],
+      "env": {},
+      "source": "mytechnotalent/RAG_MCP",
+      "method": "data_collection"
+    },
+    "fess-mcp-server": {
+      "command": "npx g-fukurowl/fess-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "g-fukurowl/fess-mcp-server",
+      "method": "data_collection"
+    },
+    "google-search-mcp-server": {
+      "command": "npx ayush-rudani/google-search-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "ayush-rudani/google-search-mcp-server",
+      "method": "data_collection"
+    },
+    "MCPDocSearch": {
+      "command": "npx alizdavoodi/MCPDocSearch",
+      "args": [],
+      "env": {},
+      "source": "alizdavoodi/MCPDocSearch",
+      "method": "data_collection"
+    },
+    "code_search_mcp": {
+      "command": "npx p1atdev/code_search_mcp",
+      "args": [],
+      "env": {},
+      "source": "p1atdev/code_search_mcp",
+      "method": "data_collection"
+    },
+    "domain-check-mcp": {
+      "command": "npx SebastianBoehler/domain-check-mcp",
+      "args": [],
+      "env": {},
+      "source": "SebastianBoehler/domain-check-mcp",
+      "method": "data_collection"
+    },
+    "mcp-duckduckgo": {
+      "command": "npx Glitchfix/mcp-duckduckgo",
+      "args": [],
+      "env": {},
+      "source": "Glitchfix/mcp-duckduckgo",
+      "method": "data_collection"
+    },
+    "302_web_search_mcp": {
+      "command": "npx 302ai/302_web_search_mcp",
+      "args": [],
+      "env": {},
+      "source": "302ai/302_web_search_mcp",
+      "method": "data_collection"
+    },
+    "googler": {
+      "command": "npx Furafrafrfr/googler",
+      "args": [],
+      "env": {},
+      "source": "Furafrafrfr/googler",
+      "method": "data_collection"
+    },
+    "opensearch": {
+      "command": "npx skeet-build/opensearch",
+      "args": [],
+      "env": {},
+      "source": "skeet-build/opensearch",
+      "method": "data_collection"
+    },
+    "zhipu-web-search-mcp": {
+      "command": "npx qianlima365/zhipu-web-search-mcp",
+      "args": [],
+      "env": {},
+      "source": "qianlima365/zhipu-web-search-mcp",
+      "method": "data_collection"
+    },
+    "searchAPI-mcp": {
+      "command": "npx RikGmee/searchAPI-mcp",
+      "args": [],
+      "env": {},
+      "source": "RikGmee/searchAPI-mcp",
+      "method": "data_collection"
+    },
+    "mcp-indexnow": {
+      "command": "npx zizzfizzix/mcp-server-indexnow",
+      "args": [],
+      "env": {},
+      "source": "zizzfizzix/mcp-server-indexnow",
+      "method": "data_collection"
+    },
+    "windows-rs-mcp": {
+      "command": "npx preludeorg/windows-rs-mcp",
+      "args": [],
+      "env": {},
+      "source": "preludeorg/windows-rs-mcp",
+      "method": "data_collection"
+    },
+    "naver-search-mcp": {
+      "command": "npx isnow890/naver-search-mcp",
+      "args": [],
+      "env": {},
+      "source": "isnow890/naver-search-mcp",
+      "method": "data_collection"
+    },
+    "MasterMCP": {
+      "command": "npx slowmist/MasterMCP",
+      "args": [],
+      "env": {},
+      "source": "slowmist/MasterMCP",
+      "method": "data_collection"
+    },
+    "mcp-security-scan": {
+      "command": "npx sxhxliang/mcp-security-scan",
+      "args": [],
+      "env": {},
+      "source": "sxhxliang/mcp-security-scan",
+      "method": "data_collection"
+    },
+    "Vulnerable-file-reader-server": {
+      "command": "npx Eliran79/Vulnerable-file-reader-server",
+      "args": [],
+      "env": {},
+      "source": "Eliran79/Vulnerable-file-reader-server",
+      "method": "data_collection"
+    },
+    "HackerMCP": {
+      "command": "npx R3verseIN/HackerMCP",
+      "args": [],
+      "env": {},
+      "source": "R3verseIN/HackerMCP",
+      "method": "data_collection"
+    },
+    "mcp-vulnerability-scanner": {
+      "command": "npx RobertoDure/mcp-vulnerability-scanner",
+      "args": [],
+      "env": {},
+      "source": "RobertoDure/mcp-vulnerability-scanner",
+      "method": "data_collection"
+    },
+    "mcp_nuclei_server": {
+      "command": "npx crazyMarky/mcp_nuclei_server",
+      "args": [],
+      "env": {},
+      "source": "crazyMarky/mcp_nuclei_server",
+      "method": "data_collection"
+    },
+    "SuricataMCP": {
+      "command": "npx Medinios/SuricataMCP",
+      "args": [],
+      "env": {},
+      "source": "Medinios/SuricataMCP",
+      "method": "data_collection"
+    },
+    "PentestMCP": {
+      "command": "npx dev-lu/PentestMCP",
+      "args": [],
+      "env": {},
+      "source": "dev-lu/PentestMCP",
+      "method": "data_collection"
+    },
+    "myssl-mcp-python": {
+      "command": "npx trustasia-com/myssl-mcp-server-python",
+      "args": [],
+      "env": {},
+      "source": "trustasia-com/myssl-mcp-server-python",
+      "method": "data_collection"
+    },
+    "onepassword-mcp-server": {
+      "command": "npx dkvdm/onepassword-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "dkvdm/onepassword-mcp-server",
+      "method": "data_collection"
+    },
+    "MetasploitMCP": {
+      "command": "npx GH05TCREW/MetasploitMCP",
+      "args": [],
+      "env": {},
+      "source": "GH05TCREW/MetasploitMCP",
+      "method": "data_collection"
+    },
+    "Garak-MCP": {
+      "command": "npx EdenYavin/Garak-MCP",
+      "args": [],
+      "env": {},
+      "source": "EdenYavin/Garak-MCP",
+      "method": "data_collection"
+    },
+    "winsecMCP": {
+      "command": "npx GH05TCREW/winsecMCP",
+      "args": [],
+      "env": {},
+      "source": "GH05TCREW/winsecMCP",
+      "method": "data_collection"
+    },
+    "Offensive-MCP-AI": {
+      "command": "npx CyberSecurityUP/Offensive-MCP-AI",
+      "args": [],
+      "env": {},
+      "source": "CyberSecurityUP/Offensive-MCP-AI",
+      "method": "data_collection"
+    },
+    "vault-mcp": {
+      "command": "npx ashgw/vault-mcp",
+      "args": [],
+      "env": {},
+      "source": "ashgw/vault-mcp",
+      "method": "data_collection"
+    },
+    "risken-mcp-server": {
+      "command": "npx ca-risken/risken-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "ca-risken/risken-mcp-server",
+      "method": "data_collection"
+    },
+    "MalwareBazaar_MCP": {
+      "command": "npx mytechnotalent/MalwareBazaar_MCP",
+      "args": [],
+      "env": {},
+      "source": "mytechnotalent/MalwareBazaar_MCP",
+      "method": "data_collection"
+    },
+    "mcp-bearer-auth-example": {
+      "command": "npx jmorrell-cloudflare/mcp-bearer-auth-example",
+      "args": [],
+      "env": {},
+      "source": "jmorrell-cloudflare/mcp-bearer-auth-example",
+      "method": "data_collection"
+    },
+    "mcp-external-recon-server": {
+      "command": "npx naebo/mcp-external-recon-server",
+      "args": [],
+      "env": {},
+      "source": "naebo/mcp-external-recon-server",
+      "method": "data_collection"
+    },
+    "mcp-sentry-custom": {
+      "command": "npx javaDer/mcp-sentry-custom",
+      "args": [],
+      "env": {},
+      "source": "javaDer/mcp-sentry-custom",
+      "method": "data_collection"
+    },
+    "auth0-mcp-server": {
+      "command": "npx auth0/auth0-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "auth0/auth0-mcp-server",
+      "method": "data_collection"
+    },
+    "MISP-MCP-SERVER": {
+      "command": "npx bornpresident/MISP-MCP-SERVER",
+      "args": [],
+      "env": {},
+      "source": "bornpresident/MISP-MCP-SERVER",
+      "method": "data_collection"
+    },
+    "MCP-CyberAgent": {
+      "command": "npx JithukrishnanV/MCP-CyberAgent",
+      "args": [],
+      "env": {},
+      "source": "JithukrishnanV/MCP-CyberAgent",
+      "method": "data_collection"
+    },
+    "mcp-osv": {
+      "command": "npx gleicon/mcp-osv",
+      "args": [],
+      "env": {},
+      "source": "gleicon/mcp-osv",
+      "method": "data_collection"
+    },
+    "enkryptai-mcp-server": {
+      "command": "npx enkryptai/enkryptai-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "enkryptai/enkryptai-mcp-server",
+      "method": "data_collection"
+    },
+    "misp-mcp": {
+      "command": "npx Eacus/misp-mcp",
+      "args": [],
+      "env": {},
+      "source": "Eacus/misp-mcp",
+      "method": "data_collection"
+    },
+    "ExternalAttacker-MCP": {
+      "command": "npx MorDavid/ExternalAttacker-MCP",
+      "args": [],
+      "env": {},
+      "source": "MorDavid/ExternalAttacker-MCP",
+      "method": "data_collection"
+    },
+    "mitre-attack-mcp": {
+      "command": "npx stoyky/mitre-attack-mcp",
+      "args": [],
+      "env": {},
+      "source": "stoyky/mitre-attack-mcp",
+      "method": "data_collection"
+    },
+    "BloodHound-MCP": {
+      "command": "npx stevenyu113228/BloodHound-MCP",
+      "args": [],
+      "env": {},
+      "source": "stevenyu113228/BloodHound-MCP",
+      "method": "data_collection"
+    },
+    "Ghidra": {
+      "command": "npx Ludok-4/Ghidra",
+      "args": [],
+      "env": {},
+      "source": "Ludok-4/Ghidra",
+      "method": "data_collection"
+    },
+    "integrate-mcp-server": {
+      "command": "npx NexusX-MCP/integrate-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "NexusX-MCP/integrate-mcp-server",
+      "method": "data_collection"
+    },
+    "MCP_X": {
+      "command": "npx sriramsowmithri9807/MCP_X",
+      "args": [],
+      "env": {},
+      "source": "sriramsowmithri9807/MCP_X",
+      "method": "data_collection"
+    },
+    "devto-mcp": {
+      "command": "npx Arindam200/devto-mcp",
+      "args": [],
+      "env": {},
+      "source": "Arindam200/devto-mcp",
+      "method": "data_collection"
+    },
+    "genius-mcp-server": {
+      "command": "npx Sergiolm17/genius-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "Sergiolm17/genius-mcp-server",
+      "method": "data_collection"
+    },
+    "x-twitter-mcp-server": {
+      "command": "npx rafaljanicki/x-twitter-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "rafaljanicki/x-twitter-mcp-server",
+      "method": "data_collection"
+    },
+    "upsplash-mcp-server": {
+      "command": "npx shariqriazz/upsplash-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "shariqriazz/upsplash-mcp-server",
+      "method": "data_collection"
+    },
+    "tw-kfc-coupon-mcp": {
+      "command": "npx funtuan/tw-kfc-coupon-mcp",
+      "args": [],
+      "env": {},
+      "source": "funtuan/tw-kfc-coupon-mcp",
+      "method": "data_collection"
+    },
+    "mcp-twitter": {
+      "command": "npx LuniaKunal/mcp-twitter",
+      "args": [],
+      "env": {},
+      "source": "LuniaKunal/mcp-twitter",
+      "method": "data_collection"
+    },
+    "MCPblusky": {
+      "command": "npx LT-aitools/MCPblusky",
+      "args": [],
+      "env": {},
+      "source": "LT-aitools/MCPblusky",
+      "method": "data_collection"
+    },
+    "mcp_youtube_dlp": {
+      "command": "npx yorickchan/mcp_youtube_dlp",
+      "args": [],
+      "env": {},
+      "source": "yorickchan/mcp_youtube_dlp",
+      "method": "data_collection"
+    },
+    "misskey-mcp-server": {
+      "command": "npx ganyariya/misskey-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "ganyariya/misskey-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-reddit-companion": {
+      "command": "npx saginawj/mcp-reddit-companion",
+      "args": [],
+      "env": {},
+      "source": "saginawj/mcp-reddit-companion",
+      "method": "data_collection"
+    },
+    "youtube-mcp-server": {
+      "command": "npx stephen9412/youtube-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "stephen9412/youtube-mcp-server",
+      "method": "data_collection"
+    },
+    "weibo-mcp-server": {
+      "command": "npx bossdong955/weibo-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "bossdong955/weibo-mcp-server",
+      "method": "data_collection"
+    },
+    "twitter-username-changes-mcp": {
+      "command": "npx kukapay/twitter-username-changes-mcp",
+      "args": [],
+      "env": {},
+      "source": "kukapay/twitter-username-changes-mcp",
+      "method": "data_collection"
+    },
+    "GNews-MCP": {
+      "command": "npx bads1de/GNews-MCP",
+      "args": [],
+      "env": {},
+      "source": "bads1de/GNews-MCP",
+      "method": "data_collection"
+    },
+    "rssmcp": {
+      "command": "npx Lunran/rssmcp",
+      "args": [],
+      "env": {},
+      "source": "Lunran/rssmcp",
+      "method": "data_collection"
+    },
+    "mcp-weread": {
+      "command": "npx freestylefly/mcp-server-weread",
+      "args": [],
+      "env": {},
+      "source": "freestylefly/mcp-server-weread",
+      "method": "data_collection"
+    },
+    "claude-google-images-mcp": {
+      "command": "npx Arnoutopya/claude-google-images-mcp",
+      "args": [],
+      "env": {},
+      "source": "Arnoutopya/claude-google-images-mcp",
+      "method": "data_collection"
+    },
+    "github-follower-manager-mcp": {
+      "command": "npx Alirezawmoradi/github-follower-manager-mcp",
+      "args": [],
+      "env": {},
+      "source": "Alirezawmoradi/github-follower-manager-mcp",
+      "method": "data_collection"
+    },
+    "news_mcp": {
+      "command": "npx Zmingfeng/news_mcp",
+      "args": [],
+      "env": {},
+      "source": "Zmingfeng/news_mcp",
+      "method": "data_collection"
+    },
+    "mcp-tabnews": {
+      "command": "npx renant/mcp-tabnews",
+      "args": [],
+      "env": {},
+      "source": "renant/mcp-tabnews",
+      "method": "data_collection"
+    },
+    "mcp-writer-substack": {
+      "command": "npx jean-technologies/mcp-writer-substack",
+      "args": [],
+      "env": {},
+      "source": "jean-technologies/mcp-writer-substack",
+      "method": "data_collection"
+    },
+    "twitter-mcp": {
+      "command": "npx Rakibulislamsarkar/twitter-mcp",
+      "args": [],
+      "env": {},
+      "source": "Rakibulislamsarkar/twitter-mcp",
+      "method": "data_collection"
+    },
+    "remote-cloudflare-youtube-transcript-mcp-server": {
+      "command": "npx objones25/remote-cloudflare-youtube-transcript-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "objones25/remote-cloudflare-youtube-transcript-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-article": {
+      "command": "npx gulihua10010/mcp-server-article",
+      "args": [],
+      "env": {},
+      "source": "gulihua10010/mcp-server-article",
+      "method": "data_collection"
+    },
+    "youtubeinsights-mcp-server": {
+      "command": "npx dabidstudio/youtubeinsights-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "dabidstudio/youtubeinsights-mcp-server",
+      "method": "data_collection"
+    },
+    "news_se": {
+      "command": "npx 1282saa/news_se",
+      "args": [],
+      "env": {},
+      "source": "1282saa/news_se",
+      "method": "data_collection"
+    },
+    "futaba-mcp": {
+      "command": "npx tropical-362827/futaba-mcp",
+      "args": [],
+      "env": {},
+      "source": "tropical-362827/futaba-mcp",
+      "method": "data_collection"
+    },
+    "nba-stats-predictor-mcp": {
+      "command": "npx dhrbtjr0331/nba-stats-predictor-mcp",
+      "args": [],
+      "env": {},
+      "source": "dhrbtjr0331/nba-stats-predictor-mcp",
+      "method": "data_collection"
+    },
+    "NBA": {
+      "command": "npx henryco23/NBA",
+      "args": [],
+      "env": {},
+      "source": "henryco23/NBA",
+      "method": "data_collection"
+    },
+    "mcp-soccer-data": {
+      "command": "npx yeonupark/mcp-soccer-data",
+      "args": [],
+      "env": {},
+      "source": "yeonupark/mcp-soccer-data",
+      "method": "data_collection"
+    },
+    "mlb-api-mcp": {
+      "command": "npx guillochon/mlb-api-mcp",
+      "args": [],
+      "env": {},
+      "source": "guillochon/mlb-api-mcp",
+      "method": "data_collection"
+    },
+    "rakuten-hotel-search-mcp": {
+      "command": "npx achel-b8/rakuten-hotel-search-mcp",
+      "args": [],
+      "env": {},
+      "source": "achel-b8/rakuten-hotel-search-mcp",
+      "method": "data_collection"
+    },
+    "sbb-mcp-server": {
+      "command": "npx ralf-boltshauser/sbb-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "ralf-boltshauser/sbb-mcp-server",
+      "method": "data_collection"
+    },
+    "12306-mcp": {
+      "command": "npx Joooook/12306-mcp",
+      "args": [],
+      "env": {},
+      "source": "Joooook/12306-mcp",
+      "method": "data_collection"
+    },
+    "variflight-mcp": {
+      "command": "npx variflight/variflight-mcp",
+      "args": [],
+      "env": {},
+      "source": "variflight/variflight-mcp",
+      "method": "data_collection"
+    },
+    "chargenow-mcp": {
+      "command": "npx cevatkerim/chargenow-mcp",
+      "args": [],
+      "env": {},
+      "source": "cevatkerim/chargenow-mcp",
+      "method": "data_collection"
+    },
+    "indian-railway-mcp": {
+      "command": "npx amith-vp/indian-railway-mcp",
+      "args": [],
+      "env": {},
+      "source": "amith-vp/indian-railway-mcp",
+      "method": "data_collection"
+    },
+    "indian-railways-mcp": {
+      "command": "npx rajprem4214/indian-railways-mcp",
+      "args": [],
+      "env": {},
+      "source": "rajprem4214/indian-railways-mcp",
+      "method": "data_collection"
+    },
+    "DoorDash-MCP-Server": {
+      "command": "npx JordanDalton/DoorDash-MCP-Server",
+      "args": [],
+      "env": {},
+      "source": "JordanDalton/DoorDash-MCP-Server",
+      "method": "data_collection"
+    },
+    "mcp-hk-transport-eta": {
+      "command": "npx kennyfong19931/mcp-hk-transport-eta",
+      "args": [],
+      "env": {},
+      "source": "kennyfong19931/mcp-hk-transport-eta",
+      "method": "data_collection"
+    },
+    "mcp-korea-tourism-api": {
+      "command": "npx harimkang/mcp-korea-tourism-api",
+      "args": [],
+      "env": {},
+      "source": "harimkang/mcp-korea-tourism-api",
+      "method": "data_collection"
+    },
+    "mcp-amadeus": {
+      "command": "npx donghyun-chae/mcp-amadeus",
+      "args": [],
+      "env": {},
+      "source": "donghyun-chae/mcp-amadeus",
+      "method": "data_collection"
+    },
+    "Google-Flights-MCP-Server": {
+      "command": "npx opspawn/Google-Flights-MCP-Server",
+      "args": [],
+      "env": {},
+      "source": "opspawn/Google-Flights-MCP-Server",
+      "method": "data_collection"
+    },
+    "flight-mcp": {
+      "command": "npx hrishabhn/flight-mcp",
+      "args": [],
+      "env": {},
+      "source": "hrishabhn/flight-mcp",
+      "method": "data_collection"
+    },
+    "agoda-review-mcp": {
+      "command": "npx birariro/agoda-review-mcp",
+      "args": [],
+      "env": {},
+      "source": "birariro/agoda-review-mcp",
+      "method": "data_collection"
+    },
+    "sg-lta-mcp": {
+      "command": "npx arjunkmrm/sg-lta-mcp",
+      "args": [],
+      "env": {},
+      "source": "arjunkmrm/sg-lta-mcp",
+      "method": "data_collection"
+    },
+    "flightradar24-mcp-server": {
+      "command": "npx Cyreslab-AI/flightradar24-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "Cyreslab-AI/flightradar24-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp_hkbus": {
+      "command": "npx kennyckk/mcp_hkbus",
+      "args": [],
+      "env": {},
+      "source": "kennyckk/mcp_hkbus",
+      "method": "data_collection"
+    },
+    "tripadvisor-mcp": {
+      "command": "npx pab1it0/tripadvisor-mcp",
+      "args": [],
+      "env": {},
+      "source": "pab1it0/tripadvisor-mcp",
+      "method": "data_collection"
+    },
+    "flightradar-mcp-server": {
+      "command": "npx Cyreslab-AI/flightradar-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "Cyreslab-AI/flightradar-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp_ev_assistant_server": {
+      "command": "npx Abiorh001/mcp_ev_assistant_server",
+      "args": [],
+      "env": {},
+      "source": "Abiorh001/mcp_ev_assistant_server",
+      "method": "data_collection"
+    },
+    "flights-mcp-server": {
+      "command": "npx smamidipaka6/flights-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "smamidipaka6/flights-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-airbnb": {
+      "command": "npx openbnb-org/mcp-server-airbnb",
+      "args": [],
+      "env": {},
+      "source": "openbnb-org/mcp-server-airbnb",
+      "method": "data_collection"
+    },
+    "google-flights-mcp": {
+      "command": "npx salamentic/google-flights-mcp",
+      "args": [],
+      "env": {},
+      "source": "salamentic/google-flights-mcp",
+      "method": "data_collection"
+    },
+    "tfnsw-realtime-alerts-mcp-server": {
+      "command": "npx piddlingtuna/tfnsw-realtime-alerts-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "piddlingtuna/tfnsw-realtime-alerts-mcp-server",
+      "method": "data_collection"
+    },
+    "strava-mcp-server": {
+      "command": "npx tomekkorbak/strava-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "tomekkorbak/strava-mcp-server",
+      "method": "data_collection"
+    },
+    "railway-mcp": {
+      "command": "npx jason-tan-swe/railway-mcp",
+      "args": [],
+      "env": {},
+      "source": "jason-tan-swe/railway-mcp",
+      "method": "data_collection"
+    },
+    "mcp-sg-lta": {
+      "command": "npx arjunkmrm/mcp-sg-lta",
+      "args": [],
+      "env": {},
+      "source": "arjunkmrm/mcp-sg-lta",
+      "method": "data_collection"
+    },
+    "lumbretravel-mcp": {
+      "command": "npx lumile/lumbretravel-mcp",
+      "args": [],
+      "env": {},
+      "source": "lumile/lumbretravel-mcp",
+      "method": "data_collection"
+    },
+    "mcp-strava": {
+      "command": "npx MariyaFilippova/mcp-strava",
+      "args": [],
+      "env": {},
+      "source": "MariyaFilippova/mcp-strava",
+      "method": "data_collection"
+    },
+    "mcp-flatfile": {
+      "command": "npx FlatFilers/mcp-server-flatfile",
+      "args": [],
+      "env": {},
+      "source": "FlatFilers/mcp-server-flatfile",
+      "method": "data_collection"
+    },
+    "date-mcp": {
+      "command": "npx Nozomuts/date-mcp",
+      "args": [],
+      "env": {},
+      "source": "Nozomuts/date-mcp",
+      "method": "data_collection"
+    },
+    "mcp-port-cleaner": {
+      "command": "npx BrightLin/mcp-server-port-cleaner",
+      "args": [],
+      "env": {},
+      "source": "BrightLin/mcp-server-port-cleaner",
+      "method": "data_collection"
+    },
+    "roo-code-custom-mode-editor-mcp-server": {
+      "command": "npx raymondlowe/roo-code-custom-mode-editor-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "raymondlowe/roo-code-custom-mode-editor-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-demo": {
+      "command": "npx LittleFatz/mcp-demo",
+      "args": [],
+      "env": {},
+      "source": "LittleFatz/mcp-demo",
+      "method": "data_collection"
+    },
+    "gibwork-mcp": {
+      "command": "npx shivaji43/gibwork-mcp",
+      "args": [],
+      "env": {},
+      "source": "shivaji43/gibwork-mcp",
+      "method": "data_collection"
+    },
+    "mcp-learn": {
+      "command": "npx adarshem/mcp-server-learn",
+      "args": [],
+      "env": {},
+      "source": "adarshem/mcp-server-learn",
+      "method": "data_collection"
+    },
+    "agents-mcp-clients": {
+      "command": "npx dynstat/agents-mcp-clients",
+      "args": [],
+      "env": {},
+      "source": "dynstat/agents-mcp-clients",
+      "method": "data_collection"
+    },
+    "n8n-mcp-tool": {
+      "command": "npx Kr8thor/n8n-mcp-tool",
+      "args": [],
+      "env": {},
+      "source": "Kr8thor/n8n-mcp-tool",
+      "method": "data_collection"
+    },
+    "napier": {
+      "command": "npx va99/napier",
+      "args": [],
+      "env": {},
+      "source": "va99/napier",
+      "method": "data_collection"
+    },
+    "jrhokkaido_train_info": {
+      "command": "npx Masa1984a/jrhokkaido_train_info",
+      "args": [],
+      "env": {},
+      "source": "Masa1984a/jrhokkaido_train_info",
+      "method": "data_collection"
+    },
+    "my-mcp-lab": {
+      "command": "npx helebest/my-mcp-lab",
+      "args": [],
+      "env": {},
+      "source": "helebest/my-mcp-lab",
+      "method": "data_collection"
+    },
+    "http-request-mcp": {
+      "command": "npx vitolrosario/http-request-mcp",
+      "args": [],
+      "env": {},
+      "source": "vitolrosario/http-request-mcp",
+      "method": "data_collection"
+    },
+    "mkslides-mcp": {
+      "command": "npx bsmnyk/mkslides-mcp",
+      "args": [],
+      "env": {},
+      "source": "bsmnyk/mkslides-mcp",
+      "method": "data_collection"
+    },
+    "mcp-excel-server": {
+      "command": "npx qianO33/mcp-excel-server",
+      "args": [],
+      "env": {},
+      "source": "qianO33/mcp-excel-server",
+      "method": "data_collection"
+    },
+    "mcp-excel-controller-pro": {
+      "command": "npx Jerry-is-coder/mcp-excel-controller-pro",
+      "args": [],
+      "env": {},
+      "source": "Jerry-is-coder/mcp-excel-controller-pro",
+      "method": "data_collection"
+    },
+    "eagle-mcp-server": {
+      "command": "npx tuki0918/eagle-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "tuki0918/eagle-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-svgl": {
+      "command": "npx sam-trost/mcp-server-svgl",
+      "args": [],
+      "env": {},
+      "source": "sam-trost/mcp-server-svgl",
+      "method": "data_collection"
+    },
+    "write_emoji_mcp": {
+      "command": "npx ndlxp2008/write_emoji_mcp",
+      "args": [],
+      "env": {},
+      "source": "ndlxp2008/write_emoji_mcp",
+      "method": "data_collection"
+    },
+    "Netmind-Parse-PDF-MCP": {
+      "command": "npx protagolabs/Netmind-Parse-PDF-MCP",
+      "args": [],
+      "env": {},
+      "source": "protagolabs/Netmind-Parse-PDF-MCP",
+      "method": "data_collection"
+    },
+    "mcp-echo-server": {
+      "command": "npx devjiel/mcp-echo-server",
+      "args": [],
+      "env": {},
+      "source": "devjiel/mcp-echo-server",
+      "method": "data_collection"
+    },
+    "whois-mcp": {
+      "command": "npx ASJordi/whois-mcp",
+      "args": [],
+      "env": {},
+      "source": "ASJordi/whois-mcp",
+      "method": "data_collection"
+    },
+    "RIMS-MCP": {
+      "command": "npx rims-dev/RIMS-MCP",
+      "args": [],
+      "env": {},
+      "source": "rims-dev/RIMS-MCP",
+      "method": "data_collection"
+    },
+    "supergateway-sinhnd": {
+      "command": "npx nguyendinhsinh361/supergateway-sinhnd",
+      "args": [],
+      "env": {},
+      "source": "nguyendinhsinh361/supergateway-sinhnd",
+      "method": "data_collection"
+    },
+    "mcp-license-check": {
+      "command": "npx tvriesde/mcp-license-check",
+      "args": [],
+      "env": {},
+      "source": "tvriesde/mcp-license-check",
+      "method": "data_collection"
+    },
+    "weatherxm-pro-mcp": {
+      "command": "npx WeatherXM/weatherxm-pro-mcp",
+      "args": [],
+      "env": {},
+      "source": "WeatherXM/weatherxm-pro-mcp",
+      "method": "data_collection"
+    },
+    "truto-mcp-stdio": {
+      "command": "npx trutohq/truto-mcp-stdio",
+      "args": [],
+      "env": {},
+      "source": "trutohq/truto-mcp-stdio",
+      "method": "data_collection"
+    },
+    "ipfs-uploader": {
+      "command": "npx veithly/ipfs-uploader",
+      "args": [],
+      "env": {},
+      "source": "veithly/ipfs-uploader",
+      "method": "data_collection"
+    },
+    "consist": {
+      "command": "npx OpenSourceGuru776/consist",
+      "args": [],
+      "env": {},
+      "source": "OpenSourceGuru776/consist",
+      "method": "data_collection"
+    },
+    "MCPGithub": {
+      "command": "npx alvnavraii/MCPGithub",
+      "args": [],
+      "env": {},
+      "source": "alvnavraii/MCPGithub",
+      "method": "data_collection"
+    },
+    "github-releases-mcp": {
+      "command": "npx SLineroDev/github-releases-mcp",
+      "args": [],
+      "env": {},
+      "source": "SLineroDev/github-releases-mcp",
+      "method": "data_collection"
+    },
+    "github-repo-mcp": {
+      "command": "npx Ryan0204/github-repo-mcp",
+      "args": [],
+      "env": {},
+      "source": "Ryan0204/github-repo-mcp",
+      "method": "data_collection"
+    },
+    "mcp-git": {
+      "command": "npx kwanLeeFrmVi/mcp-git",
+      "args": [],
+      "env": {},
+      "source": "kwanLeeFrmVi/mcp-git",
+      "method": "data_collection"
+    },
+    "mcp-git-commit-aider": {
+      "command": "npx MrOrz/mcp-git-commit-aider",
+      "args": [],
+      "env": {},
+      "source": "MrOrz/mcp-git-commit-aider",
+      "method": "data_collection"
+    },
+    "GIT-Pilot": {
+      "command": "npx SiddheshDongare/GIT-Pilot",
+      "args": [],
+      "env": {},
+      "source": "SiddheshDongare/GIT-Pilot",
+      "method": "data_collection"
+    },
+    "mcp-pr-pilot": {
+      "command": "npx 0010aor/mcp-pr-pilot",
+      "args": [],
+      "env": {},
+      "source": "0010aor/mcp-pr-pilot",
+      "method": "data_collection"
+    },
+    "Cursor-MCP-test": {
+      "command": "npx 4workspace/Cursor-MCP-test",
+      "args": [],
+      "env": {},
+      "source": "4workspace/Cursor-MCP-test",
+      "method": "data_collection"
+    },
+    "github-mcp-ts": {
+      "command": "npx marcusdb/github-mcp-server-ts",
+      "args": [],
+      "env": {},
+      "source": "marcusdb/github-mcp-server-ts",
+      "method": "data_collection"
+    },
+    "new": {
+      "command": "npx jesulim/new",
+      "args": [],
+      "env": {},
+      "source": "jesulim/new",
+      "method": "data_collection"
+    },
+    "git-committer-mcp-server": {
+      "command": "npx BirajMainali/git-committer-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "BirajMainali/git-committer-mcp-server",
+      "method": "data_collection"
+    },
+    "gitlab-mcp": {
+      "command": "npx Adit-999/gitlab-mcp",
+      "args": [],
+      "env": {},
+      "source": "Adit-999/gitlab-mcp",
+      "method": "data_collection"
+    },
+    "github-mcp": {
+      "command": "npx axlwolf/github-mcp",
+      "args": [],
+      "env": {},
+      "source": "axlwolf/github-mcp",
+      "method": "data_collection"
+    },
+    "mvn-repo-mcp": {
+      "command": "npx musthafa-mohammed/mvn-repo-mcp",
+      "args": [],
+      "env": {},
+      "source": "musthafa-mohammed/mvn-repo-mcp",
+      "method": "data_collection"
+    },
+    "GitHubMCP": {
+      "command": "npx stephanj/GitHubMCP",
+      "args": [],
+      "env": {},
+      "source": "stephanj/GitHubMCP",
+      "method": "data_collection"
+    },
+    "github-mcp-server": {
+      "command": "npx rahul-roy-glean/github-mcp-server",
+      "args": [],
+      "env": {},
+      "source": "rahul-roy-glean/github-mcp-server",
+      "method": "data_collection"
+    },
+    "mcp-gitlab": {
+      "command": "npx ZephyrDeng/mcp-server-gitlab",
+      "args": [],
+      "env": {},
+      "source": "ZephyrDeng/mcp-server-gitlab",
+      "method": "data_collection"
+    },
+    "remote-mcp-github-oauth": {
+      "command": "npx rose201107059/remote-mcp-github-oauth",
+      "args": [],
+      "env": {},
+      "source": "rose201107059/remote-mcp-github-oauth",
+      "method": "data_collection"
+    },
+    "forgejo-mcp": {
+      "command": "npx goern/forgejo-mcp",
+      "args": [],
+      "env": {},
+      "source": "goern/forgejo-mcp",
+      "method": "data_collection"
+    },
+    "github-mcp-client": {
+      "command": "npx ces-hongvo/github-mcp-client",
+      "args": [],
+      "env": {},
+      "source": "ces-hongvo/github-mcp-client",
+      "method": "data_collection"
+    },
+    "git-mcp-options": {
+      "command": "npx Aeron-cell/git-mcp-options",
+      "args": [],
+      "env": {},
+      "source": "Aeron-cell/git-mcp-options",
+      "method": "data_collection"
+    },
+    "karakuri_git_mcp": {
+      "command": "npx KarakuriAgent/karakuri_git_mcp",
+      "args": [],
+      "env": {},
+      "source": "KarakuriAgent/karakuri_git_mcp",
+      "method": "data_collection"
+    }
+  },
+  "download_summary": {
+    "successful": 992,
+    "failed": 0,
+    "total": 992
+  }
+}
