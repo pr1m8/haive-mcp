@@ -1,29 +1,43 @@
-# Haive MCP Package
+# haive-mcp
 
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![Poetry](https://img.shields.io/badge/dependency-poetry-blue.svg)](https://python-poetry.org/)
+[![MCP 1.0](https://img.shields.io/badge/MCP-1.0-green.svg)](https://modelcontextprotocol.io/)
 
-Model Context Protocol (MCP) integration for the Haive framework, providing type-safe access to MCP servers and their tools, resources, and prompts.
+Comprehensive Model Context Protocol (MCP) integration for Haive agents. This package combines **documentation processing of 992 MCP servers**, **intelligent discovery**, and **production-ready agents** to make MCP servers easily accessible.
 
-## Overview
+## How It Works
 
-The haive-mcp package enables Haive agents to connect to and use MCP servers, which provide:
+The haive-mcp package provides a complete pipeline from **documentation to production**:
 
-- **Tools**: Functions the model can call
+### 1. **Documentation Database (992 MCP Servers)**
+We maintain a comprehensive database of 992 MCP servers scraped from GitHub, including:
+- Setup instructions extracted from README files
+- Tool and resource descriptions
+- Installation commands and configuration
+- Capability classifications (database, filesystem, etc.)
+
+### 2. **Intelligent Documentation Processing**
+The `MCPDocumentationAgent` uses LLM analysis to:
+- Find servers by capability: `find_servers_by_capability("database")`
+- Generate complete setup guides: `generate_implementation_guide()`
+- Convert documentation into working configurations automatically
+
+### 3. **Production-Ready Agents**
+The `MCPAgent` uses discovered configurations to provide agents with:
+- **Tools**: Functions the model can call (database queries, file operations, etc.)
 - **Resources**: Data sources the application controls
 - **Prompts**: User-defined templates for optimal tool usage
 
-This integration supports the full MCP ecosystem with type checking, automatic discovery, and seamless agent integration.
+## Key Features
 
-## Features
-
-- 🔧 **Type-Safe Configuration**: Full Pydantic model validation
+- 📚 **992 MCP Server Database**: Pre-processed documentation from GitHub
+- 🤖 **Intelligent Discovery**: LLM-powered capability analysis and server matching
+- 🔧 **Auto-Configuration**: Convert documentation to working configs automatically  
 - 🔄 **Tool Transfer**: Share tools between agents dynamically
-- 📚 **Documentation Processing**: Extract setup from 992+ MCP server docs
-- 🔍 **Discovery System**: Find servers by capability or category
-- 🤝 **Agent Integration**: Extends any Haive agent with MCP capabilities
-- ⚡ **Lazy Loading**: Initialize MCP servers on-demand
-- 🛡️ **Graceful Degradation**: Handles missing dependencies and failures
+- 🤝 **Production Agents**: Ready-to-use agents with MCP capabilities
+- ⚡ **Mass Installation**: Install all documented servers automatically
+- 🛡️ **Type-Safe**: Full Pydantic model validation and error handling
 
 ## Installation
 
@@ -31,235 +45,181 @@ The package is part of the Haive ecosystem and should be installed via Poetry:
 
 ```bash
 # Install the entire Haive package (recommended)
-poetry install
+poetry install --all-extras
 
 # Or install just the MCP package dependencies
 cd packages/haive-mcp
-poetry install
+poetry install --all-extras
+
+# Quick setup (installs dependencies and creates directories)
+poetry run python install.py
+
+# Full setup (installs MCP servers and configures everything)
+poetry run python setup_all.py
+
+# Or use the simple runner
+poetry run python run.py setup
 ```
 
-## Quick Start
+## Complete Workflow
 
-### Basic Usage
+### 1. Research Phase: Discover Servers for Your Use Case
 
 ```python
-from haive.core.engine.aug_llm import AugLLMConfig
-from haive.core.models.llm.base import LLMConfig
+from haive.mcp.agents import MCPDocumentationAgent
+from haive.core.engine import AugLLMConfig
+
+# Create documentation research agent  
+engine = AugLLMConfig(name="doc_research")
+doc_agent = MCPDocumentationAgent.create_for_mcp_setup(engine=engine)
+await doc_agent.setup()
+
+# Find servers by capability (searches 992 server database)
+database_servers = await doc_agent.find_servers_by_capability("database", limit=10)
+file_servers = await doc_agent.find_servers_by_capability("filesystem", limit=5)
+
+print(f"Found {len(database_servers)} database servers")
+print(f"Found {len(file_servers)} file system servers")
+
+# Generate complete implementation guide
+implementation_guide = await doc_agent.generate_implementation_guide(
+    server_names=[
+        "modelcontextprotocol/server-postgres",
+        "modelcontextprotocol/server-filesystem", 
+        "modelcontextprotocol/server-github"
+    ],
+    target_agent_type="development_assistant"
+)
+
+print("Setup Instructions:")
+print(implementation_guide["setup_instructions"])
+```
+
+### 2. Production Phase: Use Discovered Configuration
+
+```python
 from haive.mcp.agents import MCPAgent
-from haive.mcp.config import MCPConfig, MCPServerConfig
 
-# Create engine
-engine = AugLLMConfig(
-    llm_config=LLMConfig(
-        provider="openai",
-        model="gpt-4o-mini"
-    ),
-    name="my_engine"
-)
-
-# Configure MCP
-mcp_config = MCPConfig(
-    enabled=True,
-    servers={
-        "filesystem": MCPServerConfig(
-            name="filesystem",
-            transport="stdio",
-            command="npx",
-            args=["-y", "@modelcontextprotocol/server-filesystem"],
-            capabilities=["file_read", "file_write"]
-        )
-    }
-)
-
-# Create agent
-agent = MCPAgent(
+# Create production agent with auto-generated configuration
+production_agent = MCPAgent(
     engine=engine,
-    mcp_config=mcp_config,
-    name="mcp_assistant"
+    mcp_config=implementation_guide["combined_config"],  # Auto-generated!
+    name="production_assistant"
 )
 
-# Initialize and use
-await agent.setup()
-result = await agent.arun({
-    "messages": [{"role": "user", "content": "List files in current directory"}]
+# Initialize and use - agent now has database, file, and GitHub tools
+await production_agent.setup()
+
+result = await production_agent.arun({
+    "messages": [{
+        "role": "user", 
+        "content": "Connect to the database, read the config file, and check GitHub repo status"
+    }]
 })
 ```
 
-### Using Convenience Methods
+## Core Components
 
+### MCPDocumentationAgent
+Intelligent agent for researching and analyzing the 992-server database:
+- `find_servers_by_capability(capability, limit)` - AI-powered server discovery
+- `generate_implementation_guide(server_names, target_agent_type)` - Complete setup guides
+- `process_mcp_server(server_name)` - Analyze specific server documentation
+
+### MCPAgent  
+Production agent that uses MCP servers:
+- Connects to multiple MCP servers simultaneously
+- Auto-discovers tools and resources from connected servers
+- Integrates seamlessly with Haive agent framework
+
+### MCPDocumentationLoader
+Direct access to the documentation database:
 ```python
-# Create agent with multiple MCP servers
-agent = MCPAgent.create_with_mcp_servers(
-    engine=engine,
-    server_configs={
-        "filesystem": {
-            "transport": "stdio",
-            "command": "npx",
-            "args": ["-y", "@modelcontextprotocol/server-filesystem"]
-        },
-        "github": {
-            "transport": "stdio",
-            "command": "npx",
-            "args": ["-y", "@modelcontextprotocol/server-github"],
-            "env": {"GITHUB_TOKEN": github_token}
-        }
-    }
-)
+from haive.mcp.documentation import MCPDocumentationLoader
+
+loader = MCPDocumentationLoader()
+all_servers = loader.load_all_mcp_documents()  # 992 servers
+postgres_doc = loader.get_server_documentation("modelcontextprotocol/server-postgres")
 ```
 
 ## Advanced Features
 
 ### Tool Transfer Between Agents
-
 ```python
 from haive.mcp.agents import TransferableMCPAgent
 
-# Create collaborative agents
-agents = TransferableMCPAgent.create_collaborative_agents(
-    engine=engine,
-    mcp_config=mcp_config,
-    num_agents=3,
-    shared_client=True  # Share MCP client
-)
+# Create collaborative agents that can share tools
+agent1 = TransferableMCPAgent(engine=engine, mcp_config=config1)
+agent2 = TransferableMCPAgent(engine=engine, mcp_config=config2)
 
-# Transfer tools between agents
-agent1, agent2 = agents[:2]
+await agent1.setup()
+await agent2.setup()
+
+# Transfer specific tools between agents
+await agent1.transfer_tools_to_agent(agent2, tool_names=["read_file", "query_db"])
+
+# Or transfer all tools
 await agent1.transfer_all_tools_to_agent(agent2)
-
-# Share resources
-resources = await agent1.delegate_resource_access(
-    agent2,
-    server_name="github",
-    resource_uris=["repo:owner/name"]
-)
 ```
 
-### Documentation-Based Setup
-
+### Mass Server Installation
 ```python
-from haive.mcp.agents import MCPDocumentationAgent
+from haive.mcp.downloader import GeneralMCPDownloader
 
-# Create documentation agent
-doc_agent = MCPDocumentationAgent.create_for_mcp_setup()
+# Install all 992 documented servers automatically
+downloader = GeneralMCPDownloader()
+await downloader.download_all_servers()
 
-# Process MCP server documentation
-result = await doc_agent.process_mcp_server(
-    "modelcontextprotocol/server-filesystem"
-)
-
-# Get setup instructions
-setup_instructions = result["setup_instructions"]
-mcp_config = result["mcp_config"]
-
-# Find servers by capability
-servers = await doc_agent.find_servers_by_capability("search", limit=5)
-
-# Generate implementation guide
-guide = await doc_agent.generate_implementation_guide(
-    server_names=["server1", "server2"],
-    target_agent_type="research"
-)
-```
-
-### Dynamic Server Discovery
-
-```python
-from haive.mcp.discovery import MCPServerDiscovery
-
-# Discover available servers
-discovery = MCPServerDiscovery()
-servers = await discovery.discover_all()
-
-# Filter by capability
-file_servers = discovery.get_servers_by_capability("file_operations")
-
-# Create configuration from discovered servers
-mcp_config = discovery.create_mcp_config()
+# Or install specific servers
+await downloader.install_server("@modelcontextprotocol/server-postgres")
 ```
 
 ## Configuration
 
-### MCPConfig Structure
+Most configurations are auto-generated from documentation, but you can also create them manually:
 
 ```python
-MCPConfig(
-    enabled=True,                    # Enable/disable MCP
-    auto_discover=True,             # Auto-discover servers
-    lazy_init=True,                 # Initialize on-demand
-    servers={...},                  # Server configurations
-    discovery_paths=[               # Paths to search
-        "~/.mcp/servers",
-        ".mcp/servers"
-    ],
-    categories=["dev", "util"],     # Filter by category
-    required_capabilities=["file"]   # Required capabilities
+from haive.mcp.config import MCPConfig, MCPServerConfig
+
+mcp_config = MCPConfig(
+    enabled=True,
+    servers={
+        "postgres": MCPServerConfig(
+            name="postgres",
+            transport="stdio", 
+            command="npx",
+            args=["-y", "@modelcontextprotocol/server-postgres"],
+            env={"DATABASE_URL": "postgresql://..."}
+        ),
+        "filesystem": MCPServerConfig(
+            name="filesystem",
+            transport="stdio",
+            command="npx", 
+            args=["-y", "@modelcontextprotocol/server-filesystem"]
+        )
+    }
 )
 ```
 
-### MCPServerConfig Options
+**But it's easier to use the documentation agent to generate configurations automatically!**
 
-```python
-MCPServerConfig(
-    name="server_name",
-    transport="stdio",              # stdio, sse, streamable_http
-    command="npx",                  # Command to run
-    args=["-y", "package"],        # Command arguments
-    url="http://...",              # For HTTP transports
-    env={"KEY": "value"},          # Environment variables
-    capabilities=["file_ops"],      # Server capabilities
-    category="filesystem",          # Server category
-    timeout=30,                     # Connection timeout
-    retry_attempts=3,              # Retry on failure
-    health_check_interval=60       # Health check interval
-)
-```
+## Data Sources
 
-## Agent Types
+The system leverages a comprehensive collection of MCP server documentation:
+- **992 GitHub repositories** with MCP servers automatically scraped
+- **README parsing** for setup instructions and configuration
+- **LLM-powered capability extraction** for intelligent categorization
+- **Installation command detection** from documentation
+- **Pre-processed and cached** for fast access
 
-### MCPAgent
-
-Basic agent with MCP capabilities.
-
-### TransferableMCPAgent
-
-Agent with enhanced transfer capabilities for sharing tools, resources, and prompts.
-
-### MCPDocumentationAgent
-
-Specialized agent for processing MCP documentation and generating setups.
+This makes haive-mcp the most comprehensive MCP integration system available.
 
 ## Examples
 
-See the `examples/` directory for complete examples:
-
-- `basic_mcp_agent.py` - Basic MCP usage
-- `mcp_documentation_example.py` - Documentation processing
-- `complete_mcp_integration.py` - Full integration demo
-
-## Architecture
-
-```
-haive-mcp/
-├── src/haive/mcp/
-│   ├── agents/              # MCP-enabled agents
-│   │   ├── mcp_agent.py
-│   │   ├── transferable_mcp_agent.py
-│   │   └── documentation_agent.py
-│   ├── mixins/              # MCP mixin for agents
-│   │   └── mcp_mixin.py
-│   ├── discovery/           # Server discovery
-│   │   ├── analyzer.py
-│   │   └── server_discovery.py
-│   ├── documentation/       # Documentation processing
-│   │   └── doc_loader.py
-│   └── config.py           # Configuration models
-├── agent_resources/         # MCP server documentation
-│   └── mcp_servers/
-│       ├── all_mcp_documents.json
-│       └── documents/      # Individual server docs
-├── tests/                  # Test suite
-├── examples/              # Usage examples
-└── README.md
+```bash
+# See complete examples
+poetry run python examples/mcp_documentation_example.py
+poetry run python examples/complete_mcp_integration.py
 ```
 
 ## Testing
@@ -273,6 +233,17 @@ poetry run pytest tests/test_mcp_real.py -v
 
 # Run with coverage
 poetry run pytest --cov=haive.mcp
+
+# Validate setup
+poetry run python validate_setup.py
+
+# Check health
+poetry run python check_health.py
+
+# Or use the runner
+poetry run python run.py test
+poetry run python run.py check
+poetry run python run.py validate
 ```
 
 ## Dependencies

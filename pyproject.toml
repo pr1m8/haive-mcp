@@ -19,6 +19,9 @@ fastmcp = "^2.8.0"
 langchain-mcp-adapters = "^0.1.7"
 click = "^8.2.1"
 pyyaml = "^6.0.2"
+aiohttp = "^3.9.5"
+fastapi = "^0.115.0"
+uvicorn = "^0.30.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.5"

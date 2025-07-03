@@ -1,71 +1,59 @@
-"""Haive MCP Package - Model Context Protocol integration for Haive agents.
+"""Haive MCP - Model Context Protocol Integration for Haive.
 
-This package provides comprehensive integration with the Model Context Protocol (MCP),
-enabling Haive agents to connect to and use MCP servers that provide tools, resources,
-and prompts. The package includes agents, mixins, discovery systems, and management
-tools for working with MCP servers.
+The haive-mcp package provides comprehensive MCP support for the Haive framework,
+enabling discovery, management, and integration of MCP servers with AI agents.
 
-Key Features:
-    - MCP-enabled agents with automatic server integration
-    - Server discovery and analysis capabilities  
-    - AI-enhanced server selection and recommendations
-    - 992+ pre-documented MCP servers database
-    - Multiple transport support (stdio, SSE, WebSocket)
-    - Dynamic server addition and management
-    - Tool transfer between agents
-    - Graceful degradation and error handling
+This package consists of several modules:
 
-Core Components:
-    - MCPAgent: Ready-to-use agent with MCP capabilities
-    - MCPMixin: Add MCP functionality to any Haive agent
-    - MCPManager: Dynamic server management and tool discovery
-    - MCPServerDiscovery: Automatic server discovery system
-    - MCPConfig: Type-safe configuration models
+    manager: Core MCP manager for server lifecycle management
+    discovery: Server discovery from npm, PyPI, GitHub, and local sources
+    downloader: Server download and installation utilities
+    servers: MCP server implementations using FastMCP
+    agents: MCP-enabled agent implementations
+    tools: Utility tools for MCP operations
+    config: Configuration models and validation
 
-Usage Example:
+Typical usage example:
+
     ```python
-    from haive.mcp.agents import MCPAgent
-    from haive.mcp.config import MCPConfig, MCPServerConfig
-    from haive.core.engine.aug_llm import AugLLMConfig
-    from haive.core.models.llm.base import OpenAILLMConfig
-
-    # Configure engine
-    engine = AugLLMConfig(
-        llm_config=OpenAILLMConfig(model="gpt-4o-mini"),
-        name="mcp_engine"
+    from haive.mcp import MCPManager, MCPConfig, MCPServerConfig
+    from haive.mcp.discovery import discover_servers
+    
+    # Discover available servers
+    servers = await discover_servers()
+    
+    # Create manager with configuration
+    config = MCPConfig(
+        enabled=True,
+        servers={
+            "filesystem": MCPServerConfig(
+                name="filesystem",
+                transport="stdio",
+                command="npx",
+                args=["-y", "@modelcontextprotocol/server-filesystem"]
+            )
+        }
     )
-
-    # Create MCP agent
-    agent = MCPAgent(
-        engine=engine,
-        mcp_config=MCPConfig(
-            enabled=True,
-            servers={
-                "filesystem": MCPServerConfig(
-                    name="filesystem",
-                    transport="stdio", 
-                    command="npx",
-                    args=["-y", "@modelcontextprotocol/server-filesystem"]
-                )
-            }
-        )
+    
+    manager = MCPManager(config)
+    await manager.initialize()
+    
+    # Execute a tool
+    result = await manager.execute_tool(
+        server="filesystem",
+        tool="read_file",
+        params={"path": "file.txt"}
     )
-
-    # Use the agent
-    await agent.setup()
-    result = await agent.arun("List the files in the current directory")
     ```
 
-Package Structure:
-    - agents/: MCP-enabled agent implementations
-    - mixins/: MCP mixin for extending existing agents
-    - discovery/: Server discovery and analysis tools
-    - tools/: AI-enhanced MCP tools and utilities
-    - config.py: Configuration models and validation
-    - manager.py: Dynamic MCP server management
-
-For detailed documentation, see the individual module documentation and the
-README.md file in the package root.
+Attributes:
+    __version__: Package version string
+    MCPConfig: Main configuration model
+    MCPServerConfig: Server configuration model
+    MCPManager: Server lifecycle manager
+    MCPAgent: MCP-enabled agent
+    TransferableMCPAgent: Agent with tool transfer capabilities
+    MCPDocumentationAgent: Documentation processing agent
 """
 
 __version__ = "0.1.0"

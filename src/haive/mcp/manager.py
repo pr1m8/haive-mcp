@@ -16,7 +16,7 @@ Classes:
     MCPRegistrationResult: Result of server registration
     MCPHealthStatus: Health monitoring information
 
-Example:
+Examples:
     Adding MCP servers procedurally::
 
         from haive.mcp.manager import MCPManager
@@ -43,6 +43,22 @@ Example:
 
         # Get all available tools
         tools = await manager.get_all_tools()
+        
+    Health monitoring example::
+    
+        # Check server health
+        health = await manager.check_server_health("filesystem")
+        if health.status == MCPServerStatus.UNHEALTHY:
+            await manager.reconnect_server("filesystem")
+            
+    Tool execution example::
+    
+        # Execute a tool on specific server
+        result = await manager.execute_tool(
+            server="filesystem",
+            tool="read_file",
+            params={"path": "/path/to/file.txt"}
+        )
 """
 
 import asyncio
