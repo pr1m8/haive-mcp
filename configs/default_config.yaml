@@ -1,0 +1,133 @@
+# Default MCP Downloader Configuration
+# This file defines templates, servers, and discovery patterns
+
+# Templates define reusable installation patterns
+templates:
+  - name: npm_official
+    installation_method: npm
+    command_pattern: '@modelcontextprotocol/server-{service}'
+    capabilities: [tools]
+    category: official
+    
+  - name: npm_community
+    installation_method: npm
+    command_pattern: '{package}'
+    capabilities: [tools]
+    category: community
+    
+  - name: pypi_package
+    installation_method: pip
+    command_pattern: '{package}'
+    capabilities: [tools]
+    category: python
+    
+  - name: git_repo
+    installation_method: git
+    command_pattern: 'python {repo}/server.py'
+    post_install: ['pip install -r {repo}/requirements.txt']
+    capabilities: [tools]
+    category: development
+    
+  - name: docker_image
+    installation_method: docker
+    command_pattern: '{image}'
+    capabilities: [tools]
+    category: containerized
+
+# Default servers to install
+servers:
+  # Official MCP servers
+  - name: filesystem
+    template: npm_official
+    source: npm
+    variables: 
+      service: filesystem
+    enabled: true
+    tags: [file, official, core]
+    
+  - name: github
+    template: npm_official
+    source: npm
+    variables:
+      service: github
+    env:
+      GITHUB_TOKEN: ${GITHUB_TOKEN}
+    enabled: false  # Disabled by default, needs token
+    tags: [git, official, vcs]
+    
+  - name: postgres
+    template: npm_official
+    source: npm
+    variables:
+      service: postgres
+    enabled: false  # Disabled by default, needs database
+    tags: [database, official]
+    
+  - name: sqlite
+    template: npm_official
+    source: npm
+    variables:
+      service: sqlite
+    enabled: true
+    tags: [database, official, embedded]
+
+# Discovery patterns for finding new servers
+patterns:
+  discovery_sources:
+    - https://github.com/modelcontextprotocol/servers
+    - https://registry.npmjs.org/-/v1/search?text=mcp-server
+    - https://api.github.com/search/repositories?q=mcp+server+in:name
+    
+  package_patterns:
+    npm:
+      - '@modelcontextprotocol/server-*'
+      - 'mcp-server-*'
+      - '*-mcp-server'
+      - 'mcp-*'
+    pypi:
+      - 'mcp-*'
+      - '*-mcp'
+      - 'mcp-server-*'
+    docker:
+      - 'mcp/*'
+      - '*/mcp-*'
+      - 'modelcontextprotocol/*'
+      
+  exclude_patterns:
+    - '*-test'
+    - '*-demo'
+    - '*-example'
+    - '*-deprecated'
+
+# Global settings
+settings:
+  # Installation directory
+  install_dir: ~/.mcp/servers
+  
+  # Logging
+  log_level: INFO
+  log_file: ~/.mcp/logs/downloader.log
+  
+  # Download settings
+  max_concurrent_downloads: 5
+  connection_timeout: 30
+  retry_attempts: 3
+  retry_delay: 5
+  
+  # Health monitoring
+  health_check_interval: 3600  # 1 hour
+  health_check_on_startup: true
+  
+  # Auto-update
+  auto_update: false
+  update_check_interval: 86400  # 24 hours
+  
+  # Discovery
+  auto_discover: false
+  discovery_limit: 100
+  
+  # Global environment variables
+  global_env:
+    HTTP_PROXY: ${HTTP_PROXY}
+    HTTPS_PROXY: ${HTTPS_PROXY}
+    NO_PROXY: localhost,127.0.0.1

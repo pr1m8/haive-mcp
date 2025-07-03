@@ -1,0 +1,396 @@
+# General MCP Server Downloader Configuration
+# This configuration file demonstrates the flexible, general approach to MCP server management
+
+# Templates define installation patterns and methods
+templates:
+  # Official ModelContextProtocol servers
+  - name: npm_official
+    installation_method: npm
+    command_pattern: '@modelcontextprotocol/server-{service}'
+    args_pattern: []
+    env_vars: {}
+    capabilities: [tools]
+    category: official
+    health_check: 'npx @modelcontextprotocol/server-{service} --help'
+    prerequisites: [node, npm]
+    post_install: []
+
+  # Community NPM packages with various patterns
+  - name: npm_community
+    installation_method: npm
+    command_pattern: '{package}'
+    args_pattern: []
+    env_vars: {}
+    capabilities: [tools]
+    category: community
+    prerequisites: [node, npm]
+
+  - name: npm_scoped
+    installation_method: npm
+    command_pattern: '@{org}/{package}'
+    args_pattern: []
+    env_vars: {}
+    capabilities: [tools]
+    category: community
+    prerequisites: [node, npm]
+
+  - name: npm_mcp_pattern
+    installation_method: npm
+    command_pattern: 'mcp-server-{service}'
+    args_pattern: []
+    env_vars: {}
+    capabilities: [tools]
+    category: community
+    prerequisites: [node, npm]
+
+  # Python-based servers
+  - name: pypi_package
+    installation_method: pip
+    command_pattern: '{package}'
+    args_pattern: []
+    env_vars: {}
+    capabilities: [tools]
+    category: python
+    prerequisites: [python, pip]
+
+  - name: pypi_mcp_pattern
+    installation_method: pip
+    command_pattern: 'mcp-{service}'
+    args_pattern: []
+    env_vars: {}
+    capabilities: [tools]
+    category: python
+    prerequisites: [python, pip]
+
+  # Git repository installations
+  - name: git_repo
+    installation_method: git
+    command_pattern: 'python server.py'
+    args_pattern: []
+    env_vars: {}
+    capabilities: [tools]
+    category: development
+    post_install: 
+      - 'pip install -r requirements.txt'
+    prerequisites: [git, python]
+
+  - name: git_node_repo
+    installation_method: git
+    command_pattern: 'npm start'
+    args_pattern: []
+    env_vars: {}
+    capabilities: [tools]
+    category: development
+    post_install:
+      - 'npm install'
+    prerequisites: [git, node, npm]
+
+  - name: git_go_repo
+    installation_method: git
+    command_pattern: 'go run main.go'
+    args_pattern: []
+    env_vars: {}
+    capabilities: [tools]
+    category: development
+    post_install:
+      - 'go mod download'
+    prerequisites: [git, go]
+
+  # Docker-based servers
+  - name: docker_image
+    installation_method: docker
+    command_pattern: '{image}'
+    args_pattern: []
+    env_vars: {}
+    capabilities: [tools]
+    category: containerized
+    prerequisites: [docker]
+
+  - name: docker_mcp_pattern
+    installation_method: docker
+    command_pattern: 'mcp/{service}'
+    args_pattern: []
+    env_vars: {}
+    capabilities: [tools]
+    category: containerized
+    prerequisites: [docker]
+
+  # Binary/executable servers
+  - name: binary_download
+    installation_method: curl
+    command_pattern: './{service}-mcp-server'
+    args_pattern: []
+    env_vars: {}
+    capabilities: [tools]
+    category: binary
+    post_install:
+      - 'chmod +x {service}-mcp-server'
+
+# Server configurations - these can be generated automatically or defined manually
+servers:
+  # Official MCP servers
+  - name: filesystem
+    template: npm_official
+    source: npm
+    variables:
+      service: filesystem
+    enabled: true
+    priority: 1
+    tags: [official, file-operations, core]
+
+  - name: brave-search
+    template: npm_official
+    source: npm
+    variables:
+      service: brave-search
+    enabled: true
+    priority: 2
+    tags: [official, search, web]
+
+  - name: github
+    template: npm_official
+    source: npm
+    variables:
+      service: github
+    enabled: true
+    priority: 1
+    tags: [official, git, development]
+
+  - name: google-maps
+    template: npm_official
+    source: npm
+    variables:
+      service: google-maps
+    enabled: true
+    priority: 2
+    tags: [official, maps, location]
+
+  - name: memory
+    template: npm_official
+    source: npm
+    variables:
+      service: memory
+    enabled: true
+    priority: 1
+    tags: [official, storage, memory]
+
+  - name: postgres
+    template: npm_official
+    source: npm
+    variables:
+      service: postgres
+    enabled: true
+    priority: 1
+    tags: [official, database, sql]
+
+  - name: puppeteer
+    template: npm_official
+    source: npm
+    variables:
+      service: puppeteer
+    enabled: true
+    priority: 2
+    tags: [official, browser, automation]
+
+  - name: sqlite
+    template: npm_official
+    source: npm
+    variables:
+      service: sqlite
+    enabled: true
+    priority: 1
+    tags: [official, database, sql, embedded]
+
+  # Community servers - various patterns
+  - name: docker-mcp
+    template: npm_community
+    source: npm
+    variables:
+      package: docker-mcp
+    enabled: true
+    priority: 3
+    tags: [community, docker, containers]
+
+  - name: obsidian-mcp
+    template: npm_community
+    source: npm
+    variables:
+      package: obsidian-mcp
+    enabled: true
+    priority: 3
+    tags: [community, notes, knowledge]
+
+  - name: youtube-transcript
+    template: npm_community
+    source: npm
+    variables:
+      package: mcp-youtube-transcript
+    enabled: true
+    priority: 3
+    tags: [community, youtube, transcripts]
+
+  # Scoped packages
+  - name: everart-mcp
+    template: npm_scoped
+    source: npm
+    variables:
+      org: everart
+      package: mcp-server
+    enabled: true
+    priority: 3
+    tags: [community, art, creative]
+
+  # Git repository examples
+  - name: anthropic-quickstart
+    template: git_repo
+    source: https://github.com/anthropics/anthropic-quickstarts.git
+    variables:
+      owner: anthropics
+      repo: anthropic-quickstarts
+    enabled: false
+    priority: 4
+    tags: [development, examples, anthropic]
+
+  # Docker examples
+  - name: mcp-filesystem-docker
+    template: docker_image
+    source: docker
+    variables:
+      image: modelcontextprotocol/server-filesystem
+    enabled: false
+    priority: 3
+    tags: [docker, filesystem, official]
+
+  # Pattern-based auto-generation examples
+  - name: weather-mcp
+    template: npm_mcp_pattern
+    source: npm
+    variables:
+      service: weather
+    enabled: true
+    priority: 3
+    tags: [community, weather, api]
+
+  - name: news-mcp
+    template: npm_mcp_pattern
+    source: npm
+    variables:
+      service: news
+    enabled: true
+    priority: 3
+    tags: [community, news, api]
+
+# Global patterns and discovery settings
+patterns:
+  # Sources for auto-discovery
+  discovery_sources:
+    - https://raw.githubusercontent.com/modelcontextprotocol/servers/main/README.md
+    - https://api.github.com/search/repositories?q=mcp+server+in:name&sort=stars&order=desc
+    - https://registry.npmjs.org/-/v1/search?text=mcp+server&size=250
+    - https://pypi.org/search/?q=mcp+server&o=
+
+  # Package naming patterns for different registries
+  package_patterns:
+    npm:
+      - '@modelcontextprotocol/server-*'
+      - 'mcp-server-*'
+      - '*-mcp-server'
+      - 'mcp-*'
+      - '@*/mcp-server'
+      - '@mcp-*/*'
+    pypi:
+      - 'mcp-*'
+      - '*-mcp'
+      - 'mcp-server-*'
+      - '*-mcp-server'
+    docker:
+      - 'mcp/*'
+      - 'modelcontextprotocol/*'
+      - '*/mcp-*'
+    github:
+      - '*mcp*server*'
+      - '*model*context*protocol*'
+      - 'mcp-*'
+
+  # Service categories for pattern generation
+  service_categories:
+    # Core services
+    core: [filesystem, memory, sqlite, postgres, git, terminal]
+    
+    # Web & API services
+    web: [github, gitlab, google-maps, brave-search, twitter, reddit, slack, discord]
+    
+    # AI & ML services
+    ai: [openai, anthropic, huggingface, replicate, stability, cohere, palm]
+    
+    # Development tools
+    dev: [docker, kubernetes, terraform, ansible, jenkins, prometheus, grafana]
+    
+    # Databases
+    database: [postgres, mysql, redis, mongodb, elasticsearch, influxdb, cassandra]
+    
+    # Cloud providers
+    cloud: [aws, gcp, azure, digitalocean, vultr, linode, hetzner]
+    
+    # Communication
+    communication: [slack, discord, teams, telegram, whatsapp, email, sms]
+    
+    # Productivity
+    productivity: [notion, airtable, trello, asana, todoist, evernote, obsidian]
+    
+    # Media & Content
+    media: [youtube, spotify, netflix, twitch, instagram, tiktok, pinterest]
+    
+    # E-commerce & Finance
+    ecommerce: [shopify, stripe, paypal, square, amazon, ebay, etsy]
+    
+    # Analytics & Monitoring
+    analytics: [google-analytics, mixpanel, amplitude, segment, datadog, newrelic]
+
+  # Environment variable templates
+  env_templates:
+    github:
+      GITHUB_TOKEN: required
+    openai:
+      OPENAI_API_KEY: required
+    google:
+      GOOGLE_API_KEY: required
+      GOOGLE_MAPS_API_KEY: optional
+    aws:
+      AWS_ACCESS_KEY_ID: required
+      AWS_SECRET_ACCESS_KEY: required
+      AWS_REGION: optional
+    database:
+      DATABASE_URL: required
+      DB_HOST: optional
+      DB_PORT: optional
+      DB_USER: optional
+      DB_PASSWORD: optional
+
+# Installation settings
+installation:
+  # Default installation directory
+  install_dir: ~/.mcp/servers
+  
+  # Concurrent downloads
+  max_concurrent: 5
+  
+  # Timeout settings
+  download_timeout: 300
+  install_timeout: 600
+  
+  # Retry settings
+  max_retries: 3
+  retry_delay: 5
+  
+  # Health check settings
+  health_check_enabled: true
+  health_check_timeout: 30
+  
+  # Auto-update settings
+  auto_update: false
+  update_check_interval: 86400  # 24 hours
+  
+  # Backup settings
+  backup_config: true
+  backup_dir: ~/.mcp/backups
