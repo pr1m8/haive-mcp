@@ -1,0 +1,51 @@
+{
+  "server_data": {
+    "name": "luminati-io/web-scraping-with-mcp",
+    "source": "github:TensorBlock/awesome-mcp-servers",
+    "source_url": "https://github.com/TensorBlock/awesome-mcp-servers",
+    "repository_url": "https://github.com/luminati-io/web-scraping-with-mcp",
+    "repository_owner": "luminati-io",
+    "repository_name": "web-scraping-with-mcp",
+    "description": "",
+    "category": "api_integration",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:39.231392+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 391
+    }
+  },
+  "quality_metrics": {
+    "name": "luminati-io/web-scraping-with-mcp",
+    "repository_url": "https://github.com/luminati-io/web-scraping-with-mcp",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "api_integration",
+    "subcategories": [
+      "rest_api"
+    ],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T21:05:56.418708+00:00",
+    "processing_time": 2.9087066650390625e-05
+  },
+  "processed_at": "2025-07-03T21:05:56.419675+00:00",
+  "processor_version": "1.0.0"
+}

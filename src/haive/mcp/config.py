@@ -45,6 +45,7 @@ Note:
 """
 
 from enum import Enum
+from typing import Dict, List, Optional
 
 from pydantic import BaseModel, Field
 
@@ -109,22 +110,22 @@ class MCPServerConfig(BaseModel):
 
     # Connection configuration
     transport: MCPTransport = Field(default=MCPTransport.STDIO)
-    command: str | None = Field(None, description="Command to start server")
-    args: list[str] | None = Field(
+    command: Optional[str] = Field(None, description="Command to start server")
+    args: Optional[List[str]] = Field(
         default_factory=list, description="Command arguments"
     )
-    url: str | None = Field(None, description="URL for HTTP-based transports")
+    url: Optional[str] = Field(None, description="URL for HTTP-based transports")
 
     # Environment and authentication
-    env: dict[str, str] = Field(
+    env: Dict[str, str] = Field(
         default_factory=dict, description="Environment variables"
     )
-    api_key: str | None = Field(None, description="API key if required")
+    api_key: Optional[str] = Field(None, description="API key if required")
 
     # Metadata
-    category: str | None = Field(None, description="Server category")
-    description: str | None = Field(None, description="Server description")
-    capabilities: list[str] = Field(
+    category: Optional[str] = Field(None, description="Server category")
+    description: Optional[str] = Field(None, description="Server description")
+    capabilities: List[str] = Field(
         default_factory=list, description="Server capabilities"
     )
 
@@ -132,7 +133,7 @@ class MCPServerConfig(BaseModel):
     timeout: int = Field(default=30, description="Connection timeout in seconds")
     retry_attempts: int = Field(default=3, description="Retry attempts on failure")
     auto_start: bool = Field(default=True, description="Auto-start server on init")
-    health_check_interval: int | None = Field(
+    health_check_interval: Optional[int] = Field(
         None, description="Health check interval in seconds"
     )
 
@@ -141,7 +142,41 @@ class MCPServerConfig(BaseModel):
 
 
 class MCPConfig(BaseModel):
-    """Complete MCP configuration for an agent."""
+    """Complete MCP configuration for an agent.
+    
+    This class provides the main configuration structure for MCP integration with Haive agents.
+    It controls server discovery, filtering, initialization, and runtime behavior.
+    
+    Attributes:
+        enabled: Whether MCP functionality is enabled
+        auto_discover: Automatically discover servers from configured paths
+        lazy_init: Initialize servers on-demand rather than at startup
+        servers: Dictionary mapping server names to their configurations
+        discovery_paths: List of paths to search for MCP server configurations
+        categories: Optional filter for server categories
+        required_capabilities: Optional list of required server capabilities
+        global_timeout: Timeout for all MCP operations in seconds
+        max_concurrent_servers: Maximum number of concurrent server connections
+        enable_health_checks: Whether to enable periodic server health checks
+        on_server_connected: Optional callback name when server connects
+        on_server_failed: Optional callback name when server fails
+        on_tool_discovered: Optional callback name when tool is discovered
+    
+    Example:
+        Creating a comprehensive MCP configuration::
+        
+            config = MCPConfig(
+                enabled=True,
+                servers={
+                    "filesystem": MCPServerConfig(...),
+                    "github": MCPServerConfig(...),
+                },
+                categories=["development", "filesystem"],
+                required_capabilities=["file_read"],
+                global_timeout=120,
+                max_concurrent_servers=5
+            )
+    """
 
     # Control flags
     enabled: bool = Field(default=False, description="Whether MCP is enabled")
@@ -151,17 +186,17 @@ class MCPConfig(BaseModel):
     lazy_init: bool = Field(default=True, description="Initialize servers on-demand")
 
     # Server configurations
-    servers: dict[str, MCPServerConfig] = Field(default_factory=dict)
+    servers: Dict[str, MCPServerConfig] = Field(default_factory=dict)
 
     # Discovery settings
-    discovery_paths: list[str] = Field(
+    discovery_paths: List[str] = Field(
         default_factory=lambda: ["~/.mcp/servers", ".mcp/servers", "mcp_servers"],
         description="Paths to search for server configs",
     )
 
     # Filtering
-    categories: list[str] | None = Field(None, description="Filter servers by category")
-    required_capabilities: list[str] | None = Field(
+    categories: Optional[List[str]] = Field(None, description="Filter servers by category")
+    required_capabilities: Optional[List[str]] = Field(
         None, description="Required capabilities"
     )
 
@@ -177,10 +212,10 @@ class MCPConfig(BaseModel):
     )
 
     # Callbacks (stored as strings, resolved at runtime)
-    on_server_connected: str | None = Field(
+    on_server_connected: Optional[str] = Field(
         None, description="Callback when server connects"
     )
-    on_server_failed: str | None = Field(None, description="Callback when server fails")
-    on_tool_discovered: str | None = Field(
+    on_server_failed: Optional[str] = Field(None, description="Callback when server fails")
+    on_tool_discovered: Optional[str] = Field(
         None, description="Callback when tool is discovered"
     )

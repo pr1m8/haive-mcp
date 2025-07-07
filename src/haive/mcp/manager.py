@@ -83,7 +83,16 @@ except ImportError:
 
 
 class MCPServerStatus(str, Enum):
-    """Status of an MCP server."""
+    """Status of an MCP server.
+    
+    Attributes:
+        PENDING: Not yet attempted to connect
+        CONNECTING: Connection in progress
+        CONNECTED: Successfully connected and operational
+        FAILED: Connection failed with error
+        DISCONNECTED: Intentionally disconnected by user
+        UNHEALTHY: Connected but health check failed
+    """
     PENDING = "pending"           # Not yet attempted
     CONNECTING = "connecting"     # Connection in progress
     CONNECTED = "connected"       # Successfully connected
@@ -93,7 +102,19 @@ class MCPServerStatus(str, Enum):
 
 
 class MCPRegistrationResult(BaseModel):
-    """Result of MCP server registration."""
+    """Result of MCP server registration.
+    
+    Contains the outcome of attempting to register and connect to an MCP server.
+    
+    Attributes:
+        server_name: Name of the server that was registered
+        success: Whether registration and connection succeeded
+        status: Current status of the server connection
+        error: Optional error message if registration failed
+        tools_discovered: Number of tools discovered from this server
+        resources_discovered: Number of resources discovered from this server
+        connection_time: Time taken to establish connection in seconds
+    """
     
     server_name: str = Field(description="Name of the server")
     success: bool = Field(description="Whether registration succeeded")
@@ -105,7 +126,33 @@ class MCPRegistrationResult(BaseModel):
 
 
 class MCPHealthStatus(BaseModel):
-    """Health status information for an MCP server."""
+    """Health status information for an MCP server.
+    
+    Tracks the health and performance metrics of an individual MCP server connection.
+    
+    Attributes:
+        server_name: Name of the server being monitored
+        status: Current operational status
+        last_check: Timestamp of the most recent health check
+        response_time: Latest response time in seconds (None if failed)
+        consecutive_failures: Count of consecutive failed health checks
+        total_requests: Total number of requests made to this server
+        successful_requests: Number of successful requests
+        error_details: Details of the most recent error (if any)
+        
+    Example:
+        Health status after monitoring::
+        
+            status = MCPHealthStatus(
+                server_name="filesystem",
+                status=MCPServerStatus.CONNECTED,
+                last_check=datetime.now(),
+                response_time=0.125,
+                consecutive_failures=0,
+                total_requests=1000,
+                successful_requests=998
+            )
+    """
     
     server_name: str = Field(description="Name of the server")
     status: MCPServerStatus = Field(description="Current status")

@@ -1,0 +1,49 @@
+{
+  "server_data": {
+    "name": "kylewoolstenhulme-block/Notion-Goose-MCP",
+    "source": "github:TensorBlock/awesome-mcp-servers",
+    "source_url": "https://github.com/TensorBlock/awesome-mcp-servers",
+    "repository_url": "https://github.com/kylewoolstenhulme-block/Notion-Goose-MCP",
+    "repository_owner": "kylewoolstenhulme-block",
+    "repository_name": "Notion-Goose-MCP",
+    "description": "",
+    "category": "productivity",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:39.209539+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 391
+    }
+  },
+  "quality_metrics": {
+    "name": "kylewoolstenhulme-block/Notion-Goose-MCP",
+    "repository_url": "https://github.com/kylewoolstenhulme-block/Notion-Goose-MCP",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "productivity",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T20:34:58.896213+00:00",
+    "processing_time": 2.9087066650390625e-05
+  },
+  "processed_at": "2025-07-03T20:34:58.897581+00:00",
+  "processor_version": "1.0.0"
+}

@@ -63,15 +63,63 @@ logger = logging.getLogger(__name__)
 
 
 class MCPMixin(BaseModel):
-    """
-    Mixin to add MCP capabilities to any agent.
+    """Mixin to add MCP (Model Context Protocol) capabilities to any agent.
 
-    This mixin provides:
-    - Dynamic MCP server discovery and connection
-    - Automatic tool registration
-    - Health monitoring
-    - Graceful degradation when servers fail
-    - Lazy initialization
+    This mixin provides comprehensive MCP integration including server management,
+    tool discovery, health monitoring, and graceful error handling. It can be
+    mixed into any Haive agent to add MCP functionality.
+
+    Attributes:
+        mcp_config: Optional MCP configuration for server connections
+
+    Private Attributes:
+        _mcp_client: The MultiServerMCPClient instance for server communication
+        _mcp_servers: Dictionary of configured MCP servers
+        _mcp_tools: Dictionary of discovered tools from MCP servers
+        _mcp_initialized: Flag indicating if MCP has been initialized
+        _failed_servers: Set of server names that failed to connect
+        _server_health: Health status tracking for each server
+
+    Features:
+        - Dynamic MCP server discovery and connection
+        - Automatic tool registration with agent systems
+        - Health monitoring with automatic reconnection
+        - Graceful degradation when servers fail
+        - Lazy initialization support
+        - Resource and prompt management
+
+    Example:
+        Creating a custom agent with MCP capabilities::
+
+            from haive.agents.base import Agent
+            from haive.mcp.mixins import MCPMixin
+            from haive.mcp.config import MCPConfig, MCPServerConfig
+
+            class MyMCPAgent(MCPMixin, Agent):
+                '''Custom agent with MCP capabilities.'''
+
+                async def setup(self):
+                    await super().setup()
+                    # Initialize MCP
+                    if self.mcp_config:
+                        await self.initialize_mcp()
+                        print(f"Loaded {len(self._mcp_tools)} MCP tools")
+
+            # Configure and use
+            agent = MyMCPAgent(
+                engine=engine,
+                mcp_config=MCPConfig(
+                    enabled=True,
+                    servers={
+                        "filesystem": MCPServerConfig(
+                            name="filesystem",
+                            transport="stdio",
+                            command="npx",
+                            args=["-y", "@modelcontextprotocol/server-filesystem"]
+                        )
+                    }
+                )
+            )
     """
 
     # MCP configuration

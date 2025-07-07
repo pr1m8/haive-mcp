@@ -1,0 +1,51 @@
+{
+  "server_data": {
+    "name": "<div align=\"center\"><img src=\"https://raw.githubusercontent.com/pietrozullo/mcp-use/refs/heads/main/docs/favicon.svg\" height=\"20\"/></div>",
+    "source": "github:appcypher/awesome-mcp-servers",
+    "source_url": "https://github.com/appcypher/awesome-mcp-servers",
+    "repository_url": "https://github.com/pietrozullo/mcp-use",
+    "repository_owner": "pietrozullo",
+    "repository_name": "mcp-use",
+    "description": "| [<div align=\"center\"><img src=\"https://wassist.app/whatsmcp.png\" height=\"20\"/></div>](https://wassist.app/mcp/) | [WhatsMCP](https://wassist.app/mcp/) | [WhatsApp x MCP](https://wassist.app/mcp/) |",
+    "category": "version_control",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.920377+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 3306
+    }
+  },
+  "quality_metrics": {
+    "name": "<div align=\"center\"><img src=\"https://raw.githubusercontent.com/pietrozullo/mcp-use/refs/heads/main/docs/favicon.svg\" height=\"20\"/></div>",
+    "repository_url": "https://github.com/pietrozullo/mcp-use",
+    "quality_score": 27.25,
+    "documentation_score": 10.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 75.0,
+    "category": "version_control",
+    "subcategories": [
+      "git_operations"
+    ],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T20:29:49.868011+00:00",
+    "processing_time": 4.3392181396484375e-05
+  },
+  "processed_at": "2025-07-03T20:29:49.868953+00:00",
+  "processor_version": "1.0.0"
+}

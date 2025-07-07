@@ -1,0 +1,51 @@
+{
+  "server_data": {
+    "name": "slot181/openapi-integrator-mcp",
+    "source": "github:TensorBlock/awesome-mcp-servers",
+    "source_url": "https://github.com/TensorBlock/awesome-mcp-servers",
+    "repository_url": "https://github.com/slot181/openapi-integrator-mcp",
+    "repository_owner": "slot181",
+    "repository_name": "openapi-integrator-mcp",
+    "description": "",
+    "category": "api_integration",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:39.214173+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 391
+    }
+  },
+  "quality_metrics": {
+    "name": "slot181/openapi-integrator-mcp",
+    "repository_url": "https://github.com/slot181/openapi-integrator-mcp",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "api_integration",
+    "subcategories": [
+      "rest_api"
+    ],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T20:45:18.080440+00:00",
+    "processing_time": 4.4345855712890625e-05
+  },
+  "processed_at": "2025-07-03T20:45:18.082755+00:00",
+  "processor_version": "1.0.0"
+}
