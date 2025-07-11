@@ -442,7 +442,7 @@ async def root():
         
         // Initialize WebSocket
         function initWebSocket() {
-            ws = new WebSocket('ws://localhost:8000/ws');
+            ws = new WebSocket('ws://localhost:6969/ws');
             
             ws.onopen = () => {
                 addStatus('✅ Connected to server');
@@ -704,6 +704,6 @@ if __name__ == "__main__":
         subprocess.run([sys.executable, "-m", "pip", "install", "fastmcp"], check=True)
     
     print("🚀 Starting MCP Discovery & Installation Server")
-    print("📍 Open http://localhost:8000 in your browser")
+    print("📍 Open http://localhost:6969 in your browser")
     
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=6969)

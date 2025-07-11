@@ -26,7 +26,7 @@ from langchain.retrievers.self_query.base import SelfQueryRetriever
 from langchain.chains.query_constructor.base import AttributeInfo
 from langchain.storage import InMemoryStore
 from langchain_community.vectorstores import Chroma
-from langchain_openai import OpenAIEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 
 
 class WorkingEnhancedRetriever:
@@ -34,7 +34,7 @@ class WorkingEnhancedRetriever:
     
     def __init__(self):
         self.doc_loader = MCPDocumentationLoader()
-        self.embeddings = OpenAIEmbeddings()
+        self.embeddings = HuggingFaceEmbeddings()
         self.parent_store = InMemoryStore()
         self.child_vectorstore = None
         self.parent_retriever = None
