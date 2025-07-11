@@ -20,6 +20,7 @@ import sys
 from pathlib import Path
 from typing import List, Optional
 
+from haive.core.errors import install_short_tracebacks
 from haive.mcp.documentation.doc_loader import MCPDocumentationLoader
 from haive.mcp.tools.ai_assistant import MCPAssistant
 from haive.mcp.tools.server_selector import MCPServerSelector
@@ -370,6 +371,7 @@ if __name__ == "__main__":
 
 def main():
     """Main CLI entry point."""
+    install_short_tracebacks()  # Apply minimal tracebacks globally
     parser = argparse.ArgumentParser(
         description="MCP Server Selection and Configuration CLI",
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -487,7 +489,7 @@ Examples:
             print("\n❌ Operation cancelled by user.")
             sys.exit(1)
         except Exception as e:
-            print(f"❌ Error: {e}")
+            # The custom excepthook will handle printing the error
             sys.exit(1)
     else:
         print(f"Unknown command: {args.command}")
