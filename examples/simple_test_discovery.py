@@ -39,9 +39,9 @@ if data_path.exists():
     print("\n\n🔍 Searching for database tools...")
     databases = []
     for server in servers:
-        name = server.get('name', '').lower()
-        desc = server.get('description', '').lower()
-        cat = server.get('category', '').lower()
+        name = (server.get('name') or '').lower()
+        desc = (server.get('description') or '').lower()
+        cat = (server.get('category') or '').lower()
         if 'database' in name or 'database' in desc or 'sql' in name or 'database' in cat:
             databases.append(server)
     
