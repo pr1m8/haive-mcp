@@ -10,13 +10,10 @@ Usage:
 """
 
 import asyncio
-import json
-from pathlib import Path
-from typing import Any, Dict
+from typing import Any
 
 from haive.core.engine.aug_llm import AugLLMConfig
 from haive.core.models.llm.base import LLMConfig
-
 from haive.mcp.agents import MCPAgent
 
 # Import the haive MCP tools
@@ -39,7 +36,7 @@ class AIEnhancedCodingAgent:
             name="ai_enhanced_engine",
         )
 
-    async def analyze_and_configure(self, task_description: str) -> Dict[str, Any]:
+    async def analyze_and_configure(self, task_description: str) -> dict[str, Any]:
         """Analyze a task and automatically configure MCP servers.
 
         Args:
@@ -60,20 +57,20 @@ class AIEnhancedCodingAgent:
         )
 
         # Display analysis results
-        print(f"💭 Task Analysis:")
+        print("💭 Task Analysis:")
         print(f"   Detected pattern: {smart_config.reasoning}")
         print(f"   Setup complexity: {smart_config.setup_complexity}")
         print(f"   Primary servers: {len(smart_config.primary_servers)}")
 
         if smart_config.warnings:
-            print(f"⚠️  Warnings:")
+            print("⚠️  Warnings:")
             for warning in smart_config.warnings:
                 print(f"   - {warning}")
 
         # Validate the configuration
         validation = await self.assistant.validate_configuration(smart_config.config)
 
-        print(f"\n✅ Configuration Validation:")
+        print("\n✅ Configuration Validation:")
         print(f"   Valid: {'Yes' if validation['valid'] else 'No'}")
         print(f"   Setup time: ~{validation['estimated_setup_time']}s")
 
@@ -83,7 +80,7 @@ class AIEnhancedCodingAgent:
             )
 
         if not validation["valid"]:
-            print(f"❌ Issues found:")
+            print("❌ Issues found:")
             for issue in validation["issues"]:
                 print(f"   - {issue}")
 
@@ -103,7 +100,7 @@ class AIEnhancedCodingAgent:
                 "No configuration available. Run analyze_and_configure first."
             )
 
-        print(f"\n🤖 Creating enhanced agent...")
+        print("\n🤖 Creating enhanced agent...")
 
         # Create MCP-enabled agent
         agent = MCPAgent(
@@ -128,12 +125,12 @@ class AIEnhancedCodingAgent:
         if not self.current_agent:
             raise ValueError("No agent available. Create agent first.")
 
-        print(f"\n🚀 Demonstrating enhanced capabilities...")
+        print("\n🚀 Demonstrating enhanced capabilities...")
 
         # Get available capabilities
         status = self.current_agent.get_mcp_status()
 
-        print(f"📊 Available Resources:")
+        print("📊 Available Resources:")
         print(f"   MCP Tools: {status['tool_count']}")
         print(f"   Connected Servers: {len(status['connected_servers'])}")
 
@@ -141,7 +138,7 @@ class AIEnhancedCodingAgent:
             print(f"   - {server}")
 
         # Example: Try to use available tools
-        print(f"\n🔧 Available MCP Tools:")
+        print("\n🔧 Available MCP Tools:")
         for tool_name in status["available_tools"][:5]:  # Show first 5
             print(f"   - {tool_name}")
 
@@ -167,7 +164,7 @@ class AIEnhancedCodingAgent:
 
     async def switch_task_context(self, new_task: str):
         """Switch to a new task context with different server configuration."""
-        print(f"\n🔄 Switching to new task context...")
+        print("\n🔄 Switching to new task context...")
 
         # Analyze new task
         await self.analyze_and_configure(new_task)
@@ -181,7 +178,6 @@ class AIEnhancedCodingAgent:
 
 async def demonstrate_scenarios():
     """Demonstrate various coding scenarios with intelligent server selection."""
-
     agent = AIEnhancedCodingAgent()
 
     # Scenario 1: Code Security Analysis
@@ -263,7 +259,7 @@ async def demonstrate_filtering():
         print(f"   {name.split('/')[-1]} ({category})")
 
     # Show task-based recommendations
-    print(f"\n🎯 Task-based Recommendations:")
+    print("\n🎯 Task-based Recommendations:")
 
     sample_tasks = [
         "work with files and directories",

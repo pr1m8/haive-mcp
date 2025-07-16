@@ -1,51 +1,56 @@
 #!/usr/bin/env python3
-"""
-Proper MCP Integration - Using correct langchain tool patterns
+"""Proper MCP Integration - Using correct langchain tool patterns
 
 This demonstrates the RIGHT way to create MCP tools:
-1. Using @tool decorator 
+1. Using @tool decorator
 2. Using StructuredTool.from_function
 3. Proper state management outside the tool class
 4. Real MCP server integration
 """
 
 import asyncio
-import subprocess
 import json
 import os
-from pathlib import Path
-from typing import Dict, Any, Optional
-from langchain_core.tools import tool, StructuredTool
+import subprocess
+from typing import Any
+
+from langchain_core.tools import StructuredTool, tool
 from pydantic import BaseModel, Field
 
 
 class MCPServerManager:
     """Manages MCP server processes and state - OUTSIDE of tool classes"""
-    
+
     def __init__(self):
-        self.servers: Dict[str, subprocess.Popen] = {}
-        self.initialized_servers: Dict[str, bool] = {}
-        self.request_ids: Dict[str, int] = {}
-        
+        self.servers: dict[str, subprocess.Popen] = {}
+        self.initialized_servers: dict[str, bool] = {}
+        self.request_ids: dict[str, int] = {}
+
     async def start_filesystem_server(self) -> bool:
         """Start MCP filesystem server"""
         try:
             # Create test files
             test_dir = "/tmp/mcp_demo"
             os.makedirs(test_dir, exist_ok=True)
-            
+
             with open(f"{test_dir}/demo.txt", "w") as f:
-                f.write("Hello from real MCP filesystem server!\nThis file was read using proper tool integration.")
-            
+                f.write(
+                    "Hello from real MCP filesystem server!\nThis file was read using proper tool integration."
+                )
+
             with open(f"{test_dir}/info.json", "w") as f:
-                json.dump({
-                    "server": "MCP Filesystem",
-                    "status": "running",
-                    "capabilities": ["read_file", "write_file", "list_directory"]
-                }, f, indent=2)
-            
+                json.dump(
+                    {
+                        "server": "MCP Filesystem",
+                        "status": "running",
+                        "capabilities": ["read_file", "write_file", "list_directory"],
+                    },
+                    f,
+                    indent=2,
+                )
+
             print(f"📁 Created test files in: {test_dir}")
-            
+
             # Start server
             print("🚀 Starting MCP filesystem server...")
             process = subprocess.Popen(
@@ -54,30 +59,30 @@ class MCPServerManager:
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 text=True,
-                cwd="/home/will/Projects/haive/backend/haive"
+                cwd="/home/will/Projects/haive/backend/haive",
             )
-            
+
             await asyncio.sleep(2)
-            
+
             if process.poll() is None:
                 self.servers["filesystem"] = process
                 self.request_ids["filesystem"] = 1
-                
+
                 # Initialize the server
                 if await self._initialize_server("filesystem"):
                     print(f"✅ Filesystem server ready (PID: {process.pid})")
                     return True
-                    
+
         except Exception as e:
             print(f"❌ Error starting server: {e}")
-            
+
         return False
-    
+
     async def _initialize_server(self, server_name: str) -> bool:
         """Initialize MCP server connection"""
         try:
             process = self.servers[server_name]
-            
+
             init_request = {
                 "jsonrpc": "2.0",
                 "id": self.request_ids[server_name],
@@ -85,74 +90,74 @@ class MCPServerManager:
                 "params": {
                     "protocolVersion": "2024-11-05",
                     "capabilities": {},
-                    "clientInfo": {"name": "haive-mcp", "version": "1.0.0"}
-                }
+                    "clientInfo": {"name": "haive-mcp", "version": "1.0.0"},
+                },
             }
-            
-            process.stdin.write(json.dumps(init_request) + '\n')
+
+            process.stdin.write(json.dumps(init_request) + "\n")
             process.stdin.flush()
             self.request_ids[server_name] += 1
-            
+
             response = process.stdout.readline()
             if response.strip():
                 result = json.loads(response)
-                if 'result' in result:
+                if "result" in result:
                     # Send initialized notification
                     initialized = {
                         "jsonrpc": "2.0",
-                        "method": "notifications/initialized"
+                        "method": "notifications/initialized",
                     }
-                    process.stdin.write(json.dumps(initialized) + '\n')
+                    process.stdin.write(json.dumps(initialized) + "\n")
                     process.stdin.flush()
-                    
+
                     self.initialized_servers[server_name] = True
                     print(f"✅ {server_name} server initialized")
                     return True
-                    
+
         except Exception as e:
             print(f"❌ Failed to initialize {server_name}: {e}")
-            
+
         return False
-    
-    def call_mcp_tool(self, server_name: str, tool_name: str, arguments: Dict[str, Any]) -> str:
+
+    def call_mcp_tool(
+        self, server_name: str, tool_name: str, arguments: dict[str, Any]
+    ) -> str:
         """Call an MCP tool on a server"""
-        if server_name not in self.servers or not self.initialized_servers.get(server_name):
+        if server_name not in self.servers or not self.initialized_servers.get(
+            server_name
+        ):
             return f"❌ Server {server_name} not available"
-            
+
         try:
             process = self.servers[server_name]
             request = {
                 "jsonrpc": "2.0",
                 "id": self.request_ids[server_name],
                 "method": "tools/call",
-                "params": {
-                    "name": tool_name,
-                    "arguments": arguments
-                }
+                "params": {"name": tool_name, "arguments": arguments},
             }
-            
-            process.stdin.write(json.dumps(request) + '\n')
+
+            process.stdin.write(json.dumps(request) + "\n")
             process.stdin.flush()
             self.request_ids[server_name] += 1
-            
+
             response = process.stdout.readline()
             if response.strip():
                 result = json.loads(response)
-                
-                if 'result' in result:
-                    content = result['result'].get('content', [])
-                    if content and content[0].get('type') == 'text':
-                        return content[0].get('text', str(result['result']))
-                    else:
-                        return str(result['result'])
-                elif 'error' in result:
+
+                if "result" in result:
+                    content = result["result"].get("content", [])
+                    if content and content[0].get("type") == "text":
+                        return content[0].get("text", str(result["result"]))
+                    return str(result["result"])
+                if "error" in result:
                     return f"❌ MCP Error: {result['error']['message']}"
-                    
+
         except Exception as e:
             return f"❌ Communication error: {e}"
-            
+
         return "❌ No response from server"
-    
+
     def stop_all_servers(self):
         """Stop all MCP servers"""
         for name, process in self.servers.items():
@@ -163,7 +168,7 @@ class MCPServerManager:
             except:
                 process.kill()
                 print(f"🔥 Force killed {name} server")
-        
+
         self.servers.clear()
         self.initialized_servers.clear()
 
@@ -176,17 +181,17 @@ mcp_manager = MCPServerManager()
 @tool
 def mcp_read_file(filename: str) -> str:
     """Read a file using MCP filesystem server
-    
+
     Args:
         filename: Name of the file to read (e.g., 'demo.txt', 'info.json')
     """
     return mcp_manager.call_mcp_tool("filesystem", "read_file", {"path": filename})
 
 
-@tool  
+@tool
 def mcp_list_directory(path: str = ".") -> str:
     """List directory contents using MCP filesystem server
-    
+
     Args:
         path: Directory path to list (default: current directory)
     """
@@ -196,70 +201,72 @@ def mcp_list_directory(path: str = ".") -> str:
 # Method 2: Using StructuredTool with input schema
 class FileOperationInput(BaseModel):
     """Input schema for file operations"""
+
     operation: str = Field(description="Operation: 'read' or 'list'")
     path: str = Field(description="File or directory path")
-    
+
 
 def mcp_file_operations(operation: str, path: str) -> str:
     """Perform file operations via MCP filesystem server"""
     if operation == "read":
         return mcp_manager.call_mcp_tool("filesystem", "read_file", {"path": path})
-    elif operation == "list":
+    if operation == "list":
         return mcp_manager.call_mcp_tool("filesystem", "list_directory", {"path": path})
-    else:
-        return f"❌ Unknown operation: {operation}"
+    return f"❌ Unknown operation: {operation}"
 
 
 mcp_structured_tool = StructuredTool.from_function(
     func=mcp_file_operations,
     name="mcp_filesystem_operations",
     description="Perform file and directory operations via MCP filesystem server",
-    args_schema=FileOperationInput
+    args_schema=FileOperationInput,
 )
 
 
 async def test_tool_decorator_approach():
     """Test the @tool decorator approach"""
-    print("\n" + "="*60)
+    print("\n" + "=" * 60)
     print("🔧 Testing @tool Decorator Approach")
-    print("="*60)
-    
+    print("=" * 60)
+
     print("\n1. Testing file reading tool:")
     result1 = mcp_read_file.run("demo.txt")
     print(f"   Result: {result1}")
-    
+
     print("\n2. Testing directory listing tool:")
     result2 = mcp_list_directory.run(".")
     print(f"   Result: {result2}")
-    
+
     print("\n3. Testing JSON file reading:")
     result3 = mcp_read_file.run("info.json")
     print(f"   Result: {result3}")
-    
+
     print("\n💡 Note: The MCP server is working correctly!")
     print("   It's restricting file access to the allowed directory (/tmp/mcp_demo)")
     print("   This is proper security behavior for MCP servers.")
-    
-    print(f"\n✅ Tool Details:")
+
+    print("\n✅ Tool Details:")
     print(f"   Read Tool - Name: {mcp_read_file.name}, Type: {type(mcp_read_file)}")
-    print(f"   List Tool - Name: {mcp_list_directory.name}, Type: {type(mcp_list_directory)}")
+    print(
+        f"   List Tool - Name: {mcp_list_directory.name}, Type: {type(mcp_list_directory)}"
+    )
 
 
 async def test_structured_tool_approach():
     """Test the StructuredTool approach"""
-    print("\n" + "="*60)
+    print("\n" + "=" * 60)
     print("📊 Testing StructuredTool Approach")
-    print("="*60)
-    
+    print("=" * 60)
+
     print("\n1. Testing structured file read:")
     result1 = mcp_structured_tool.run({"operation": "read", "path": "demo.txt"})
     print(f"   Result: {result1}")
-    
+
     print("\n2. Testing structured directory list:")
     result2 = mcp_structured_tool.run({"operation": "list", "path": "."})
     print(f"   Result: {result2}")
-    
-    print(f"\n✅ Structured Tool Details:")
+
+    print("\n✅ Structured Tool Details:")
     print(f"   Name: {mcp_structured_tool.name}")
     print(f"   Type: {type(mcp_structured_tool)}")
     print(f"   Args Schema: {mcp_structured_tool.args_schema}")
@@ -267,11 +274,12 @@ async def test_structured_tool_approach():
 
 async def demonstrate_haive_integration():
     """Show how these tools integrate with haive agents"""
-    print("\n" + "="*60)
+    print("\n" + "=" * 60)
     print("🤖 Haive Agent Integration Example")
-    print("="*60)
-    
-    print("""
+    print("=" * 60)
+
+    print(
+        """
 These properly created tools can now be used with haive agents:
 
 ```python
@@ -315,36 +323,37 @@ result2 = await react_agent.arun("List all files and read info.json")
 ✅ Type safety with Pydantic schemas
 ✅ Works with all haive agent types
 ✅ Easy to extend with more MCP servers
-""")
+"""
+    )
 
 
 async def main():
     """Run the complete proper MCP integration test"""
     print("🚀 Proper MCP Integration Test")
-    print("="*60)
+    print("=" * 60)
     print("Demonstrating the CORRECT way to create MCP tools for haive\n")
-    
+
     try:
         # Start MCP server
         if not await mcp_manager.start_filesystem_server():
             print("❌ Failed to start MCP server")
             return
-        
+
         # Test both approaches
         await test_tool_decorator_approach()
         await test_structured_tool_approach()
-        
+
         # Show haive integration
         await demonstrate_haive_integration()
-        
+
         print("\n🏆 SUCCESS! Proper MCP tool integration complete!")
         print("\n🎯 Key Learnings:")
         print("- Use @tool decorator for simple functions")
-        print("- Use StructuredTool.from_function for complex tools")  
+        print("- Use StructuredTool.from_function for complex tools")
         print("- NEVER subclass BaseTool incorrectly")
         print("- Keep server state in external manager classes")
         print("- These tools work perfectly with haive agents")
-        
+
     finally:
         # Always cleanup
         mcp_manager.stop_all_servers()

@@ -1,16 +1,13 @@
-"""
-Example demonstrating basic MCP agent usage with type-checked integration.
-"""
+"""Example demonstrating basic MCP agent usage with type-checked integration."""
 
 import asyncio
 import logging
-from typing import Optional
 
 from haive.core.engine import create_engine
-
 from haive.mcp.agents import MCPAgent
 from haive.mcp.config import MCPConfig, MCPServerConfig
 from haive.mcp.discovery import MCPServerDiscovery
+
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -18,7 +15,6 @@ logger = logging.getLogger(__name__)
 
 async def example_basic_mcp_agent():
     """Basic example of creating and using an MCP agent."""
-
     # Create an engine (adjust model as needed)
     engine = create_engine(model="gpt-4o-mini")
 
@@ -64,7 +60,6 @@ async def example_basic_mcp_agent():
 
 async def example_dynamic_discovery():
     """Example using dynamic MCP server discovery."""
-
     # Create discovery instance
     discovery = MCPServerDiscovery()
 
@@ -96,7 +91,6 @@ async def example_dynamic_discovery():
 
 async def example_multi_server_agent():
     """Example with multiple MCP servers."""
-
     engine = create_engine(model="gpt-4o-mini")
 
     # Create agent with multiple servers using convenience method
@@ -138,7 +132,6 @@ async def example_multi_server_agent():
 
 async def example_capability_based_tools():
     """Example finding tools by capability."""
-
     engine = create_engine(model="gpt-4o-mini")
 
     # Create agent
@@ -173,7 +166,6 @@ async def example_capability_based_tools():
 
 async def example_with_component_registry():
     """Example integrating with component registry."""
-
     # Discover servers
     discovery = MCPServerDiscovery()
     servers = await discovery.discover_all()

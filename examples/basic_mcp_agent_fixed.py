@@ -1,11 +1,9 @@
-"""
-Example demonstrating basic MCP agent usage with type-checked integration.
+"""Example demonstrating basic MCP agent usage with type-checked integration.
 Fixed version with correct imports.
 """
 
 import asyncio
 import logging
-from typing import Optional
 
 from haive.core.engine.aug_llm import AugLLMConfig
 from haive.core.models.llm.base import OpenAILLMConfig
@@ -13,20 +11,17 @@ from haive.mcp.agents import MCPAgent
 from haive.mcp.config import MCPConfig, MCPServerConfig
 from haive.mcp.discovery import MCPServerDiscovery
 
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
 async def example_basic_mcp_agent():
     """Basic example of creating and using an MCP agent."""
-
     # Create an engine (adjust model as needed)
     engine = AugLLMConfig(
-        llm_config=OpenAILLMConfig(
-            model="gpt-4o-mini",
-            temperature=0.1
-        ),
-        name="mcp_engine"
+        llm_config=OpenAILLMConfig(model="gpt-4o-mini", temperature=0.1),
+        name="mcp_engine",
     )
 
     # Create MCP configuration
@@ -71,7 +66,6 @@ async def example_basic_mcp_agent():
 
 async def example_dynamic_discovery():
     """Example using dynamic MCP server discovery."""
-
     # Create discovery instance
     discovery = MCPServerDiscovery()
 
@@ -86,12 +80,9 @@ async def example_dynamic_discovery():
     # Create agent with discovered servers
     if servers:
         engine = AugLLMConfig(
-        llm_config=OpenAILLMConfig(
-            model="gpt-4o-mini",
-            temperature=0.1
-        ),
-        name="mcp_engine"
-    )
+            llm_config=OpenAILLMConfig(model="gpt-4o-mini", temperature=0.1),
+            name="mcp_engine",
+        )
 
         # Use discovered configuration
         mcp_config = discovery.create_mcp_config()
@@ -109,13 +100,9 @@ async def example_dynamic_discovery():
 
 async def example_multi_server_agent():
     """Example with multiple MCP servers."""
-
     engine = AugLLMConfig(
-        llm_config=OpenAILLMConfig(
-            model="gpt-4o-mini",
-            temperature=0.1
-        ),
-        name="mcp_engine"
+        llm_config=OpenAILLMConfig(model="gpt-4o-mini", temperature=0.1),
+        name="mcp_engine",
     )
 
     # Create agent with multiple servers using convenience method
@@ -157,13 +144,9 @@ async def example_multi_server_agent():
 
 async def example_capability_based_tools():
     """Example finding tools by capability."""
-
     engine = AugLLMConfig(
-        llm_config=OpenAILLMConfig(
-            model="gpt-4o-mini",
-            temperature=0.1
-        ),
-        name="mcp_engine"
+        llm_config=OpenAILLMConfig(model="gpt-4o-mini", temperature=0.1),
+        name="mcp_engine",
     )
 
     # Create agent
@@ -198,7 +181,6 @@ async def example_capability_based_tools():
 
 async def example_with_component_registry():
     """Example integrating with component registry."""
-
     # Discover servers
     discovery = MCPServerDiscovery()
     servers = await discovery.discover_all()
