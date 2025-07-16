@@ -5,10 +5,10 @@ using autodoc, autosummary, and Google-style docstrings with comprehensive
 type hint support.
 """
 
-import os
-import sys
 from datetime import datetime
 from pathlib import Path
+import sys
+
 
 # Add source to path
 docs_dir = Path(__file__).parent
@@ -210,6 +210,7 @@ copybutton_prompt_is_regexp = True
 
 # Suppress specific warnings
 suppress_warnings = ["autosummary", "autosummary.import_cycle"]
+
 
 # Custom setup
 def setup(app):
