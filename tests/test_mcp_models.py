@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 """Test MCP models and basic functionality."""
 
-import pytest
 from haive.dataflow.registry.models import (
-    MCPTransport,
-    MCPServerConfig,
-    MCPToolDefinition,
-    MCPResourceDefinition,
     MCPPromptDefinition,
+    MCPResourceDefinition,
+    MCPServerConfig,
     MCPServerHealth,
+    MCPToolDefinition,
+    MCPTransport,
 )
 
 
@@ -29,13 +28,13 @@ def test_mcp_server_config():
         args=["--test", "--verbose"],
         capabilities=["read", "write"],
     )
-    
+
     assert stdio_config.name == "test-stdio-server"
     assert stdio_config.transport == MCPTransport.STDIO
     assert stdio_config.command == "test-command"
     assert len(stdio_config.args) == 2
     assert "read" in stdio_config.capabilities
-    
+
     # Test HTTP transport config
     http_config = MCPServerConfig(
         name="test-http-server",
@@ -43,12 +42,12 @@ def test_mcp_server_config():
         url="http://localhost:8080/mcp",
         capabilities=["search", "fetch"],
     )
-    
+
     assert http_config.name == "test-http-server"
     assert http_config.transport == MCPTransport.HTTP
     assert http_config.url == "http://localhost:8080/mcp"
     assert http_config.command is None
-    
+
     # Test model dump
     dump = stdio_config.model_dump()
     assert dump["name"] == "test-stdio-server"
@@ -63,14 +62,12 @@ def test_mcp_tool_definition():
         server_name="filesystem-server",
         schema={
             "type": "object",
-            "properties": {
-                "path": {"type": "string", "description": "File path"}
-            },
-            "required": ["path"]
+            "properties": {"path": {"type": "string", "description": "File path"}},
+            "required": ["path"],
         },
         tags=["filesystem", "read"],
     )
-    
+
     assert tool.name == "read_file"
     assert tool.server_name == "filesystem-server"
     assert tool.schema["properties"]["path"]["type"] == "string"
@@ -86,7 +83,7 @@ def test_mcp_resource_definition():
         server_name="docs-server",
         mime_type="text/markdown",
     )
-    
+
     assert resource.name == "project-docs"
     assert resource.uri == "file:///docs/project"
     assert resource.mime_type == "text/markdown"
@@ -107,7 +104,7 @@ def test_mcp_prompt_definition():
             }
         ],
     )
-    
+
     assert prompt.name == "code-review"
     assert len(prompt.variables) == 1
     assert prompt.variables[0]["required"] is True
@@ -116,7 +113,7 @@ def test_mcp_prompt_definition():
 def test_mcp_server_health():
     """Test MCPServerHealth model."""
     from datetime import datetime
-    
+
     # Healthy server
     health = MCPServerHealth(
         server_name="test-server",
@@ -126,12 +123,12 @@ def test_mcp_server_health():
         error_count=0,
         capabilities_available=["read", "write", "search"],
     )
-    
+
     assert health.is_healthy is True
     assert health.response_time_ms == 50.5
     assert health.error_count == 0
     assert len(health.capabilities_available) == 3
-    
+
     # Unhealthy server
     unhealthy = MCPServerHealth(
         server_name="failing-server",
@@ -141,7 +138,7 @@ def test_mcp_server_health():
         error_details="Connection timeout",
         capabilities_available=[],
     )
-    
+
     assert unhealthy.is_healthy is False
     assert unhealthy.error_count == 5
     assert unhealthy.error_details == "Connection timeout"
@@ -152,20 +149,20 @@ if __name__ == "__main__":
     # Run tests
     test_mcp_transport_enum()
     print("✓ MCPTransport enum test passed")
-    
+
     test_mcp_server_config()
     print("✓ MCPServerConfig model test passed")
-    
+
     test_mcp_tool_definition()
     print("✓ MCPToolDefinition model test passed")
-    
+
     test_mcp_resource_definition()
     print("✓ MCPResourceDefinition model test passed")
-    
+
     test_mcp_prompt_definition()
     print("✓ MCPPromptDefinition model test passed")
-    
+
     test_mcp_server_health()
     print("✓ MCPServerHealth model test passed")
-    
+
     print("\n✅ All MCP model tests passed!")

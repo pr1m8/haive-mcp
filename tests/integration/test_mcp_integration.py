@@ -1,6 +1,4 @@
-"""
-Tests for MCP integration with haive-agents.
-"""
+"""Tests for MCP integration with haive-agents."""
 
 from unittest.mock import AsyncMock, MagicMock, patch
 
@@ -252,7 +250,6 @@ class TestMCPDiscovery:
 @pytest.mark.asyncio
 async def test_end_to_end_integration():
     """Test end-to-end MCP integration."""
-
     # Create mock engine
     engine = MagicMock()
     engine.bind_tools = MagicMock(return_value=engine)
