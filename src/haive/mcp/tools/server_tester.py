@@ -49,12 +49,13 @@ Note:
 """
 
 import asyncio
+from dataclasses import dataclass
 import logging
 import time
-from dataclasses import dataclass
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any
 
 from haive.mcp.config import MCPConfig, MCPServerConfig
+
 
 logger = logging.getLogger(__name__)
 
@@ -66,10 +67,10 @@ class TestResult:
     server_name: str
     success: bool
     response_time: float  # seconds
-    error: Optional[str] = None
+    error: str | None = None
     tools_discovered: int = 0
-    capabilities_found: List[str] = None
-    warnings: List[str] = None
+    capabilities_found: list[str] = None
+    warnings: list[str] = None
 
     def __post_init__(self):
         if self.capabilities_found is None:
@@ -101,10 +102,10 @@ class HealthMonitor:
         """
         self.check_interval = check_interval
         self.monitoring = False
-        self.health_status: Dict[str, HealthStatus] = {}
+        self.health_status: dict[str, HealthStatus] = {}
         self.monitor_task = None
 
-    async def start_monitoring(self, servers: List[MCPServerConfig]):
+    async def start_monitoring(self, servers: list[MCPServerConfig]):
         """Start monitoring the specified servers.
 
         Args:
@@ -135,7 +136,7 @@ class HealthMonitor:
 
         logger.info("Stopped health monitoring")
 
-    async def _monitor_loop(self, servers: List[MCPServerConfig]):
+    async def _monitor_loop(self, servers: list[MCPServerConfig]):
         """Main monitoring loop."""
         tester = MCPServerTester()
 
@@ -173,11 +174,11 @@ class HealthMonitor:
                 logger.error(f"Error in monitoring loop: {e}")
                 await asyncio.sleep(self.check_interval)
 
-    def get_health_report(self) -> Dict[str, HealthStatus]:
+    def get_health_report(self) -> dict[str, HealthStatus]:
         """Get current health status for all monitored servers."""
         return self.health_status.copy()
 
-    def get_unhealthy_servers(self) -> List[str]:
+    def get_unhealthy_servers(self) -> list[str]:
         """Get list of unhealthy server names."""
         return [
             name for name, status in self.health_status.items() if not status.healthy
@@ -189,7 +190,7 @@ class MCPServerTester:
 
     def __init__(self):
         """Initialize server tester."""
-        self.test_history: List[TestResult] = []
+        self.test_history: list[TestResult] = []
 
     async def test_server(
         self, server_config: MCPServerConfig, timeout: int = 60
@@ -256,7 +257,7 @@ class MCPServerTester:
                     except Exception:
                         pass
 
-        except asyncio.TimeoutError:
+        except TimeoutError:
             result = TestResult(
                 server_name=server_config.name,
                 success=False,
@@ -278,8 +279,8 @@ class MCPServerTester:
         return result
 
     async def test_multiple_servers(
-        self, servers: List[MCPServerConfig], timeout: int = 60, parallel: bool = True
-    ) -> List[TestResult]:
+        self, servers: list[MCPServerConfig], timeout: int = 60, parallel: bool = True
+    ) -> list[TestResult]:
         """Test multiple servers.
 
         Args:
@@ -312,16 +313,15 @@ class MCPServerTester:
 
             return final_results
 
-        else:
-            # Test sequentially
-            results = []
-            for server in servers:
-                result = await self.test_server(server, timeout)
-                results.append(result)
+        # Test sequentially
+        results = []
+        for server in servers:
+            result = await self.test_server(server, timeout)
+            results.append(result)
 
-            return results
+        return results
 
-    async def test_config(self, config: MCPConfig) -> Dict[str, TestResult]:
+    async def test_config(self, config: MCPConfig) -> dict[str, TestResult]:
         """Test an entire MCP configuration.
 
         Args:
@@ -335,7 +335,7 @@ class MCPServerTester:
 
         return {result.server_name: result for result in results}
 
-    def _create_client_config(self, server_config: MCPServerConfig) -> Dict[str, Any]:
+    def _create_client_config(self, server_config: MCPServerConfig) -> dict[str, Any]:
         """Create client configuration from server config."""
         config = {}
 
@@ -354,8 +354,8 @@ class MCPServerTester:
         return config
 
     def _analyze_capabilities(
-        self, tools: List[Any], server_config: MCPServerConfig
-    ) -> List[str]:
+        self, tools: list[Any], server_config: MCPServerConfig
+    ) -> list[str]:
         """Analyze discovered tools to determine capabilities."""
         capabilities = set()
 
@@ -397,8 +397,8 @@ class MCPServerTester:
         return list(capabilities)
 
     def _check_for_warnings(
-        self, server_config: MCPServerConfig, tools: List[Any]
-    ) -> List[str]:
+        self, server_config: MCPServerConfig, tools: list[Any]
+    ) -> list[str]:
         """Check for potential issues and generate warnings."""
         warnings = []
 
@@ -442,11 +442,11 @@ class MCPServerTester:
         """
         return HealthMonitor(check_interval)
 
-    def get_test_history(self) -> List[TestResult]:
+    def get_test_history(self) -> list[TestResult]:
         """Get history of all test results."""
         return self.test_history.copy()
 
-    def get_success_rate(self, server_name: Optional[str] = None) -> float:
+    def get_success_rate(self, server_name: str | None = None) -> float:
         """Get success rate for a server or overall.
 
         Args:
@@ -468,7 +468,7 @@ class MCPServerTester:
         successful = sum(1 for test in relevant_tests if test.success)
         return (successful / len(relevant_tests)) * 100.0
 
-    def generate_test_report(self) -> Dict[str, Any]:
+    def generate_test_report(self) -> dict[str, Any]:
         """Generate a comprehensive test report.
 
         Returns:
@@ -513,8 +513,8 @@ class MCPServerTester:
         }
 
     def _generate_recommendations(
-        self, by_server: Dict[str, List[TestResult]]
-    ) -> List[str]:
+        self, by_server: dict[str, list[TestResult]]
+    ) -> list[str]:
         """Generate recommendations based on test results."""
         recommendations = []
 

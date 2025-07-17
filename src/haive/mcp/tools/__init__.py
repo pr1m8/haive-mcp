@@ -4,33 +4,39 @@ This package provides tools to help AI agents and users intelligently select,
 filter, and manage MCP servers based on various criteria.
 """
 
-from .ai_assistant import (
+from haive.mcp.tools.ai_assistant import (
     MCPAssistant,
     ServerRecommendation,
     SmartConfiguration,
     TaskMatcher,
 )
-from .server_selector import (
+from haive.mcp.tools.server_selector import (
     MCPServerSelector,
     ServerFilter,
     ServerScore,
     TaskAnalyzer,
     TaskRequirements,
 )
-from .server_tester import HealthMonitor, HealthStatus, MCPServerTester, TestResult
+from haive.mcp.tools.server_tester import (
+    HealthMonitor,
+    HealthStatus,
+    MCPServerTester,
+    TestResult,
+)
+
 
 __all__ = [
-    "MCPServerSelector",
-    "ServerFilter",
-    "TaskAnalyzer",
-    "ServerScore",
-    "TaskRequirements",
-    "MCPAssistant",
-    "SmartConfiguration",
-    "ServerRecommendation",
-    "TaskMatcher",
-    "MCPServerTester",
-    "TestResult",
     "HealthMonitor",
     "HealthStatus",
+    "MCPAssistant",
+    "MCPServerSelector",
+    "MCPServerTester",
+    "ServerFilter",
+    "ServerRecommendation",
+    "ServerScore",
+    "SmartConfiguration",
+    "TaskAnalyzer",
+    "TaskMatcher",
+    "TaskRequirements",
+    "TestResult",
 ]
