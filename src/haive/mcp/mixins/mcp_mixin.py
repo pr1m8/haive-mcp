@@ -40,13 +40,14 @@ See Also:
 """
 
 import asyncio
-import logging
 from contextlib import asynccontextmanager
-from typing import Any, Dict, List, Optional, Set, Union
+import logging
+from typing import Any
 
 from pydantic import BaseModel, Field, PrivateAttr
 
 from haive.mcp.config import MCPConfig, MCPServerConfig
+
 
 # Conditional imports
 try:
@@ -123,15 +124,15 @@ class MCPMixin(BaseModel):
     """
 
     # MCP configuration
-    mcp_config: Optional[MCPConfig] = Field(default=None)
+    mcp_config: MCPConfig | None = Field(default=None)
 
     # Private attributes for state management
-    _mcp_client: Optional[MultiServerMCPClient] = PrivateAttr(default=None)
-    _mcp_servers: Dict[str, MCPServerConfig] = PrivateAttr(default_factory=dict)
-    _mcp_tools: Dict[str, BaseTool] = PrivateAttr(default_factory=dict)
+    _mcp_client: MultiServerMCPClient | None = PrivateAttr(default=None)
+    _mcp_servers: dict[str, MCPServerConfig] = PrivateAttr(default_factory=dict)
+    _mcp_tools: dict[str, BaseTool] = PrivateAttr(default_factory=dict)
     _mcp_initialized: bool = PrivateAttr(default=False)
-    _failed_servers: Set[str] = PrivateAttr(default_factory=set)
-    _server_health: Dict[str, Dict[str, Any]] = PrivateAttr(default_factory=dict)
+    _failed_servers: set[str] = PrivateAttr(default_factory=set)
+    _server_health: dict[str, dict[str, Any]] = PrivateAttr(default_factory=dict)
 
     def model_post_init(self, __context) -> None:
         """Initialize MCP mixin after model initialization."""
@@ -141,7 +142,7 @@ class MCPMixin(BaseModel):
         except AttributeError:
             # Parent doesn't have model_post_init
             pass
-        
+
         # Note: We don't auto-initialize here because we can't run async code
         # in model_post_init. Users should call initialize_mcp() or setup()
 
@@ -230,9 +231,8 @@ class MCPMixin(BaseModel):
                 self._mcp_initialized = True
                 logger.info(f"MCP initialized with {len(connected_servers)} servers")
                 return True
-            else:
-                logger.warning("No MCP servers connected")
-                return False
+            logger.warning("No MCP servers connected")
+            return False
 
         except Exception as e:
             logger.error(f"Failed to initialize MCP: {e}")
@@ -242,11 +242,9 @@ class MCPMixin(BaseModel):
         """Discover MCP servers from configured paths."""
         # TODO: Implement server discovery from files/registry
         # For now, we'll use the configured servers
-        pass
 
-    async def _connect_servers(self) -> Dict[str, Dict[str, Any]]:
-        """
-        Connect to configured MCP servers.
+    async def _connect_servers(self) -> dict[str, dict[str, Any]]:
+        """Connect to configured MCP servers.
 
         Returns:
             Dictionary of successfully connected server configurations
@@ -292,7 +290,7 @@ class MCPMixin(BaseModel):
 
     def _create_connection_config(
         self, server_config: MCPServerConfig
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Create connection configuration for MultiServerMCPClient."""
         config = {}
 
@@ -392,9 +390,8 @@ class MCPMixin(BaseModel):
             logger.error(f"Failed to register with component registry: {e}")
 
     @asynccontextmanager
-    async def mcp_session(self, server_name: Optional[str] = None):
-        """
-        Context manager for MCP operations.
+    async def mcp_session(self, server_name: str | None = None):
+        """Context manager for MCP operations.
 
         Args:
             server_name: Optional specific server to use
@@ -416,11 +413,10 @@ class MCPMixin(BaseModel):
     async def call_mcp_tool(
         self,
         tool_name: str,
-        arguments: Dict[str, Any],
-        server_name: Optional[str] = None,
+        arguments: dict[str, Any],
+        server_name: str | None = None,
     ) -> Any:
-        """
-        Call an MCP tool.
+        """Call an MCP tool.
 
         Args:
             tool_name: Name of the tool to call
@@ -447,8 +443,8 @@ class MCPMixin(BaseModel):
             raise
 
     async def get_mcp_resources(
-        self, server_name: str, uris: Optional[Union[str, List[str]]] = None
-    ) -> List[Any]:
+        self, server_name: str, uris: str | list[str] | None = None
+    ) -> list[Any]:
         """Get resources from an MCP server."""
         if not self._mcp_initialized:
             await self.initialize_mcp()
@@ -462,8 +458,8 @@ class MCPMixin(BaseModel):
         self,
         server_name: str,
         prompt_name: str,
-        arguments: Optional[Dict[str, Any]] = None,
-    ) -> List[Any]:
+        arguments: dict[str, Any] | None = None,
+    ) -> list[Any]:
         """Get a prompt from an MCP server."""
         if not self._mcp_initialized:
             await self.initialize_mcp()
@@ -475,7 +471,7 @@ class MCPMixin(BaseModel):
             server_name, prompt_name, arguments=arguments
         )
 
-    def get_mcp_status(self) -> Dict[str, Any]:
+    def get_mcp_status(self) -> dict[str, Any]:
         """Get current MCP status."""
         return {
             "enabled": self.mcp_config.enabled if self.mcp_config else False,

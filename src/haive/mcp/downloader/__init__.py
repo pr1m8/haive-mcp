@@ -7,7 +7,7 @@ Example:
     Basic usage::
 
         from haive.mcp.downloader import GeneralMCPDownloader
-        
+
         downloader = GeneralMCPDownloader()
         result = await downloader.download_servers(["filesystem", "github"])
 
@@ -26,39 +26,40 @@ Version: 1.0.0
 Author: Haive MCP Team
 """
 
-from .core import GeneralMCPDownloader
-from .config import (
+from haive.mcp.downloader.config import (
+    DownloaderConfig,
     InstallationMethod,
-    ServerTemplate, 
     ServerConfig,
-    DownloaderConfig
+    ServerTemplate,
 )
-from .installers import (
+from haive.mcp.downloader.core import GeneralMCPDownloader
+from haive.mcp.downloader.discovery import ServerDiscovery
+from haive.mcp.downloader.installers import (
+    BinaryInstaller,
+    CurlInstaller,
+    DockerInstaller,
+    GitInstaller,
     MCPInstaller,
     NPMInstaller,
     PipInstaller,
-    GitInstaller,
-    DockerInstaller,
-    BinaryInstaller,
-    CurlInstaller
 )
-from .discovery import ServerDiscovery
-from .integration import MCPAgentIntegration
+from haive.mcp.downloader.integration import MCPAgentIntegration
+
 
 __version__ = "1.0.0"
 __all__ = [
-    "GeneralMCPDownloader",
-    "InstallationMethod",
-    "ServerTemplate",
-    "ServerConfig", 
+    "BinaryInstaller",
+    "CurlInstaller",
+    "DockerInstaller",
     "DownloaderConfig",
+    "GeneralMCPDownloader",
+    "GitInstaller",
+    "InstallationMethod",
+    "MCPAgentIntegration",
     "MCPInstaller",
     "NPMInstaller",
     "PipInstaller",
-    "GitInstaller",
-    "DockerInstaller",
-    "BinaryInstaller",
-    "CurlInstaller",
+    "ServerConfig",
     "ServerDiscovery",
-    "MCPAgentIntegration"
+    "ServerTemplate",
 ]

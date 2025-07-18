@@ -1,55 +1,50 @@
-"""
-MCP RAG Agent - Simplified version that works with our enhanced retriever
+"""MCP RAG Agent - Simplified version that works with our enhanced retriever
 
 This agent helps users find and understand MCP servers using RAG.
 """
 
-import asyncio
-import sys
-from pathlib import Path
-from typing import Dict, List, Optional, Any
 from datetime import datetime
+from pathlib import Path
+import sys
+
 
 # Add parent path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent.parent))
 
+from langchain_openai import ChatOpenAI
+
 from haive.agents.rag.base.agent import BaseRAGAgent
 from haive.core.engine.aug_llm import AugLLMConfig
 from haive.mcp.working_enhanced_retriever import WorkingEnhancedRetriever
-from langchain_openai import ChatOpenAI
-from langchain_core.documents import Document
 
 
 async def create_mcp_rag_agent():
     """Create a RAG agent for MCP discovery."""
-    
     # Initialize the enhanced retriever
     print("🔧 Setting up enhanced retriever...")
     retriever = WorkingEnhancedRetriever()
     retriever.setup()
-    
+
     # Get all documents
     llm = ChatOpenAI(temperature=0)
-    
+
     # Do a broad query to get documents
     print("📚 Loading MCP server documentation...")
     docs = await retriever.enhanced_query(llm, "MCP servers", k=50)
-    
+
     print(f"✅ Loaded {len(docs)} documents")
-    
+
     # Create RAG agent from documents
     agent = BaseRAGAgent.from_documents(
         documents=docs,
         name="mcp_rag_agent",
         llm_config=AugLLMConfig(
-            name="mcp_rag_llm",
-            model="gpt-3.5-turbo",
-            temperature=0.3
+            name="mcp_rag_llm", model="gpt-3.5-turbo", temperature=0.3
         ),
         chunk_size=1000,
-        chunk_overlap=200
+        chunk_overlap=200,
     )
-    
+
     # Add custom system message
     agent.system_message = """You are an expert MCP (Model Context Protocol) server assistant.
 
@@ -66,7 +61,7 @@ When answering:
 - Include star ratings when relevant
 - Explain what tools/resources/prompts the server provides
 - Suggest alternatives if multiple servers could work"""
-    
+
     return agent
 
 
@@ -91,7 +86,7 @@ class QueryResponse(BaseModel):
 app = FastAPI(
     title="MCP RAG Agent",
     description="Ask questions about MCP servers",
-    version="1.0.0"
+    version="1.0.0",
 )
 
 # Global agent instance
@@ -337,17 +332,15 @@ async def ask_agent(request: QueryRequest):
     """Ask the RAG agent a question."""
     if not rag_agent:
         raise HTTPException(status_code=503, detail="Agent not initialized")
-    
+
     try:
         # Run the query
         result = await rag_agent.arun(request.query)
-        
+
         return QueryResponse(
-            query=request.query,
-            response=result,
-            timestamp=datetime.now().isoformat()
+            query=request.query, response=result, timestamp=datetime.now().isoformat()
         )
-        
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

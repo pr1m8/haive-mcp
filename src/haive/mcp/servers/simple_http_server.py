@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 """Simple HTTP MCP server example."""
 
-import asyncio
-import json
 from datetime import datetime
-from typing import Dict, Any, List
 
 from aiohttp import web
+
 from mcp.server import FastMCP
+
 
 # Create MCP server
 mcp = FastMCP("simple-http-mcp")
@@ -36,64 +35,61 @@ async def get_time() -> str:
 routes = web.RouteTableDef()
 
 
-@routes.get('/')
+@routes.get("/")
 async def index(request: web.Request) -> web.Response:
     """Root endpoint with server info."""
-    return web.json_response({
-        "server": "simple-http-mcp",
-        "version": "1.0.0",
-        "endpoints": {
-            "/": "Server info",
-            "/tools": "List available tools",
-            "/execute": "Execute a tool (POST)",
+    return web.json_response(
+        {
+            "server": "simple-http-mcp",
+            "version": "1.0.0",
+            "endpoints": {
+                "/": "Server info",
+                "/tools": "List available tools",
+                "/execute": "Execute a tool (POST)",
+            },
         }
-    })
+    )
 
 
-@routes.get('/tools')
+@routes.get("/tools")
 async def list_tools(request: web.Request) -> web.Response:
     """List available tools."""
     tools = []
-    
+
     # Get tools from MCP server
     # Note: In real implementation, we'd use MCP's internal registry
     tools_info = {
         "hello": {
             "name": "hello",
             "description": "Say hello to someone",
-            "parameters": {
-                "name": {"type": "string", "description": "Name to greet"}
-            }
+            "parameters": {"name": {"type": "string", "description": "Name to greet"}},
         },
         "add": {
             "name": "add",
             "description": "Add two numbers",
             "parameters": {
                 "x": {"type": "integer", "description": "First number"},
-                "y": {"type": "integer", "description": "Second number"}
-            }
+                "y": {"type": "integer", "description": "Second number"},
+            },
         },
         "get_time": {
             "name": "get_time",
             "description": "Get current time",
-            "parameters": {}
-        }
+            "parameters": {},
+        },
     }
-    
-    return web.json_response({
-        "tools": tools_info,
-        "count": len(tools_info)
-    })
+
+    return web.json_response({"tools": tools_info, "count": len(tools_info)})
 
 
-@routes.post('/execute')
+@routes.post("/execute")
 async def execute_tool(request: web.Request) -> web.Response:
     """Execute a tool."""
     try:
         data = await request.json()
         tool_name = data.get("tool")
         params = data.get("params", {})
-        
+
         # Execute the appropriate tool
         if tool_name == "hello":
             result = await hello(params.get("name", "World"))
@@ -103,22 +99,20 @@ async def execute_tool(request: web.Request) -> web.Response:
             result = await get_time()
         else:
             return web.json_response(
-                {"error": f"Unknown tool: {tool_name}"},
-                status=400
+                {"error": f"Unknown tool: {tool_name}"}, status=400
             )
-        
-        return web.json_response({
-            "tool": tool_name,
-            "params": params,
-            "result": result,
-            "timestamp": datetime.now().isoformat()
-        })
-        
-    except Exception as e:
+
         return web.json_response(
-            {"error": str(e)},
-            status=500
+            {
+                "tool": tool_name,
+                "params": params,
+                "result": result,
+                "timestamp": datetime.now().isoformat(),
+            }
         )
+
+    except Exception as e:
+        return web.json_response({"error": str(e)}, status=500)
 
 
 def create_app() -> web.Application:

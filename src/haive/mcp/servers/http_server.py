@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
 """HTTP-based MCP server for haive using FastAPI and SSE transport."""
 
-import logging
-from typing import Dict, List, Any, Optional
 from datetime import datetime
 import json
-import asyncio
+import logging
+from typing import Any
 
 from fastapi import FastAPI, Request
-from fastapi.responses import StreamingResponse, JSONResponse
+from fastapi.responses import StreamingResponse
+import uvicorn
+
 from mcp.server import FastMCP
 from mcp.server.sse import SSEServerTransport
-import uvicorn
+
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -40,48 +41,48 @@ async def get_server_time() -> str:
 @mcp.tool()
 async def calculate(operation: str, a: float, b: float) -> float:
     """Perform a calculation.
-    
+
     Args:
         operation: One of 'add', 'subtract', 'multiply', 'divide'
         a: First number
         b: Second number
-        
+
     Returns:
         Result of the calculation
     """
     operations = {
-        'add': lambda x, y: x + y,
-        'subtract': lambda x, y: x - y,
-        'multiply': lambda x, y: x * y,
-        'divide': lambda x, y: x / y if y != 0 else float('inf')
+        "add": lambda x, y: x + y,
+        "subtract": lambda x, y: x - y,
+        "multiply": lambda x, y: x * y,
+        "divide": lambda x, y: x / y if y != 0 else float("inf"),
     }
-    
+
     if operation not in operations:
         raise ValueError(f"Unknown operation: {operation}")
-    
+
     return operations[operation](a, b)
 
 
 @mcp.tool()
-async def list_tools() -> List[str]:
+async def list_tools() -> list[str]:
     """List all available tools."""
     # This would normally come from the MCP server's internal registry
     return ["echo", "get_server_time", "calculate", "list_tools", "get_system_info"]
 
 
 @mcp.tool()
-async def get_system_info() -> Dict[str, Any]:
+async def get_system_info() -> dict[str, Any]:
     """Get system information."""
-    import platform
     import os
-    
+    import platform
+
     return {
         "platform": platform.platform(),
         "python_version": platform.python_version(),
         "processor": platform.processor(),
         "cpu_count": os.cpu_count(),
         "cwd": os.getcwd(),
-        "timestamp": datetime.now().isoformat()
+        "timestamp": datetime.now().isoformat(),
     }
 
 
@@ -93,7 +94,7 @@ async def server_info_resource() -> str:
         "name": "haive-http-server",
         "version": "1.0.0",
         "transport": "sse",
-        "timestamp": datetime.now().isoformat()
+        "timestamp": datetime.now().isoformat(),
     }
     return json.dumps(info, indent=2)
 
@@ -105,19 +106,19 @@ async def server_status_resource() -> str:
         "status": "running",
         "uptime": "N/A",  # Would calculate actual uptime
         "requests_handled": 0,  # Would track actual requests
-        "timestamp": datetime.now().isoformat()
+        "timestamp": datetime.now().isoformat(),
     }
     return json.dumps(status, indent=2)
 
 
 # === MCP Prompts ===
 @mcp.prompt()
-async def help_prompt() -> List[Dict[str, str]]:
+async def help_prompt() -> list[dict[str, str]]:
     """Get help using this MCP server."""
     return [
         {
             "role": "system",
-            "content": "You are a helpful assistant that knows how to use the Haive MCP server."
+            "content": "You are a helpful assistant that knows how to use the Haive MCP server.",
         },
         {
             "role": "user",
@@ -130,8 +131,8 @@ Available tools:
 - list_tools: List all available tools
 - get_system_info: Get system information
 
-What would you like to do?"""
-        }
+What would you like to do?""",
+        },
     ]
 
 
@@ -143,11 +144,7 @@ async def root():
         "name": "Haive MCP Server",
         "version": "1.0.0",
         "transport": ["sse", "http"],
-        "endpoints": {
-            "sse": "/sse",
-            "health": "/health",
-            "info": "/info"
-        }
+        "endpoints": {"sse": "/sse", "health": "/health", "info": "/info"},
     }
 
 
@@ -164,14 +161,17 @@ async def info():
         "name": "haive-http-server",
         "version": "1.0.0",
         "capabilities": {
-            "tools": ["echo", "get_server_time", "calculate", "list_tools", "get_system_info"],
+            "tools": [
+                "echo",
+                "get_server_time",
+                "calculate",
+                "list_tools",
+                "get_system_info",
+            ],
             "resources": ["server://info", "server://status"],
-            "prompts": ["help_prompt"]
+            "prompts": ["help_prompt"],
         },
-        "transport": {
-            "type": "sse",
-            "endpoint": "/sse"
-        }
+        "transport": {"type": "sse", "endpoint": "/sse"},
     }
 
 
@@ -183,10 +183,10 @@ sse_transport = None
 async def handle_sse(request: Request):
     """Handle SSE connections for MCP protocol."""
     global sse_transport
-    
+
     if sse_transport is None:
         sse_transport = SSEServerTransport("/sse")
-    
+
     # Handle the SSE connection
     async def event_generator():
         try:
@@ -196,15 +196,15 @@ async def handle_sse(request: Request):
         except Exception as e:
             logger.error(f"SSE error: {e}")
             yield f"data: {json.dumps({'error': str(e)})}\n\n"
-    
+
     return StreamingResponse(
         event_generator(),
         media_type="text/event-stream",
         headers={
             "Cache-Control": "no-cache",
             "Connection": "keep-alive",
-            "X-Accel-Buffering": "no"
-        }
+            "X-Accel-Buffering": "no",
+        },
     )
 
 

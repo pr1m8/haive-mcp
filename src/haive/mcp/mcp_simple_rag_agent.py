@@ -1,60 +1,63 @@
-"""
-MCP Simple RAG Agent - Using Haive's proper patterns
+"""MCP Simple RAG Agent - Using Haive's proper patterns
 
 This agent uses BaseRAGAgent and SimpleAgent to create a proper RAG system
 for MCP server discovery.
 """
 
-import asyncio
-import json
-import sys
-from pathlib import Path
-from typing import List, Optional
 from datetime import datetime
+import json
+from pathlib import Path
+import sys
+
 
 # Add parent path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent.parent))
 
+from langchain_core.documents import Document
+
 from haive.agents.rag.base.agent import BaseRAGAgent
+from haive.core.engine.vectorstore.vectorstore import VectorStoreConfig
 from haive.core.models.embeddings.base import HuggingFaceEmbeddingConfig
 from haive.core.models.llm.base import AzureLLMConfig, LLMConfig
-from haive.core.engine.retriever.retriever import VectorStoreRetrieverConfig
-from haive.core.engine.vectorstore.vectorstore import VectorStoreConfig
-from langchain_core.documents import Document
-from langchain_community.vectorstores import FAISS
-from langchain_community.embeddings import HuggingFaceEmbeddings
 
 
-def create_mcp_documents() -> List[Document]:
+def create_mcp_documents() -> list[Document]:
     """Create documents from MCP server data with improved searchability."""
     print("📚 Loading MCP server data...")
-    
+
     # Direct path to the MCP servers data
-    all_servers_path = Path(__file__).parent.parent.parent.parent / "data" / "mcp_servers" / "ALL_MCP_SERVERS_COMPLETE.json"
-    
+    all_servers_path = (
+        Path(__file__).parent.parent.parent.parent
+        / "data"
+        / "mcp_servers"
+        / "ALL_MCP_SERVERS_COMPLETE.json"
+    )
+
     # Load JSON data manually (haive document loader has JSON parsing issues)
-    with open(all_servers_path, 'r') as f:
+    with open(all_servers_path) as f:
         data = json.load(f)
-        servers = data.get('all_servers', [])
-    
+        servers = data.get("all_servers", [])
+
     print(f"📊 Processing {len(servers)} MCP servers into documents...")
-    
+
     documents = []
     for server in servers:
         # Get server details
-        name = server.get('name', 'Unknown')
-        description = server.get('description', 'No description available')
-        category = server.get('category', 'general')
-        language = server.get('language', 'unknown')
-        stars = server.get('stars', 0)
-        install_command = server.get('install_command', 'npm install')
-        repository_url = server.get('repository_url', '')
-        tools = server.get('tools', [])
-        resources = server.get('resources', [])
-        prompts = server.get('prompts', [])
-        use_cases = server.get('use_cases', 'General purpose MCP server')
-        installation_notes = server.get('installation_notes', 'Standard MCP installation')
-        
+        name = server.get("name", "Unknown")
+        description = server.get("description", "No description available")
+        category = server.get("category", "general")
+        language = server.get("language", "unknown")
+        stars = server.get("stars", 0)
+        install_command = server.get("install_command", "npm install")
+        repository_url = server.get("repository_url", "")
+        tools = server.get("tools", [])
+        resources = server.get("resources", [])
+        prompts = server.get("prompts", [])
+        use_cases = server.get("use_cases", "General purpose MCP server")
+        installation_notes = server.get(
+            "installation_notes", "Standard MCP installation"
+        )
+
         # Create rich document content with enhanced searchability
         content = f"""
 MCP Server: {name}
@@ -81,55 +84,54 @@ Use Cases: {use_cases}
 
 Installation: {installation_notes}
 
-Keywords: {category} {language} MCP server {name.lower().replace('-', ' ')} database python nodejs javascript typescript sql postgresql mysql sqlite github file system web api
+Keywords: {category} {language} MCP server {name.lower().replace("-", " ")} database python nodejs javascript typescript sql postgresql mysql sqlite github file system web api
 Tool Count: {len(tools)}
 Resource Count: {len(resources)}
 Prompt Count: {len(prompts)}
 """
-        
+
         doc = Document(
             page_content=content,
             metadata={
-                "server_name": server.get('name', 'Unknown'),
-                "category": server.get('category', 'general'),
-                "language": server.get('language', 'unknown'),
-                "stars": server.get('stars', 0),
-                "has_install": bool(server.get('install_command')),
-                "repository_url": server.get('repository_url', ''),
-                "tools_count": len(server.get('tools', [])),
-                "resources_count": len(server.get('resources', [])),
-                "prompts_count": len(server.get('prompts', [])),
+                "server_name": server.get("name", "Unknown"),
+                "category": server.get("category", "general"),
+                "language": server.get("language", "unknown"),
+                "stars": server.get("stars", 0),
+                "has_install": bool(server.get("install_command")),
+                "repository_url": server.get("repository_url", ""),
+                "tools_count": len(server.get("tools", [])),
+                "resources_count": len(server.get("resources", [])),
+                "prompts_count": len(server.get("prompts", [])),
                 "type": "mcp_server",
                 "document_id": f"mcp_server_{len(documents)}",
-                "source": str(all_servers_path)
-            }
+                "source": str(all_servers_path),
+            },
         )
         documents.append(doc)
-    
+
     print(f"✅ Created {len(documents)} MCP server documents")
     return documents
 
 
-def create_mcp_rag_agent(llm_config: Optional[LLMConfig] = None) -> BaseRAGAgent:
+def create_mcp_rag_agent(llm_config: LLMConfig | None = None) -> BaseRAGAgent:
     """Create a BaseRAG agent using direct vector store for MCP discovery."""
-    
     # Load MCP documents
     documents = create_mcp_documents()
-    
+
     # Use defaults if no config provided
     if not llm_config:
         llm_config = AzureLLMConfig()
-    
+
     print("📊 Creating embeddings with GPU support...")
     # Create embedding config
     embedding_model = HuggingFaceEmbeddingConfig(
         model="sentence-transformers/all-mpnet-base-v2",
-        model_kwargs={'device': 'cuda'},
-        encode_kwargs={'normalize_embeddings': True}
+        model_kwargs={"device": "cuda"},
+        encode_kwargs={"normalize_embeddings": True},
     )
-    
+
     print("📊 Creating MCP RAG agent with VectorStoreConfig...")
-    
+
     # Create vector store config with documents
     vs_config = VectorStoreConfig(
         provider="FAISS",
@@ -137,18 +139,18 @@ def create_mcp_rag_agent(llm_config: Optional[LLMConfig] = None) -> BaseRAGAgent
         documents=documents,  # Pass documents directly
         k=10,  # Return top 10 results
         search_type="similarity",
-        score_threshold=0.5
+        score_threshold=0.5,
     )
-    
+
     print(f"✅ Creating agent with {len(documents)} documents...")
-    
+
     # Create agent with vector store config as engine
     agent = BaseRAGAgent(
         name="MCP_Discovery_Agent",
-        engine=vs_config  # Use VectorStoreConfig as engine
+        engine=vs_config,  # Use VectorStoreConfig as engine
     )
-    
-    print(f"✅ Agent created successfully")
+
+    print("✅ Agent created successfully")
     return agent
 
 
@@ -173,7 +175,7 @@ class QueryResponse(BaseModel):
 app = FastAPI(
     title="MCP Discovery Agent",
     description="Ask questions about MCP servers and get expert recommendations",
-    version="1.0.0"
+    version="1.0.0",
 )
 
 # Global agent instance
@@ -455,130 +457,153 @@ async def ask_agent(request: QueryRequest):
     """Ask the MCP agent a question."""
     if not mcp_agent:
         raise HTTPException(status_code=503, detail="Agent not initialized")
-    
+
     try:
         print(f"🔍 Processing query: {request.query}")
-        
+
         # Run the query through the agent with debug
-        print(f"🔍 Running agent with debug=True...")
+        print("🔍 Running agent with debug=True...")
         import sys
+
         sys.stdout.flush()
-        
+
         result = await mcp_agent.arun(request.query, debug=True)
-        
+
         print(f"✅ Got result type: {type(result)}")
         print(f"✅ Got result: {result}")
-        
+
         # Debug: Print all attributes of the result
-        if hasattr(result, '__dict__'):
+        if hasattr(result, "__dict__"):
             print(f"🔍 Result attributes: {result.__dict__}")
-        
+
         # Handle RetrieverOutput object
         response_text = ""
-        
-        if hasattr(result, 'retrieved_documents'):
+
+        if hasattr(result, "retrieved_documents"):
             docs = result.retrieved_documents
-            query_used = getattr(result, 'query', request.query)
-            
+            query_used = getattr(result, "query", request.query)
+
             print(f"📚 Retrieved {len(docs)} documents for query: '{query_used}'")
-            
+
             if docs:
                 # Format the retrieved documents into a readable response
-                response_text = f"Found {len(docs)} relevant MCP servers for '{query_used}':\n\n"
-                
+                response_text = (
+                    f"Found {len(docs)} relevant MCP servers for '{query_used}':\n\n"
+                )
+
                 for i, doc in enumerate(docs[:5], 1):
-                    server_name = doc.metadata.get('server_name', 'Unknown')
-                    category = doc.metadata.get('category', 'general')
-                    stars = doc.metadata.get('stars', 0)
-                    repo_url = doc.metadata.get('repository_url', '')
-                    
+                    server_name = doc.metadata.get("server_name", "Unknown")
+                    category = doc.metadata.get("category", "general")
+                    stars = doc.metadata.get("stars", 0)
+                    repo_url = doc.metadata.get("repository_url", "")
+
                     response_text += f"{i}. **{server_name}** ({category})\n"
                     response_text += f"   ⭐ {stars} stars\n"
                     if repo_url:
                         response_text += f"   🔗 {repo_url}\n"
-                    
+
                     # Extract description from content
-                    content_lines = doc.page_content.split('\n')
+                    content_lines = doc.page_content.split("\n")
                     description = ""
                     for line in content_lines:
                         if line.startswith("Description:"):
                             description = line.replace("Description:", "").strip()
                             break
-                    
+
                     if description and description != "No description available":
                         response_text += f"   📝 {description}\n"
-                    
+
                     response_text += "\n"
             else:
                 # No documents found - try direct vector store search as fallback
-                print(f"⚠️ No documents retrieved. Trying direct vector store search...")
-                
+                print("⚠️ No documents retrieved. Trying direct vector store search...")
+
                 try:
                     # Get the vector store from the agent
-                    if hasattr(mcp_agent, '_compiled_app') and hasattr(mcp_agent._compiled_app, 'nodes'):
+                    if hasattr(mcp_agent, "_compiled_app") and hasattr(
+                        mcp_agent._compiled_app, "nodes"
+                    ):
                         # Try to get the vector store config
                         vector_store_config = mcp_agent.engine
-                        if hasattr(vector_store_config, 'create_vectorstore'):
+                        if hasattr(vector_store_config, "create_vectorstore"):
                             print("📊 Creating direct vector store...")
                             vectorstore = vector_store_config.create_vectorstore()
-                            direct_results = vectorstore.similarity_search(request.query, k=5)
-                            
+                            direct_results = vectorstore.similarity_search(
+                                request.query, k=5
+                            )
+
                             if direct_results:
                                 response_text = f"Found {len(direct_results)} MCP servers matching '{request.query}' (via direct search):\n\n"
                                 for i, doc in enumerate(direct_results[:5], 1):
-                                    server_name = doc.metadata.get('server_name', 'Unknown')
-                                    category = doc.metadata.get('category', 'general')
-                                    stars = doc.metadata.get('stars', 0)
-                                    repo_url = doc.metadata.get('repository_url', '')
-                                    
-                                    response_text += f"{i}. **{server_name}** ({category})\n"
+                                    server_name = doc.metadata.get(
+                                        "server_name", "Unknown"
+                                    )
+                                    category = doc.metadata.get("category", "general")
+                                    stars = doc.metadata.get("stars", 0)
+                                    repo_url = doc.metadata.get("repository_url", "")
+
+                                    response_text += (
+                                        f"{i}. **{server_name}** ({category})\n"
+                                    )
                                     response_text += f"   ⭐ {stars} stars\n"
                                     if repo_url:
                                         response_text += f"   🔗 {repo_url}\n"
-                                    
+
                                     # Extract description from content
-                                    content_lines = doc.page_content.split('\n')
+                                    content_lines = doc.page_content.split("\n")
                                     description = ""
                                     for line in content_lines:
                                         if line.startswith("Description:"):
-                                            description = line.replace("Description:", "").strip()
+                                            description = line.replace(
+                                                "Description:", ""
+                                            ).strip()
                                             break
-                                    
-                                    if description and description != "No description available":
+
+                                    if (
+                                        description
+                                        and description != "No description available"
+                                    ):
                                         response_text += f"   📝 {description}\n"
-                                    
+
                                     response_text += "\n"
                             else:
-                                response_text = f"No MCP servers found matching '{request.query}'."
+                                response_text = (
+                                    f"No MCP servers found matching '{request.query}'."
+                                )
                         else:
-                            response_text = f"Could not access vector store for '{request.query}'."
+                            response_text = (
+                                f"Could not access vector store for '{request.query}'."
+                            )
                     else:
-                        response_text = f"Agent structure not accessible for '{request.query}'."
-                        
+                        response_text = (
+                            f"Agent structure not accessible for '{request.query}'."
+                        )
+
                 except Exception as e:
                     print(f"❌ Direct search failed: {e}")
-                    response_text = f"Search failed for '{request.query}'. Error: {str(e)}"
-        
-        elif hasattr(result, 'content'):
+                    response_text = f"Search failed for '{request.query}'. Error: {e!s}"
+
+        elif hasattr(result, "content"):
             # Handle string content
             response_text = str(result.content)
         else:
             # Fallback - convert to string
             response_text = str(result)
-        
+
         # Ensure we have a string response
         if not isinstance(response_text, str):
             response_text = str(response_text)
-        
+
         return QueryResponse(
             query=request.query,
             response=response_text,
-            timestamp=datetime.now().isoformat()
+            timestamp=datetime.now().isoformat(),
         )
-        
+
     except Exception as e:
         print(f"❌ Error processing query: {e}")
         import traceback
+
         traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
 

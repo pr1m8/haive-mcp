@@ -27,13 +27,13 @@ Example:
                 self.server = FastMCP(name)
                 self.setup_tools()
                 self.setup_resources()
-            
+
             def setup_tools(self):
                 @self.server.tool()
                 async def process_data(data: str) -> str:
                     '''Process input data.'''
                     return f"Processed: {data}"
-            
+
             def setup_resources(self):
                 @self.server.resource("data://current")
                 async def get_current_data() -> str:
@@ -49,19 +49,19 @@ Advanced Usage:
 
         from mcp.server import FastMCP
         from haive.mcp.servers import BaseHaiveMCPServer
-        
+
         class StatefulServer(BaseHaiveMCPServer):
             def __init__(self):
                 super().__init__("stateful-server")
                 self.state = {}
-                
+
             def setup_tools(self):
                 @self.server.tool()
                 async def store_value(key: str, value: str) -> str:
                     '''Store a value in server state.'''
                     self.state[key] = value
                     return f"Stored {key}={value}"
-                
+
                 @self.server.tool()
                 async def get_value(key: str) -> str:
                     '''Get a value from server state.'''

@@ -27,7 +27,7 @@ Example:
             command="npx",
             args=["my-mcp-server"]
         )
-        
+
         is_valid, errors = validate_server_config(config)
         if not is_valid:
             print(f"Configuration errors: {errors}")
@@ -40,7 +40,7 @@ Advanced Usage:
         # Parse a tool response
         response = {"result": {"data": "example"}, "error": None}
         data, error = parse_server_response(response)
-        
+
         if error:
             logger.error(f"Server error: {error}")
         else:

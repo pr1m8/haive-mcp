@@ -31,7 +31,7 @@ Example:
                     args=["-y", "@modelcontextprotocol/server-filesystem"]
                 ),
                 "github": MCPServerConfig(
-                    name="github", 
+                    name="github",
                     transport="stdio",
                     command="npx",
                     args=["-y", "@modelcontextprotocol/server-github"],
@@ -65,13 +65,13 @@ Advanced Usage:
         # Share tools between agents
         await agent1.setup()
         await agent2.setup()
-        
+
         # Transfer specific tools
         await agent1.transfer_tools_to_agent(
-            agent2, 
+            agent2,
             tool_names=["read_file", "write_file"]
         )
-        
+
         # Or transfer all tools
         await agent1.transfer_all_tools_to_agent(agent2)
 
@@ -89,5 +89,7 @@ See Also:
 # from haive.mcp.agents.documentation_agent import MCPDocumentationAgent
 from haive.mcp.agents.mcp_agent import MCPAgent
 from haive.mcp.agents.transferable_mcp_agent import TransferableMCPAgent
+from haive.mcp.agents.intelligent_mcp_agent import IntelligentMCPAgent
 
-__all__ = ["MCPAgent", "TransferableMCPAgent"]  # "MCPDocumentationAgent"
+
+__all__ = ["MCPAgent", "TransferableMCPAgent", "IntelligentMCPAgent"]  # "MCPDocumentationAgent"

@@ -1,48 +1,66 @@
-"""Haive MCP - Model Context Protocol Integration for Haive.
+"""Haive MCP - Dynamic Model Context Protocol Integration for Haive Agents.
 
-The haive-mcp package provides comprehensive MCP support for the Haive framework,
-enabling discovery, management, and integration of MCP servers with AI agents.
+haive-mcp brings the power of Model Context Protocol to Haive agents with dynamic
+discovery, hot-reload capabilities, and intelligent server management. Access 1,960+
+pre-indexed MCP servers and let your agents automatically find and install the
+tools they need - all without restarting.
 
-This package consists of several modules:
+Key Features:
+    - 🔄 Hot-Reload: Add servers and refresh tools without restart
+    - 🤖 Intelligent Discovery: AI analyzes needs and suggests servers
+    - 👤 HITL Approval: Human-in-the-loop approval workflows
+    - 📚 1,960+ Servers: Pre-indexed database of MCP servers
+    - 🔧 Dynamic Tools: Tools, resources, and prompts from MCP
+    - ⚡ Real-time: Install and use immediately
 
-    manager: Core MCP manager for server lifecycle management
-    discovery: Server discovery from npm, PyPI, GitHub, and local sources
-    downloader: Server download and installation utilities
-    servers: MCP server implementations using FastMCP
-    agents: MCP-enabled agent implementations
-    tools: Utility tools for MCP operations
-    config: Configuration models and validation
-
-Typical usage example:
+Quick Start:
 
     ```python
-    from haive.mcp import MCPManager, MCPConfig, MCPServerConfig
-    from haive.mcp.discovery import discover_servers
-    
-    # Discover available servers
-    servers = await discover_servers()
-    
-    # Create manager with configuration
-    config = MCPConfig(
-        enabled=True,
-        servers={
-            "filesystem": MCPServerConfig(
-                name="filesystem",
-                transport="stdio",
-                command="npx",
-                args=["-y", "@modelcontextprotocol/server-filesystem"]
-            )
-        }
+    from haive.mcp.agents import IntelligentMCPAgent
+    from haive.core.engine.aug_llm import AugLLMConfig
+
+    # Create intelligent agent that auto-discovers servers
+    agent = IntelligentMCPAgent(
+        engine=AugLLMConfig(),
+        auto_discover=True,      # Find servers automatically
+        require_approval=True    # Ask before installing
     )
     
-    manager = MCPManager(config)
-    await manager.initialize()
+    await agent.setup()
     
-    # Execute a tool
-    result = await manager.execute_tool(
-        server="filesystem",
-        tool="read_file",
-        params={"path": "file.txt"}
+    # Agent installs what it needs based on your request!
+    result = await agent.arun({
+        "messages": [{
+            "role": "user",
+            "content": "Search the web for Python tutorials and save to file"
+        }]
+    })
+    # Automatically installs web search + filesystem servers!
+    ```
+
+Components:
+    - IntelligentMCPAgent: Dynamic discovery and management
+    - MCPAgent: Production agent with static configs
+    - MCPManager: Server lifecycle with hot-reload
+    - TransferableMCPAgent: Share tools between agents
+    - MCPDocumentationAgent: Process server documentation
+
+Advanced Usage:
+
+    ```python
+    # Manual control with hot-reload
+    manager = agent.mcp_manager
+    await manager.add_server("github", github_config)
+    tools = await manager.get_all_tools(refresh=True)
+    
+    # Custom approval workflows
+    async def my_approval(request):
+        print(f"Approve {request.recommendation.server_name}?")
+        return input("y/n: ").lower() == 'y'
+    
+    agent = IntelligentMCPAgent(
+        engine=engine,
+        approval_callback=my_approval
     )
     ```
 
@@ -62,11 +80,12 @@ __version__ = "0.1.0"
 try:
     from haive.mcp.config import MCPConfig, MCPServerConfig
     from haive.mcp.manager import MCPManager
-    
+
     # Try to import agents if available
     try:
         from haive.mcp.agents.mcp_agent import MCPAgent
         from haive.mcp.mixins.mcp_mixin import MCPMixin
+
         AGENTS_AVAILABLE = True
     except ImportError:
         AGENTS_AVAILABLE = False
@@ -75,6 +94,7 @@ try:
     try:
         from haive.mcp.discovery.analyzer import MCPServerAnalyzer
         from haive.mcp.discovery.server_discovery import MCPServerDiscovery
+
         DISCOVERY_AVAILABLE = True
     except ImportError:
         DISCOVERY_AVAILABLE = False
@@ -91,20 +111,26 @@ __all__ = [
 ]
 
 if MCP_AVAILABLE:
-    __all__.extend([
-        "MCPConfig",
-        "MCPServerConfig", 
-        "MCPManager",
-    ])
+    __all__.extend(
+        [
+            "MCPConfig",
+            "MCPManager",
+            "MCPServerConfig",
+        ]
+    )
 
 if AGENTS_AVAILABLE:
-    __all__.extend([
-        "MCPAgent",
-        "MCPMixin",
-    ])
+    __all__.extend(
+        [
+            "MCPAgent",
+            "MCPMixin",
+        ]
+    )
 
 if DISCOVERY_AVAILABLE:
-    __all__.extend([
-        "MCPServerAnalyzer",
-        "MCPServerDiscovery",
-    ])
+    __all__.extend(
+        [
+            "MCPServerAnalyzer",
+            "MCPServerDiscovery",
+        ]
+    )

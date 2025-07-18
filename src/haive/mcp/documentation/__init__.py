@@ -18,21 +18,21 @@ Example:
     Processing MCP server documentation::
 
         from haive.mcp.documentation import MCPDocumentationLoader
-        
+
         loader = MCPDocumentationLoader()
-        
+
         # Load documentation for a server
         doc = await loader.load_server_docs("@modelcontextprotocol/server-filesystem")
-        
+
         print(f"Server: {doc.name}")
         print(f"Description: {doc.description}")
         print("\\nTools:")
         for tool in doc.tools:
             print(f"  - {tool.name}: {tool.description}")
-        
+
         print("\\nSetup Instructions:")
         print(doc.setup_instructions)
-        
+
         # Generate configuration from docs
         config = doc.generate_config()
         print(f"\\nGenerated config: {config}")
@@ -41,30 +41,30 @@ Advanced Usage:
     Batch processing and analysis::
 
         from haive.mcp.documentation import MCPDocumentationLoader
-        
+
         loader = MCPDocumentationLoader()
-        
+
         # Process multiple server docs
         servers = [
             "@modelcontextprotocol/server-github",
             "@modelcontextprotocol/server-postgres",
             "@modelcontextprotocol/server-slack"
         ]
-        
+
         docs = await loader.batch_load(servers)
-        
+
         # Find servers with specific capabilities
         file_servers = [
-            doc for doc in docs 
+            doc for doc in docs
             if any("file" in tool.name for tool in doc.tools)
         ]
-        
+
         # Generate implementation guide
         guide = await loader.generate_implementation_guide(
             server_docs=file_servers,
             use_case="File management system"
         )
-        
+
         print(guide.markdown)
 
 Documentation Processing:
@@ -89,5 +89,6 @@ See Also:
 """
 
 from haive.mcp.documentation.doc_loader import MCPDocumentationLoader
+
 
 __all__ = ["MCPDocumentationLoader"]

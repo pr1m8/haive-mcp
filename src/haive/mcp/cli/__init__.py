@@ -22,15 +22,15 @@ Example:
     Using the MCP CLI from Python::
 
         from haive.mcp.cli import mcp_manager
-        
+
         # Install a server
         await mcp_manager.install_server("@modelcontextprotocol/server-filesystem")
-        
+
         # List installed servers
         servers = await mcp_manager.list_servers()
         for server in servers:
             print(f"- {server.name}: {server.status}")
-        
+
         # Test a server
         result = await mcp_manager.test_server("filesystem")
         if result.success:
@@ -38,16 +38,16 @@ Example:
 
 Command Line Usage:
     The CLI can be used directly from the command line::
-    
+
         # Install a server
         poetry run python -m haive.mcp.cli install @modelcontextprotocol/server-filesystem
-        
+
         # List servers
         poetry run python -m haive.mcp.cli list
-        
+
         # Test a server
         poetry run python -m haive.mcp.cli test filesystem
-        
+
         # Discover servers
         poetry run python -m haive.mcp.cli discover --category filesystem
 
@@ -66,5 +66,6 @@ See Also:
 """
 
 from haive.mcp.cli.mcp_manager import main
+
 
 __all__ = ["main"]

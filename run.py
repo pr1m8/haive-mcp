@@ -9,9 +9,9 @@ Usage:
     poetry run python run.py test       - Run tests
 """
 
+from pathlib import Path
 import subprocess
 import sys
-from pathlib import Path
 
 
 def run_command(cmd: list[str], description: str) -> bool:
@@ -30,48 +30,58 @@ def main():
     if len(sys.argv) < 2:
         print(__doc__)
         return 1
-        
+
     command = sys.argv[1]
-    
+
     # Ensure we're in the right directory
     if not Path("pyproject.toml").exists():
         print("❌ Error: Must run from haive-mcp directory")
         return 1
-    
+
     if command == "setup":
-        return 0 if run_command(
-            ["poetry", "run", "python", "setup_all.py"],
-            "Running full setup"
-        ) else 1
-        
-    elif command == "install":
-        return 0 if run_command(
-            ["poetry", "run", "python", "install.py"],
-            "Running quick install"
-        ) else 1
-        
-    elif command == "check":
-        return 0 if run_command(
-            ["poetry", "run", "python", "check_health.py"],
-            "Running health check"
-        ) else 1
-        
-    elif command == "validate":
-        return 0 if run_command(
-            ["poetry", "run", "python", "validate_setup.py"],
-            "Running validation"
-        ) else 1
-        
-    elif command == "test":
-        return 0 if run_command(
-            ["poetry", "run", "pytest", "-v"],
-            "Running tests"
-        ) else 1
-        
-    else:
-        print(f"❌ Unknown command: {command}")
-        print(__doc__)
-        return 1
+        return (
+            0
+            if run_command(
+                ["poetry", "run", "python", "setup_all.py"], "Running full setup"
+            )
+            else 1
+        )
+
+    if command == "install":
+        return (
+            0
+            if run_command(
+                ["poetry", "run", "python", "install.py"], "Running quick install"
+            )
+            else 1
+        )
+
+    if command == "check":
+        return (
+            0
+            if run_command(
+                ["poetry", "run", "python", "check_health.py"], "Running health check"
+            )
+            else 1
+        )
+
+    if command == "validate":
+        return (
+            0
+            if run_command(
+                ["poetry", "run", "python", "validate_setup.py"], "Running validation"
+            )
+            else 1
+        )
+
+    if command == "test":
+        return (
+            0 if run_command(["poetry", "run", "pytest", "-v"], "Running tests") else 1
+        )
+
+    print(f"❌ Unknown command: {command}")
+    print(__doc__)
+    return 1
 
 
 if __name__ == "__main__":

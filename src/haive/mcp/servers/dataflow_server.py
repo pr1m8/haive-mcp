@@ -1,22 +1,23 @@
 #!/usr/bin/env python3
 """Haive Dataflow MCP Server - Provides access to haive-dataflow registry and components."""
 
-import logging
 import json
-from typing import Dict, List, Any, Optional
-from datetime import datetime
+import logging
+from typing import Any
 
 from mcp.server.fastmcp import FastMCP
+
 
 # Import haive-dataflow components
 try:
     from haive.dataflow import (
-        registry_system,
         EntityType,
         discover_agents,
-        discover_tools,
         discover_engines,
+        discover_tools,
+        registry_system,
     )
+
     DATAFLOW_AVAILABLE = True
 except ImportError:
     DATAFLOW_AVAILABLE = False
@@ -32,21 +33,21 @@ mcp = FastMCP("haive-dataflow-server")
 
 # Registry Tools
 @mcp.tool()
-async def list_components(component_type: str = "all") -> Dict[str, Any]:
+async def list_components(component_type: str = "all") -> dict[str, Any]:
     """List components registered in haive-dataflow.
-    
+
     Args:
         component_type: Type of components to list (agent, tool, engine, game, mcp_server, or all)
-        
+
     Returns:
         Dictionary of components by type
     """
     if not DATAFLOW_AVAILABLE:
         return {"error": "haive-dataflow not available"}
-    
+
     try:
         results = {}
-        
+
         if component_type == "all":
             # Get all component types
             for entity_type in EntityType:
@@ -75,48 +76,48 @@ async def list_components(component_type: str = "all") -> Dict[str, Any]:
                 ]
             except ValueError:
                 return {"error": f"Invalid component type: {component_type}"}
-        
+
         return results
-        
+
     except Exception as e:
         logger.error(f"Error listing components: {e}")
         return {"error": str(e)}
 
 
 @mcp.tool()
-async def get_component_details(component_id: str) -> Dict[str, Any]:
+async def get_component_details(component_id: str) -> dict[str, Any]:
     """Get detailed information about a specific component.
-    
+
     Args:
         component_id: ID of the component
-        
+
     Returns:
         Component details
     """
     if not DATAFLOW_AVAILABLE:
         return {"error": "haive-dataflow not available"}
-    
+
     try:
         component = registry_system.get_entity(component_id)
         if not component:
             return {"error": f"Component not found: {component_id}"}
-        
+
         # Get configurations
         configs = registry_system.get_configurations(component_id)
-        
+
         # Get dependencies
         deps = registry_system.get_dependencies(component_id)
-        
+
         # Get environment vars
         env_vars = registry_system.get_environment_vars(component_id)
-        
+
         return {
             "component": component,
             "configurations": configs,
             "dependencies": deps,
             "environment_vars": env_vars,
         }
-        
+
     except Exception as e:
         logger.error(f"Error getting component details: {e}")
         return {"error": str(e)}
@@ -127,37 +128,37 @@ async def register_component(
     name: str,
     component_type: str,
     description: str,
-    metadata: Optional[Dict[str, Any]] = None
-) -> Dict[str, str]:
+    metadata: dict[str, Any] | None = None,
+) -> dict[str, str]:
     """Register a new component in haive-dataflow.
-    
+
     Args:
         name: Component name
         component_type: Type of component (agent, tool, engine, etc.)
         description: Component description
         metadata: Optional metadata dictionary
-        
+
     Returns:
         Registration result with component ID
     """
     if not DATAFLOW_AVAILABLE:
         return {"error": "haive-dataflow not available"}
-    
+
     try:
         entity_type = EntityType(component_type)
         component_id = registry_system.register_entity(
             name=name,
             entity_type=entity_type,
             description=description,
-            metadata=metadata or {}
+            metadata=metadata or {},
         )
-        
+
         return {
             "status": "success",
             "component_id": component_id,
-            "message": f"Successfully registered {name} as {component_type}"
+            "message": f"Successfully registered {name} as {component_type}",
         }
-        
+
     except ValueError:
         return {"error": f"Invalid component type: {component_type}"}
     except Exception as e:
@@ -166,31 +167,30 @@ async def register_component(
 
 
 @mcp.tool()
-async def discover_components(component_type: str) -> Dict[str, Any]:
+async def discover_components(component_type: str) -> dict[str, Any]:
     """Run discovery for a specific component type.
-    
+
     Args:
         component_type: Type to discover (agents, tools, engines, games)
-        
+
     Returns:
         Discovery results
     """
     if not DATAFLOW_AVAILABLE:
         return {"error": "haive-dataflow not available"}
-    
+
     try:
         if component_type == "agents":
             ids = discover_agents()
             return {"discovered": len(ids), "component_ids": ids}
-        elif component_type == "tools":
+        if component_type == "tools":
             ids = discover_tools()
             return {"discovered": len(ids), "component_ids": ids}
-        elif component_type == "engines":
+        if component_type == "engines":
             ids = discover_engines()
             return {"discovered": len(ids), "component_ids": ids}
-        else:
-            return {"error": f"Discovery not supported for type: {component_type}"}
-            
+        return {"error": f"Discovery not supported for type: {component_type}"}
+
     except Exception as e:
         logger.error(f"Error discovering components: {e}")
         return {"error": str(e)}
@@ -199,19 +199,16 @@ async def discover_components(component_type: str) -> Dict[str, Any]:
 # Agent Tools
 @mcp.tool()
 async def create_agent_config(
-    agent_type: str,
-    name: str,
-    model: str = "gpt-4",
-    temperature: float = 0.7
-) -> Dict[str, Any]:
+    agent_type: str, name: str, model: str = "gpt-4", temperature: float = 0.7
+) -> dict[str, Any]:
     """Create a configuration for a haive agent.
-    
+
     Args:
         agent_type: Type of agent (simple, react, rag, multi)
         name: Name for the agent
         model: LLM model to use
         temperature: Temperature setting
-        
+
     Returns:
         Agent configuration
     """
@@ -251,15 +248,15 @@ async def create_agent_config(
             "name": name,
             "agents": [],
             "coordination": "sequential",
-        }
+        },
     }
-    
+
     if agent_type not in configs:
         return {"error": f"Unknown agent type: {agent_type}"}
-    
+
     return {
         "config": configs[agent_type],
-        "instructions": f"Use this configuration to create a {agent_type} agent in haive"
+        "instructions": f"Use this configuration to create a {agent_type} agent in haive",
     }
 
 
@@ -267,10 +264,10 @@ async def create_agent_config(
 @mcp.prompt()
 async def component_search_prompt(query: str) -> str:
     """Generate a prompt for searching haive components.
-    
+
     Args:
         query: Search query
-        
+
     Returns:
         Search prompt
     """
@@ -297,10 +294,10 @@ Focus on components most relevant to: {query}"""
 @mcp.prompt()
 async def agent_creation_prompt(requirements: str) -> str:
     """Generate a prompt for creating a new haive agent.
-    
+
     Args:
         requirements: Requirements for the agent
-        
+
     Returns:
         Agent creation prompt
     """
@@ -335,7 +332,7 @@ async def get_component_resource(component_id: str) -> str:
 
 # Server info
 @mcp.server_info()
-async def get_server_info() -> Dict[str, Any]:
+async def get_server_info() -> dict[str, Any]:
     """Get server information."""
     return {
         "name": "haive-dataflow-server",
@@ -350,7 +347,10 @@ async def get_server_info() -> Dict[str, Any]:
                 "discover_components",
                 "create_agent_config",
             ],
-            "resources": ["haive://registry/components", "haive://registry/component/{id}"],
+            "resources": [
+                "haive://registry/components",
+                "haive://registry/component/{id}",
+            ],
             "prompts": ["component_search_prompt", "agent_creation_prompt"],
         },
         "dataflow_available": DATAFLOW_AVAILABLE,
@@ -359,9 +359,9 @@ async def get_server_info() -> Dict[str, Any]:
 
 if __name__ == "__main__":
     import asyncio
-    
+
     logger.info("Starting haive-dataflow MCP server...")
     logger.info(f"Dataflow available: {DATAFLOW_AVAILABLE}")
-    
+
     # Run the server
     asyncio.run(mcp.run())

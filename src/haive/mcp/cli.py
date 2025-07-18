@@ -17,8 +17,6 @@ import argparse
 import asyncio
 import json
 import sys
-from pathlib import Path
-from typing import List, Optional
 
 from haive.core.errors import install_short_tracebacks
 from haive.mcp.documentation.doc_loader import MCPDocumentationLoader
@@ -26,7 +24,7 @@ from haive.mcp.tools.ai_assistant import MCPAssistant
 from haive.mcp.tools.server_selector import MCPServerSelector
 
 
-def print_servers(servers: List[dict], show_details: bool = False):
+def print_servers(servers: list[dict], show_details: bool = False):
     """Print server information in a readable format."""
     if not servers:
         print("No servers found.")
@@ -62,7 +60,7 @@ def print_servers(servers: List[dict], show_details: bool = False):
             print(f"   Description: {desc_short}")
 
 
-def print_recommendations(recommendations: List, show_reasoning: bool = False):
+def print_recommendations(recommendations: list, show_reasoning: bool = False):
     """Print server recommendations."""
     if not recommendations:
         print("No recommendations found.")
@@ -147,16 +145,16 @@ async def cmd_recommend(args):
         print(f"🔧 Setup complexity: {config.setup_complexity}")
 
         if config.warnings:
-            print(f"⚠️  Warnings:")
+            print("⚠️  Warnings:")
             for warning in config.warnings:
                 print(f"   - {warning}")
 
-        print(f"\n📋 Selected servers:")
+        print("\n📋 Selected servers:")
         for server_name in config.primary_servers:
             print(f"   ✅ {server_name}")
 
         if config.fallback_servers:
-            print(f"\n🔄 Fallback servers:")
+            print("\n🔄 Fallback servers:")
             for server_name in config.fallback_servers:
                 print(f"   🔄 {server_name}")
 
@@ -236,7 +234,7 @@ async def cmd_select(args):
 
         # Show summary
         summary = selector.get_selection_summary(selected)
-        print(f"\n📊 Selection Summary:")
+        print("\n📊 Selection Summary:")
         print(f"   Total servers: {summary['total_servers']}")
         print(f"   Categories: {', '.join(summary['categories'].keys())}")
         print(f"   Estimated capabilities: {', '.join(summary['capabilities'])}")
@@ -259,18 +257,18 @@ async def cmd_auto_config(args):
         include_fallbacks=not args.no_fallbacks,
     )
 
-    print(f"\n💭 Analysis:")
+    print("\n💭 Analysis:")
     print(f"   Task pattern: {config.reasoning}")
     print(f"   Setup complexity: {config.setup_complexity}")
     print(f"   Primary servers: {len(config.primary_servers)}")
     print(f"   Fallback servers: {len(config.fallback_servers)}")
 
     if config.warnings:
-        print(f"\n⚠️  Warnings:")
+        print("\n⚠️  Warnings:")
         for warning in config.warnings:
             print(f"   - {warning}")
 
-    print(f"\n📋 Configuration:")
+    print("\n📋 Configuration:")
     for server_name in config.primary_servers:
         print(f"   ✅ {server_name}")
 
@@ -278,19 +276,19 @@ async def cmd_auto_config(args):
     validation = await assistant.validate_configuration(config.config)
 
     if not validation["valid"]:
-        print(f"\n❌ Configuration Issues:")
+        print("\n❌ Configuration Issues:")
         for issue in validation["issues"]:
             print(f"   - {issue}")
 
     if validation["suggestions"]:
-        print(f"\n💡 Suggestions:")
+        print("\n💡 Suggestions:")
         for suggestion in validation["suggestions"]:
             print(f"   - {suggestion}")
 
     print(f"\n⏱️  Estimated setup time: {validation['estimated_setup_time']}s")
 
     if validation["required_env_vars"]:
-        print(f"\n🔑 Required environment variables:")
+        print("\n🔑 Required environment variables:")
         for var in set(validation["required_env_vars"]):
             print(f"   - {var}")
 
@@ -488,7 +486,7 @@ Examples:
         except KeyboardInterrupt:
             print("\n❌ Operation cancelled by user.")
             sys.exit(1)
-        except Exception as e:
+        except Exception:
             # The custom excepthook will handle printing the error
             sys.exit(1)
     else:

@@ -1,5 +1,4 @@
-"""
-SimpleRAG Agent for MCP Server Discovery
+"""SimpleRAG Agent for MCP Server Discovery
 
 This agent uses the enhanced retriever to help users find and understand MCP servers.
 It can answer questions about server capabilities, suggest servers based on needs,
@@ -7,42 +6,38 @@ and provide detailed information about specific servers.
 """
 
 import asyncio
-import sys
-from pathlib import Path
-from typing import Dict, List, Optional, Any
 from datetime import datetime
+from pathlib import Path
+import sys
+from typing import Any
+
 
 # Add parent path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent.parent))
 
+from langchain_core.documents import Document
+from langchain_core.retrievers import BaseRetriever
+from langchain_openai import ChatOpenAI
+
 from haive.agents.rag.simple.agent import SimpleRAGAgent
 from haive.core.engine.aug_llm import AugLLMConfig
 from haive.mcp.working_enhanced_retriever import WorkingEnhancedRetriever
-from langchain_openai import ChatOpenAI
-from langchain_core.retrievers import BaseRetriever
-from langchain_core.documents import Document
 
 
 class MCPSimpleRAGAgent(SimpleRAGAgent):
     """SimpleRAG agent specialized for MCP server discovery."""
-    
+
     def __init__(self, name: str = "mcp_rag_agent", **kwargs):
         # Initialize the enhanced retriever
         self.mcp_retriever = WorkingEnhancedRetriever()
         self.mcp_retriever.setup()
-        
+
         # Create a wrapper that makes our retriever compatible with SimpleRAG
-        retriever_config = {
-            "retriever": MCPRetrieverWrapper(self.mcp_retriever)
-        }
-        
+        retriever_config = {"retriever": MCPRetrieverWrapper(self.mcp_retriever)}
+
         # Initialize parent with our retriever
-        super().__init__(
-            name=name,
-            retriever_config=retriever_config,
-            **kwargs
-        )
-        
+        super().__init__(name=name, retriever_config=retriever_config, **kwargs)
+
     def get_system_prompt(self) -> str:
         """Custom system prompt for MCP assistance."""
         return """You are an expert MCP (Model Context Protocol) server assistant.
@@ -66,74 +61,72 @@ Use the retrieved documents to provide accurate, helpful information about MCP s
 
 class MCPRetrieverWrapper(BaseRetriever):
     """Wrapper to make our enhanced retriever compatible with LangChain."""
-    
+
     def __init__(self, enhanced_retriever: WorkingEnhancedRetriever):
         super().__init__()
         self.enhanced_retriever = enhanced_retriever
         self._llm = None
-    
+
     @property
     def llm(self):
         if self._llm is None:
             self._llm = ChatOpenAI(temperature=0.3)
         return self._llm
-    
-    async def _aget_relevant_documents(self, query: str, *, run_manager=None) -> List[Document]:
+
+    async def _aget_relevant_documents(
+        self, query: str, *, run_manager=None
+    ) -> list[Document]:
         """Async retrieval using our enhanced retriever."""
         docs = await self.enhanced_retriever.enhanced_query(self.llm, query, k=5)
         return docs
-    
-    def _get_relevant_documents(self, query: str, *, run_manager=None) -> List[Document]:
+
+    def _get_relevant_documents(
+        self, query: str, *, run_manager=None
+    ) -> list[Document]:
         """Sync retrieval (runs async in event loop)."""
         return asyncio.run(self._aget_relevant_documents(query))
 
 
 async def create_mcp_rag_agent(model: str = "gpt-3.5-turbo") -> MCPSimpleRAGAgent:
     """Factory function to create configured MCP RAG agent."""
-    
     # Create engine config
     engine_config = AugLLMConfig(
-        name="mcp_rag_engine",
-        model=model,
-        temperature=0.3,
-        streaming=True
+        name="mcp_rag_engine", model=model, temperature=0.3, streaming=True
     )
-    
+
     # Create agent
     agent = MCPSimpleRAGAgent(
-        name="mcp_assistant",
-        engine=engine_config,
-        max_documents=5
+        name="mcp_assistant", engine=engine_config, max_documents=5
     )
-    
+
     return agent
 
 
 async def demo_mcp_rag_agent():
     """Demonstrate the MCP RAG agent."""
     print("🚀 Starting MCP SimpleRAG Agent Demo\n")
-    
+
     # Create agent
     agent = await create_mcp_rag_agent()
-    
+
     # Example queries
     queries = [
         "What Python MCP servers are available for database operations?",
         "Find me MCP servers that can help with file system operations",
         "What's the most popular MCP server for GitHub integration?",
         "Compare MCP servers for weather data - which has the most features?",
-        "I need an MCP server for Slack integration, what are my options?"
+        "I need an MCP server for Slack integration, what are my options?",
     ]
-    
+
     for query in queries:
-        print(f"\n{'='*60}")
+        print(f"\n{'=' * 60}")
         print(f"📝 Query: {query}")
-        print(f"{'='*60}\n")
-        
+        print(f"{'=' * 60}\n")
+
         # Get response
         response = await agent.arun(query)
         print(f"🤖 Response:\n{response}\n")
-        
+
         # Small delay between queries
         await asyncio.sleep(1)
 
@@ -151,7 +144,7 @@ class QueryRequest(BaseModel):
 class QueryResponse(BaseModel):
     query: str
     response: str
-    retrieved_servers: List[Dict[str, Any]]
+    retrieved_servers: list[dict[str, Any]]
     timestamp: str
 
 
@@ -159,7 +152,7 @@ class QueryResponse(BaseModel):
 app = FastAPI(
     title="MCP SimpleRAG Agent API",
     description="Ask questions about MCP servers and get intelligent responses",
-    version="1.0.0"
+    version="1.0.0",
 )
 
 # Global agent instance
@@ -178,7 +171,8 @@ async def startup_event():
 @app.get("/")
 async def root():
     """Simple web UI for testing the agent."""
-    return HTMLResponse("""
+    return HTMLResponse(
+        """
 <!DOCTYPE html>
 <html>
 <head>
@@ -317,7 +311,8 @@ async def root():
     </script>
 </body>
 </html>
-""")
+"""
+    )
 
 
 @app.post("/ask", response_model=QueryResponse)
@@ -325,32 +320,32 @@ async def ask_agent(request: QueryRequest):
     """Ask the RAG agent a question about MCP servers."""
     if not rag_agent:
         raise HTTPException(status_code=503, detail="Agent not initialized")
-    
+
     try:
         # Get response from agent
         response = await rag_agent.arun(request.query)
-        
+
         # Get the retrieved documents (for transparency)
         retriever_wrapper = rag_agent.retriever_config["retriever"]
         docs = await retriever_wrapper._aget_relevant_documents(request.query)
-        
+
         retrieved_servers = [
             {
                 "name": doc.metadata.get("server_name", "Unknown"),
                 "category": doc.metadata.get("category", "general"),
                 "stars": doc.metadata.get("stars", 0),
-                "language": doc.metadata.get("language", "unknown")
+                "language": doc.metadata.get("language", "unknown"),
             }
             for doc in docs
         ]
-        
+
         return QueryResponse(
             query=request.query,
             response=response,
             retrieved_servers=retrieved_servers,
-            timestamp=datetime.now().isoformat()
+            timestamp=datetime.now().isoformat(),
         )
-        
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -363,6 +358,7 @@ if __name__ == "__main__":
     else:
         # Run FastAPI server
         import uvicorn
+
         print("🚀 Starting MCP SimpleRAG Agent API on port 6969")
         print("📍 Open http://localhost:6969 to use the agent")
         uvicorn.run(app, host="0.0.0.0", port=6969)

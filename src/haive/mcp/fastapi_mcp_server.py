@@ -1,5 +1,4 @@
-"""
-FastAPI MCP Discovery and Installation Server
+"""FastAPI MCP Discovery and Installation Server
 
 This server provides:
 1. Web interface for discovering MCP servers
@@ -8,46 +7,49 @@ This server provides:
 4. Real-time status updates via WebSocket
 """
 
-import asyncio
-import json
-import tempfile
+from contextlib import asynccontextmanager
+from datetime import datetime
+from pathlib import Path
 import subprocess
 import sys
-from pathlib import Path
-from typing import Any, Dict, List, Optional
-from datetime import datetime
-from contextlib import asynccontextmanager
+import tempfile
 
 # FastAPI imports
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException
+from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
+
 
 # Import our MCP tools
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent.parent))
 
-from haive.core.engine.aug_llm import AugLLMConfig
-from haive.mcp.documentation import MCPDocumentationLoader
-from haive.mcp.working_enhanced_retriever import WorkingEnhancedRetriever
 from langchain_mcp_adapters.client import MultiServerMCPClient
+
+from haive.core.engine.aug_llm import AugLLMConfig
+from haive.mcp.working_enhanced_retriever import WorkingEnhancedRetriever
+
 
 # Models
 class SearchRequest(BaseModel):
     query: str
     max_results: int = 5
 
+
 class InstallRequest(BaseModel):
     server_name: str
     auto_approve: bool = False
 
+
 class TestRequest(BaseModel):
     server_name: str
+
 
 class ApprovalResponse(BaseModel):
     request_id: str
     approved: bool
-    notes: Optional[str] = None
+    notes: str | None = None
+
 
 class ServerInfo(BaseModel):
     name: str
@@ -58,35 +60,34 @@ class ServerInfo(BaseModel):
     has_install: bool
     repository_url: str
 
+
 # Global state
 class MCPServerManager:
     def __init__(self):
         self.retriever = None
-        self.installed_servers: Dict[str, Dict] = {}
-        self.pending_approvals: Dict[str, Dict] = {}
-        self.websocket_clients: List[WebSocket] = []
+        self.installed_servers: dict[str, dict] = {}
+        self.pending_approvals: dict[str, dict] = {}
+        self.websocket_clients: list[WebSocket] = []
         self.engine = None
         self.llm = None
-        
+
     async def initialize(self):
         """Initialize the retriever and LLM."""
         print("🔧 Initializing MCP Server Manager...")
-        
+
         # Setup retriever
         self.retriever = WorkingEnhancedRetriever()
         self.retriever.setup()
-        
+
         # Setup LLM
         self.engine = AugLLMConfig(
-            name="mcp_discovery",
-            model="gpt-3.5-turbo",
-            temperature=0.3
+            name="mcp_discovery", model="gpt-3.5-turbo", temperature=0.3
         )
         self.llm = self.engine.instantiate()
-        
+
         print("✅ MCP Server Manager ready!")
-        
-    async def broadcast_message(self, message: Dict):
+
+    async def broadcast_message(self, message: dict):
         """Broadcast message to all connected WebSocket clients."""
         disconnected = []
         for ws in self.websocket_clients:
@@ -94,53 +95,57 @@ class MCPServerManager:
                 await ws.send_json(message)
             except:
                 disconnected.append(ws)
-        
+
         # Clean up disconnected clients
         for ws in disconnected:
             self.websocket_clients.remove(ws)
-            
-    async def search_servers(self, query: str, max_results: int = 5) -> List[ServerInfo]:
+
+    async def search_servers(
+        self, query: str, max_results: int = 5
+    ) -> list[ServerInfo]:
         """Search for MCP servers using enhanced retriever."""
         docs = await self.retriever.enhanced_query(self.llm, query, max_results)
-        
+
         servers = []
         for doc in docs:
             server = ServerInfo(
-                name=doc.metadata.get('server_name', 'Unknown'),
-                category=doc.metadata.get('category', 'general'),
-                stars=doc.metadata.get('stars', 0),
-                language=doc.metadata.get('language', 'unknown'),
+                name=doc.metadata.get("server_name", "Unknown"),
+                category=doc.metadata.get("category", "general"),
+                stars=doc.metadata.get("stars", 0),
+                language=doc.metadata.get("language", "unknown"),
                 description=doc.page_content[:200] + "...",
-                has_install=doc.metadata.get('has_install', False),
-                repository_url=doc.metadata.get('repository_url', '')
+                has_install=doc.metadata.get("has_install", False),
+                repository_url=doc.metadata.get("repository_url", ""),
             )
             servers.append(server)
-            
+
         return servers
-        
+
     async def request_install_approval(self, server_name: str) -> str:
         """Request approval for server installation."""
         request_id = f"install_{server_name}_{datetime.now().timestamp()}"
-        
+
         self.pending_approvals[request_id] = {
-            'type': 'install',
-            'server_name': server_name,
-            'timestamp': datetime.now().isoformat(),
-            'status': 'pending'
+            "type": "install",
+            "server_name": server_name,
+            "timestamp": datetime.now().isoformat(),
+            "status": "pending",
         }
-        
+
         # Broadcast approval request
-        await self.broadcast_message({
-            'type': 'approval_request',
-            'request_id': request_id,
-            'server_name': server_name,
-            'action': 'install',
-            'timestamp': datetime.now().isoformat()
-        })
-        
+        await self.broadcast_message(
+            {
+                "type": "approval_request",
+                "request_id": request_id,
+                "server_name": server_name,
+                "action": "install",
+                "timestamp": datetime.now().isoformat(),
+            }
+        )
+
         return request_id
-        
-    async def install_server(self, server_name: str) -> Dict:
+
+    async def install_server(self, server_name: str) -> dict:
         """Install an MCP server."""
         # Generate FastMCP server code
         server_code = f'''"""
@@ -183,107 +188,109 @@ async def help_prompt() -> List[Dict[str, str]]:
 if __name__ == "__main__":
     mcp.run(transport="stdio")
 '''
-        
+
         # Write to temp file
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.py', delete=False) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".py", delete=False) as f:
             f.write(server_code)
             server_path = f.name
-            
+
         # Store installation info
         self.installed_servers[server_name] = {
-            'path': server_path,
-            'installed_at': datetime.now().isoformat(),
-            'status': 'installed'
+            "path": server_path,
+            "installed_at": datetime.now().isoformat(),
+            "status": "installed",
         }
-        
+
         # Broadcast installation success
-        await self.broadcast_message({
-            'type': 'install_complete',
-            'server_name': server_name,
-            'path': server_path
-        })
-        
-        return {
-            'server_name': server_name,
-            'path': server_path,
-            'status': 'installed'
-        }
-        
-    async def test_server(self, server_name: str) -> Dict:
+        await self.broadcast_message(
+            {
+                "type": "install_complete",
+                "server_name": server_name,
+                "path": server_path,
+            }
+        )
+
+        return {"server_name": server_name, "path": server_path, "status": "installed"}
+
+    async def test_server(self, server_name: str) -> dict:
         """Test an installed MCP server."""
         if server_name not in self.installed_servers:
-            raise HTTPException(status_code=404, detail=f"Server {server_name} not installed")
-            
+            raise HTTPException(
+                status_code=404, detail=f"Server {server_name} not installed"
+            )
+
         server_info = self.installed_servers[server_name]
-        server_path = server_info['path']
-        
+        server_path = server_info["path"]
+
         # Create MCP client
         client_config = {
             server_name: {
                 "command": sys.executable,
                 "args": [server_path],
-                "transport": "stdio"
+                "transport": "stdio",
             }
         }
-        
+
         client = MultiServerMCPClient(client_config)
         results = {
-            'server_name': server_name,
-            'tools': [],
-            'resources': [],
-            'prompts': [],
-            'test_results': {}
+            "server_name": server_name,
+            "tools": [],
+            "resources": [],
+            "prompts": [],
+            "test_results": {},
         }
-        
+
         try:
             async with client.session(server_name) as session:
                 # List tools
                 tools_result = await session.list_tools()
-                if hasattr(tools_result, 'tools'):
-                    results['tools'] = [
-                        {'name': t.name, 'description': t.description}
+                if hasattr(tools_result, "tools"):
+                    results["tools"] = [
+                        {"name": t.name, "description": t.description}
                         for t in tools_result.tools
                     ]
-                    
+
                     # Test first tool
                     if tools_result.tools:
                         tool = tools_result.tools[0]
                         test_result = await session.call_tool(
                             tool.name,
-                            arguments={'name': 'FastAPI'} if tool.name == 'hello' else {}
+                            arguments=(
+                                {"name": "FastAPI"} if tool.name == "hello" else {}
+                            ),
                         )
-                        results['test_results']['tool'] = str(test_result)
-                
+                        results["test_results"]["tool"] = str(test_result)
+
                 # List resources
                 resources_result = await session.list_resources()
-                if hasattr(resources_result, 'resources'):
-                    results['resources'] = [
-                        {'uri': r.uri, 'name': r.name}
+                if hasattr(resources_result, "resources"):
+                    results["resources"] = [
+                        {"uri": r.uri, "name": r.name}
                         for r in resources_result.resources
                     ]
-                    
+
                 # List prompts
                 prompts_result = await session.list_prompts()
-                if hasattr(prompts_result, 'prompts'):
-                    results['prompts'] = [
-                        {'name': p.name, 'description': p.description}
+                if hasattr(prompts_result, "prompts"):
+                    results["prompts"] = [
+                        {"name": p.name, "description": p.description}
                         for p in prompts_result.prompts
                     ]
-                    
+
         except Exception as e:
-            results['error'] = str(e)
-            
+            results["error"] = str(e)
+
         # Broadcast test results
-        await self.broadcast_message({
-            'type': 'test_complete',
-            'server_name': server_name,
-            'results': results
-        })
-        
+        await self.broadcast_message(
+            {"type": "test_complete", "server_name": server_name, "results": results}
+        )
+
         return results
+
 
 # Create manager instance
 manager = MCPServerManager()
+
 
 # Lifespan context manager
 @asynccontextmanager
@@ -294,12 +301,13 @@ async def lifespan(app: FastAPI):
     # Shutdown
     print("Shutting down...")
 
+
 # Create FastAPI app
 app = FastAPI(
     title="MCP Discovery & Installation Server",
     description="Discover, install, and test MCP servers with HITL approval",
     version="1.0.0",
-    lifespan=lifespan
+    lifespan=lifespan,
 )
 
 # Add CORS
@@ -310,6 +318,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 # Routes
 @app.get("/", response_class=HTMLResponse)
@@ -633,11 +642,13 @@ async def root():
 </html>
 """
 
+
 @app.post("/search")
 async def search_servers(request: SearchRequest):
     """Search for MCP servers."""
     servers = await manager.search_servers(request.query, request.max_results)
     return servers
+
 
 @app.post("/install")
 async def install_server(request: InstallRequest):
@@ -646,46 +657,48 @@ async def install_server(request: InstallRequest):
         # Direct installation
         result = await manager.install_server(request.server_name)
         return result
-    else:
-        # Request approval
-        request_id = await manager.request_install_approval(request.server_name)
-        return {"status": "approval_pending", "request_id": request_id}
+    # Request approval
+    request_id = await manager.request_install_approval(request.server_name)
+    return {"status": "approval_pending", "request_id": request_id}
+
 
 @app.post("/approve")
 async def approve_installation(response: ApprovalResponse):
     """Approve or reject an installation."""
     if response.request_id not in manager.pending_approvals:
         raise HTTPException(status_code=404, detail="Approval request not found")
-        
+
     approval = manager.pending_approvals[response.request_id]
-    
+
     if response.approved:
         # Install the server
-        server_name = approval['server_name']
+        server_name = approval["server_name"]
         result = await manager.install_server(server_name)
         del manager.pending_approvals[response.request_id]
         return result
-    else:
-        # Reject
-        del manager.pending_approvals[response.request_id]
-        return {"status": "rejected"}
+    # Reject
+    del manager.pending_approvals[response.request_id]
+    return {"status": "rejected"}
+
 
 @app.post("/test")
 async def test_server(request: TestRequest):
     """Test an installed MCP server."""
     return await manager.test_server(request.server_name)
 
+
 @app.get("/installed")
 async def get_installed_servers():
     """Get list of installed servers."""
     return manager.installed_servers
+
 
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
     """WebSocket endpoint for real-time updates."""
     await websocket.accept()
     manager.websocket_clients.append(websocket)
-    
+
     try:
         while True:
             # Keep connection alive
@@ -693,17 +706,18 @@ async def websocket_endpoint(websocket: WebSocket):
     except WebSocketDisconnect:
         manager.websocket_clients.remove(websocket)
 
+
 if __name__ == "__main__":
     import uvicorn
-    
+
     # Ensure FastMCP is installed
     try:
         import fastmcp
     except ImportError:
         print("Installing FastMCP...")
         subprocess.run([sys.executable, "-m", "pip", "install", "fastmcp"], check=True)
-    
+
     print("🚀 Starting MCP Discovery & Installation Server")
     print("📍 Open http://localhost:6969 in your browser")
-    
+
     uvicorn.run(app, host="0.0.0.0", port=6969)
