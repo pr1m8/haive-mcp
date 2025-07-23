@@ -6,19 +6,19 @@ templates:
   # Official ModelContextProtocol servers
   - name: npm_official
     installation_method: npm
-    command_pattern: '@modelcontextprotocol/server-{service}'
+    command_pattern: "@modelcontextprotocol/server-{service}"
     args_pattern: []
     env_vars: {}
     capabilities: [tools]
     category: official
-    health_check: 'npx @modelcontextprotocol/server-{service} --help'
+    health_check: "npx @modelcontextprotocol/server-{service} --help"
     prerequisites: [node, npm]
     post_install: []
 
   # Community NPM packages with various patterns
   - name: npm_community
     installation_method: npm
-    command_pattern: '{package}'
+    command_pattern: "{package}"
     args_pattern: []
     env_vars: {}
     capabilities: [tools]
@@ -27,7 +27,7 @@ templates:
 
   - name: npm_scoped
     installation_method: npm
-    command_pattern: '@{org}/{package}'
+    command_pattern: "@{org}/{package}"
     args_pattern: []
     env_vars: {}
     capabilities: [tools]
@@ -36,7 +36,7 @@ templates:
 
   - name: npm_mcp_pattern
     installation_method: npm
-    command_pattern: 'mcp-server-{service}'
+    command_pattern: "mcp-server-{service}"
     args_pattern: []
     env_vars: {}
     capabilities: [tools]
@@ -46,7 +46,7 @@ templates:
   # Python-based servers
   - name: pypi_package
     installation_method: pip
-    command_pattern: '{package}'
+    command_pattern: "{package}"
     args_pattern: []
     env_vars: {}
     capabilities: [tools]
@@ -55,7 +55,7 @@ templates:
 
   - name: pypi_mcp_pattern
     installation_method: pip
-    command_pattern: 'mcp-{service}'
+    command_pattern: "mcp-{service}"
     args_pattern: []
     env_vars: {}
     capabilities: [tools]
@@ -65,41 +65,41 @@ templates:
   # Git repository installations
   - name: git_repo
     installation_method: git
-    command_pattern: 'python server.py'
+    command_pattern: "python server.py"
     args_pattern: []
     env_vars: {}
     capabilities: [tools]
     category: development
-    post_install: 
-      - 'pip install -r requirements.txt'
+    post_install:
+      - "pip install -r requirements.txt"
     prerequisites: [git, python]
 
   - name: git_node_repo
     installation_method: git
-    command_pattern: 'npm start'
+    command_pattern: "npm start"
     args_pattern: []
     env_vars: {}
     capabilities: [tools]
     category: development
     post_install:
-      - 'npm install'
+      - "npm install"
     prerequisites: [git, node, npm]
 
   - name: git_go_repo
     installation_method: git
-    command_pattern: 'go run main.go'
+    command_pattern: "go run main.go"
     args_pattern: []
     env_vars: {}
     capabilities: [tools]
     category: development
     post_install:
-      - 'go mod download'
+      - "go mod download"
     prerequisites: [git, go]
 
   # Docker-based servers
   - name: docker_image
     installation_method: docker
-    command_pattern: '{image}'
+    command_pattern: "{image}"
     args_pattern: []
     env_vars: {}
     capabilities: [tools]
@@ -108,7 +108,7 @@ templates:
 
   - name: docker_mcp_pattern
     installation_method: docker
-    command_pattern: 'mcp/{service}'
+    command_pattern: "mcp/{service}"
     args_pattern: []
     env_vars: {}
     capabilities: [tools]
@@ -118,13 +118,13 @@ templates:
   # Binary/executable servers
   - name: binary_download
     installation_method: curl
-    command_pattern: './{service}-mcp-server'
+    command_pattern: "./{service}-mcp-server"
     args_pattern: []
     env_vars: {}
     capabilities: [tools]
     category: binary
     post_install:
-      - 'chmod +x {service}-mcp-server'
+      - "chmod +x {service}-mcp-server"
 
 # Server configurations - these can be generated automatically or defined manually
 servers:
@@ -292,60 +292,72 @@ patterns:
   # Package naming patterns for different registries
   package_patterns:
     npm:
-      - '@modelcontextprotocol/server-*'
-      - 'mcp-server-*'
-      - '*-mcp-server'
-      - 'mcp-*'
-      - '@*/mcp-server'
-      - '@mcp-*/*'
+      - "@modelcontextprotocol/server-*"
+      - "mcp-server-*"
+      - "*-mcp-server"
+      - "mcp-*"
+      - "@*/mcp-server"
+      - "@mcp-*/*"
     pypi:
-      - 'mcp-*'
-      - '*-mcp'
-      - 'mcp-server-*'
-      - '*-mcp-server'
+      - "mcp-*"
+      - "*-mcp"
+      - "mcp-server-*"
+      - "*-mcp-server"
     docker:
-      - 'mcp/*'
-      - 'modelcontextprotocol/*'
-      - '*/mcp-*'
+      - "mcp/*"
+      - "modelcontextprotocol/*"
+      - "*/mcp-*"
     github:
-      - '*mcp*server*'
-      - '*model*context*protocol*'
-      - 'mcp-*'
+      - "*mcp*server*"
+      - "*model*context*protocol*"
+      - "mcp-*"
 
   # Service categories for pattern generation
   service_categories:
     # Core services
     core: [filesystem, memory, sqlite, postgres, git, terminal]
-    
+
     # Web & API services
-    web: [github, gitlab, google-maps, brave-search, twitter, reddit, slack, discord]
-    
+    web:
+      [
+        github,
+        gitlab,
+        google-maps,
+        brave-search,
+        twitter,
+        reddit,
+        slack,
+        discord,
+      ]
+
     # AI & ML services
     ai: [openai, anthropic, huggingface, replicate, stability, cohere, palm]
-    
+
     # Development tools
     dev: [docker, kubernetes, terraform, ansible, jenkins, prometheus, grafana]
-    
+
     # Databases
-    database: [postgres, mysql, redis, mongodb, elasticsearch, influxdb, cassandra]
-    
+    database:
+      [postgres, mysql, redis, mongodb, elasticsearch, influxdb, cassandra]
+
     # Cloud providers
     cloud: [aws, gcp, azure, digitalocean, vultr, linode, hetzner]
-    
+
     # Communication
     communication: [slack, discord, teams, telegram, whatsapp, email, sms]
-    
+
     # Productivity
     productivity: [notion, airtable, trello, asana, todoist, evernote, obsidian]
-    
+
     # Media & Content
     media: [youtube, spotify, netflix, twitch, instagram, tiktok, pinterest]
-    
+
     # E-commerce & Finance
     ecommerce: [shopify, stripe, paypal, square, amazon, ebay, etsy]
-    
+
     # Analytics & Monitoring
-    analytics: [google-analytics, mixpanel, amplitude, segment, datadog, newrelic]
+    analytics:
+      [google-analytics, mixpanel, amplitude, segment, datadog, newrelic]
 
   # Environment variable templates
   env_templates:
@@ -371,26 +383,26 @@ patterns:
 installation:
   # Default installation directory
   install_dir: ~/.mcp/servers
-  
+
   # Concurrent downloads
   max_concurrent: 5
-  
+
   # Timeout settings
   download_timeout: 300
   install_timeout: 600
-  
+
   # Retry settings
   max_retries: 3
   retry_delay: 5
-  
+
   # Health check settings
   health_check_enabled: true
   health_check_timeout: 30
-  
+
   # Auto-update settings
   auto_update: false
-  update_check_interval: 86400  # 24 hours
-  
+  update_check_interval: 86400 # 24 hours
+
   # Backup settings
   backup_config: true
   backup_dir: ~/.mcp/backups
