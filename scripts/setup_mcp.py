@@ -6,10 +6,9 @@ This script sets up the general MCP downloader system and handles dependencies.
 
 import asyncio
 import logging
-from pathlib import Path
 import subprocess
 import sys
-
+from pathlib import Path
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

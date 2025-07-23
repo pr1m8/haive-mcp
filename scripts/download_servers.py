@@ -7,20 +7,18 @@ from various sources including npm, PyPI, GitHub, and Docker Hub.
 
 import asyncio
 import json
-from pathlib import Path
 import sys
+from pathlib import Path
 
 import click
 from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
 
-
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.haive.mcp.downloader.legacy_core import GeneralMCPDownloader
-
 
 # from src.haive.mcp.downloader.discovery import ServerDiscovery
 
