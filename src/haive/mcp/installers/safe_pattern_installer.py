@@ -1,4 +1,4 @@
-"""Safe Pattern-Based MCP Server Installer
+"""Safe Pattern-Based MCP Server Installer.
 
 Version 1: Uses predefined patterns for safe, predictable installations.
 No code generation - only trusted, tested patterns.
@@ -22,7 +22,7 @@ from haive.mcp.installers.config_manager import (
 
 
 class InstallationRequest(BaseModel):
-    """Request for MCP server installation"""
+    """Request for MCP server installation."""
 
     server_name: str = Field(description="Unique name for this server instance")
     package_name: str = Field(
@@ -41,7 +41,7 @@ class InstallationRequest(BaseModel):
 
 
 class InstallationResult(BaseModel):
-    """Result of installation attempt"""
+    """Result of installation attempt."""
 
     success: bool
     server_name: str
@@ -52,23 +52,17 @@ class InstallationResult(BaseModel):
 
 
 class SafePatternInstaller:
-    """Safe MCP installer using only predefined patterns"""
+    """Safe MCP installer using only predefined patterns."""
 
     def __init__(self, config_manager: MCPConfigManager | None = None):
         self.config_manager = config_manager or MCPConfigManager()
         self.running_servers: dict[str, subprocess.Popen] = {}
         self.request_counters: dict[str, int] = {}
 
-        print("🛡️  Safe Pattern Installer initialized")
-        print(f"📁 Config directory: {self.config_manager.config_dir}")
-        print(
-            f"🔧 Available patterns: {', '.join(self.config_manager.list_available_patterns())}"
-        )
-
     def get_pattern_for_server(
         self, package_name: str, suggested_pattern: str
     ) -> MCPServerPattern | None:
-        """Get the appropriate pattern for a server"""
+        """Get the appropriate pattern for a server."""
         # First try the suggested pattern
         if suggested_pattern:
             pattern = self.config_manager.get_pattern(suggested_pattern)
@@ -92,7 +86,7 @@ class SafePatternInstaller:
     def validate_installation_request(
         self, request: InstallationRequest
     ) -> tuple[bool, str]:
-        """Validate that installation request is safe"""
+        """Validate that installation request is safe."""
         # Check if pattern exists
         pattern = self.get_pattern_for_server(
             request.package_name, request.pattern_type
@@ -121,7 +115,7 @@ class SafePatternInstaller:
         return True, "Validation passed"
 
     def _is_safe_package_name(self, package_name: str) -> bool:
-        """Check if package name matches safe patterns"""
+        """Check if package name matches safe patterns."""
         safe_patterns = [
             "@modelcontextprotocol/",
             "mcp-server-",
@@ -132,7 +126,7 @@ class SafePatternInstaller:
 
     @tool
     def check_server_status(self, server_name: str) -> str:
-        """Check if an MCP server is running"""
+        """Check if an MCP server is running."""
         if server_name in self.running_servers:
             process = self.running_servers[server_name]
             if process.poll() is None:
@@ -141,10 +135,10 @@ class SafePatternInstaller:
         return f"❌ Server '{server_name}' is not running"
 
     def create_installation_tool(self, request: InstallationRequest) -> StructuredTool:
-        """Create a tool for installing a specific MCP server"""
+        """Create a tool for installing a specific MCP server."""
 
         def install_server_func(confirm: bool = True) -> str:
-            """Install MCP server using safe patterns"""
+            """Install MCP server using safe patterns."""
             if not confirm and request.require_approval:
                 return "❌ Installation cancelled - approval required"
 
@@ -182,7 +176,6 @@ class SafePatternInstaller:
                         package_name=request.package_name
                     )
 
-                    print(f"📦 Installing {request.package_name}...")
                     result = subprocess.run(
                         install_cmd.split(),
                         capture_output=True,
@@ -199,8 +192,6 @@ class SafePatternInstaller:
                     package_name=request.package_name,
                     args=" ".join(env_config.startup_args),
                 )
-
-                print(f"🚀 Testing server startup: {startup_cmd}")
 
                 return f"""✅ Server '{request.server_name}' configured successfully!
 
@@ -244,7 +235,7 @@ class SafePatternInstaller:
         return tool_func
 
     async def start_server(self, server_name: str) -> InstallationResult:
-        """Start a configured MCP server"""
+        """Start a configured MCP server."""
         config = self.config_manager.get_server_config(server_name)
         if not config:
             return InstallationResult(
@@ -277,8 +268,6 @@ class SafePatternInstaller:
                         if hasattr(secret_val, "get_secret_value")
                         else str(secret_val)
                     )
-
-                print(f"🚀 Starting server: {' '.join(startup_cmd)}")
 
                 # Start process
                 process = subprocess.Popen(
@@ -327,7 +316,7 @@ class SafePatternInstaller:
             )
 
     async def _discover_server_tools(self, server_name: str) -> list[str]:
-        """Discover available tools from running server"""
+        """Discover available tools from running server."""
         if server_name not in self.running_servers:
             return []
 
@@ -381,18 +370,15 @@ class SafePatternInstaller:
                             tools = [
                                 tool["name"] for tool in tools_result["result"]["tools"]
                             ]
-                            print(
-                                f"🔧 Discovered tools for {server_name}: {', '.join(tools)}"
-                            )
                             return tools
 
-        except Exception as e:
-            print(f"❌ Failed to discover tools for {server_name}: {e}")
+        except Exception:
+            pass
 
         return []
 
     def create_quick_install_tools(self) -> list[StructuredTool]:
-        """Create tools for common MCP server installations"""
+        """Create tools for common MCP server installations."""
         common_servers = [
             InstallationRequest(
                 server_name="filesystem",
@@ -416,21 +402,19 @@ class SafePatternInstaller:
 
         return tools
 
-    def cleanup(self):
-        """Stop all running servers"""
-        for name, process in self.running_servers.items():
+    def cleanup(self) -> None:
+        """Stop all running servers."""
+        for _name, process in self.running_servers.items():
             try:
                 process.terminate()
                 process.wait(timeout=5)
-                print(f"✅ Stopped {name} server")
             except:
                 process.kill()
-                print(f"🔥 Force killed {name} server")
 
         self.running_servers.clear()
 
     def get_status_summary(self) -> dict[str, Any]:
-        """Get summary of installer status"""
+        """Get summary of installer status."""
         return {
             "installer_type": "SafePatternInstaller",
             "available_patterns": self.config_manager.list_available_patterns(),

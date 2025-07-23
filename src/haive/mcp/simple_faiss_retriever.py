@@ -1,14 +1,13 @@
-"""Simple FAISS-based MCP Retriever with Auto-Loading
+"""Simple FAISS-based MCP Retriever with Auto-Loading.
 
 Uses FAISS for vector storage and auto-loads MCP server documentation.
 """
 
 import json
-from pathlib import Path
 import pickle
 import sys
+from pathlib import Path
 from typing import Any
-
 
 # Add parent path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent.parent))
@@ -33,24 +32,19 @@ class SimpleFAISSRetriever:
         self.vectorstore = None
         self.documents = []
 
-    def setup(self):
+    def setup(self) -> None:
         """Set up the retriever with auto-loading."""
-        print("🔧 Setting up Simple FAISS Retriever...")
-
         # Check if cache exists
         cache_path = self.cache_dir / "faiss_index"
         docs_cache_path = self.cache_dir / "documents.pkl"
 
         if cache_path.exists() and docs_cache_path.exists():
-            print("📂 Loading from cache...")
             self.vectorstore = FAISS.load_local(
                 str(cache_path), self.embeddings, allow_dangerous_deserialization=True
             )
             with open(docs_cache_path, "rb") as f:
                 self.documents = pickle.load(f)
-            print(f"✅ Loaded {len(self.documents)} documents from cache")
         else:
-            print("📚 Building new index...")
             self._build_index()
 
     def _build_index(self):
@@ -62,8 +56,6 @@ class SimpleFAISSRetriever:
         with open(all_servers_path) as f:
             data = json.load(f)
             servers = data.get("all_servers", [])
-
-        print(f"📊 Processing {len(servers)} MCP servers...")
 
         # Create documents
         documents = []
@@ -109,7 +101,6 @@ Full Details: {json.dumps(server, indent=2)}
         )
 
         split_docs = text_splitter.split_documents(documents)
-        print(f"📝 Created {len(split_docs)} chunks from {len(documents)} documents")
 
         # Create FAISS index
         self.vectorstore = FAISS.from_documents(split_docs, self.embeddings)
@@ -122,8 +113,6 @@ Full Details: {json.dumps(server, indent=2)}
         docs_cache_path = self.cache_dir / "documents.pkl"
         with open(docs_cache_path, "wb") as f:
             pickle.dump(self.documents, f)
-
-        print("💾 Saved index to cache")
 
     def search(self, query: str, k: int = 5) -> list[Document]:
         """Search for relevant documents."""
@@ -172,9 +161,6 @@ if __name__ == "__main__":
     ]
 
     for query in test_queries:
-        print(f"\n🔍 Query: {query}")
         results = retriever.search(query, k=3)
-        for i, doc in enumerate(results, 1):
-            print(
-                f"  {i}. {doc.metadata.get('server_name')} ({doc.metadata.get('stars')} stars)"
-            )
+        for _i, _doc in enumerate(results, 1):
+            pass

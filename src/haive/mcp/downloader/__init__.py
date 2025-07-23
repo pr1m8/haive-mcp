@@ -1,40 +1,36 @@
-"""MCP Downloader Package.
+"""Module exports."""
 
-This package provides a general, extensible system for downloading and managing
-Model Context Protocol (MCP) servers from any source.
-
-Example:
-    Basic usage::
-
-        from haive.mcp.downloader import GeneralMCPDownloader
-
-        downloader = GeneralMCPDownloader()
-        result = await downloader.download_servers(["filesystem", "github"])
-
-    Auto-discovery::
-
-        result = await downloader.auto_discover_and_download(limit=10)
-
-Modules:
-    core: Core downloader with plugin architecture
-    installers: Plugin installers for different methods
-    config: Configuration models and validation
-    discovery: Server discovery from multiple sources
-    integration: Agent integration utilities
-
-Version: 1.0.0
-Author: Haive MCP Team
-"""
-
-from haive.mcp.downloader.config import (
+from downloader.config import (
+    DiscoveryConfig,
     DownloaderConfig,
     InstallationMethod,
     ServerConfig,
     ServerTemplate,
+    load_config,
+    save_config,
 )
-from haive.mcp.downloader.core import GeneralMCPDownloader
-from haive.mcp.downloader.discovery import ServerDiscovery
-from haive.mcp.downloader.installers import (
+from downloader.core import (
+    DownloadResult,
+    GeneralMCPDownloader,
+    ServerStatus,
+    add_custom_server,
+    add_custom_template,
+    get_all_status,
+    get_server_status,
+    save_configuration,
+    servers,
+    templates,
+)
+from downloader.discovery import DiscoveredServer, ServerDiscovery, determine_template
+from downloader.github_mass_downloader import (
+    GitHubMCPDownloader,
+    categorize_servers,
+    create_master_config,
+    create_server_config,
+    load_all_servers,
+    show_results,
+)
+from downloader.installers import (
     BinaryInstaller,
     CurlInstaller,
     DockerInstaller,
@@ -43,23 +39,75 @@ from haive.mcp.downloader.installers import (
     NPMInstaller,
     PipInstaller,
 )
-from haive.mcp.downloader.integration import MCPAgentIntegration
+from downloader.integration import (
+    Config,
+    MCPAgentIntegration,
+    MCPCapabilityExtractor,
+    MCPServerConnection,
+    get_all_prompts,
+    get_all_resources,
+    get_all_tools,
+    get_capability_summary,
+    get_tools_by_capability,
+    get_tools_by_server,
+)
+from downloader.legacy_core import (
+    DockerInstaller,
+    GeneralMCPDownloader,
+    GitInstaller,
+    InstallationMethod,
+    MCPInstaller,
+    NPMInstaller,
+    PipInstaller,
+    ServerConfig,
+    ServerTemplate,
+    create_default_config,
+    load_config,
+)
 
-
-__version__ = "1.0.0"
 __all__ = [
     "BinaryInstaller",
+    "Config",
     "CurlInstaller",
+    "DiscoveredServer",
+    "DiscoveryConfig",
     "DockerInstaller",
+    "DownloadResult",
     "DownloaderConfig",
     "GeneralMCPDownloader",
+    "GitHubMCPDownloader",
     "GitInstaller",
     "InstallationMethod",
     "MCPAgentIntegration",
+    "MCPCapabilityExtractor",
     "MCPInstaller",
+    "MCPServerConnection",
     "NPMInstaller",
     "PipInstaller",
     "ServerConfig",
     "ServerDiscovery",
+    "ServerStatus",
     "ServerTemplate",
+    "add_custom_server",
+    "add_custom_template",
+    "categorize_servers",
+    "create_default_config",
+    "create_master_config",
+    "create_server_config",
+    "determine_template",
+    "get_all_prompts",
+    "get_all_resources",
+    "get_all_status",
+    "get_all_tools",
+    "get_capability_summary",
+    "get_server_status",
+    "get_tools_by_capability",
+    "get_tools_by_server",
+    "load_all_servers",
+    "load_config",
+    "save_config",
+    "save_configuration",
+    "servers",
+    "show_results",
+    "templates",
 ]

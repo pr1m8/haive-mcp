@@ -17,6 +17,7 @@ from haive.mcp.agents import IntelligentMCPAgent
 from haive.mcp.agents.intelligent_mcp_agent import HITLApprovalRequest, ApprovalStatus
 
 
+
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

@@ -313,7 +313,7 @@ class MCPSetupManager:
                 try:
                     register_script = f"""
 from haive.dataflow import registry_system, EntityType
-from haive.dataflow.registry.models import MCPServerConfig, MCPTransport
+from .registry.models import MCPServerConfig, MCPTransport
 
 config = MCPServerConfig(
     name="{server_name}",

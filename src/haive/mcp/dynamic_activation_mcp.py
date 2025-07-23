@@ -292,7 +292,8 @@ class DynamicActivationMCPServer(BaseModel):
     _clients: dict[str, Any] = {}
 
     @model_validator(mode="after")
-    def setup_mcp_server(self) -> "DynamicActivationMCPServer":
+    @classmethod
+    def setup_mcp_server(cls) -> "DynamicActivationMCPServer":
         """Initialize MCP server components.
 
         This validator:

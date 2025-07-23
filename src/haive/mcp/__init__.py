@@ -1,136 +1,306 @@
-"""Haive MCP - Dynamic Model Context Protocol Integration for Haive Agents.
+"""Module exports."""
 
-haive-mcp brings the power of Model Context Protocol to Haive agents with dynamic
-discovery, hot-reload capabilities, and intelligent server management. Access 1,960+
-pre-indexed MCP servers and let your agents automatically find and install the
-tools they need - all without restarting.
-
-Key Features:
-    - 🔄 Hot-Reload: Add servers and refresh tools without restart
-    - 🤖 Intelligent Discovery: AI analyzes needs and suggests servers
-    - 👤 HITL Approval: Human-in-the-loop approval workflows
-    - 📚 1,960+ Servers: Pre-indexed database of MCP servers
-    - 🔧 Dynamic Tools: Tools, resources, and prompts from MCP
-    - ⚡ Real-time: Install and use immediately
-
-Quick Start:
-
-    ```python
-    from haive.mcp.agents import IntelligentMCPAgent
-    from haive.core.engine.aug_llm import AugLLMConfig
-
-    # Create intelligent agent that auto-discovers servers
-    agent = IntelligentMCPAgent(
-        engine=AugLLMConfig(),
-        auto_discover=True,      # Find servers automatically
-        require_approval=True    # Ask before installing
-    )
-    
-    await agent.setup()
-    
-    # Agent installs what it needs based on your request!
-    result = await agent.arun({
-        "messages": [{
-            "role": "user",
-            "content": "Search the web for Python tutorials and save to file"
-        }]
-    })
-    # Automatically installs web search + filesystem servers!
-    ```
-
-Components:
-    - IntelligentMCPAgent: Dynamic discovery and management
-    - MCPAgent: Production agent with static configs
-    - MCPManager: Server lifecycle with hot-reload
-    - TransferableMCPAgent: Share tools between agents
-    - MCPDocumentationAgent: Process server documentation
-
-Advanced Usage:
-
-    ```python
-    # Manual control with hot-reload
-    manager = agent.mcp_manager
-    await manager.add_server("github", github_config)
-    tools = await manager.get_all_tools(refresh=True)
-    
-    # Custom approval workflows
-    async def my_approval(request):
-        print(f"Approve {request.recommendation.server_name}?")
-        return input("y/n: ").lower() == 'y'
-    
-    agent = IntelligentMCPAgent(
-        engine=engine,
-        approval_callback=my_approval
-    )
-    ```
-
-Attributes:
-    __version__: Package version string
-    MCPConfig: Main configuration model
-    MCPServerConfig: Server configuration model
-    MCPManager: Server lifecycle manager
-    MCPAgent: MCP-enabled agent
-    TransferableMCPAgent: Agent with tool transfer capabilities
-    MCPDocumentationAgent: Documentation processing agent
-"""
-
-__version__ = "0.1.0"
-
-# Import core MCP components
-try:
-    from haive.mcp.config import MCPConfig, MCPServerConfig
-    from haive.mcp.manager import MCPManager
-
-    # Try to import agents if available
-    try:
-        from haive.mcp.agents.mcp_agent import MCPAgent
-        from haive.mcp.mixins.mcp_mixin import MCPMixin
-
-        AGENTS_AVAILABLE = True
-    except ImportError:
-        AGENTS_AVAILABLE = False
-
-    # Try to import discovery if available
-    try:
-        from haive.mcp.discovery.analyzer import MCPServerAnalyzer
-        from haive.mcp.discovery.server_discovery import MCPServerDiscovery
-
-        DISCOVERY_AVAILABLE = True
-    except ImportError:
-        DISCOVERY_AVAILABLE = False
-
-    MCP_AVAILABLE = True
-except ImportError:
-    # Graceful degradation if MCP components aren't fully implemented
-    MCP_AVAILABLE = False
-    AGENTS_AVAILABLE = False
-    DISCOVERY_AVAILABLE = False
+from mcp.cli import generate_setup_script, main, print_recommendations, print_servers
+from mcp.complete_mcp_example import (
+    CompleteMCPSystem,
+    HITLApprovalRequest,
+    HITLApprovalSystem,
+    MCPCapability,
+    MCPCategory,
+    MCPServer,
+    build_category_tree,
+)
+from mcp.complete_mcp_with_parent_retriever import (
+    HITLRequest,
+    MCPServerInfo,
+    MCPSystemWithParentRetriever,
+)
+from mcp.comprehensive_mcp_web import (
+    display_search_results,
+    main,
+    perform_advanced_search,
+    search_servers,
+    show_advanced_search,
+    show_analytics,
+    show_dashboard,
+    show_data_browser,
+    show_server_details,
+    show_tools,
+)
+from mcp.config import Config, MCPConfig, MCPServerConfig, MCPTransport
+from mcp.csv_viewer import (
+    create_csv_export,
+    export_to_csv,
+    load_data,
+    load_mcp_servers_data,
+    main,
+    streamlit_viewer,
+)
+from mcp.dynamic_activation_mcp import (
+    DynamicActivationMCPServer,
+    DynamicMCPRegistry,
+    DynamicMCPState,
+    MCPTool,
+    get_available_tools,
+    get_server_stats,
+    get_tool_schemas,
+    setup_mcp_server,
+    track_tool_call,
+)
+from mcp.dynamic_mcp_tool import (
+    DynamicMCPTool,
+    MCPServerInstallRequest,
+    MCPServerInstallResult,
+    MCPServerListTool,
+    create_mcp_discovery_tools,
+)
+from mcp.enhance_mcp_data import (
+    GitHubDataEnhancer,
+    MCPDataEnhancer,
+    extract_github_info,
+    extract_install_instructions,
+)
+from mcp.enhanced_parent_self_query_retriever import (
+    EnhancedMCPRetriever,
+    create_self_query_retriever,
+)
+from mcp.fastapi_mcp_server import (
+    ApprovalResponse,
+    InstallRequest,
+    MCPServerManager,
+    SearchRequest,
+    ServerInfo,
+    TestRequest,
+)
+from mcp.fastmcp_runner import (
+    FastMCPCLI,
+    MCPProcessManager,
+    get_server_status,
+    list_running_servers,
+    load_servers,
+)
+from mcp.haive_agent_mcp_integration import (
+    HaiveMCPIntegration,
+    create_mcp_tool,
+    mcp_tool_function,
+)
+from mcp.integrated_launcher import (
+    check_dependencies,
+    install_server_interactive,
+    main,
+    print_banner,
+    run_csv_viewer,
+    run_discovery_test,
+    run_fastmcp_manager,
+    run_integrated_web,
+    show_status,
+)
+from mcp.integrated_mcp_system import (
+    IntegratedMCPSystem,
+    MCPServerInstaller,
+    ServerInstallation,
+    create_web_interface,
+    get_fastmcp_servers,
+    show_analytics_tab,
+    show_discovery_tab,
+    show_installed_tab,
+    show_running_tab,
+)
+from mcp.launcher import (
+    main,
+    run_comprehensive_web,
+    run_csv_viewer,
+    run_data_enhancement,
+    run_original_rag_agent,
+    run_self_query_test,
+)
+from mcp.manager import (
+    MCPHealthStatus,
+    MCPManager,
+    MCPRegistrationResult,
+    MCPServerStatus,
+    get_all_server_status,
+    get_server_status,
+    model_post_init,
+)
+from mcp.mcp_rag_agent import QueryRequest, QueryResponse
+from mcp.mcp_simple_rag_agent import (
+    QueryRequest,
+    QueryResponse,
+    create_mcp_documents,
+    create_mcp_rag_agent,
+)
+from mcp.mcp_simple_tool_agent import (
+    QueryRequest,
+    QueryResponse,
+    create_mcp_documents,
+    create_mcp_tool_agent,
+    initialize_vector_store,
+    search_mcp_servers,
+)
+from mcp.production_mcp_tool import (
+    ListInstalledMCPTool,
+    MCPCapabilityRequest,
+    MCPInstallationResult,
+    MCPServerOption,
+    ProductionMCPTool,
+    create_production_mcp_tools,
+)
+from mcp.self_query_mcp_agent import (
+    EnhancedMCPDocument,
+    MCPServerMetadata,
+    SelfQueryMCPAgent,
+    analyze_query_intent,
+    create_mcp_documents_with_chunks,
+    setup_retrievers,
+)
+from mcp.simple_faiss_retriever import (
+    SimpleFAISSRetriever,
+    get_server_by_name,
+    get_servers_by_category,
+    get_top_servers,
+    search,
+    setup,
+)
+from mcp.simple_rag_mcp_agent import (
+    MCPRetrieverWrapper,
+    MCPSimpleRAGAgent,
+    QueryRequest,
+    QueryResponse,
+    get_system_prompt,
+    llm,
+)
+from mcp.test_vectorstore import test_vector_store
+from mcp.working_enhanced_retriever import (
+    WorkingEnhancedRetriever,
+    create_self_query_on_chunks,
+    setup,
+)
 
 __all__ = [
-    "__version__",
+    "ApprovalResponse",
+    "CompleteMCPSystem",
+    "Config",
+    "DynamicActivationMCPServer",
+    "DynamicMCPRegistry",
+    "DynamicMCPState",
+    "DynamicMCPTool",
+    "EnhancedMCPDocument",
+    "EnhancedMCPRetriever",
+    "FastMCPCLI",
+    "GitHubDataEnhancer",
+    "HITLApprovalRequest",
+    "HITLApprovalSystem",
+    "HITLRequest",
+    "HaiveMCPIntegration",
+    "InstallRequest",
+    "IntegratedMCPSystem",
+    "ListInstalledMCPTool",
+    "MCPCapability",
+    "MCPCapabilityRequest",
+    "MCPCategory",
+    "MCPConfig",
+    "MCPDataEnhancer",
+    "MCPHealthStatus",
+    "MCPInstallationResult",
+    "MCPManager",
+    "MCPProcessManager",
+    "MCPRegistrationResult",
+    "MCPRetrieverWrapper",
+    "MCPServer",
+    "MCPServerConfig",
+    "MCPServerInfo",
+    "MCPServerInstallRequest",
+    "MCPServerInstallResult",
+    "MCPServerInstaller",
+    "MCPServerListTool",
+    "MCPServerManager",
+    "MCPServerMetadata",
+    "MCPServerOption",
+    "MCPServerStatus",
+    "MCPSimpleRAGAgent",
+    "MCPSystemWithParentRetriever",
+    "MCPTool",
+    "MCPTransport",
+    "ProductionMCPTool",
+    "QueryRequest",
+    "QueryResponse",
+    "SearchRequest",
+    "SelfQueryMCPAgent",
+    "ServerInfo",
+    "ServerInstallation",
+    "SimpleFAISSRetriever",
+    "TestRequest",
+    "WorkingEnhancedRetriever",
+    "analyze_query_intent",
+    "build_category_tree",
+    "check_dependencies",
+    "create_csv_export",
+    "create_mcp_discovery_tools",
+    "create_mcp_documents",
+    "create_mcp_documents_with_chunks",
+    "create_mcp_rag_agent",
+    "create_mcp_tool",
+    "create_mcp_tool_agent",
+    "create_production_mcp_tools",
+    "create_self_query_on_chunks",
+    "create_self_query_retriever",
+    "create_web_interface",
+    "display_search_results",
+    "export_to_csv",
+    "extract_github_info",
+    "extract_install_instructions",
+    "generate_setup_script",
+    "get_all_server_status",
+    "get_available_tools",
+    "get_fastmcp_servers",
+    "get_server_by_name",
+    "get_server_stats",
+    "get_server_status",
+    "get_servers_by_category",
+    "get_system_prompt",
+    "get_tool_schemas",
+    "get_top_servers",
+    "initialize_vector_store",
+    "install_server_interactive",
+    "list_running_servers",
+    "llm",
+    "load_data",
+    "load_mcp_servers_data",
+    "load_servers",
+    "main",
+    "mcp_tool_function",
+    "model_post_init",
+    "perform_advanced_search",
+    "print_banner",
+    "print_recommendations",
+    "print_servers",
+    "run_comprehensive_web",
+    "run_csv_viewer",
+    "run_data_enhancement",
+    "run_discovery_test",
+    "run_fastmcp_manager",
+    "run_integrated_web",
+    "run_original_rag_agent",
+    "run_self_query_test",
+    "search",
+    "search_mcp_servers",
+    "search_servers",
+    "setup",
+    "setup_mcp_server",
+    "setup_retrievers",
+    "show_advanced_search",
+    "show_analytics",
+    "show_analytics_tab",
+    "show_dashboard",
+    "show_data_browser",
+    "show_discovery_tab",
+    "show_installed_tab",
+    "show_running_tab",
+    "show_server_details",
+    "show_status",
+    "show_tools",
+    "streamlit_viewer",
+    "test_vector_store",
+    "track_tool_call",
 ]
-
-if MCP_AVAILABLE:
-    __all__.extend(
-        [
-            "MCPConfig",
-            "MCPManager",
-            "MCPServerConfig",
-        ]
-    )
-
-if AGENTS_AVAILABLE:
-    __all__.extend(
-        [
-            "MCPAgent",
-            "MCPMixin",
-        ]
-    )
-
-if DISCOVERY_AVAILABLE:
-    __all__.extend(
-        [
-            "MCPServerAnalyzer",
-            "MCPServerDiscovery",
-        ]
-    )

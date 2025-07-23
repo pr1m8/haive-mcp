@@ -10,6 +10,7 @@ This example demonstrates:
 import asyncio
 import json
 from pathlib import Path
+import sys
 from typing import Any
 
 
