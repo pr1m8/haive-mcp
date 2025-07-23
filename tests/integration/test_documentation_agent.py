@@ -1,9 +1,9 @@
 """Tests for MCP Documentation Agent."""
 
 import pytest
-
 from haive.core.engine.aug_llm import AugLLMConfig
 from haive.core.models.llm.base import LLMConfig
+
 from haive.mcp.agents.documentation_agent import MCPDocumentationAgent
 from haive.mcp.documentation.doc_loader import MCPDocumentationLoader
 

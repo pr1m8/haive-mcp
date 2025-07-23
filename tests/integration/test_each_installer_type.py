@@ -6,15 +6,14 @@ with real-world examples to verify functionality.
 """
 
 import asyncio
-from pathlib import Path
 import subprocess
 import sys
+from pathlib import Path
 
 import pytest
 from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
-
 
 # Add parent to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
@@ -26,7 +25,6 @@ from src.haive.mcp.downloader.installers import (
     NPMInstaller,
     PipInstaller,
 )
-
 
 console = Console()
 

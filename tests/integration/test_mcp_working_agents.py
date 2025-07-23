@@ -3,13 +3,13 @@
 from pathlib import Path
 
 import pytest
-
 from haive.agents.react.agent import ReactAgent
 
 # Import working agents that don't have GenericAgent issues
 from haive.agents.simple.agent import SimpleAgent
 from haive.core.engine.aug_llm import AugLLMConfig
 from haive.core.models.llm.base import LLMConfig
+
 from haive.mcp.config import MCPConfig, MCPServerConfig
 from haive.mcp.mixins.mcp_mixin import MCPMixin
 

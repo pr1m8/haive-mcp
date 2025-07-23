@@ -11,7 +11,6 @@ from haive.dataflow import (
     registry_system,
 )
 
-
 # Set up logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

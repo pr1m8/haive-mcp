@@ -3,16 +3,14 @@
 
 import asyncio
 import logging
-from pathlib import Path
 import sys
-
+from pathlib import Path
 
 # Add src to path so we can import our servers
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
 from haive.mcp.servers.dataflow_server import mcp as dataflow_mcp
 from haive.mcp.servers.example_server import mcp as example_mcp
-
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

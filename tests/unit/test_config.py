@@ -8,8 +8,8 @@ Classes:
     TestMCPConfig: Tests for MCPConfig model
 """
 
-from pydantic import ValidationError
 import pytest
+from pydantic import ValidationError
 
 from haive.mcp.config import MCPConfig, MCPServerConfig
 

@@ -103,7 +103,6 @@ from integration.test_mcp_working_agents import (
     test_mcp_simple_agent_creation,
 )
 
-
 __all__ = [
     "MCPReactAgent",
     "MCPSimpleAgent",

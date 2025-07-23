@@ -12,9 +12,9 @@ Based on:
 from typing import Any
 
 import pytest
-
 from haive.core.registry import RegistryItem
 from haive.core.schema.prebuilt.meta_state import MetaStateSchema
+
 from haive.mcp.dynamic_activation_mcp import (
     DynamicActivationMCPServer,
     DynamicMCPRegistry,

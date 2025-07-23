@@ -21,22 +21,26 @@ tests/
 ## Running Tests
 
 ### All Tests
+
 ```bash
 poetry run pytest
 ```
 
 ### Specific Test Category
+
 ```bash
 poetry run pytest tests/unit/
 poetry run pytest tests/integration/
 ```
 
 ### With Coverage
+
 ```bash
 poetry run pytest --cov=haive.mcp --cov-report=html
 ```
 
 ### Verbose Output
+
 ```bash
 poetry run pytest -v
 ```
@@ -44,16 +48,19 @@ poetry run pytest -v
 ## Test Categories
 
 ### Unit Tests
+
 - Fast, isolated tests
 - Mock external dependencies
 - Test individual functions/classes
 
 ### Integration Tests
+
 - Test component interactions
 - May use real MCP servers
 - Test with haive-dataflow
 
 ### End-to-End Tests
+
 - Full workflow tests
 - Test real-world scenarios
 - May require external services
@@ -61,28 +68,29 @@ poetry run pytest -v
 ## Writing Tests
 
 ### Test Structure
+
 ```python
 import pytest
 from haive.mcp import MCPManager
 
 class TestMCPManager:
     """Test suite for MCPManager.
-    
+
     Tests cover:
     - Server addition and removal
     - Tool discovery
     - Health monitoring
     - Error handling
     """
-    
+
     @pytest.fixture
     def manager(self):
         """Create test manager instance."""
         return MCPManager()
-    
+
     async def test_add_server(self, manager):
         """Test adding an MCP server.
-        
+
         Verifies:
         - Server is added successfully
         - Tools are discovered
@@ -96,6 +104,7 @@ class TestMCPManager:
 ### Fixtures
 
 Common fixtures are available in `conftest.py`:
+
 - `mock_mcp_client`: Mock MCP client
 - `test_server_config`: Test server configuration
 - `test_engine`: Test LLM engine
@@ -103,12 +112,14 @@ Common fixtures are available in `conftest.py`:
 ## Test Data
 
 Test data is stored in `fixtures/`:
+
 - `mock_servers.json`: Mock server definitions
 - `test_responses.json`: Mock API responses
 
 ## Continuous Integration
 
 Tests run automatically on:
+
 - Pull requests
 - Main branch commits
 - Release tags
@@ -116,16 +127,19 @@ Tests run automatically on:
 ## Debugging Tests
 
 ### Run Single Test
+
 ```bash
 poetry run pytest tests/unit/test_manager.py::TestMCPManager::test_add_server -v
 ```
 
 ### Debug Mode
+
 ```bash
 poetry run pytest --pdb
 ```
 
 ### Show Output
+
 ```bash
 poetry run pytest -s
 ```

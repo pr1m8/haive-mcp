@@ -55,7 +55,6 @@ from tests.test_simple_mcp import (
     test_server_creation,
 )
 
-
 __all__ = [
     "MockSession",
     "PromptResult",

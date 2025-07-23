@@ -4,16 +4,14 @@
 import asyncio
 import json
 import logging
-from pathlib import Path
 import sys
-
+from pathlib import Path
 
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
 from langchain_mcp_adapters.client import MultiServerMCPClient, load_mcp_tools
 from mcp.server import FastMCP
-
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
