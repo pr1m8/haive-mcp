@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:6c3fd023bc4c6943925d85143e195ac08f9ff303bcf494ef8b3393fdab19c6aa
-size 1537
+{
+  "server_data": {
+    "name": "1999AZZAR/mcp-server-google-search",
+    "source": "github:TensorBlock/awesome-mcp-servers",
+    "source_url": "https://github.com/TensorBlock/awesome-mcp-servers",
+    "repository_url": "https://github.com/1999AZZAR/mcp-server-google-search",
+    "repository_owner": "1999AZZAR",
+    "repository_name": "mcp-server-google-search",
+    "description": "",
+    "category": "search",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:39.231008+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 391
+    }
+  },
+  "quality_metrics": {
+    "name": "1999AZZAR/mcp-server-google-search",
+    "repository_url": "https://github.com/1999AZZAR/mcp-server-google-search",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "search",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T21:05:56.417386+00:00",
+    "processing_time": 3.075599670410156e-5
+  },
+  "processed_at": "2025-07-03T21:05:56.418330+00:00",
+  "processor_version": "1.0.0"
+}

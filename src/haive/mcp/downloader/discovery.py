@@ -32,7 +32,6 @@ from pydantic import BaseModel, Field
 
 from haive.mcp.downloader.config import DiscoveryConfig
 
-
 logger = logging.getLogger(__name__)
 
 
@@ -279,12 +278,11 @@ class ServerDiscovery:
         discovered = []
 
         try:
-            session = await self._get_session()
+            await self._get_session()
 
             # PyPI JSON API endpoint
             if "search" in search_url:
                 # Convert search URL to API URL
-                api_url = "https://pypi.org/pypi"
 
                 # Search for packages matching patterns
                 for pattern in self.config.patterns.get("pypi", []):
@@ -361,7 +359,7 @@ class ServerDiscovery:
 
                     for repo in data.get("items", []):
                         name = repo.get("name", "")
-                        full_name = repo.get("full_name", "")
+                        repo.get("full_name", "")
 
                         # Check if it matches our patterns
                         if self._matches_github_pattern(name):

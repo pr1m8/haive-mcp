@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c5a74943e1cbdc64697a34e2521e736b2721a5e7ca76ef0f5478a742177ec31a
-size 1468
+{
+  "server_data": {
+    "name": "fr0gger/MCP_Security",
+    "source": "github:punkpeye/awesome-mcp-servers",
+    "source_url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "repository_url": "https://github.com/fr0gger/MCP_Security",
+    "repository_owner": "fr0gger",
+    "repository_name": "MCP_Security",
+    "description": "",
+    "category": "security",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.679871+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 59325
+    }
+  },
+  "quality_metrics": {
+    "name": "fr0gger/MCP_Security",
+    "repository_url": "https://github.com/fr0gger/MCP_Security",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "security",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T19:17:57.576518+00:00",
+    "processing_time": 2.8371810913085938e-5
+  },
+  "processed_at": "2025-07-03T19:17:57.578070+00:00",
+  "processor_version": "1.0.0"
+}

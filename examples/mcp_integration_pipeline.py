@@ -9,16 +9,15 @@ Usage:
 """
 
 import asyncio
-from dataclasses import asdict, dataclass
-from datetime import UTC, datetime
 import json
 import logging
 import os
+from dataclasses import asdict, dataclass
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
 import aiohttp
-
 
 # Set up logging
 logging.basicConfig(
@@ -637,9 +636,7 @@ class MCPIntegrationPipeline:
             by_method[method] += 1
 
         # Group by category (from original server data)
-        successful_installations = [
-            i for i in installations if i.installation_status == "success"
-        ]
+        [i for i in installations if i.installation_status == "success"]
 
         report = {
             "timestamp": timestamp,

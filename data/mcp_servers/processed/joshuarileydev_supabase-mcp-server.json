@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:a0fbcd63808c1fac2dda9de00054fa1dcbd5cc7c688b3d43dbcba4b7768e21b6
-size 1616
+{
+  "server_data": {
+    "name": "joshuarileydev/supabase-mcp-server",
+    "source": "github:punkpeye/awesome-mcp-servers",
+    "source_url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "repository_url": "https://github.com/joshuarileydev/supabase",
+    "repository_owner": "joshuarileydev",
+    "repository_name": "supabase",
+    "description": "Supabase MCP Server for managing and creating projects and organisations in Supabase",
+    "category": "productivity",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.515888+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 59325
+    }
+  },
+  "quality_metrics": {
+    "name": "joshuarileydev/supabase-mcp-server",
+    "repository_url": "https://github.com/joshuarileydev/supabase",
+    "quality_score": 25.5,
+    "documentation_score": 5.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 75.0,
+    "category": "productivity",
+    "subcategories": ["project_management"],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T16:46:42.525267+00:00",
+    "processing_time": 3.457069396972656e-5
+  },
+  "processed_at": "2025-07-03T16:46:42.526236+00:00",
+  "processor_version": "1.0.0"
+}

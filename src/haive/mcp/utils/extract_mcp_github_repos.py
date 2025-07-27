@@ -9,23 +9,22 @@ This script:
 """
 
 import asyncio
-from datetime import datetime
-from enum import Enum
 import hashlib
 import json
 import os
-from pathlib import Path
 import re
+from datetime import datetime
+from enum import Enum
+from pathlib import Path
 from typing import Any
 
 import aiohttp
+import yaml
 from langchain_core.documents import Document
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 from rich.console import Console
 from rich.progress import BarColumn, Progress, SpinnerColumn, TextColumn
 from rich.table import Table
-import yaml
-
 
 console = Console()
 

@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:89af8d94e5e4b442d6fb2d6812897cb4e0f1c8c86091e5df4634d2159fb4c556
-size 1552
+{
+  "server_data": {
+    "name": "cmathgit/biblegateway-votd-mcp",
+    "source": "github:TensorBlock/awesome-mcp-servers",
+    "source_url": "https://github.com/TensorBlock/awesome-mcp-servers",
+    "repository_url": "https://github.com/cmathgit/biblegateway-votd-mcp",
+    "repository_owner": "cmathgit",
+    "repository_name": "biblegateway-votd-mcp",
+    "description": "",
+    "category": "version_control",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:39.227808+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 391
+    }
+  },
+  "quality_metrics": {
+    "name": "cmathgit/biblegateway-votd-mcp",
+    "repository_url": "https://github.com/cmathgit/biblegateway-votd-mcp",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "version_control",
+    "subcategories": ["git_operations"],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T21:00:46.977405+00:00",
+    "processing_time": 2.6941299438476562e-5
+  },
+  "processed_at": "2025-07-03T21:00:46.978383+00:00",
+  "processor_version": "1.0.0"
+}

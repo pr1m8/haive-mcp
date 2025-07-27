@@ -1,6 +1,6 @@
 """Module exports."""
 
-from tools.ai_assistant import (
+from haive.mcp.tools.ai_assistant import (
     MCPAssistant,
     ServerRecommendation,
     SmartConfiguration,
@@ -10,7 +10,7 @@ from tools.ai_assistant import (
     get_server_recommendation_score,
     match_task_to_pattern,
 )
-from tools.server_selector import (
+from haive.mcp.tools.server_selector import (
     MCPServerSelector,
     ServerFilter,
     ServerScore,
@@ -27,7 +27,7 @@ from tools.server_selector import (
     get_selection_summary,
     recommend_for_task,
 )
-from tools.server_tester import (
+from haive.mcp.tools.server_tester import (
     HealthMonitor,
     HealthStatus,
     MCPServerTester,

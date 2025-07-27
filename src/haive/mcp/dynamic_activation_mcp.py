@@ -12,12 +12,11 @@ Based on:
 
 from typing import Any
 
-from pydantic import BaseModel, ConfigDict, Field, model_validator
-
 from haive.agents.discovery.component_discovery_agent import ComponentDiscoveryAgent
 from haive.core.registry import DynamicRegistry, RegistryItem
 from haive.core.schema.prebuilt.dynamic_activation_state import DynamicActivationState
 from haive.core.schema.prebuilt.meta_state import MetaStateSchema
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 
 class MCPTool(BaseModel):

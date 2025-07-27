@@ -9,16 +9,16 @@ Combines all features:
 """
 
 import asyncio
-from datetime import datetime
 import json
+from datetime import datetime
 from typing import Any
 
-# Import our custom components
-from csv_viewer import create_csv_export, load_mcp_servers_data
 import plotly.express as px
-from self_query_mcp_agent import SelfQueryMCPAgent
 import streamlit as st
 
+# Import our custom components
+from haive.mcp.csv_viewer import create_csv_export, load_mcp_servers_data
+from haive.mcp.self_query_mcp_agent import SelfQueryMCPAgent
 
 st.set_page_config(
     page_title="MCP Discovery Hub",
@@ -323,7 +323,7 @@ def show_data_browser():
     filtered_df = filtered_df[filtered_df["total_features"] >= min_features]
 
     if has_install:
-        filtered_df = filtered_df[filtered_df["has_install_command"] == True]
+        filtered_df = filtered_df[filtered_df["has_install_command"]]
 
     # Sort
     filtered_df = filtered_df.sort_values(sort_by, ascending=not sort_desc)

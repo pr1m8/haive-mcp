@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:8a78cbcedc5348c434989c599592086665cc3b29757a1a4bc311e1df0e3b4728
-size 1500
+{
+  "server_data": {
+    "name": "Microsoft Entra ID MCP Server",
+    "source": "github:wong2/awesome-mcp-servers",
+    "source_url": "https://github.com/wong2/awesome-mcp-servers",
+    "repository_url": "https://github.com/hieuttmmo/entraid-mcp-server",
+    "repository_owner": "hieuttmmo",
+    "repository_name": "entraid-mcp-server",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.256808+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 1717
+    }
+  },
+  "quality_metrics": {
+    "name": "Microsoft Entra ID MCP Server",
+    "repository_url": "https://github.com/hieuttmmo/entraid-mcp-server",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "utility",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T14:51:40.664078+00:00",
+    "processing_time": 4.029273986816406e-5
+  },
+  "processed_at": "2025-07-03T14:51:40.665838+00:00",
+  "processor_version": "1.0.0"
+}

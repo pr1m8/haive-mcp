@@ -16,12 +16,11 @@ Usage:
 """
 
 import asyncio
-from dataclasses import dataclass
 import json
 import logging
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
-
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -263,7 +262,7 @@ class ComprehensiveMCPDiscovery:
         ]
 
         servers = []
-        for i, pattern in enumerate(server_patterns[: source.estimated_count // 10]):
+        for _i, pattern in enumerate(server_patterns[: source.estimated_count // 10]):
             servers.append(
                 {
                     "name": f"mcp-server-{pattern}",

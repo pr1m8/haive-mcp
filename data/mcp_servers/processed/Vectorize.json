@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:96de87fa8eda78dbcce2f7cdb06a320a0e2f5eecba57ec46fb5f7923c6b60697
-size 1487
+{
+  "server_data": {
+    "name": "Vectorize",
+    "source": "github:wong2/awesome-mcp-servers",
+    "source_url": "https://github.com/wong2/awesome-mcp-servers",
+    "repository_url": "https://github.com/vectorize-io/vectorize-mcp-server",
+    "repository_owner": "vectorize-io",
+    "repository_name": "vectorize-mcp-server",
+    "description": "",
+    "category": "ai_ml",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.240903+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 1717
+    }
+  },
+  "quality_metrics": {
+    "name": "Vectorize",
+    "repository_url": "https://github.com/vectorize-io/vectorize-mcp-server",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "ai_ml",
+    "subcategories": ["vector_search"],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T14:08:05.720158+00:00",
+    "processing_time": 5.1021575927734375e-5
+  },
+  "processed_at": "2025-07-03T14:08:05.721536+00:00",
+  "processor_version": "1.0.0"
+}

@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:03280a19446ec97647d0838abc170c27da12df44921cda8d8950a782900af045
-size 1447
+{
+  "server_data": {
+    "name": "mzxrai/mcp-openai",
+    "source": "github:punkpeye/awesome-mcp-servers",
+    "source_url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "repository_url": "https://github.com/mzxrai/mcp-openai",
+    "repository_owner": "mzxrai",
+    "repository_name": "mcp-openai",
+    "description": "",
+    "category": "ai_ml",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.737764+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 59325
+    }
+  },
+  "quality_metrics": {
+    "name": "mzxrai/mcp-openai",
+    "repository_url": "https://github.com/mzxrai/mcp-openai",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "ai_ml",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T20:14:22.556409+00:00",
+    "processing_time": 2.9802322387695312e-5
+  },
+  "processed_at": "2025-07-03T20:14:22.557603+00:00",
+  "processor_version": "1.0.0"
+}

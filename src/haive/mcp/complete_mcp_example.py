@@ -12,13 +12,6 @@ import json
 import tempfile
 from typing import Any, Union
 
-# LangChain imports
-from langchain_core.documents import Document
-from langchain_mcp_adapters.client import MultiServerMCPClient
-
-# Pydantic models
-from pydantic import BaseModel, Field
-
 from haive.core.common.structures.tree import AutoTree
 
 # Haive imports
@@ -29,8 +22,15 @@ from haive.core.engine.retriever.providers.SelfQueryRetrieverConfig import (
 from haive.core.engine.vectorstore.providers.ChromaVectorStoreConfig import (
     ChromaVectorStoreConfig,
 )
-from haive.mcp.documentation import MCPDocumentationLoader
 
+# LangChain imports
+from langchain_core.documents import Document
+from langchain_mcp_adapters.client import MultiServerMCPClient
+
+# Pydantic models
+from pydantic import BaseModel, Field
+
+from haive.mcp.documentation import MCPDocumentationLoader
 
 # === MODELS FOR MCP SERVER HIERARCHY ===
 

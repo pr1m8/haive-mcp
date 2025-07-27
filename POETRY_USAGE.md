@@ -91,12 +91,14 @@ If you get import errors:
 ### Path Issues
 
 Never do this:
+
 ```python
 import sys
 sys.path.insert(0, "src")  # Wrong!
 ```
 
 Instead, ensure proper installation:
+
 ```bash
 poetry install
 poetry run python your_script.py

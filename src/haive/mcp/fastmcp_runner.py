@@ -6,17 +6,16 @@ Provides process management, monitoring, and integration with the discovery syst
 """
 
 import asyncio
-from datetime import datetime
 import json
 import logging
 import os
-from pathlib import Path
 import subprocess
 import sys
+from datetime import datetime
+from pathlib import Path
 from typing import Any
 
 import psutil
-
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

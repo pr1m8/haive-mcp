@@ -5,9 +5,9 @@ This script verifies that all components are properly installed and working.
 """
 
 import asyncio
-from pathlib import Path
 import subprocess
 import sys
+from pathlib import Path
 
 
 class HealthChecker:

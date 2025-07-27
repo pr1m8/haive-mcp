@@ -1,18 +1,16 @@
 #!/usr/bin/env python3
 """HTTP-based MCP server for haive using FastAPI and SSE transport."""
 
-from datetime import datetime
 import json
 import logging
+from datetime import datetime
 from typing import Any
 
+import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.responses import StreamingResponse
-import uvicorn
-
 from mcp.server import FastMCP
 from mcp.server.sse import SSEServerTransport
-
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)

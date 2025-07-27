@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:5eb3f66f1778ce3540c91f448c9462fb53a2f8cd090c435f1d3699595218fcb9
-size 1510
+{
+  "server_data": {
+    "name": "longevity-genie/biothings-mcp",
+    "source": "github:punkpeye/awesome-mcp-servers",
+    "source_url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "repository_url": "https://github.com/longevity-genie/biothings-mcp",
+    "repository_owner": "longevity-genie",
+    "repository_name": "biothings-mcp",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.451377+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 59325
+    }
+  },
+  "quality_metrics": {
+    "name": "longevity-genie/biothings-mcp",
+    "repository_url": "https://github.com/longevity-genie/biothings-mcp",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "utility",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T15:51:41.617413+00:00",
+    "processing_time": 3.838539123535156e-5
+  },
+  "processed_at": "2025-07-03T15:51:41.618875+00:00",
+  "processor_version": "1.0.0"
+}

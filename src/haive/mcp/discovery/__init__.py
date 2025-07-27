@@ -1,6 +1,6 @@
 """Module exports."""
 
-from discovery.analyzer import (
+from haive.mcp.discovery.analyzer import (
     MCPServerAnalyzer,
     analyze,
     can_analyze,
@@ -8,7 +8,7 @@ from discovery.analyzer import (
     discover_from_directory,
     discover_from_registry,
 )
-from discovery.server_discovery import (
+from haive.mcp.discovery.server_discovery import (
     MCPServerDiscovery,
     create_mcp_config,
     get_discovery_report,

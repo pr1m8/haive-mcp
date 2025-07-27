@@ -11,22 +11,21 @@ This creates a seamless workflow from discovery to deployment.
 """
 
 import asyncio
-from dataclasses import dataclass
-from datetime import datetime
 import json
 import logging
 import os
-from pathlib import Path
 import shutil
+from dataclasses import dataclass
+from datetime import datetime
+from pathlib import Path
 from typing import Any
 
-from csv_viewer import load_mcp_servers_data
 import pandas as pd
+import streamlit as st
+from csv_viewer import load_mcp_servers_data
 
 # Import our components
 from self_query_mcp_agent import SelfQueryMCPAgent
-import streamlit as st
-
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)

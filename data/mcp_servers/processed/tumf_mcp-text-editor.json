@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:54994d973d488923677fa910da8473fab3bea4a336aee5823dcb14d50c11a0ca
-size 1466
+{
+  "server_data": {
+    "name": "tumf/mcp-text-editor",
+    "source": "github:punkpeye/awesome-mcp-servers",
+    "source_url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "repository_url": "https://github.com/tumf/mcp-text-editor",
+    "repository_owner": "tumf",
+    "repository_name": "mcp-text-editor",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.571047+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 59325
+    }
+  },
+  "quality_metrics": {
+    "name": "tumf/mcp-text-editor",
+    "repository_url": "https://github.com/tumf/mcp-text-editor",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "utility",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T17:31:43.323972+00:00",
+    "processing_time": 2.2649765014648438e-5
+  },
+  "processed_at": "2025-07-03T17:31:43.324949+00:00",
+  "processor_version": "1.0.0"
+}

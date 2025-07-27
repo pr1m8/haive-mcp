@@ -3,6 +3,7 @@
 ## Prerequisites
 
 Before starting, ensure you have:
+
 - Python 3.8+ installed
 - Node.js and npm (for npm-based servers)
 - Basic command line knowledge
@@ -12,17 +13,19 @@ Before starting, ensure you have:
 MCP servers come in different types based on installation method:
 
 ### NPM Servers (Most Common)
+
 ```bash
 # Official servers
 npm install -g @modelcontextprotocol/server-filesystem
 npm install -g @modelcontextprotocol/server-github
 
-# Community servers  
+# Community servers
 npm install -g mcp-server-weather
 npm install -g mcp-server-search
 ```
 
 ### Python/Pip Servers
+
 ```bash
 # Python-based servers
 pip install mcp-server-python
@@ -30,6 +33,7 @@ pip install fastmcp
 ```
 
 ### Git Repository Servers
+
 ```bash
 # Clone and install
 git clone https://github.com/username/custom-mcp-server
@@ -38,6 +42,7 @@ pip install -r requirements.txt
 ```
 
 ### Docker Servers
+
 ```bash
 # Pull and run
 docker pull mcp/server-name
@@ -49,6 +54,7 @@ docker run -it mcp/server-name
 Let's start with the official filesystem server as our first example.
 
 ### Manual Installation
+
 ```bash
 # Install globally via npm
 npm install -g @modelcontextprotocol/server-filesystem
@@ -58,6 +64,7 @@ npx @modelcontextprotocol/server-filesystem --help
 ```
 
 ### Using the Downloader
+
 ```bash
 # Using our download script
 python scripts/download_servers.py download --servers filesystem
@@ -73,15 +80,15 @@ servers:
   filesystem:
     # Transport method (how client talks to server)
     transport: stdio
-    
+
     # Command to start the server
     command: npx
     args: ["@modelcontextprotocol/server-filesystem"]
-    
+
     # Environment variables (if needed)
     env:
       ALLOWED_PATHS: "/home/user/documents"
-    
+
     # Server capabilities
     capabilities: ["tools", "resources"]
 ```
@@ -89,6 +96,7 @@ servers:
 ## Step 4: Testing Your Server
 
 ### Manual Test
+
 ```bash
 # Start the server manually
 npx @modelcontextprotocol/server-filesystem
@@ -98,16 +106,17 @@ npx @modelcontextprotocol/server-filesystem
 ```
 
 ### Programmatic Test
+
 ```python
 import asyncio
 from haive.mcp.downloader import GeneralMCPDownloader
 
 async def test_server():
     downloader = GeneralMCPDownloader()
-    
+
     # Download and install
     result = await downloader.download_servers(["filesystem"])
-    
+
     if result["successful"] > 0:
         print("✓ Server installed successfully!")
         print(f"Configuration saved to: {result['config_file']}")
@@ -122,6 +131,7 @@ asyncio.run(test_server())
 ## Step 5: Connecting to Your Server
 
 ### Using Haive MCP Agent
+
 ```python
 from haive.mcp.agents import MCPAgent
 from haive.core.engine.aug_llm import AugLLMConfig
@@ -155,6 +165,7 @@ result = await agent.arun({
 When connected, the server provides:
 
 ### 1. Tool Definitions
+
 ```json
 {
   "tools": [
@@ -177,6 +188,7 @@ When connected, the server provides:
 ```
 
 ### 2. Tool Execution
+
 ```json
 // Request
 {
@@ -203,6 +215,7 @@ When connected, the server provides:
 ## Step 7: Common Issues and Solutions
 
 ### Issue 1: Command Not Found
+
 ```bash
 # Error: npx: command not found
 # Solution: Install Node.js and npm
@@ -211,6 +224,7 @@ brew install node            # macOS
 ```
 
 ### Issue 2: Permission Denied
+
 ```bash
 # Error: EACCES: permission denied
 # Solution: Configure npm to use a different directory
@@ -221,6 +235,7 @@ source ~/.bashrc
 ```
 
 ### Issue 3: Connection Timeout
+
 ```yaml
 # Solution: Increase timeout in config
 servers:
@@ -228,7 +243,7 @@ servers:
     transport: stdio
     command: npx
     args: ["@modelcontextprotocol/server-filesystem"]
-    timeout: 60  # Increase from default 30
+    timeout: 60 # Increase from default 30
 ```
 
 ## Step 8: Exploring Server Capabilities
@@ -236,11 +251,13 @@ servers:
 The filesystem server provides various tools:
 
 1. **File Operations**
+
    - `read_file`: Read file contents
    - `write_file`: Write to files
    - `list_directory`: List directory contents
 
 2. **Directory Operations**
+
    - `create_directory`: Make new directories
    - `remove_directory`: Delete directories
    - `move_file`: Move/rename files
@@ -252,11 +269,13 @@ The filesystem server provides various tools:
 ## Practice Exercises
 
 1. **Install Multiple Servers**
+
    ```bash
    python scripts/download_servers.py download --servers filesystem github sqlite
    ```
 
 2. **Test Each Server**
+
    ```bash
    python scripts/manage_servers.py test filesystem
    python scripts/manage_servers.py test github
@@ -264,6 +283,7 @@ The filesystem server provides various tools:
    ```
 
 3. **View Server Logs**
+
    ```bash
    python scripts/manage_servers.py logs filesystem -n 50
    ```
@@ -276,6 +296,7 @@ The filesystem server provides various tools:
 ## Summary
 
 You've learned how to:
+
 - ✓ Understand different MCP server types
 - ✓ Install your first MCP server
 - ✓ Configure server settings

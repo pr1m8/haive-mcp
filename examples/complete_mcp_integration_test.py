@@ -11,17 +11,15 @@ This test will:
 
 import asyncio
 import json
-from pathlib import Path
 import subprocess
+from pathlib import Path
 from typing import Any
-
 
 # Try to import haive components with fallback
 try:
-    from langchain_core.tools import Tool
-
     from haive.agents.simple import SimpleAgent
     from haive.core.engine.aug_llm import AugLLMConfig
+    from langchain_core.tools import Tool
 
     HAIVE_AVAILABLE = True
     print("✅ Haive components imported successfully")
@@ -270,7 +268,7 @@ async def test_filesystem_mcp():
                         system_message="You are a helpful assistant with access to filesystem operations via MCP.",
                     )
 
-                    agent = SimpleAgent(
+                    SimpleAgent(
                         name="filesystem_agent", engine=config, tools=[mcp_tool]
                     )
 

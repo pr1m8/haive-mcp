@@ -23,8 +23,8 @@ import logging
 import time
 
 import click
-from general_mcp_downloader import GeneralMCPDownloader
 
+from haive.mcp.downloader import GeneralMCPDownloader
 
 # Setup logging
 logging.basicConfig(

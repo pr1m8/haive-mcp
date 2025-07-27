@@ -6,21 +6,20 @@ and provide detailed information about specific servers.
 """
 
 import asyncio
+import sys
 from datetime import datetime
 from pathlib import Path
-import sys
 from typing import Any
-
 
 # Add parent path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent.parent))
 
+from haive.agents.rag.simple.agent import SimpleRAGAgent
+from haive.core.engine.aug_llm import AugLLMConfig
 from langchain_core.documents import Document
 from langchain_core.retrievers import BaseRetriever
 from langchain_openai import ChatOpenAI
 
-from haive.agents.rag.simple.agent import SimpleRAGAgent
-from haive.core.engine.aug_llm import AugLLMConfig
 from haive.mcp.working_enhanced_retriever import WorkingEnhancedRetriever
 
 

@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:25b203935a68325ca2c25f681fad259d07a2b54af8e1e0bc40ef2f689b25eaf5
-size 1488
+{
+  "server_data": {
+    "name": "nvsofts/jlcpcb-parts-mcp",
+    "source": "github:TensorBlock/awesome-mcp-servers",
+    "source_url": "https://github.com/TensorBlock/awesome-mcp-servers",
+    "repository_url": "https://github.com/nvsofts/jlcpcb-parts-mcp",
+    "repository_owner": "nvsofts",
+    "repository_name": "jlcpcb-parts-mcp",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:39.226622+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 391
+    }
+  },
+  "quality_metrics": {
+    "name": "nvsofts/jlcpcb-parts-mcp",
+    "repository_url": "https://github.com/nvsofts/jlcpcb-parts-mcp",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "utility",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T21:00:46.973366+00:00",
+    "processing_time": 4.38690185546875e-5
+  },
+  "processed_at": "2025-07-03T21:00:46.974522+00:00",
+  "processor_version": "1.0.0"
+}

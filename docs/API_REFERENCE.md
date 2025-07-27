@@ -45,6 +45,7 @@ IntelligentMCPAgent(
 ```
 
 **Parameters:**
+
 - `engine` (AugLLMConfig): LLM engine configuration
 - `name` (str): Agent name
 - `auto_discover` (bool): Enable automatic server discovery based on user needs
@@ -56,27 +57,35 @@ IntelligentMCPAgent(
 #### Methods
 
 ##### `async setup() -> None`
+
 Initialize the agent and documentation components.
 
 ##### `async arun(inputs: dict[str, Any]) -> Any`
+
 Run the agent with automatic discovery if enabled.
 
 **Parameters:**
+
 - `inputs` (dict): Agent inputs with messages
 
 **Returns:**
+
 - Agent response after processing
 
 ##### `get_recommendation_history() -> list[ServerRecommendation]`
+
 Get history of server recommendations made.
 
 ##### `get_pending_approvals() -> list[HITLApprovalRequest]`
+
 Get list of pending approval requests.
 
 ##### `async approve_request(request_id: str) -> bool`
+
 Approve a pending request.
 
 ##### `async reject_request(request_id: str) -> bool`
+
 Reject a pending request.
 
 #### Built-in Tools
@@ -124,6 +133,7 @@ MCPAgent(
 ```
 
 **Parameters:**
+
 - `engine` (AugLLMConfig): LLM engine configuration
 - `mcp_config` (Optional[MCPConfig]): MCP configuration with servers
 - `name` (str): Agent name
@@ -132,29 +142,36 @@ MCPAgent(
 #### Methods
 
 ##### `async setup() -> None`
+
 Initialize MCP connections and discover tools.
 
 ##### `get_available_capabilities() -> list[str]`
+
 Get all available capabilities from connected servers.
 
 ##### `async discover_tools_by_capability(capability: str) -> list[Any]`
+
 Find tools that provide a specific capability.
 
 ##### `async call_tool_with_retry(tool_name: str, arguments: dict, max_retries: int = 3) -> Any`
+
 Call a tool with automatic retry logic.
 
 #### Class Methods
 
 ##### `create_with_mcp_servers(engine, server_configs, name=None, **kwargs) -> MCPAgent`
+
 Factory method to create agent with server configurations.
 
 **Parameters:**
+
 - `engine` (AugLLMConfig): LLM engine
 - `server_configs` (dict[str, dict]): Server configurations
 - `name` (Optional[str]): Agent name
 - `**kwargs`: Additional parameters
 
 **Example:**
+
 ```python
 agent = MCPAgent.create_with_mcp_servers(
     engine=engine,
@@ -183,12 +200,15 @@ Same as MCPAgent.
 #### Additional Methods
 
 ##### `async transfer_tools_to_agent(target_agent: Agent, tool_names: list[str]) -> bool`
+
 Transfer specific tools to another agent.
 
 ##### `async transfer_all_tools_to_agent(target_agent: Agent) -> bool`
+
 Transfer all tools to another agent.
 
 ##### `async receive_tools_from_agent(source_agent: Agent, tools: list[Any]) -> bool`
+
 Receive tools from another agent.
 
 #### Example
@@ -227,6 +247,7 @@ MCPManager(
 ```
 
 **Parameters:**
+
 - `enabled` (bool): Whether MCP management is enabled
 - `auto_health_check` (bool): Enable automatic health monitoring
 - `health_check_interval` (float): Interval between health checks in seconds
@@ -236,50 +257,65 @@ MCPManager(
 #### Methods
 
 ##### `async add_server(server_name: str, config: MCPServerConfig, connect_immediately: bool = True) -> MCPRegistrationResult`
+
 Add a new MCP server dynamically.
 
 **Parameters:**
+
 - `server_name` (str): Unique name for the server
 - `config` (MCPServerConfig): Server configuration
 - `connect_immediately` (bool): Whether to connect immediately
 
 **Returns:**
+
 - MCPRegistrationResult with success status and details
 
 ##### `async remove_server(server_name: str) -> bool`
+
 Remove an MCP server.
 
 ##### `async get_all_tools(refresh: bool = False) -> list[Any]`
+
 Get all tools from connected servers.
 
 **Parameters:**
+
 - `refresh` (bool): Whether to refresh the tool list
 
 ##### `async refresh_tools() -> None`
+
 Refresh the tool list from all connected servers.
 
 ##### `async get_resources(server_name: Optional[str] = None) -> list[Any]`
+
 Get available resources from MCP servers.
 
 ##### `async get_prompts(server_name: Optional[str] = None) -> list[Any]`
+
 Get available prompts from MCP servers.
 
 ##### `async reload_server(server_name: str) -> MCPRegistrationResult`
+
 Reload a specific MCP server.
 
 ##### `async call_tool(tool_name: str, arguments: dict[str, Any]) -> Any`
+
 Call a tool from any connected server.
 
 ##### `get_server_status(server_name: str) -> Optional[MCPServerStatus]`
+
 Get the status of a specific server.
 
 ##### `get_all_server_status() -> dict[str, dict[str, Any]]`
+
 Get status information for all servers.
 
 ##### `async retry_failed_servers() -> list[MCPRegistrationResult]`
+
 Retry connection to all failed servers.
 
 ##### `async shutdown() -> None`
+
 Shutdown the manager and close all connections.
 
 #### Example
@@ -461,9 +497,11 @@ async def discover_mcp_servers(capability: str) -> str:
 ```
 
 **Parameters:**
+
 - `capability` (str): The capability needed (e.g., 'database', 'web_search')
 
 **Returns:**
+
 - JSON string with discovered servers and recommendations
 
 #### install_mcp_server
@@ -475,10 +513,12 @@ async def install_mcp_server(server_name: str, require_approval: bool = True) ->
 ```
 
 **Parameters:**
+
 - `server_name` (str): Full name of the server to install
 - `require_approval` (bool): Whether to require HITL approval
 
 **Returns:**
+
 - JSON string with installation result
 
 #### list_mcp_status
@@ -490,6 +530,7 @@ async def list_mcp_status() -> str:
 ```
 
 **Returns:**
+
 - JSON string with current MCP status
 
 #### reload_mcp_server
@@ -501,9 +542,11 @@ async def reload_mcp_server(server_name: str) -> str:
 ```
 
 **Parameters:**
+
 - `server_name` (str): Name of the server to reload
 
 **Returns:**
+
 - JSON string with reload result
 
 ## Enums
@@ -517,6 +560,7 @@ from haive.mcp.manager import MCPServerStatus
 ```
 
 **Values:**
+
 - `PENDING` - Not yet attempted to connect
 - `CONNECTING` - Connection in progress
 - `CONNECTED` - Successfully connected and operational
@@ -533,6 +577,7 @@ from haive.mcp.agents.intelligent_mcp_agent import ApprovalStatus
 ```
 
 **Values:**
+
 - `PENDING` - Awaiting approval
 - `APPROVED` - Approved by user
 - `REJECTED` - Rejected by user
@@ -547,6 +592,7 @@ from haive.mcp.config import TransportType
 ```
 
 **Values:**
+
 - `stdio` - Standard I/O transport (for local processes)
 - `sse` - Server-Sent Events transport (for HTTP endpoints)
 

@@ -9,14 +9,14 @@ Main class for downloading and managing MCP servers.
 ```python
 class GeneralMCPDownloader:
     """General MCP Server Downloader with configurable patterns and installers.
-    
+
     This class provides a flexible, configuration-driven approach to downloading
     and installing MCP servers from various sources.
-    
+
     Args:
         config_file: Path to configuration file (default: 'mcp_downloader_config.yaml')
         install_dir: Directory for installations (default: ~/.mcp/servers)
-        
+
     Attributes:
         templates: Dictionary of server templates
         servers: List of configured servers
@@ -47,6 +47,7 @@ result = await downloader.download_servers()
 ```
 
 **Returns:**
+
 ```python
 {
     "total": 10,
@@ -86,7 +87,7 @@ Configuration for individual MCP servers.
 @dataclass
 class ServerConfig:
     """Configuration for a specific MCP server.
-    
+
     Attributes:
         name: Unique server identifier
         template: Template name to use
@@ -113,7 +114,7 @@ Reusable template for server configurations.
 @dataclass
 class ServerTemplate:
     """Template for MCP server configuration.
-    
+
     Attributes:
         name: Template identifier
         installation_method: Method to use (npm, pip, git, docker, etc.)
@@ -147,20 +148,20 @@ Base class for all installer plugins.
 ```python
 class MCPInstaller(ABC):
     """Abstract base class for MCP installers."""
-    
+
     @abstractmethod
-    async def can_handle(self, server_config: ServerConfig, 
+    async def can_handle(self, server_config: ServerConfig,
                         template: ServerTemplate) -> bool:
         """Check if this installer can handle the given configuration."""
-        
+
     @abstractmethod
-    async def install(self, server_config: ServerConfig, 
-                     template: ServerTemplate, 
+    async def install(self, server_config: ServerConfig,
+                     template: ServerTemplate,
                      install_dir: Path) -> Dict[str, Any]:
         """Install the MCP server."""
-        
+
     @abstractmethod
-    async def verify(self, server_config: ServerConfig, 
+    async def verify(self, server_config: ServerConfig,
                     template: ServerTemplate,
                     install_dir: Path) -> bool:
         """Verify the installation was successful."""
@@ -173,7 +174,7 @@ Installer for npm-based MCP servers.
 ```python
 class NPMInstaller(MCPInstaller):
     """Installer for NPM-based MCP servers.
-    
+
     Handles installation of MCP servers distributed via npm.
     Supports both global and local installation methods.
     """
@@ -186,7 +187,7 @@ Installer for Python/pip-based servers.
 ```python
 class PipInstaller(MCPInstaller):
     """Installer for Python/pip-based MCP servers.
-    
+
     Handles installation of MCP servers distributed via PyPI.
     """
 ```
@@ -198,7 +199,7 @@ Installer for Git repository-based servers.
 ```python
 class GitInstaller(MCPInstaller):
     """Installer for Git-based MCP servers.
-    
+
     Clones repositories and runs post-installation commands.
     """
 ```
@@ -210,7 +211,7 @@ Installer for Docker-based servers.
 ```python
 class DockerInstaller(MCPInstaller):
     """Installer for Docker-based MCP servers.
-    
+
     Pulls Docker images for containerized MCP servers.
     """
 ```
@@ -319,15 +320,15 @@ from general_mcp_downloader import GeneralMCPDownloader
 
 async def main():
     downloader = GeneralMCPDownloader()
-    
+
     # Download servers
     result = await downloader.download_servers(["filesystem"])
-    
+
     # Discover servers
     servers = await downloader.discover_servers_from_registry(
         "https://registry.npmjs.org/-/v1/search?text=mcp"
     )
-    
+
     # Auto-discover and download
     result = await downloader.auto_discover_and_download(limit=10)
 
@@ -342,7 +343,7 @@ try:
     result = await downloader.download_servers(["my-server"])
 except Exception as e:
     logger.error(f"Download failed: {e}")
-    
+
 # Check results
 if result["failed"] > 0:
     for failure in result["failed_servers"]:
@@ -359,11 +360,11 @@ from general_mcp_downloader import MCPInstaller
 class CustomInstaller(MCPInstaller):
     async def can_handle(self, server_config, template):
         return template.installation_method == "custom"
-        
+
     async def install(self, server_config, template, install_dir):
         # Custom installation logic
         return {"success": True, "method": "custom"}
-        
+
     async def verify(self, server_config, template, install_dir):
         # Verification logic
         return True

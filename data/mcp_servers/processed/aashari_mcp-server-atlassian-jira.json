@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:7c3798693e68391636fb57e8743ef01460b36f9dfd9666b65d8d6ec9b8dc7ab8
-size 1531
+{
+  "server_data": {
+    "name": "aashari/mcp-server-atlassian-jira",
+    "source": "github:punkpeye/awesome-mcp-servers",
+    "source_url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "repository_url": "https://github.com/aashari/mcp-server-atlassian-jira",
+    "repository_owner": "aashari",
+    "repository_name": "mcp-server-atlassian-jira",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.537844+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 59325
+    }
+  },
+  "quality_metrics": {
+    "name": "aashari/mcp-server-atlassian-jira",
+    "repository_url": "https://github.com/aashari/mcp-server-atlassian-jira",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "utility",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T17:01:42.817201+00:00",
+    "processing_time": 2.3603439331054688e-5
+  },
+  "processed_at": "2025-07-03T17:01:42.818194+00:00",
+  "processor_version": "1.0.0"
+}

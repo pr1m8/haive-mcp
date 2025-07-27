@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:38f0573510976b685fbe2f07de37452e481fbbea65d0bf02b2fda6a6c966aabf
-size 1457
+{
+  "server_data": {
+    "name": "kukapay/modbus-mcp",
+    "source": "github:punkpeye/awesome-mcp-servers",
+    "source_url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "repository_url": "https://github.com/kukapay/modbus-mcp",
+    "repository_owner": "kukapay",
+    "repository_name": "modbus-mcp",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.582459+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 59325
+    }
+  },
+  "quality_metrics": {
+    "name": "kukapay/modbus-mcp",
+    "repository_url": "https://github.com/kukapay/modbus-mcp",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "database",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T17:46:43.459194+00:00",
+    "processing_time": 4.3392181396484375e-5
+  },
+  "processed_at": "2025-07-03T17:46:43.461109+00:00",
+  "processor_version": "1.0.0"
+}

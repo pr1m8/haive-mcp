@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:cb273903cc99407cf02a2065349d026307031bccc47a3c41396036f73b81f419
-size 1437
+{
+  "server_data": {
+    "name": "Chroma",
+    "source": "github:wong2/awesome-mcp-servers",
+    "source_url": "https://github.com/wong2/awesome-mcp-servers",
+    "repository_url": "https://github.com/chroma-core/chroma-mcp",
+    "repository_owner": "chroma-core",
+    "repository_name": "chroma-mcp",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.217831+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 1717
+    }
+  },
+  "quality_metrics": {
+    "name": "Chroma",
+    "repository_url": "https://github.com/chroma-core/chroma-mcp",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "utility",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T12:51:52.789036+00:00",
+    "processing_time": 2.0742416381835938e-5
+  },
+  "processed_at": "2025-07-03T12:51:52.789991+00:00",
+  "processor_version": "1.0.0"
+}

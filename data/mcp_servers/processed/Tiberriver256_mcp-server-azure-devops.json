@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:dba88e4308f6208dba4efd54a9322de8cb8ff2b18162ade63062847a8ab9703a
-size 1546
+{
+  "server_data": {
+    "name": "Tiberriver256/mcp-server-azure-devops",
+    "source": "github:punkpeye/awesome-mcp-servers",
+    "source_url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "repository_url": "https://github.com/Tiberriver256/mcp-server-azure-devops",
+    "repository_owner": "Tiberriver256",
+    "repository_name": "mcp-server-azure-devops",
+    "description": "",
+    "category": "cloud",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.705168+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 59325
+    }
+  },
+  "quality_metrics": {
+    "name": "Tiberriver256/mcp-server-azure-devops",
+    "repository_url": "https://github.com/Tiberriver256/mcp-server-azure-devops",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "cloud",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T19:48:41.905060+00:00",
+    "processing_time": 4.363059997558594e-5
+  },
+  "processed_at": "2025-07-03T19:48:41.906692+00:00",
+  "processor_version": "1.0.0"
+}

@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:69362c0c2fa7e3fb3ce4f3f0c2977781c695f01a7406ecaeddc05d858a5c6edf
-size 1502
+{
+  "server_data": {
+    "name": "nkapila6/mcp-local-rag",
+    "source": "github:punkpeye/awesome-mcp-servers",
+    "source_url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "repository_url": "https://github.com/nkapila6/mcp-local-rag",
+    "repository_owner": "nkapila6",
+    "repository_name": "mcp-local-rag",
+    "description": "",
+    "category": "api_integration",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.666465+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 59325
+    }
+  },
+  "quality_metrics": {
+    "name": "nkapila6/mcp-local-rag",
+    "repository_url": "https://github.com/nkapila6/mcp-local-rag",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "api_integration",
+    "subcategories": ["rest_api"],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T19:07:44.144485+00:00",
+    "processing_time": 2.6226043701171875e-5
+  },
+  "processed_at": "2025-07-03T19:07:44.145481+00:00",
+  "processor_version": "1.0.0"
+}

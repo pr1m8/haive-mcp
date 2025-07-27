@@ -57,9 +57,9 @@ Note:
 from contextlib import asynccontextmanager
 from typing import Any, ClassVar
 
+from haive.agents.simple import SimpleAgent
 from pydantic import Field, PrivateAttr
 
-from haive.agents.simple import SimpleAgent
 from haive.mcp.config import MCPConfig
 from haive.mcp.mixins.mcp_mixin import MCPMixin
 

@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ec692554f4814648aaffe154fff657e6676282afa2dc163b9a310fd60dbde33a
-size 1430
+{
+  "server_data": {
+    "name": "mcp-k8s-go",
+    "source": "github:wong2/awesome-mcp-servers",
+    "source_url": "https://github.com/wong2/awesome-mcp-servers",
+    "repository_url": "https://github.com/strowk/mcp-k8s-go",
+    "repository_owner": "strowk",
+    "repository_name": "mcp-k8s-go",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.257607+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 1717
+    }
+  },
+  "quality_metrics": {
+    "name": "mcp-k8s-go",
+    "repository_url": "https://github.com/strowk/mcp-k8s-go",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "utility",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T14:56:40.760314+00:00",
+    "processing_time": 2.5272369384765625e-5
+  },
+  "processed_at": "2025-07-03T14:56:40.761360+00:00",
+  "processor_version": "1.0.0"
+}

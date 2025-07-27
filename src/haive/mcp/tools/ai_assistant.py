@@ -44,14 +44,13 @@ Note:
     adapt their capabilities based on task requirements.
 """
 
-from dataclasses import dataclass
 import logging
+from dataclasses import dataclass
 from typing import Any
 
 from haive.mcp.config import MCPConfig, MCPServerConfig
 from haive.mcp.documentation.doc_loader import MCPDocumentationLoader
 from haive.mcp.tools.server_selector import MCPServerSelector, TaskAnalyzer
-
 
 logger = logging.getLogger(__name__)
 

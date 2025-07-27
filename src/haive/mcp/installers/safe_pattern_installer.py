@@ -10,10 +10,10 @@ import os
 import subprocess
 from typing import Any
 
+from haive.core.tools.interrupt_tool_wrapper import add_human_in_the_loop
 from langchain_core.tools import StructuredTool, tool
 from pydantic import BaseModel, Field
 
-from haive.core.tools.interrupt_tool_wrapper import add_human_in_the_loop
 from haive.mcp.installers.config_manager import (
     MCPConfigManager,
     MCPEnvironmentConfig,

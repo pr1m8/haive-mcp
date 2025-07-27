@@ -5,10 +5,9 @@ using autodoc, autosummary, and Google-style docstrings with comprehensive
 type hint support.
 """
 
+import sys
 from datetime import datetime
 from pathlib import Path
-import sys
-
 
 # Add source to path
 docs_dir = Path(__file__).parent

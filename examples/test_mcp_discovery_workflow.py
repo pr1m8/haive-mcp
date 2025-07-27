@@ -16,6 +16,7 @@ import subprocess
 from typing import Any
 
 from haive.core.engine.aug_llm import AugLLMConfig
+
 from haive.mcp.agents import MCPAgent
 from haive.mcp.config import MCPConfig, MCPServerConfig
 
@@ -197,7 +198,7 @@ async def main():
     workflow = MCPDiscoveryWorkflow()
 
     # Step 1: Search for tools
-    tools = await workflow.step1_search_for_tools("calculator")
+    await workflow.step1_search_for_tools("calculator")
 
     # Step 2: Show installation process
     selected_tool = await workflow.step2_show_installation(

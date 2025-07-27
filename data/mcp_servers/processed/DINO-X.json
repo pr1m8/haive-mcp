@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:82ec63e53eb4746936a09ff726c03b7d3395eba105706b6d6f7fa2cbe730582e
-size 1442
+{
+  "server_data": {
+    "name": "DINO-X",
+    "source": "github:wong2/awesome-mcp-servers",
+    "source_url": "https://github.com/wong2/awesome-mcp-servers",
+    "repository_url": "https://github.com/IDEA-Research/DINO-X-MCP",
+    "repository_owner": "IDEA-Research",
+    "repository_name": "DINO-X-MCP",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.222209+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 1717
+    }
+  },
+  "quality_metrics": {
+    "name": "DINO-X",
+    "repository_url": "https://github.com/IDEA-Research/DINO-X-MCP",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "utility",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T13:02:49.624932+00:00",
+    "processing_time": 2.002716064453125e-5
+  },
+  "processed_at": "2025-07-03T13:02:49.625863+00:00",
+  "processor_version": "1.0.0"
+}

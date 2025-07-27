@@ -4,9 +4,7 @@
 from datetime import datetime
 
 from aiohttp import web
-
 from mcp.server import FastMCP
-
 
 # Create MCP server
 mcp = FastMCP("simple-http-mcp")
@@ -54,7 +52,6 @@ async def index(request: web.Request) -> web.Response:
 @routes.get("/tools")
 async def list_tools(request: web.Request) -> web.Response:
     """List available tools."""
-    tools = []
 
     # Get tools from MCP server
     # Note: In real implementation, we'd use MCP's internal registry

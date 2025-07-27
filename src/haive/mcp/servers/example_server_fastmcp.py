@@ -7,7 +7,6 @@ from pathlib import Path
 # Use FastMCP from mcp.server
 from mcp.server import FastMCP
 
-
 # Set up logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

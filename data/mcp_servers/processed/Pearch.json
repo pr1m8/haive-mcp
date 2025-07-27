@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:50a3dbdc80faa9e0a28a222e1a5d4ff5095b70ec136ddf0ab953d8b3806c8703
-size 1431
+{
+  "server_data": {
+    "name": "Pearch",
+    "source": "github:wong2/awesome-mcp-servers",
+    "source_url": "https://github.com/wong2/awesome-mcp-servers",
+    "repository_url": "https://github.com/Pearch-ai/mcp_pearch",
+    "repository_owner": "Pearch-ai",
+    "repository_name": "mcp_pearch",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.233785+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 1717
+    }
+  },
+  "quality_metrics": {
+    "name": "Pearch",
+    "repository_url": "https://github.com/Pearch-ai/mcp_pearch",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "utility",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T13:41:03.620242+00:00",
+    "processing_time": 1.9550323486328125e-5
+  },
+  "processed_at": "2025-07-03T13:41:03.621599+00:00",
+  "processor_version": "1.0.0"
+}

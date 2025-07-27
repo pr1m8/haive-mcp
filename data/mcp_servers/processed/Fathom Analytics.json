@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:917525945195ece9e93b429c59ec6947d6c8262a011a82f15f1c3e0450f42357
-size 1477
+{
+  "server_data": {
+    "name": "Fathom Analytics",
+    "source": "github:wong2/awesome-mcp-servers",
+    "source_url": "https://github.com/wong2/awesome-mcp-servers",
+    "repository_url": "https://github.com/mackenly/mcp-fathom-analytics",
+    "repository_owner": "mackenly",
+    "repository_name": "mcp-fathom-analytics",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.250188+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 1717
+    }
+  },
+  "quality_metrics": {
+    "name": "Fathom Analytics",
+    "repository_url": "https://github.com/mackenly/mcp-fathom-analytics",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "utility",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T14:35:21.773204+00:00",
+    "processing_time": 4.458427429199219e-5
+  },
+  "processed_at": "2025-07-03T14:35:21.775884+00:00",
+  "processor_version": "1.0.0"
+}

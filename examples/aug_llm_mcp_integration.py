@@ -17,7 +17,6 @@ from haive.core.models.llm.base import LLMConfig
 # MCP imports
 from haive.mcp.config import MCPConfig, MCPServerConfig
 
-
 # Set up logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

@@ -6,12 +6,11 @@ and downloads/installs every single one in an organized manner.
 """
 
 import asyncio
+import json
+import sys
 from collections import defaultdict
 from datetime import datetime
-import json
 from pathlib import Path
-import sys
-
 
 # Add to path
 sys.path.insert(0, str(Path(__file__).parent))
@@ -30,7 +29,6 @@ from rich.progress import (
 )
 from rich.table import Table
 from rich.tree import Tree
-
 
 console = Console()
 

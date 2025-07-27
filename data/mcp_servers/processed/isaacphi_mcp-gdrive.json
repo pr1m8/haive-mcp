@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:788e4d6942dc38979b3cb9d4fbe5ab44f96873adf1ff7197fbef140d8cb81079
-size 1461
+{
+  "server_data": {
+    "name": "isaacphi/mcp-gdrive",
+    "source": "github:punkpeye/awesome-mcp-servers",
+    "source_url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "repository_url": "https://github.com/isaacphi/mcp-gdrive",
+    "repository_owner": "isaacphi",
+    "repository_name": "mcp-gdrive",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.585004+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 59325
+    }
+  },
+  "quality_metrics": {
+    "name": "isaacphi/mcp-gdrive",
+    "repository_url": "https://github.com/isaacphi/mcp-gdrive",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "utility",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T17:46:43.468945+00:00",
+    "processing_time": 2.2172927856445312e-5
+  },
+  "processed_at": "2025-07-03T17:46:43.469886+00:00",
+  "processor_version": "1.0.0"
+}

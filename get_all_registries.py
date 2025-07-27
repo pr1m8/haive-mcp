@@ -2,13 +2,12 @@
 """Get ALL MCP servers from major registries - AGGRESSIVE MODE"""
 
 import asyncio
-from datetime import UTC, datetime
 import json
-from pathlib import Path
 import re
+from datetime import UTC, datetime
+from pathlib import Path
 
 import aiohttp
-
 
 print("🚀 FETCHING ALL MCP SERVERS FROM MAJOR REGISTRIES")
 print("=" * 60)

@@ -4,10 +4,10 @@ import asyncio
 import logging
 
 from haive.core.engine import create_engine
+
 from haive.mcp.agents import MCPAgent
 from haive.mcp.config import MCPConfig, MCPServerConfig
 from haive.mcp.discovery import MCPServerDiscovery
-
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

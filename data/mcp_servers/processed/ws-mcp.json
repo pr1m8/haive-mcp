@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:bf540d48181bdc91f33e519bf786bf331fb30dec75cdd7fc7ef380086df9fc5d
-size 1556
+{
+  "server_data": {
+    "name": "ws-mcp",
+    "source": "github:punkpeye/awesome-mcp-servers",
+    "source_url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "repository_url": "https://github.com/nick1udwig/ws-mcp",
+    "repository_owner": "nick1udwig",
+    "repository_name": "ws-mcp",
+    "description": "Wrap MCP servers with a WebSocket (for use with [kitbitz](https://github.com/nick1udwig/kibitz))",
+    "category": "version_control",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.756951+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 59325
+    }
+  },
+  "quality_metrics": {
+    "name": "ws-mcp",
+    "repository_url": "https://github.com/nick1udwig/ws-mcp",
+    "quality_score": 25.5,
+    "documentation_score": 5.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 75.0,
+    "category": "version_control",
+    "subcategories": ["git_operations"],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T20:24:40.904761+00:00",
+    "processing_time": 3.170967102050781e-5
+  },
+  "processed_at": "2025-07-03T20:24:40.906144+00:00",
+  "processor_version": "1.0.0"
+}

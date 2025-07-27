@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Run only the working tests to verify functionality."""
 
-from pathlib import Path
 import subprocess
 import sys
+from pathlib import Path
 
 
 def run_tests():

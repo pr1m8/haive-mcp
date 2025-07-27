@@ -10,13 +10,13 @@ import json
 from pathlib import Path
 
 from langchain.chains.query_constructor.base import AttributeInfo
-from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.retrievers import ParentDocumentRetriever
 from langchain.retrievers.self_query.base import SelfQueryRetriever
 from langchain.schema import Document
 from langchain.storage import InMemoryStore
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.vectorstores import FAISS
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.vectorstores import FAISS
 from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, Field
 

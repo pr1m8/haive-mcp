@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:21a5890423d08e957394d4d4e2b899847b3151ebacbe61e131b398200733fa6a
-size 1480
+{
+  "server_data": {
+    "name": "PBS API",
+    "source": "github:wong2/awesome-mcp-servers",
+    "source_url": "https://github.com/wong2/awesome-mcp-servers",
+    "repository_url": "https://github.com/matthewdcage/pbs-mcp-server",
+    "repository_owner": "matthewdcage",
+    "repository_name": "pbs-mcp-server",
+    "description": "",
+    "category": "api_integration",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.261719+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 1717
+    }
+  },
+  "quality_metrics": {
+    "name": "PBS API",
+    "repository_url": "https://github.com/matthewdcage/pbs-mcp-server",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "api_integration",
+    "subcategories": ["rest_api"],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T15:06:40.929122+00:00",
+    "processing_time": 2.7179718017578125e-5
+  },
+  "processed_at": "2025-07-03T15:06:40.930027+00:00",
+  "processor_version": "1.0.0"
+}

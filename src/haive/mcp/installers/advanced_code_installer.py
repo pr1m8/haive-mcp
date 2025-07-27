@@ -8,13 +8,13 @@ import os
 import subprocess
 from typing import Any
 
-from langchain_core.tools import StructuredTool, tool
-from pydantic import BaseModel, Field
-
 # Import haive agent for code generation (would need actual import)
 # from haive.agents.simple import SimpleAgent
 # from haive.core.engine.aug_llm import AugLLMConfig
 from haive.core.tools.interrupt_tool_wrapper import add_human_in_the_loop
+from langchain_core.tools import StructuredTool, tool
+from pydantic import BaseModel, Field
+
 from haive.mcp.installers.config_manager import MCPConfigManager, MCPEnvironmentConfig
 from haive.mcp.installers.safe_pattern_installer import SafePatternInstaller
 

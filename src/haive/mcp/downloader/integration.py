@@ -32,6 +32,7 @@ import logging
 from pathlib import Path
 from typing import Any
 
+from haive.core.engine.aug_llm import AugLLMConfig
 from langchain_core.tools import BaseTool
 from langchain_mcp_adapters.client import (
     SSEConnection,
@@ -40,13 +41,11 @@ from langchain_mcp_adapters.client import (
 )
 from pydantic import BaseModel, Field
 
-from haive.core.engine.aug_llm import AugLLMConfig
 from haive.mcp.agents import MCPAgent, TransferableMCPAgent
 from haive.mcp.config import MCPConfig, MCPServerConfig
 from haive.mcp.downloader.config import ServerConfig
 from haive.mcp.downloader.core import GeneralMCPDownloader
 from haive.mcp.manager import MCPManager
-
 
 logger = logging.getLogger(__name__)
 
@@ -495,7 +494,7 @@ class MCPAgentIntegration:
         """
         # Auto-discover and install servers
         logger.info("Auto-discovering MCP servers...")
-        result = await self.downloader.auto_discover_and_download(limit=limit)
+        await self.downloader.auto_discover_and_download(limit=limit)
 
         # Filter by categories and tags
         selected_servers = []

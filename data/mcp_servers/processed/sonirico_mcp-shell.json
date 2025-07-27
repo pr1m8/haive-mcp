@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:82d1d520f918c9f1b4a5e025e5310c358464f67427656a220e30780b93093144
-size 1647
+{
+  "server_data": {
+    "name": "sonirico/mcp-shell",
+    "source": "github:punkpeye/awesome-mcp-servers",
+    "source_url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "repository_url": "https://github.com/sonirico/mcp-shell",
+    "repository_owner": "sonirico",
+    "repository_name": "mcp-shell",
+    "description": "\ud83c\udfce\ufe0f \ud83c\udfe0 \ud83c\udf4e \ud83e\ude9f \ud83d\udc27 Give hands to AI. MCP server to run shell commands securely, auditably, and on demand on isolated environments like docker.",
+    "category": "cloud",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.483535+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 59325
+    }
+  },
+  "quality_metrics": {
+    "name": "sonirico/mcp-shell",
+    "repository_url": "https://github.com/sonirico/mcp-shell",
+    "quality_score": 27.25,
+    "documentation_score": 10.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 75.0,
+    "category": "ai_ml",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T16:21:42.072269+00:00",
+    "processing_time": 4.506111145019531e-5
+  },
+  "processed_at": "2025-07-03T16:21:42.073190+00:00",
+  "processor_version": "1.0.0"
+}

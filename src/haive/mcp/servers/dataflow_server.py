@@ -7,7 +7,6 @@ from typing import Any
 
 from mcp.server.fastmcp import FastMCP
 
-
 # Import haive-dataflow components
 try:
     from haive.dataflow import (

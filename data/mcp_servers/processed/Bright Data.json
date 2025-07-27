@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:7010675e610524a742c238f31b2b80ddc3a5fa5d65a8c8ae35d65f6da10b5d11
-size 1455
+{
+  "server_data": {
+    "name": "Bright Data",
+    "source": "github:wong2/awesome-mcp-servers",
+    "source_url": "https://github.com/wong2/awesome-mcp-servers",
+    "repository_url": "https://github.com/brightdata/brightdata-mcp",
+    "repository_owner": "brightdata",
+    "repository_name": "brightdata-mcp",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.216674+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 1717
+    }
+  },
+  "quality_metrics": {
+    "name": "Bright Data",
+    "repository_url": "https://github.com/brightdata/brightdata-mcp",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "utility",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T12:46:26.370922+00:00",
+    "processing_time": 2.193450927734375e-5
+  },
+  "processed_at": "2025-07-03T12:46:26.371832+00:00",
+  "processor_version": "1.0.0"
+}

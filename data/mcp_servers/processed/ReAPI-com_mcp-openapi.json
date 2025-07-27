@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:acfe5270acabcd9e45b672876acf344e636c6d9c44d5d1504183070e24830674
-size 1497
+{
+  "server_data": {
+    "name": "ReAPI-com/mcp-openapi",
+    "source": "github:punkpeye/awesome-mcp-servers",
+    "source_url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "repository_url": "https://github.com/ReAPI-com/mcp-openapi",
+    "repository_owner": "ReAPI-com",
+    "repository_name": "mcp-openapi",
+    "description": "",
+    "category": "api_integration",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.565589+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 59325
+    }
+  },
+  "quality_metrics": {
+    "name": "ReAPI-com/mcp-openapi",
+    "repository_url": "https://github.com/ReAPI-com/mcp-openapi",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "api_integration",
+    "subcategories": ["rest_api"],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T17:26:43.224604+00:00",
+    "processing_time": 2.6464462280273438e-5
+  },
+  "processed_at": "2025-07-03T17:26:43.225577+00:00",
+  "processor_version": "1.0.0"
+}

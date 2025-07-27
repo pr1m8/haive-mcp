@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:1da3977e387edc0cd47847bb9076973d466acd96317ee121d897e2a4d0315e67
-size 1477
+{
+  "server_data": {
+    "name": "FreePeak/db-mcp-server",
+    "source": "github:punkpeye/awesome-mcp-servers",
+    "source_url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "repository_url": "https://github.com/FreePeak/db-mcp-server",
+    "repository_owner": "FreePeak",
+    "repository_name": "db-mcp-server",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.512316+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 59325
+    }
+  },
+  "quality_metrics": {
+    "name": "FreePeak/db-mcp-server",
+    "repository_url": "https://github.com/FreePeak/db-mcp-server",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "database",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T16:41:42.433308+00:00",
+    "processing_time": 2.7179718017578125e-5
+  },
+  "processed_at": "2025-07-03T16:41:42.434341+00:00",
+  "processor_version": "1.0.0"
+}

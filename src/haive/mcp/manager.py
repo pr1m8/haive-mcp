@@ -62,15 +62,14 @@ Examples:
 """
 
 import asyncio
+import logging
 from datetime import datetime
 from enum import Enum
-import logging
 from typing import Any
 
 from pydantic import BaseModel, Field, PrivateAttr
 
 from haive.mcp.config import MCPServerConfig
-
 
 logger = logging.getLogger(__name__)
 
@@ -305,11 +304,11 @@ class MCPManager(BaseModel):
         if connect_immediately:
             result = await self._connect_server(server_name, config)
             result.connection_time = asyncio.get_event_loop().time() - start_time
-            
+
             # Auto-refresh tools after successful connection
             if result.success:
                 await self.refresh_tools()
-            
+
             return result
         return MCPRegistrationResult(
             server_name=server_name, success=True, status=MCPServerStatus.PENDING
@@ -341,7 +340,6 @@ class MCPManager(BaseModel):
 
             # Create connection based on transport type
             from langchain_mcp_adapters.client import stdio_client
-
             from mcp.client.stdio import StdioServerParameters
 
             if config.transport.value == "stdio":
@@ -671,7 +669,7 @@ class MCPManager(BaseModel):
         try:
             # Simple health check - try to get tools
             client = self._clients[server_name]
-            tools = await self._discover_server_tools(client)
+            await self._discover_server_tools(client)
 
             response_time = asyncio.get_event_loop().time() - start_time
 
@@ -747,10 +745,10 @@ class MCPManager(BaseModel):
         servers or when tools may have changed.
         """
         logger.info("Refreshing MCP tools from all connected servers")
-        
+
         # Clear cached tool lists
         self._server_tools.clear()
-        
+
         # Rediscover tools from each connected server
         for server_name, client_info in self._clients.items():
             if self._server_status.get(server_name) == MCPServerStatus.CONNECTED:
@@ -764,14 +762,18 @@ class MCPManager(BaseModel):
                             else []
                         )
                         self._server_tools[server_name] = tool_names
-                        logger.debug(f"Refreshed {len(tool_names)} tools from {server_name}")
+                        logger.debug(
+                            f"Refreshed {len(tool_names)} tools from {server_name}"
+                        )
                 except Exception as e:
                     logger.error(f"Failed to refresh tools from {server_name}: {e}")
-        
+
         # Rebuild multi-client with fresh tool registry
         await self._rebuild_multi_client()
-        
-        logger.info(f"Tool refresh complete. Total tools: {sum(len(tools) for tools in self._server_tools.values())}")
+
+        logger.info(
+            f"Tool refresh complete. Total tools: {sum(len(tools) for tools in self._server_tools.values())}"
+        )
 
     async def get_resources(self, server_name: str | None = None) -> list[Any]:
         """Get available resources from MCP servers.
@@ -783,12 +785,13 @@ class MCPManager(BaseModel):
             List of available resources
         """
         resources = []
-        
+
         servers_to_check = (
-            [server_name] if server_name and server_name in self._clients
+            [server_name]
+            if server_name and server_name in self._clients
             else list(self._clients.keys())
         )
-        
+
         for name in servers_to_check:
             if self._server_status.get(name) == MCPServerStatus.CONNECTED:
                 try:
@@ -799,7 +802,7 @@ class MCPManager(BaseModel):
                             resources.extend(resources_result.resources)
                 except Exception as e:
                     logger.debug(f"Could not get resources from {name}: {e}")
-        
+
         return resources
 
     async def get_prompts(self, server_name: str | None = None) -> list[Any]:
@@ -812,12 +815,13 @@ class MCPManager(BaseModel):
             List of available prompts
         """
         prompts = []
-        
+
         servers_to_check = (
-            [server_name] if server_name and server_name in self._clients
+            [server_name]
+            if server_name and server_name in self._clients
             else list(self._clients.keys())
         )
-        
+
         for name in servers_to_check:
             if self._server_status.get(name) == MCPServerStatus.CONNECTED:
                 try:
@@ -828,7 +832,7 @@ class MCPManager(BaseModel):
                             prompts.extend(prompts_result.prompts)
                 except Exception as e:
                     logger.debug(f"Could not get prompts from {name}: {e}")
-        
+
         return prompts
 
     async def reload_server(self, server_name: str) -> MCPRegistrationResult:
@@ -848,22 +852,22 @@ class MCPManager(BaseModel):
                 server_name=server_name,
                 success=False,
                 status=MCPServerStatus.FAILED,
-                error_message=f"Server {server_name} not found"
+                error_message=f"Server {server_name} not found",
             )
-        
+
         logger.info(f"Reloading MCP server: {server_name}")
-        
+
         # Get the configuration
         config = self._servers[server_name]
-        
+
         # Remove the server (disconnects it)
         await self.remove_server(server_name)
-        
+
         # Re-add the server
         result = await self.add_server(server_name, config, connect_immediately=True)
-        
+
         # Refresh tools if successful
         if result.success:
             await self.refresh_tools()
-        
+
         return result

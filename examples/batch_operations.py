@@ -6,15 +6,14 @@ This example demonstrates downloading many servers efficiently and managing them
 
 import asyncio
 import json
-from pathlib import Path
 import sys
-
+from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from rich.console import Console
-from src.haive.mcp.downloader import GeneralMCPDownloader
 
+from src.haive.mcp.downloader import GeneralMCPDownloader
 
 console = Console()
 

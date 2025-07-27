@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:6f317070dd9bcc8b285bb06de5fe279944db00b42012e01b618c793dc68890c7
-size 1521
+{
+  "server_data": {
+    "name": "SureScaleAI/openai-gpt-image-mcp",
+    "source": "github:punkpeye/awesome-mcp-servers",
+    "source_url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "repository_url": "https://github.com/SureScaleAI/openai-gpt-image-mcp",
+    "repository_owner": "SureScaleAI",
+    "repository_name": "openai-gpt-image-mcp",
+    "description": "",
+    "category": "ai_ml",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.441361+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 59325
+    }
+  },
+  "quality_metrics": {
+    "name": "SureScaleAI/openai-gpt-image-mcp",
+    "repository_url": "https://github.com/SureScaleAI/openai-gpt-image-mcp",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "ai_ml",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T15:41:41.500999+00:00",
+    "processing_time": 3.075599670410156e-5
+  },
+  "processed_at": "2025-07-03T15:41:41.501941+00:00",
+  "processor_version": "1.0.0"
+}

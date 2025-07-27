@@ -13,17 +13,17 @@ Usage:
 """
 
 import asyncio
-from datetime import datetime
 import json
 import logging
+from datetime import datetime
 from typing import Any
 
 from haive.core.registry import RegistryItem
+
 from haive.mcp.dynamic_activation_mcp import (
     DynamicActivationMCPServer,
     MCPTool,
 )
-
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -753,7 +753,7 @@ async def example_4_mcp_performance_testing():
 
     start_time = time.time()
 
-    concurrent_responses = await asyncio.gather(
+    await asyncio.gather(
         *[server.handle_tool_request(req) for req in concurrent_requests]
     )
 

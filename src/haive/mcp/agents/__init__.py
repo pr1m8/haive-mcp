@@ -1,11 +1,11 @@
 """Module exports."""
 
-from agents.documentation_agent import (
+from haive.mcp.agents.documentation_agent import (
     MCPDocumentationAgent,
     create_for_mcp_research,
     create_for_mcp_setup,
 )
-from agents.intelligent_mcp_agent import (
+from haive.mcp.agents.intelligent_mcp_agent import (
     ApprovalStatus,
     HITLApprovalRequest,
     IntelligentMCPAgent,
@@ -15,7 +15,7 @@ from agents.intelligent_mcp_agent import (
     get_pending_approvals,
     get_recommendation_history,
 )
-from agents.mcp_agent import (
+from haive.mcp.agents.mcp_agent import (
     MCPAgent,
     create_filesystem_agent,
     create_github_agent,
@@ -25,7 +25,7 @@ from agents.mcp_agent import (
     setup_agent,
     tool_count,
 )
-from agents.transferable_mcp_agent import (
+from haive.mcp.agents.transferable_mcp_agent import (
     TransferableMCPAgent,
     create_collaborative_agents,
     get_transfer_status,

@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:94cb3afdfa8476a2e3a9324b792e08f56cfe2b3043fd5d776dbf1b0d1af96fd5
-size 1461
+{
+  "server_data": {
+    "name": "ChuckNorris",
+    "source": "github:wong2/awesome-mcp-servers",
+    "source_url": "https://github.com/wong2/awesome-mcp-servers",
+    "repository_url": "https://github.com/pollinations/chucknorris-mcp",
+    "repository_owner": "pollinations",
+    "repository_name": "chucknorris-mcp",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.246675+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 1717
+    }
+  },
+  "quality_metrics": {
+    "name": "ChuckNorris",
+    "repository_url": "https://github.com/pollinations/chucknorris-mcp",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "utility",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T14:24:27.912606+00:00",
+    "processing_time": 2.288818359375e-5
+  },
+  "processed_at": "2025-07-03T14:24:27.913564+00:00",
+  "processor_version": "1.0.0"
+}

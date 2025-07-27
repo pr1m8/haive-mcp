@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:2f3977b24f9d91c70fe9aaf0f265cacb0386e6293dee00dfb8016b379a2466a6
-size 1516
+{
+  "server_data": {
+    "name": "edgedelta/edgedelta-mcp-server",
+    "source": "github:punkpeye/awesome-mcp-servers",
+    "source_url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "repository_url": "https://github.com/edgedelta/edgedelta-mcp-server",
+    "repository_owner": "edgedelta",
+    "repository_name": "edgedelta-mcp-server",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.644448+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 59325
+    }
+  },
+  "quality_metrics": {
+    "name": "edgedelta/edgedelta-mcp-server",
+    "repository_url": "https://github.com/edgedelta/edgedelta-mcp-server",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "utility",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T18:47:20.206802+00:00",
+    "processing_time": 2.3365020751953125e-5
+  },
+  "processed_at": "2025-07-03T18:47:20.207783+00:00",
+  "processor_version": "1.0.0"
+}

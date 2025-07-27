@@ -60,9 +60,9 @@ Example:
 
 from typing import Any
 
+from haive.agents.simple import SimpleAgent
 from pydantic import Field
 
-from haive.agents.simple import SimpleAgent
 from haive.mcp.config import MCPConfig, MCPServerConfig
 from haive.mcp.mixins.mcp_mixin import MCPMixin
 

@@ -5,6 +5,7 @@ MCP-enabled AI agents for the Haive framework.
 ## Overview
 
 This module provides agent implementations that integrate MCP servers:
+
 - **MCPAgent**: Basic agent with MCP capabilities
 - **TransferableMCPAgent**: Agent with tool transfer abilities
 - **MCPDocumentationAgent**: Specialized agent for MCP documentation

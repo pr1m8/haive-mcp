@@ -40,14 +40,13 @@ See Also:
 """
 
 import asyncio
-from contextlib import asynccontextmanager
 import logging
+from contextlib import asynccontextmanager
 from typing import Any
 
 from pydantic import BaseModel, Field, PrivateAttr
 
 from haive.mcp.config import MCPConfig, MCPServerConfig
-
 
 # Conditional imports
 try:

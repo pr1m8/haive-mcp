@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f72f8e939187e2b4e1d738fc2391e006abbeda03e53feb17d4d84f3e593bfe26
-size 1481
+{
+  "server_data": {
+    "name": "sooperset/mcp-atlassian",
+    "source": "github:punkpeye/awesome-mcp-servers",
+    "source_url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "repository_url": "https://github.com/sooperset/mcp-atlassian",
+    "repository_owner": "sooperset",
+    "repository_name": "mcp-atlassian",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.695815+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 59325
+    }
+  },
+  "quality_metrics": {
+    "name": "sooperset/mcp-atlassian",
+    "repository_url": "https://github.com/sooperset/mcp-atlassian",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "utility",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T19:38:26.054981+00:00",
+    "processing_time": 2.3365020751953125e-5
+  },
+  "processed_at": "2025-07-03T19:38:26.055909+00:00",
+  "processor_version": "1.0.0"
+}

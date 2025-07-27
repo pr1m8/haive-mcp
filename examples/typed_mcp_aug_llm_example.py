@@ -10,18 +10,16 @@ import asyncio
 import logging
 from pathlib import Path
 
-from pydantic import BaseModel, Field
-
 # Agent imports for demonstration
 from haive.agents import ReactAgent
 
 # Haive imports with proper typing
 from haive.core.engine.aug_llm import MCPAugLLMConfig, create_mcp_aug_llm_config
 from haive.core.models.llm.base import LLMConfig
+from pydantic import BaseModel, Field
 
 # MCP imports with full types
 from haive.mcp.config import MCPConfig, MCPServerConfig, MCPTransport
-
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -309,8 +307,7 @@ async def example_type_checking_benefits():
     )
 
     # Type-safe method calls
-    tools: list = config.get_all_tools()  # Returns List[str]
-    mcp_config: MCPConfig | None = config.mcp_config  # Properly typed
+    config.get_all_tools()  # Returns List[str]
 
     logger.info("Type checking ensures:")
     logger.info("  - Correct configuration structure")

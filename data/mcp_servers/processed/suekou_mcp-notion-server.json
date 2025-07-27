@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ed08806de732302468ee6469c035671bce4f56370d52cf70e40e179b9f34759e
-size 1496
+{
+  "server_data": {
+    "name": "suekou/mcp-notion-server",
+    "source": "github:punkpeye/awesome-mcp-servers",
+    "source_url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "repository_url": "https://github.com/suekou/mcp-notion-server",
+    "repository_owner": "suekou",
+    "repository_name": "mcp-notion-server",
+    "description": "",
+    "category": "productivity",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.750622+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 59325
+    }
+  },
+  "quality_metrics": {
+    "name": "suekou/mcp-notion-server",
+    "repository_url": "https://github.com/suekou/mcp-notion-server",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "productivity",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T20:19:31.922246+00:00",
+    "processing_time": 2.6941299438476562e-5
+  },
+  "processed_at": "2025-07-03T20:19:31.923646+00:00",
+  "processor_version": "1.0.0"
+}

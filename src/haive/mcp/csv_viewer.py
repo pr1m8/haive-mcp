@@ -4,8 +4,8 @@
 Creates a browsable CSV export with sorting and filtering capabilities.
 """
 
-from datetime import datetime
 import json
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 
@@ -126,7 +126,7 @@ def streamlit_viewer():
     filtered_df = filtered_df[filtered_df["total_features"] >= min_features]
 
     if has_install:
-        filtered_df = filtered_df[filtered_df["has_install_command"] == True]
+        filtered_df = filtered_df[filtered_df["has_install_command"]]
 
     # Sort options
     st.sidebar.header("📊 Sorting")

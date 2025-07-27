@@ -16,7 +16,6 @@ from pathlib import Path
 from mcp.client import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 
-
 # Set up logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

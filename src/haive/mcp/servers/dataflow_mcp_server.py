@@ -12,13 +12,11 @@ import asyncio
 import logging
 from typing import Any
 
-from pydantic import BaseModel, Field
-
 # Haive imports
 from haive.core.engine.aug_llm import AugLLMConfig
 from haive.core.models.llm.base import LLMConfig
 from mcp.server import FastMCP
-
+from pydantic import BaseModel, Field
 
 # Import dataflow components
 try:
@@ -191,7 +189,7 @@ async def create_agent(request: AgentCreationRequest) -> dict[str, Any]:
         )
 
         # Create AugLLM config
-        aug_config = AugLLMConfig(
+        AugLLMConfig(
             llm_config=llm_config,
             name=request.name,
             tools=request.tools,

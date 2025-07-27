@@ -10,17 +10,14 @@ This example demonstrates:
 import asyncio
 import json
 from pathlib import Path
-import sys
 from typing import Any
-
 
 # Standard haive imports - no special path manipulation needed
 try:
-    from langchain_core.tools import Tool
-
     from haive.agents.react import ReactAgent
     from haive.agents.simple import SimpleAgent
     from haive.core.engine.aug_llm import AugLLMConfig
+    from langchain_core.tools import Tool
 
     print("✅ Haive imports successful")
 except ImportError as e:
@@ -184,7 +181,7 @@ async def demo_calculator_agent():
             system_message="You are a helpful assistant with access to a calculator tool. Use it when asked to perform calculations.",
         )
 
-        agent = SimpleAgent(name="calculator_agent", engine=config, tools=[calc_tool])
+        SimpleAgent(name="calculator_agent", engine=config, tools=[calc_tool])
 
         print("\n🤖 Testing agent with calculator tool:")
 
@@ -263,7 +260,7 @@ async def demo_database_agent():
             system_message="You are a database expert with access to various database tools. Use them to answer queries about data.",
         )
 
-        agent = ReactAgent(name="database_agent", engine=config, tools=tools)
+        ReactAgent(name="database_agent", engine=config, tools=tools)
 
         print(f"\n🤖 Created ReactAgent with {len(tools)} database tools")
 

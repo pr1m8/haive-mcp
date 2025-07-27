@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ee8ce7f8af4ca1e4e5051a7092cd2c9c27c7e6723d80a1a8dda65ec2ed0592d9
-size 1435
+{
+  "server_data": {
+    "name": "ezyang/codemcp",
+    "source": "github:punkpeye/awesome-mcp-servers",
+    "source_url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "repository_url": "https://github.com/ezyang/codemcp",
+    "repository_owner": "ezyang",
+    "repository_name": "codemcp",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.478471+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 59325
+    }
+  },
+  "quality_metrics": {
+    "name": "ezyang/codemcp",
+    "repository_url": "https://github.com/ezyang/codemcp",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "utility",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T16:16:41.968035+00:00",
+    "processing_time": 3.600120544433594e-5
+  },
+  "processed_at": "2025-07-03T16:16:41.969417+00:00",
+  "processor_version": "1.0.0"
+}

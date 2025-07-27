@@ -4,9 +4,9 @@
 This script provides a quick way to install and verify the haive-mcp package.
 """
 
-from pathlib import Path
 import subprocess
 import sys
+from pathlib import Path
 
 
 def run_command(cmd, description, check=True):

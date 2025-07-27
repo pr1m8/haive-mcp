@@ -1,6 +1,6 @@
 """Module exports."""
 
-from utils.extract_mcp_github_repos import (
+from haive.mcp.utils.extract_mcp_github_repos import (
     ExtractionStats,
     MCPCategory,
     MCPLanguage,

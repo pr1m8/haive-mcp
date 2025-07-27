@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:1eb7c4c84fc69d76b3193cc96635657c8d31ba0b4369a141ed2d98ff302f8a9c
-size 1477
+{
+  "server_data": {
+    "name": "portainer/portainer-mcp",
+    "source": "github:punkpeye/awesome-mcp-servers",
+    "source_url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "repository_url": "https://github.com/portainer/portainer-mcp",
+    "repository_owner": "portainer",
+    "repository_name": "portainer-mcp",
+    "description": "",
+    "category": "ai_ml",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.469297+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 59325
+    }
+  },
+  "quality_metrics": {
+    "name": "portainer/portainer-mcp",
+    "repository_url": "https://github.com/portainer/portainer-mcp",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "ai_ml",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T16:06:41.838276+00:00",
+    "processing_time": 3.0279159545898438e-5
+  },
+  "processed_at": "2025-07-03T16:06:41.839324+00:00",
+  "processor_version": "1.0.0"
+}

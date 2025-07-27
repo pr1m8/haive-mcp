@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f032dee5b6483a248590809219adc4df7fb77bf187e48d5af0a5109b6c129929
-size 1436
+{
+  "server_data": {
+    "name": "Atla",
+    "source": "github:wong2/awesome-mcp-servers",
+    "source_url": "https://github.com/wong2/awesome-mcp-servers",
+    "repository_url": "https://github.com/atla-ai/atla-mcp-server",
+    "repository_owner": "atla-ai",
+    "repository_name": "atla-mcp-server",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.214822+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 1717
+    }
+  },
+  "quality_metrics": {
+    "name": "Atla",
+    "repository_url": "https://github.com/atla-ai/atla-mcp-server",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "utility",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T12:46:26.362459+00:00",
+    "processing_time": 2.1696090698242188e-5
+  },
+  "processed_at": "2025-07-03T12:46:26.363394+00:00",
+  "processor_version": "1.0.0"
+}

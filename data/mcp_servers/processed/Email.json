@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:48bf4eb0bdd0521a52b98e98b25414a1f833bb33c55f2d9fdecb6daae19f94d0
-size 1454
+{
+  "server_data": {
+    "name": "Email",
+    "source": "github:wong2/awesome-mcp-servers",
+    "source_url": "https://github.com/wong2/awesome-mcp-servers",
+    "repository_url": "https://github.com/Shy2593666979/mcp-server-email",
+    "repository_owner": "Shy2593666979",
+    "repository_name": "mcp-server-email",
+    "description": "",
+    "category": "ai_ml",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.248984+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 1717
+    }
+  },
+  "quality_metrics": {
+    "name": "Email",
+    "repository_url": "https://github.com/Shy2593666979/mcp-server-email",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "ai_ml",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T14:29:54.102457+00:00",
+    "processing_time": 6.175041198730469e-5
+  },
+  "processed_at": "2025-07-03T14:29:54.103547+00:00",
+  "processor_version": "1.0.0"
+}

@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:9404de55f968aa57216a9c8647f18f9d3f1897cef1ba91ac6243f818cb4875af
-size 1445
+{
+  "server_data": {
+    "name": "chargebee/mcp",
+    "source": "github:punkpeye/awesome-mcp-servers",
+    "source_url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "repository_url": "https://github.com/chargebee/agentkit",
+    "repository_owner": "chargebee",
+    "repository_name": "agentkit",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.592545+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 59325
+    }
+  },
+  "quality_metrics": {
+    "name": "chargebee/mcp",
+    "repository_url": "https://github.com/chargebee/agentkit",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "utility",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T17:56:44.021536+00:00",
+    "processing_time": 4.076957702636719e-5
+  },
+  "processed_at": "2025-07-03T17:56:44.023061+00:00",
+  "processor_version": "1.0.0"
+}

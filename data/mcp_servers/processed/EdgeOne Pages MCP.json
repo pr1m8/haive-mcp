@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:4467213b09d236ede8736db826d7389242b374b163576d30fad8740b66cf6418
-size 1487
+{
+  "server_data": {
+    "name": "EdgeOne Pages MCP",
+    "source": "github:wong2/awesome-mcp-servers",
+    "source_url": "https://github.com/wong2/awesome-mcp-servers",
+    "repository_url": "https://github.com/TencentEdgeOne/edgeone-pages-mcp",
+    "repository_owner": "TencentEdgeOne",
+    "repository_name": "edgeone-pages-mcp",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.222699+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 1717
+    }
+  },
+  "quality_metrics": {
+    "name": "EdgeOne Pages MCP",
+    "repository_url": "https://github.com/TencentEdgeOne/edgeone-pages-mcp",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "utility",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T13:08:16.138190+00:00",
+    "processing_time": 2.09808349609375e-5
+  },
+  "processed_at": "2025-07-03T13:08:16.139057+00:00",
+  "processor_version": "1.0.0"
+}

@@ -49,13 +49,12 @@ Note:
 """
 
 import asyncio
-from dataclasses import dataclass
 import logging
 import time
+from dataclasses import dataclass
 from typing import Any
 
 from haive.mcp.config import MCPConfig, MCPServerConfig
-
 
 logger = logging.getLogger(__name__)
 

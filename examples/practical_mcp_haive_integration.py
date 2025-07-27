@@ -12,13 +12,12 @@ import json
 from pathlib import Path
 from typing import Any
 
-from langchain_core.tools import Tool
-
 from haive.agents.react import ReactAgent
 
 # Haive imports
 from haive.agents.simple import SimpleAgent
 from haive.core.engine.aug_llm import AugLLMConfig
+from langchain_core.tools import Tool
 
 
 class MCPToolDemo:

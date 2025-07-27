@@ -48,7 +48,6 @@ from typing import Any
 
 from langchain_core.documents import Document
 
-
 # Try to import haive document loaders
 try:
     from haive.agents.research.open_perplexity.structured_tools import (

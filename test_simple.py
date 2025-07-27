@@ -2,7 +2,6 @@
 
 import sys
 
-
 # Set the PYTHONPATH to the haive backend
 backend_path = "/home/will/Projects/haive/backend/haive"
 if backend_path not in sys.path:

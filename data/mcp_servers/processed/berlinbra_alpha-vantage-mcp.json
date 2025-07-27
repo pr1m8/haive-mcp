@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:04db93588b29c309b7af745be95eb9cf61e28a267c2aa865ae2dea6b8b3f3885
-size 1501
+{
+  "server_data": {
+    "name": "berlinbra/alpha-vantage-mcp",
+    "source": "github:punkpeye/awesome-mcp-servers",
+    "source_url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "repository_url": "https://github.com/berlinbra/alpha-vantage-mcp",
+    "repository_owner": "berlinbra",
+    "repository_name": "alpha-vantage-mcp",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.591277+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 59325
+    }
+  },
+  "quality_metrics": {
+    "name": "berlinbra/alpha-vantage-mcp",
+    "repository_url": "https://github.com/berlinbra/alpha-vantage-mcp",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "utility",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T17:51:43.931201+00:00",
+    "processing_time": 2.4318695068359375e-5
+  },
+  "processed_at": "2025-07-03T17:51:43.932131+00:00",
+  "processor_version": "1.0.0"
+}

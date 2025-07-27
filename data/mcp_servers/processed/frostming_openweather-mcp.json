@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:71b072e67d23e9e50ca74aedf119f9989685d3bf7569fbdc4b60a2a68d6936ba
-size 1494
+{
+  "server_data": {
+    "name": "frostming/openweather-mcp",
+    "source": "github:TensorBlock/awesome-mcp-servers",
+    "source_url": "https://github.com/TensorBlock/awesome-mcp-servers",
+    "repository_url": "https://github.com/frostming/openweather-mcp",
+    "repository_owner": "frostming",
+    "repository_name": "openweather-mcp",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:39.212172+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 391
+    }
+  },
+  "quality_metrics": {
+    "name": "frostming/openweather-mcp",
+    "repository_url": "https://github.com/frostming/openweather-mcp",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "utility",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T20:40:08.839421+00:00",
+    "processing_time": 3.933906555175781e-5
+  },
+  "processed_at": "2025-07-03T20:40:08.840588+00:00",
+  "processor_version": "1.0.0"
+}

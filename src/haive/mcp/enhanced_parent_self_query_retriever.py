@@ -12,6 +12,11 @@ enabling self-query filtering on chunks while returning full parents.
 import asyncio
 import json
 
+# Haive imports
+from haive.core.engine.aug_llm import AugLLMConfig
+from haive.core.engine.vectorstore.providers.ChromaVectorStoreConfig import (
+    ChromaVectorStoreConfig,
+)
 from langchain.chains.query_constructor.base import AttributeInfo
 from langchain.retrievers import ParentDocumentRetriever
 from langchain.retrievers.self_query.base import SelfQueryRetriever
@@ -21,11 +26,6 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 # LangChain imports
 from langchain_core.documents import Document
 
-# Haive imports
-from haive.core.engine.aug_llm import AugLLMConfig
-from haive.core.engine.vectorstore.providers.ChromaVectorStoreConfig import (
-    ChromaVectorStoreConfig,
-)
 from haive.mcp.documentation import MCPDocumentationLoader
 
 

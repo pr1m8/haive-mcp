@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:2d4e9688cb3ab0d8221ce7aebc8aa27f5e1aa1c61a56dacc1eb8939031ff2e3c
-size 1467
+{
+  "server_data": {
+    "name": "Taskeract",
+    "source": "github:wong2/awesome-mcp-servers",
+    "source_url": "https://github.com/wong2/awesome-mcp-servers",
+    "repository_url": "https://github.com/Acqusys/taskeract-mcp",
+    "repository_owner": "Acqusys",
+    "repository_name": "taskeract-mcp",
+    "description": "",
+    "category": "productivity",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.238541+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 1717
+    }
+  },
+  "quality_metrics": {
+    "name": "Taskeract",
+    "repository_url": "https://github.com/Acqusys/taskeract-mcp",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "productivity",
+    "subcategories": ["task_management"],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T13:57:21.442079+00:00",
+    "processing_time": 2.6941299438476562e-5
+  },
+  "processed_at": "2025-07-03T13:57:21.443101+00:00",
+  "processor_version": "1.0.0"
+}

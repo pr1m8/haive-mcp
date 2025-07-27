@@ -1,22 +1,20 @@
 """MCP Simple Tool Agent - Using SimpleAgent with retrieval tool"""
 
-from datetime import datetime
 import json
-from pathlib import Path
 import sys
-
+from datetime import datetime
+from pathlib import Path
 
 # Add parent path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent.parent))
 
+from haive.agents.simple.agent import SimpleAgent
+from haive.core.models.llm.base import AzureLLMConfig, LLMConfig
 from langchain_community.vectorstores import FAISS
 from langchain_core.documents import Document
 from langchain_core.tools import tool
 
-from haive.agents.simple.agent import SimpleAgent
-from haive.core.models.llm.base import AzureLLMConfig, LLMConfig
 from haive.mcp.documentation import MCPDocumentationLoader
-
 
 # Global vector store
 VECTOR_STORE = None
@@ -205,11 +203,12 @@ Always search before answering questions about specific servers or capabilities.
     return agent
 
 
+import uvicorn
+
 # FastAPI Integration
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
-import uvicorn
 
 
 class QueryRequest(BaseModel):

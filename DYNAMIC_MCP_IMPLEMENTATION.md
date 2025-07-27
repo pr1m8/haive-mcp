@@ -18,7 +18,7 @@ Added critical hot-reload functionality:
 - `refresh_tools()` - Refreshes tool list from all connected servers
 - `get_all_tools(refresh=True)` - Get tools with optional refresh
 - `get_resources()` - Access MCP resources
-- `get_prompts()` - Access MCP prompts  
+- `get_prompts()` - Access MCP prompts
 - `reload_server()` - Hot-reload specific server
 - Auto-refresh after successful server addition
 
@@ -38,6 +38,7 @@ New agent class with dynamic capabilities:
 ### 3. Dynamic Workflow Example (`examples/dynamic_mcp_workflow.py`)
 
 Complete example demonstrating:
+
 - Automatic capability detection
 - HITL approval process
 - Dynamic installation
@@ -98,9 +99,11 @@ agent = IntelligentMCPAgent(
 ## Testing
 
 Created comprehensive tests in:
+
 - `test_hot_reload_integration.py` - Integration tests for hot-reload functionality
 
 All tests pass successfully, validating:
+
 - Tool refresh capability
 - Auto-refresh on server addition
 - Resource and prompt discovery

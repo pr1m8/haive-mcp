@@ -4,7 +4,6 @@
 import json
 from pathlib import Path
 
-
 # Simple discovery test
 current_dir = Path(__file__).parent
 data_path = (

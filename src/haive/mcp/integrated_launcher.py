@@ -6,9 +6,9 @@ Provides easy access to all components of the integrated MCP discovery and manag
 
 import argparse
 import json
-from pathlib import Path
 import subprocess
 import sys
+from pathlib import Path
 
 
 def print_banner():

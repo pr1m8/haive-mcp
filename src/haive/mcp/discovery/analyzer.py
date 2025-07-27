@@ -49,7 +49,6 @@ from typing import Any
 
 from haive.mcp.config import MCPServerConfig, MCPTransport
 
-
 logger = logging.getLogger(__name__)
 
 

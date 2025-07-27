@@ -6,18 +6,17 @@ Tests the core discovery functionality without requiring the web interface.
 
 import asyncio
 import json
-from pathlib import Path
 
 # Direct imports from the MCP components
 import sys
+from pathlib import Path
 from typing import Any
-
 
 sys.path.insert(0, str(Path(__file__).parent.parent / "src" / "haive" / "mcp"))
 
-from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.schema import Document
-from langchain.vectorstores import FAISS
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.vectorstores import FAISS
 
 
 class SimpleMCPDiscovery:

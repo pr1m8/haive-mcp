@@ -49,14 +49,13 @@ Note:
     reducing the need for manual server configuration.
 """
 
-from dataclasses import dataclass
 import logging
 import re
+from dataclasses import dataclass
 from typing import Any
 
 from haive.mcp.config import MCPConfig, MCPServerConfig
 from haive.mcp.documentation.doc_loader import MCPDocumentationLoader
-
 
 logger = logging.getLogger(__name__)
 

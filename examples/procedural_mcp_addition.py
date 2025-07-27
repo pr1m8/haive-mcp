@@ -22,7 +22,6 @@ from pathlib import Path
 from haive.mcp.config import MCPServerConfig, MCPTransport
 from haive.mcp.manager import MCPManager
 
-
 # Setup logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

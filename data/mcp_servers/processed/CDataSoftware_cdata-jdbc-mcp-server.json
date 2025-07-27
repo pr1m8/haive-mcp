@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:0f58b343b9ae7173fcb626953d5d5d0a76babefa0ec150cf35eb3b4ce0f80efc
-size 1545
+{
+  "server_data": {
+    "name": "CDataSoftware/cdata-jdbc-mcp-server",
+    "source": "github:TensorBlock/awesome-mcp-servers",
+    "source_url": "https://github.com/TensorBlock/awesome-mcp-servers",
+    "repository_url": "https://github.com/CDataSoftware/cdata-jdbc-mcp-server",
+    "repository_owner": "CDataSoftware",
+    "repository_name": "cdata-jdbc-mcp-server",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:39.209042+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 391
+    }
+  },
+  "quality_metrics": {
+    "name": "CDataSoftware/cdata-jdbc-mcp-server",
+    "repository_url": "https://github.com/CDataSoftware/cdata-jdbc-mcp-server",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "database",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T20:34:58.893666+00:00",
+    "processing_time": 2.765655517578125e-5
+  },
+  "processed_at": "2025-07-03T20:34:58.895633+00:00",
+  "processor_version": "1.0.0"
+}

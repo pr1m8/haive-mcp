@@ -4,21 +4,19 @@ This agent uses BaseRAGAgent and SimpleAgent to create a proper RAG system
 for MCP server discovery.
 """
 
-from datetime import datetime
 import json
-from pathlib import Path
 import sys
-
+from datetime import datetime
+from pathlib import Path
 
 # Add parent path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent.parent))
-
-from langchain_core.documents import Document
 
 from haive.agents.rag.base.agent import BaseRAGAgent
 from haive.core.engine.vectorstore.vectorstore import VectorStoreConfig
 from haive.core.models.embeddings.base import HuggingFaceEmbeddingConfig
 from haive.core.models.llm.base import AzureLLMConfig, LLMConfig
+from langchain_core.documents import Document
 
 
 def create_mcp_documents() -> list[Document]:
@@ -154,11 +152,12 @@ def create_mcp_rag_agent(llm_config: LLMConfig | None = None) -> BaseRAGAgent:
     return agent
 
 
+import uvicorn
+
 # FastAPI Integration for web interface
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
-import uvicorn
 
 
 class QueryRequest(BaseModel):

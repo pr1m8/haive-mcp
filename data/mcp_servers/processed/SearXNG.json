@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:3f39ea67e976f40c5d26019869951c1ba8170f6b431065877e65bda18f3f7850
-size 1448
+{
+  "server_data": {
+    "name": "SearXNG",
+    "source": "github:wong2/awesome-mcp-servers",
+    "source_url": "https://github.com/wong2/awesome-mcp-servers",
+    "repository_url": "https://github.com/ihor-sokoliuk/mcp-searxng",
+    "repository_owner": "ihor-sokoliuk",
+    "repository_name": "mcp-searxng",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.263950+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 1717
+    }
+  },
+  "quality_metrics": {
+    "name": "SearXNG",
+    "repository_url": "https://github.com/ihor-sokoliuk/mcp-searxng",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "utility",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T15:11:41.033735+00:00",
+    "processing_time": 2.2411346435546875e-5
+  },
+  "processed_at": "2025-07-03T15:11:41.035427+00:00",
+  "processor_version": "1.0.0"
+}

@@ -1,6 +1,6 @@
 """Module exports."""
 
-from installers.advanced_code_installer import (
+from haive.mcp.installers.advanced_code_installer import (
     AdvancedCodeInstaller,
     CodeGenerationRequest,
     GeneratedInstallPlan,
@@ -13,7 +13,7 @@ from installers.advanced_code_installer import (
     get_advanced_status,
     validate_installation,
 )
-from installers.config_manager import (
+from haive.mcp.installers.config_manager import (
     MCPConfigManager,
     MCPEnvironmentConfig,
     MCPServerPattern,
@@ -25,7 +25,7 @@ from installers.config_manager import (
     list_available_patterns,
     list_configured_servers,
 )
-from installers.safe_pattern_installer import (
+from haive.mcp.installers.safe_pattern_installer import (
     InstallationRequest,
     InstallationResult,
     SafePatternInstaller,

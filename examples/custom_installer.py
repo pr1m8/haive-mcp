@@ -5,10 +5,9 @@ This example shows how to extend the installer system with custom installation m
 """
 
 import asyncio
-from pathlib import Path
 import sys
+from pathlib import Path
 from typing import Any
-
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
@@ -92,7 +91,6 @@ class ScriptInstaller(MCPInstaller):
         """Run custom installation script."""
         import subprocess
 
-        script_url = server_config.source
         script_commands = template.post_install
 
         try:
@@ -249,7 +247,7 @@ async def main():
     print("=" * 50)
 
     # Test custom installers
-    downloader = await test_custom_installers()
+    await test_custom_installers()
 
     # Create webhook installer
     webhook_installer = await create_webhook_installer()

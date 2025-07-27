@@ -23,20 +23,19 @@ Version: 1.0.0
 Author: Haive MCP Team
 """
 
-from abc import ABC, abstractmethod
 import asyncio
 import logging
 import os
-from pathlib import Path
 import shutil
 import stat
+from abc import ABC, abstractmethod
+from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
 
 import aiohttp
 
 from haive.mcp.downloader.config import InstallationMethod, ServerConfig, ServerTemplate
-
 
 logger = logging.getLogger(__name__)
 
@@ -415,7 +414,7 @@ class GitInstaller(MCPInstaller):
 
         # Parse repository name
         parsed = urlparse(repo_url)
-        repo_name = Path(parsed.path).stem.replace(".git", "")
+        Path(parsed.path).stem.replace(".git", "")
 
         # Use server name as directory name
         clone_dir = install_dir / server_config.name

@@ -57,21 +57,20 @@ Note:
 """
 
 import asyncio
-from dataclasses import asdict, dataclass
-from datetime import UTC, datetime
 import json
 import logging
+import signal
+import sys
+import time
+from dataclasses import asdict, dataclass
+from datetime import UTC, datetime
 
 # Configure logging with rotation
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
-import signal
-import sys
-import time
 from typing import Any
 
 import aiohttp
-
 
 # Set up comprehensive logging
 log_dir = Path(__file__).parent.parent / "logs"
@@ -2047,9 +2046,7 @@ class BackgroundMCPProcessor:
             metrics = await self.quality_assessor.assess_server(server_data, session)
 
             # Generate documentation
-            doc_path = await self.doc_generator.generate_server_docs(
-                server_data, metrics
-            )
+            await self.doc_generator.generate_server_docs(server_data, metrics)
 
             # Save individual server data
             await self._save_server_data(server_data, metrics)
@@ -2337,7 +2334,7 @@ async def main():
 
 
 if __name__ == "__main__":
-    from datetime import timedelta
     import os
+    from datetime import timedelta
 
     asyncio.run(main())

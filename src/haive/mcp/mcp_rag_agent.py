@@ -3,18 +3,17 @@
 This agent helps users find and understand MCP servers using RAG.
 """
 
+import sys
 from datetime import datetime
 from pathlib import Path
-import sys
-
 
 # Add parent path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent.parent))
 
-from langchain_openai import ChatOpenAI
-
 from haive.agents.rag.base.agent import BaseRAGAgent
 from haive.core.engine.aug_llm import AugLLMConfig
+from langchain_openai import ChatOpenAI
+
 from haive.mcp.working_enhanced_retriever import WorkingEnhancedRetriever
 
 
@@ -65,11 +64,12 @@ When answering:
     return agent
 
 
+import uvicorn
+
 # FastAPI Integration
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
-import uvicorn
 
 
 class QueryRequest(BaseModel):

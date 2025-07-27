@@ -7,12 +7,12 @@ This server provides:
 4. Real-time status updates via WebSocket
 """
 
-from contextlib import asynccontextmanager
-from datetime import datetime
-from pathlib import Path
 import subprocess
 import sys
 import tempfile
+from contextlib import asynccontextmanager
+from datetime import datetime
+from pathlib import Path
 
 # FastAPI imports
 from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
@@ -20,13 +20,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 
-
 # Import our MCP tools
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent.parent))
 
+from haive.core.engine.aug_llm import AugLLMConfig
 from langchain_mcp_adapters.client import MultiServerMCPClient
 
-from haive.core.engine.aug_llm import AugLLMConfig
 from haive.mcp.working_enhanced_retriever import WorkingEnhancedRetriever
 
 

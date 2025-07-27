@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:2846ece0101d31aee05b9f29720881f2ac190651d342afcac39ac6c199185598
-size 1704
+{
+  "server_data": {
+    "name": "Gaffx/volatility-mcp",
+    "source": "github:punkpeye/awesome-mcp-servers",
+    "source_url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "repository_url": "https://github.com/Gaffx/volatility-mcp",
+    "repository_owner": "Gaffx",
+    "repository_name": "volatility-mcp",
+    "description": "MCP server for Volatility 3.x, allowing you to perform memory forensics analysis with AI assistant. Experience memory forensics without barriers as plugins like pslist and netscan become accessible through clean REST APIs and LLMs.",
+    "category": "api_integration",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.680250+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 59325
+    }
+  },
+  "quality_metrics": {
+    "name": "Gaffx/volatility-mcp",
+    "repository_url": "https://github.com/Gaffx/volatility-mcp",
+    "quality_score": 27.25,
+    "documentation_score": 10.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 75.0,
+    "category": "ai_ml",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T19:17:57.578638+00:00",
+    "processing_time": 4.172325134277344e-5
+  },
+  "processed_at": "2025-07-03T19:17:57.579683+00:00",
+  "processor_version": "1.0.0"
+}

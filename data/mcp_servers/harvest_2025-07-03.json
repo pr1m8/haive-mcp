@@ -49548,9 +49548,7 @@
       "repository_name": "n8n",
       "description": "Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.",
       "category": "cloud",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -49580,9 +49578,7 @@
       "repository_name": "gpt-researcher",
       "description": "LLM based autonomous agent that conducts deep local and web research on any topic and generates a long report with citations.",
       "category": "search",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -49612,9 +49608,7 @@
       "repository_name": "context7",
       "description": "Context7 MCP Server -- Up-to-date code documentation for LLMs and AI code editors",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -49644,9 +49638,7 @@
       "repository_name": "MaxKB",
       "description": "\ud83d\udcac MaxKB is an open-source AI assistant for enterprise. It seamlessly integrates RAG pipelines, supports robust workflows, and provides MCP tool-use capabilities.",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -49676,9 +49668,7 @@
       "repository_name": "activepieces",
       "description": "AI Agents & MCPs & AI Workflow Automation \u2022 (280+ MCP servers for AI agents) \u2022 AI Automation / AI Agent with MCPs \u2022 AI Workflows & AI Agents \u2022 MCPs for AI Agents",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -49708,9 +49698,7 @@
       "repository_name": "nginx-ui",
       "description": "Yet another WebUI for Nginx",
       "category": "utility",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -49740,9 +49728,7 @@
       "repository_name": "lamda",
       "description": " The most powerful Android RPA agent framework, next generation of mobile automation robots.",
       "category": "utility",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -49772,9 +49758,7 @@
       "repository_name": "fastapi_mcp",
       "description": "Expose your FastAPI endpoints as Model Context Protocol (MCP) tools, with Auth!",
       "category": "api_integration",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -49804,9 +49788,7 @@
       "repository_name": "browser-tools-mcp",
       "description": "Monitor browser logs directly from Cursor and other MCP compatible IDEs.",
       "category": "monitoring",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -49836,9 +49818,7 @@
       "repository_name": "xiaozhi-esp32-server",
       "description": "\u672c\u9879\u76ee\u4e3axiaozhi-esp32\u63d0\u4f9b\u540e\u7aef\u670d\u52a1\uff0c\u5e2e\u52a9\u60a8\u5feb\u901f\u642d\u5efaESP32\u8bbe\u5907\u63a7\u5236\u670d\u52a1\u5668\u3002Backend service for xiaozhi-esp32, helps you quickly build an ESP32 device control server.",
       "category": "utility",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -49868,9 +49848,7 @@
       "repository_name": "Viper",
       "description": "Adversary simulation and Red teaming platform with AI",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -49900,9 +49878,7 @@
       "repository_name": "mcp-for-beginners",
       "description": "This open-source curriculum is designed to teach the concepts and fundamentals of the Model Context Protocol (MCP), with practical examples in .NET, Java, TypeScript, JavaScript and Python.",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -49932,9 +49908,7 @@
       "repository_name": "httprunner",
       "description": "HttpRunner \u662f\u4e00\u6b3e\u5f00\u6e90\u7684 API/UI \u6d4b\u8bd5\u6846\u67b6\uff0c\u7b80\u5355\u6613\u7528\uff0c\u529f\u80fd\u5f3a\u5927\uff0c\u5177\u6709\u4e30\u5bcc\u7684\u63d2\u4ef6\u5316\u673a\u5236\u548c\u9ad8\u5ea6\u7684\u53ef\u6269\u5c55\u80fd\u529b\u3002",
       "category": "api_integration",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -49964,9 +49938,7 @@
       "repository_name": "ENScan_GO",
       "description": "\u4e00\u6b3e\u57fa\u4e8e\u5404\u5927\u4f01\u4e1a\u4fe1\u606fAPI\u7684\u5de5\u5177\uff0c\u89e3\u51b3\u5728\u9047\u5230\u7684\u5404\u79cd\u9488\u5bf9\u56fd\u5185\u4f01\u4e1a\u4fe1\u606f\u6536\u96c6\u96be\u9898\u3002\u4e00\u952e\u6536\u96c6\u63a7\u80a1\u516c\u53f8ICP\u5907\u6848\u3001APP\u3001\u5c0f\u7a0b\u5e8f\u3001\u5fae\u4fe1\u516c\u4f17\u53f7\u7b49\u4fe1\u606f\u805a\u5408\u5bfc\u51fa\u3002\u652f\u6301MCP\u63a5\u5165",
       "category": "api_integration",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -49996,9 +49968,7 @@
       "repository_name": "deep-research",
       "description": "Use any LLMs (Large Language Models) for Deep Research. Support SSE API and MCP server.",
       "category": "api_integration",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50028,9 +49998,7 @@
       "repository_name": "serena",
       "description": "A powerful coding agent toolkit providing semantic retrieval and editing capabilities (MCP server & Agno integration)",
       "category": "utility",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50060,9 +50028,7 @@
       "repository_name": "Awesome-MCP-ZH",
       "description": "MCP \u8d44\u6e90\u7cbe\u9009\uff0c MCP\u6307\u5357\uff0cClaude MCP\uff0cMCP Servers, MCP Clients",
       "category": "utility",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50092,9 +50058,7 @@
       "repository_name": "mcp",
       "description": "Browser MCP is a Model Context Provider (MCP) server that allows AI applications to control your browser",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50124,9 +50088,7 @@
       "repository_name": "mcpo",
       "description": "A simple, secure MCP-to-OpenAPI proxy server",
       "category": "api_integration",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50156,9 +50118,7 @@
       "repository_name": "solon",
       "description": "\ud83d\udd25 Java enterprise application development framework for full scenario: Restrained, Efficient, Open, Ecologicalll!!! 700% higher concurrency 50% memory savings Startup is 10 times faster. Packing 90% smaller; Compatible with java8 ~ java24. (Replaceable spring)",
       "category": "api_integration",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50188,9 +50148,7 @@
       "repository_name": "MCP-Chinese-Getting-Started-Guide",
       "description": "Model Context Protocol(MCP) \u7f16\u7a0b\u6781\u901f\u5165\u95e8",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50220,9 +50178,7 @@
       "repository_name": "nunu",
       "description": "A CLI tool for building Go applications.",
       "category": "utility",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50252,9 +50208,7 @@
       "repository_name": "XcodeBuildMCP",
       "description": "A Model Context Protocol (MCP) server that provides Xcode-related tools for integration with AI assistants and other MCP clients.",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50284,9 +50238,7 @@
       "repository_name": "Dive",
       "description": "Dive is an open-source MCP Host Desktop Application that seamlessly integrates with any LLMs supporting function calling capabilities. \u2728",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50316,9 +50268,7 @@
       "repository_name": "Unla",
       "description": "\ud83e\udde9 MCP Gateway - A lightweight gateway service that instantly transforms existing MCP Servers and APIs into MCP servers with zero code changes. Features Docker deployment and management UI, requiring no infrastructure modifications.",
       "category": "api_integration",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50348,9 +50298,7 @@
       "repository_name": "zenfeed",
       "description": "Make RSS \ud83d\udcf0 great again with AI \ud83e\udde0\u2728!!",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50380,9 +50328,7 @@
       "repository_name": "mcp-proxy",
       "description": "A bridge between Streamable HTTP and stdio MCP transports",
       "category": "api_integration",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50412,9 +50358,7 @@
       "repository_name": "rulego",
       "description": "\u26d3\ufe0fRuleGo is a lightweight, high-performance, embedded, next-generation component orchestration rule engine framework for Go.",
       "category": "utility",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50444,9 +50388,7 @@
       "repository_name": "awesome-hacking-lists",
       "description": "A curated collection of top-tier penetration testing tools and productivity utilities across multiple domains. Join us to explore, contribute, and enhance your hacking toolkit!",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50476,9 +50418,7 @@
       "repository_name": "web-eval-agent",
       "description": "An MCP server that autonomously evaluates web applications. ",
       "category": "utility",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50508,9 +50448,7 @@
       "repository_name": "mcptools",
       "description": "A command-line interface for interacting with MCP (Model Context Protocol) servers using both stdio and HTTP transport.",
       "category": "api_integration",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50540,9 +50478,7 @@
       "repository_name": "LitterBox",
       "description": "A secure sandbox environment for malware developers and red teamers to test payloads against detection mechanisms before deployment. Integrates with LLM agents via MCP for enhanced analysis capabilities.",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50572,9 +50508,7 @@
       "repository_name": "openops",
       "description": "The batteries-included, No-Code FinOps automation platform, with the AI you trust.",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50604,9 +50538,7 @@
       "repository_name": "dbhub",
       "description": "Universal database MCP server connecting to MySQL, PostgreSQL, SQL Server, MariaDB.",
       "category": "database",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50636,9 +50568,7 @@
       "repository_name": "unreal-mcp",
       "description": "Enable AI assistant clients like Cursor, Windsurf and Claude Desktop to control Unreal Engine through natural language using the Model Context Protocol (MCP).",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50668,9 +50598,7 @@
       "repository_name": "npcpy",
       "description": "The AI toolkit for the AI developer",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50700,9 +50628,7 @@
       "repository_name": "MiniMax-MCP",
       "description": "Official MiniMax Model Context Protocol (MCP) server that enables interaction with powerful Text to Speech, image generation and video generation APIs.",
       "category": "api_integration",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50732,9 +50658,7 @@
       "repository_name": "yokai",
       "description": "Simple, modular, and observable Go framework for backend applications.",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50764,9 +50688,7 @@
       "repository_name": "hyper-mcp",
       "description": "\ud83d\udce6\ufe0f A fast, secure MCP server that extends its capabilities through WebAssembly plugins.",
       "category": "utility",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50796,9 +50718,7 @@
       "repository_name": "mcphub",
       "description": "A unified hub for centralized management and dynamic organization of multiple MCP servers into streamable HTTP (SSE) endpoints, with support for flexible routing strategies",
       "category": "api_integration",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50828,9 +50748,7 @@
       "repository_name": "mcp-windbg",
       "description": "Model Context Protocol for WinDBG",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50860,9 +50778,7 @@
       "repository_name": "RedNote-MCP",
       "description": "\ud83d\ude80MCP server for accessing RedNote(XiaoHongShu, xhs).",
       "category": "utility",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50892,9 +50808,7 @@
       "repository_name": "AI-Gateway",
       "description": "APIM \u2764\ufe0f AI - This repo contains experiments on Azure API Management's AI capabilities, integrating with Azure OpenAI, AI Foundry, and much more \ud83d\ude80 . New workshop experience at https://aka.ms/ai-gateway/workshop",
       "category": "api_integration",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50924,9 +50838,7 @@
       "repository_name": "golf",
       "description": "Production-Ready MCP Server Framework \u2022 Build, deploy & scale secure AI agent infrastructure \u2022 Includes Auth, Observability, Debugger, Telemetry & Runtime \u2022 Run real-world MCPs powering AI Agents ",
       "category": "security",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50956,9 +50868,7 @@
       "repository_name": "xiaozhi-esp32-server-java",
       "description": "\u5c0f\u667aESP32\u7684Java\u4f01\u4e1a\u7ea7\u7ba1\u7406\u5e73\u53f0\uff0c\u63d0\u4f9b\u8bbe\u5907\u76d1\u63a7\u3001\u97f3\u8272\u5b9a\u5236\u3001\u89d2\u8272\u5207\u6362\u548c\u5bf9\u8bdd\u8bb0\u5f55\u7ba1\u7406\u7684\u524d\u540e\u7aef\u53ca\u670d\u52a1\u7aef\u4e00\u4f53\u5316\u89e3\u51b3\u65b9\u6848",
       "category": "utility",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -50988,9 +50898,7 @@
       "repository_name": "metamcp",
       "description": "Aggregate MCP servers & apply middlewares; host & emit unified MCP servers out",
       "category": "utility",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51020,9 +50928,7 @@
       "repository_name": "agentic-radar",
       "description": "A security scanner for your LLM agentic workflows",
       "category": "security",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51052,9 +50958,7 @@
       "repository_name": "GalwayBus",
       "description": "Galway Bus Kotlin Multiplatform project using Jetpack Compose and SwiftUI ",
       "category": "productivity",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51084,9 +50988,7 @@
       "repository_name": "VectorCode",
       "description": "A code repository indexing tool to supercharge your LLM experience.",
       "category": "search",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51116,9 +51018,7 @@
       "repository_name": "vibe",
       "description": "\ud83c\udfa8 Vibe Design System - Official monday.com UI resources for application development in React.js",
       "category": "utility",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51148,9 +51048,7 @@
       "repository_name": "memory-bank-mcp",
       "description": "A Model Context Protocol (MCP) server implementation for remote memory bank management, inspired by Cline Memory Bank.",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51180,9 +51078,7 @@
       "repository_name": "cloudsword",
       "description": "\u4e00\u6b3e\u5e2e\u52a9\u4e91\u79df\u6237\u53d1\u73b0\u548c\u6d4b\u8bd5\u4e91\u4e0a\u98ce\u9669\u3001\u589e\u5f3a\u4e91\u4e0a\u9632\u62a4\u80fd\u529b\u7684\u7efc\u5408\u6027\u5f00\u6e90\u5de5\u5177",
       "category": "cloud",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51212,9 +51108,7 @@
       "repository_name": "web-agent-protocol",
       "description": "\ud83c\udf10Web Agent Protocol (WAP) - Record and replay user interactions in the browser with MCP support",
       "category": "utility",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51244,9 +51138,7 @@
       "repository_name": "vibetest-use",
       "description": "Vibetest MCP - automated QA testing using Browser-Use agents",
       "category": "utility",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51276,9 +51168,7 @@
       "repository_name": "awesome-mcp-servers",
       "description": "A comprehensive collection of Model Context Protocol (MCP) servers",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51308,9 +51198,7 @@
       "repository_name": "copilot-mcp",
       "description": "A powerful VSCode extension that lets you find and install MCP servers to use with GitHub Copilot..",
       "category": "version_control",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51340,9 +51228,7 @@
       "repository_name": "awesome-mcp-security",
       "description": "\ud83d\udd25\ud83d\udd12 Awesome MCP (Model Context Protocol) Security \ud83d\udda5\ufe0f",
       "category": "security",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51372,9 +51258,7 @@
       "repository_name": "mongodb-mcp-server",
       "description": "A Model Context Protocol server to connect to MongoDB databases and MongoDB Atlas Clusters.",
       "category": "database",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51404,9 +51288,7 @@
       "repository_name": "mcp-proxy",
       "description": "An MCP proxy server that aggregates and serves multiple MCP resource servers through a single HTTP server.",
       "category": "api_integration",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51436,9 +51318,7 @@
       "repository_name": "wren-engine",
       "description": "\ud83e\udd16 The Semantic Engine for Model Context Protocol(MCP) Clients and AI\u00a0Agents \ud83d\udd25 ",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51468,9 +51348,7 @@
       "repository_name": "mcp-client-chatbot",
       "description": "Just a Better Chatbot. Powered by MCP & Workflows.",
       "category": "communication",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51500,9 +51378,7 @@
       "repository_name": "flux-operator",
       "description": "Flux Operator is a Kubernetes controller for managing the lifecycle of Flux CD",
       "category": "cloud",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51532,9 +51408,7 @@
       "repository_name": "mcp-server-elasticsearch",
       "description": null,
       "category": "search",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51564,9 +51438,7 @@
       "repository_name": "linear-mcp-server",
       "description": "A server that integrates Linear's project management system with the Model Context Protocol (MCP) to allow LLMs to interact with Linear.",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51596,9 +51468,7 @@
       "repository_name": "mcp",
       "description": "Baidu Map MCP Server",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51628,9 +51498,7 @@
       "repository_name": "MCPSharp",
       "description": "MCPSharp is a .NET library that helps you build Model Context Protocol (MCP) servers and clients - the standardized API protocol used by AI assistants and models.",
       "category": "api_integration",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51660,9 +51528,7 @@
       "repository_name": "applescript-mcp",
       "description": "MCP server that execute applescript giving you full control of your Mac",
       "category": "utility",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51692,9 +51558,7 @@
       "repository_name": "mcp",
       "description": "Enable AI agents to work reliably - giving them secure access to structured data, tools to take action, and the context needed to make smart decisions.",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51724,9 +51588,7 @@
       "repository_name": "openmcp",
       "description": "Turn any openapi file into an mcp server, with just the tools you need.",
       "category": "filesystem",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51756,9 +51618,7 @@
       "repository_name": "napi",
       "description": "Software architecture tooling for the AI age",
       "category": "api_integration",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51788,9 +51648,7 @@
       "repository_name": "UE5-MCP",
       "description": "MCP for Unreal Engine 5",
       "category": "utility",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51820,9 +51678,7 @@
       "repository_name": "google-search",
       "description": "A Playwright-based Node.js tool that bypasses search engine anti-scraping mechanisms to execute Google searches. Local alternative to SERP APIs with MCP server integration.",
       "category": "api_integration",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51852,9 +51708,7 @@
       "repository_name": "mcp-nodejs-debugger",
       "description": "\ud83d\udc1e MCP Node.js debugger",
       "category": "utility",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51884,9 +51738,7 @@
       "repository_name": "inspector",
       "description": "Postman for MCPs - A tool for testing and debugging MCPs ",
       "category": "utility",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51916,9 +51768,7 @@
       "repository_name": "clickup-mcp-server",
       "description": "ClickUp MCP Server - Integrate ClickUp project management with AI through Model Context Protocol",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51948,9 +51798,7 @@
       "repository_name": "ClimateTraceKMP",
       "description": "Kotlin/Compose Multiplatform project to show climate related emission data from https://climatetrace.org/data.",
       "category": "api_integration",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -51980,9 +51828,7 @@
       "repository_name": "haiku.rag",
       "description": "Retrieval Augmented Generation based on SQLite",
       "category": "database",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52012,9 +51858,7 @@
       "repository_name": "automation-mcp",
       "description": "Control your Mac with detailed mouse, keyboard, screen, and window management capabilities.",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52044,9 +51888,7 @@
       "repository_name": "PIXRA",
       "description": "Pixelize the real world on-chain",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52076,9 +51918,7 @@
       "repository_name": "hermes-mcp",
       "description": "Elixir Model Context Protocol (MCP) SDK",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52108,9 +51948,7 @@
       "repository_name": "weather-mcp-server",
       "description": "A lightweight Model Context Protocol (MCP) server that enables AI assistants like Claude to retrieve and interpret real-time weather data. What makes it popular:",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52140,9 +51978,7 @@
       "repository_name": "api200",
       "description": "API 200 is an open source API gateway to simplify 3rd-party integrations. Import endpoints, set up caching, retries, and mocks. Access all services via one URL. Monitor logs, track errors, and get alerts on API incidents.",
       "category": "api_integration",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52172,9 +52008,7 @@
       "repository_name": "mcp-gateway",
       "description": "A plugin-based gateway that orchestrates other MCPs and allows developers to build upon it enterprise-grade agents.",
       "category": "utility",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52204,9 +52038,7 @@
       "repository_name": "UnrealGenAISupport",
       "description": "UnrealMCP is here!! Automatic blueprint and scene generation from AI!! An Unreal Engine plugin for LLM/GenAI models & MCP UE5 server. Supports Claude Desktop App, Windsurf  & Cursor, also includes OpenAI's GPT4o, DeepseekR1, Claude Sonnet 3.7 APIs and Grok 3, with plans to add Gemini, audio & realtime APIs soon.  ",
       "category": "api_integration",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52236,9 +52068,7 @@
       "repository_name": "obsidian-mcp-tools",
       "description": "Add Obsidian integrations like semantic search and custom Templater prompts to Claude or any MCP client.",
       "category": "search",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52268,9 +52098,7 @@
       "repository_name": "mcpsvr",
       "description": "Discover Exceptional MCP Servers",
       "category": "utility",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52300,9 +52128,7 @@
       "repository_name": "mcp-server-mas-sequential-thinking",
       "description": "An advanced sequential thinking process using a Multi-Agent System (MAS) built with the Agno framework and served via MCP.",
       "category": "utility",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52332,9 +52158,7 @@
       "repository_name": "gptr-mcp",
       "description": "MCP server for enabling LLM applications to perform deep research via the MCP protocol",
       "category": "search",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52364,9 +52188,7 @@
       "repository_name": "razorpay-mcp-server",
       "description": "Razorpay's Official MCP Server",
       "category": "utility",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52396,9 +52218,7 @@
       "repository_name": "BaseLayer",
       "description": "Re-usable multi part components built on React Aria and TailwindCSS. ",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52428,9 +52248,7 @@
       "repository_name": "melrose",
       "description": "interactive programming of melodies, producing MIDI ",
       "category": "utility",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52460,9 +52278,7 @@
       "repository_name": "mcp-rb",
       "description": "A lightweight Ruby framework for building MCP servers with a Sinatra-like DSL",
       "category": "utility",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52492,9 +52308,7 @@
       "repository_name": "claude_code-gemini-mcp",
       "description": "Simplified Gemini for Claude Code. ",
       "category": "utility",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52524,9 +52338,7 @@
       "repository_name": "Lambda-MCP-Server",
       "description": "Creates a simple MCP tool server with \"streaming\" HTTP.",
       "category": "api_integration",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52556,9 +52368,7 @@
       "repository_name": "foundry-mcp-server",
       "description": "An experimental MCP Server for foundry built for Solidity devs",
       "category": "utility",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52588,9 +52398,7 @@
       "repository_name": "lemonade",
       "description": "Local LLM Server with GPU and NPU Acceleration",
       "category": "utility",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52620,9 +52428,7 @@
       "repository_name": "mcp-google-ads",
       "description": "An MCP tool that connects Google Ads with Claude AI/Cursor and others, allowing you to analyze your advertising data through natural language conversations. This integration gives you access to campaign information, performance metrics, keyword analytics, and ad management\u2014all through simple chat with Claude, Cursor or Windsurf.",
       "category": "communication",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52652,9 +52458,7 @@
       "repository_name": "argocd-mcp",
       "description": "An implementation of Model Context Protocol (MCP) server for Argo CD.",
       "category": "ai_ml",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52684,9 +52488,7 @@
       "repository_name": "mcp_chatbot",
       "description": "A chatbot implementation compatible with MCP (terminal / streamlit supported)",
       "category": "communication",
-      "tags": [
-        "mcp-server"
-      ],
+      "tags": ["mcp-server"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52716,9 +52518,7 @@
       "repository_name": "Upsonic",
       "description": "The most reliable AI agent framework that supports MCP.",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52748,9 +52548,7 @@
       "repository_name": "mcp-agent",
       "description": "Build effective agents using Model Context Protocol and simple workflow patterns",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52780,9 +52578,7 @@
       "repository_name": "cursor-talk-to-figma-mcp",
       "description": "Cursor Talk To Figma MCP",
       "category": "utility",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52812,9 +52608,7 @@
       "repository_name": "mcp-use",
       "description": "mcp-use is the easiest way to interact with mcp servers with custom agents",
       "category": "utility",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52844,9 +52638,7 @@
       "repository_name": "5ire",
       "description": "5ire is a cross-platform desktop AI assistant, MCP client. It compatible with major service providers,  supports local knowledge base and  tools via model context protocol servers .",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52876,9 +52668,7 @@
       "repository_name": "casibase",
       "description": "\u26a1\ufe0fAI Cloud OS: Open-source enterprise-level AI knowledge base and MCP (model-context-protocol)/A2A (agent-to-agent) management platform with admin UI, user management and Single-Sign-On\u26a1\ufe0f, supports ChatGPT, Claude, Llama, Ollama, HuggingFace, etc., chat bot demo: https://ai.casibase.com, admin UI demo: https://ai-admin.casibase.com",
       "category": "communication",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52908,9 +52698,7 @@
       "repository_name": "awesome-mcp-servers",
       "description": "Awesome MCP Servers - A curated list of Model Context Protocol servers",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52940,9 +52728,7 @@
       "repository_name": "minima",
       "description": "On-premises conversational RAG with configurable containers",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -52972,9 +52758,7 @@
       "repository_name": "mcp-context-forge",
       "description": "A Model Context Protocol (MCP) Gateway & Registry. Serves as a central management point for tools, resources, and prompts that can be accessed by MCP-compatible LLM applications. Converts REST API endpoints to MCP, composes virtual MCP servers with added security and observability, and converts between protocols (stdio, SSE, Streamable HTTP).",
       "category": "api_integration",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53004,9 +52788,7 @@
       "repository_name": "scira-mcp-chat",
       "description": "A minimalistic MCP client with a good feature set.",
       "category": "communication",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53036,9 +52818,7 @@
       "repository_name": "ai-gateway",
       "description": "Govern, Secure, and Optimize your AI Traffic. AI Gateway provides unified interface to all LLMs using OpenAI API format with a focus on performance and reliability. Built in Rust.",
       "category": "api_integration",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53068,9 +52848,7 @@
       "repository_name": "mcp-client-cli",
       "description": "A simple CLI to run LLM prompt and implement MCP client.",
       "category": "utility",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53100,9 +52878,7 @@
       "repository_name": "short-video-maker",
       "description": "Creates short videos for TikTok, Instagram Reels, and YouTube Shorts using the Model Context Protocol (MCP) and a REST API.",
       "category": "api_integration",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53132,9 +52908,7 @@
       "repository_name": "tuui",
       "description": "A desktop MCP client designed as a tool unitary utility integration, accelerating AI adoption through the Model Context Protocol (MCP) and enabling cross-vendor LLM API orchestration.",
       "category": "api_integration",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53164,9 +52938,7 @@
       "repository_name": "claude-debugs-for-you",
       "description": "Enable any LLM (e.g. Claude) to interactively debug any language for you via MCP and a VS Code Extension",
       "category": "utility",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53196,9 +52968,7 @@
       "repository_name": "groundhog",
       "description": "Groundhog's primary purpose is to teach people how Cursor and all these other coding agents work under the hood. If you understand how these coding assistants work from first principles, then you can drive these tools harder (or perhaps make your own!).",
       "category": "utility",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53228,9 +52998,7 @@
       "repository_name": "MCP-Nest",
       "description": "A NestJS module to effortlessly create Model Context Protocol (MCP) servers for exposing AI tools, resources, and prompts.",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53260,9 +53028,7 @@
       "repository_name": "mcp-for-security",
       "description": "MCP for Security: A collection of Model Context Protocol servers for popular security tools like SQLMap, FFUF, NMAP, Masscan and more. Integrate security testing and penetration testing into AI workflows.",
       "category": "database",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53292,9 +53058,7 @@
       "repository_name": "deepseek-mcp-server",
       "description": "Model Context Protocol server for DeepSeek's advanced language models",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53324,9 +53088,7 @@
       "repository_name": "langchainjs-mcp-adapters",
       "description": "** THIS REPO HAS MOVED TO https://github.com/langchain-ai/langchainjs/tree/main/libs/langchain-mcp-adapters ** Adapters for integrating Model Context Protocol (MCP) tools with LangChain.js applications, supporting both stdio and SSE transports.",
       "category": "version_control",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53356,9 +53118,7 @@
       "repository_name": "llm-context.py",
       "description": "Share code with LLMs via Model Context Protocol or clipboard. Rule-based customization enables easy switching between different tasks (like code review and documentation). Includes smart code outlining.",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53388,9 +53148,7 @@
       "repository_name": "chat-mcp",
       "description": "A Desktop Chat App that leverages MCP(Model Context Protocol) to interface with other LLMs.",
       "category": "communication",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53420,9 +53178,7 @@
       "repository_name": "mcp-sequentialthinking-tools",
       "description": "\ud83e\udde0 An adaptation of the MCP Sequential Thinking Server to guide tool usage. This server provides recommendations for which MCP tools would be most effective at each stage.",
       "category": "utility",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53452,9 +53208,7 @@
       "repository_name": "Agentfy",
       "description": "\ud83e\udd16 Agentfy is a modular microservices architecture designed to process user requests and execute workflows across multiple social media platforms.  ASK ONCE, LET THE AGENT DO THE REST!",
       "category": "api_integration",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53484,9 +53238,7 @@
       "repository_name": "multimodal-mcp-client",
       "description": "A Multi-modal MCP client for voice powered agentic workflows",
       "category": "utility",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53516,9 +53268,7 @@
       "repository_name": "mcp-hub",
       "description": "A centralized manager for Model Context Protocol (MCP) servers with dynamic server management and monitoring",
       "category": "monitoring",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53548,9 +53298,7 @@
       "repository_name": "mongodb-lens",
       "description": "\ud83c\udf43\ud83d\udd0e MongoDB Lens: Full Featured MCP Server for MongoDB Databases",
       "category": "database",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53580,9 +53328,7 @@
       "repository_name": "easy-mcp",
       "description": "Absurdly easy Model Context Protocol Servers in Typescript",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53612,9 +53358,7 @@
       "repository_name": "toolbase",
       "description": "A desktop application that adds powerful tools to Claude and AI platforms",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53644,9 +53388,7 @@
       "repository_name": "go-mcp",
       "description": "\u26a1 A type-safe, intuitive Go SDK for building MCP servers with ease and confidence",
       "category": "utility",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53676,9 +53418,7 @@
       "repository_name": "mcp-server-siri-shortcuts",
       "description": "MCP for calling Siri Shorcuts from LLMs",
       "category": "utility",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53708,9 +53448,7 @@
       "repository_name": "mcp-ical",
       "description": "A Model Context Protocol Server that allows you to interact with your MacOS Calendar through natural language.",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53740,9 +53478,7 @@
       "repository_name": "mcp-linkedin",
       "description": "A Model Context Protocol (MCP) server that provides tools to interact with LinkedIn's Feeds and Job API.",
       "category": "api_integration",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53772,9 +53508,7 @@
       "repository_name": "oreilly-ai-agents",
       "description": "An introduction to the world of AI Agents",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53804,9 +53538,7 @@
       "repository_name": "mcp-gateway",
       "description": "A gateway demo for MCP SSE Server",
       "category": "utility",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53836,9 +53568,7 @@
       "repository_name": "MCPHub-Desktop",
       "description": "Desktop APP for Discover and Install MCP Servers",
       "category": "utility",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53868,9 +53598,7 @@
       "repository_name": "gemini-mcp-tool",
       "description": "MCP server that enables AI assistants to interact with Google Gemini CLI, leveraging Gemini's massive token window for large file analysis and codebase understanding",
       "category": "filesystem",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53900,9 +53628,7 @@
       "repository_name": "decipher-research-agent",
       "description": "Turn topics, links, and files into AI-generated research notebooks \u2014 summarize, explore, and ask anything.",
       "category": "filesystem",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53932,9 +53658,7 @@
       "repository_name": "obsidian-mcp-server",
       "description": "Obsidian Knowledge-Management MCP (Model Context Protocol) server that enables AI agents and development tools to interact with an Obsidian vault. It provides a comprehensive suite of tools for reading, writing, searching, and managing notes, tags, and frontmatter, acting as a bridge to the Obsidian Local REST API plugin.",
       "category": "api_integration",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53964,9 +53688,7 @@
       "repository_name": "mcp-omnisearch",
       "description": "\ud83d\udd0d A Model Context Protocol (MCP) server providing unified access to multiple search engines (Tavily, Brave, Kagi), AI tools (Perplexity, FastGPT), and content processing services (Jina AI, Kagi). Combines search, AI responses, content processing, and enhancement features through a single interface.",
       "category": "search",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -53996,9 +53718,7 @@
       "repository_name": "mcp",
       "description": "Official Magic UI MCP server.",
       "category": "utility",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54028,9 +53748,7 @@
       "repository_name": "aws-cost-explorer-mcp-server",
       "description": "MCP server for understanding AWS spend",
       "category": "cloud",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54060,9 +53778,7 @@
       "repository_name": "MCP-Defender",
       "description": "Desktop app that automatically scans and blocks malicious MCP traffic in AI apps like Cursor, Claude, VS Code and Windsurf.",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54092,9 +53808,7 @@
       "repository_name": "Awesome-MCP",
       "description": "Awesome ModelContextProtocol resources - A curated list of MCP resources",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54124,9 +53838,7 @@
       "repository_name": "jadx-mcp-server",
       "description": "MCP server for JADX-AI Plugin",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54156,9 +53868,7 @@
       "repository_name": "mcp-reddit",
       "description": "A Model Context Protocol (MCP) server that provides tools for fetching and analyzing Reddit content.",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54188,9 +53898,7 @@
       "repository_name": "mcp-guardian",
       "description": "Manage / Proxy / Secure your MCP Servers",
       "category": "utility",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54220,9 +53928,7 @@
       "repository_name": "openapi",
       "description": "OpenAPI definitions, converters and LLM function calling schema composer.",
       "category": "api_integration",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54252,9 +53958,7 @@
       "repository_name": "mcp-server-tree-sitter",
       "description": "MCP Server for Tree-sitter",
       "category": "utility",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54284,9 +53988,7 @@
       "repository_name": "erickwendel-contributions-mcp",
       "description": "A Model Context Protocol (MCP) server that provides tools to query Erick Wendel's contributions across different platforms",
       "category": "search",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54316,9 +54018,7 @@
       "repository_name": "modex",
       "description": "Modex is a Clojure MCP Library to augment your AI models with Tools, Resources & Prompts using Clojure (Model Context Protocol). Implements MCP Server & Client.",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54348,9 +54048,7 @@
       "repository_name": "UnityMCP",
       "description": "Unity Editor integration with Model Context Protocol (MCP) enabling AI assistants like Claude to interact with Unity projects. Features a TypeScript MCP server and C# Unity plugin with extensible command handler architecture, TCP/IP communication, and dynamic plugin discovery.",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54380,9 +54078,7 @@
       "repository_name": "git-mcp-server",
       "description": "An MCP (Model Context Protocol) server enabling LLMs and AI agents to interact with Git repositories. Provides tools for comprehensive Git operations including clone, commit, branch, diff, log, status, push, pull, merge, rebase, worktree, tag management, and more, via the MCP standard. STDIO & HTTP.",
       "category": "version_control",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54412,9 +54108,7 @@
       "repository_name": "mcp-svelte-docs",
       "description": "\ud83d\udd0d MCP server that lets you search and access Svelte documentation with built-in caching",
       "category": "search",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54444,9 +54138,7 @@
       "repository_name": "mcpm",
       "description": "A command-line tool for managing MCP servers in Claude App. Also can run a MCP Server to help you manage all your MCP Servers",
       "category": "utility",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54476,9 +54168,7 @@
       "repository_name": "mcp_on_ruby",
       "description": "\ud83d\udc8e A Ruby implementation of the Model Context Protocol",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54508,9 +54198,7 @@
       "repository_name": "all-in-one-model-context-protocol",
       "description": "\ud83d\ude80 All-in-one MCP server with AI search, RAG, and multi-service integrations (GitLab/Jira/Confluence/YouTube) for AI-enhanced development workflows",
       "category": "version_control",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54540,9 +54228,7 @@
       "repository_name": "google-workspace-mcp",
       "description": "A Model Context Protocol (MCP) server that provides authenticated access to Google Workspace APIs, offering integrated Authentication, Gmail, Calendar, and Drive functionality",
       "category": "api_integration",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54572,9 +54258,7 @@
       "repository_name": "MCPJungle",
       "description": "Self-hosted MCP Server registry for AI agents",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54604,9 +54288,7 @@
       "repository_name": "after-effects-mcp",
       "description": "MCP Server for Adobe After Effects. Enables remote control (compositions, text, shapes, solids, properties) via the Model Context Protocol using ExtendScript.",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54636,9 +54318,7 @@
       "repository_name": "rust-mcp-sdk",
       "description": "A high-performance, asynchronous toolkit for building MCP servers and clients in Rust.",
       "category": "utility",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54668,9 +54348,7 @@
       "repository_name": "mcp-server",
       "description": "Model Context Protocol (MCP) Server for the Keboola Platform",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54700,9 +54378,7 @@
       "repository_name": "chat-ui",
       "description": "Single-File AI Chatbot UI with Multimodal & MCP Support: An All-in-One HTML File for a Streamlined Chatbot Conversational Interface",
       "category": "filesystem",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54732,9 +54408,7 @@
       "repository_name": "mcp-telegram",
       "description": "MCP Server for Telegram",
       "category": "utility",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54764,9 +54438,7 @@
       "repository_name": "zin-mcp-client",
       "description": "MCP Client which serves as bridge between mcp servers and local LLMs running on Ollama, Created for MCP Servers Developed by Me, However other MCP Servers may run as well",
       "category": "utility",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54796,9 +54468,7 @@
       "repository_name": "rust-mcp-schema",
       "description": "A type-safe implementation of the official Model Context Protocol (MCP) schema in Rust.",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54828,9 +54498,7 @@
       "repository_name": "AgentCrew",
       "description": "Chat application with multi-agents system supports multi-models and MCP",
       "category": "communication",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54860,9 +54528,7 @@
       "repository_name": "mcp-memory-libsql",
       "description": "\ud83e\udde0 High-performance persistent memory system for Model Context Protocol (MCP) powered by libSQL. Features vector search, semantic knowledge storage, and efficient relationship management - perfect for AI agents and knowledge graph applications.",
       "category": "filesystem",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54892,9 +54558,7 @@
       "repository_name": "deep-code-reasoning-mcp",
       "description": "A Model Context Protocol (MCP) server that provides advanced code analysis and reasoning capabilities powered by Google's Gemini AI",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54924,9 +54588,7 @@
       "repository_name": "mcp-client-for-ollama",
       "description": "A text-based user interface (TUI) client for interacting with MCP servers using Ollama. Features include multi-server, dynamic model switching, streaming responses, tool management, human-in-the-loop, thinking mode, full model parameters configuration, custom system prompt and saved preferences. Built for developers working with local LLMs.",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54956,9 +54618,7 @@
       "repository_name": "create-mcp-app",
       "description": "A CLI tool for quickly scaffolding Model Context Protocol (MCP) server applications with TypeScript support and modern development tooling",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -54988,9 +54648,7 @@
       "repository_name": "mem0-mcp",
       "description": "\u2728 mem0 MCP Server: A memory system using mem0 for AI applications with model context protocl (MCP) integration. Enables long-term memory for AI agents as a drop-in MCP server.",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -55020,9 +54678,7 @@
       "repository_name": "mcp-ts-template",
       "description": "Jumpstart Model Context Protocol (MCP) development with this production-ready TypeScript template. Build robust MCP servers and clients with built-in utilities, authentication, and service integrations",
       "category": "security",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -55052,9 +54708,7 @@
       "repository_name": "paperless-mcp",
       "description": "An MCP (Model Context Protocol) server for interacting with a Paperless-NGX API server. This server provides tools for managing documents, tags, correspondents, and document types in your Paperless-NGX instance.",
       "category": "api_integration",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -55084,9 +54738,7 @@
       "repository_name": "autogen-ext-mcp",
       "description": "Turns Model Context Protocol server tools available in AutoGen >= v0.4",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -55116,9 +54768,7 @@
       "repository_name": "pentest-mcp",
       "description": "NOT for educational purposes: An MCP server for professional penetration testers including STDIO/HTTP/SSE support, nmap, go/dirbuster, nikto, JtR, hashcat, wordlist building, and more.",
       "category": "api_integration",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -55148,9 +54798,7 @@
       "repository_name": "claude-prompts-mcp",
       "description": "Claude MCP Server - Intelligent Prompt Engineering & Management",
       "category": "utility",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -55180,9 +54828,7 @@
       "repository_name": "Grapheteria",
       "description": "Grapheteria: A structured framework bringing uniformity to agent orchestration!",
       "category": "utility",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -55212,9 +54858,7 @@
       "repository_name": "ChEMBL-MCP-Server",
       "description": "A comprehensive Model Context Protocol (MCP) server providing advanced access to the ChEMBL chemical database.",
       "category": "database",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -55244,9 +54888,7 @@
       "repository_name": "ccxt-mcp",
       "description": "CCXT MCP Server bridges the gap between AI models and cryptocurrency trading by providing a standardized interface through the Model Context Protocol. Created to empower automated trading strategies, this tool allows AI assistants like Claude and GPT to directly interact with over 100 cryptocurrency exchanges without requiring users to write comple",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -55276,9 +54918,7 @@
       "repository_name": "computer-use-mcp",
       "description": "\ud83d\udcbb An MCP for Claude to control your computer (probably a bad idea)",
       "category": "utility",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -55308,9 +54948,7 @@
       "repository_name": "OmniMCP",
       "description": "OmniMCP uses Microsoft OmniParser and Model Context Protocol (MCP) to provide AI models with rich UI context and powerful interaction capabilities.",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -55340,9 +54978,7 @@
       "repository_name": "masquerade",
       "description": "The Privacy Firewall for LLMs",
       "category": "utility",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -55372,9 +55008,7 @@
       "repository_name": "mobile-mcp",
       "description": "A Model Context Protocol (MCP) server that provides mobile automation capabilities.",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -55404,9 +55038,7 @@
       "repository_name": "mcp-n8n-builder",
       "description": "\ud83e\ude84 MCP server for programmatic creation and management of n8n workflows. Enables AI assistants to build, modify, and manage workflows without direct user intervention through a comprehensive set of tools and resources for interacting with n8n's REST API.",
       "category": "api_integration",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -55436,9 +55068,7 @@
       "repository_name": "mcp-streamable-http",
       "description": "Example implementation of MCP Streamable HTTP client/server in Python and TypeScript.",
       "category": "api_integration",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -55468,9 +55098,7 @@
       "repository_name": "quick-mcp-example",
       "description": "Short and sweet example MCP server / client implementation for Tools, Resources and Prompts.",
       "category": "utility",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -55500,9 +55128,7 @@
       "repository_name": "penpot-mcp",
       "description": "Penpot MCP server",
       "category": "utility",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -55532,9 +55158,7 @@
       "repository_name": "mxcp",
       "description": "Model eXecution + Context Protocol: Enterprise-Grade Data-to-AI Infrastructure",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -55564,9 +55188,7 @@
       "repository_name": "mcp-gemini-search",
       "description": "Model Context Protocol (MCP) with Gemini 2.5 Pro. Convert conversational queries into flight searches using Gemini's function calling capabilities and MCP's flight search tools",
       "category": "search",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -55596,9 +55218,7 @@
       "repository_name": "mcp-fhir",
       "description": "A Model Context Protocol implementation for FHIR",
       "category": "ai_ml",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,
@@ -55628,9 +55248,7 @@
       "repository_name": "mcp-duckdb-memory-server",
       "description": "MCP Memory Server with DuckDB backend",
       "category": "utility",
-      "tags": [
-        "model-context-protocol"
-      ],
+      "tags": ["model-context-protocol"],
       "npm_package": null,
       "install_command": null,
       "setup_instructions": null,

@@ -8,13 +8,12 @@ prompts within the Haive agent framework.
 import logging
 from typing import Any
 
+from haive.core.engine.aug_llm import AugLLMConfig
 from langchain_core.tools import BaseTool
 from pydantic import BaseModel, Field
 
-from haive.core.engine.aug_llm import AugLLMConfig
 from haive.mcp.config import MCPConfig, MCPServerConfig
 from haive.mcp.manager import MCPManager
-
 
 logger = logging.getLogger(__name__)
 

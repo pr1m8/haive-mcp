@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:b48f9c1a17d70bae084d223f178b7bf1ef8c184ca6f6e6c23b2c22dedbc2127b
-size 1446
+{
+  "server_data": {
+    "name": "OceanBase",
+    "source": "github:wong2/awesome-mcp-servers",
+    "source_url": "https://github.com/wong2/awesome-mcp-servers",
+    "repository_url": "https://github.com/oceanbase/mcp-oceanbase",
+    "repository_owner": "oceanbase",
+    "repository_name": "mcp-oceanbase",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.232956+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 1717
+    }
+  },
+  "quality_metrics": {
+    "name": "OceanBase",
+    "repository_url": "https://github.com/oceanbase/mcp-oceanbase",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "utility",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T13:41:03.613887+00:00",
+    "processing_time": 2.1696090698242188e-5
+  },
+  "processed_at": "2025-07-03T13:41:03.614797+00:00",
+  "processor_version": "1.0.0"
+}

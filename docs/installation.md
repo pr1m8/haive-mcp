@@ -15,7 +15,7 @@
 # Install the haive-mcp package with all dependencies
 poetry install --all-extras
 
-# Install development dependencies  
+# Install development dependencies
 poetry install --with dev
 ```
 
@@ -64,7 +64,7 @@ servers:
     transport: stdio
     command: npx
     args: ["-y", "@modelcontextprotocol/server-filesystem"]
-    
+
   github:
     transport: stdio
     command: npx
@@ -121,6 +121,6 @@ servers:
   slow-server:
     transport: stdio
     command: ...
-    timeout: 60  # seconds
+    timeout: 60 # seconds
     retry_attempts: 3
 ```

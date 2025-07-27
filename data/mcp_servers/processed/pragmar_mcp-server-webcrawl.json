@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:53daaf4a1d23d3a4cb5fbf76aefaad32d1c3260b8593421e6ca535fae76361b7
-size 1500
+{
+  "server_data": {
+    "name": "pragmar/mcp-server-webcrawl",
+    "source": "github:punkpeye/awesome-mcp-servers",
+    "source_url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "repository_url": "https://github.com/pragmar/mcp-server-webcrawl",
+    "repository_owner": "pragmar",
+    "repository_name": "mcp-server-webcrawl",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.667328+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 59325
+    }
+  },
+  "quality_metrics": {
+    "name": "pragmar/mcp-server-webcrawl",
+    "repository_url": "https://github.com/pragmar/mcp-server-webcrawl",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "utility",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T19:07:44.145865+00:00",
+    "processing_time": 2.384185791015625e-5
+  },
+  "processed_at": "2025-07-03T19:07:44.146817+00:00",
+  "processor_version": "1.0.0"
+}

@@ -2,9 +2,9 @@
 """Validate haive-mcp setup with actual functionality tests."""
 
 import asyncio
-from pathlib import Path
 import subprocess
 import sys
+from pathlib import Path
 
 
 async def test_basic_functionality():

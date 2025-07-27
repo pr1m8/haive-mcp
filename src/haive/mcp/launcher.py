@@ -5,9 +5,9 @@ Easy launcher for all MCP discovery and analysis tools.
 """
 
 import argparse
-from pathlib import Path
 import subprocess
 import sys
+from pathlib import Path
 
 
 def run_csv_viewer():

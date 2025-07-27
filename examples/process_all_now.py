@@ -2,11 +2,10 @@
 """Process ALL MCP servers immediately in one batch."""
 
 import asyncio
-from datetime import UTC, datetime
 import json
-from pathlib import Path
 import sys
-
+from datetime import UTC, datetime
+from pathlib import Path
 
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent))

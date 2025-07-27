@@ -1,6 +1,6 @@
 """Module exports."""
 
-from cli.mcp_manager import (
+from haive.mcp.cli.mcp_manager import (
     MCPServerManager,
     cli,
     config,

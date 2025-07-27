@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:51af25859cf8cba9ed3195cfaf68f3fab0d7308cdc451800a96deca59d33d76a
-size 1594
+{
+  "server_data": {
+    "name": "larryhudson/mcp-server-example-image-block",
+    "source": "github:TensorBlock/awesome-mcp-servers",
+    "source_url": "https://github.com/TensorBlock/awesome-mcp-servers",
+    "repository_url": "https://github.com/larryhudson/mcp-server-example-image-block",
+    "repository_owner": "larryhudson",
+    "repository_name": "mcp-server-example-image-block",
+    "description": "",
+    "category": "media",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:39.235336+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 391
+    }
+  },
+  "quality_metrics": {
+    "name": "larryhudson/mcp-server-example-image-block",
+    "repository_url": "https://github.com/larryhudson/mcp-server-example-image-block",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "media",
+    "subcategories": ["image_processing"],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T21:11:06.970811+00:00",
+    "processing_time": 4.7206878662109375e-5
+  },
+  "processed_at": "2025-07-03T21:11:06.972816+00:00",
+  "processor_version": "1.0.0"
+}

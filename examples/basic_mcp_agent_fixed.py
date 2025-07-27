@@ -7,10 +7,10 @@ import logging
 
 from haive.core.engine.aug_llm import AugLLMConfig
 from haive.core.models.llm.base import OpenAILLMConfig
+
 from haive.mcp.agents import MCPAgent
 from haive.mcp.config import MCPConfig, MCPServerConfig
 from haive.mcp.discovery import MCPServerDiscovery
-
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -183,7 +183,7 @@ async def example_with_component_registry():
     """Example integrating with component registry."""
     # Discover servers
     discovery = MCPServerDiscovery()
-    servers = await discovery.discover_all()
+    await discovery.discover_all()
 
     # Register with component registry
     await discovery.register_with_component_registry()

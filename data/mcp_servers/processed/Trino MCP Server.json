@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e9954b9cb79dcf1937c424c15e41e70d2fbe5a1ce48ed88ff618539c296df58b
-size 1442
+{
+  "server_data": {
+    "name": "Trino MCP Server",
+    "source": "github:wong2/awesome-mcp-servers",
+    "source_url": "https://github.com/wong2/awesome-mcp-servers",
+    "repository_url": "https://github.com/tuannvm/mcp-trino",
+    "repository_owner": "tuannvm",
+    "repository_name": "mcp-trino",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.267133+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 1717
+    }
+  },
+  "quality_metrics": {
+    "name": "Trino MCP Server",
+    "repository_url": "https://github.com/tuannvm/mcp-trino",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "utility",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T15:21:41.209954+00:00",
+    "processing_time": 2.3603439331054688e-5
+  },
+  "processed_at": "2025-07-03T15:21:41.210955+00:00",
+  "processor_version": "1.0.0"
+}

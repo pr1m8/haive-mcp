@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """Get ALL MCP servers with complete processing."""
 
-from datetime import UTC, datetime
 import json
+from datetime import UTC, datetime
 from pathlib import Path
-
 
 # Paths
 data_dir = Path("data/mcp_servers")

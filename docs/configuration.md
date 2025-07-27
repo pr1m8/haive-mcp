@@ -22,32 +22,32 @@ The system searches for configuration files in the following order:
 templates:
   - name: npm_official
     installation_method: npm
-    command_pattern: '@modelcontextprotocol/server-{service}'
+    command_pattern: "@modelcontextprotocol/server-{service}"
     capabilities: [tools]
     category: official
-    
-  - name: npm_community  
+
+  - name: npm_community
     installation_method: npm
-    command_pattern: '{package}'
+    command_pattern: "{package}"
     capabilities: [tools]
     category: community
-    
+
   - name: pypi_package
     installation_method: pip
-    command_pattern: '{package}'
+    command_pattern: "{package}"
     capabilities: [tools]
     category: python
-    
+
   - name: git_repo
     installation_method: git
-    command_pattern: 'python {repo}/server.py'
-    post_install: ['pip install -r {repo}/requirements.txt']
+    command_pattern: "python {repo}/server.py"
+    post_install: ["pip install -r {repo}/requirements.txt"]
     capabilities: [tools]
     category: development
-    
+
   - name: docker_image
     installation_method: docker
-    command_pattern: '{image}'
+    command_pattern: "{image}"
     capabilities: [tools]
     category: containerized
 
@@ -56,11 +56,11 @@ servers:
   - name: filesystem
     template: npm_official
     source: npm
-    variables: 
+    variables:
       service: filesystem
     enabled: true
     tags: [file, official]
-    
+
   - name: github
     template: npm_official
     source: npm
@@ -70,14 +70,14 @@ servers:
       GITHUB_TOKEN: ${GITHUB_TOKEN}
     enabled: true
     tags: [git, official]
-    
+
   - name: custom-python
     template: pypi_package
     source: pypi
     variables:
       package: my-mcp-server
     enabled: true
-    
+
   - name: private-repo
     template: git_repo
     source: https://github.com/myorg/private-mcp.git
@@ -93,24 +93,24 @@ patterns:
     - https://github.com/modelcontextprotocol/servers
     - https://registry.npmjs.org/-/v1/search?text=mcp-server
     - https://api.github.com/search/repositories?q=mcp+server
-    
+
   package_patterns:
     npm:
-      - '@modelcontextprotocol/server-*'
-      - 'mcp-server-*'
-      - '*-mcp-server'
+      - "@modelcontextprotocol/server-*"
+      - "mcp-server-*"
+      - "*-mcp-server"
     pypi:
-      - 'mcp-*'
-      - '*-mcp'
-      - 'mcp-server-*'
+      - "mcp-*"
+      - "*-mcp"
+      - "mcp-server-*"
     docker:
-      - 'mcp/*'
-      - '*/mcp-*'
-      
+      - "mcp/*"
+      - "*/mcp-*"
+
   exclude_patterns:
-    - '*-test'
-    - '*-demo'
-    - '*-example'
+    - "*-test"
+    - "*-demo"
+    - "*-example"
 
 # Global settings
 settings:
@@ -169,51 +169,51 @@ servers:
 servers:
   - name: advanced-server
     template: custom
-    
+
     # Installation details
     installation_method: npm
     command: npx
     args: ["-y", "package-name"]
-    
+
     # Runtime configuration
-    transport: stdio  # stdio, sse, http
-    url: null  # For HTTP transports
-    
+    transport: stdio # stdio, sse, http
+    url: null # For HTTP transports
+
     # Environment
     env:
       KEY1: value1
       KEY2: ${ENV_VAR}
-      
+
     # Capabilities
     capabilities: [tools, resources, prompts]
     required_capabilities: [tools]
-    
+
     # Categories and tags
     category: development
     tags: [experimental, beta]
-    
+
     # Connection settings
     timeout: 30
     retry_attempts: 3
     retry_delay: 5
-    
+
     # Health monitoring
     health_check_interval: 3600
     health_check_command: ["npm", "test"]
-    
+
     # Updates
     auto_update: true
-    update_schedule: "0 2 * * *"  # Cron format
-    
+    update_schedule: "0 2 * * *" # Cron format
+
     # Dependencies
     prerequisites: ["node>=14", "python>=3.8"]
     depends_on: ["other-server"]
-    
+
     # Post-installation
     post_install:
       - "npm install"
       - "python setup.py install"
-      
+
     # Validation
     validate_command: ["npm", "run", "validate"]
     expected_files: ["server.js", "package.json"]
@@ -229,7 +229,7 @@ Templates allow you to define reusable patterns:
 templates:
   - name: my-template
     installation_method: npm
-    command_pattern: 'npx {package}'
+    command_pattern: "npx {package}"
     args_pattern: ["{arg1}", "{arg2}"]
     env_vars:
       DEFAULT_KEY: default_value
@@ -253,7 +253,7 @@ servers:
       arg1: value1
       arg2: value2
     env:
-      DEFAULT_KEY: override_value  # Override template default
+      DEFAULT_KEY: override_value # Override template default
 ```
 
 ## Discovery Configuration
@@ -265,9 +265,9 @@ Enable automatic server discovery:
 ```yaml
 settings:
   auto_discover: true
-  discovery_interval: 86400  # Daily
+  discovery_interval: 86400 # Daily
   discovery_limit: 100
-  
+
 patterns:
   discovery_sources:
     - type: npm
@@ -275,14 +275,14 @@ patterns:
       params:
         text: mcp-server
         size: 250
-        
+
     - type: github
       url: https://api.github.com/search/repositories
       params:
         q: mcp+server+in:name
         sort: stars
         order: desc
-        
+
     - type: pypi
       url: https://pypi.org/pypi
       pattern: mcp-*
@@ -313,7 +313,7 @@ profiles:
     servers:
       - name: debug-server
         enabled: true
-        
+
   production:
     settings:
       log_level: WARNING
