@@ -168,7 +168,7 @@ async def example_with_component_registry():
     """Example integrating with component registry."""
     # Discover servers
     discovery = MCPServerDiscovery()
-    servers = await discovery.discover_all()
+    await discovery.discover_all()
 
     # Register with component registry
     await discovery.register_with_component_registry()
