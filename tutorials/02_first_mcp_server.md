@@ -251,13 +251,11 @@ servers:
 The filesystem server provides various tools:
 
 1. **File Operations**
-
    - `read_file`: Read file contents
    - `write_file`: Write to files
    - `list_directory`: List directory contents
 
 2. **Directory Operations**
-
    - `create_directory`: Make new directories
    - `remove_directory`: Delete directories
    - `move_file`: Move/rename files
