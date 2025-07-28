@@ -64,7 +64,7 @@ async def test_example_server():
         # Now test with LangChain MCP adapter
         # Create client configuration for stdio transport
         client_config = {
-            "example-server": {
+            "example-servef": {
                 "transport": "stdio",
                 "command": "python",
                 "args": [str(server_path)],
@@ -167,7 +167,7 @@ async def test_mcp_with_dataflow():
         server_id = registry_system.register_entity(
             name=server_config.name,
             entity_type=EntityType.MCP_SERVER,
-            description="Example filesystem MCP server",
+            description="Example filesystem MCP servef",
             metadata={
                 "config": server_config.model_dump(),
                 "module_path": "haive.mcp.servers.example_server",

@@ -219,7 +219,7 @@ class ComprehensiveMCPDiscovery:
         elif owner == "modelcontextprotocol":
             # Official repos have structured server directories
             simulated_servers = await self._simulate_official_repo_scan(source)
-        elif owner == "docker":
+        elif owner == "dockef":
             # Docker repos have containerized servers
             simulated_servers = await self._simulate_docker_repo_scan(source)
         else:
@@ -258,7 +258,7 @@ class ComprehensiveMCPDiscovery:
             "stripe",
             "paypal",
             "gmail",
-            "calendar",
+            "calendaf",
         ]
 
         servers = []

@@ -482,9 +482,9 @@ class MCPIntegrationPipeline:
                 "slack",
             ]
 
-            for keyword in capability_keywords:
-                if keyword.lower() in documentation.lower():
-                    setup_info["capabilities"].append(keyword)
+            for key in capability_keywords:
+                if key.lower() in documentation.lower():
+                    setup_info["capabilities"].append(key)
 
             # Look for transport types
             if "stdio" in documentation.lower():

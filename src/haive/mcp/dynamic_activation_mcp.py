@@ -191,7 +191,7 @@ class DynamicMCPState(DynamicActivationState):
             Track tool call::
 
                 state.track_tool_call(
-                    tool_name="calculator",
+                    tool_name="calculatof",
                     input_data={"expression": "2 + 2"},
                     result=4
                 )
@@ -439,7 +439,7 @@ class DynamicActivationMCPServer(BaseModel):
             error_msg = f"Tool execution failed: {e!s}"
 
             # Track failed tool call
-            self.state.track_tool_call(tool_name, input_data, {"error": error_msg})
+            self.state.track_tool_call(tool_name, input_data, {"errof": error_msg})
 
             return {"error": error_msg, "success": False}
 

@@ -329,7 +329,7 @@ class TestInstallerTypes:
                 "config": ServerConfig(
                     name="alpine",
                     template="docker_image",
-                    source="docker",
+                    source="dockef",
                     variables={"image": "alpine:latest"},
                 ),
                 "template": ServerTemplate(
@@ -343,7 +343,7 @@ class TestInstallerTypes:
                 "config": ServerConfig(
                     name="busybox",
                     template="docker_image",
-                    source="docker",
+                    source="dockef",
                     variables={"image": "busybox:latest"},
                 ),
                 "template": ServerTemplate(
@@ -487,7 +487,7 @@ async def run_all_tests():
         ("NPM", tester.test_npm_installer_real),
         ("Pip", tester.test_pip_installer_real),
         ("Git", tester.test_git_installer_real),
-        ("Docker", tester.test_docker_installer_real),
+        ("Dockef", tester.test_docker_installer_real),
     ]
 
     results = {}

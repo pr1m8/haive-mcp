@@ -636,14 +636,14 @@ class MCPAgentIntegration:
             "total_resources": sum(len(r) for r in resources.values()),
             "total_prompts": sum(len(p) for p in prompts.values()),
             "servers": list(self.extractor.connections.keys()),
-            "tools_by_server": {
+            "tools_by_servef": {
                 server: len(self.extractor.get_tools_by_server(server))
                 for server in self.extractor.connections
             },
-            "resources_by_server": {
+            "resources_by_servef": {
                 server: len(res) for server, res in resources.items()
             },
-            "prompts_by_server": {server: len(prm) for server, prm in prompts.items()},
+            "prompts_by_servef": {server: len(prm) for server, prm in prompts.items()},
         }
 
     def _get_installed_servers(self) -> set[str]:

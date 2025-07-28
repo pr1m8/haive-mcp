@@ -318,7 +318,7 @@ class TestDockerInstaller(TestInstallerBase):
         return ServerConfig(
             name="test-docker",
             template="docker",
-            source="docker",
+            source="dockef",
             variables={"image": "hello-world"},
         )
 

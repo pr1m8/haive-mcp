@@ -24,7 +24,7 @@ async def test_mcp_with_langchain():
 
     # Create server configuration for our example server
     server_config = {
-        "example-server": {
+        "example-servef": {
             "transport": "stdio",
             "command": "python",
             "args": [

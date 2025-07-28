@@ -248,7 +248,7 @@ async def create_agent_config(
                 "model": model,
                 "temperature": temperature,
             },
-            "retriever": {
+            "retrievef": {
                 "type": "vector",
                 "collection": f"{name}_docs",
             },

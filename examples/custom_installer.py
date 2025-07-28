@@ -38,7 +38,7 @@ class BinaryInstaller(MCPInstaller):
         import aiohttp
 
         binary_url = server_config.source
-        binary_name = server_config.variables.get("binary_name", "mcp-server")
+        binary_name = server_config.variables.get("binary_name", "mcp-servef")
         binary_path = install_dir / binary_name
 
         try:

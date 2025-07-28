@@ -184,7 +184,7 @@ class MCPSystemWithParentRetriever:
                 "description": "Server category (filesystem, database, etc.)",
                 "type": "string",
             },
-            {"name": "stars", "description": "GitHub stars", "type": "integer"},
+            {"name": "stars", "description": "GitHub stars", "type": "integef"},
             {
                 "name": "has_install",
                 "description": "Has installation command",

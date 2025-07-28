@@ -334,29 +334,22 @@ class ServerQualityAssessor:
 
             # Installation instructions
             if any(
-                keyword in doc_lower
-                for keyword in ["install", "setup", "npm install", "pip install"]
+                key in doc_lower
+                for key in ["install", "setup", "npm install", "pip install"]
             ):
                 score += 10.0
 
             # Usage examples
-            if any(
-                keyword in doc_lower
-                for keyword in ["example", "usage", "```", "how to"]
-            ):
+            if any(key in doc_lower for key in ["example", "usage", "```", "how to"]):
                 score += 10.0
 
             # Configuration documentation
-            if any(
-                keyword in doc_lower
-                for keyword in ["config", "configure", "environment"]
-            ):
+            if any(key in doc_lower for key in ["config", "configure", "environment"]):
                 score += 5.0
 
             # API documentation
             if any(
-                keyword in doc_lower
-                for keyword in ["api", "methods", "functions", "tools"]
+                key in doc_lower for key in ["api", "methods", "functions", "tools"]
             ):
                 score += 5.0
 
@@ -460,7 +453,7 @@ class ServerQualityAssessor:
         # Version indicators in documentation
         doc = server_data.get("documentation", "")
         if doc and any(
-            keyword in doc.lower() for keyword in ["version", "v1.", "v2.", "changelog"]
+            key in doc.lower() for key in ["version", "v1.", "v2.", "changelog"]
         ):
             score += 10.0
 
@@ -695,7 +688,7 @@ class ServerQualityAssessor:
         category_scores = {}
 
         for category, config in categories.items():
-            score = sum(1 for keyword in config["keywords"] if keyword in text)
+            score = sum(1 for key in config["keywords"] if key in text)
             if score > 0:
                 category_scores[category] = score
 
@@ -707,7 +700,7 @@ class ServerQualityAssessor:
         if primary_category in categories:
             for subcat in categories[primary_category]["subcategories"]:
                 subcat_keywords = subcat.replace("_", " ").split()
-                if any(keyword in text for keyword in subcat_keywords):
+                if any(key in text for key in subcat_keywords):
                     subcategories.append(subcat)
 
         return primary_category, subcategories
@@ -1301,7 +1294,7 @@ Please refer to the repository documentation for detailed API information.
             line_lower = line.lower().strip()
 
             # Look for example sections
-            if any(keyword in line_lower for keyword in ["example", "usage", "how to"]):
+            if any(key in line_lower for key in ["example", "usage", "how to"]):
                 if line.startswith("#"):
                     in_example_section = True
                     current_example["title"] = line.strip("# ").strip()

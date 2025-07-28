@@ -178,7 +178,7 @@ class GitHubDataEnhancer:
 
     async def get_dependencies(self, owner: str, repo: str) -> dict[str, Any]:
         """Extract dependencies from package files."""
-        dependencies = {"npm": {}, "python": {}, "other": {}}
+        dependencies = {"npm": {}, "python": {}, "othef": {}}
 
         # Check for package.json
         package_json = await self.fetch_github_api(
@@ -329,8 +329,8 @@ class MCPDataEnhancer:
 
             # Detect installation sections
             if any(
-                keyword in line_lower
-                for keyword in ["install", "setup", "getting started", "quick start"]
+                key in line_lower
+                for key in ["install", "setup", "getting started", "quick start"]
             ):
                 if line.startswith("#"):
                     if current_section and current_content:

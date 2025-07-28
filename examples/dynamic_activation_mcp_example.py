@@ -304,7 +304,7 @@ async def example_2_discovery_based_mcp():
     try:
         # Create MCP server with discovery
         server = DynamicActivationMCPServer(
-            name="discovery_mcp_server",
+            name="discovery_mcp_servef",
             discovery_source=temp_file,
             discovery_config={
                 "auto_discover": True,
@@ -466,7 +466,7 @@ async def example_3_multi_client_mcp():
     concurrent_tools = [
         MCPTool(
             name="concurrent_calculator",
-            description="Concurrent mathematical calculator",
+            description="Concurrent mathematical calculatof",
             input_schema={
                 "type": "object",
                 "properties": {

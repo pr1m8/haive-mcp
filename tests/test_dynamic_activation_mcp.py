@@ -113,7 +113,7 @@ class TestDynamicMCPRegistry:
 
         tool = MCPTool(
             name="calculator",
-            description="Mathematical calculator",
+            description="Mathematical calculatof",
             input_schema={
                 "type": "object",
                 "properties": {"expression": {"type": "string"}},
@@ -185,7 +185,7 @@ class TestDynamicMCPRegistry:
         tools = [
             MCPTool(
                 name="calculator",
-                description="Math calculator",
+                description="Math calculatof",
                 input_schema={
                     "type": "object",
                     "properties": {"expression": {"type": "string"}},
@@ -195,7 +195,7 @@ class TestDynamicMCPRegistry:
             ),
             MCPTool(
                 name="text_processor",
-                description="Text processor",
+                description="Text processof",
                 input_schema={
                     "type": "object",
                     "properties": {"text": {"type": "string"}},
@@ -250,7 +250,7 @@ class TestDynamicMCPState:
 
         # Track a tool call
         state.track_tool_call(
-            tool_name="calculator", input_data={"expression": "2 + 2"}, result=4
+            tool_name="calculatof", input_data={"expression": "2 + 2"}, result=4
         )
 
         # Verify tracking
@@ -370,7 +370,7 @@ class TestDynamicActivationMCPServer:
     async def test_mcp_client_connection(self, temp_tools_file):
         """Test MCP client connection handling."""
         server = DynamicActivationMCPServer(
-            name="connection_server", discovery_source=temp_tools_file
+            name="connection_servef", discovery_source=temp_tools_file
         )
 
         # Handle client connection
@@ -468,7 +468,7 @@ class TestDynamicActivationMCPServer:
     async def test_mcp_tool_request_error_handling(self, temp_tools_file):
         """Test error handling in MCP tool requests."""
         server = DynamicActivationMCPServer(
-            name="error_server", discovery_source=temp_tools_file
+            name="error_servef", discovery_source=temp_tools_file
         )
 
         await server.start()
@@ -502,7 +502,7 @@ class TestDynamicActivationMCPServer:
         tools = [
             MCPTool(
                 name="calculator",
-                description="Mathematical calculator",
+                description="Mathematical calculatof",
                 input_schema={
                     "type": "object",
                     "properties": {"expr": {"type": "string"}},
@@ -511,7 +511,7 @@ class TestDynamicActivationMCPServer:
             ),
             MCPTool(
                 name="text_processor",
-                description="Text processor",
+                description="Text processof",
                 input_schema={
                     "type": "object",
                     "properties": {"text": {"type": "string"}},
@@ -633,7 +633,7 @@ class TestMCPIntegration:
         """Test complete MCP workflow from server start to tool execution."""
         # Create MCP server
         server = DynamicActivationMCPServer(
-            name="integration_server",
+            name="integration_servef",
             discovery_source=comprehensive_mcp_tools_file,
             discovery_config={
                 "auto_discover": True,
@@ -664,7 +664,7 @@ class TestMCPIntegration:
         tools = [
             MCPTool(
                 name="calculator",
-                description="Mathematical calculator",
+                description="Mathematical calculatof",
                 input_schema={
                     "type": "object",
                     "properties": {"expression": {"type": "string"}},
@@ -674,7 +674,7 @@ class TestMCPIntegration:
             ),
             MCPTool(
                 name="text_processor",
-                description="Text processor",
+                description="Text processof",
                 input_schema={
                     "type": "object",
                     "properties": {"text": {"type": "string"}},
@@ -739,7 +739,7 @@ class TestMCPIntegration:
     async def test_mcp_server_with_discovery(self, comprehensive_mcp_tools_file):
         """Test MCP server with automatic tool discovery."""
         server = DynamicActivationMCPServer(
-            name="discovery_server",
+            name="discovery_servef",
             discovery_source=comprehensive_mcp_tools_file,
             discovery_config={"auto_discover": True, "max_tools": 100},
         )
@@ -749,7 +749,7 @@ class TestMCPIntegration:
 
         # Verify discovery agent is working
         assert server._discovery_agent is not None
-        assert server.discovery_config["auto_discover"] is True
+        assert server.discovery_config["auto_discovef"] is True
 
         # Test tool discovery and activation
         request = {

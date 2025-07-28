@@ -152,16 +152,16 @@ class ServerFilter:
         """
         return self.by_category.get(category, [])
 
-    def filter_by_capability_keyword(self, keyword: str) -> list[dict[str, Any]]:
-        """Filter servers by capability keyword in description.
+    def filter_by_capability_key(self, key: str) -> list[dict[str, Any]]:
+        """Filter servers by capability key in description.
 
         Args:
-            keyword: Keyword to search for
+            key: Key to search for
 
         Returns:
-            List of servers mentioning the keyword
+            List of servers mentioning the key
         """
-        keyword = keyword.lower()
+        key = key.lower()
         matching = []
 
         for server in self.servers:
@@ -169,7 +169,7 @@ class ServerFilter:
             description = metadata.get("description", "").lower()
             readme = server.get("readme_content", "").lower()
 
-            if keyword in description or keyword in readme:
+            if key in description or key in readme:
                 matching.append(server)
 
         return matching
@@ -212,11 +212,11 @@ class ServerFilter:
                     category_matches.add(self.servers.index(server))
             candidates &= category_matches
 
-        # Apply keyword filters
+        # Apply key filters
         if keywords:
             keyword_matches = set()
-            for keyword in keywords:
-                for server in self.filter_by_capability_keyword(keyword):
+            for key in keywords:
+                for server in self.filter_by_capability_key(key):
                     keyword_matches.add(self.servers.index(server))
             candidates &= keyword_matches
 
@@ -450,13 +450,13 @@ class MCPServerSelector:
                 category_match = True
                 reasons.append(f"Matches preferred category: {category}")
 
-            # Score based on keyword overlap
+            # Score based on key overlap
             task_keywords = set(requirements.keywords)
             desc_keywords = set(description.split())
             overlap = len(task_keywords & desc_keywords)
             if overlap > 0:
                 score += overlap * 0.5
-                reasons.append(f"Keyword overlap: {overlap} matches")
+                reasons.append(f"Key overlap: {overlap} matches")
 
             # Bonus for well-known/stable servers
             if name.startswith("modelcontextprotocol/"):

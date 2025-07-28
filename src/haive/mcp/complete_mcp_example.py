@@ -201,7 +201,7 @@ Install: {server_data.get("install_command", "Not specified")}
             {
                 "name": "stars",
                 "description": "Number of GitHub stars",
-                "type": "integer",
+                "type": "integef",
             },
             {
                 "name": "has_install_command",

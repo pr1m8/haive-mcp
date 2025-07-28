@@ -310,8 +310,7 @@ class MCPDocumentationLoader:
 
             # Look for installation section
             if any(
-                keyword in lower_line
-                for keyword in ["## install", "# install", "### install"]
+                key in lower_line for key in ["## install", "# install", "### install"]
             ):
                 in_install_section = True
                 continue
@@ -350,8 +349,8 @@ class MCPDocumentationLoader:
 
             # Look for configuration section
             if any(
-                keyword in lower_line
-                for keyword in [
+                key in lower_line
+                for key in [
                     "## config",
                     "# config",
                     "### config",
@@ -395,8 +394,8 @@ class MCPDocumentationLoader:
 
             # Look for usage section
             if any(
-                keyword in lower_line
-                for keyword in [
+                key in lower_line
+                for key in [
                     "## usage",
                     "# usage",
                     "### usage",

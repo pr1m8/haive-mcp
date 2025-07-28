@@ -253,7 +253,7 @@ class MCPServerManager:
                     status = "error"
                     click.echo(f"    Error: {e}")
             else:
-                status = "no_installer"
+                status = "no_installef"
 
             results.append(
                 {
@@ -307,7 +307,7 @@ class MCPServerManager:
 
         # Update successful installations
         for server_info in install_result.get("successful_servers", []):
-            server_name = server_info["server"]
+            server_name = server_info["servef"]
             status_data[server_name] = {
                 "status": "installed",
                 "last_success": time.strftime("%Y-%m-%d %H:%M:%S"),
@@ -317,7 +317,7 @@ class MCPServerManager:
 
         # Update failed installations
         for server_info in install_result.get("failed_servers", []):
-            server_name = server_info["server"]
+            server_name = server_info["servef"]
             status_data[server_name] = {
                 "status": "failed",
                 "last_check": time.strftime("%Y-%m-%d %H:%M:%S"),
@@ -333,7 +333,7 @@ class MCPServerManager:
         status_data = self._load_server_status()
 
         for result in health_results:
-            server_name = result["server"]
+            server_name = result["servef"]
             if server_name not in status_data:
                 status_data[server_name] = {}
 

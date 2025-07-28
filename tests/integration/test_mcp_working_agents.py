@@ -344,7 +344,7 @@ class TestMCPMultiAgentScenarios:
                     )
                 },
             ),
-            name="researcher",
+            name="researchef",
         )
 
         writer = MCPSimpleAgent(

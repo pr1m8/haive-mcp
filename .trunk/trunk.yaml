@@ -47,3 +47,11 @@ actions:
     - trunk-check-pre-push
     - trunk-fmt-pre-commit
     - trunk-upgrade-available
+    - git-lfs
+  definitions:
+    - id: git-lfs
+      display_name: Git LFS
+      description: Git LFS hooks for handling large files
+      run: git lfs "${hook}" "${@}"
+      triggers:
+        - git_hooks: [post-checkout, post-commit, post-merge, pre-push]

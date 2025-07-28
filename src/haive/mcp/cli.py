@@ -124,7 +124,7 @@ async def cmd_filter(args):
     servers = selector.filter.filter_by_multiple_criteria(
         prefixes=args.prefix,
         categories=args.category,
-        keywords=args.keyword,
+        keywords=args.key,
         exclude_prefixes=args.exclude_prefix,
     )
 
@@ -133,8 +133,8 @@ async def cmd_filter(args):
         criteria.append(f"prefix: {args.prefix}")
     if args.category:
         criteria.append(f"category: {args.category}")
-    if args.keyword:
-        criteria.append(f"keywords: {args.keyword}")
+    if args.key:
+        criteria.append(f"keywords: {args.key}")
     if args.exclude_prefix:
         criteria.append(f"excluding: {args.exclude_prefix}")
 
@@ -415,7 +415,7 @@ Examples:
         "--category", action="append", help="Include category (can use multiple)"
     )
     filter_parser.add_argument(
-        "--keyword", action="append", help="Include keyword (can use multiple)"
+        "--key", action="append", help="Include key (can use multiple)"
     )
     filter_parser.add_argument(
         "--exclude-prefix", action="append", help="Exclude prefix (can use multiple)"

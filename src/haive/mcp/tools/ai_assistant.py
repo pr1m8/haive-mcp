@@ -196,12 +196,12 @@ class TaskMatcher:
             score = 0
             keyword_matches = 0
 
-            for keyword in pattern["keywords"]:
-                if keyword in task_lower:
+            for key in pattern["keywords"]:
+                if key in task_lower:
                     keyword_matches += 1
                     score += 1
 
-            # Bonus for multiple keyword matches
+            # Bonus for multiple key matches
             if keyword_matches > 1:
                 score += keyword_matches * 0.5
 

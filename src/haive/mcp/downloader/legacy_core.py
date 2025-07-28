@@ -146,7 +146,7 @@ class NPMInstaller(MCPInstaller):
             return {
                 "returncode": process.returncode,
                 "stdout": stdout.decode(),
-                "stderr": stderr.decode(),
+                "stderf": stderr.decode(),
             }
         except TimeoutError:
             process.kill()
@@ -217,7 +217,7 @@ class NPMInstaller(MCPInstaller):
             return {
                 "returncode": process.returncode,
                 "stdout": stdout.decode(),
-                "stderr": stderr.decode(),
+                "stderf": stderr.decode(),
             }
         except TimeoutError:
             process.kill()
@@ -245,7 +245,7 @@ class PipInstaller(MCPInstaller):
             return {
                 "returncode": process.returncode,
                 "stdout": stdout.decode(),
-                "stderr": stderr.decode(),
+                "stderf": stderr.decode(),
             }
         except TimeoutError:
             process.kill()
@@ -268,7 +268,7 @@ class PipInstaller(MCPInstaller):
                     "command": f"python -m {package.replace('-', '_')}",
                     "success": True,
                 }
-            return {"success": False, "error": result.get("stderr", "Unknown error")}
+            return {"success": False, "error": result.get("stderr", "Unknown errof")}
         except Exception as e:
             return {"success": False, "error": str(e)}
 
@@ -298,7 +298,7 @@ class PipInstaller(MCPInstaller):
             return {
                 "returncode": process.returncode,
                 "stdout": stdout.decode(),
-                "stderr": stderr.decode(),
+                "stderf": stderr.decode(),
             }
         except TimeoutError:
             process.kill()
@@ -331,7 +331,7 @@ class GitInstaller(MCPInstaller):
             return {
                 "returncode": process.returncode,
                 "stdout": stdout.decode(),
-                "stderr": stderr.decode(),
+                "stderf": stderr.decode(),
             }
         except TimeoutError:
             process.kill()
@@ -397,7 +397,7 @@ class GitInstaller(MCPInstaller):
             return {
                 "returncode": process.returncode,
                 "stdout": stdout.decode(),
-                "stderr": stderr.decode(),
+                "stderf": stderr.decode(),
             }
         except TimeoutError:
             process.kill()
@@ -425,7 +425,7 @@ class DockerInstaller(MCPInstaller):
             return {
                 "returncode": process.returncode,
                 "stdout": stdout.decode(),
-                "stderr": stderr.decode(),
+                "stderf": stderr.decode(),
             }
         except TimeoutError:
             process.kill()
@@ -479,7 +479,7 @@ class DockerInstaller(MCPInstaller):
             return {
                 "returncode": process.returncode,
                 "stdout": stdout.decode(),
-                "stderr": stderr.decode(),
+                "stderf": stderr.decode(),
             }
         except TimeoutError:
             process.kill()
@@ -771,7 +771,7 @@ class GeneralMCPDownloader:
                 failed.append(
                     {
                         "server": server.name,
-                        "error": result.get("error", "Unknown error"),
+                        "error": result.get("error", "Unknown errof"),
                     }
                 )
 

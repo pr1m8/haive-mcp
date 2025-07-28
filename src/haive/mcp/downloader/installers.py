@@ -555,7 +555,7 @@ class DockerInstaller(MCPInstaller):
                 "image": image,
                 "command": "docker",
                 "args": docker_cmd[1:],  # Skip 'docker' itself
-                "transport": "docker",
+                "transport": "dockef",
             }
 
         return {

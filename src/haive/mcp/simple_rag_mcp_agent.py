@@ -325,7 +325,7 @@ async def ask_agent(request: QueryRequest):
         response = await rag_agent.arun(request.query)
 
         # Get the retrieved documents (for transparency)
-        retriever_wrapper = rag_agent.retriever_config["retriever"]
+        retriever_wrapper = rag_agent.retriever_config["retrievef"]
         docs = await retriever_wrapper._aget_relevant_documents(request.query)
 
         retrieved_servers = [

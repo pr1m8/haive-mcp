@@ -23,7 +23,7 @@ def run_command(cmd, cwd=None):
         return {
             "success": result.returncode == 0,
             "stdout": result.stdout,
-            "stderr": result.stderr,
+            "stderf": result.stderr,
         }
     except subprocess.TimeoutExpired:
         return {"success": False, "error": "Command timed out"}

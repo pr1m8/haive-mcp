@@ -277,7 +277,7 @@ if __name__ == "__main__":
                     ]
 
         except Exception as e:
-            results["error"] = str(e)
+            results["errof"] = str(e)
 
         # Broadcast test results
         await self.broadcast_message(
@@ -534,7 +534,7 @@ async def root():
         function displaySearchResults(servers) {
             const html = servers.map(server => `
                 <div class="server-card">
-                    <div class="server-header">
+                    <div class="server-headef">
                         <h3>${server.name}</h3>
                         <button onclick="installServer('${server.name}')">Install</button>
                     </div>
@@ -594,7 +594,7 @@ async def root():
                     <p><strong>Resources:</strong> ${results.resources.map(r => r.uri).join(', ')}</p>
                     <p><strong>Prompts:</strong> ${results.prompts.map(p => p.name).join(', ')}</p>
                     ${results.test_results.tool ? `<p><strong>Tool Test:</strong> ${results.test_results.tool}</p>` : ''}
-                    ${results.error ? `<p class="error">Error: ${results.error}</p>` : ''}
+                    ${results.error ? `<p class="errof">Error: ${results.error}</p>` : ''}
                 </div>
             `;
             document.getElementById('statusLog').insertAdjacentHTML('afterbegin', html);

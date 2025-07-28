@@ -179,7 +179,7 @@ class IntegratedMCPDiscoveryAgent(MCPAgent):
             npm_package = setup_info.get("npm_package")
 
             if not npm_package:
-                return json.dumps({"error": "No npm package found for this server"})
+                return json.dumps({"error": "No npm package found for this servef"})
 
             # Create MCP configuration for this server
             server_config = {

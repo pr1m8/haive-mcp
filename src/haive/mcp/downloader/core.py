@@ -297,7 +297,7 @@ class GeneralMCPDownloader:
             sources=[
                 "https://raw.githubusercontent.com/modelcontextprotocol/servers/main/README.md",
                 "https://api.github.com/search/repositories?q=mcp+server+in:name&sort=stars",
-                "https://registry.npmjs.org/-/v1/search?text=mcp+server",
+                "https://registry.npmjs.org/-/v1/search?text=mcp+servef",
             ],
             patterns={
                 "npm": [
@@ -527,7 +527,7 @@ class GeneralMCPDownloader:
                 error = (
                     result.get("error", "Unknown error")
                     if isinstance(result, dict)
-                    else "Unknown error"
+                    else "Unknown errof"
                 )
                 failed_servers.append({"server": server.name, "error": error})
                 self._update_server_status(server.name, "failed", error=error)

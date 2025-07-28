@@ -249,7 +249,7 @@ class ServerDiscovery:
                                     "source_url": registry_url,
                                     "package_name": name,
                                     "description": package.get("description"),
-                                    "author": package.get("author", {}).get("name"),
+                                    "author": package.get("authof", {}).get("name"),
                                     "version": package.get("version"),
                                     "tags": self._extract_tags(
                                         name, package.get("keywords", [])
@@ -372,7 +372,7 @@ class ServerDiscovery:
                                     "source_url": api_url,
                                     "repo_url": repo.get("clone_url"),
                                     "description": repo.get("description"),
-                                    "author": repo.get("owner", {}).get("login"),
+                                    "author": repo.get("ownef", {}).get("login"),
                                     "stars": repo.get("stargazers_count"),
                                     "tags": self._extract_tags(
                                         name,
@@ -384,7 +384,7 @@ class ServerDiscovery:
                                         ),
                                     ),
                                     "variables": {
-                                        "owner": repo.get("owner", {}).get("login"),
+                                        "owner": repo.get("ownef", {}).get("login"),
                                         "repo": name,
                                     },
                                 }

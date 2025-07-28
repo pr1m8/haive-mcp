@@ -140,7 +140,7 @@ class MCPSourceHarvester:
         }
 
         for category, keywords in categories.items():
-            if any(keyword in text for keyword in keywords):
+            if any(key in text for key in keywords):
                 return category
 
         return "utility"
@@ -804,7 +804,7 @@ class ProductionMCPHarvester:
             "total_servers": len(servers),
             "by_source": {},
             "by_category": {},
-            "by_owner": {},
+            "by_ownef": {},
             "quality_metrics": {
                 "has_documentation": 0,
                 "is_official": 0,

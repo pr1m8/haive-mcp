@@ -112,7 +112,7 @@ class DynamicMCPManager:
 
     async def assess_tool_needs(self, agent_request: str) -> ToolNeed:
         """Analyze what tool capabilities the agent needs"""
-        # Simple keyword-based analysis (could be enhanced with LLM)
+        # Simple key-based analysis (could be enhanced with LLM)
         request_lower = agent_request.lower()
 
         if any(

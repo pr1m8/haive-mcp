@@ -366,31 +366,23 @@ class MCPServerTester:
             tool_name = getattr(tool, "name", str(tool)).lower()
 
             # File system capabilities
-            if any(
-                keyword in tool_name
-                for keyword in ["file", "read", "write", "directory"]
-            ):
+            if any(key in tool_name for key in ["file", "read", "write", "directory"]):
                 capabilities.add("filesystem")
 
             # Database capabilities
-            if any(
-                keyword in tool_name
-                for keyword in ["query", "sql", "database", "table"]
-            ):
+            if any(key in tool_name for key in ["query", "sql", "database", "table"]):
                 capabilities.add("database")
 
             # Web capabilities
-            if any(keyword in tool_name for keyword in ["http", "fetch", "web", "api"]):
+            if any(key in tool_name for key in ["http", "fetch", "web", "api"]):
                 capabilities.add("web")
 
             # Git capabilities
-            if any(
-                keyword in tool_name for keyword in ["git", "repo", "commit", "branch"]
-            ):
+            if any(key in tool_name for key in ["git", "repo", "commit", "branch"]):
                 capabilities.add("git")
 
             # Search capabilities
-            if any(keyword in tool_name for keyword in ["search", "find", "lookup"]):
+            if any(key in tool_name for key in ["search", "find", "lookup"]):
                 capabilities.add("search")
 
         return list(capabilities)
