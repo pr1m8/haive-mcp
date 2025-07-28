@@ -1,5 +1,15 @@
+"""Integrated_Launcher core module.
+
+This module provides integrated launcher functionality for the Haive framework.
+
+Functions:
+    print_banner: Print Banner functionality.
+    check_dependencies: Check Dependencies functionality.
+    run_integrated_web: Run Integrated Web functionality.
+"""
+
 #!/usr/bin/env python3
-"""Integrated MCP System Launcher
+"""Integrated MCP System Launcher.
 
 Provides easy access to all components of the integrated MCP discovery and management system.
 """
@@ -12,7 +22,7 @@ from pathlib import Path
 
 
 def print_banner():
-    """Print system banner"""
+    """Print system banner."""
     print(
         """
 ╔══════════════════════════════════════════════════════════════════╗
@@ -25,7 +35,7 @@ def print_banner():
 
 
 def check_dependencies():
-    """Check required dependencies"""
+    """Check required dependencies."""
     missing = []
 
     try:
@@ -62,28 +72,28 @@ def check_dependencies():
 
 
 def run_integrated_web():
-    """Launch the integrated web interface"""
+    """Launch the integrated web interface."""
     print("🌐 Launching Integrated MCP Web Interface...")
     script_path = Path(__file__).parent / "integrated_mcp_system.py"
     subprocess.run(["streamlit", "run", str(script_path)], check=False)
 
 
 def run_discovery_test():
-    """Test the discovery system"""
+    """Test the discovery system."""
     print("🔍 Testing MCP Discovery System...")
     script_path = Path(__file__).parent / "self_query_mcp_agent.py"
     subprocess.run([sys.executable, str(script_path)], check=False)
 
 
 def run_fastmcp_manager(args):
-    """Run FastMCP server management commands"""
+    """Run FastMCP server management commands."""
     script_path = Path(__file__).parent / "fastmcp_runner.py"
     cmd = [sys.executable, str(script_path)] + args
     subprocess.run(cmd, check=False)
 
 
 def show_status():
-    """Show system status"""
+    """Show system status."""
     print("\n📊 System Status")
     print("=" * 50)
 
@@ -130,14 +140,14 @@ def show_status():
 
 
 def run_csv_viewer():
-    """Launch CSV data viewer"""
+    """Launch CSV data viewer."""
     print("📊 Launching CSV Data Viewer...")
     script_path = Path(__file__).parent / "csv_viewer.py"
     subprocess.run([sys.executable, str(script_path), "--web"], check=False)
 
 
 def install_server_interactive():
-    """Interactive server installation"""
+    """Interactive server installation."""
     print("\n📦 Interactive Server Installation")
     print("=" * 50)
 

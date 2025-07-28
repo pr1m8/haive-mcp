@@ -1,4 +1,4 @@
-"""FastAPI MCP Discovery and Installation Server
+"""FastAPI MCP Discovery and Installation Server.
 
 This server provides:
 1. Web interface for discovering MCP servers

@@ -47,17 +47,14 @@ class EnhancedMCPDiscoveryAgent(MCPDocumentationAgent):
 ### Target Ecosystems for Documentation Processing
 
 1. **LangChain Tools/Integrations**
-
    - Repository: https://github.com/langchain-ai/langchain
    - Pattern: Tool documentation → auto-configuration → enhanced agents
 
 2. **Hugging Face Models**
-
    - Repository: Thousands of model repositories
    - Pattern: Model cards → capability extraction → specialized agents
 
 3. **Docker Images**
-
    - Repository: Docker Hub, various registries
    - Pattern: Dockerfile analysis → deployment configs → container agents
 

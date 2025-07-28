@@ -1,5 +1,15 @@
+"""Launcher core module.
+
+This module provides launcher functionality for the Haive framework.
+
+Functions:
+    run_csv_viewer: Run Csv Viewer functionality.
+    run_comprehensive_web: Run Comprehensive Web functionality.
+    run_self_query_test: Run Self Query Test functionality.
+"""
+
 #!/usr/bin/env python3
-"""MCP Discovery Tools Launcher
+"""MCP Discovery Tools Launcher.
 
 Easy launcher for all MCP discovery and analysis tools.
 """

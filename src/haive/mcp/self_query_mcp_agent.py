@@ -1,5 +1,19 @@
+"""Self_Query_Mcp_Agent core module.
+
+This module provides self query mcp agent functionality for the Haive framework.
+
+Classes:
+    MCPServerMetadata: MCPServerMetadata implementation.
+    EnhancedMCPDocument: EnhancedMCPDocument implementation.
+    SelfQueryMCPAgent: SelfQueryMCPAgent implementation.
+
+Functions:
+    create_mcp_documents_with_chunks: Create Mcp Documents With Chunks functionality.
+    setup_retrievers: Setup Retrievers functionality.
+"""
+
 #!/usr/bin/env python3
-"""Self Query MCP Discovery Agent
+"""Self Query MCP Discovery Agent.
 
 Enhanced RAG agent that uses Self Query methodology for structured querying
 with metadata filtering and parent document retrieval.

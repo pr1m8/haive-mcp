@@ -1,3 +1,15 @@
+"""Documentation_Agent core module.
+
+This module provides documentation agent functionality for the Haive framework.
+
+Classes:
+    MCPDocumentationAgent: MCPDocumentationAgent implementation.
+
+Functions:
+    create_for_mcp_setup: Create For Mcp Setup functionality.
+    create_for_mcp_research: Create For Mcp Research functionality.
+"""
+
 r"""MCP Documentation Agent for processing and setting up MCP servers.
 
 This module provides a specialized agent that combines document processing

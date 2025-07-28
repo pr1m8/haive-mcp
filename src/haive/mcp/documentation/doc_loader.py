@@ -345,7 +345,7 @@ class MCPDocumentationLoader:
         lines = readme.split("\n")
         in_config_section = False
 
-        for i, line in enumerate(lines):
+        for _i, line in enumerate(lines):
             lower_line = line.lower()
 
             # Look for configuration section

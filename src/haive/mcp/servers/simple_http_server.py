@@ -1,3 +1,13 @@
+"""Simple_Http_Server core module.
+
+This module provides simple http server functionality for the Haive framework.
+
+Functions:
+    hello: Hello functionality.
+    add: Add functionality.
+    get_time: Get Time functionality.
+"""
+
 #!/usr/bin/env python3
 """Simple HTTP MCP server example."""
 

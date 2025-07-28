@@ -1,4 +1,4 @@
-"""Intelligent MCP server selection and filtering tools for AI agents.
+r"""Intelligent MCP server selection and filtering tools for AI agents.
 
 This module provides sophisticated tools for filtering, selecting, and recommending
 MCP servers based on various criteria including prefixes, capabilities, task analysis,
@@ -192,7 +192,6 @@ class ServerFilter:
         Returns:
             List of servers matching all criteria
         """
-        results = set()
 
         # Start with all servers
         candidates = set(range(len(self.servers)))

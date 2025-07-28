@@ -1,5 +1,17 @@
+"""Mcp_Manager core module.
+
+This module provides mcp manager functionality for the Haive framework.
+
+Classes:
+    MCPServerManager: MCPServerManager implementation.
+
+Functions:
+    discover_all_sources: Discover All Sources functionality.
+    install_discovered_servers: Install Discovered Servers functionality.
+"""
+
 #!/usr/bin/env python3
-"""Comprehensive MCP Server Manager
+"""Comprehensive MCP Server Manager.
 
 This script provides a complete management interface for MCP servers including:
 - Discovery from multiple sources
@@ -34,7 +46,7 @@ logger = logging.getLogger(__name__)
 
 
 class MCPServerManager:
-    """Comprehensive MCP Server Manager"""
+    """Comprehensive MCP Server Manager."""
 
     def __init__(self, config_file: str | None = None, install_dir: str | None = None):
         self.downloader = GeneralMCPDownloader(config_file, install_dir)
@@ -44,7 +56,7 @@ class MCPServerManager:
     async def discover_all_sources(
         self, auto_install: bool = False, limit: int | None = None
     ) -> dict:
-        """Discover MCP servers from all configured sources"""
+        """Discover MCP servers from all configured sources."""
         click.echo("🔍 Discovering MCP servers from all sources...")
 
         discovered = {}
@@ -100,7 +112,7 @@ class MCPServerManager:
         return {"discovered": all_servers, "discovery_file": str(discovery_file)}
 
     async def install_discovered_servers(self, servers: list[dict]) -> dict:
-        """Install servers from discovery results"""
+        """Install servers from discovery results."""
         # Add discovered servers to downloader config
         for server_data in servers:
             from general_mcp_downloader import ServerConfig
@@ -125,7 +137,7 @@ class MCPServerManager:
         return await self.downloader.download_servers()
 
     def _determine_template(self, server_data: dict) -> str:
-        """Determine the best template for a discovered server"""
+        """Determine the best template for a discovered server."""
         source = server_data.get("source", "")
         tags = server_data.get("tags", [])
 
@@ -148,7 +160,7 @@ class MCPServerManager:
     async def install_servers(
         self, server_names: list[str] | None = None, categories: list[str] | None = None
     ) -> dict:
-        """Install specific servers or categories"""
+        """Install specific servers or categories."""
         if server_names:
             click.echo(f"📦 Installing servers: {', '.join(server_names)}")
         elif categories:
@@ -166,7 +178,7 @@ class MCPServerManager:
         return result
 
     async def list_servers(self, status_filter: str = "all") -> dict:
-        """List servers with their status"""
+        """List servers with their status."""
         servers_info = []
         status_data = self._load_server_status()
 
@@ -204,7 +216,7 @@ class MCPServerManager:
         return {"servers": servers_info, "total": len(servers_info)}
 
     async def health_check(self, server_names: list[str] | None = None) -> dict:
-        """Perform health checks on servers"""
+        """Perform health checks on servers."""
         click.echo("🏥 Performing health checks...")
 
         servers_to_check = []
@@ -273,14 +285,14 @@ class MCPServerManager:
     async def update_servers(
         self, server_names: list[str] | None = None, force: bool = False
     ) -> dict:
-        """Update servers to latest versions"""
+        """Update servers to latest versions."""
         click.echo("🔄 Updating servers...")
 
         # For now, this re-installs servers (future: implement proper update logic)
         return await self.install_servers(server_names)
 
     def _load_server_status(self) -> dict:
-        """Load server status from file"""
+        """Load server status from file."""
         if self.status_file.exists():
             try:
                 with open(self.status_file) as f:
@@ -290,7 +302,7 @@ class MCPServerManager:
         return {}
 
     async def _update_server_status(self, install_result: dict):
-        """Update server status after installation"""
+        """Update server status after installation."""
         status_data = self._load_server_status()
 
         # Update successful installations
@@ -317,7 +329,7 @@ class MCPServerManager:
             json.dump(status_data, f, indent=2)
 
     async def _update_health_status(self, health_results: list[dict]):
-        """Update health check results"""
+        """Update health check results."""
         status_data = self._load_server_status()
 
         for result in health_results:
@@ -339,7 +351,7 @@ class MCPServerManager:
 @click.option("--install-dir", help="Installation directory")
 @click.pass_context
 def cli(ctx, config, install_dir):
-    """MCP Server Manager - Comprehensive management for Model Context Protocol servers"""
+    """MCP Server Manager - Comprehensive management for Model Context Protocol servers."""
     ctx.ensure_object(dict)
     ctx.obj["manager"] = MCPServerManager(config, install_dir)
 
@@ -351,7 +363,7 @@ def cli(ctx, config, install_dir):
 @click.option("--limit", type=int, help="Limit number of servers to discover")
 @click.pass_context
 def discover(ctx, auto_install, limit):
-    """Discover MCP servers from all configured sources"""
+    """Discover MCP servers from all configured sources."""
     manager = ctx.obj["manager"]
     result = asyncio.run(manager.discover_all_sources(auto_install, limit))
 
@@ -367,7 +379,7 @@ def discover(ctx, auto_install, limit):
 @click.option("--all", "install_all", is_flag=True, help="Install all enabled servers")
 @click.pass_context
 def install(ctx, servers, categories, install_all):
-    """Install MCP servers"""
+    """Install MCP servers."""
     manager = ctx.obj["manager"]
 
     server_names = list(servers) if servers else None
@@ -401,7 +413,7 @@ def install(ctx, servers, categories, install_all):
 )
 @click.pass_context
 def list_servers(ctx, status, output_format):
-    """List MCP servers and their status"""
+    """List MCP servers and their status."""
     manager = ctx.obj["manager"]
     result = asyncio.run(manager.list_servers(status))
 
@@ -433,7 +445,7 @@ def list_servers(ctx, status, output_format):
 @click.option("--servers", multiple=True, help="Specific servers to check")
 @click.pass_context
 def health_check(ctx, servers):
-    """Perform health checks on MCP servers"""
+    """Perform health checks on MCP servers."""
     manager = ctx.obj["manager"]
     server_names = list(servers) if servers else None
     asyncio.run(manager.health_check(server_names))
@@ -445,7 +457,7 @@ def health_check(ctx, servers):
 @click.option("--force", is_flag=True, help="Force update even if current")
 @click.pass_context
 def update(ctx, servers, update_all, force):
-    """Update MCP servers to latest versions"""
+    """Update MCP servers to latest versions."""
     manager = ctx.obj["manager"]
 
     server_names = list(servers) if servers else None
@@ -464,7 +476,7 @@ def update(ctx, servers, update_all, force):
 @cli.command()
 @click.pass_context
 def config(ctx):
-    """Show current configuration"""
+    """Show current configuration."""
     manager = ctx.obj["manager"]
 
     click.echo("📋 Current Configuration")

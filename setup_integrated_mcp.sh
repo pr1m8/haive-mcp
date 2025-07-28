@@ -5,9 +5,9 @@ echo "🚀 Setting up Integrated MCP System..."
 echo "===================================="
 
 # Check Python
-if ! command -v python3 &> /dev/null; then
-    echo "❌ Python 3 is required but not installed."
-    exit 1
+if ! command -v python3 &>/dev/null; then
+	echo "❌ Python 3 is required but not installed."
+	exit 1
 fi
 
 echo "✅ Python 3 found"
@@ -24,17 +24,17 @@ mkdir -p ~/.fastmcp
 
 # Check for MCP data
 DATA_FILE="$(dirname "$0")/../../data/mcp_servers/ALL_MCP_SERVERS_COMPLETE.json"
-if [ -f "$DATA_FILE" ]; then
-    echo "✅ MCP database found ($(jq length "$DATA_FILE" 2>/dev/null || echo "unknown") servers)"
+if [[ -f "${DATA_FILE}" ]]; then
+	echo "✅ MCP database found ($(jq length${"$DATA_FI}LE" 2>/dev/null || echo "unknown") servers)"
 else
-    echo "⚠️  MCP database not found at: $DATA_FILE"
-    echo "   The system will have limited functionality without the server database."
+	echo "⚠️  MCP database not found ${t: $DATA_}FILE"
+	echo "   The system will have limited functionality without the server database."
 fi
 
 # Create launcher alias
 echo ""
 echo "🔗 Creating convenient launcher..."
-cat > ~/mcp-launcher.sh << 'EOF'
+cat >~/mcp-launcher.sh <<'EOF'
 #!/bin/bash
 # MCP Integrated System Launcher
 
@@ -72,7 +72,7 @@ EOF
 
 # Replace __MCP_DIR__ with actual path
 MCP_DIR="$(cd "$(dirname "$0")/src/haive/mcp" && pwd)"
-sed -i "s|__MCP_DIR__|$MCP_DIR|g" ~/mcp-launcher.sh
+sed -i "s|__MCP_DIR__|${MCP_DIR}|g" ~/mcp-launcher.sh
 chmod +x ~/mcp-launcher.sh
 
 echo "✅ Setup complete!"

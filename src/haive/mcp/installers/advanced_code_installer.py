@@ -1,4 +1,4 @@
-"""Advanced Code-Generating MCP Server Installer
+"""Advanced Code-Generating MCP Server Installer.
 
 Version 2: Uses Aug_LLM agents to generate custom installation code.
 More flexible but requires human oversight for safety.
@@ -20,7 +20,7 @@ from haive.mcp.installers.safe_pattern_installer import SafePatternInstaller
 
 
 class CodeGenerationRequest(BaseModel):
-    """Request for LLM-generated installation code"""
+    """Request for LLM-generated installation code."""
 
     server_name: str = Field(description="Unique name for server instance")
     server_description: str = Field(description="Description of what the server does")
@@ -37,7 +37,7 @@ class CodeGenerationRequest(BaseModel):
 
 
 class GeneratedInstallPlan(BaseModel):
-    """LLM-generated installation plan"""
+    """LLM-generated installation plan."""
 
     install_commands: list[str] = Field(description="Installation commands to execute")
     startup_command: str = Field(description="Command to start the server")
@@ -53,7 +53,7 @@ class GeneratedInstallPlan(BaseModel):
 
 
 class SubprocessExecutionInput(BaseModel):
-    """Input for subprocess execution tool"""
+    """Input for subprocess execution tool."""
 
     command: str = Field(description="Command to execute")
     timeout: int = Field(default=30, description="Timeout in seconds")
@@ -64,7 +64,7 @@ class SubprocessExecutionInput(BaseModel):
 
 
 class AdvancedCodeInstaller:
-    """Advanced MCP installer with LLM code generation"""
+    """Advanced MCP installer with LLM code generation."""
 
     def __init__(self, config_manager: MCPConfigManager | None = None):
         self.config_manager = config_manager or MCPConfigManager()
@@ -80,7 +80,7 @@ class AdvancedCodeInstaller:
     def _mock_llm_code_generation(
         self, request: CodeGenerationRequest
     ) -> GeneratedInstallPlan:
-        """Mock LLM code generation (replace with real agent)"""
+        """Mock LLM code generation (replace with real agent)."""
         # This simulates what the LLM would generate
         package_name = request.package_info.get("name", "")
 
@@ -149,7 +149,7 @@ class AdvancedCodeInstaller:
     async def generate_installation_plan(
         self, request: CodeGenerationRequest
     ) -> GeneratedInstallPlan:
-        """Generate installation plan using LLM"""
+        """Generate installation plan using LLM."""
         # In real implementation, this would use the haive agent:
         """
         prompt = f'''
@@ -186,7 +186,7 @@ class AdvancedCodeInstaller:
     def create_subprocess_execution_tool(
         self, plan: GeneratedInstallPlan, request: CodeGenerationRequest
     ) -> StructuredTool:
-        """Create tool for executing subprocess commands with oversight"""
+        """Create tool for executing subprocess commands with oversight."""
 
         def execute_subprocess(
             command: str,
@@ -194,7 +194,7 @@ class AdvancedCodeInstaller:
             working_directory: str | None = None,
             environment_vars: dict[str, str] = None,
         ) -> str:
-            """Execute subprocess command with safety checks"""
+            """Execute subprocess command with safety checks."""
             # Security validation
             dangerous_patterns = ["rm -rf", "sudo", "curl | sh", "wget | sh", "| bash"]
             if any(pattern in command.lower() for pattern in dangerous_patterns):
@@ -258,11 +258,11 @@ class AdvancedCodeInstaller:
     def create_validation_tool(
         self, plan: GeneratedInstallPlan, request: CodeGenerationRequest
     ) -> StructuredTool:
-        """Create tool for validating installation"""
+        """Create tool for validating installation."""
 
         @tool
         def validate_installation() -> str:
-            """Validate that MCP server installation was successful"""
+            """Validate that MCP server installation was successful."""
             results = []
 
             for step in plan.validation_steps:
@@ -330,7 +330,7 @@ class AdvancedCodeInstaller:
     async def install_server_advanced(
         self, request: CodeGenerationRequest
     ) -> tuple[bool, str, list[StructuredTool]]:
-        """Advanced server installation with code generation"""
+        """Advanced server installation with code generation."""
         print(f"🧠 Generating installation plan for {request.server_name}...")
 
         # Generate installation plan
@@ -374,7 +374,7 @@ class AdvancedCodeInstaller:
         # 3. Configuration creation tool
         @tool
         def create_server_config() -> str:
-            """Create server configuration after successful installation"""
+            """Create server configuration after successful installation."""
             try:
                 env_config = MCPEnvironmentConfig(
                     server_name=request.server_name,
@@ -420,7 +420,7 @@ class AdvancedCodeInstaller:
         return True, summary, tools
 
     def get_advanced_status(self) -> dict[str, Any]:
-        """Get status of advanced installer"""
+        """Get status of advanced installer."""
         return {
             "installer_type": "AdvancedCodeInstaller",
             "llm_agent_available": self.code_generation_agent is not None,
@@ -430,7 +430,7 @@ class AdvancedCodeInstaller:
         }
 
     def cleanup(self):
-        """Clean up all resources"""
+        """Clean up all resources."""
         self.safe_installer.cleanup()
         for name, process in self.running_servers.items():
             try:

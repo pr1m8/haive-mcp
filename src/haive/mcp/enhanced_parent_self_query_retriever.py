@@ -1,4 +1,4 @@
-"""Enhanced MCP Retriever combining Parent Document Retriever with Self-Query
+"""Enhanced MCP Retriever combining Parent Document Retriever with Self-Query.
 
 This implementation combines:
 1. Parent-child document retrieval for context preservation

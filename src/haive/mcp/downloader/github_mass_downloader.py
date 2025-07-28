@@ -1,3 +1,15 @@
+"""Github_Mass_Downloader core module.
+
+This module provides github mass downloader functionality for the Haive framework.
+
+Classes:
+    GitHubMCPDownloader: GitHubMCPDownloader implementation.
+
+Functions:
+    load_all_servers: Load All Servers functionality.
+    categorize_servers: Categorize Servers functionality.
+"""
+
 #!/usr/bin/env python3
 """Download ALL MCP servers from the GitHub resources.
 

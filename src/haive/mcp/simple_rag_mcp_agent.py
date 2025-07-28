@@ -1,4 +1,4 @@
-"""SimpleRAG Agent for MCP Server Discovery
+"""SimpleRAG Agent for MCP Server Discovery.
 
 This agent uses the enhanced retriever to help users find and understand MCP servers.
 It can answer questions about server capabilities, suggest servers based on needs,

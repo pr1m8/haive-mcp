@@ -1,3 +1,17 @@
+"""Dataflow_Mcp_Server core module.
+
+This module provides dataflow mcp server functionality for the Haive framework.
+
+Classes:
+    AgentCreationRequest: AgentCreationRequest implementation.
+    from: from implementation.
+
+Functions:
+    query_registry: Query Registry functionality.
+    discover_components: Discover Components functionality.
+    create_agent: Create Agent functionality.
+"""
+
 #!/usr/bin/env python3
 """MCP Server integrating Haive Dataflow for dynamic tool creation.
 

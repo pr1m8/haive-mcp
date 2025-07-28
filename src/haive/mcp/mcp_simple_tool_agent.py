@@ -1,4 +1,4 @@
-"""MCP Simple Tool Agent - Using SimpleAgent with retrieval tool"""
+"""MCP Simple Tool Agent - Using SimpleAgent with retrieval tool."""
 
 import json
 import sys

@@ -1,3 +1,13 @@
+"""Cli core module.
+
+This module provides cli functionality for the Haive framework.
+
+Functions:
+    print_servers: Print Servers functionality.
+    print_recommendations: Print Recommendations functionality.
+    cmd_list_servers: Cmd List Servers functionality.
+"""
+
 #!/usr/bin/env python3
 """CLI tool for MCP server selection and configuration.
 

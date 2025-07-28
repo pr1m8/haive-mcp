@@ -1,5 +1,18 @@
+"""Fastmcp_Runner core module.
+
+This module provides fastmcp runner functionality for the Haive framework.
+
+Classes:
+    MCPProcessManager: MCPProcessManager implementation.
+    FastMCPCLI: FastMCPCLI implementation.
+
+Functions:
+    load_servers: Load Servers functionality.
+    start_server: Start Server functionality.
+"""
+
 #!/usr/bin/env python3
-"""FastMCP Server Runner
+"""FastMCP Server Runner.
 
 Manages the lifecycle of FastMCP servers registered in the system.
 Provides process management, monitoring, and integration with the discovery system.
@@ -22,7 +35,7 @@ logger = logging.getLogger(__name__)
 
 
 class MCPProcessManager:
-    """Manages MCP server processes with monitoring and auto-restart"""
+    """Manages MCP server processes with monitoring and auto-restart."""
 
     def __init__(self, config_path: Path | None = None):
         self.config_path = config_path or Path.home() / ".fastmcp" / "servers.json"
@@ -32,7 +45,7 @@ class MCPProcessManager:
         self._running = False
 
     def load_servers(self) -> dict[str, Any]:
-        """Load server configurations"""
+        """Load server configurations."""
         if not self.config_path.exists():
             return {}
 
@@ -41,7 +54,7 @@ class MCPProcessManager:
             return data.get("servers", {})
 
     async def start_server(self, server_name: str) -> dict[str, Any]:
-        """Start a specific server"""
+        """Start a specific server."""
         servers = self.load_servers()
 
         if server_name not in servers:
@@ -115,7 +128,7 @@ class MCPProcessManager:
             return {"success": False, "error": f"Failed to start server: {e!s}"}
 
     async def stop_server(self, server_name: str) -> dict[str, Any]:
-        """Stop a specific server"""
+        """Stop a specific server."""
         if server_name not in self.processes:
             return {"success": False, "error": f"Server '{server_name}' is not running"}
 
@@ -150,7 +163,7 @@ class MCPProcessManager:
             return {"success": False, "error": f"Failed to stop server: {e!s}"}
 
     async def restart_server(self, server_name: str) -> dict[str, Any]:
-        """Restart a server"""
+        """Restart a server."""
         # Stop if running
         if server_name in self.processes:
             stop_result = await self.stop_server(server_name)
@@ -164,7 +177,7 @@ class MCPProcessManager:
         return await self.start_server(server_name)
 
     def get_server_status(self, server_name: str) -> dict[str, Any]:
-        """Get detailed status of a server"""
+        """Get detailed status of a server."""
         status = {
             "name": server_name,
             "running": False,
@@ -207,7 +220,7 @@ class MCPProcessManager:
         return status
 
     async def monitor_servers(self):
-        """Monitor running servers and restart if needed"""
+        """Monitor running servers and restart if needed."""
         self._running = True
 
         while self._running:
@@ -235,12 +248,12 @@ class MCPProcessManager:
             await asyncio.sleep(5)
 
     async def start_monitoring(self):
-        """Start the monitoring task"""
+        """Start the monitoring task."""
         if not self.monitor_task:
             self.monitor_task = asyncio.create_task(self.monitor_servers())
 
     async def stop_monitoring(self):
-        """Stop the monitoring task"""
+        """Stop the monitoring task."""
         self._running = False
         if self.monitor_task:
             self.monitor_task.cancel()
@@ -250,12 +263,12 @@ class MCPProcessManager:
                 pass
 
     async def stop_all_servers(self):
-        """Stop all running servers"""
+        """Stop all running servers."""
         for server_name in list(self.processes.keys()):
             await self.stop_server(server_name)
 
     def list_running_servers(self) -> list[dict[str, Any]]:
-        """List all running servers with their status"""
+        """List all running servers with their status."""
         servers = []
 
         for server_name in self.processes:
@@ -266,13 +279,13 @@ class MCPProcessManager:
 
 
 class FastMCPCLI:
-    """Command-line interface for FastMCP server management"""
+    """Command-line interface for FastMCP server management."""
 
     def __init__(self):
         self.manager = MCPProcessManager()
 
     async def run_command(self, command: str, args: list[str]):
-        """Execute a CLI command"""
+        """Execute a CLI command."""
         if command == "start":
             if not args:
                 print("Error: Server name required")
@@ -370,7 +383,7 @@ class FastMCPCLI:
 
 
 async def main():
-    """Main CLI entry point"""
+    """Main CLI entry point."""
     import argparse
 
     parser = argparse.ArgumentParser(description="FastMCP Server Runner")

@@ -1,4 +1,4 @@
-"""Working Enhanced MCP Retriever - Parent-Child + Self-Query Combined
+"""Working Enhanced MCP Retriever - Parent-Child + Self-Query Combined.
 
 This demonstrates the key pattern: metadata on child chunks enables
 self-query filtering while returning full parent documents.

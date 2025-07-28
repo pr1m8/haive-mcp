@@ -1,4 +1,4 @@
-"""Dynamic MCP Discovery and Installation Tool
+"""Dynamic MCP Discovery and Installation Tool.
 
 This tool leverages the haive-mcp repository's 992 server database to:
 1. RAG search through MCP server documentation and metadata

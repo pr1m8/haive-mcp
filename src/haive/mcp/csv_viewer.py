@@ -1,5 +1,15 @@
+"""Csv_Viewer core module.
+
+This module provides csv viewer functionality for the Haive framework.
+
+Functions:
+    load_mcp_servers_data: Load Mcp Servers Data functionality.
+    create_csv_export: Create Csv Export functionality.
+    export_to_csv: Export To Csv functionality.
+"""
+
 #!/usr/bin/env python3
-"""CSV Viewer and Exporter for MCP Servers Data
+"""CSV Viewer and Exporter for MCP Servers Data.
 
 Creates a browsable CSV export with sorting and filtering capabilities.
 """

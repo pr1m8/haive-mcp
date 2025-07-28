@@ -182,21 +182,18 @@ Servers are stored in `~/.fastmcp/servers.json`:
 ### Tabs Overview
 
 1. **🔍 Discover**
-
    - Search MCP servers
    - View detailed information
    - One-click installation
    - Multiple search methods
 
 2. **📦 Installed**
-
    - View all installed servers
    - Server configuration details
    - Start/stop controls
    - Remove servers
 
 3. **🎮 Running**
-
    - Live server status
    - Process monitoring
    - Stop running servers
@@ -285,13 +282,11 @@ Configure server environment:
    ```
 
 2. **Server Won't Start**
-
    - Check the command in `~/.fastmcp/servers.json`
    - Verify the server is properly installed
    - Check logs for error messages
 
 3. **Installation Fails**
-
    - Ensure you have the required package manager (npm, pip, etc.)
    - Check internet connectivity
    - Try manual installation first

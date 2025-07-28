@@ -1,4 +1,4 @@
-"""Complete MCP Example with Self-Query Retriever, HITL, and Live Server Testing
+"""Complete MCP Example with Self-Query Retriever, HITL, and Live Server Testing.
 
 This example demonstrates:
 1. Setting up a self-query retriever for the MCP server database

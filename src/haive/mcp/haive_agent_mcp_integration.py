@@ -1,3 +1,15 @@
+"""Haive_Agent_Mcp_Integration core module.
+
+This module provides haive agent mcp integration functionality for the Haive framework.
+
+Classes:
+    HaiveMCPIntegration: HaiveMCPIntegration implementation.
+
+Functions:
+    discover_tool: Discover Tool functionality.
+    install_and_configure: Install And Configure functionality.
+"""
+
 #!/usr/bin/env python3
 """Haive Agent + MCP Tool Integration.
 

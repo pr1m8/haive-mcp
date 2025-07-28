@@ -1,4 +1,4 @@
-"""MCP Simple RAG Agent - Using Haive's proper patterns
+"""MCP Simple RAG Agent - Using Haive's proper patterns.
 
 This agent uses BaseRAGAgent and SimpleAgent to create a proper RAG system
 for MCP server discovery.

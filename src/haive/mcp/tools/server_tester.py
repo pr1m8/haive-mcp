@@ -1,4 +1,4 @@
-"""MCP server testing and validation tools.
+r"""MCP server testing and validation tools.
 
 This module provides tools for testing MCP server configurations, validating
 connections, and ensuring servers are working correctly before use in production.

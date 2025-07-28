@@ -1,4 +1,4 @@
-"""Complete End-to-End MCP Example with Parent Document Retriever
+"""Complete End-to-End MCP Example with Parent Document Retriever.
 
 This example demonstrates:
 1. Parent-child document retrieval for MCP servers

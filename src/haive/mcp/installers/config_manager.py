@@ -1,4 +1,4 @@
-"""MCP Configuration and Environment Management
+"""MCP Configuration and Environment Management.
 
 Handles .env files, configuration templates, and secure credential storage.
 """
@@ -12,7 +12,7 @@ from pydantic import BaseModel, Field, SecretStr
 
 
 class MCPEnvironmentConfig(BaseModel):
-    """Environment configuration for MCP servers"""
+    """Environment configuration for MCP servers."""
 
     # Basic server info
     server_name: str = Field(description="Unique server identifier")
@@ -51,7 +51,7 @@ class MCPEnvironmentConfig(BaseModel):
 
 @dataclass
 class MCPServerPattern:
-    """Standard pattern for MCP server installation"""
+    """Standard pattern for MCP server installation."""
 
     pattern_name: str
     package_pattern: str  # e.g., "@modelcontextprotocol/server-*"
@@ -64,7 +64,7 @@ class MCPServerPattern:
 
 
 class MCPConfigManager:
-    """Manages MCP server configurations and environment files"""
+    """Manages MCP server configurations and environment files."""
 
     def __init__(self, config_dir: Path | None = None):
         self.config_dir = config_dir or Path.home() / ".haive" / "mcp"
@@ -77,7 +77,7 @@ class MCPConfigManager:
         self._load_or_create_defaults()
 
     def _load_or_create_defaults(self):
-        """Load existing configs or create defaults"""
+        """Load existing configs or create defaults."""
         if not self.patterns_config.exists():
             self._create_default_patterns()
 
@@ -85,7 +85,7 @@ class MCPConfigManager:
             self._create_default_servers_config()
 
     def _create_default_patterns(self):
-        """Create default MCP server patterns"""
+        """Create default MCP server patterns."""
         default_patterns = {
             "filesystem": {
                 "pattern_name": "filesystem",
@@ -138,7 +138,7 @@ class MCPConfigManager:
             json.dump(default_patterns, f, indent=2)
 
     def _create_default_servers_config(self):
-        """Create default servers configuration"""
+        """Create default servers configuration."""
         default_config = {
             "version": "1.0",
             "servers": {},
@@ -153,7 +153,7 @@ class MCPConfigManager:
             json.dump(default_config, f, indent=2)
 
     def get_pattern(self, pattern_name: str) -> MCPServerPattern | None:
-        """Get a server pattern by name"""
+        """Get a server pattern by name."""
         if not self.patterns_config.exists():
             return None
 
@@ -166,7 +166,7 @@ class MCPConfigManager:
         return None
 
     def add_server_config(self, config: MCPEnvironmentConfig) -> bool:
-        """Add a new server configuration"""
+        """Add a new server configuration."""
         try:
             with open(self.servers_config) as f:
                 servers_data = json.load(f)
@@ -193,7 +193,7 @@ class MCPConfigManager:
             return False
 
     def _update_env_file(self, config: MCPEnvironmentConfig):
-        """Update .env file with server environment variables"""
+        """Update .env file with server environment variables."""
         env_lines = []
 
         # Read existing .env if it exists
@@ -223,7 +223,7 @@ class MCPConfigManager:
             f.write("\n".join(env_lines) + "\n")
 
     def get_server_config(self, server_name: str) -> MCPEnvironmentConfig | None:
-        """Get server configuration by name"""
+        """Get server configuration by name."""
         if not self.servers_config.exists():
             return None
 
@@ -241,7 +241,7 @@ class MCPConfigManager:
         return None
 
     def list_available_patterns(self) -> list[str]:
-        """List all available server patterns"""
+        """List all available server patterns."""
         if not self.patterns_config.exists():
             return []
 
@@ -251,7 +251,7 @@ class MCPConfigManager:
         return list(patterns.keys())
 
     def list_configured_servers(self) -> list[str]:
-        """List all configured servers"""
+        """List all configured servers."""
         if not self.servers_config.exists():
             return []
 
@@ -261,7 +261,7 @@ class MCPConfigManager:
         return list(servers_data.get("servers", {}).keys())
 
     def export_claude_desktop_config(self, server_name: str) -> dict[str, Any] | None:
-        """Export server config in Claude Desktop format"""
+        """Export server config in Claude Desktop format."""
         config = self.get_server_config(server_name)
         if not config:
             return None
@@ -290,7 +290,7 @@ class MCPConfigManager:
         return {server_name: claude_config}
 
     def get_config_summary(self) -> dict[str, Any]:
-        """Get summary of all configurations"""
+        """Get summary of all configurations."""
         return {
             "config_directory": str(self.config_dir),
             "env_file": str(self.env_file),

@@ -1,3 +1,13 @@
+"""Example_Server_Fastmcp core module.
+
+This module provides example server fastmcp functionality for the Haive framework.
+
+Functions:
+    read_file: Read File functionality.
+    write_file: Write File functionality.
+    list_directory: List Directory functionality.
+"""
+
 #!/usr/bin/env python3
 """Example MCP server using FastMCP for haive-dataflow integration."""
 

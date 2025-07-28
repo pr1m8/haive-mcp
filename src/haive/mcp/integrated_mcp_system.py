@@ -1,5 +1,19 @@
+"""Integrated_Mcp_System core module.
+
+This module provides integrated mcp system functionality for the Haive framework.
+
+Classes:
+    from: from implementation.
+    class: class implementation.
+    MCPServerInstaller: MCPServerInstaller implementation.
+
+Functions:
+    detect_package_manager: Detect Package Manager functionality.
+    install_server: Install Server functionality.
+"""
+
 #!/usr/bin/env python3
-"""Integrated MCP Discovery & Management System
+"""Integrated MCP Discovery & Management System.
 
 A complete end-to-end solution that combines:
 1. MCP server discovery with enhanced RAG search
@@ -34,7 +48,7 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class ServerInstallation:
-    """Track server installation status"""
+    """Track server installation status."""
 
     server_name: str
     status: str  # pending, installing, installed, failed
@@ -45,7 +59,7 @@ class ServerInstallation:
 
 
 class MCPServerInstaller:
-    """Handles server installation and setup"""
+    """Handles server installation and setup."""
 
     def __init__(self, manager_config_path: Path | None = None):
         self.manager_config_path = (
@@ -56,7 +70,7 @@ class MCPServerInstaller:
     async def detect_package_manager(
         self, server_data: dict[str, Any]
     ) -> tuple[str, str]:
-        """Detect appropriate package manager and command"""
+        """Detect appropriate package manager and command."""
         language = server_data.get("language", "").lower()
         install_cmd = server_data.get("install_command", "")
         repo_url = server_data.get("repository_url", "")
@@ -98,7 +112,7 @@ class MCPServerInstaller:
         return "unknown", ""
 
     async def install_server(self, server_data: dict[str, Any]) -> ServerInstallation:
-        """Install an MCP server"""
+        """Install an MCP server."""
         server_name = server_data.get("name", "unknown")
 
         try:
@@ -168,7 +182,7 @@ class MCPServerInstaller:
     async def add_to_fastmcp_manager(
         self, server_data: dict[str, Any], pkg_manager: str
     ):
-        """Add installed server to FastMCP manager configuration"""
+        """Add installed server to FastMCP manager configuration."""
         # Load existing config
         servers = {}
         if self.manager_config_path.exists():
@@ -241,7 +255,7 @@ class MCPServerInstaller:
 
 
 class IntegratedMCPSystem:
-    """Main integrated system combining discovery and management"""
+    """Main integrated system combining discovery and management."""
 
     def __init__(self):
         self.discovery_agent = SelfQueryMCPAgent()
@@ -250,7 +264,7 @@ class IntegratedMCPSystem:
         self.servers_data = load_mcp_servers_data()
 
     async def search_servers(self, query: str, method: str = "auto") -> dict[str, Any]:
-        """Search for MCP servers"""
+        """Search for MCP servers."""
         if method == "auto":
             method = self.discovery_agent.analyze_query_intent(query)
 
@@ -264,7 +278,7 @@ class IntegratedMCPSystem:
         return {"method": method, "documents": docs}
 
     async def install_and_configure(self, server_name: str) -> ServerInstallation:
-        """Install a server and configure it in FastMCP"""
+        """Install a server and configure it in FastMCP."""
         # Find server data
         server_data = None
         for server in self.servers_data:
@@ -285,7 +299,7 @@ class IntegratedMCPSystem:
         return installation
 
     def get_fastmcp_servers(self) -> dict[str, Any]:
-        """Get all FastMCP managed servers"""
+        """Get all FastMCP managed servers."""
         if not self.installer.manager_config_path.exists():
             return {}
 
@@ -294,7 +308,7 @@ class IntegratedMCPSystem:
             return data.get("servers", {})
 
     async def start_server(self, server_name: str) -> dict[str, Any]:
-        """Start a FastMCP server"""
+        """Start a FastMCP server."""
         servers = self.get_fastmcp_servers()
         if server_name not in servers:
             return {"success": False, "error": f"Server {server_name} not found"}
@@ -320,7 +334,7 @@ class IntegratedMCPSystem:
             return {"success": False, "error": f"Failed to start server: {e!s}"}
 
     async def stop_server(self, server_name: str, pid: int) -> dict[str, Any]:
-        """Stop a running server"""
+        """Stop a running server."""
         try:
             # Send terminate signal
             os.kill(pid, 15)  # SIGTERM
@@ -331,7 +345,7 @@ class IntegratedMCPSystem:
 
 # Streamlit Web Interface
 def create_web_interface():
-    """Create the integrated web interface"""
+    """Create the integrated web interface."""
     st.set_page_config(
         page_title="MCP Integrated System", page_icon="🚀", layout="wide"
     )
@@ -369,7 +383,7 @@ def create_web_interface():
 
 
 def show_discovery_tab(system):
-    """Discovery and installation tab"""
+    """Discovery and installation tab."""
     st.subheader("🔍 Discover MCP Servers")
 
     # Search interface
@@ -437,7 +451,7 @@ def show_discovery_tab(system):
 
 
 def show_installed_tab(system):
-    """Show installed servers"""
+    """Show installed servers."""
     st.subheader("📦 Installed MCP Servers")
 
     servers = system.get_fastmcp_servers()
@@ -521,7 +535,7 @@ def show_installed_tab(system):
 
 
 def show_running_tab(system):
-    """Show running servers"""
+    """Show running servers."""
     st.subheader("🎮 Running MCP Servers")
 
     running = st.session_state.running_servers
@@ -559,7 +573,7 @@ def show_running_tab(system):
 
 
 def show_analytics_tab(system):
-    """Show analytics and statistics"""
+    """Show analytics and statistics."""
     st.subheader("📊 MCP System Analytics")
 
     # Get statistics

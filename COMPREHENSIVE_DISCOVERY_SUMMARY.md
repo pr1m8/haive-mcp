@@ -80,22 +80,18 @@ The pattern we built for MCP can be applied to **any ecosystem with rich documen
 ### **Target Ecosystems Identified**
 
 1. **LangChain Tools** (~1000+ integrations)
-
    - Document loaders, text splitters, vector stores
    - Tool implementations across langchain-ai/langchain
 
 2. **Hugging Face Models** (~500k+ models)
-
    - Model cards with capability descriptions
    - Specialized domain models for agent enhancement
 
 3. **Docker Images** (~millions of images)
-
    - Dockerfile analysis for deployment configs
    - Container agents for infrastructure management
 
 4. **GitHub Actions** (~10k+ actions)
-
    - Workflow documentation for CI/CD automation
    - Action marketplace parsing
 

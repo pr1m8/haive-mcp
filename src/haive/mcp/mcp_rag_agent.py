@@ -1,4 +1,4 @@
-"""MCP RAG Agent - Simplified version that works with our enhanced retriever
+"""MCP RAG Agent - Simplified version that works with our enhanced retriever.
 
 This agent helps users find and understand MCP servers using RAG.
 """

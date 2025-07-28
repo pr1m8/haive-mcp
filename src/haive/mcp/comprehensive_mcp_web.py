@@ -1,5 +1,15 @@
+"""Comprehensive_Mcp_Web core module.
+
+This module provides comprehensive mcp web functionality for the Haive framework.
+
+Functions:
+    main: Main functionality.
+    show_dashboard: Show Dashboard functionality.
+    show_advanced_search: Show Advanced Search functionality.
+"""
+
 #!/usr/bin/env python3
-"""Comprehensive MCP Discovery Web Interface
+"""Comprehensive MCP Discovery Web Interface.
 
 Combines all features:
 - CSV data browsing with sorting/filtering

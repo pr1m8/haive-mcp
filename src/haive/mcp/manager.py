@@ -379,7 +379,7 @@ class MCPManager(BaseModel):
     async def _handle_session_connection(
         self, server_name: str, config: MCPServerConfig, session, server_params
     ):
-        """Handle successful session connection and tool discovery"""
+        """Handle successful session connection and tool discovery."""
         try:
             # Store session info (simplified for now)
             self._clients[server_name] = {

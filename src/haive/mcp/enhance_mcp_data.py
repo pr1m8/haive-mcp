@@ -1,5 +1,17 @@
+"""Enhance_Mcp_Data core module.
+
+This module provides enhance mcp data functionality for the Haive framework.
+
+Classes:
+    GitHubDataEnhancer: GitHubDataEnhancer implementation.
+    MCPDataEnhancer: MCPDataEnhancer implementation.
+    for: for implementation.
+
+Functions:
+"""
+
 #!/usr/bin/env python3
-"""Enhanced MCP Data Collector
+"""Enhanced MCP Data Collector.
 
 Collects comprehensive information about MCP servers including:
 - Full README content

@@ -1,4 +1,4 @@
-"""Production MCP Discovery and Installation Tool
+"""Production MCP Discovery and Installation Tool.
 
 Leverages the existing haive-mcp infrastructure with 1,960 servers to:
 1. RAG search through the complete MCP server database

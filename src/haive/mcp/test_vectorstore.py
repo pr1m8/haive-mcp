@@ -1,4 +1,4 @@
-"""Test vector store directly to debug retrieval issues"""
+"""Test vector store directly to debug retrieval issues."""
 
 from langchain_community.vectorstores import FAISS
 from langchain_huggingface import HuggingFaceEmbeddings

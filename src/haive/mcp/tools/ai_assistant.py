@@ -1,4 +1,4 @@
-"""AI-friendly MCP server selection and configuration assistant.
+r"""AI-friendly MCP server selection and configuration assistant.
 
 This module provides tools specifically designed for AI agents to automatically
 select, configure, and use MCP servers based on task analysis and intelligent

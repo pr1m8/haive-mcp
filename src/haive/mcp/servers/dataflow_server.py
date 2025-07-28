@@ -1,3 +1,13 @@
+"""Dataflow_Server core module.
+
+This module provides dataflow server functionality for the Haive framework.
+
+Functions:
+    list_components: List Components functionality.
+    get_component_details: Get Component Details functionality.
+    register_component: Register Component functionality.
+"""
+
 #!/usr/bin/env python3
 """Haive Dataflow MCP Server - Provides access to haive-dataflow registry and components."""
 

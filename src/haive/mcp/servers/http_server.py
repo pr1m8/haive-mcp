@@ -1,3 +1,13 @@
+"""Http_Server core module.
+
+This module provides http server functionality for the Haive framework.
+
+Functions:
+    echo: Echo functionality.
+    get_server_time: Get Server Time functionality.
+    calculate: Calculate functionality.
+"""
+
 #!/usr/bin/env python3
 """HTTP-based MCP server for haive using FastAPI and SSE transport."""
 
