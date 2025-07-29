@@ -77,8 +77,6 @@ logger = logging.getLogger(__name__)
 try:
     from langchain_mcp_adapters.client import (
         MultiServerMCPClient,
-        SSEConnection,
-        StdioConnection,
     )
 
     MCP_AVAILABLE = True

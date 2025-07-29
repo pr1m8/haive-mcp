@@ -39,27 +39,27 @@ def check_dependencies():
     missing = []
 
     try:
-        import streamlit
+        pass
     except ImportError:
         missing.append("streamlit")
 
     try:
-        import plotly
+        pass
     except ImportError:
         missing.append("plotly")
 
     try:
-        import pandas
+        pass
     except ImportError:
         missing.append("pandas")
 
     try:
-        import aiohttp
+        pass
     except ImportError:
         missing.append("aiohttp")
 
     try:
-        import psutil
+        pass
     except ImportError:
         missing.append("psutil")
 

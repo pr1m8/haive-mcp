@@ -192,7 +192,6 @@ class ServerFilter:
         Returns:
             List of servers matching all criteria
         """
-
         # Start with all servers
         candidates = set(range(len(self.servers)))
 

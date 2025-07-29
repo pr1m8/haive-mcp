@@ -501,7 +501,7 @@ async def main():
 if __name__ == "__main__":
     # Ensure we have FastMCP available
     try:
-        import fastmcp
+        pass
     except ImportError:
         print("Installing FastMCP...")
         subprocess.run([sys.executable, "-m", "pip", "install", "fastmcp"], check=True)

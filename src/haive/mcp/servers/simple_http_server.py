@@ -62,7 +62,6 @@ async def index(request: web.Request) -> web.Response:
 @routes.get("/tools")
 async def list_tools(request: web.Request) -> web.Response:
     """List available tools."""
-
     # Get tools from MCP server
     # Note: In real implementation, we'd use MCP's internal registry
     tools_info = {

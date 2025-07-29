@@ -44,9 +44,10 @@ Example:
 import asyncio
 import json
 import logging
+from collections.abc import Callable
 from datetime import datetime
 from enum import Enum
-from typing import Any, Callable, Optional
+from typing import Any
 
 from haive.agents.react import ReactAgent
 from haive.agents.simple import SimpleAgent
@@ -93,10 +94,10 @@ class HITLApprovalRequest(BaseModel):
     recommendation: ServerRecommendation = Field(description="Server recommendation")
     context: dict[str, Any] = Field(description="Additional context")
     status: ApprovalStatus = Field(default=ApprovalStatus.PENDING)
-    response_deadline: Optional[datetime] = Field(
+    response_deadline: datetime | None = Field(
         default=None, description="Deadline for response"
     )
-    approval_callback: Optional[str] = Field(
+    approval_callback: str | None = Field(
         default=None, description="Callback identifier"
     )
 
@@ -145,7 +146,7 @@ class IntelligentMCPAgent(ReactAgent):
         default_factory=MCPManager, description="Dynamic MCP manager"
     )
 
-    doc_agent: Optional[Any] = Field(
+    doc_agent: Any | None = Field(
         default=None, description="Documentation agent for discovery"
     )
 
@@ -162,7 +163,7 @@ class IntelligentMCPAgent(ReactAgent):
         default=30.0, description="Timeout for approval requests"
     )
 
-    approval_callback: Optional[Callable] = Field(
+    approval_callback: Callable | None = Field(
         default=None, description="Custom approval callback"
     )
 
