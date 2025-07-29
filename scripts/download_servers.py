@@ -2,6 +2,7 @@
 """Main CLI for downloading MCP servers.
 
 A unified command-line interface for downloading and managing MCP servers
+from typing import List
 from various sources including npm, PyPI, GitHub, and Docker Hub.
 """
 
