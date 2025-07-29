@@ -9,6 +9,7 @@ with the existing AugLLMConfig functionality.
 import asyncio
 import logging
 from pathlib import Path
+from typing import List
 
 # Agent imports for demonstration
 from haive.agents import ReactAgent

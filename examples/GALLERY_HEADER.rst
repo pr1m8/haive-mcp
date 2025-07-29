@@ -1,14 +1,32 @@
-Haive MCP Integration Examples
-==============================
+MCP Examples
+============
 
-This gallery demonstrates Model Context Protocol (MCP) integration patterns with Haive.
+Welcome to the haive-mcp examples gallery. These examples demonstrate various
+features and use cases of the MCP package.
 
-Examples include:
+The examples are organized to mirror the source code structure, making it easy to
+find examples for specific components or features.
 
-- **Basic MCP Agents**: Simple MCP-enabled agents
-- **Server Discovery**: Dynamic MCP server discovery
-- **Tool Integration**: Using MCP servers as tools
-- **Complete Workflows**: End-to-end MCP integration
-- **Advanced Patterns**: Complex MCP architectures
+.. note::
+   
+   All examples are self-contained and can be run directly. Make sure you have
+   the necessary dependencies installed and API keys configured if required.
 
-These examples show how to leverage MCP servers for enhanced agent capabilities.
+Example Categories
+------------------
+
+**Servers**
+
+- Core Servers examples
+
+
+Running Examples
+----------------
+
+To run any example::
+
+    cd haive-mcp
+    poetry run python examples/path/to/example.py
+
+Some examples may require environment variables or API keys. Check the example's
+docstring for specific requirements.
