@@ -237,9 +237,7 @@ class AdvancedCodeInstaller:
 
                 if result.returncode == 0:
                     return f"✅ Command succeeded:\n{result.stdout}"
-                return f"❌ Command failed (exit code {
-                    result.returncode}):\n{
-                    result.stderr}"
+                return f"❌ Command failed (exit code {result.returncode}):\n{result.stderr}"
 
             except subprocess.TimeoutExpired:
                 return f"❌ Command timed out after {timeout} seconds"

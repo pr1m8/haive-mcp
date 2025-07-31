@@ -98,9 +98,7 @@ class SafePatternInstaller:
         if pattern.security_level == "high_risk":
             return (
                 False,
-                f"Pattern {
-                    request.pattern_type
-                } is marked as high risk and not allowed in safe mode",
+                f"Pattern {request.pattern_type} is marked as high risk and not allowed in safe mode",
             )
 
         # Validate package name format

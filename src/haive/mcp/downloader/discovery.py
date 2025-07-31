@@ -227,9 +227,7 @@ class ServerDiscovery:
 
             # Rebuild URL
 
-            url = f"{parsed.scheme}://{parsed.netloc}{parsed.path}?{
-                urlencode(query_params, doseq=True)
-            }"
+            url = f"{parsed.scheme}://{parsed.netloc}{parsed.path}?{urlencode(query_params, doseq=True)}"
 
             async with session.get(url) as response:
                 if response.status == 200:

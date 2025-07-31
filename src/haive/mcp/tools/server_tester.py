@@ -525,21 +525,17 @@ class MCPServerTester:
 
             if success_rate < 0.5:
                 recommendations.append(
-                    f"Server '{server_name}' has low success rate ({
-                        success_rate:.1%}) - check configuration"
+                    f"Server '{server_name}' has low success rate ({success_rate:.1%}) - check configuration"
                 )
 
             if latest_test.response_time > 30:
                 recommendations.append(
-                    f"Server '{server_name}' has slow response time ({
-                        latest_test.response_time:.1f}s)"
+                    f"Server '{server_name}' has slow response time ({latest_test.response_time:.1f}s)"
                 )
 
             if latest_test.warnings:
                 recommendations.append(
-                    f"Server '{server_name}' has warnings: {
-                        '; '.join(
-                            latest_test.warnings)}"
+                    f"Server '{server_name}' has warnings: {'; '.join(latest_test.warnings)}"
                 )
 
         return recommendations

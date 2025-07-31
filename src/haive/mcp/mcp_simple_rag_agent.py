@@ -531,9 +531,7 @@ async def ask_agent(request: QueryRequest):
                             )
 
                             if direct_results:
-                                response_text = f"Found {
-                                    len(direct_results)
-                                } MCP servers matching '{request.query}' (via direct search):\n\n"
+                                response_text = f"Found {len(direct_results)} MCP servers matching '{request.query}' (via direct search):\n\n"
                                 for i, doc in enumerate(direct_results[:5], 1):
                                     server_name = doc.metadata.get(
                                         "server_name", "Unknown"
