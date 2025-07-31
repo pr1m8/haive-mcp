@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Simple working background downloader for MCP servers."""
 
-from datetime import datetime
 import json
-from pathlib import Path
 import subprocess
 import sys
+from datetime import datetime
+from pathlib import Path
 
 
 def run_command(cmd, cwd=None):
@@ -33,8 +33,6 @@ def run_command(cmd, cwd=None):
 
 def download_mcp_servers():
     """Download essential MCP servers."""
-    print("🚀 Starting MCP Server Downloads...")
-
     # Create downloads directory
     Path("downloads").mkdir(exist_ok=True)
 
@@ -43,14 +41,8 @@ def download_mcp_servers():
     results = []
 
     if data_file.exists():
-        print(f"📊 Loading server data from {data_file}...")
         with open(data_file) as f:
             server_data = json.load(f)
-
-        print(f"🔍 Data type: {type(server_data)}")
-        print(
-            f"📊 Data length: {len(server_data) if isinstance(server_data, list) else 'N/A'}"
-        )
 
         # Handle list format (actual structure)
         if isinstance(server_data, list):
@@ -58,7 +50,6 @@ def download_mcp_servers():
 
             for server_info in servers_to_process:
                 server_name = server_info.get("metadata", {}).get("name", "unknown")
-                print(f"📋 Processing {server_name}...")
 
                 # Extract useful info
                 results.append(
@@ -73,10 +64,8 @@ def download_mcp_servers():
                         "language": server_info.get("metadata", {}).get("language", ""),
                     }
                 )
-                print(f"  ✅ {server_name} processed")
 
         else:
-            print("⚠️  Unexpected data format, using fallback...")
             # Fallback method
             fallback_servers = ["filesystem", "github", "sqlite", "postgres"]
             for server in fallback_servers:
@@ -89,12 +78,10 @@ def download_mcp_servers():
                 )
 
     else:
-        print("⚠️  Server data file not found, using fallback method...")
         # Fallback to basic servers without npm install
         fallback_servers = ["filesystem", "github", "sqlite", "postgres"]
 
         for server in fallback_servers:
-            print(f"📋 Recording {server}...")
             results.append(
                 {
                     "server": server,
@@ -103,7 +90,6 @@ def download_mcp_servers():
                     "command": f"# MCP server: {server}",
                 }
             )
-            print(f"  ✅ {server} recorded")
 
     # Create config
     config = {
@@ -133,12 +119,6 @@ def download_mcp_servers():
     with open(config_path, "w") as f:
         json.dump(config, f, indent=2)
 
-    print("\n✅ Download complete!")
-    print(
-        f"📊 Results: {config['download_summary']['successful']}/{config['download_summary']['total']} successful"
-    )
-    print(f"📋 Config saved: {config_path}")
-
     return config
 
 
@@ -149,12 +129,8 @@ def start_background():
     def download_worker():
         download_mcp_servers()
 
-    print("🌟 Starting background download...")
     process = multiprocessing.Process(target=download_worker)
     process.start()
-
-    print(f"🚀 Background download started with PID: {process.pid}")
-    print("📊 Monitor: ls downloads/")
 
     return process.pid
 

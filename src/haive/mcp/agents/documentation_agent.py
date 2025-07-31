@@ -1,4 +1,4 @@
-"""MCP Documentation Agent for processing and setting up MCP servers.
+r"""MCP Documentation Agent for processing and setting up MCP servers.
 
 This module provides a specialized agent that combines document processing
 capabilities with MCP knowledge to help users understand, configure, and
@@ -65,19 +65,18 @@ import logging
 from pathlib import Path
 from typing import Any
 
+from haive.agents.document.agent import DocumentAgent
 from pydantic import Field
 
-from haive.agents.document.agent import DocumentAgent
 from haive.mcp.config import MCPConfig, MCPServerConfig
 from haive.mcp.documentation.doc_loader import MCPDocumentationLoader
 from haive.mcp.mixins.mcp_mixin import MCPMixin
-
 
 logger = logging.getLogger(__name__)
 
 
 class MCPDocumentationAgent(MCPMixin, DocumentAgent):
-    """Agent specialized for processing MCP server documentation and generating setup instructions.
+    r"""Agent specialized for processing MCP server documentation and generating setup instructions.
 
     MCPDocumentationAgent extends DocumentAgent with specialized capabilities for
     processing Model Context Protocol server documentation. It can extract setup
@@ -234,7 +233,7 @@ class MCPDocumentationAgent(MCPMixin, DocumentAgent):
 
     @classmethod
     def create_for_mcp_research(cls, **kwargs) -> "MCPDocumentationAgent":
-        """Create an agent for researching MCP capabilities.
+        r"""Create an agent for researching MCP capabilities.
 
         Factory method that creates an agent optimized for comprehensive
         research across multiple MCP server documentations. Uses parallel
@@ -370,7 +369,9 @@ class MCPDocumentationAgent(MCPMixin, DocumentAgent):
                             )
 
                 except Exception as e:
-                    logger.error(f"Failed to fetch latest docs for {server_name}: {e}")
+                    logger.exception(
+                        f"Failed to fetch latest docs for {server_name}: {e}"
+                    )
 
         return result
 

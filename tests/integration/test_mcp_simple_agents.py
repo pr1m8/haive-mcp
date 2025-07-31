@@ -2,11 +2,11 @@
 
 from typing import Any
 
-from pydantic import BaseModel, Field
 import pytest
-
 from haive.core.engine.aug_llm import AugLLMConfig
 from haive.core.models.llm.base import LLMConfig
+from pydantic import BaseModel, Field
+
 from haive.mcp.config import MCPConfig, MCPServerConfig
 from haive.mcp.mixins.mcp_mixin import MCPMixin
 
@@ -80,7 +80,7 @@ class SimpleReActAgent(SimpleMCPAgent):
     async def act(self, thought: str) -> str:
         """Simple action step."""
         if self._mcp_tools:
-            return f"Using MCP tool: {list(self._mcp_tools.keys())[0]}"
+            return f"Using MCP tool: {next(iter(self._mcp_tools.keys()))}"
         return "No tools available"
 
     async def arun(self, input_data: dict[str, Any]) -> dict[str, Any]:

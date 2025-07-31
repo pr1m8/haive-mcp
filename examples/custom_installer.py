@@ -5,10 +5,9 @@ This example shows how to extend the installer system with custom installation m
 """
 
 import asyncio
-from pathlib import Path
 import sys
+from pathlib import Path
 from typing import Any
-
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
@@ -92,7 +91,6 @@ class ScriptInstaller(MCPInstaller):
         """Run custom installation script."""
         import subprocess
 
-        script_url = server_config.source
         script_commands = template.post_install
 
         try:
@@ -147,9 +145,6 @@ async def test_custom_installers():
     # Add custom installers
     downloader.installers.extend([BinaryInstaller(), ScriptInstaller()])
 
-    print("🔧 Testing custom installers...")
-    print("-" * 50)
-
     # Add custom installation method to enum (for demo)
     # In production, extend the InstallationMethod enum
 
@@ -196,13 +191,9 @@ async def test_custom_installers():
     downloader.templates["script_server"] = script_template
     downloader.servers.extend([binary_config, script_config])
 
-    print("\n✅ Custom installers registered!")
-    print(f"Total installers: {len(downloader.installers)}")
-
     # Test can_handle
     binary_installer = BinaryInstaller()
-    can_handle = await binary_installer.can_handle(binary_config, binary_template)
-    print(f"\nBinary installer can handle: {can_handle}")
+    await binary_installer.can_handle(binary_config, binary_template)
 
     return downloader
 
@@ -245,24 +236,11 @@ async def create_webhook_installer():
 
 async def main():
     """Run custom installer examples."""
-    print("Custom MCP Installer Examples")
-    print("=" * 50)
-
     # Test custom installers
-    downloader = await test_custom_installers()
+    await test_custom_installers()
 
     # Create webhook installer
-    webhook_installer = await create_webhook_installer()
-    print(f"\n✅ Created webhook installer: {webhook_installer.__class__.__name__}")
-
-    print("\n💡 Custom installers allow you to:")
-    print("  - Download binary executables")
-    print("  - Run custom installation scripts")
-    print("  - Send notifications via webhooks")
-    print("  - Integrate with CI/CD systems")
-    print("  - Support proprietary installation methods")
-
-    print("\n✨ Example complete!")
+    await create_webhook_installer()
 
 
 if __name__ == "__main__":

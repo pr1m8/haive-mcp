@@ -79,7 +79,7 @@ async def list_components(component_type: str = "all") -> dict[str, Any]:
         return results
 
     except Exception as e:
-        logger.error(f"Error listing components: {e}")
+        logger.exception(f"Error listing components: {e}")
         return {"error": str(e)}
 
 
@@ -118,7 +118,7 @@ async def get_component_details(component_id: str) -> dict[str, Any]:
         }
 
     except Exception as e:
-        logger.error(f"Error getting component details: {e}")
+        logger.exception(f"Error getting component details: {e}")
         return {"error": str(e)}
 
 
@@ -161,7 +161,7 @@ async def register_component(
     except ValueError:
         return {"error": f"Invalid component type: {component_type}"}
     except Exception as e:
-        logger.error(f"Error registering component: {e}")
+        logger.exception(f"Error registering component: {e}")
         return {"error": str(e)}
 
 
@@ -191,7 +191,7 @@ async def discover_components(component_type: str) -> dict[str, Any]:
         return {"error": f"Discovery not supported for type: {component_type}"}
 
     except Exception as e:
-        logger.error(f"Error discovering components: {e}")
+        logger.exception(f"Error discovering components: {e}")
         return {"error": str(e)}
 
 

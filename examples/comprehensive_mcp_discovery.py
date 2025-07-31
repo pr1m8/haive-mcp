@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Comprehensive MCP Server Discovery System
+"""Comprehensive MCP Server Discovery System.
 
 Discovers MCP servers from all major sources and updates our database.
 Fixes the issues from the previous demo and implements robust parsing.
@@ -16,12 +16,11 @@ Usage:
 """
 
 import asyncio
-from dataclasses import dataclass
 import json
 import logging
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
-
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -177,7 +176,7 @@ class ComprehensiveMCPDiscovery:
                 results[source.name] = source_results
                 logger.info(f"   ✅ Found {len(source_results)} servers")
             except Exception as e:
-                logger.error(f"   ❌ Failed to scan {source.name}: {e}")
+                logger.exception(f"   ❌ Failed to scan {source.name}: {e}")
                 results[source.name] = {"error": str(e), "servers": []}
 
         # Consolidate and deduplicate
@@ -263,7 +262,7 @@ class ComprehensiveMCPDiscovery:
         ]
 
         servers = []
-        for i, pattern in enumerate(server_patterns[: source.estimated_count // 10]):
+        for _i, pattern in enumerate(server_patterns[: source.estimated_count // 10]):
             servers.append(
                 {
                     "name": f"mcp-server-{pattern}",
@@ -498,35 +497,20 @@ class ComprehensiveMCPDiscovery:
 
 async def main():
     """Run comprehensive MCP server discovery."""
-    print("🚀 Comprehensive MCP Server Discovery")
-    print("=" * 50)
-
     discovery = ComprehensiveMCPDiscovery()
 
     # Run discovery
     results = await discovery.discover_all()
 
     # Print summary
-    print("\n📊 Discovery Summary:")
-    print(f"   Sources scanned: {results['sources_scanned']}")
-    print(f"   Total discovered: {results['total_discovered']}")
-    print(f"   Consolidated unique: {results['consolidated_servers']}")
 
     # Analyze gaps
     gaps = await discovery.analyze_gaps()
-    print("\n🔍 Coverage Analysis:")
-    for gap in gaps:
-        print(f"   • {gap}")
+    for _gap in gaps:
+        pass
 
     # Save results
     await discovery.save_results(results)
-
-    print("\n✅ Discovery complete!")
-    print("\n💡 Next steps:")
-    print("   • Implement real GitHub API integration")
-    print("   • Add registry API scrapers")
-    print("   • Compare with existing 992-server database")
-    print("   • Update our database with new findings")
 
 
 if __name__ == "__main__":

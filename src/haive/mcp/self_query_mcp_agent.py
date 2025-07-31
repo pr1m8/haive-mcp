@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Self Query MCP Discovery Agent
+"""Self Query MCP Discovery Agent.
 
 Enhanced RAG agent that uses Self Query methodology for structured querying
 with metadata filtering and parent document retrieval.
@@ -52,8 +52,6 @@ class EnhancedMCPDocument:
         with open(data_path) as f:
             data = json.load(f)
             servers = data.get("all_servers", [])
-
-        print(f"📚 Processing {len(servers)} MCP servers for enhanced retrieval...")
 
         parent_docs = []
         child_docs = []
@@ -156,9 +154,6 @@ class EnhancedMCPDocument:
                 child_doc = Document(page_content=chunk, metadata=chunk_metadata)
                 child_docs.append(child_doc)
 
-        print(
-            f"✅ Created {len(parent_docs)} parent documents and {len(child_docs)} child chunks"
-        )
         return parent_docs, child_docs
 
 
@@ -253,18 +248,14 @@ class SelfQueryMCPAgent:
 
     async def search_with_self_query(self, query: str, k: int = 5) -> list[Document]:
         """Search using self-query retriever for structured queries."""
-        print(f"🔍 Self-query search: {query}")
-
         try:
             docs = await asyncio.to_thread(
                 self.self_query_retriever.get_relevant_documents, query
             )
 
-            print(f"📚 Self-query found {len(docs)} documents")
             return docs[:k]
 
-        except Exception as e:
-            print(f"❌ Self-query error: {e}")
+        except Exception:
             # Fallback to standard similarity search
             return await self.search_similarity(query, k)
 
@@ -272,33 +263,24 @@ class SelfQueryMCPAgent:
         self, query: str, k: int = 5
     ) -> list[Document]:
         """Search using parent document retriever for full content."""
-        print(f"🔍 Parent document search: {query}")
-
         try:
             docs = await asyncio.to_thread(
                 self.parent_retriever.get_relevant_documents, query
             )
 
-            print(f"📚 Parent retriever found {len(docs)} full documents")
             return docs[:k]
 
-        except Exception as e:
-            print(f"❌ Parent retriever error: {e}")
+        except Exception:
             return await self.search_similarity(query, k)
 
     async def search_similarity(self, query: str, k: int = 5) -> list[Document]:
         """Fallback similarity search."""
-        print(f"🔍 Similarity search: {query}")
-
         docs = await asyncio.to_thread(self.vectorstore.similarity_search, query, k=k)
 
-        print(f"📚 Similarity search found {len(docs)} documents")
         return docs
 
     async def hybrid_search(self, query: str, k: int = 5) -> dict[str, list[Document]]:
         """Perform all search methods and return results."""
-        print(f"🚀 Hybrid search for: {query}")
-
         results = {}
 
         # Self-query search (best for structured queries)
@@ -362,40 +344,23 @@ async def test_enhanced_agent():
     ]
 
     for query in test_queries:
-        print(f"\n{'=' * 80}")
-        print(f"🔍 Query: {query}")
-        print(f"{'=' * 80}")
 
         # Determine best search method
-        method = agent.analyze_query_intent(query)
-        print(f"🎯 Recommended method: {method}")
+        agent.analyze_query_intent(query)
 
         # Perform hybrid search
         results = await agent.hybrid_search(query, k=3)
 
-        for search_type, docs in results.items():
-            print(f"\n📊 {search_type.upper()} Results ({len(docs)} found):")
-            print("-" * 50)
+        for _search_type, docs in results.items():
 
-            for i, doc in enumerate(docs, 1):
-                metadata = doc.metadata
-                content_preview = (
+            for _i, doc in enumerate(docs, 1):
+                (
                     doc.page_content[:200] + "..."
                     if len(doc.page_content) > 200
                     else doc.page_content
                 )
 
-                print(f"{i}. {metadata.get('server_name', 'Unknown')}")
-                print(f"   Category: {metadata.get('category', 'unknown')}")
-                print(f"   Language: {metadata.get('language', 'unknown')}")
-                print(f"   Stars: {metadata.get('stars', 0)}")
-                print(f"   Features: {metadata.get('total_features', 0)}")
-                print(f"   Preview: {content_preview}")
-                print()
-
 
 if __name__ == "__main__":
-    print("🚀 Enhanced MCP Discovery Agent with Self Query & Parent Retrieval")
-    print("=" * 80)
 
     asyncio.run(test_enhanced_agent())

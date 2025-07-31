@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Comprehensive MCP Discovery Web Interface
+"""Comprehensive MCP Discovery Web Interface.
 
 Combines all features:
 - CSV data browsing with sorting/filtering
@@ -9,15 +9,14 @@ Combines all features:
 """
 
 import asyncio
-from datetime import datetime
 import json
+from datetime import datetime
 from typing import Any
 
-from csv_viewer import create_csv_export, load_mcp_servers_data
 import plotly.express as px
-from self_query_mcp_agent import SelfQueryMCPAgent
 import streamlit as st
-
+from csv_viewer import create_csv_export, load_mcp_servers_data
+from self_query_mcp_agent import SelfQueryMCPAgent
 
 # Import our custom components
 
@@ -176,9 +175,8 @@ def show_advanced_search():
         )
 
     with col3:
-        if st.button("🚀 Search", type="primary"):
-            if search_query:
-                perform_advanced_search(search_query, search_methods, max_results)
+        if st.button("🚀 Search", type="primary") and search_query:
+            perform_advanced_search(search_query, search_methods, max_results)
 
 
 def perform_advanced_search(query: str, methods: list[str], max_results: int):
@@ -293,11 +291,11 @@ def show_data_browser():
         col1, col2, col3, col4 = st.columns(4)
 
         with col1:
-            categories = ["All"] + sorted(df["category"].unique().tolist())
+            categories = ["All", *sorted(df["category"].unique().tolist())]
             selected_category = st.selectbox("Category", categories)
 
         with col2:
-            languages = ["All"] + sorted(df["language"].unique().tolist())
+            languages = ["All", *sorted(df["language"].unique().tolist())]
             selected_language = st.selectbox("Language", languages)
 
         with col3:
@@ -325,7 +323,7 @@ def show_data_browser():
     filtered_df = filtered_df[filtered_df["total_features"] >= min_features]
 
     if has_install:
-        filtered_df = filtered_df[filtered_df["has_install_command"] == True]
+        filtered_df = filtered_df[filtered_df["has_install_command"]]
 
     # Sort
     filtered_df = filtered_df.sort_values(sort_by, ascending=not sort_desc)

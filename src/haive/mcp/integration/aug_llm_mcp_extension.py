@@ -8,13 +8,12 @@ prompts within the Haive agent framework.
 import logging
 from typing import Any
 
+from haive.core.engine.aug_llm import AugLLMConfig
 from langchain_core.tools import BaseTool
 from pydantic import BaseModel, Field
 
-from haive.core.engine.aug_llm import AugLLMConfig
 from haive.mcp.config import MCPConfig, MCPServerConfig
 from haive.mcp.manager import MCPManager
-
 
 logger = logging.getLogger(__name__)
 
@@ -69,7 +68,7 @@ class MCPToolWrapper(BaseTool):
             result = await self.mcp_client.call_tool(self.name, arguments=kwargs)
             return result
         except Exception as e:
-            logger.error(f"Error executing MCP tool {self.name}: {e}")
+            logger.exception(f"Error executing MCP tool {self.name}: {e}")
             raise
 
 
@@ -141,7 +140,7 @@ class MCPAugLLMConfig(AugLLMConfig):
             logger.info("MCP integration setup complete")
 
         except Exception as e:
-            logger.error(f"Error setting up MCP integration: {e}")
+            logger.exception(f"Error setting up MCP integration: {e}")
             raise
 
     async def _discover_mcp_tools(self) -> None:
@@ -169,7 +168,7 @@ class MCPAugLLMConfig(AugLLMConfig):
                 logger.info(f"Discovered {len(tools)} tools from {server_name}")
 
             except Exception as e:
-                logger.error(f"Error discovering tools from {server_name}: {e}")
+                logger.exception(f"Error discovering tools from {server_name}: {e}")
 
         # Add wrapped tools to the config
         if wrapped_tools:
@@ -205,7 +204,7 @@ class MCPAugLLMConfig(AugLLMConfig):
                 logger.info(f"Loaded {len(resources)} resources from {server_name}")
 
             except Exception as e:
-                logger.error(f"Error loading resources from {server_name}: {e}")
+                logger.exception(f"Error loading resources from {server_name}: {e}")
 
     async def _load_mcp_prompts(self) -> None:
         """Load MCP prompts from connected servers."""
@@ -231,7 +230,7 @@ class MCPAugLLMConfig(AugLLMConfig):
                 logger.info(f"Loaded {len(prompts)} prompts from {server_name}")
 
             except Exception as e:
-                logger.error(f"Error loading prompts from {server_name}: {e}")
+                logger.exception(f"Error loading prompts from {server_name}: {e}")
 
     def enhance_system_prompt_with_mcp(self) -> str:
         """Enhance the system prompt with MCP information.
@@ -326,7 +325,7 @@ def extend_aug_llm_config_for_mcp(
 async def create_mcp_enabled_aug_config(
     name: str,
     model: str = "gpt-4o-mini",
-    mcp_servers: dict[str, MCPServerConfig] = None,
+    mcp_servers: dict[str, MCPServerConfig] | None = None,
     **kwargs,
 ) -> MCPAugLLMConfig:
     """Factory function to create an MCP-enabled AugLLMConfig.

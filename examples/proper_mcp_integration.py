@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Proper MCP Integration - Using correct langchain tool patterns
+"""Proper MCP Integration - Using correct langchain tool patterns.
 
 This demonstrates the RIGHT way to create MCP tools:
 1. Using @tool decorator
@@ -19,7 +19,7 @@ from pydantic import BaseModel, Field
 
 
 class MCPServerManager:
-    """Manages MCP server processes and state - OUTSIDE of tool classes"""
+    """Manages MCP server processes and state - OUTSIDE of tool classes."""
 
     def __init__(self):
         self.servers: dict[str, subprocess.Popen] = {}
@@ -27,7 +27,7 @@ class MCPServerManager:
         self.request_ids: dict[str, int] = {}
 
     async def start_filesystem_server(self) -> bool:
-        """Start MCP filesystem server"""
+        """Start MCP filesystem server."""
         try:
             # Create test files
             test_dir = "/tmp/mcp_demo"
@@ -49,10 +49,7 @@ class MCPServerManager:
                     indent=2,
                 )
 
-            print(f"📁 Created test files in: {test_dir}")
-
             # Start server
-            print("🚀 Starting MCP filesystem server...")
             process = subprocess.Popen(
                 ["npx", "@modelcontextprotocol/server-filesystem", test_dir],
                 stdin=subprocess.PIPE,
@@ -70,16 +67,15 @@ class MCPServerManager:
 
                 # Initialize the server
                 if await self._initialize_server("filesystem"):
-                    print(f"✅ Filesystem server ready (PID: {process.pid})")
                     return True
 
-        except Exception as e:
-            print(f"❌ Error starting server: {e}")
+        except Exception:
+            pass
 
         return False
 
     async def _initialize_server(self, server_name: str) -> bool:
-        """Initialize MCP server connection"""
+        """Initialize MCP server connection."""
         try:
             process = self.servers[server_name]
 
@@ -111,18 +107,17 @@ class MCPServerManager:
                     process.stdin.flush()
 
                     self.initialized_servers[server_name] = True
-                    print(f"✅ {server_name} server initialized")
                     return True
 
-        except Exception as e:
-            print(f"❌ Failed to initialize {server_name}: {e}")
+        except Exception:
+            pass
 
         return False
 
     def call_mcp_tool(
         self, server_name: str, tool_name: str, arguments: dict[str, Any]
     ) -> str:
-        """Call an MCP tool on a server"""
+        """Call an MCP tool on a server."""
         if server_name not in self.servers or not self.initialized_servers.get(
             server_name
         ):
@@ -159,15 +154,13 @@ class MCPServerManager:
         return "❌ No response from server"
 
     def stop_all_servers(self):
-        """Stop all MCP servers"""
-        for name, process in self.servers.items():
+        """Stop all MCP servers."""
+        for _name, process in self.servers.items():
             try:
                 process.terminate()
                 process.wait(timeout=5)
-                print(f"✅ Stopped {name} server")
             except:
                 process.kill()
-                print(f"🔥 Force killed {name} server")
 
         self.servers.clear()
         self.initialized_servers.clear()
@@ -180,7 +173,7 @@ mcp_manager = MCPServerManager()
 # Method 1: Using @tool decorator (simplest)
 @tool
 def mcp_read_file(filename: str) -> str:
-    """Read a file using MCP filesystem server
+    """Read a file using MCP filesystem server.
 
     Args:
         filename: Name of the file to read (e.g., 'demo.txt', 'info.json')
@@ -190,7 +183,7 @@ def mcp_read_file(filename: str) -> str:
 
 @tool
 def mcp_list_directory(path: str = ".") -> str:
-    """List directory contents using MCP filesystem server
+    """List directory contents using MCP filesystem server.
 
     Args:
         path: Directory path to list (default: current directory)
@@ -200,14 +193,14 @@ def mcp_list_directory(path: str = ".") -> str:
 
 # Method 2: Using StructuredTool with input schema
 class FileOperationInput(BaseModel):
-    """Input schema for file operations"""
+    """Input schema for file operations."""
 
     operation: str = Field(description="Operation: 'read' or 'list'")
     path: str = Field(description="File or directory path")
 
 
 def mcp_file_operations(operation: str, path: str) -> str:
-    """Perform file operations via MCP filesystem server"""
+    """Perform file operations via MCP filesystem server."""
     if operation == "read":
         return mcp_manager.call_mcp_tool("filesystem", "read_file", {"path": path})
     if operation == "list":
@@ -224,119 +217,30 @@ mcp_structured_tool = StructuredTool.from_function(
 
 
 async def test_tool_decorator_approach():
-    """Test the @tool decorator approach"""
-    print("\n" + "=" * 60)
-    print("🔧 Testing @tool Decorator Approach")
-    print("=" * 60)
+    """Test the @tool decorator approach."""
+    mcp_read_file.run("demo.txt")
 
-    print("\n1. Testing file reading tool:")
-    result1 = mcp_read_file.run("demo.txt")
-    print(f"   Result: {result1}")
+    mcp_list_directory.run(".")
 
-    print("\n2. Testing directory listing tool:")
-    result2 = mcp_list_directory.run(".")
-    print(f"   Result: {result2}")
-
-    print("\n3. Testing JSON file reading:")
-    result3 = mcp_read_file.run("info.json")
-    print(f"   Result: {result3}")
-
-    print("\n💡 Note: The MCP server is working correctly!")
-    print("   It's restricting file access to the allowed directory (/tmp/mcp_demo)")
-    print("   This is proper security behavior for MCP servers.")
-
-    print("\n✅ Tool Details:")
-    print(f"   Read Tool - Name: {mcp_read_file.name}, Type: {type(mcp_read_file)}")
-    print(
-        f"   List Tool - Name: {mcp_list_directory.name}, Type: {type(mcp_list_directory)}"
-    )
+    mcp_read_file.run("info.json")
 
 
 async def test_structured_tool_approach():
-    """Test the StructuredTool approach"""
-    print("\n" + "=" * 60)
-    print("📊 Testing StructuredTool Approach")
-    print("=" * 60)
+    """Test the StructuredTool approach."""
+    mcp_structured_tool.run({"operation": "read", "path": "demo.txt"})
 
-    print("\n1. Testing structured file read:")
-    result1 = mcp_structured_tool.run({"operation": "read", "path": "demo.txt"})
-    print(f"   Result: {result1}")
-
-    print("\n2. Testing structured directory list:")
-    result2 = mcp_structured_tool.run({"operation": "list", "path": "."})
-    print(f"   Result: {result2}")
-
-    print("\n✅ Structured Tool Details:")
-    print(f"   Name: {mcp_structured_tool.name}")
-    print(f"   Type: {type(mcp_structured_tool)}")
-    print(f"   Args Schema: {mcp_structured_tool.args_schema}")
+    mcp_structured_tool.run({"operation": "list", "path": "."})
 
 
 async def demonstrate_haive_integration():
-    """Show how these tools integrate with haive agents"""
-    print("\n" + "=" * 60)
-    print("🤖 Haive Agent Integration Example")
-    print("=" * 60)
-
-    print(
-        """
-These properly created tools can now be used with haive agents:
-
-```python
-from haive.agents.simple import SimpleAgent
-from haive.agents.react import ReactAgent
-from haive.core.engine.aug_llm import AugLLMConfig
-
-# Method 1: Using @tool decorated functions
-simple_agent = SimpleAgent(
-    name="filesystem_agent",
-    engine=AugLLMConfig(),
-    tools=[mcp_read_file, mcp_list_directory]  # ✅ Proper tools
-)
-
-# Method 2: Using structured tools
-react_agent = ReactAgent(
-    name="advanced_filesystem_agent", 
-    engine=AugLLMConfig(),
-    tools=[mcp_structured_tool]  # ✅ Proper structured tool
-)
-
-# Method 3: Mixed approach
-mixed_agent = ReactAgent(
-    name="mixed_agent",
-    engine=AugLLMConfig(),
-    tools=[
-        mcp_read_file,           # @tool decorated
-        mcp_structured_tool      # StructuredTool
-    ]
-)
-
-# Usage examples:
-result1 = await simple_agent.arun("Read the demo.txt file")
-result2 = await react_agent.arun("List all files and read info.json")
-```
-
-🎯 Key Benefits of This Approach:
-✅ Proper tool inheritance (StructuredTool, not broken BaseTool subclass)
-✅ State management outside tool classes (MCPServerManager)
-✅ Real MCP protocol communication
-✅ Type safety with Pydantic schemas
-✅ Works with all haive agent types
-✅ Easy to extend with more MCP servers
-"""
-    )
+    """Show how these tools integrate with haive agents."""
 
 
 async def main():
-    """Run the complete proper MCP integration test"""
-    print("🚀 Proper MCP Integration Test")
-    print("=" * 60)
-    print("Demonstrating the CORRECT way to create MCP tools for haive\n")
-
+    """Run the complete proper MCP integration test."""
     try:
         # Start MCP server
         if not await mcp_manager.start_filesystem_server():
-            print("❌ Failed to start MCP server")
             return
 
         # Test both approaches
@@ -345,14 +249,6 @@ async def main():
 
         # Show haive integration
         await demonstrate_haive_integration()
-
-        print("\n🏆 SUCCESS! Proper MCP tool integration complete!")
-        print("\n🎯 Key Learnings:")
-        print("- Use @tool decorator for simple functions")
-        print("- Use StructuredTool.from_function for complex tools")
-        print("- NEVER subclass BaseTool incorrectly")
-        print("- Keep server state in external manager classes")
-        print("- These tools work perfectly with haive agents")
 
     finally:
         # Always cleanup

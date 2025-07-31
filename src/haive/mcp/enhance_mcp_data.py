@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Enhanced MCP Data Collector
+"""Enhanced MCP Data Collector.
 
 Collects comprehensive information about MCP servers including:
 - Full README content
@@ -58,7 +58,7 @@ class GitHubDataEnhancer:
             if len(path_parts) >= 2:
                 return {"owner": path_parts[0], "repo": path_parts[1]}
         except Exception as e:
-            logger.error(f"Error parsing GitHub URL {url}: {e}")
+            logger.exception(f"Error parsing GitHub URL {url}: {e}")
 
         return None
 
@@ -95,7 +95,7 @@ class GitHubDataEnhancer:
                 return None
 
         except Exception as e:
-            logger.error(f"Error fetching {url}: {e}")
+            logger.exception(f"Error fetching {url}: {e}")
             return None
 
     async def get_repository_info(self, repo_url: str) -> dict[str, Any]:
@@ -124,7 +124,7 @@ class GitHubDataEnhancer:
                     "utf-8"
                 )
             except Exception as e:
-                logger.error(f"Error decoding README for {repo_url}: {e}")
+                logger.exception(f"Error decoding README for {repo_url}: {e}")
 
         # Fetch package.json or pyproject.toml for dependencies
         dependencies = await self.get_dependencies(owner, repo)
@@ -183,7 +183,7 @@ class GitHubDataEnhancer:
                     "peerDependencies": package_data.get("peerDependencies", {}),
                 }
             except Exception as e:
-                logger.error(f"Error parsing package.json for {owner}/{repo}: {e}")
+                logger.exception(f"Error parsing package.json for {owner}/{repo}: {e}")
 
         # Check for pyproject.toml
         pyproject = await self.fetch_github_api(
@@ -198,7 +198,9 @@ class GitHubDataEnhancer:
                 if "dependencies" in content:
                     dependencies["python"]["general"] = "Found Python dependencies"
             except Exception as e:
-                logger.error(f"Error parsing pyproject.toml for {owner}/{repo}: {e}")
+                logger.exception(
+                    f"Error parsing pyproject.toml for {owner}/{repo}: {e}"
+                )
 
         # Check for requirements.txt
         requirements = await self.fetch_github_api(
@@ -214,7 +216,9 @@ class GitHubDataEnhancer:
                 ]
                 dependencies["python"]["requirements"] = deps
             except Exception as e:
-                logger.error(f"Error parsing requirements.txt for {owner}/{repo}: {e}")
+                logger.exception(
+                    f"Error parsing requirements.txt for {owner}/{repo}: {e}"
+                )
 
         return dependencies
 
@@ -299,7 +303,7 @@ class MCPDataEnhancer:
             return enhanced_server
 
         except Exception as e:
-            logger.error(f"Error enhancing {server.get('name', 'Unknown')}: {e}")
+            logger.exception(f"Error enhancing {server.get('name', 'Unknown')}: {e}")
             enhanced_server["enhancement_status"] = f"error: {e!s}"
             return enhanced_server
 
@@ -320,13 +324,12 @@ class MCPDataEnhancer:
             if any(
                 keyword in line_lower
                 for keyword in ["install", "setup", "getting started", "quick start"]
-            ):
-                if line.startswith("#"):
-                    if current_section and current_content:
-                        instructions[current_section] = "\n".join(current_content)
-                    current_section = line.strip("# ").strip()
-                    current_content = []
-                    continue
+            ) and line.startswith("#"):
+                if current_section and current_content:
+                    instructions[current_section] = "\n".join(current_content)
+                current_section = line.strip("# ").strip()
+                current_content = []
+                continue
 
             # Collect content
             if current_section:
@@ -393,7 +396,6 @@ class MCPDataEnhancer:
 
 async def main():
     """Main execution function."""
-
     parser = argparse.ArgumentParser(description="Enhance MCP servers data")
     parser.add_argument(
         "--github-token", help="GitHub API token for higher rate limits"
@@ -418,14 +420,5 @@ async def main():
 
 
 if __name__ == "__main__":
-    print("🚀 MCP Data Enhancement Tool")
-    print("=" * 50)
-    print("This tool will:")
-    print("- Fetch full README content from GitHub")
-    print("- Extract installation instructions")
-    print("- Get comprehensive repository metadata")
-    print("- Update star counts and other stats")
-    print("- Collect dependency information")
-    print()
 
     asyncio.run(main())

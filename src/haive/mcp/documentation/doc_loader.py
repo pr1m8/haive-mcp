@@ -117,7 +117,7 @@ class MCPDocumentationLoader:
             logger.info(f"Loaded {len(docs_dict)} MCP server documents")
             return docs_dict
         except Exception as e:
-            logger.error(f"Failed to load MCP documents: {e}")
+            logger.exception(f"Failed to load MCP documents: {e}")
             return {}
 
     def get_server_documentation(self, server_name: str) -> dict[str, Any] | None:
@@ -216,7 +216,7 @@ class MCPDocumentationLoader:
                 docs = await loader.load(repo=f"{owner}/{repo}", content_type="readme")
                 return docs[0] if docs else None
         except Exception as e:
-            logger.error(f"Failed to fetch GitHub README: {e}")
+            logger.exception(f"Failed to fetch GitHub README: {e}")
             return None
 
     async def fetch_server_website(self, url: str) -> Document | None:
@@ -237,7 +237,7 @@ class MCPDocumentationLoader:
             docs = await scraper.load(url=url)
             return docs[0] if docs else None
         except Exception as e:
-            logger.error(f"Failed to fetch website: {e}")
+            logger.exception(f"Failed to fetch website: {e}")
             return None
 
     def extract_setup_info(self, server_doc: dict[str, Any]) -> dict[str, Any]:
@@ -344,7 +344,7 @@ class MCPDocumentationLoader:
         lines = readme.split("\n")
         in_config_section = False
 
-        for i, line in enumerate(lines):
+        for _i, line in enumerate(lines):
             lower_line = line.lower()
 
             # Look for configuration section
@@ -366,15 +366,14 @@ class MCPDocumentationLoader:
                 break
 
             # Look for environment variables
-            if "export" in line or "=" in line:
-                if any(
-                    var in line for var in ["API_KEY", "TOKEN", "URL", "PORT", "HOST"]
-                ):
-                    parts = line.split("=")
-                    if len(parts) == 2:
-                        key = parts[0].strip().replace("export ", "")
-                        value = parts[1].strip().strip("\"'")
-                        config[key] = value
+            if ("export" in line or "=" in line) and any(
+                var in line for var in ["API_KEY", "TOKEN", "URL", "PORT", "HOST"]
+            ):
+                parts = line.split("=")
+                if len(parts) == 2:
+                    key = parts[0].strip().replace("export ", "")
+                    value = parts[1].strip().strip("\"'")
+                    config[key] = value
 
         return config
 

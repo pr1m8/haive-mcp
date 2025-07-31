@@ -7,20 +7,18 @@ from various sources including npm, PyPI, GitHub, and Docker Hub.
 
 import asyncio
 import json
-from pathlib import Path
 import sys
+from pathlib import Path
 
 import click
 from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
 
-
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.haive.mcp.downloader.legacy_core import GeneralMCPDownloader
-
 
 # from src.haive.mcp.downloader.discovery import ServerDiscovery
 
@@ -232,7 +230,7 @@ def status(output_json: bool):
     servers = config.get("mcpServers", {})
 
     if output_json:
-        print(json.dumps(servers, indent=2))
+        pass
     else:
         table = Table(title="Installed MCP Servers")
         table.add_column("Server", style="cyan")

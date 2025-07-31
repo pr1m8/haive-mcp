@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""FastMCP Server Runner
+"""FastMCP Server Runner.
 
 Manages the lifecycle of FastMCP servers registered in the system.
 Provides process management, monitoring, and integration with the discovery system.
@@ -7,24 +7,24 @@ Provides process management, monitoring, and integration with the discovery syst
 
 import argparse
 import asyncio
-from datetime import datetime
+import contextlib
 import json
 import logging
 import os
-from pathlib import Path
 import subprocess
 import sys
+from datetime import datetime
+from pathlib import Path
 from typing import Any
 
 import psutil
-
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
 class MCPProcessManager:
-    """Manages MCP server processes with monitoring and auto-restart"""
+    """Manages MCP server processes with monitoring and auto-restart."""
 
     def __init__(self, config_path: Path | None = None):
         self.config_path = config_path or Path.home() / ".fastmcp" / "servers.json"
@@ -34,7 +34,7 @@ class MCPProcessManager:
         self._running = False
 
     def load_servers(self) -> dict[str, Any]:
-        """Load server configurations"""
+        """Load server configurations."""
         if not self.config_path.exists():
             return {}
 
@@ -43,7 +43,7 @@ class MCPProcessManager:
             return data.get("servers", {})
 
     async def start_server(self, server_name: str) -> dict[str, Any]:
-        """Start a specific server"""
+        """Start a specific server."""
         servers = self.load_servers()
 
         if server_name not in servers:
@@ -66,7 +66,7 @@ class MCPProcessManager:
 
         try:
             # Build command
-            cmd = [server_config["command"]] + server_config.get("args", [])
+            cmd = [server_config["command"], *server_config.get("args", [])]
 
             # Set environment
             env = os.environ.copy()
@@ -113,11 +113,11 @@ class MCPProcessManager:
             }
 
         except Exception as e:
-            logger.error(f"Failed to start server '{server_name}': {e}")
+            logger.exception(f"Failed to start server '{server_name}': {e}")
             return {"success": False, "error": f"Failed to start server: {e!s}"}
 
     async def stop_server(self, server_name: str) -> dict[str, Any]:
-        """Stop a specific server"""
+        """Stop a specific server."""
         if server_name not in self.processes:
             return {"success": False, "error": f"Server '{server_name}' is not running"}
 
@@ -148,11 +148,11 @@ class MCPProcessManager:
             return {"success": True, "message": f"Stopped server '{server_name}'"}
 
         except Exception as e:
-            logger.error(f"Failed to stop server '{server_name}': {e}")
+            logger.exception(f"Failed to stop server '{server_name}': {e}")
             return {"success": False, "error": f"Failed to stop server: {e!s}"}
 
     async def restart_server(self, server_name: str) -> dict[str, Any]:
-        """Restart a server"""
+        """Restart a server."""
         # Stop if running
         if server_name in self.processes:
             stop_result = await self.stop_server(server_name)
@@ -166,7 +166,7 @@ class MCPProcessManager:
         return await self.start_server(server_name)
 
     def get_server_status(self, server_name: str) -> dict[str, Any]:
-        """Get detailed status of a server"""
+        """Get detailed status of a server."""
         status = {
             "name": server_name,
             "running": False,
@@ -209,7 +209,7 @@ class MCPProcessManager:
         return status
 
     async def monitor_servers(self):
-        """Monitor running servers and restart if needed"""
+        """Monitor running servers and restart if needed."""
         self._running = True
 
         while self._running:
@@ -237,27 +237,25 @@ class MCPProcessManager:
             await asyncio.sleep(5)
 
     async def start_monitoring(self):
-        """Start the monitoring task"""
+        """Start the monitoring task."""
         if not self.monitor_task:
             self.monitor_task = asyncio.create_task(self.monitor_servers())
 
     async def stop_monitoring(self):
-        """Stop the monitoring task"""
+        """Stop the monitoring task."""
         self._running = False
         if self.monitor_task:
             self.monitor_task.cancel()
-            try:
+            with contextlib.suppress(asyncio.CancelledError):
                 await self.monitor_task
-            except asyncio.CancelledError:
-                pass
 
     async def stop_all_servers(self):
-        """Stop all running servers"""
+        """Stop all running servers."""
         for server_name in list(self.processes.keys()):
             await self.stop_server(server_name)
 
     def list_running_servers(self) -> list[dict[str, Any]]:
-        """List all running servers with their status"""
+        """List all running servers with their status."""
         servers = []
 
         for server_name in self.processes:
@@ -268,92 +266,71 @@ class MCPProcessManager:
 
 
 class FastMCPCLI:
-    """Command-line interface for FastMCP server management"""
+    """Command-line interface for FastMCP server management."""
 
     def __init__(self):
         self.manager = MCPProcessManager()
 
     async def run_command(self, command: str, args: list[str]):
-        """Execute a CLI command"""
+        """Execute a CLI command."""
         if command == "start":
             if not args:
-                print("Error: Server name required")
                 return
 
             result = await self.manager.start_server(args[0])
             if result["success"]:
-                print(f"✅ {result['message']} (PID: {result.get('pid', 'N/A')})")
+                pass
             else:
-                print(f"❌ {result['error']}")
+                pass
 
         elif command == "stop":
             if not args:
-                print("Error: Server name required")
                 return
 
             result = await self.manager.stop_server(args[0])
             if result["success"]:
-                print(f"✅ {result['message']}")
+                pass
             else:
-                print(f"❌ {result['error']}")
+                pass
 
         elif command == "restart":
             if not args:
-                print("Error: Server name required")
                 return
 
             result = await self.manager.restart_server(args[0])
             if result["success"]:
-                print(f"✅ {result['message']}")
+                pass
             else:
-                print(f"❌ {result['error']}")
+                pass
 
         elif command == "status":
             if args:
                 # Status for specific server
                 status = self.manager.get_server_status(args[0])
-                print(f"\nServer: {status['name']}")
-                print(f"Running: {'Yes' if status['running'] else 'No'}")
                 if status["running"]:
-                    print(f"PID: {status['pid']}")
-                    print(f"Uptime: {status['uptime']}")
-                    print(f"Memory: {status['memory_usage']}")
-                    print(f"CPU: {status['cpu_usage']}")
+                    pass
             else:
                 # List all running servers
                 servers = self.manager.list_running_servers()
                 if not servers:
-                    print("No servers currently running")
+                    pass
                 else:
-                    print(
-                        f"\n{'Server':<20} {'PID':<10} {'Uptime':<15} {'Memory':<10} {'CPU':<10}"
-                    )
-                    print("-" * 75)
-                    for server in servers:
-                        print(
-                            f"{server['name']:<20} {server['pid'] or 'N/A':<10} "
-                            f"{server['uptime'] or 'N/A':<15} "
-                            f"{server['memory_usage'] or 'N/A':<10} "
-                            f"{server['cpu_usage'] or 'N/A':<10}"
-                        )
+                    for _server in servers:
+                        pass
 
         elif command == "list":
             # List all configured servers
             servers = self.manager.load_servers()
             if not servers:
-                print("No servers configured")
+                pass
             else:
-                print(f"\n{'Server':<20} {'Transport':<10} {'Active':<8} {'Command'}")
-                print("-" * 70)
-                for name, config in servers.items():
-                    cmd = config.get("command", "N/A")
-                    transport = config.get("transport", "stdio")
-                    active = "Yes" if config.get("active", True) else "No"
-                    print(f"{name:<20} {transport:<10} {active:<8} {cmd}")
+                for _name, config in servers.items():
+                    config.get("command", "N/A")
+                    config.get("transport", "stdio")
+                    "Yes" if config.get("active", True) else "No"
 
         elif command == "monitor":
             # Start monitoring mode
-            print("Starting server monitor (Ctrl+C to stop)...")
             try:
                 await self.manager.start_monitoring()
 
@@ -362,18 +339,15 @@ class FastMCPCLI:
                     await asyncio.sleep(1)
 
             except KeyboardInterrupt:
-                print("\nStopping monitor...")
                 await self.manager.stop_monitoring()
                 await self.manager.stop_all_servers()
 
         else:
-            print(f"Unknown command: {command}")
-            print("Available commands: start, stop, restart, status, list, monitor")
+            pass
 
 
 async def main():
-    """Main CLI entry point"""
-
+    """Main CLI entry point."""
     parser = argparse.ArgumentParser(description="FastMCP Server Runner")
     parser.add_argument("command", help="Command to execute")
     parser.add_argument("args", nargs="*", help="Command arguments")
@@ -388,7 +362,7 @@ if __name__ == "__main__":
     try:
         asyncio.run(main())
     except KeyboardInterrupt:
-        print("\nShutdown requested")
+        pass
     except Exception as e:
-        logger.error(f"Error: {e}")
+        logger.exception(f"Error: {e}")
         sys.exit(1)

@@ -1,4 +1,4 @@
-"""SimpleRAG Agent for MCP Server Discovery
+"""SimpleRAG Agent for MCP Server Discovery.
 
 This agent uses the enhanced retriever to help users find and understand MCP servers.
 It can answer questions about server capabilities, suggest servers based on needs,
@@ -6,22 +6,22 @@ and provide detailed information about specific servers.
 """
 
 import asyncio
+import sys
 from datetime import datetime
 from pathlib import Path
-import sys
 from typing import Any
 
+import uvicorn
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import HTMLResponse
+from haive.agents.rag.simple.agent import SimpleRAGAgent
+from haive.core.engine.aug_llm import AugLLMConfig
 from langchain_core.documents import Document
 from langchain_core.retrievers import BaseRetriever
 from langchain_openai import ChatOpenAI
 from pydantic import BaseModel
-import uvicorn
 
-from haive.agents.rag.simple.agent import SimpleRAGAgent
-from haive.core.engine.aug_llm import AugLLMConfig
 from haive.mcp.working_enhanced_retriever import WorkingEnhancedRetriever
-
 
 # Add parent path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent.parent))
@@ -44,7 +44,7 @@ class MCPSimpleRAGAgent(SimpleRAGAgent):
     def get_system_prompt(self) -> str:
         """Custom system prompt for MCP assistance."""
         return """You are an expert MCP (Model Context Protocol) server assistant.
-        
+
 Your role is to help users:
 1. Find MCP servers that match their needs
 2. Understand what each server can do (tools, resources, prompts)
@@ -107,8 +107,6 @@ async def create_mcp_rag_agent(model: str = "gpt-3.5-turbo") -> MCPSimpleRAGAgen
 
 async def demo_mcp_rag_agent():
     """Demonstrate the MCP RAG agent."""
-    print("🚀 Starting MCP SimpleRAG Agent Demo\n")
-
     # Create agent
     agent = await create_mcp_rag_agent()
 
@@ -122,13 +120,9 @@ async def demo_mcp_rag_agent():
     ]
 
     for query in queries:
-        print(f"\n{'=' * 60}")
-        print(f"📝 Query: {query}")
-        print(f"{'=' * 60}\n")
 
         # Get response
-        response = await agent.arun(query)
-        print(f"🤖 Response:\n{response}\n")
+        await agent.arun(query)
 
         # Small delay between queries
         await asyncio.sleep(1)
@@ -164,9 +158,7 @@ rag_agent = None
 async def startup_event():
     """Initialize the RAG agent on startup."""
     global rag_agent
-    print("🔧 Initializing MCP SimpleRAG Agent...")
     rag_agent = await create_mcp_rag_agent()
-    print("✅ Agent ready!")
 
 
 @app.get("/")
@@ -252,9 +244,9 @@ async def root():
         <br>
         <button onclick="askAgent()">Ask Agent</button>
         <span class="loading" id="loading">Thinking...</span>
-        
+
         <div id="response" class="response" style="display: none;"></div>
-        
+
         <div class="example-queries">
             <h3>Example Queries:</h3>
             <ul>
@@ -267,31 +259,31 @@ async def root():
             </ul>
         </div>
     </div>
-    
+
     <script>
         function setQuery(text) {
             document.getElementById('query').value = text;
         }
-        
+
         async function askAgent() {
             const query = document.getElementById('query').value;
             if (!query) return;
-            
+
             const loading = document.getElementById('loading');
             const responseDiv = document.getElementById('response');
-            
+
             loading.style.display = 'inline';
             responseDiv.style.display = 'none';
-            
+
             try {
                 const response = await fetch('/ask', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({query: query})
                 });
-                
+
                 const data = await response.json();
-                
+
                 responseDiv.textContent = data.response;
                 responseDiv.style.display = 'block';
             } catch (error) {
@@ -301,7 +293,7 @@ async def root():
                 loading.style.display = 'none';
             }
         }
-        
+
         // Allow Enter key to submit
         document.getElementById('query').addEventListener('keypress', function(e) {
             if (e.key === 'Enter' && !e.shiftKey) {
@@ -359,6 +351,4 @@ if __name__ == "__main__":
     else:
         # Run FastAPI server
 
-        print("🚀 Starting MCP SimpleRAG Agent API on port 6969")
-        print("📍 Open http://localhost:6969 to use the agent")
         uvicorn.run(app, host="0.0.0.0", port=6969)

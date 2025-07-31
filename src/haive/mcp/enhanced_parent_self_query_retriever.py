@@ -1,4 +1,4 @@
-"""Enhanced MCP Retriever combining Parent Document Retriever with Self-Query
+"""Enhanced MCP Retriever combining Parent Document Retriever with Self-Query.
 
 This implementation combines:
 1. Parent-child document retrieval for context preservation
@@ -12,6 +12,10 @@ enabling self-query filtering on chunks while returning full parents.
 import asyncio
 import json
 
+from haive.core.engine.aug_llm import AugLLMConfig
+from haive.core.engine.vectorstore.providers.ChromaVectorStoreConfig import (
+    ChromaVectorStoreConfig,
+)
 from langchain.chains.query_constructor.base import AttributeInfo
 from langchain.retrievers import ParentDocumentRetriever
 from langchain.retrievers.self_query.base import SelfQueryRetriever
@@ -19,12 +23,7 @@ from langchain.storage import InMemoryStore
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_core.documents import Document
 
-from haive.core.engine.aug_llm import AugLLMConfig
-from haive.core.engine.vectorstore.providers.ChromaVectorStoreConfig import (
-    ChromaVectorStoreConfig,
-)
 from haive.mcp.documentation import MCPDocumentationLoader
-
 
 # LangChain imports
 
@@ -78,8 +77,6 @@ class EnhancedMCPRetriever:
 
     async def setup_enhanced_retriever(self) -> None:
         """Set up the enhanced parent-child retriever with self-query."""
-        print("🔧 Setting up Enhanced Parent-Child + Self-Query Retriever...")
-
         # Load server data
         all_servers_path = (
             self.doc_loader.mcp_servers_path / "ALL_MCP_SERVERS_COMPLETE.json"
@@ -87,8 +84,6 @@ class EnhancedMCPRetriever:
         with open(all_servers_path) as f:
             data = json.load(f)
             servers = data.get("all_servers", [])[:300]  # Limit for demo
-
-        print(f"📚 Processing {len(servers)} MCP servers...")
 
         # Create enhanced parent documents with rich metadata
         parent_documents = []
@@ -190,13 +185,10 @@ Supported transport types: {", ".join(server_data.get("transport_types", ["stdio
         )
 
         # Add documents - this creates child chunks with parent metadata
-        print("📥 Creating child chunks with parent metadata...")
         self.parent_retriever.add_documents(parent_documents)
 
         # Store metadata schema
         self.metadata_fields = self._create_metadata_schema()
-
-        print("✅ Enhanced retriever ready!")
 
     def create_self_query_retriever(self, k: int = 5) -> SelfQueryRetriever:
         """Create a self-query retriever that works with parent documents."""
@@ -218,21 +210,15 @@ Supported transport types: {", ".join(server_data.get("transport_types", ["stdio
 
         This is the key method that combines both approaches!
         """
-        print(f"\n🔍 Enhanced Query: '{query}'")
-
         # Step 1: Use self-query to find relevant child chunks
         self_query_retriever = self.create_self_query_retriever(k=k * 2)
         child_chunks = await self_query_retriever.aget_relevant_documents(query)
-
-        print(f"   Found {len(child_chunks)} relevant chunks")
 
         # Step 2: Get unique parent document IDs
         parent_ids = set()
         for chunk in child_chunks:
             if "doc_id" in chunk.metadata:
                 parent_ids.add(chunk.metadata["doc_id"])
-
-        print(f"   Mapping to {len(parent_ids)} unique parent documents")
 
         # Step 3: Retrieve full parent documents
         parent_docs = []
@@ -248,8 +234,6 @@ Supported transport types: {", ".join(server_data.get("transport_types", ["stdio
 
     async def demonstrate_queries(self) -> None:
         """Demonstrate various query patterns."""
-        print("\n📊 Demonstrating Enhanced Retrieval Patterns...")
-
         queries = [
             # Natural language with metadata filters
             "Python database servers with more than 50 stars",
@@ -266,32 +250,18 @@ Supported transport types: {", ".join(server_data.get("transport_types", ["stdio
         for query in queries[:3]:  # Demo first 3
             docs = await self.query_with_parent_context(query, k=3)
 
-            print(f"\n📍 Query: '{query}'")
-            print(f"   Results: {len(docs)} parent documents")
-
-            for i, doc in enumerate(docs):
-                print(f"\n   {i + 1}. {doc.metadata.get('server_name', 'Unknown')}")
-                print(f"      Category: {doc.metadata.get('category', 'Unknown')}")
-                print(f"      Language: {doc.metadata.get('language', 'Unknown')}")
-                print(f"      Stars: {doc.metadata.get('stars', 0)}")
-                print(f"      Transport: {doc.metadata.get('transport', 'Unknown')}")
-                print(
-                    f"      Has Capabilities: {doc.metadata.get('has_capabilities', False)}"
-                )
+            for _i, _doc in enumerate(docs):
+                pass
 
     async def find_and_analyze_best_server(self, requirements: str) -> Document | None:
         """Find the best server matching requirements using enhanced retrieval."""
-        print(f"\n🎯 Finding best server for: '{requirements}'")
-
         # Use enhanced retrieval
         docs = await self.query_with_parent_context(requirements, k=10)
 
         if not docs:
-            print("❌ No servers found")
             return None
 
         # Analyze and rank results
-        print(f"\n📈 Analyzing {len(docs)} candidates...")
 
         # Score based on multiple factors
         scored_docs = []
@@ -323,13 +293,7 @@ Supported transport types: {", ".join(server_data.get("transport_types", ["stdio
         scored_docs.sort(key=lambda x: x[0], reverse=True)
 
         best_doc = scored_docs[0][1]
-        best_score = scored_docs[0][0]
-
-        print(f"\n🏆 Best Match: {best_doc.metadata.get('server_name', 'Unknown')}")
-        print(f"   Score: {best_score:.1f}/100")
-        print(f"   Category: {best_doc.metadata.get('category', 'Unknown')}")
-        print(f"   Language: {best_doc.metadata.get('language', 'Unknown')}")
-        print(f"   Stars: {best_doc.metadata.get('stars', 0)}")
+        scored_docs[0][0]
 
         return best_doc
 
@@ -339,9 +303,6 @@ Supported transport types: {", ".join(server_data.get("transport_types", ["stdio
 
 async def main():
     """Run the enhanced retriever example."""
-    print("🚀 Enhanced Parent-Child + Self-Query Retriever for MCP Servers")
-    print("=" * 70)
-
     # Initialize
     engine = AugLLMConfig(
         name="mcp_enhanced_engine",
@@ -362,17 +323,7 @@ async def main():
     best_server = await retriever.find_and_analyze_best_server(requirements)
 
     if best_server:
-        print("\n\n📄 Full Documentation:")
-        print("-" * 70)
-        print(best_server.page_content[:1000] + "...")
-
-    print("\n\n✅ Enhanced retrieval demonstration complete!")
-    print("\n🔑 Key Features Demonstrated:")
-    print("   1. Self-query parsing of natural language")
-    print("   2. Metadata filtering on child chunks")
-    print("   3. Parent document retrieval for full context")
-    print("   4. Rich metadata schema (category, stars, language, etc.)")
-    print("   5. Intelligent ranking based on multiple factors")
+        pass
 
 
 if __name__ == "__main__":

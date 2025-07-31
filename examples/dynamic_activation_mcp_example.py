@@ -13,17 +13,17 @@ Usage:
 """
 
 import asyncio
-from datetime import datetime
 import json
 import logging
+from datetime import datetime
 from typing import Any
 
 from haive.core.registry import RegistryItem
+
 from haive.mcp.dynamic_activation_mcp import (
     DynamicActivationMCPServer,
     MCPTool,
 )
-
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -51,7 +51,7 @@ async def example_1_basic_mcp_server():
             result = eval(expression)
             return float(result)
         except Exception as e:
-            logger.error(f"Calculator error: {e}")
+            logger.exception(f"Calculator error: {e}")
             return 0.0
 
     async def text_processor_handler(input_data: dict[str, Any]) -> str:
@@ -68,7 +68,7 @@ async def example_1_basic_mcp_server():
                 return text[::-1]
             return text
         except Exception as e:
-            logger.error(f"Text processor error: {e}")
+            logger.exception(f"Text processor error: {e}")
             return str(input_data)
 
     async def data_formatter_handler(input_data: dict[str, Any]) -> str:
@@ -83,7 +83,7 @@ async def example_1_basic_mcp_server():
                 return "\n".join(f"{k}: {v}" for k, v in data.items())
             return str(data)
         except Exception as e:
-            logger.error(f"Data formatter error: {e}")
+            logger.exception(f"Data formatter error: {e}")
             return str(input_data)
 
     # Create MCP tools
@@ -230,64 +230,64 @@ async def example_2_discovery_based_mcp():
 
     discovery_doc = """
     # MCP Discovery Tools Documentation
-    
+
     ## Mathematical Tools
-    
+
     ### Advanced Calculator
     - **Name**: advanced_calculator
     - **Description**: Advanced mathematical operations
     - **Input**: Complex expressions, functions, equations
     - **Output**: Precise numerical results
     - **Capabilities**: basic_math, trigonometry, calculus, statistics
-    
+
     ### Statistics Engine
     - **Name**: statistics_engine
     - **Description**: Statistical analysis and computations
     - **Input**: Data arrays, statistical operations
     - **Output**: Statistical results and visualizations
     - **Capabilities**: descriptive, inferential, regression, correlation
-    
+
     ## Text Processing Tools
-    
+
     ### Natural Language Processor
     - **Name**: nlp_processor
     - **Description**: Advanced natural language processing
     - **Input**: Text documents, language processing tasks
     - **Output**: Processed text with annotations
     - **Capabilities**: tokenization, sentiment, entities, summarization
-    
+
     ### Content Analyzer
     - **Name**: content_analyzer
     - **Description**: Content analysis and insights
     - **Input**: Text content, analysis parameters
     - **Output**: Content insights and metrics
     - **Capabilities**: readability, keywords, themes, quality
-    
+
     ## Data Processing Tools
-    
+
     ### Data Transformer
     - **Name**: data_transformer
     - **Description**: Transform data between formats
     - **Input**: Source data, transformation rules
     - **Output**: Transformed data in target format
     - **Capabilities**: csv, json, xml, yaml, sql
-    
+
     ### Schema Validator
     - **Name**: schema_validator
     - **Description**: Validate data against schemas
     - **Input**: Data objects, schema definitions
     - **Output**: Validation results and error reports
     - **Capabilities**: json_schema, xml_schema, custom_rules
-    
+
     ## Workflow Tools
-    
+
     ### Task Orchestrator
     - **Name**: task_orchestrator
     - **Description**: Orchestrate complex task workflows
     - **Input**: Task definitions, dependencies, parameters
     - **Output**: Workflow execution results
     - **Capabilities**: sequential, parallel, conditional, loops
-    
+
     ### Event Processor
     - **Name**: event_processor
     - **Description**: Process and handle events
@@ -445,7 +445,7 @@ async def example_3_multi_client_mcp():
                 "has_keys": len(data) > 0,
                 "key_count": len(data),
                 "has_strings": any(isinstance(v, str) for v in data.values()),
-                "has_numbers": any(isinstance(v, (int, float)) for v in data.values()),
+                "has_numbers": any(isinstance(v, int | float) for v in data.values()),
             }
 
             return {
@@ -753,7 +753,7 @@ async def example_4_mcp_performance_testing():
 
     start_time = time.time()
 
-    concurrent_responses = await asyncio.gather(
+    await asyncio.gather(
         *[server.handle_tool_request(req) for req in concurrent_requests]
     )
 
@@ -850,7 +850,7 @@ async def main():
         )
 
     except Exception as e:
-        logger.error(f"MCP example execution failed: {e}")
+        logger.exception(f"MCP example execution failed: {e}")
         raise
 
 

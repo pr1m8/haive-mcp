@@ -13,7 +13,6 @@ from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
 
-from general_mcp_downloader import GeneralMCPDownloader, ServerConfig
 from rich import box
 from rich.console import Console
 from rich.panel import Panel
@@ -27,6 +26,8 @@ from rich.progress import (
 )
 from rich.table import Table
 from rich.tree import Tree
+
+from haive.mcp.downloader.core import GeneralMCPDownloader, ServerConfig
 
 # Add to path
 sys.path.insert(0, str(Path(__file__).parent))

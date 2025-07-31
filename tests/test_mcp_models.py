@@ -148,21 +148,13 @@ def test_mcp_server_health():
 if __name__ == "__main__":
     # Run tests
     test_mcp_transport_enum()
-    print("✓ MCPTransport enum test passed")
 
     test_mcp_server_config()
-    print("✓ MCPServerConfig model test passed")
 
     test_mcp_tool_definition()
-    print("✓ MCPToolDefinition model test passed")
 
     test_mcp_resource_definition()
-    print("✓ MCPResourceDefinition model test passed")
 
     test_mcp_prompt_definition()
-    print("✓ MCPPromptDefinition model test passed")
 
     test_mcp_server_health()
-    print("✓ MCPServerHealth model test passed")
-
-    print("\n✅ All MCP model tests passed!")

@@ -1,4 +1,4 @@
-"""Intelligent MCP server selection and filtering tools for AI agents.
+r"""Intelligent MCP server selection and filtering tools for AI agents.
 
 This module provides sophisticated tools for filtering, selecting, and recommending
 MCP servers based on various criteria including prefixes, capabilities, task analysis,
@@ -49,14 +49,13 @@ Note:
     reducing the need for manual server configuration.
 """
 
-from dataclasses import dataclass
 import logging
 import re
+from dataclasses import dataclass
 from typing import Any
 
 from haive.mcp.config import MCPConfig, MCPServerConfig
 from haive.mcp.documentation.doc_loader import MCPDocumentationLoader
-
 
 logger = logging.getLogger(__name__)
 
@@ -193,8 +192,6 @@ class ServerFilter:
         Returns:
             List of servers matching all criteria
         """
-        results = set()
-
         # Start with all servers
         candidates = set(range(len(self.servers)))
 
@@ -509,25 +506,14 @@ class MCPServerSelector:
             candidates = self.servers
 
         if not candidates:
-            print("No servers match the specified criteria.")
             return []
 
-        print(f"\n{prompt}")
-        print("=" * len(prompt))
-
         # Display available servers
-        for i, server in enumerate(candidates, 1):
+        for _i, server in enumerate(candidates, 1):
             metadata = server.get("metadata", {})
             name = metadata.get("name", "Unknown")
-            description = metadata.get("description", "No description")
-            category = metadata.get("category", "Uncategorized")
-
-            print(f"{i:2d}. {name}")
-            print(f"    Category: {category}")
-            print(
-                f"    Description: {description[:80]}{'...' if len(description) > 80 else ''}"
-            )
-            print()
+            metadata.get("description", "No description")
+            metadata.get("category", "Uncategorized")
 
         # Get user selections
         selections = []
@@ -556,18 +542,14 @@ class MCPServerSelector:
 
                     if max_selections and len(selections) >= max_selections:
                         selections = selections[:max_selections]
-                        print(f"Maximum of {max_selections} selections reached.")
                         break
 
-                print(f"Selected {len(selections)} servers. Current selections:")
                 for idx in selections:
                     name = candidates[idx].get("metadata", {}).get("name", "Unknown")
-                    print(f"  - {name}")
 
             except (ValueError, IndexError):
-                print("Invalid input. Please enter valid server numbers.")
+                pass
             except KeyboardInterrupt:
-                print("\nSelection cancelled.")
                 return []
 
         # Return selected server names
@@ -646,7 +628,7 @@ class MCPServerSelector:
                 env=setup_info.get("configuration", {}),
             )
         except Exception as e:
-            logger.error(f"Failed to create server config: {e}")
+            logger.exception(f"Failed to create server config: {e}")
             return None
 
     def get_selection_summary(self, selected_servers: list[str]) -> dict[str, Any]:

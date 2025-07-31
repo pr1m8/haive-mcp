@@ -17,7 +17,6 @@ from haive.core.models.llm.base import LLMConfig
 # MCP imports
 from haive.mcp.config import MCPConfig, MCPServerConfig
 
-
 # Set up logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -290,7 +289,7 @@ async def demonstrate_prompt_usage():
             for msg in messages:
                 logger.info(f"  [{msg['role']}]: {msg['content'][:100]}...")
         except Exception as e:
-            logger.error(f"Error calling prompt: {e}")
+            logger.exception(f"Error calling prompt: {e}")
 
     config.cleanup_mcp()
 

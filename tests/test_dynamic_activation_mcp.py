@@ -12,9 +12,9 @@ Based on:
 from typing import Any
 
 import pytest
-
 from haive.core.registry import RegistryItem
 from haive.core.schema.prebuilt.meta_state import MetaStateSchema
+
 from haive.mcp.dynamic_activation_mcp import (
     DynamicActivationMCPServer,
     DynamicMCPRegistry,
@@ -295,19 +295,19 @@ class TestDynamicActivationMCPServer:
         """Create temporary tools file for MCP testing."""
         tools_content = """
         # MCP Test Tools
-        
+
         ## Calculator
         - **Name**: calculator
         - **Description**: Mathematical calculations
         - **Input**: Expression strings
         - **Output**: Numerical results
-        
+
         ## Text Processor
         - **Name**: text_processor
         - **Description**: Text processing and manipulation
         - **Input**: Text strings
         - **Output**: Processed text
-        
+
         ## Data Validator
         - **Name**: data_validator
         - **Description**: Validate data formats
@@ -575,48 +575,48 @@ class TestMCPIntegration:
         """Create comprehensive MCP tools file for integration testing."""
         tools_content = """
         # Comprehensive MCP Tools
-        
+
         ## Math Tools
-        
+
         ### Calculator
         - **Name**: calculator
         - **Description**: Basic arithmetic calculator
         - **Input**: Mathematical expressions
         - **Output**: Numerical results
         - **Category**: math
-        
+
         ### Statistics
         - **Name**: statistics
         - **Description**: Statistical analysis tool
         - **Input**: Data arrays and operation type
         - **Output**: Statistical results
         - **Category**: math
-        
+
         ## Text Tools
-        
+
         ### Text Analyzer
         - **Name**: text_analyzer
         - **Description**: Analyze text content
         - **Input**: Text strings
         - **Output**: Analysis results
         - **Category**: text
-        
+
         ### Language Detector
         - **Name**: language_detector
         - **Description**: Detect text language
         - **Input**: Text strings
         - **Output**: Language codes
         - **Category**: text
-        
+
         ## Utility Tools
-        
+
         ### Validator
         - **Name**: validator
         - **Description**: Validate data formats
         - **Input**: Data objects
         - **Output**: Validation results
         - **Category**: utility
-        
+
         ### Formatter
         - **Name**: formatter
         - **Description**: Format data output

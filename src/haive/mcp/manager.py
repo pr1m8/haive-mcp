@@ -62,11 +62,12 @@ Examples:
 """
 
 import asyncio
-from datetime import datetime
-from enum import Enum
+import contextlib
 import logging
 import subprocess
 import traceback
+from datetime import datetime
+from enum import Enum
 from typing import Any
 
 import aiohttp
@@ -74,11 +75,10 @@ from langchain_mcp_adapters.client import (
     MultiServerMCPClient,
     stdio_client,
 )
+from mcp.client.stdio import StdioServerParameters
 from pydantic import BaseModel, Field, PrivateAttr
 
 from haive.mcp.config import MCPServerConfig
-from mcp.client.stdio import StdioServerParameters
-
 
 logger = logging.getLogger(__name__)
 
@@ -230,10 +230,8 @@ class MCPManager(BaseModel):
     def model_post_init(self, __context) -> None:
         """Initialize the MCP manager after model creation."""
         # Call parent's model_post_init if it exists
-        try:
+        with contextlib.suppress(AttributeError):
             super().model_post_init(__context)
-        except AttributeError:
-            pass
 
         # Start health monitoring if enabled
         if self.enabled and self.auto_health_check:
@@ -251,7 +249,7 @@ class MCPManager(BaseModel):
                 await self._check_all_server_health()
                 await asyncio.sleep(self.health_check_interval)
             except Exception as e:
-                logger.error(f"Health monitoring error: {e}")
+                logger.exception(f"Health monitoring error: {e}")
                 await asyncio.sleep(self.health_check_interval)
 
     async def add_server(
@@ -365,7 +363,7 @@ class MCPManager(BaseModel):
 
         except Exception as e:
             error_trace = traceback.format_exc()
-            logger.error(f"Failed to add server {server_name}: {e}")
+            logger.exception(f"Failed to add server {server_name}: {e}")
             logger.debug(f"Full traceback: {error_trace}")
             self._server_status[server_name] = MCPServerStatus.FAILED
             return MCPRegistrationResult(
@@ -378,7 +376,7 @@ class MCPManager(BaseModel):
     async def _handle_session_connection(
         self, server_name: str, config: MCPServerConfig, session, server_params
     ):
-        """Handle successful session connection and tool discovery"""
+        """Handle successful session connection and tool discovery."""
         try:
             # Store session info (simplified for now)
             self._clients[server_name] = {
@@ -428,15 +426,7 @@ class MCPManager(BaseModel):
             )
 
         except Exception as e:
-            logger.error(f"Error handling session for {server_name}: {e}")
-            self._server_status[server_name] = MCPServerStatus.FAILED
-            return MCPRegistrationResult(
-                server_name=server_name,
-                success=False,
-                status=MCPServerStatus.FAILED,
-                error_message=str(e),
-            )
-
+            logger.exception(f"Error handling session for {server_name}: {e}")
             self._server_status[server_name] = MCPServerStatus.FAILED
             self._retry_counts[server_name] = self._retry_counts.get(server_name, 0) + 1
 
@@ -444,7 +434,7 @@ class MCPManager(BaseModel):
                 server_name=server_name,
                 success=False,
                 status=MCPServerStatus.FAILED,
-                error_message=error_msg,
+                error_message=str(e),
             )
 
     async def _test_server_connection(
@@ -475,12 +465,11 @@ class MCPManager(BaseModel):
             if config.transport.value == "sse":
                 # For SSE, try a simple HTTP request
 
-                async with aiohttp.ClientSession() as session:
-                    async with session.get(
-                        config.url,
-                        timeout=aiohttp.ClientTimeout(total=self.connection_timeout),
-                    ) as response:
-                        return response.status < 500
+                async with aiohttp.ClientSession() as session, session.get(
+                    config.url,
+                    timeout=aiohttp.ClientTimeout(total=self.connection_timeout),
+                ) as response:
+                    return response.status < 500
             return True
         except Exception as e:
             logger.debug(f"Server connection test failed for {server_name}: {e}")
@@ -510,7 +499,7 @@ class MCPManager(BaseModel):
                     f"Rebuilt multi-client with {len(connected_clients)} servers"
                 )
             except Exception as e:
-                logger.error(f"Failed to rebuild multi-client: {e}")
+                logger.exception(f"Failed to rebuild multi-client: {e}")
                 self._multi_client = None
 
     async def remove_server(self, server_name: str) -> bool:
@@ -567,7 +556,7 @@ class MCPManager(BaseModel):
         try:
             return self._multi_client.get_tools() or []
         except Exception as e:
-            logger.error(f"Failed to get tools: {e}")
+            logger.exception(f"Failed to get tools: {e}")
             return []
 
     async def call_tool(self, tool_name: str, arguments: dict[str, Any]) -> Any:
@@ -666,7 +655,7 @@ class MCPManager(BaseModel):
         try:
             # Simple health check - try to get tools
             client = self._clients[server_name]
-            tools = await self._discover_server_tools(client)
+            await self._discover_server_tools(client)
 
             response_time = asyncio.get_event_loop().time() - start_time
 
@@ -715,10 +704,8 @@ class MCPManager(BaseModel):
         # Cancel health monitoring
         if self._health_check_task and not self._health_check_task.done():
             self._health_check_task.cancel()
-            try:
+            with contextlib.suppress(asyncio.CancelledError):
                 await self._health_check_task
-            except asyncio.CancelledError:
-                pass
 
         # Close all client connections
         for server_name, client in self._clients.items():
@@ -763,7 +750,7 @@ class MCPManager(BaseModel):
                             f"Refreshed {len(tool_names)} tools from {server_name}"
                         )
                 except Exception as e:
-                    logger.error(f"Failed to refresh tools from {server_name}: {e}")
+                    logger.exception(f"Failed to refresh tools from {server_name}: {e}")
 
         # Rebuild multi-client with fresh tool registry
         await self._rebuild_multi_client()

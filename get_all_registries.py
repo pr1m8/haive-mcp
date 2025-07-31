@@ -1,24 +1,19 @@
 #!/usr/bin/env python3
-"""Get ALL MCP servers from major registries - AGGRESSIVE MODE"""
+"""Get ALL MCP servers from major registries - AGGRESSIVE MODE."""
 
 import asyncio
-from datetime import UTC, datetime
 import json
-from pathlib import Path
 import re
+from datetime import UTC, datetime
+from pathlib import Path
 
 import aiohttp
-
-
-print("🚀 FETCHING ALL MCP SERVERS FROM MAJOR REGISTRIES")
-print("=" * 60)
 
 data_dir = Path("data/mcp_servers")
 
 
 async def fetch_pulsemcp_servers(session: aiohttp.ClientSession) -> list[dict]:
     """Fetch all servers from PulseMCP (4890+ servers)."""
-    print("\n📡 Fetching from PulseMCP...")
     servers = []
 
     # PulseMCP has a public API
@@ -40,7 +35,6 @@ async def fetch_pulsemcp_servers(session: aiohttp.ClientSession) -> list[dict]:
                             servers = data
                         elif isinstance(data, dict) and "servers" in data:
                             servers = data["servers"]
-                        print(f"✅ Found {len(servers)} servers from PulseMCP")
                         break
             except:
                 continue
@@ -60,16 +54,14 @@ async def fetch_pulsemcp_servers(session: aiohttp.ClientSession) -> list[dict]:
                         data = json.loads(match.group(1))
                         if "servers" in data:
                             servers = data["servers"]
-                            print(f"✅ Scraped {len(servers)} servers from PulseMCP")
-    except Exception as e:
-        print(f"❌ PulseMCP error: {e}")
+    except Exception:
+        pass
 
     return servers
 
 
 async def fetch_smithery_servers(session: aiohttp.ClientSession) -> list[dict]:
     """Fetch all servers from Smithery (2211+ servers)."""
-    print("\n📡 Fetching from Smithery...")
     servers = []
 
     try:
@@ -90,19 +82,17 @@ async def fetch_smithery_servers(session: aiohttp.ClientSession) -> list[dict]:
                             servers = data
                         elif isinstance(data, dict) and "servers" in data:
                             servers = data["servers"]
-                        print(f"✅ Found {len(servers)} servers from Smithery")
                         break
             except:
                 continue
-    except Exception as e:
-        print(f"❌ Smithery error: {e}")
+    except Exception:
+        pass
 
     return servers
 
 
 async def fetch_mcp_registry(session: aiohttp.ClientSession) -> list[dict]:
     """Fetch all servers from MCP Registry (1000+ servers)."""
-    print("\n📡 Fetching from MCP Registry...")
     servers = []
 
     try:
@@ -123,12 +113,11 @@ async def fetch_mcp_registry(session: aiohttp.ClientSession) -> list[dict]:
                             servers = data
                         elif isinstance(data, dict) and "servers" in data:
                             servers = data["servers"]
-                        print(f"✅ Found {len(servers)} servers from MCP Registry")
                         break
             except:
                 continue
-    except Exception as e:
-        print(f"❌ MCP Registry error: {e}")
+    except Exception:
+        pass
 
     return servers
 
@@ -137,7 +126,6 @@ async def fetch_github_topic_servers(
     session: aiohttp.ClientSession, topic: str
 ) -> list[dict]:
     """Fetch servers from GitHub topic."""
-    print(f"\n📡 Fetching GitHub topic: {topic}...")
     servers = []
 
     try:
@@ -177,19 +165,16 @@ async def fetch_github_topic_servers(
                         break
                     page += 1
                 else:
-                    print(f"GitHub API rate limit or error: {resp.status}")
                     break
 
-        print(f"✅ Found {len(servers)} servers from GitHub topic: {topic}")
-    except Exception as e:
-        print(f"❌ GitHub topic error: {e}")
+    except Exception:
+        pass
 
     return servers
 
 
 async def fetch_tensorblock_servers(session: aiohttp.ClientSession) -> list[dict]:
     """Fetch servers from TensorBlock's awesome list (7260+ servers)."""
-    print("\n📡 Fetching from TensorBlock/awesome-mcp-servers...")
     servers = []
 
     try:
@@ -214,9 +199,8 @@ async def fetch_tensorblock_servers(session: aiohttp.ClientSession) -> list[dict
                         }
                         servers.append(server)
 
-                print(f"✅ Parsed {len(servers)} servers from TensorBlock")
-    except Exception as e:
-        print(f"❌ TensorBlock error: {e}")
+    except Exception:
+        pass
 
     return servers
 
@@ -248,11 +232,10 @@ async def main():
             "TensorBlock",
         ]
 
-        for source, result in zip(sources, results, strict=False):
+        for _source, result in zip(sources, results, strict=False):
             if isinstance(result, Exception):
-                print(f"❌ {source} failed: {result}")
+                pass
             elif result:
-                print(f"📊 {source}: {len(result)} servers")
                 for server in result:
                     # Use repository URL as unique key
                     key = server.get("repository_url", server.get("name", ""))
@@ -265,7 +248,6 @@ async def main():
         with open(existing_file) as f:
             existing_data = json.load(f)
             existing_servers = existing_data.get("servers", {})
-            print(f"\n📚 Existing database: {len(existing_servers)} servers")
     else:
         existing_servers = {}
 
@@ -274,9 +256,6 @@ async def main():
     for key, server in all_servers.items():
         if key not in existing_servers:
             new_count += 1
-
-    print(f"\n🆕 Found {new_count} NEW servers!")
-    print(f"📊 Total unique servers: {len(all_servers)}")
 
     # Save all fetched servers
     output_file = data_dir / "ALL_REGISTRY_SERVERS.json"
@@ -328,9 +307,6 @@ async def main():
 
     with open(output_file, "w") as f:
         json.dump(output, f, indent=2)
-
-    print(f"\n✅ Saved to: {output_file}")
-    print("\n🎯 Next: Merge with existing database to get ALL servers!")
 
 
 if __name__ == "__main__":

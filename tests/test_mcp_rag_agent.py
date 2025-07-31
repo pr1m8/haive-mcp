@@ -21,10 +21,8 @@ async def test_mcp_rag_agent():
     assert hasattr(result, "retrieved_documents")
 
     docs = result.retrieved_documents
-    print(f"\nRetrieved {len(docs)} documents")
 
     # Print first few results
-    for i, doc in enumerate(docs[:3], 1):
-        server_name = doc.metadata.get("server_name", "Unknown")
-        category = doc.metadata.get("category", "unknown")
-        print(f"{i}. {server_name} ({category})")
+    for _i, doc in enumerate(docs[:3], 1):
+        doc.metadata.get("server_name", "Unknown")
+        doc.metadata.get("category", "unknown")

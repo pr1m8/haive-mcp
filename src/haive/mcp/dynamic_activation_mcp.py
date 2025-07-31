@@ -198,7 +198,6 @@ class DynamicMCPState(DynamicActivationState):
                     result=4
                 )
         """
-
         self.tool_call_history.append(
             {
                 "tool": tool_name,
@@ -292,8 +291,7 @@ class DynamicActivationMCPServer(BaseModel):
     _clients: dict[str, Any] = {}
 
     @model_validator(mode="after")
-    @classmethod
-    def setup_mcp_server(cls) -> "DynamicActivationMCPServer":
+    def setup_mcp_server(self) -> "DynamicActivationMCPServer":
         """Initialize MCP server components.
 
         This validator:

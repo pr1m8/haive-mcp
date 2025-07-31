@@ -7,7 +7,6 @@ import logging
 
 import aiohttp
 
-
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -88,8 +87,8 @@ async def main():
         await test_http_server()
         logger.info("\n✅ All tests completed!")
     except aiohttp.ClientError as e:
-        logger.error(f"\n❌ Connection error: {e}")
-        logger.error("Is the server running?")
+        logger.exception(f"\n❌ Connection error: {e}")
+        logger.exception("Is the server running?")
 
 
 if __name__ == "__main__":

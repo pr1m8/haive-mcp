@@ -9,10 +9,9 @@ import asyncio
 import json
 import logging
 import os
-from pathlib import Path
 import subprocess
 import sys
-
+from pathlib import Path
 
 # Set up logging
 logging.basicConfig(
@@ -278,7 +277,7 @@ class MCPSetupManager:
                 logger.warning(f"Failed to install {server['name']}: {e}")
                 self.failed_servers.append(server["name"])
             except Exception as e:
-                logger.error(f"Error installing {server['name']}: {e}")
+                logger.exception(f"Error installing {server['name']}: {e}")
                 self.failed_servers.append(server["name"])
 
     async def _setup_dataflow_integration(self):
@@ -434,39 +433,25 @@ print(f"Registered {server_name}")
 
     def _print_summary(self):
         """Print setup summary."""
-        print("\n" + "=" * 60)
-        print("🎉 HAIVE-MCP SETUP SUMMARY")
-        print("=" * 60)
-
-        print(f"\n✅ Installed Servers ({len(self.installed_servers)}):")
-        for server in self.installed_servers:
-            print(f"   - {server}")
+        for _server in self.installed_servers:
+            pass
 
         if self.failed_servers:
-            print(f"\n❌ Failed Servers ({len(self.failed_servers)}):")
-            for server in self.failed_servers:
-                print(f"   - {server}")
+            for _server in self.failed_servers:
+                pass
 
         if self.warnings:
-            print(f"\n⚠️  Warnings ({len(self.warnings)}):")
-            for warning in self.warnings:
-                print(f"   - {warning}")
+            for _warning in self.warnings:
+                pass
 
         if self.errors:
-            print(f"\n❌ Errors ({len(self.errors)}):")
-            for error in self.errors:
-                print(f"   - {error}")
-
-        print("\n" + "=" * 60)
+            for _error in self.errors:
+                pass
 
         if not self.errors:
-            print("✅ Setup completed successfully!")
-            print("\nNext steps:")
-            print("1. Set required environment variables (GITHUB_TOKEN, etc.)")
-            print("2. Run 'poetry run pytest' to verify tests")
-            print("3. Check ~/.haive/mcp/configs/ for configuration examples")
+            pass
         else:
-            print("❌ Setup completed with errors. Please fix the issues above.")
+            pass
 
 
 async def main():

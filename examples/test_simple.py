@@ -5,9 +5,9 @@ import logging
 
 from haive.core.engine.aug_llm import AugLLMConfig
 from haive.core.models.llm.base import OpenAILLMConfig
+
 from haive.mcp.agents import MCPAgent
 from haive.mcp.config import MCPConfig, MCPServerConfig
-
 
 logging.basicConfig(level=logging.INFO)
 
@@ -41,14 +41,12 @@ async def test_basic_mcp():
     # Setup
     try:
         await agent.setup()
-        print("Agent setup successful!")
 
         # Check status
-        status = agent.get_mcp_status()
-        print(f"MCP Status: {status}")
+        agent.get_mcp_status()
 
         # Try to list files
-        result = await agent.arun(
+        await agent.arun(
             {
                 "messages": [
                     {
@@ -59,10 +57,7 @@ async def test_basic_mcp():
             }
         )
 
-        print(f"Agent response: {result}")
-
-    except Exception as e:
-        print(f"Error: {e}")
+    except Exception:
         import traceback
 
         traceback.print_exc()

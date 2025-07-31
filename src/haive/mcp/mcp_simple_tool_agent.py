@@ -1,24 +1,23 @@
-"""MCP Simple Tool Agent - Using SimpleAgent with retrieval tool"""
+"""MCP Simple Tool Agent - Using SimpleAgent with retrieval tool."""
 
-from datetime import datetime
 import json
-from pathlib import Path
 import sys
 import traceback
+from datetime import datetime
+from pathlib import Path
 
+import uvicorn
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
+from haive.agents.simple.agent import SimpleAgent
+from haive.core.models.llm.base import AzureLLMConfig, LLMConfig
 from langchain_community.vectorstores import FAISS
 from langchain_core.documents import Document
 from langchain_core.tools import tool
 from langchain_huggingface import HuggingFaceEmbeddings
 from pydantic import BaseModel
-import uvicorn
 
-from haive.agents.simple.agent import SimpleAgent
-from haive.core.models.llm.base import AzureLLMConfig, LLMConfig
 from haive.mcp.documentation import MCPDocumentationLoader
-
 
 # Add parent path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent.parent))
@@ -30,16 +29,12 @@ VECTOR_STORE = None
 
 def create_mcp_documents() -> list[Document]:
     """Create documents from MCP server data."""
-    print("📚 Loading MCP server data...")
-
     doc_loader = MCPDocumentationLoader()
     all_servers_path = doc_loader.mcp_servers_path / "ALL_MCP_SERVERS_COMPLETE.json"
 
     with open(all_servers_path) as f:
         data = json.load(f)
         servers = data.get("all_servers", [])
-
-    print(f"📊 Processing {len(servers)} MCP servers...")
 
     documents = []
     for server in servers:
@@ -110,7 +105,6 @@ Prompt Count: {len(prompts)}
         )
         documents.append(doc)
 
-    print(f"✅ Created {len(documents)} documents")
     return documents
 
 
@@ -130,9 +124,7 @@ def initialize_vector_store():
     )
 
     # Create FAISS vector store
-    print("📊 Creating FAISS vector store...")
     VECTOR_STORE = FAISS.from_documents(documents, embeddings)
-    print(f"✅ Vector store created with {len(documents)} documents")
 
 
 @tool
@@ -199,7 +191,7 @@ def create_mcp_tool_agent(llm_config: LLMConfig | None = None) -> SimpleAgent:
         llm_config=llm_config,
         tools=[search_mcp_servers],
         system_prompt="""You are an expert MCP (Model Context Protocol) server discovery assistant.
-        
+
 Your role is to help users find the perfect MCP servers for their needs using the search_mcp_servers tool.
 
 When users ask about MCP servers, use the search tool to find relevant servers and provide helpful recommendations.
@@ -238,9 +230,7 @@ mcp_agent = None
 async def startup_event():
     """Initialize the MCP tool agent."""
     global mcp_agent
-    print("🚀 Initializing MCP Tool Discovery Agent...")
     mcp_agent = create_mcp_tool_agent()
-    print("✅ Agent ready!")
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -351,62 +341,62 @@ async def root():
     <div class="container">
         <h1>🤖 MCP Tool Discovery Agent</h1>
         <p class="subtitle">Search through 1,960 MCP servers with tool-based intelligence</p>
-        
+
         <div class="chat-container" id="chat"></div>
-        
+
         <div class="loading" id="loading">
             <p>🔍 Agent is thinking and searching...</p>
         </div>
-        
+
         <div class="input-container">
-            <input 
-                type="text" 
-                id="query" 
+            <input
+                type="text"
+                id="query"
                 placeholder="Ask about MCP servers... e.g., 'Find Python servers for databases'"
                 onkeypress="handleKeyPress(event)"
             />
             <button onclick="askQuestion()" id="askBtn">Ask</button>
         </div>
     </div>
-    
+
     <script>
         function handleKeyPress(event) {
             if (event.key === 'Enter') {
                 askQuestion();
             }
         }
-        
+
         async function askQuestion() {
             const input = document.getElementById('query');
             const query = input.value.trim();
             if (!query) return;
-            
+
             const chatDiv = document.getElementById('chat');
             const loadingDiv = document.getElementById('loading');
             const askBtn = document.getElementById('askBtn');
-            
+
             // Add user message
             chatDiv.innerHTML += `
                 <div class="message user-message">
                     <strong>You:</strong> ${query}
                 </div>
             `;
-            
+
             // Clear input and show loading
             input.value = '';
             input.disabled = true;
             askBtn.disabled = true;
             loadingDiv.classList.add('active');
-            
+
             try {
                 const response = await fetch('/ask', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({query: query})
                 });
-                
+
                 const data = await response.json();
-                
+
                 // Add agent response
                 chatDiv.innerHTML += `
                     <div class="message agent-message">
@@ -414,10 +404,10 @@ async def root():
                         ${data.response}
                     </div>
                 `;
-                
+
                 // Scroll to bottom
                 chatDiv.scrollTop = chatDiv.scrollHeight;
-                
+
             } catch (error) {
                 chatDiv.innerHTML += `
                     <div class="message agent-message" style="color: red;">
@@ -431,7 +421,7 @@ async def root():
                 input.focus();
             }
         }
-        
+
         // Focus on load
         window.onload = () => {
             document.getElementById('query').focus();
@@ -449,25 +439,19 @@ async def ask_agent(request: QueryRequest):
         raise HTTPException(status_code=503, detail="Agent not initialized")
 
     try:
-        print(f"🔍 Processing query: {request.query}")
 
         # Run the query through the agent
         result = await mcp_agent.arun(request.query)
-
-        print(f"✅ Got result: {result}")
 
         return QueryResponse(
             query=request.query, response=result, timestamp=datetime.now().isoformat()
         )
 
     except Exception as e:
-        print(f"❌ Error processing query: {e}")
 
         traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
 
 
 if __name__ == "__main__":
-    print("🚀 Starting MCP Tool Discovery Agent on port 6970")
-    print("📍 Open http://localhost:6970 to chat with the agent")
     uvicorn.run(app, host="0.0.0.0", port=6970)

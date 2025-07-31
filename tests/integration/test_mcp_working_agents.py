@@ -1,15 +1,16 @@
 """Test MCP with working agent types (SimpleAgent, ReactAgent, RAG agents)."""
 
+import contextlib
 from pathlib import Path
 
 import pytest
-
 from haive.agents.react.agent import ReactAgent
 
 # Import working agents that don't have GenericAgent issues
 from haive.agents.simple.agent import SimpleAgent
 from haive.core.engine.aug_llm import AugLLMConfig
 from haive.core.models.llm.base import LLMConfig
+
 from haive.mcp.config import MCPConfig, MCPServerConfig
 from haive.mcp.mixins.mcp_mixin import MCPMixin
 
@@ -306,21 +307,16 @@ class TestMCPWithWorkingAgents:
 
         if result and agent._mcp_initialized:
             # Filesystem server is available
-            print(f"Connected to filesystem server with {len(agent._mcp_tools)} tools")
             assert len(status["connected_servers"]) > 0
 
             # Try to use a tool if available
             if "read_file" in agent._mcp_tools:
-                try:
+                with contextlib.suppress(Exception):
                     result = await agent.call_mcp_tool(
                         "read_file", {"path": "/etc/hosts"}
                     )
-                    print(f"Read file result: {result[:100]}...")
-                except Exception as e:
-                    print(f"Tool execution failed: {e}")
         else:
             # Server not available
-            print("Filesystem server not available")
             assert len(status["failed_servers"]) > 0
 
 

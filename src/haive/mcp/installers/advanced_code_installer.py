@@ -30,11 +30,15 @@ class CodeGenerationRequest(BaseModel):
 
     server_name: str = Field(description="Unique name for server instance")
     server_description: str = Field(description="Description of what the server does")
-    package_info: dict[str, Any] = Field(description="Package metadata (name, repo, docs)")
+    package_info: dict[str, Any] = Field(
+        description="Package metadata (name, repo, docs)"
+    )
     context_documents: list[str] = Field(
         default_factory=list, description="Context from documentation"
     )
-    custom_requirements: str = Field(default="", description="Special installation requirements")
+    custom_requirements: str = Field(
+        default="", description="Special installation requirements"
+    )
     risk_tolerance: str = Field(default="low", description="low, medium, high")
 
 
@@ -76,11 +80,10 @@ class AdvancedCodeInstaller:
         # This would be initialized with actual haive agent
         self.code_generation_agent = None  # SimpleAgent(...)
 
-        print("🧠 Advanced Code Installer initialized")
-        print("⚠️  Human oversight required for all generated code")
-
-    def _mock_llm_code_generation(self, request: CodeGenerationRequest) -> GeneratedInstallPlan:
-        """Mock LLM code generation (replace with real agent)"""
+    def _mock_llm_code_generation(
+        self, request: CodeGenerationRequest
+    ) -> GeneratedInstallPlan:
+        """Mock LLM code generation (replace with real agent)."""
         # This simulates what the LLM would generate
         package_name = request.package_info.get("name", "")
 
@@ -115,7 +118,9 @@ class AdvancedCodeInstaller:
                 confidence_score=0.8,
                 fallback_to_safe=False,
             )
-        if "git" in package_name.lower() or "github" in request.package_info.get("repo", ""):
+        if "git" in package_name.lower() or "github" in request.package_info.get(
+            "repo", ""
+        ):
             # Git-based installation
             repo_url = request.package_info.get("repo", "")
             return GeneratedInstallPlan(
@@ -191,7 +196,7 @@ class AdvancedCodeInstaller:
             command: str,
             timeout: int = 30,
             working_directory: str | None = None,
-            environment_vars: dict[str, str] = None,
+            environment_vars: dict[str, str] | None = None,
         ) -> str:
             """Execute subprocess command with safety checks."""
             # Security validation
@@ -200,13 +205,13 @@ class AdvancedCodeInstaller:
                 return f"❌ BLOCKED: Command contains dangerous pattern: {command}"
 
             # Risk assessment check
-            if plan.risk_assessment.startswith("HIGH") and request.risk_tolerance == "low":
-                return (
-                    f"❌ BLOCKED: High risk command not allowed with low risk tolerance: {command}"
-                )
+            if (
+                plan.risk_assessment.startswith("HIGH")
+                and request.risk_tolerance == "low"
+            ):
+                return f"❌ BLOCKED: High risk command not allowed with low risk tolerance: {command}"
 
             try:
-                print(f"🔧 Executing: {command}")
 
                 # Prepare environment
                 env = os.environ.copy()
@@ -278,7 +283,9 @@ class AdvancedCodeInstaller:
                             check=False,
                         )
                         if result.returncode == 0:
-                            results.append(f"   ✅ npx available: {result.stdout.strip()}")
+                            results.append(
+                                f"   ✅ npx available: {result.stdout.strip()}"
+                            )
                         else:
                             results.append("   ❌ npx not available")
                     except BaseException:
@@ -293,7 +300,9 @@ class AdvancedCodeInstaller:
                             check=False,
                         )
                         if result.returncode == 0:
-                            results.append(f"   ✅ pip available: {result.stdout.strip()}")
+                            results.append(
+                                f"   ✅ pip available: {result.stdout.strip()}"
+                            )
                         else:
                             results.append("   ❌ pip not available")
                     except BaseException:
@@ -308,7 +317,9 @@ class AdvancedCodeInstaller:
                             check=False,
                         )
                         if result.returncode == 0:
-                            results.append(f"   ✅ git available: {result.stdout.strip()}")
+                            results.append(
+                                f"   ✅ git available: {result.stdout.strip()}"
+                            )
                         else:
                             results.append("   ❌ git not available")
                     except BaseException:
@@ -325,19 +336,11 @@ class AdvancedCodeInstaller:
         self, request: CodeGenerationRequest
     ) -> tuple[bool, str, list[StructuredTool]]:
         """Advanced server installation with code generation."""
-        print(f"🧠 Generating installation plan for {request.server_name}...")
-
         # Generate installation plan
         plan = await self.generate_installation_plan(request)
 
-        print("📋 Generated plan:")
-        print(f"   Risk Assessment: {plan.risk_assessment}")
-        print(f"   Confidence: {plan.confidence_score:.1%}")
-        print(f"   Commands: {len(plan.install_commands)}")
-
         # Check if we should fallback to safe installer
         if plan.fallback_to_safe and plan.confidence_score > 0.7:
-            print("🛡️  High confidence + safe fallback - using SafePatternInstaller")
 
             # Try to find matching pattern
             safe_request = SafeRequest(
@@ -422,11 +425,9 @@ class AdvancedCodeInstaller:
     def cleanup(self):
         """Clean up all resources."""
         self.safe_installer.cleanup()
-        for name, process in self.running_servers.items():
+        for _name, process in self.running_servers.items():
             try:
                 process.terminate()
                 process.wait(timeout=5)
-                print(f"✅ Stopped {name} server")
             except BaseException:
                 process.kill()
-                print(f"🔥 Force killed {name} server")

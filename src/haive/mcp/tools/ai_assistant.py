@@ -1,4 +1,4 @@
-"""AI-friendly MCP server selection and configuration assistant.
+r"""AI-friendly MCP server selection and configuration assistant.
 
 This module provides tools specifically designed for AI agents to automatically
 select, configure, and use MCP servers based on task analysis and intelligent
@@ -355,7 +355,9 @@ class MCPAssistant:
     ) -> list[ServerRecommendation]:
         """Get intelligent server recommendations."""
         # Get base recommendations from selector
-        base_scores = self.selector.recommend_for_task(task_description, max_servers * 2)
+        base_scores = self.selector.recommend_for_task(
+            task_description, max_servers * 2
+        )
 
         recommendations = []
 
@@ -468,11 +470,15 @@ class MCPAssistant:
                 return config
 
         except Exception as e:
-            logger.error(f"Failed to create config for {recommendation.server_name}: {e}")
+            logger.exception(
+                f"Failed to create config for {recommendation.server_name}: {e}"
+            )
 
         return None
 
-    def _create_fallback_server_config(self, server_name: str) -> MCPServerConfig | None:
+    def _create_fallback_server_config(
+        self, server_name: str
+    ) -> MCPServerConfig | None:
         """Create fallback server configuration."""
         # Simplified configs for common fallback servers
         fallback_configs = {
@@ -505,7 +511,9 @@ class MCPAssistant:
             difficulty = profile["setup_difficulty"]
             requires_auth = profile["requires_auth"]
 
-            base_time = {"easy": 30, "moderate": 120, "complex": 300}.get(difficulty, 60)
+            base_time = {"easy": 30, "moderate": 120, "complex": 300}.get(
+                difficulty, 60
+            )
 
             if requires_auth:
                 base_time += 60  # Extra time for auth setup
@@ -558,7 +566,9 @@ class MCPAssistant:
         if task_pattern:
             parts.append(f"Detected task type: {task_pattern}")
 
-        parts.append(f"Required capabilities: {', '.join(requirements.required_capabilities)}")
+        parts.append(
+            f"Required capabilities: {', '.join(requirements.required_capabilities)}"
+        )
 
         if recommendations:
             top_server = recommendations[0]
@@ -574,7 +584,9 @@ class MCPAssistant:
 
         return ". ".join(parts)
 
-    def _assess_setup_complexity(self, recommendations: list[ServerRecommendation]) -> str:
+    def _assess_setup_complexity(
+        self, recommendations: list[ServerRecommendation]
+    ) -> str:
         """Assess overall setup complexity."""
         if not recommendations:
             return "simple"
@@ -588,7 +600,9 @@ class MCPAssistant:
             return "moderate"
         return "simple"
 
-    def _generate_warnings(self, recommendations: list[ServerRecommendation]) -> list[str]:
+    def _generate_warnings(
+        self, recommendations: list[ServerRecommendation]
+    ) -> list[str]:
         """Generate warnings about potential issues."""
         warnings = []
 
@@ -598,7 +612,9 @@ class MCPAssistant:
             warnings.append(f"Authentication required for: {', '.join(auth_servers)}")
 
         # Check for complex setup
-        complex_servers = [r.server_name for r in recommendations if r.estimated_setup_time > 180]
+        complex_servers = [
+            r.server_name for r in recommendations if r.estimated_setup_time > 180
+        ]
         if complex_servers:
             warnings.append(f"Complex setup required for: {', '.join(complex_servers)}")
 
@@ -609,7 +625,9 @@ class MCPAssistant:
 
         return warnings
 
-    def _get_fallback_servers(self, recommendations: list[ServerRecommendation]) -> list[str]:
+    def _get_fallback_servers(
+        self, recommendations: list[ServerRecommendation]
+    ) -> list[str]:
         """Get all fallback servers from recommendations."""
         fallbacks = set()
         for rec in recommendations:
@@ -670,7 +688,9 @@ class MCPAssistant:
         for server_name, server_config in config.servers.items():
             # Check for missing environment variables
             required_vars = self._get_required_env_vars(server_name)
-            missing_vars = [var for var in required_vars if var not in server_config.env]
+            missing_vars = [
+                var for var in required_vars if var not in server_config.env
+            ]
 
             if missing_vars:
                 results["issues"].append(
@@ -682,7 +702,7 @@ class MCPAssistant:
             results["estimated_setup_time"] += self._estimate_setup_time(server_name)
 
         # Check for conflicting servers
-        server_names = [name.split("/")[-1] for name in config.servers.keys()]
+        server_names = [name.split("/")[-1] for name in config.servers]
         if len(server_names) != len(set(server_names)):
             results["issues"].append("Conflicting server names detected")
 

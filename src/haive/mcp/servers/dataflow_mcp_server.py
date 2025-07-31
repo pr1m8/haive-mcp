@@ -98,7 +98,7 @@ async def query_registry(
         return results
 
     except Exception as e:
-        logger.error(f"Error querying registry: {e}")
+        logger.exception(f"Error querying registry: {e}")
         return [{"error": str(e)}]
 
 
@@ -154,7 +154,7 @@ async def discover_components(
         return results
 
     except Exception as e:
-        logger.error(f"Error discovering components: {e}")
+        logger.exception(f"Error discovering components: {e}")
         return {"error": str(e), "discovered": {}}
 
 
@@ -190,7 +190,7 @@ async def create_agent(request: AgentCreationRequest) -> dict[str, Any]:
         )
 
         # Create AugLLM config
-        aug_config = AugLLMConfig(
+        AugLLMConfig(
             llm_config=llm_config,
             name=request.name,
             tools=request.tools,
@@ -218,7 +218,7 @@ async def create_agent(request: AgentCreationRequest) -> dict[str, Any]:
         return result
 
     except Exception as e:
-        logger.error(f"Error creating agent: {e}")
+        logger.exception(f"Error creating agent: {e}")
         return {"success": False, "error": str(e), "message": "Failed to create agent"}
 
 
@@ -274,7 +274,7 @@ async def execute_tool(tool_name: str, input_data: dict[str, Any]) -> dict[str, 
         return result
 
     except Exception as e:
-        logger.error(f"Error executing tool: {e}")
+        logger.exception(f"Error executing tool: {e}")
         return {"error": str(e), "result": None}
 
 
@@ -318,7 +318,7 @@ async def get_registry_entities() -> dict[str, Any]:
         }
 
     except Exception as e:
-        logger.error(f"Error getting registry entities: {e}")
+        logger.exception(f"Error getting registry entities: {e}")
         return {"entities": [], "error": str(e)}
 
 
@@ -350,7 +350,7 @@ async def get_registry_statistics() -> dict[str, Any]:
         return stats
 
     except Exception as e:
-        logger.error(f"Error getting registry statistics: {e}")
+        logger.exception(f"Error getting registry statistics: {e}")
         return {"error": str(e)}
 
 
@@ -372,7 +372,7 @@ async def component_search_prompt(requirement: str) -> list[dict[str, str]]:
     return [
         {
             "role": "system",
-            "content": """You are a Haive component search assistant. 
+            "content": """You are a Haive component search assistant.
             Help users find the right agents, tools, and engines for their needs.
             Consider capabilities, compatibility, and performance.""",
         },
@@ -445,7 +445,7 @@ async def initialize_server():
             results = await discover_components("all", auto_register=True)
             logger.info(f"Discovered {results['total']} components")
         except Exception as e:
-            logger.error(f"Error during discovery: {e}")
+            logger.exception(f"Error during discovery: {e}")
     else:
         logger.warning("Running in mock mode - haive-dataflow not available")
 

@@ -1,4 +1,4 @@
-"""FastAPI MCP Discovery and Installation Server
+"""FastAPI MCP Discovery and Installation Server.
 
 This server provides:
 1. Web interface for discovering MCP servers
@@ -7,22 +7,21 @@ This server provides:
 4. Real-time status updates via WebSocket
 """
 
-from contextlib import asynccontextmanager
-from datetime import datetime
-from pathlib import Path
 import subprocess
 import sys
 import tempfile
+from contextlib import asynccontextmanager
+from datetime import datetime
+from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
+from haive.core.engine.aug_llm import AugLLMConfig
 from langchain_mcp_adapters.client import MultiServerMCPClient
 from pydantic import BaseModel
 
-from haive.core.engine.aug_llm import AugLLMConfig
 from haive.mcp.working_enhanced_retriever import WorkingEnhancedRetriever
-
 
 # FastAPI imports
 
@@ -74,8 +73,6 @@ class MCPServerManager:
 
     async def initialize(self):
         """Initialize the retriever and LLM."""
-        print("🔧 Initializing MCP Server Manager...")
-
         # Setup retriever
         self.retriever = WorkingEnhancedRetriever()
         self.retriever.setup()
@@ -85,8 +82,6 @@ class MCPServerManager:
             name="mcp_discovery", model="gpt-3.5-turbo", temperature=0.3
         )
         self.llm = self.engine.instantiate()
-
-        print("✅ MCP Server Manager ready!")
 
     async def broadcast_message(self, message: dict):
         """Broadcast message to all connected WebSocket clients."""
@@ -298,7 +293,6 @@ async def lifespan(app: FastAPI):
     await manager.initialize()
     yield
     # Shutdown
-    print("Shutting down...")
 
 
 # Create FastAPI app
@@ -424,7 +418,7 @@ async def root():
 </head>
 <body>
     <h1>🚀 MCP Server Discovery & Installation</h1>
-    
+
     <div class="container">
         <h2>Search MCP Servers</h2>
         <div class="search-box">
@@ -433,40 +427,40 @@ async def root():
         </div>
         <div id="searchResults"></div>
     </div>
-    
+
     <div class="container">
         <h2>Installed Servers</h2>
         <div id="installedServers"></div>
     </div>
-    
+
     <div class="container">
         <h2>Status & Logs</h2>
         <div id="statusLog" class="status"></div>
     </div>
-    
+
     <script>
         let ws = null;
         let installedServers = {};
-        
+
         // Initialize WebSocket
         function initWebSocket() {
             ws = new WebSocket('ws://localhost:6969/ws');
-            
+
             ws.onopen = () => {
                 addStatus('✅ Connected to server');
             };
-            
+
             ws.onmessage = (event) => {
                 const data = JSON.parse(event.data);
                 handleWebSocketMessage(data);
             };
-            
+
             ws.onclose = () => {
                 addStatus('❌ Disconnected from server');
                 setTimeout(initWebSocket, 3000);
             };
         }
-        
+
         // Handle WebSocket messages
         function handleWebSocketMessage(data) {
             switch(data.type) {
@@ -484,7 +478,7 @@ async def root():
                     addStatus(`📨 ${data.type}: ${JSON.stringify(data)}`);
             }
         }
-        
+
         // Show approval request
         function showApprovalRequest(data) {
             const html = `
@@ -497,7 +491,7 @@ async def root():
             `;
             document.getElementById('statusLog').insertAdjacentHTML('afterbegin', html);
         }
-        
+
         // Approve installation
         async function approveInstall(requestId, approved) {
             const response = await fetch('/approve', {
@@ -508,28 +502,28 @@ async def root():
                     approved: approved
                 })
             });
-            
+
             document.getElementById(`approval_${requestId}`).remove();
             addStatus(approved ? '✅ Installation approved' : '❌ Installation rejected');
         }
-        
+
         // Search servers
         async function searchServers() {
             const query = document.getElementById('searchQuery').value;
             if (!query) return;
-            
+
             addStatus(`🔍 Searching: ${query}`);
-            
+
             const response = await fetch('/search', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({query: query, max_results: 5})
             });
-            
+
             const servers = await response.json();
             displaySearchResults(servers);
         }
-        
+
         // Display search results
         function displaySearchResults(servers) {
             const html = servers.map(server => `
@@ -539,22 +533,22 @@ async def root():
                         <button onclick="installServer('${server.name}')">Install</button>
                     </div>
                     <div class="server-info">
-                        <strong>Category:</strong> ${server.category} | 
-                        <strong>Language:</strong> ${server.language} | 
+                        <strong>Category:</strong> ${server.category} |
+                        <strong>Language:</strong> ${server.language} |
                         <strong>Stars:</strong> ${server.stars}
                     </div>
                     <p>${server.description}</p>
                     <a href="${server.repository_url}" target="_blank">View Repository</a>
                 </div>
             `).join('');
-            
+
             document.getElementById('searchResults').innerHTML = html;
         }
-        
+
         // Install server
         async function installServer(serverName) {
             addStatus(`📦 Requesting installation: ${serverName}`);
-            
+
             const response = await fetch('/install', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
@@ -563,27 +557,27 @@ async def root():
                     auto_approve: false
                 })
             });
-            
+
             const result = await response.json();
             if (result.error) {
                 addStatus(`❌ Error: ${result.error}`);
             }
         }
-        
+
         // Test server
         async function testServer(serverName) {
             addStatus(`🧪 Testing: ${serverName}`);
-            
+
             const response = await fetch('/test', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({server_name: serverName})
             });
-            
+
             const results = await response.json();
             showTestResults({server_name: serverName, results: results});
         }
-        
+
         // Show test results
         function showTestResults(data) {
             const results = data.results;
@@ -599,12 +593,12 @@ async def root():
             `;
             document.getElementById('statusLog').insertAdjacentHTML('afterbegin', html);
         }
-        
+
         // Load installed servers
         async function loadInstalledServers() {
             const response = await fetch('/installed');
             installedServers = await response.json();
-            
+
             const html = Object.entries(installedServers).map(([name, info]) => `
                 <div class="server-card">
                     <div class="server-header">
@@ -616,23 +610,23 @@ async def root():
                     </div>
                 </div>
             `).join('') || '<p>No servers installed yet</p>';
-            
+
             document.getElementById('installedServers').innerHTML = html;
         }
-        
+
         // Add status message
         function addStatus(message) {
             const timestamp = new Date().toLocaleTimeString();
             const html = `<div>[${timestamp}] ${message}</div>`;
             const statusLog = document.getElementById('statusLog');
             statusLog.insertAdjacentHTML('afterbegin', html);
-            
+
             // Keep only last 20 messages
             while (statusLog.children.length > 20) {
                 statusLog.removeChild(statusLog.lastChild);
             }
         }
-        
+
         // Initialize
         initWebSocket();
         loadInstalledServers();
@@ -713,10 +707,6 @@ if __name__ == "__main__":
     try:
         import fastmcp
     except ImportError:
-        print("Installing FastMCP...")
         subprocess.run([sys.executable, "-m", "pip", "install", "fastmcp"], check=True)
-
-    print("🚀 Starting MCP Discovery & Installation Server")
-    print("📍 Open http://localhost:6969 in your browser")
 
     uvicorn.run(app, host="0.0.0.0", port=6969)

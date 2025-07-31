@@ -11,7 +11,6 @@ from haive.dataflow import (
     registry_system,
 )
 
-
 # Set up logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -32,7 +31,7 @@ async def test_mcp_integration():
         )
         logger.info(f"✓ Created MCPServerConfig: {test_config.name}")
     except Exception as e:
-        logger.error(f"✗ Failed to create MCPServerConfig: {e}")
+        logger.exception(f"✗ Failed to create MCPServerConfig: {e}")
         return
 
     # Test 2: Register MCP server in registry
@@ -51,7 +50,7 @@ async def test_mcp_integration():
         )
         logger.info(f"✓ Registered MCP server with ID: {server_id}")
     except Exception as e:
-        logger.error(f"✗ Failed to register MCP server: {e}")
+        logger.exception(f"✗ Failed to register MCP server: {e}")
         return
 
     # Test 3: Query MCP servers from registry
@@ -68,7 +67,7 @@ async def test_mcp_integration():
             else:
                 logger.info(f"  - {server.name}: {server.description}")
     except Exception as e:
-        logger.error(f"✗ Failed to query MCP servers: {e}")
+        logger.exception(f"✗ Failed to query MCP servers: {e}")
         return
 
     # Test 4: Test MCP discovery (skip for now due to timeout)
@@ -87,7 +86,7 @@ async def test_mcp_integration():
         logger.info("  - MCPToolProvider")
         logger.info("  - MCPHealthMonitor")
     except ImportError as e:
-        logger.error(f"✗ Failed to import MCP modules: {e}")
+        logger.exception(f"✗ Failed to import MCP modules: {e}")
         return
 
     # Test 6: Create MCP client
@@ -105,7 +104,7 @@ async def test_mcp_integration():
                 "⚠ MCP client initialization returned False (this may be expected if no real servers are configured)"
             )
     except Exception as e:
-        logger.error(f"✗ Failed to create/initialize MCP client: {e}")
+        logger.exception(f"✗ Failed to create/initialize MCP client: {e}")
 
     logger.info("\n✅ MCP integration tests completed!")
 

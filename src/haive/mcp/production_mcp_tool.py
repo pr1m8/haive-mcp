@@ -1,4 +1,4 @@
-"""Production MCP Discovery and Installation Tool
+"""Production MCP Discovery and Installation Tool.
 
 Leverages the existing haive-mcp infrastructure with 1,960 servers to:
 1. RAG search through the complete MCP server database
@@ -16,14 +16,13 @@ import logging
 import tempfile
 from typing import Any
 
+from haive.core.engine.aug_llm import AugLLMConfig
 from langchain_core.tools import BaseTool
 from langchain_mcp_adapters.client import MultiServerMCPClient
 from pydantic import BaseModel, Field
 
-from haive.core.engine.aug_llm import AugLLMConfig
 from haive.mcp.agents import MCPDocumentationAgent
 from haive.mcp.documentation import MCPDocumentationLoader
-
 
 # Import existing haive-mcp infrastructure
 
@@ -86,14 +85,14 @@ class ProductionMCPTool(BaseTool):
     name: str = "discover_install_mcp_server"
     description: str = """
     Discover and install MCP servers from a database of 1,960+ documented servers.
-    
-    Use this tool when you need to add new capabilities to your agent by finding and 
+
+    Use this tool when you need to add new capabilities to your agent by finding and
     installing Model Context Protocol (MCP) servers. The tool uses RAG to search through
     comprehensive server documentation and can install servers automatically.
-    
+
     Examples:
     - "I need PostgreSQL database access"
-    - "Find servers for GitHub repository management" 
+    - "Find servers for GitHub repository management"
     - "Install filesystem operations with read/write"
     - "Get me weather data integration capabilities"
     - "Find servers that can process images"
@@ -138,7 +137,7 @@ class ProductionMCPTool(BaseTool):
                 logger.warning(f"Server database not found at {all_servers_path}")
 
         except Exception as e:
-            logger.error(f"Failed to load server database: {e}")
+            logger.exception(f"Failed to load server database: {e}")
 
     def _run(self, **kwargs) -> str:
         """Synchronous wrapper for async implementation."""
@@ -189,7 +188,7 @@ class ProductionMCPTool(BaseTool):
             return self._format_server_options(enhanced_options, capability_query)
 
         except Exception as e:
-            logger.error(f"Error in MCP discovery: {e}")
+            logger.exception(f"Error in MCP discovery: {e}")
             return f"❌ Error during MCP server discovery: {e!s}"
 
     def _enhance_server_options(
@@ -309,7 +308,7 @@ Or use the `install_specific_mcp_server` tool with the exact server name."""
             return await self._install_standard_mcp(server_option)
 
         except Exception as e:
-            logger.error(f"Installation error for {server_option.name}: {e}")
+            logger.exception(f"Installation error for {server_option.name}: {e}")
             return MCPInstallationResult(
                 success=False,
                 server_name=server_option.name,
@@ -567,7 +566,7 @@ async def fetch_url(url: str) -> str:
 async def git_status(repo_path: str = ".") -> str:
     """Get git repository status."""
     try:
-        result = subprocess.run(['git', 'status', '--porcelain'], 
+        result = subprocess.run(['git', 'status', '--porcelain'],
                               cwd=repo_path, capture_output=True, text=True)
         return result.stdout or "Repository is clean"
     except Exception as e:

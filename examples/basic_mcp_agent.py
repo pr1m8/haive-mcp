@@ -4,10 +4,10 @@ import asyncio
 import logging
 
 from haive.core.engine import create_engine
+
 from haive.mcp.agents import MCPAgent
 from haive.mcp.config import MCPConfig, MCPServerConfig
 from haive.mcp.discovery import MCPServerDiscovery
-
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -40,11 +40,10 @@ async def example_basic_mcp_agent():
     await agent.setup()
 
     # Check MCP status
-    status = agent.get_mcp_status()
-    print(f"MCP Status: {status}")
+    agent.get_mcp_status()
 
     # Use the agent
-    result = await agent.arun(
+    await agent.arun(
         {
             "messages": [
                 {
@@ -55,8 +54,6 @@ async def example_basic_mcp_agent():
         }
     )
 
-    print(f"Agent response: {result}")
-
 
 async def example_dynamic_discovery():
     """Example using dynamic MCP server discovery."""
@@ -65,11 +62,9 @@ async def example_dynamic_discovery():
 
     # Discover all available servers
     servers = await discovery.discover_all()
-    print(f"Discovered {len(servers)} MCP servers")
 
     # Get discovery report
-    report = discovery.get_discovery_report()
-    print(f"Discovery report: {report}")
+    discovery.get_discovery_report()
 
     # Create agent with discovered servers
     if servers:
@@ -85,8 +80,7 @@ async def example_dynamic_discovery():
         await agent.setup()
 
         # List available capabilities
-        capabilities = agent.get_available_capabilities()
-        print(f"Available capabilities: {capabilities}")
+        agent.get_available_capabilities()
 
 
 async def example_multi_server_agent():
@@ -116,7 +110,7 @@ async def example_multi_server_agent():
     await agent.setup()
 
     # Use agent with multiple capabilities
-    result = await agent.arun(
+    await agent.arun(
         {
             "messages": [
                 {
@@ -126,8 +120,6 @@ async def example_multi_server_agent():
             ]
         }
     )
-
-    print(f"Multi-server result: {result}")
 
 
 async def example_capability_based_tools():
@@ -157,18 +149,16 @@ async def example_capability_based_tools():
     await agent.setup()
 
     # Find tools by capability
-    file_tools = await agent.discover_tools_by_capability("file_read")
-    print(f"Tools with file_read capability: {len(file_tools)}")
+    await agent.discover_tools_by_capability("file_read")
 
-    repo_tools = await agent.discover_tools_by_capability("repo_access")
-    print(f"Tools with repo_access capability: {len(repo_tools)}")
+    await agent.discover_tools_by_capability("repo_access")
 
 
 async def example_with_component_registry():
     """Example integrating with component registry."""
     # Discover servers
     discovery = MCPServerDiscovery()
-    servers = await discovery.discover_all()
+    await discovery.discover_all()
 
     # Register with component registry
     await discovery.register_with_component_registry()
@@ -183,38 +173,27 @@ async def example_with_component_registry():
         registry = create_component_registry()
 
         # Search for MCP components
-        mcp_components = registry.search_components(
+        registry.search_components(
             query="file operations", component_types=[ComponentType.MCP]
         )
 
-        print(f"Found {len(mcp_components)} MCP components for file operations")
-
         # Get tools from MCP servers
-        mcp_tools = registry.search_components(
-            query="mcp", component_types=[ComponentType.TOOL]
-        )
-
-        print(f"Found {len(mcp_tools)} MCP tools")
+        registry.search_components(query="mcp", component_types=[ComponentType.TOOL])
 
     except ImportError:
-        print("Component registry not available")
+        pass
 
 
 async def main():
     """Run all examples."""
-    print("=== Basic MCP Agent Example ===")
     await example_basic_mcp_agent()
 
-    print("\n=== Dynamic Discovery Example ===")
     await example_dynamic_discovery()
 
-    print("\n=== Multi-Server Agent Example ===")
     await example_multi_server_agent()
 
-    print("\n=== Capability-Based Tools Example ===")
     await example_capability_based_tools()
 
-    print("\n=== Component Registry Integration Example ===")
     await example_with_component_registry()
 
 

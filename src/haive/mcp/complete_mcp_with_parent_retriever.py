@@ -89,15 +89,13 @@ class MCPSystemWithParentRetriever:
 
     async def setup_retrievers(self) -> None:
         """Set up both parent-child and self-query retrievers."""
-        print("🔧 Setting up Parent-Child Document Retriever...")
-
         # Load all server documents
-        all_servers_path = self.doc_loader.mcp_servers_path / "ALL_MCP_SERVERS_COMPLETE.json"
+        all_servers_path = (
+            self.doc_loader.mcp_servers_path / "ALL_MCP_SERVERS_COMPLETE.json"
+        )
         with open(all_servers_path) as f:
             data = json.load(f)
             servers = data.get("all_servers", [])
-
-        print(f"📚 Loaded {len(servers)} MCP servers from database")
 
         # Create parent documents (full server info)
         parent_documents = []
@@ -161,7 +159,6 @@ class MCPSystemWithParentRetriever:
         self.parent_retriever = parent_retriever_config.instantiate()
 
         # Add documents to parent retriever
-        print("📥 Adding documents to parent-child retriever...")
         self.parent_retriever.add_documents(parent_documents)
 
         # === SETUP SELF-QUERY RETRIEVER (for metadata filtering) ===
@@ -217,60 +214,46 @@ class MCPSystemWithParentRetriever:
             engine=parent_retriever_config,  # Use parent retriever as engine
         )
 
-        print("✅ Retrievers and RAG agent ready!")
-
     async def demonstrate_retrieval(self) -> None:
         """Demonstrate different retrieval patterns."""
-        print("\n🔍 Demonstrating Retrieval Patterns...")
-
         # 1. Parent-child retrieval (semantic search)
-        print("\n1️⃣ Parent-Child Retrieval (searching for 'database integration'):")
         parent_docs = await self.parent_retriever.aget_relevant_documents(
             "database integration PostgreSQL"
         )
 
-        for i, doc in enumerate(parent_docs[:3]):
-            print(f"\n   Result {i + 1}: {doc.metadata.get('server_id', 'Unknown')}")
-            print(f"   Category: {doc.metadata.get('category', 'Unknown')}")
-            print(f"   Stars: {doc.metadata.get('stars', 0)}")
-            print(f"   Preview: {doc.page_content[:200]}...")
+        for _i, _doc in enumerate(parent_docs[:3]):
+            pass
 
         # 2. Self-query retrieval (metadata filtering)
-        print("\n\n2️⃣ Self-Query Retrieval (high-star database servers):")
         self_query_docs = await self.self_query_retriever.aget_relevant_documents(
             "database servers with more than 50 stars"
         )
 
-        for i, doc in enumerate(self_query_docs[:3]):
-            print(f"\n   Result {i + 1}: {doc.metadata.get('server_id', 'Unknown')}")
-            print(f"   Category: {doc.metadata.get('category', 'Unknown')}")
-            print(f"   Stars: {doc.metadata.get('stars', 0)}")
+        for _i, _doc in enumerate(self_query_docs[:3]):
+            pass
 
         # 3. RAG agent query
-        print("\n\n3️⃣ RAG Agent Query (using parent retriever):")
         rag_result = await self.rag_agent.arun(
             {"query": "Find MCP servers for GitHub integration with good documentation"}
         )
 
         if rag_result and "documents" in rag_result:
-            print(f"   Found {len(rag_result['documents'])} relevant servers")
-            for doc in rag_result["documents"][:2]:
-                print(f"   - {doc.metadata.get('server_id', 'Unknown')}")
+            for _doc in rag_result["documents"][:2]:
+                pass
 
     async def install_top_server_with_hitl(self) -> str | None:
         """Find and install top server with HITL approval."""
-        print("\n\n🎯 Finding Top Server for Installation...")
-
         # Use self-query to find high-quality servers
         query = "GitHub or database servers with more than 100 stars"
         docs = await self.self_query_retriever.aget_relevant_documents(query)
 
         if not docs:
-            print("❌ No servers found")
             return None
 
         # Sort by stars and pick top
-        sorted_docs = sorted(docs, key=lambda d: d.metadata.get("stars", 0), reverse=True)
+        sorted_docs = sorted(
+            docs, key=lambda d: d.metadata.get("stars", 0), reverse=True
+        )
         top_doc = sorted_docs[0]
 
         server_info = MCPServerInfo(
@@ -281,34 +264,18 @@ class MCPSystemWithParentRetriever:
             stars=top_doc.metadata.get("stars", 0),
         )
 
-        print(f"\n🏆 Top Server: {server_info.name}")
-        print(f"   Repository: {server_info.repository_url}")
-        print(f"   Category: {server_info.category}")
-        print(f"   Stars: {server_info.stars}")
-
         # HITL Approval
-        print("\n" + "=" * 60)
-        print("🔔 HUMAN APPROVAL REQUIRED")
-        print("=" * 60)
-        print(f"Install MCP Server: {server_info.name}")
-        print("Risk Level: Medium")
-        print(f"Details: {server_info.stars} stars, {server_info.category} category")
 
         response = input("\nApprove installation? (y/n): ").lower().strip()
 
         if response != "y":
-            print("❌ Installation cancelled")
             return None
-
-        print("✅ Approved!")
 
         # Install server (simplified for demo)
         return await self._install_server(server_info)
 
     async def _install_server(self, server_info: MCPServerInfo) -> str | None:
         """Install MCP server with FastMCP."""
-        print(f"\n📦 Installing {server_info.name}...")
-
         # Generate FastMCP server
         server_code = f'''"""
 MCP Server: {server_info.name}
@@ -365,19 +332,15 @@ if __name__ == "__main__":
             "info": server_info,
         }
 
-        print(f"✅ Server installed at: {server_path}")
         return server_path
 
     async def test_installed_server(self, server_name: str) -> None:
         """Test installed server with all MCP capabilities."""
         if server_name not in self.installed_servers:
-            print(f"❌ Server {server_name} not installed")
             return
 
         server_data = self.installed_servers[server_name]
         server_path = server_data["path"]
-
-        print(f"\n\n🧪 Testing {server_name} Live...")
 
         # Create MCP client
         client_config = {
@@ -393,67 +356,51 @@ if __name__ == "__main__":
         try:
             async with client.session(server_name) as session:
                 # 1. Test Tools
-                print("\n📌 Testing Tools:")
                 tools_result = await session.list_tools()
                 tools = tools_result.tools if hasattr(tools_result, "tools") else []
 
-                print(f"   Found {len(tools)} tools")
-                for tool in tools:
-                    print(f"   - {tool.name}: {tool.description}")
+                for _tool in tools:
+                    pass
 
                 # Call a tool
                 if tools:
-                    print(f"\n   Calling tool: {tools[0].name}")
-                    result = await session.call_tool(tools[0].name, arguments={})
-                    print(f"   Result: {result}")
+                    await session.call_tool(tools[0].name, arguments={})
 
                 # 2. Test Resources
-                print("\n📌 Testing Resources:")
                 resources_result = await session.list_resources()
                 resources = (
-                    resources_result.resources if hasattr(resources_result, "resources") else []
+                    resources_result.resources
+                    if hasattr(resources_result, "resources")
+                    else []
                 )
 
-                print(f"   Found {len(resources)} resources")
-                for resource in resources:
-                    print(f"   - {resource.uri}: {resource.name}")
+                for _resource in resources:
+                    pass
 
                 # Read a resource
                 if resources:
-                    print(f"\n   Reading: {resources[0].uri}")
                     content = await session.read_resource(resources[0].uri)
                     if content.contents:
-                        print(
-                            f"   Content: {content.contents[0].text if hasattr(content.contents[0], 'text') else 'Binary'}"
-                        )
+                        pass
 
                 # 3. Test Prompts
-                print("\n📌 Testing Prompts:")
                 prompts_result = await session.list_prompts()
-                prompts = prompts_result.prompts if hasattr(prompts_result, "prompts") else []
+                prompts = (
+                    prompts_result.prompts if hasattr(prompts_result, "prompts") else []
+                )
 
-                print(f"   Found {len(prompts)} prompts")
-                for prompt in prompts:
-                    print(f"   - {prompt.name}: {prompt.description}")
+                for _prompt in prompts:
+                    pass
 
                 # Generate a prompt
                 if prompts:
-                    print(f"\n   Generating prompt: {prompts[0].name}")
                     prompt_result = await session.get_prompt(
                         prompts[0].name, arguments={"topic": "MCP integration patterns"}
                     )
                     if prompt_result.messages:
-                        msg = prompt_result.messages[0]
-                        print(
-                            f"   Generated: {
-                                msg.content.text if hasattr(msg.content, 'text') else msg
-                            }"
-                        )
+                        prompt_result.messages[0]
 
-                print("\n✅ All tests completed successfully!")
-
-        except Exception as e:
-            print(f"❌ Error testing server: {e}")
+        except Exception:
             import traceback
 
             traceback.print_exc()
@@ -464,9 +411,6 @@ if __name__ == "__main__":
 
 async def main():
     """Run the complete end-to-end example."""
-    print("🚀 Complete MCP Example with Parent-Child Retriever")
-    print("=" * 70)
-
     # Initialize
     engine = AugLLMConfig(name="mcp_engine", model="gpt-4", temperature=0.7)
 
@@ -483,14 +427,8 @@ async def main():
 
     if server_path:
         # Step 4: Test the installed server
-        server_name = list(system.installed_servers.keys())[0]
+        server_name = next(iter(system.installed_servers.keys()))
         await system.test_installed_server(server_name)
-
-    print("\n\n✅ Complete example finished!")
-    print("📊 Total servers processed: 500 (of 1,960 available)")
-    print("🔧 Retrievers: Parent-Child + Self-Query")
-    print("🤖 RAG Agent: BaseRAGAgent with parent retriever")
-    print(f"📦 Installed servers: {len(system.installed_servers)}")
 
 
 if __name__ == "__main__":
@@ -498,7 +436,6 @@ if __name__ == "__main__":
     try:
         pass
     except ImportError:
-        print("Installing FastMCP...")
         subprocess.run([sys.executable, "-m", "pip", "install", "fastmcp"], check=True)
 
     # Run the example

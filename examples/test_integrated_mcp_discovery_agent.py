@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Integrated MCP Discovery Agent Demo
+"""Integrated MCP Discovery Agent Demo.
 
 This demonstrates an agent that has built-in MCP discovery capabilities:
 1. Can search for MCP tools internally
@@ -11,13 +11,13 @@ The agent has access to the 992+ MCP server database and npm search.
 """
 
 import asyncio
-from datetime import datetime
 import json
+from datetime import datetime
 from typing import Any
 
+from haive.core.engine.aug_llm import AugLLMConfig
 from langchain_core.tools import tool
 
-from haive.core.engine.aug_llm import AugLLMConfig
 from haive.mcp.agents import MCPAgent
 from haive.mcp.config import MCPConfig
 from haive.mcp.documentation.doc_loader import MCPDocumentationLoader
@@ -285,10 +285,8 @@ class IntegratedMCPDiscoveryAgent(MCPAgent):
         await super().setup()
 
         # Load the MCP server database
-        print("📚 Loading MCP server database...")
         all_servers = self.doc_loader.load_all_mcp_documents()
         self.available_servers = all_servers
-        print(f"✅ Loaded {len(all_servers)} MCP servers")
 
         # Show some statistics
         categories = {}
@@ -296,24 +294,20 @@ class IntegratedMCPDiscoveryAgent(MCPAgent):
             cat = server_doc.get("category", "Uncategorized")
             categories[cat] = categories.get(cat, 0) + 1
 
-        print("\n📊 Available MCP Server Categories:")
-        for cat, count in sorted(categories.items(), key=lambda x: x[1], reverse=True)[
+        for cat, _count in sorted(categories.items(), key=lambda x: x[1], reverse=True)[
             :10
         ]:
-            print(f"  - {cat}: {count} servers")
+            pass
 
 
 async def demonstrate_discovery_agent():
     """Demonstrate the integrated MCP discovery agent."""
-    print("🚀 Integrated MCP Discovery Agent Demo")
-    print("=" * 50)
-
     # Create LLM engine with system message about discovery capabilities
     engine = AugLLMConfig(
         name="discovery_engine",
         temperature=0.3,
         system_message="""You are an AI assistant with integrated MCP discovery capabilities.
-        
+
 You have access to a database of 992+ MCP servers and can:
 1. Search for MCP servers by name, capability, or category
 2. Show detailed information about any server
@@ -330,9 +324,6 @@ When they want to use a specific capability, help them install and activate the 
     # Initialize the agent
     await agent.setup()
 
-    print("\n🤖 Agent initialized with discovery capabilities!")
-    print(f"Available tools: {[t.name for t in agent.tools if hasattr(t, 'name')]}")
-
     # Example interactions
     test_queries = [
         "What MCP servers are available for calculator functionality?",
@@ -343,55 +334,23 @@ When they want to use a specific capability, help them install and activate the 
         "How many MCP servers are available in total?",
     ]
 
-    print("\n📝 Example Interactions:")
-    print("-" * 50)
-
     for query in test_queries:
-        print(f"\n👤 User: {query}")
 
         try:
             # The agent would process this and use the appropriate tools
-            result = await agent.arun(
-                {"messages": [{"role": "user", "content": query}]}
-            )
-            print(f"🤖 Agent: {result}")
+            await agent.arun({"messages": [{"role": "user", "content": query}]})
         except Exception:
             # For demo purposes, show what the agent would do
-            print("🤖 Agent: [Demo mode - would use discovery tools to answer]")
 
-            if "calculator" in query.lower():
-                print("   Found 20+ calculator MCP servers including:")
-                print("   - mathjs-mcp-server: Advanced math expressions")
-                print("   - @wrtnlabs/calculator-mcp: Basic calculator")
-                print("   - calculator-mcp-server: Simple calculations")
-            elif "mathjs-mcp-server" in query:
-                print("   mathjs-mcp-server details:")
-                print("   - Description: MCP server for mathematical expressions")
-                print("   - NPM: mathjs-mcp-server")
-                print("   - Install: npx mathjs-mcp-server")
-                print("   - Capabilities: expression parsing, advanced math")
-            elif "install" in query.lower():
-                print("   ✅ Configured mathjs-mcp-server")
-                print("   Ready to activate with 'activate_mcp_server'")
-            elif "installed" in query.lower():
-                print("   Installed servers: 1")
-                print("   - mathjs-mcp-server (configured, not activated)")
-            elif "database" in query.lower():
-                print("   Found 50+ database MCP servers:")
-                print("   - PostgreSQL, MySQL, MongoDB servers")
-                print("   - SQLite, Redis, DynamoDB servers")
-            elif "how many" in query.lower():
-                print("   Total available: 992+ MCP servers")
-                print("   Categories: 15+ including databases, APIs, tools")
-
-    print("\n\n✅ Demo Complete!")
-    print("\n💡 Key Features Demonstrated:")
-    print("1. ✅ Built-in MCP discovery tools")
-    print("2. ✅ Access to 992+ server database")
-    print("3. ✅ Search by capability/category")
-    print("4. ✅ Install and configure servers")
-    print("5. ✅ Track installed servers")
-    print("6. ✅ Activate servers on demand")
+            if (
+                "calculator" in query.lower()
+                or "mathjs-mcp-server" in query
+                or "install" in query.lower()
+                or "installed" in query.lower()
+                or "database" in query.lower()
+                or "how many" in query.lower()
+            ):
+                pass
 
 
 async def main():

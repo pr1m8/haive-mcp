@@ -32,7 +32,6 @@ from pydantic import BaseModel, Field
 
 from haive.mcp.downloader.config import DiscoveryConfig
 
-
 logger = logging.getLogger(__name__)
 
 
@@ -259,7 +258,7 @@ class ServerDiscovery:
                             )
 
         except Exception as e:
-            logger.error(f"NPM discovery error: {e}")
+            logger.exception(f"NPM discovery error: {e}")
 
         return discovered[:limit]
 
@@ -312,7 +311,7 @@ class ServerDiscovery:
                                 )
 
         except Exception as e:
-            logger.error(f"PyPI discovery error: {e}")
+            logger.exception(f"PyPI discovery error: {e}")
 
         return discovered[:limit]
 
@@ -394,7 +393,7 @@ class ServerDiscovery:
                     logger.warning(f"GitHub API returned status {response.status}")
 
         except Exception as e:
-            logger.error(f"GitHub discovery error: {e}")
+            logger.exception(f"GitHub discovery error: {e}")
 
         return discovered[:limit]
 
@@ -455,7 +454,7 @@ class ServerDiscovery:
                             )
 
         except Exception as e:
-            logger.error(f"URL discovery error for {url}: {e}")
+            logger.exception(f"URL discovery error for {url}: {e}")
 
         return discovered[:limit]
 
@@ -622,12 +621,12 @@ class ServerDiscovery:
                 if "go" in tags:
                     return "git_go_repo"
                 return "git_repo"  # Default
+            return None
 
-        elif source == "docker":
+        if source == "docker":
             return "docker_image"
 
-        else:
-            return "npm_community"  # Default fallback
+        return "npm_community"  # Default fallback
 
     async def search_servers(
         self, query: str, sources: list[str] | None = None, limit: int = 50

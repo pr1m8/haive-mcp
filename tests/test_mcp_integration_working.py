@@ -4,16 +4,14 @@
 import asyncio
 import json
 import logging
-from pathlib import Path
 import sys
-
+from pathlib import Path
 
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
 from langchain_mcp_adapters.client import MultiServerMCPClient, load_mcp_tools
 from mcp.server import FastMCP
-
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -78,12 +76,12 @@ async def test_mcp_with_langchain():
                         for f in result[:3]:  # Show first 3 files
                             logger.info(f"  - {f}")
                 except Exception as e:
-                    logger.error(f"✗ Tool execution failed: {e}")
+                    logger.exception(f"✗ Tool execution failed: {e}")
 
         return True
 
     except Exception as e:
-        logger.error(f"✗ Error in MCP test: {e}")
+        logger.exception(f"✗ Error in MCP test: {e}")
         import traceback
 
         traceback.print_exc()
@@ -169,7 +167,7 @@ async def test_haive_dataflow_integration():
         return True
 
     except Exception as e:
-        logger.error(f"✗ Dataflow integration failed: {e}")
+        logger.exception(f"✗ Dataflow integration failed: {e}")
         import traceback
 
         traceback.print_exc()

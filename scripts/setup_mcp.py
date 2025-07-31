@@ -1,42 +1,34 @@
 #!/usr/bin/env python3
-"""Setup script for the General MCP Downloader
+"""Setup script for the General MCP Downloader.
 
 This script sets up the general MCP downloader system and handles dependencies.
 """
 
 import asyncio
 import logging
-from pathlib import Path
 import subprocess
 import sys
-
+from pathlib import Path
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
 def install_dependencies():
-    """Install required dependencies"""
-    print("📦 Installing dependencies...")
-
+    """Install required dependencies."""
     required_packages = ["aiohttp", "click", "pyyaml"]
 
     for package in required_packages:
         try:
-            print(f"  Installing {package}...")
             subprocess.check_call([sys.executable, "-m", "pip", "install", package])
-            print(f"  ✅ {package} installed")
-        except subprocess.CalledProcessError as e:
-            print(f"  ❌ Failed to install {package}: {e}")
+        except subprocess.CalledProcessError:
             return False
 
     return True
 
 
 def setup_directories():
-    """Create necessary directories"""
-    print("📁 Setting up directories...")
-
+    """Create necessary directories."""
     dirs = [
         Path.home() / ".mcp",
         Path.home() / ".mcp" / "servers",
@@ -47,13 +39,10 @@ def setup_directories():
 
     for dir_path in dirs:
         dir_path.mkdir(parents=True, exist_ok=True)
-        print(f"  ✅ Created: {dir_path}")
 
 
 def make_executable():
-    """Make scripts executable"""
-    print("🔧 Making scripts executable...")
-
+    """Make scripts executable."""
     scripts = [
         "general_mcp_downloader.py",
         "mcp_manager.py",
@@ -64,37 +53,26 @@ def make_executable():
         script_path = Path(script)
         if script_path.exists():
             script_path.chmod(0o755)
-            print(f"  ✅ Made executable: {script}")
         else:
-            print(f"  ⚠️  Script not found: {script}")
+            pass
 
 
 async def test_installation():
-    """Test the installation"""
-    print("🧪 Testing installation...")
-
+    """Test the installation."""
     try:
         from general_mcp_downloader import GeneralMCPDownloader
 
         # Create a test downloader
-        downloader = GeneralMCPDownloader()
-
-        print("  ✅ Downloader created successfully")
-        print(f"  📋 Templates loaded: {len(downloader.templates)}")
-        print(f"  🎯 Servers configured: {len(downloader.servers)}")
-        print(f"  📁 Install directory: {downloader.install_dir}")
+        GeneralMCPDownloader()
 
         return True
 
-    except Exception as e:
-        print(f"  ❌ Test failed: {e}")
+    except Exception:
         return False
 
 
 def create_aliases():
-    """Create convenient command aliases"""
-    print("🔗 Creating command aliases...")
-
+    """Create convenient command aliases."""
     current_dir = Path.cwd()
 
     # Create shell aliases
@@ -118,15 +96,9 @@ alias mcp-discover-install='python "{current_dir}/mcp_manager.py" discover --aut
     with open(aliases_file, "w") as f:
         f.write(aliases)
 
-    print(f"  ✅ Aliases saved to: {aliases_file}")
-    print(f"  💡 Run 'source {aliases_file}' to use aliases")
-
 
 def show_usage_examples():
-    """Show usage examples"""
-    print("\n🎯 Usage Examples:")
-    print("=" * 50)
-
+    """Show usage examples."""
     examples = [
         (
             "Discover servers",
@@ -143,66 +115,33 @@ def show_usage_examples():
         ("Test the system", "python test_general_downloader.py"),
     ]
 
-    for description, command in examples:
-        print(f"  {description}:")
-        print(f"    {command}")
-        print()
+    for _description, _command in examples:
+        pass
 
 
 async def main():
-    """Main setup function"""
-    print("🚀 General MCP Downloader Setup")
-    print("=" * 50)
-    print("Setting up the flexible, general MCP server management system...")
-    print()
-
+    """Main setup function."""
     # Install dependencies
     if not install_dependencies():
-        print("❌ Dependency installation failed!")
         return False
-
-    print()
 
     # Setup directories
     setup_directories()
-    print()
 
     # Make scripts executable
     make_executable()
-    print()
 
     # Test installation
     test_success = await test_installation()
-    print()
 
     if test_success:
         # Create aliases
         create_aliases()
-        print()
 
         # Show usage examples
         show_usage_examples()
 
-        print("🎉 Setup completed successfully!")
-        print("\n📋 What was created:")
-        print("  ✅ General MCP Downloader - Flexible, configurable server installer")
-        print("  ✅ MCP Manager - Complete CLI management interface")
-        print("  ✅ Configuration templates - Reusable installation patterns")
-        print("  ✅ Plugin architecture - Extensible installation methods")
-        print("  ✅ Auto-discovery system - Find servers from multiple sources")
-        print("  ✅ Health monitoring - Track server status over time")
-
-        print("\n🌟 Key advantages over previous implementations:")
-        print("  🔧 Configuration-driven instead of hardcoded patterns")
-        print("  🔌 Plugin architecture for easy extension")
-        print("  📊 Comprehensive status tracking and monitoring")
-        print("  🔍 Multi-source discovery system")
-        print("  ⚡ Concurrent processing for better performance")
-        print("  🛡️ Better error handling and recovery")
-        print("  📋 Standardized configuration output")
-
         return True
-    print("❌ Setup failed during testing!")
     return False
 
 

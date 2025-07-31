@@ -1,26 +1,24 @@
-"""MCP Simple RAG Agent - Using Haive's proper patterns
+"""MCP Simple RAG Agent - Using Haive's proper patterns.
 
 This agent uses BaseRAGAgent and SimpleAgent to create a proper RAG system
 for MCP server discovery.
 """
 
-from datetime import datetime
 import json
-from pathlib import Path
 import sys
 import traceback
+from datetime import datetime
+from pathlib import Path
 
+import uvicorn
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
-from langchain_core.documents import Document
-from pydantic import BaseModel
-import uvicorn
-
 from haive.agents.rag.base.agent import BaseRAGAgent
 from haive.core.engine.vectorstore.vectorstore import VectorStoreConfig
 from haive.core.models.embeddings.base import HuggingFaceEmbeddingConfig
 from haive.core.models.llm.base import AzureLLMConfig, LLMConfig
-
+from langchain_core.documents import Document
+from pydantic import BaseModel
 
 # Add parent path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent.parent))
@@ -28,8 +26,6 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent.parent))
 
 def create_mcp_documents() -> list[Document]:
     """Create documents from MCP server data with improved searchability."""
-    print("📚 Loading MCP server data...")
-
     # Direct path to the MCP servers data
     all_servers_path = (
         Path(__file__).parent.parent.parent.parent
@@ -42,8 +38,6 @@ def create_mcp_documents() -> list[Document]:
     with open(all_servers_path) as f:
         data = json.load(f)
         servers = data.get("all_servers", [])
-
-    print(f"📊 Processing {len(servers)} MCP servers into documents...")
 
     documents = []
     for server in servers:
@@ -114,7 +108,6 @@ Prompt Count: {len(prompts)}
         )
         documents.append(doc)
 
-    print(f"✅ Created {len(documents)} MCP server documents")
     return documents
 
 
@@ -127,15 +120,12 @@ def create_mcp_rag_agent(llm_config: LLMConfig | None = None) -> BaseRAGAgent:
     if not llm_config:
         llm_config = AzureLLMConfig()
 
-    print("📊 Creating embeddings with GPU support...")
     # Create embedding config
     embedding_model = HuggingFaceEmbeddingConfig(
         model="sentence-transformers/all-mpnet-base-v2",
         model_kwargs={"device": "cuda"},
         encode_kwargs={"normalize_embeddings": True},
     )
-
-    print("📊 Creating MCP RAG agent with VectorStoreConfig...")
 
     # Create vector store config with documents
     vs_config = VectorStoreConfig(
@@ -147,15 +137,12 @@ def create_mcp_rag_agent(llm_config: LLMConfig | None = None) -> BaseRAGAgent:
         score_threshold=0.5,
     )
 
-    print(f"✅ Creating agent with {len(documents)} documents...")
-
     # Create agent with vector store config as engine
     agent = BaseRAGAgent(
         name="MCP_Discovery_Agent",
         engine=vs_config,  # Use VectorStoreConfig as engine
     )
 
-    print("✅ Agent created successfully")
     return agent
 
 
@@ -187,9 +174,7 @@ mcp_agent = None
 async def startup_event():
     """Initialize the MCP RAG agent."""
     global mcp_agent
-    print("🚀 Initializing MCP Discovery Agent...")
     mcp_agent = create_mcp_rag_agent()
-    print("✅ Agent ready!")
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -460,21 +445,16 @@ async def ask_agent(request: QueryRequest):
         raise HTTPException(status_code=503, detail="Agent not initialized")
 
     try:
-        print(f"🔍 Processing query: {request.query}")
 
         # Run the query through the agent with debug
-        print("🔍 Running agent with debug=True...")
 
         sys.stdout.flush()
 
         result = await mcp_agent.arun(request.query, debug=True)
 
-        print(f"✅ Got result type: {type(result)}")
-        print(f"✅ Got result: {result}")
-
         # Debug: Print all attributes of the result
         if hasattr(result, "__dict__"):
-            print(f"🔍 Result attributes: {result.__dict__}")
+            pass
 
         # Handle RetrieverOutput object
         response_text = ""
@@ -482,8 +462,6 @@ async def ask_agent(request: QueryRequest):
         if hasattr(result, "retrieved_documents"):
             docs = result.retrieved_documents
             query_used = getattr(result, "query", request.query)
-
-            print(f"📚 Retrieved {len(docs)} documents for query: '{query_used}'")
 
             if docs:
                 # Format the retrieved documents into a readable response
@@ -516,7 +494,6 @@ async def ask_agent(request: QueryRequest):
                     response_text += "\n"
             else:
                 # No documents found - try direct vector store search as fallback
-                print("⚠️ No documents retrieved. Trying direct vector store search...")
 
                 try:
                     # Get the vector store from the agent
@@ -526,7 +503,6 @@ async def ask_agent(request: QueryRequest):
                         # Try to get the vector store config
                         vector_store_config = mcp_agent.engine
                         if hasattr(vector_store_config, "create_vectorstore"):
-                            print("📊 Creating direct vector store...")
                             vectorstore = vector_store_config.create_vectorstore()
                             direct_results = vectorstore.similarity_search(
                                 request.query, k=5
@@ -580,7 +556,6 @@ async def ask_agent(request: QueryRequest):
                         )
 
                 except Exception as e:
-                    print(f"❌ Direct search failed: {e}")
                     response_text = f"Search failed for '{request.query}'. Error: {e!s}"
 
         elif hasattr(result, "content"):
@@ -601,13 +576,10 @@ async def ask_agent(request: QueryRequest):
         )
 
     except Exception as e:
-        print(f"❌ Error processing query: {e}")
 
         traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
 
 
 if __name__ == "__main__":
-    print("🚀 Starting MCP Discovery Agent on port 6969")
-    print("📍 Open http://localhost:6969 to chat with the agent")
     uvicorn.run(app, host="0.0.0.0", port=6969)

@@ -241,7 +241,7 @@ class MCPMixin(BaseModel):
             return False
 
         except Exception as e:
-            logger.error(f"Failed to initialize MCP: {e}")
+            logger.exception(f"Failed to initialize MCP: {e}")
             return False
 
     async def _discover_servers(self):
@@ -338,13 +338,11 @@ class MCPMixin(BaseModel):
             logger.info(f"Discovered {len(self._mcp_tools)} MCP tools")
 
         except Exception as e:
-            logger.error(f"Failed to discover MCP tools: {e}")
+            logger.exception(f"Failed to discover MCP tools: {e}")
 
     async def _register_tools_with_registry(self):
         """Register MCP tools with the component registry if available."""
         try:
-            )
-
             registry = create_component_registry()
 
             # Register each MCP server
@@ -389,7 +387,7 @@ class MCPMixin(BaseModel):
             # Component registry not available
             logger.debug("Component registry not available, skipping registration")
         except Exception as e:
-            logger.error(f"Failed to register with component registry: {e}")
+            logger.exception(f"Failed to register with component registry: {e}")
 
     @asynccontextmanager
     async def mcp_session(self, server_name: str | None = None):
@@ -441,7 +439,7 @@ class MCPMixin(BaseModel):
             result = await tool.ainvoke(arguments)
             return result
         except Exception as e:
-            logger.error(f"Error executing MCP tool {tool_name}: {e}")
+            logger.exception(f"Error executing MCP tool {tool_name}: {e}")
             raise
 
     async def get_mcp_resources(
@@ -502,7 +500,7 @@ class MCPMixin(BaseModel):
             try:
                 await self._mcp_client.close()
             except Exception as e:
-                logger.error(f"Error closing MCP client: {e}")
+                logger.exception(f"Error closing MCP client: {e}")
 
         self._mcp_client = None
         self._mcp_initialized = False

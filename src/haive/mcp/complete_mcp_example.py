@@ -95,38 +95,25 @@ class HITLApprovalSystem:
 
         # Auto-approve low risk
         if self.auto_approve_low_risk and request.risk_level == "low":
-            print(f"✅ Auto-approved (low risk): {request.action} on {request.target}")
             return True
 
         # Display request
-        print("\n" + "=" * 60)
-        print("🔔 HUMAN APPROVAL REQUIRED")
-        print("=" * 60)
-        print(f"Action: {request.action}")
-        print(f"Target: {request.target}")
-        print(f"Risk Level: {request.risk_level}")
-        print(f"Description: {request.description}")
 
         if request.metadata:
-            print("\nAdditional Info:")
-            for key, value in request.metadata.items():
-                print(f"  {key}: {value}")
-
-        print("\n" + "-" * 60)
+            for _key, _value in request.metadata.items():
+                pass
 
         # Get user input
         while True:
             response = input("Approve? (y/n/details): ").lower().strip()
             if response == "y":
-                print("✅ Approved by human")
                 return True
             if response == "n":
-                print("❌ Rejected by human")
                 return False
             if response == "details":
-                print(json.dumps(request.dict(), indent=2))
+                pass
             else:
-                print("Please enter 'y', 'n', or 'details'")
+                pass
 
 
 # === COMPLETE MCP SYSTEM ===
@@ -145,11 +132,8 @@ class CompleteMCPSystem:
 
     async def setup_retriever(self) -> None:
         """Set up self-query retriever for MCP servers."""
-        print("Setting up self-query retriever for MCP servers...")
-
         # Load all server documents
         all_servers = self.doc_loader.load_all_mcp_documents()
-        print(f"Loaded {len(all_servers)} MCP servers")
 
         # Convert to LangChain documents with metadata
         documents = []
@@ -190,7 +174,6 @@ Install: {server_data.get("install_command", "Not specified")}
         vectorstore = vs_config.instantiate()
 
         # Add documents to vector store
-        print("Adding documents to vector store...")
         vectorstore.add_documents(documents)
 
         # Define metadata fields for self-query
@@ -228,14 +211,13 @@ Install: {server_data.get("install_command", "Not specified")}
         )
 
         self.retriever = retriever_config.instantiate()
-        print("✅ Self-query retriever ready!")
 
     def build_category_tree(self) -> AutoTree:
         """Build hierarchical category tree of MCP servers."""
-        print("\nBuilding category tree...")
-
         # Load comprehensive server data
-        all_servers_path = self.doc_loader.mcp_servers_path / "ALL_MCP_SERVERS_COMPLETE.json"
+        all_servers_path = (
+            self.doc_loader.mcp_servers_path / "ALL_MCP_SERVERS_COMPLETE.json"
+        )
         with open(all_servers_path) as f:
             data = json.load(f)
             servers = data.get("all_servers", [])
@@ -279,12 +261,10 @@ Install: {server_data.get("install_command", "Not specified")}
 
         # Create tree
         self.server_tree = AutoTree(root)
-        print("✅ Category tree built!")
 
         # Show summary
-        print("\nCategory Summary:")
-        for cat_name, cat in categories.items():
-            print(f"  {cat_name}: {len(cat.servers)} servers")
+        for _cat_name, _cat in categories.items():
+            pass
 
         return self.server_tree
 
@@ -292,25 +272,20 @@ Install: {server_data.get("install_command", "Not specified")}
         self, query: str = "highest quality github integration"
     ) -> str | None:
         """Find and install the top server matching a query."""
-        print(f"\nSearching for: {query}")
-
         # Use self-query retriever
         docs = await self.retriever.aget_relevant_documents(query)
 
         if not docs:
-            print("❌ No servers found matching query")
             return None
 
         # Sort by stars and pick top
-        sorted_docs = sorted(docs, key=lambda d: d.metadata.get("stars", 0), reverse=True)
+        sorted_docs = sorted(
+            docs, key=lambda d: d.metadata.get("stars", 0), reverse=True
+        )
 
         top_doc = sorted_docs[0]
         server_name = top_doc.metadata["name"]
         stars = top_doc.metadata.get("stars", 0)
-
-        print(f"\n🏆 Top result: {server_name} ({stars} stars)")
-        print(f"Repository: {top_doc.metadata.get('repository_url', 'Unknown')}")
-        print(f"Category: {top_doc.metadata.get('category', 'Unknown')}")
 
         # Request HITL approval for installation
         approval_request = HITLApprovalRequest(
@@ -328,7 +303,6 @@ Install: {server_data.get("install_command", "Not specified")}
         approved = await self.hitl.request_approval(approval_request)
 
         if not approved:
-            print("❌ Installation cancelled by user")
             return None
 
         # Install the server
@@ -336,8 +310,6 @@ Install: {server_data.get("install_command", "Not specified")}
 
     async def _install_server(self, server_name: str, metadata: dict) -> str | None:
         """Install an MCP server."""
-        print(f"\n📦 Installing {server_name}...")
-
         # For this example, we'll create a simple FastMCP server
         # In production, you'd use the actual install command
 
@@ -390,8 +362,6 @@ if __name__ == "__main__":
             f.write(server_code)
             server_path = f.name
 
-        print(f"✅ Server created at: {server_path}")
-
         self.installed_servers[server_name] = {
             "path": server_path,
             "metadata": metadata,
@@ -402,13 +372,10 @@ if __name__ == "__main__":
     async def test_server_live(self, server_name: str) -> None:
         """Test a server with live connection."""
         if server_name not in self.installed_servers:
-            print(f"❌ Server {server_name} not installed")
             return
 
         server_info = self.installed_servers[server_name]
         server_path = server_info["path"]
-
-        print(f"\n🧪 Testing {server_name} live...")
 
         # Create MCP client configuration
         client_config = {
@@ -425,81 +392,57 @@ if __name__ == "__main__":
         try:
             # Test connection and capabilities
             async with client.session(server_name) as session:
-                print("\n1️⃣ Testing Tools...")
 
                 # List tools
                 tools_result = await session.list_tools()
                 tools = tools_result.tools if hasattr(tools_result, "tools") else []
-                print(f"   Found {len(tools)} tools:")
-                for tool in tools:
-                    print(f"   - {tool.name}: {tool.description}")
+                for _tool in tools:
+                    pass
 
                 # Test a tool
                 if tools:
-                    print(f"\n   Testing tool: {tools[0].name}")
-                    result = await session.call_tool(
+                    await session.call_tool(
                         tools[0].name,
                         arguments={"name": "Haive"} if tools[0].name == "hello" else {},
                     )
-                    print(f"   Result: {result}")
-
-                print("\n2️⃣ Testing Resources...")
 
                 # List resources
                 resources_result = await session.list_resources()
                 resources = (
-                    resources_result.resources if hasattr(resources_result, "resources") else []
+                    resources_result.resources
+                    if hasattr(resources_result, "resources")
+                    else []
                 )
-                print(f"   Found {len(resources)} resources:")
-                for resource in resources:
-                    print(f"   - {resource.uri}: {resource.name}")
+                for _resource in resources:
+                    pass
 
                 # Test a resource
                 if resources:
-                    print(f"\n   Reading resource: {resources[0].uri}")
                     resource_content = await session.read_resource(resources[0].uri)
                     if resource_content.contents:
-                        print(
-                            f"   Content: {
-                                resource_content.contents[0].text
-                                if hasattr(resource_content.contents[0], 'text')
-                                else 'Binary content'
-                            }"
-                        )
-
-                print("\n3️⃣ Testing Prompts...")
+                        pass
 
                 # List prompts
                 prompts_result = await session.list_prompts()
-                prompts = prompts_result.prompts if hasattr(prompts_result, "prompts") else []
-                print(f"   Found {len(prompts)} prompts:")
-                for prompt in prompts:
-                    print(f"   - {prompt.name}: {prompt.description}")
+                prompts = (
+                    prompts_result.prompts if hasattr(prompts_result, "prompts") else []
+                )
+                for _prompt in prompts:
+                    pass
 
                 # Test a prompt
                 if prompts:
-                    print(f"\n   Testing prompt: {prompts[0].name}")
                     prompt_result = await session.get_prompt(
                         prompts[0].name, arguments={"topic": "MCP integration"}
                     )
                     if prompt_result.messages:
-                        print(
-                            f"   Generated: {
-                                prompt_result.messages[0].content.text
-                                if hasattr(prompt_result.messages[0].content, 'text')
-                                else prompt_result.messages[0]
-                            }"
-                        )
+                        pass
 
-                print("\n✅ All tests completed!")
-
-        except Exception as e:
-            print(f"❌ Error testing server: {e}")
+        except Exception:
+            pass
 
     async def demo_retriever_queries(self) -> None:
         """Demonstrate various self-query retriever queries."""
-        print("\n📚 Testing Self-Query Retriever...")
-
         queries = [
             "database servers with more than 100 stars",
             "filesystem tools that have install commands",
@@ -509,15 +452,9 @@ if __name__ == "__main__":
         ]
 
         for query in queries:
-            print(f"\nQuery: '{query}'")
             docs = await self.retriever.aget_relevant_documents(query)
-            print(f"Found {len(docs)} results:")
-            for i, doc in enumerate(docs[:3]):  # Show top 3
-                print(
-                    f"  {i + 1}. {doc.metadata['name']} ({doc.metadata['category']}, {
-                        doc.metadata.get('stars', 0)
-                    } stars)"
-                )
+            for _i, _doc in enumerate(docs[:3]):  # Show top 3
+                pass
 
 
 # === MAIN EXECUTION ===
@@ -525,9 +462,6 @@ if __name__ == "__main__":
 
 async def main():
     """Run the complete MCP example."""
-    print("🚀 Complete MCP Example with Self-Query Retriever and HITL")
-    print("=" * 60)
-
     # Initialize system
     engine = AugLLMConfig(name="mcp_discovery_engine", model="gpt-4", temperature=0.7)
 
@@ -537,9 +471,7 @@ async def main():
     await system.setup_retriever()
 
     # Step 2: Build category tree
-    tree = system.build_category_tree()
-    print("\n📊 Category Tree (top 3 levels):")
-    print(tree.visualize(show_type=True, max_depth=2))
+    system.build_category_tree()
 
     # Step 3: Demo retriever queries
     await system.demo_retriever_queries()
@@ -551,13 +483,8 @@ async def main():
 
     if server_path:
         # Step 5: Test the server live
-        server_name = list(system.installed_servers.keys())[0]
+        server_name = next(iter(system.installed_servers.keys()))
         await system.test_server_live(server_name)
-
-    print("\n✅ Complete MCP example finished!")
-    print("📊 Total servers in database: 1,960")
-    print(f"🔧 Installed servers: {len(system.installed_servers)}")
-    print(f"📝 HITL approvals: {len(system.hitl.approval_history)}")
 
 
 if __name__ == "__main__":

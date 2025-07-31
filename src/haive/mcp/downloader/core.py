@@ -218,7 +218,6 @@ class GeneralMCPDownloader:
             This creates a sensible default configuration that covers
             the most common MCP server patterns.
         """
-
         # Default templates
         templates = [
             ServerTemplate(
@@ -381,7 +380,7 @@ class GeneralMCPDownloader:
                 logger.info(f"Loaded status for {len(self.status_tracker)} servers")
 
             except Exception as e:
-                logger.error(f"Error loading status: {e}")
+                logger.exception(f"Error loading status: {e}")
 
     def _save_status(self) -> None:
         """Save server status to persistent storage.
@@ -408,7 +407,7 @@ class GeneralMCPDownloader:
             logger.debug(f"Saved status for {len(data)} servers")
 
         except Exception as e:
-            logger.error(f"Error saving status: {e}")
+            logger.exception(f"Error saving status: {e}")
 
     @property
     def templates(self) -> dict[str, ServerTemplate]:
@@ -666,7 +665,7 @@ class GeneralMCPDownloader:
 
             except Exception as e:
                 last_error = str(e)
-                logger.error(f"Error installing {server.name}: {e}")
+                logger.exception(f"Error installing {server.name}: {e}")
 
         return {"success": False, "error": last_error}
 
@@ -701,7 +700,7 @@ class GeneralMCPDownloader:
             logger.warning(f"Health check timed out for {server.name}")
             return False
         except Exception as e:
-            logger.error(f"Error verifying {server.name}: {e}")
+            logger.exception(f"Error verifying {server.name}: {e}")
             return False
 
     def _update_server_status(
@@ -942,7 +941,7 @@ class GeneralMCPDownloader:
 
                 except Exception as e:
                     health_results[server.name] = f"error: {e!s}"
-                    logger.error(f"Health check failed for {server.name}: {e}")
+                    logger.exception(f"Health check failed for {server.name}: {e}")
             else:
                 health_results[server.name] = "no_installer"
 

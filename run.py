@@ -9,33 +9,29 @@ Usage:
     poetry run python run.py test       - Run tests
 """
 
-from pathlib import Path
 import subprocess
 import sys
+from pathlib import Path
 
 
 def run_command(cmd: list[str], description: str) -> bool:
     """Run a command with Poetry."""
-    print(f"\n🚀 {description}...")
     try:
         result = subprocess.run(cmd, check=False)
         return result.returncode == 0
-    except Exception as e:
-        print(f"❌ Error: {e}")
+    except Exception:
         return False
 
 
 def main():
     """Main runner."""
     if len(sys.argv) < 2:
-        print(__doc__)
         return 1
 
     command = sys.argv[1]
 
     # Ensure we're in the right directory
     if not Path("pyproject.toml").exists():
-        print("❌ Error: Must run from haive-mcp directory")
         return 1
 
     if command == "setup":
@@ -79,8 +75,6 @@ def main():
             0 if run_command(["poetry", "run", "pytest", "-v"], "Running tests") else 1
         )
 
-    print(f"❌ Unknown command: {command}")
-    print(__doc__)
     return 1
 
 

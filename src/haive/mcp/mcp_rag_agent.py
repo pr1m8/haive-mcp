@@ -1,22 +1,21 @@
-"""MCP RAG Agent - Simplified version that works with our enhanced retriever
+"""MCP RAG Agent - Simplified version that works with our enhanced retriever.
 
 This agent helps users find and understand MCP servers using RAG.
 """
 
+import sys
 from datetime import datetime
 from pathlib import Path
-import sys
 
+import uvicorn
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
-from langchain_openai import ChatOpenAI
-from pydantic import BaseModel
-import uvicorn
-
 from haive.agents.rag.base.agent import BaseRAGAgent
 from haive.core.engine.aug_llm import AugLLMConfig
-from haive.mcp.working_enhanced_retriever import WorkingEnhancedRetriever
+from langchain_openai import ChatOpenAI
+from pydantic import BaseModel
 
+from haive.mcp.working_enhanced_retriever import WorkingEnhancedRetriever
 
 # Add parent path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent.parent))
@@ -25,7 +24,6 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent.parent))
 async def create_mcp_rag_agent():
     """Create a RAG agent for MCP discovery."""
     # Initialize the enhanced retriever
-    print("🔧 Setting up enhanced retriever...")
     retriever = WorkingEnhancedRetriever()
     retriever.setup()
 
@@ -33,10 +31,7 @@ async def create_mcp_rag_agent():
     llm = ChatOpenAI(temperature=0)
 
     # Do a broad query to get documents
-    print("📚 Loading MCP server documentation...")
     docs = await retriever.enhanced_query(llm, "MCP servers", k=50)
-
-    print(f"✅ Loaded {len(docs)} documents")
 
     # Create RAG agent from documents
     agent = BaseRAGAgent.from_documents(
@@ -97,9 +92,7 @@ rag_agent = None
 async def startup_event():
     """Initialize the RAG agent on startup."""
     global rag_agent
-    print("🚀 Starting MCP RAG Agent...")
     rag_agent = await create_mcp_rag_agent()
-    print("✅ Agent ready!")
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -213,23 +206,23 @@ async def root():
     <div class="container">
         <h1>🤖 MCP RAG Agent</h1>
         <p style="text-align: center; color: #666;">Ask me anything about MCP servers!</p>
-        
+
         <div class="chat-container" id="chat"></div>
-        
+
         <div class="loading" id="loading">
             <p>🤔 Thinking...</p>
         </div>
-        
+
         <div class="input-container">
-            <input 
-                type="text" 
-                id="query" 
+            <input
+                type="text"
+                id="query"
                 placeholder="Ask about MCP servers..."
                 onkeypress="handleKeyPress(event)"
             />
             <button onclick="askQuestion()" id="askBtn">Ask</button>
         </div>
-        
+
         <div class="examples">
             <h3>Try these examples:</h3>
             <div class="example" onclick="setExample(this)">
@@ -249,60 +242,60 @@ async def root():
             </div>
         </div>
     </div>
-    
+
     <script>
         function setExample(element) {
             document.getElementById('query').value = element.textContent.trim();
             document.getElementById('query').focus();
         }
-        
+
         function handleKeyPress(event) {
             if (event.key === 'Enter') {
                 askQuestion();
             }
         }
-        
+
         async function askQuestion() {
             const input = document.getElementById('query');
             const query = input.value.trim();
             if (!query) return;
-            
+
             const chatDiv = document.getElementById('chat');
             const loadingDiv = document.getElementById('loading');
             const askBtn = document.getElementById('askBtn');
-            
+
             // Add user message
             chatDiv.innerHTML += `
                 <div class="message user-message">
                     ${query}
                 </div>
             `;
-            
+
             // Clear input and disable
             input.value = '';
             input.disabled = true;
             askBtn.disabled = true;
             loadingDiv.classList.add('active');
-            
+
             try {
                 const response = await fetch('/ask', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({query: query})
                 });
-                
+
                 const data = await response.json();
-                
+
                 // Add agent response
                 chatDiv.innerHTML += `
                     <div class="message agent-message">
                         ${data.response}
                     </div>
                 `;
-                
+
                 // Scroll to bottom
                 chatDiv.scrollTop = chatDiv.scrollHeight;
-                
+
             } catch (error) {
                 chatDiv.innerHTML += `
                     <div class="message agent-message" style="color: red;">
@@ -316,7 +309,7 @@ async def root():
                 input.focus();
             }
         }
-        
+
         // Focus on load
         window.onload = () => {
             document.getElementById('query').focus();
@@ -346,6 +339,4 @@ async def ask_agent(request: QueryRequest):
 
 
 if __name__ == "__main__":
-    print("🚀 Starting MCP RAG Agent on port 6969")
-    print("📍 Open http://localhost:6969 to chat with the agent")
     uvicorn.run(app, host="0.0.0.0", port=6969)

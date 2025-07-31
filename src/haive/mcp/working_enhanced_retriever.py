@@ -1,4 +1,4 @@
-"""Working Enhanced MCP Retriever - Parent-Child + Self-Query Combined
+"""Working Enhanced MCP Retriever - Parent-Child + Self-Query Combined.
 
 This demonstrates the key pattern: metadata on child chunks enables
 self-query filtering while returning full parent documents.
@@ -8,6 +8,7 @@ import asyncio
 import json
 import sys
 
+from haive.core.engine.aug_llm import AugLLMConfig
 from langchain.chains.query_constructor.base import AttributeInfo
 from langchain.retrievers import ParentDocumentRetriever
 from langchain.retrievers.self_query.base import SelfQueryRetriever
@@ -17,9 +18,7 @@ from langchain_community.vectorstores import Chroma
 from langchain_core.documents import Document
 from langchain_huggingface import HuggingFaceEmbeddings
 
-from haive.core.engine.aug_llm import AugLLMConfig
 from haive.mcp.documentation import MCPDocumentationLoader
-
 
 # Core imports - using direct imports to avoid issues
 
@@ -43,8 +42,6 @@ class WorkingEnhancedRetriever:
 
     def setup(self):
         """Set up the enhanced retriever."""
-        print("🔧 Setting up Enhanced Retriever...")
-
         # Load MCP servers
         all_servers_path = (
             self.doc_loader.mcp_servers_path / "ALL_MCP_SERVERS_COMPLETE.json"
@@ -52,8 +49,6 @@ class WorkingEnhancedRetriever:
         with open(all_servers_path) as f:
             data = json.load(f)
             servers = data.get("all_servers", [])[:100]  # Limited for demo
-
-        print(f"📚 Processing {len(servers)} MCP servers...")
 
         # Create parent documents with rich metadata
         parent_documents = []
@@ -123,10 +118,7 @@ class WorkingEnhancedRetriever:
         )
 
         # Add documents
-        print("📥 Adding documents with parent-child structure...")
         self.parent_retriever.add_documents(parent_documents)
-
-        print("✅ Enhanced retriever ready!")
 
     def create_self_query_on_chunks(self, llm, query: str, k: int = 5):
         """Create self-query retriever that operates on child chunks."""
@@ -159,21 +151,15 @@ class WorkingEnhancedRetriever:
 
     async def enhanced_query(self, llm, query: str, k: int = 5):
         """The magic: Use self-query on chunks, return parent documents."""
-        print(f"\n🔍 Enhanced Query: '{query}'")
-
         # Step 1: Self-query on child chunks
         self_query_retriever = self.create_self_query_on_chunks(llm, query, k * 2)
         chunks = await self_query_retriever.aget_relevant_documents(query)
-
-        print(f"   Found {len(chunks)} matching chunks")
 
         # Step 2: Get unique parent IDs
         parent_ids = set()
         for chunk in chunks:
             if "doc_id" in chunk.metadata:
                 parent_ids.add(chunk.metadata["doc_id"])
-
-        print(f"   Mapping to {len(parent_ids)} parent documents")
 
         # Step 3: Retrieve full parents
         parents = []
@@ -187,9 +173,6 @@ class WorkingEnhancedRetriever:
 
 async def main():
     """Run working example."""
-    print("🚀 Working Enhanced Retriever Demo")
-    print("=" * 50)
-
     # Setup
     retriever = WorkingEnhancedRetriever()
     retriever.setup()
@@ -208,20 +191,8 @@ async def main():
     for query in queries:
         docs = await retriever.enhanced_query(llm, query, k=3)
 
-        print(f"\n📊 Results for: '{query}'")
-        for i, doc in enumerate(docs):
-            print(f"\n{i + 1}. {doc.metadata.get('server_name', 'Unknown')}")
-            print(f"   Category: {doc.metadata.get('category')}")
-            print(f"   Language: {doc.metadata.get('language')}")
-            print(f"   Stars: {doc.metadata.get('stars')}")
-            print(f"   Content preview: {doc.page_content[:100]}...")
-
-    print("\n✅ Demo complete!")
-    print("\n🔑 Key Pattern:")
-    print("1. Metadata stored on BOTH parent docs AND child chunks")
-    print("2. Self-query filters child chunks by metadata")
-    print("3. Return full parent documents for context")
-    print("4. Natural language queries with metadata filtering!")
+        for _i, _doc in enumerate(docs):
+            pass
 
 
 if __name__ == "__main__":

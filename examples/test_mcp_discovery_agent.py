@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Test MCP Discovery to Agent Integration
+"""Test MCP Discovery to Agent Integration.
 
 This example demonstrates:
 1. Searching for MCP tools by query
@@ -9,28 +9,23 @@ This example demonstrates:
 
 import asyncio
 import json
-from pathlib import Path
 import sys
+from pathlib import Path
 from typing import Any
-
 
 # Standard haive imports - no special path manipulation needed
 try:
-    from langchain_core.tools import Tool
-
     from haive.agents.react import ReactAgent
     from haive.agents.simple import SimpleAgent
     from haive.core.engine.aug_llm import AugLLMConfig
+    from langchain_core.tools import Tool
 
-    print("✅ Haive imports successful")
-except ImportError as e:
-    print(f"❌ Error importing haive components: {e}")
-    print("Make sure to run with: poetry run python test_mcp_discovery_agent.py")
-    exit(1)
+except ImportError:
+    sys.exit(1)
 
 
 class SimpleMCPDiscovery:
-    """Simple MCP discovery without external dependencies"""
+    """Simple MCP discovery without external dependencies."""
 
     def __init__(self):
         # Find the MCP data file
@@ -56,14 +51,13 @@ class SimpleMCPDiscovery:
                 break
 
         if not self.data_path:
-            print("❌ Could not find MCP data file. Searched in:")
             for path in data_locations:
-                print(f"   - {path}")
+                pass
 
         self.servers_data = []
 
     def load_data(self) -> bool:
-        """Load MCP servers data"""
+        """Load MCP servers data."""
         if not self.data_path:
             return False
 
@@ -71,19 +65,14 @@ class SimpleMCPDiscovery:
             with open(self.data_path) as f:
                 data = json.load(f)
                 self.servers_data = data.get("all_servers", [])
-                print(
-                    f"✅ Loaded {len(self.servers_data)} MCP servers from {self.data_path}"
-                )
                 return True
-        except Exception as e:
-            print(f"❌ Error loading data: {e}")
+        except Exception:
             return False
 
     def search_tools(self, query: str, max_results: int = 5) -> list[dict[str, Any]]:
-        """Simple search for MCP tools"""
-        if not self.servers_data:
-            if not self.load_data():
-                return []
+        """Simple search for MCP tools."""
+        if not self.servers_data and not self.load_data():
+            return []
 
         query_lower = query.lower()
         results = []
@@ -110,14 +99,14 @@ class SimpleMCPDiscovery:
 
 
 def create_mock_mcp_tool(server_info: dict[str, Any]) -> Tool:
-    """Create a mock tool for an MCP server"""
+    """Create a mock tool for an MCP server."""
     server_name = server_info.get("name", "unknown")
     description = server_info.get("description", "MCP tool")
     tools_list = server_info.get("tools", [])
 
     # Create a more realistic mock based on the server type
     def tool_function(input: str) -> str:
-        """Mock MCP tool execution"""
+        """Mock MCP tool execution."""
         # Different responses based on server type
         if "calculator" in server_name.lower():
             return f"Calculation result: [simulated calculation of '{input}']"
@@ -147,35 +136,23 @@ def create_mock_mcp_tool(server_info: dict[str, Any]) -> Tool:
 
 
 async def demo_calculator_agent():
-    """Demo: Create an agent with calculator capabilities"""
-    print("\n" + "=" * 60)
-    print("📊 Demo 1: Simple Agent with Calculator Tool")
-    print("=" * 60)
-
+    """Demo: Create an agent with calculator capabilities."""
     discovery = SimpleMCPDiscovery()
 
     # Search for calculator tools
-    print("\n🔍 Searching for calculator tools...")
     results = discovery.search_tools("calculator")
 
     if not results:
-        print("❌ No calculator tools found")
         return
 
-    print(f"✅ Found {len(results)} calculator tools:")
-    for i, server in enumerate(results[:3], 1):
-        print(f"\n{i}. {server.get('name', 'Unknown')}")
-        print(f"   Stars: {server.get('stars', 0) or 'N/A'} ⭐")
-        print(f"   Language: {server.get('language', 'unknown')}")
-        print(f"   Tools: {', '.join(server.get('tools', [])[:3]) or 'N/A'}")
+    for _i, _server in enumerate(results[:3], 1):
+        pass
 
     # Use the first calculator tool
     selected = results[0]
-    print(f"\n🎯 Using: {selected.get('name')}")
 
     # Create tool wrapper
     calc_tool = create_mock_mcp_tool(selected)
-    print(f"✅ Created tool wrapper: {calc_tool.name}")
 
     # Create agent with the tool
     try:
@@ -184,9 +161,7 @@ async def demo_calculator_agent():
             system_message="You are a helpful assistant with access to a calculator tool. Use it when asked to perform calculations.",
         )
 
-        agent = SimpleAgent(name="calculator_agent", engine=config, tools=[calc_tool])
-
-        print("\n🤖 Testing agent with calculator tool:")
+        SimpleAgent(name="calculator_agent", engine=config, tools=[calc_tool])
 
         # Test queries
         test_queries = [
@@ -196,31 +171,22 @@ async def demo_calculator_agent():
         ]
 
         for query in test_queries:
-            print(f"\n💬 User: {query}")
             try:
                 # Note: In a real scenario, you'd use await agent.arun(query)
                 # For this demo, we'll simulate the response
-                print("🤖 Agent: I'll help you with that calculation.")
-                print(f"   Using tool: {calc_tool.name}")
-                tool_result = calc_tool.func(query)
-                print(f"   Tool result: {tool_result}")
-            except Exception as e:
-                print(f"❌ Error: {e}")
+                calc_tool.func(query)
+            except Exception:
+                pass
 
-    except Exception as e:
-        print(f"❌ Error creating agent: {e}")
+    except Exception:
+        pass
 
 
 async def demo_database_agent():
-    """Demo: Create an agent with database capabilities"""
-    print("\n" + "=" * 60)
-    print("🗄️ Demo 2: React Agent with Database Tools")
-    print("=" * 60)
-
+    """Demo: Create an agent with database capabilities."""
     discovery = SimpleMCPDiscovery()
 
     # Search for database tools
-    print("\n🔍 Searching for database tools...")
     results = discovery.search_tools("database")
 
     if not results:
@@ -228,10 +194,7 @@ async def demo_database_agent():
         results = discovery.search_tools("sql")
 
     if not results:
-        print("❌ No database tools found")
         return
-
-    print(f"✅ Found {len(results)} database tools:")
 
     # Filter for Python database tools
     python_db_tools = [
@@ -243,18 +206,14 @@ async def demo_database_agent():
     if not python_db_tools:
         python_db_tools = results  # Use all if no Python-specific found
 
-    for i, server in enumerate(python_db_tools[:3], 1):
-        print(f"\n{i}. {server.get('name', 'Unknown')}")
-        print(f"   Language: {server.get('language', 'unknown')}")
-        print(f"   Stars: {server.get('stars', 0) or 'N/A'} ⭐")
-        print(f"   Category: {server.get('category', 'unknown')}")
+    for _i, server in enumerate(python_db_tools[:3], 1):
+        pass
 
     # Create multiple database tools
     tools = []
     for server in python_db_tools[:2]:  # Use top 2
         tool = create_mock_mcp_tool(server)
         tools.append(tool)
-        print(f"\n✅ Created tool: {tool.name}")
 
     # Create ReactAgent with multiple tools
     try:
@@ -263,9 +222,7 @@ async def demo_database_agent():
             system_message="You are a database expert with access to various database tools. Use them to answer queries about data.",
         )
 
-        agent = ReactAgent(name="database_agent", engine=config, tools=tools)
-
-        print(f"\n🤖 Created ReactAgent with {len(tools)} database tools")
+        ReactAgent(name="database_agent", engine=config, tools=tools)
 
         # Test the agent
         test_queries = [
@@ -275,77 +232,42 @@ async def demo_database_agent():
         ]
 
         for query in test_queries:
-            print(f"\n💬 User: {query}")
             try:
                 # Simulate agent reasoning
-                print("🤖 Agent: I'll help you with that database query.")
-                print(f"   Available tools: {', '.join([t.name for t in tools])}")
                 # In real usage: result = await agent.arun(query)
-                tool_result = tools[0].func(query)
-                print(f"   Tool result: {tool_result}")
-            except Exception as e:
-                print(f"❌ Error: {e}")
+                tools[0].func(query)
+            except Exception:
+                pass
 
-    except Exception as e:
-        print(f"❌ Error creating agent: {e}")
+    except Exception:
+        pass
 
 
 async def demo_web_scraping_agent():
-    """Demo: Create an agent with web scraping capabilities"""
-    print("\n" + "=" * 60)
-    print("🌐 Demo 3: Agent with Web Scraping Tools")
-    print("=" * 60)
-
+    """Demo: Create an agent with web scraping capabilities."""
     discovery = SimpleMCPDiscovery()
 
     # Search for web scraping tools
-    print("\n🔍 Searching for web scraping tools...")
     results = discovery.search_tools("web scraping")
 
     if not results:
         results = discovery.search_tools("web")
 
     if not results:
-        print("❌ No web scraping tools found")
         return
 
-    print(f"✅ Found {len(results)} web-related tools:")
-    for i, server in enumerate(results[:3], 1):
-        print(f"\n{i}. {server.get('name', 'Unknown')}")
-        print(f"   Category: {server.get('category', 'unknown')}")
-        print(f"   Description: {server.get('description', 'N/A')[:60]}...")
+    for _i, _server in enumerate(results[:3], 1):
+        pass
 
     # Create web scraping tool
     selected = results[0]
-    web_tool = create_mock_mcp_tool(selected)
-
-    print(f"\n✅ Created web scraping tool: {web_tool.name}")
+    create_mock_mcp_tool(selected)
 
     # Show how it would be used
-    print("\n📝 Example usage with agent:")
-    print(
-        """
-# Create agent with web scraping tool
-agent = ReactAgent(
-    name="web_research_agent",
-    engine=AugLLMConfig(
-        system_message="You are a web research assistant with scraping capabilities."
-    ),
-    tools=[web_tool]
-)
-
-# Use the agent
-result = await agent.arun("Scrape the latest news from https://example.com")
-"""
-    )
 
 
 async def show_discovery_stats():
-    """Show statistics about available MCP tools"""
-    print("\n" + "=" * 60)
-    print("📊 MCP Tool Discovery Statistics")
-    print("=" * 60)
-
+    """Show statistics about available MCP tools."""
     discovery = SimpleMCPDiscovery()
     if not discovery.load_data():
         return
@@ -370,30 +292,22 @@ async def show_discovery_stats():
         else:
             tool_counts["without_tools"] += 1
 
-    print(f"\n📈 Total MCP Servers: {len(discovery.servers_data)}")
+    for cat, _count in sorted(categories.items(), key=lambda x: x[1], reverse=True)[
+        :10
+    ]:
+        pass
 
-    print("\n📂 By Category:")
-    for cat, count in sorted(categories.items(), key=lambda x: x[1], reverse=True)[:10]:
-        print(f"   {cat}: {count}")
-
-    print("\n💻 By Language:")
-    for lang, count in sorted(languages.items(), key=lambda x: x[1], reverse=True)[:10]:
-        print(f"   {lang}: {count}")
-
-    print("\n🔧 Tool Availability:")
-    print(f"   With tools listed: {tool_counts['with_tools']}")
-    print(f"   Without tools: {tool_counts['without_tools']}")
+    for lang, _count in sorted(languages.items(), key=lambda x: x[1], reverse=True)[
+        :10
+    ]:
+        pass
 
 
 async def main():
-    """Run all demos"""
-    print("🚀 MCP Discovery to Haive Agent Integration Test")
-    print("=" * 70)
-
+    """Run all demos."""
     # Check if we can access MCP data
     discovery = SimpleMCPDiscovery()
     if not discovery.data_path:
-        print("\n❌ Cannot proceed without MCP data file")
         return
 
     # Show discovery statistics
@@ -403,14 +317,6 @@ async def main():
     await demo_calculator_agent()
     await demo_database_agent()
     await demo_web_scraping_agent()
-
-    print("\n\n✅ All demos complete!")
-    print("\n📝 Next steps:")
-    print("1. Install actual MCP servers using npm or pip")
-    print("2. Create real tool wrappers that connect to MCP servers")
-    print("3. Use the integrated launcher for full functionality:")
-    print("   cd packages/haive-mcp")
-    print("   poetry run python src/haive/mcp/integrated_launcher.py web")
 
 
 if __name__ == "__main__":

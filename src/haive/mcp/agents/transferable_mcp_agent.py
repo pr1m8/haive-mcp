@@ -221,7 +221,6 @@ class TransferableMCPAgent(MCPMixin, SimpleAgent):
             The hash is based on the sorted JSON representation to ensure
             consistency across different dictionary orderings.
         """
-
         config_str = json.dumps(self.mcp_config.model_dump(), sort_keys=True)
         return hashlib.md5(config_str.encode()).hexdigest()
 

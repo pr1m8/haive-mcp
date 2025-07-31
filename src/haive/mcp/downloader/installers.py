@@ -416,7 +416,7 @@ class GitInstaller(MCPInstaller):
 
         # Parse repository name
         parsed = urlparse(repo_url)
-        repo_name = Path(parsed.path).stem.replace(".git", "")
+        Path(parsed.path).stem.replace(".git", "")
 
         # Use server name as directory name
         clone_dir = install_dir / server_config.name

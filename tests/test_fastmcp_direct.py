@@ -3,16 +3,14 @@
 
 import asyncio
 import logging
-from pathlib import Path
 import sys
-
+from pathlib import Path
 
 # Add src to path so we can import our servers
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
 from haive.mcp.servers.dataflow_server import mcp as dataflow_mcp
 from haive.mcp.servers.example_server import mcp as example_mcp
-
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -36,7 +34,7 @@ async def test_fastmcp_tools():
         content = await example_mcp._tools["read_file"](__file__)
         logger.info(f"✓ Successfully read file, length: {len(content)} chars")
     except Exception as e:
-        logger.error(f"✗ Error reading file: {e}")
+        logger.exception(f"✗ Error reading file: {e}")
 
     # Test list_directory tool
     logger.info("\nTesting list_directory tool...")
@@ -46,7 +44,7 @@ async def test_fastmcp_tools():
         for f in files[:5]:  # Show first 5
             logger.info(f"  - {f}")
     except Exception as e:
-        logger.error(f"✗ Error listing directory: {e}")
+        logger.exception(f"✗ Error listing directory: {e}")
 
     # Test write_file tool
     logger.info("\nTesting write_file tool...")
@@ -60,7 +58,7 @@ async def test_fastmcp_tools():
         # Clean up
         Path(test_file).unlink(missing_ok=True)
     except Exception as e:
-        logger.error(f"✗ Error writing file: {e}")
+        logger.exception(f"✗ Error writing file: {e}")
 
 
 async def test_fastmcp_prompts():
@@ -88,7 +86,7 @@ def calculate_sum(numbers):
         logger.info("✓ Generated code review prompt:")
         logger.info(prompt[:200] + "..." if len(prompt) > 200 else prompt)
     except Exception as e:
-        logger.error(f"✗ Error generating prompt: {e}")
+        logger.exception(f"✗ Error generating prompt: {e}")
 
 
 async def test_dataflow_server():
@@ -109,7 +107,7 @@ async def test_dataflow_server():
                 if not comp_type.startswith("error"):
                     logger.info(f"  - {comp_type}: {len(items)} components")
         except Exception as e:
-            logger.error(f"✗ Error listing components: {e}")
+            logger.exception(f"✗ Error listing components: {e}")
 
         # Test create_agent_config
         logger.info("\nTesting create_agent_config tool...")
@@ -122,7 +120,7 @@ async def test_dataflow_server():
             logger.info("  Type: simple")
             logger.info(f"  Model: {config['config']['engine']['model']}")
         except Exception as e:
-            logger.error(f"✗ Error creating agent config: {e}")
+            logger.exception(f"✗ Error creating agent config: {e}")
     else:
         logger.warning("⚠ Dataflow not available, skipping dataflow tests")
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Final Working MCP Integration - CORRECTED VERSION
+"""Final Working MCP Integration - CORRECTED VERSION.
 
 This demonstrates the CORRECT way to create MCP tools:
 1. Use @tool decorator or StructuredTool.from_function
@@ -22,7 +22,7 @@ from pydantic import BaseModel, Field
 
 class MCPServerRunner:
     """CORRECT: External server management class
-    Handles MCP server lifecycle separately from tool definitions
+    Handles MCP server lifecycle separately from tool definitions.
     """
 
     def __init__(self):
@@ -31,7 +31,7 @@ class MCPServerRunner:
         self.request_counters: dict[str, int] = {}
 
     async def start_filesystem_server(self) -> bool:
-        """Start and initialize MCP filesystem server"""
+        """Start and initialize MCP filesystem server."""
         try:
             # Setup test files
             test_dir = "/tmp/mcp_final_test"
@@ -54,8 +54,6 @@ class MCPServerRunner:
                     indent=2,
                 )
 
-            print(f"📁 Test files ready in: {test_dir}")
-
             # Start server
             process = subprocess.Popen(
                 ["npx", "@modelcontextprotocol/server-filesystem", test_dir],
@@ -73,18 +71,15 @@ class MCPServerRunner:
                 self.request_counters["filesystem"] = 1
 
                 if await self._initialize_server("filesystem"):
-                    print(
-                        f"✅ Filesystem server running correctly (PID: {process.pid})"
-                    )
                     return True
 
-        except Exception as e:
-            print(f"❌ Server startup failed: {e}")
+        except Exception:
+            pass
 
         return False
 
     async def _initialize_server(self, server_name: str) -> bool:
-        """Initialize MCP server connection"""
+        """Initialize MCP server connection."""
         try:
             process = self.processes[server_name]
 
@@ -119,15 +114,15 @@ class MCPServerRunner:
                     self.initialized[server_name] = True
                     return True
 
-        except Exception as e:
-            print(f"❌ Initialization failed: {e}")
+        except Exception:
+            pass
 
         return False
 
     def execute_mcp_operation(
         self, server_name: str, tool_name: str, args: dict[str, Any]
     ) -> str:
-        """Execute MCP tool operation"""
+        """Execute MCP tool operation."""
         if server_name not in self.processes or not self.initialized.get(server_name):
             return f"❌ Server '{server_name}' not available"
 
@@ -162,12 +157,11 @@ class MCPServerRunner:
         return "❌ No server response"
 
     def cleanup(self):
-        """Stop all servers"""
-        for name, process in self.processes.items():
+        """Stop all servers."""
+        for _name, process in self.processes.items():
             try:
                 process.terminate()
                 process.wait(timeout=5)
-                print(f"✅ Stopped {name} server")
             except:
                 process.kill()
 
@@ -179,7 +173,7 @@ server_runner = MCPServerRunner()
 # CORRECT PATTERN 1: @tool decorator
 @tool
 def read_mcp_file(filename: str) -> str:
-    """Read a file using the MCP filesystem server
+    """Read a file using the MCP filesystem server.
 
     Args:
         filename: Name of file to read (e.g., 'readme.txt', 'status.json')
@@ -191,7 +185,7 @@ def read_mcp_file(filename: str) -> str:
 
 @tool
 def list_mcp_directory(path: str = ".") -> str:
-    """List directory contents using MCP filesystem server
+    """List directory contents using MCP filesystem server.
 
     Args:
         path: Directory path to list (default: current directory)
@@ -203,14 +197,14 @@ def list_mcp_directory(path: str = ".") -> str:
 
 # CORRECT PATTERN 2: StructuredTool with schema
 class FileSystemInput(BaseModel):
-    """Input schema for filesystem operations"""
+    """Input schema for filesystem operations."""
 
     action: str = Field(description="Action: 'read' or 'list'")
     target: str = Field(description="File or directory path")
 
 
 def filesystem_operation(action: str, target: str) -> str:
-    """Perform filesystem operations via MCP"""
+    """Perform filesystem operations via MCP."""
     if action == "read":
         return server_runner.execute_mcp_operation(
             "filesystem", "read_file", {"path": target}
@@ -231,104 +225,25 @@ structured_filesystem_tool = StructuredTool.from_function(
 
 
 async def test_corrected_integration():
-    """Test the corrected MCP integration"""
-    print("🚀 Corrected MCP Integration Test")
-    print("=" * 60)
-    print("Demonstrating the PROPER way to create MCP tools\n")
-
+    """Test the corrected MCP integration."""
     try:
         # Start server using external manager
         if not await server_runner.start_filesystem_server():
-            print("❌ Failed to start server")
             return
 
-        print("\n🔧 Testing @tool decorator pattern:")
-
         # Test decorated tools
-        print("\n1. List directory contents:")
-        result1 = list_mcp_directory.run(".")
-        print(f"   {result1}")
+        list_mcp_directory.run(".")
 
-        print("\n2. Read readme file:")
-        result2 = read_mcp_file.run("readme.txt")
-        print(f"   {result2}")
+        read_mcp_file.run("readme.txt")
 
-        print("\n3. Read JSON status file:")
-        result3 = read_mcp_file.run("status.json")
-        print(f"   {result3}")
-
-        print("\n✅ @tool Pattern Success:")
-        print(f"   - read_mcp_file: {type(read_mcp_file)} ✅")
-        print(f"   - list_mcp_directory: {type(list_mcp_directory)} ✅")
-
-        print("\n📊 Testing StructuredTool pattern:")
+        read_mcp_file.run("status.json")
 
         # Test structured tool
-        print("\n4. Structured list operation:")
-        result4 = structured_filesystem_tool.run({"action": "list", "target": "."})
-        print(f"   {result4}")
+        structured_filesystem_tool.run({"action": "list", "target": "."})
 
-        print("\n5. Structured read operation:")
-        result5 = structured_filesystem_tool.run(
-            {"action": "read", "target": "status.json"}
-        )
-        print(f"   {result5}")
-
-        print("\n✅ StructuredTool Pattern Success:")
-        print(f"   - Type: {type(structured_filesystem_tool)} ✅")
-        print(f"   - Schema: {structured_filesystem_tool.args_schema} ✅")
+        structured_filesystem_tool.run({"action": "read", "target": "status.json"})
 
         # Show haive integration
-        print("\n🤖 Haive Agent Integration (CORRECTED):")
-        print(
-            """
-These properly created tools work with haive agents:
-
-```python
-from haive.agents.simple import SimpleAgent
-from haive.agents.react import ReactAgent
-from haive.core.engine.aug_llm import AugLLMConfig
-
-# CORRECT: Using @tool decorated functions
-agent = SimpleAgent(
-    name="filesystem_agent",
-    engine=AugLLMConfig(),
-    tools=[read_mcp_file, list_mcp_directory]  # ✅ Works!
-)
-
-# CORRECT: Using StructuredTool
-advanced_agent = ReactAgent(
-    name="advanced_agent", 
-    engine=AugLLMConfig(),
-    tools=[structured_filesystem_tool]  # ✅ Works!
-)
-
-# Usage:
-result = await agent.arun("Read the readme.txt file")
-# The agent uses the REAL MCP server!
-```
-
-🎯 Why This Approach is CORRECT:
-✅ Uses @tool decorator (not broken BaseTool subclassing)
-✅ External server management (clean separation)
-✅ Real MCP protocol communication
-✅ Proper Pydantic schemas for structured tools
-✅ No object.__setattr__ hacks
-✅ Production-ready pattern
-        """
-        )
-
-        print("\n🏆 CORRECTED INTEGRATION SUCCESS!")
-        print("\n❌ WRONG Pattern (DO NOT USE):")
-        print("   - Subclassing BaseTool directly")
-        print("   - Using object.__setattr__ hacks")
-        print("   - Mixing server state with tool classes")
-
-        print("\n✅ CORRECT Pattern (USE THIS):")
-        print("   - @tool decorator for simple functions")
-        print("   - StructuredTool.from_function for complex tools")
-        print("   - External server management classes")
-        print("   - Proper Pydantic schemas")
 
     finally:
         server_runner.cleanup()

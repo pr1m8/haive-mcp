@@ -8,17 +8,15 @@ This example shows how to:
 """
 
 import asyncio
-import json
 
 from haive.core.engine.aug_llm import AugLLMConfig
 from haive.core.models.llm.base import LLMConfig
+
 from haive.mcp.agents.documentation_agent import MCPDocumentationAgent
 
 
 async def example_process_single_server():
     """Example: Process documentation for a single MCP server."""
-    print("=== Processing Single MCP Server Documentation ===\n")
-
     # Create documentation agent
     doc_agent = MCPDocumentationAgent.create_for_mcp_setup()
 
@@ -28,39 +26,28 @@ async def example_process_single_server():
         fetch_latest=False,  # Use cached docs for demo
     )
 
-    print(f"Server: {result['server_name']}")
-    print(f"Capabilities: {result['capabilities']}")
-    print("\nSetup Instructions:")
-    for instruction in result["setup_instructions"]:
-        print(f"  {instruction}")
+    for _instruction in result["setup_instructions"]:
+        pass
 
     if result["mcp_config"]:
-        print("\nGenerated MCP Config:")
-        print(json.dumps(result["mcp_config"].model_dump(), indent=2))
+        pass
 
 
 async def example_find_by_capability():
     """Example: Find MCP servers by capability."""
-    print("\n=== Finding MCP Servers by Capability ===\n")
-
     # Create documentation agent
     doc_agent = MCPDocumentationAgent.create_for_mcp_research()
 
     # Find servers with file operation capabilities
     servers = await doc_agent.find_servers_by_capability("file", limit=5)
 
-    print(f"Found {len(servers)} servers with 'file' capability:\n")
-
     for server in servers:
-        print(f"- {server['server_name']}")
         if server["setup_instructions"]:
-            print(f"  Setup: {server['setup_instructions'][0]}")
+            pass
 
 
 async def example_generate_implementation():
     """Example: Generate complete implementation guide."""
-    print("\n=== Generating Implementation Guide ===\n")
-
     # Create documentation agent with engine
     engine = AugLLMConfig(
         llm_config=LLMConfig(provider="openai", model="gpt-4o-mini"), name="doc_engine"
@@ -77,29 +64,21 @@ async def example_generate_implementation():
         target_agent_type="research",
     )
 
-    print(f"Implementation Guide for {guide['agent_type']} agent:\n")
-
     # Show combined configuration
     if guide["combined_config"]:
-        print("Combined MCP Configuration:")
-        print(json.dumps(guide["combined_config"].model_dump(), indent=2))
+        pass
 
     # Show implementation code
     if guide["implementation_code"]:
-        print("\nImplementation Code:")
-        print("```python")
-        print(guide["implementation_code"])
-        print("```")
+        pass
 
     # Show usage examples
     if guide["usage_examples"]:
-        print(f"\nFound {len(guide['usage_examples'])} usage examples")
+        pass
 
 
 async def example_batch_documentation():
     """Example: Process documentation for multiple servers."""
-    print("\n=== Batch Documentation Processing ===\n")
-
     # Create documentation agent
     doc_agent = MCPDocumentationAgent.create_for_mcp_setup()
 
@@ -112,36 +91,26 @@ async def example_batch_documentation():
         "CheMigui/mcp-server-perplexity",
     ]
 
-    print("Processing documentation for popular MCP servers:\n")
-
     for server_name in popular_servers:
         try:
             result = await doc_agent.process_mcp_server(server_name, fetch_latest=False)
 
             if result["mcp_config"]:
-                print(f"✓ {server_name}")
-                print(f"  Category: {result['mcp_config'].category}")
-                print(f"  Transport: {result['mcp_config'].transport}")
                 if result["setup_instructions"]:
-                    print(f"  Install: {result['setup_instructions'][0]}")
+                    pass
             else:
-                print(f"✗ {server_name} - No documentation found")
+                pass
 
-        except Exception as e:
-            print(f"✗ {server_name} - Error: {e}")
-
-        print()
+        except Exception:
+            pass
 
 
 async def example_create_custom_setup():
     """Example: Create custom setup for specific use case."""
-    print("\n=== Creating Custom MCP Setup ===\n")
-
     # Create documentation agent
     doc_agent = MCPDocumentationAgent.create_for_mcp_setup()
 
     # Find servers for a research assistant
-    print("Finding servers for a research assistant...\n")
 
     # Search for different capabilities
     search_servers = await doc_agent.find_servers_by_capability("search", limit=3)
@@ -150,16 +119,13 @@ async def example_create_custom_setup():
 
     all_servers = []
 
-    print("Selected servers:")
-    for servers, capability in [
+    for servers, _capability in [
         (search_servers, "Search"),
         (file_servers, "File"),
         (web_servers, "Web"),
     ]:
-        print(f"\n{capability} capability:")
         for server in servers:
             if server["server_name"]:
-                print(f"  - {server['server_name']}")
                 all_servers.append(server["server_name"])
 
     # Generate combined setup
@@ -169,17 +135,11 @@ async def example_create_custom_setup():
             target_agent_type="research_assistant",
         )
 
-        print("\n\nGenerated Research Assistant Configuration:")
-        print("=" * 50)
-
         if guide["combined_config"]:
             # Show summary
             config = guide["combined_config"]
-            print(f"Total servers: {len(config.servers)}")
-            print(f"Enabled: {config.enabled}")
-            print("\nServers:")
-            for name, server in config.servers.items():
-                print(f"  - {name}: {server.description[:50]}...")
+            for _name, server in config.servers.items():
+                pass
 
 
 async def main():

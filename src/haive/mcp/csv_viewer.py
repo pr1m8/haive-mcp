@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CSV Viewer and Exporter for MCP Servers Data
+"""CSV Viewer and Exporter for MCP Servers Data.
 
 Creates a browsable CSV export with sorting and filtering capabilities.
 """
@@ -75,7 +75,6 @@ def export_to_csv():
     )
 
     df.to_csv(output_path, index=False)
-    print(f"✅ Exported {len(df)} MCP servers to: {output_path}")
     return output_path
 
 
@@ -97,11 +96,11 @@ def streamlit_viewer():
     st.sidebar.header("🔧 Filters")
 
     # Category filter
-    categories = ["All"] + sorted(df["category"].unique().tolist())
+    categories = ["All", *sorted(df["category"].unique().tolist())]
     selected_category = st.sidebar.selectbox("Category", categories)
 
     # Language filter
-    languages = ["All"] + sorted(df["language"].unique().tolist())
+    languages = ["All", *sorted(df["language"].unique().tolist())]
     selected_language = st.sidebar.selectbox("Language", languages)
 
     # Stars filter
@@ -128,7 +127,7 @@ def streamlit_viewer():
     filtered_df = filtered_df[filtered_df["total_features"] >= min_features]
 
     if has_install:
-        filtered_df = filtered_df[filtered_df["has_install_command"] == True]
+        filtered_df = filtered_df[filtered_df["has_install_command"]]
 
     # Sort options
     st.sidebar.header("📊 Sorting")
@@ -219,7 +218,6 @@ def streamlit_viewer():
 
 def main():
     """Main CLI interface."""
-
     if len(sys.argv) > 1 and sys.argv[1] == "--csv":
         # Export to CSV
         export_to_csv()
@@ -234,22 +232,9 @@ def main():
         # Internal streamlit mode
         streamlit_viewer()
     else:
-        print("MCP Servers CSV Viewer")
-        print("Usage:")
-        print("  poetry run python csv_viewer.py --csv    # Export to CSV")
-        print("  poetry run python csv_viewer.py --web    # Launch web browser")
 
         # Show basic stats
-        df = create_csv_export()
-        print("\n📊 Dataset Stats:")
-        print(f"  Total servers: {len(df)}")
-        print(f"  Categories: {df['category'].nunique()}")
-        print(f"  Languages: {df['language'].nunique()}")
-        print(f"  Servers with stars: {(df['stars'] > 0).sum()}")
-        print(f"  Servers with install commands: {df['has_install_command'].sum()}")
-
-        print("\n🏆 Top categories:")
-        print(df["category"].value_counts().head(10).to_string())
+        create_csv_export()
 
 
 if __name__ == "__main__":

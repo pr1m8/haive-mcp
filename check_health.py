@@ -5,9 +5,9 @@ This script verifies that all components are properly installed and working.
 """
 
 import asyncio
-from pathlib import Path
 import subprocess
 import sys
+from pathlib import Path
 
 
 class HealthChecker:
@@ -20,8 +20,6 @@ class HealthChecker:
 
     async def run_all_checks(self) -> bool:
         """Run all health checks."""
-        print("🏥 Running haive-mcp health checks...\n")
-
         # Basic checks
         self.check_python_version()
         self.check_dependencies()
@@ -40,7 +38,6 @@ class HealthChecker:
 
     def check_python_version(self):
         """Check Python version."""
-        print("🐍 Checking Python version...")
         try:
             version = sys.version_info
             if version.major >= 3 and version.minor >= 12:
@@ -54,8 +51,6 @@ class HealthChecker:
 
     def check_dependencies(self):
         """Check required dependencies."""
-        print("\n📦 Checking dependencies...")
-
         deps = [
             ("poetry", "Poetry (package manager)"),
             ("npm", "NPM (for MCP servers)"),
@@ -77,8 +72,6 @@ class HealthChecker:
 
     def check_imports(self):
         """Check Python imports."""
-        print("\n🔌 Checking Python imports...")
-
         imports = [
             ("haive.mcp", "Core MCP package"),
             ("haive.mcp.config", "MCP configuration"),
@@ -111,8 +104,6 @@ class HealthChecker:
 
     def check_directories(self):
         """Check required directories."""
-        print("\n📁 Checking directories...")
-
         dirs = [
             (Path.home() / ".haive" / "mcp", "User MCP directory"),
             (Path.cwd() / "src" / "haive" / "mcp", "Source directory"),
@@ -129,8 +120,6 @@ class HealthChecker:
 
     async def check_mcp_servers(self):
         """Check installed MCP servers."""
-        print("\n🖥️  Checking MCP servers...")
-
         servers = [
             "@modelcontextprotocol/server-filesystem",
             "@modelcontextprotocol/server-github",
@@ -155,8 +144,6 @@ class HealthChecker:
 
     async def check_dataflow_integration(self):
         """Check haive-dataflow integration."""
-        print("\n🔗 Checking dataflow integration...")
-
         # Check dataflow using poetry run
         check_script = """from haive.dataflow import registry_system, EntityType
 servers = registry_system.get_entities_by_type(EntityType.MCP_SERVER)
@@ -180,8 +167,6 @@ print(f"OK:{len(servers)}")
 
     async def check_example_server(self):
         """Check if example server can be created."""
-        print("\n🧪 Checking example server creation...")
-
         # Check server creation using poetry run
         server_script = """from mcp.server import FastMCP
 server = FastMCP("health-check-server")
@@ -206,44 +191,27 @@ print("Server created OK")
 
     def _pass(self, message: str):
         """Mark a check as passed."""
-        print(f"  ✅ {message}")
         self.checks_passed += 1
 
     def _fail(self, message: str):
         """Mark a check as failed."""
-        print(f"  ❌ {message}")
         self.checks_failed += 1
 
     def _warn(self, message: str):
         """Show a warning (not counted as failure)."""
-        print(f"  ⚠️  {message}")
 
     def print_summary(self):
         """Print health check summary."""
-        total = self.checks_passed + self.checks_failed
-
-        print("\n" + "=" * 60)
-        print("📊 HEALTH CHECK SUMMARY")
-        print("=" * 60)
-        print(f"\nTotal checks: {total}")
-        print(f"✅ Passed: {self.checks_passed}")
-        print(f"❌ Failed: {self.checks_failed}")
+        self.checks_passed + self.checks_failed
 
         if self.issues:
-            print("\n🔧 Recommended fixes:")
-            for i, issue in enumerate(self.issues, 1):
-                print(f"{i}. {issue}")
-
-        print("\n" + "=" * 60)
+            for _i, _issue in enumerate(self.issues, 1):
+                pass
 
         if self.checks_failed == 0:
-            print("🎉 All health checks passed! haive-mcp is ready to use.")
-            print("\nTry running:")
-            print("  - poetry run python examples/basic_mcp_agent.py")
-            print("  - poetry run pytest")
+            pass
         else:
-            print("⚠️  Some health checks failed. Please address the issues above.")
-            print("\nFor full setup, run: poetry run python setup_all.py")
+            pass
 
 
 async def main():

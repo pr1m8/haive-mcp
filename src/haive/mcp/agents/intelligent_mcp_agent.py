@@ -49,9 +49,10 @@ import json
 import logging
 import re
 import uuid
+from collections.abc import Callable
 from datetime import datetime
 from enum import Enum
-from typing import Any, Callable, Optional
+from typing import Any
 
 from haive.agents.react import ReactAgent
 from haive.agents.simple import SimpleAgent
@@ -99,10 +100,10 @@ class HITLApprovalRequest(BaseModel):
     recommendation: ServerRecommendation = Field(description="Server recommendation")
     context: dict[str, Any] = Field(description="Additional context")
     status: ApprovalStatus = Field(default=ApprovalStatus.PENDING)
-    response_deadline: Optional[datetime] = Field(
+    response_deadline: datetime | None = Field(
         default=None, description="Deadline for response"
     )
-    approval_callback: Optional[str] = Field(
+    approval_callback: str | None = Field(
         default=None, description="Callback identifier"
     )
 
@@ -151,7 +152,7 @@ class IntelligentMCPAgent(ReactAgent):
         default_factory=MCPManager, description="Dynamic MCP manager"
     )
 
-    doc_agent: Optional[Any] = Field(
+    doc_agent: Any | None = Field(
         default=None, description="Documentation agent for discovery"
     )
 
@@ -168,7 +169,7 @@ class IntelligentMCPAgent(ReactAgent):
         default=30.0, description="Timeout for approval requests"
     )
 
-    approval_callback: Optional[Callable] = Field(
+    approval_callback: Callable | None = Field(
         default=None, description="Custom approval callback"
     )
 
@@ -250,7 +251,7 @@ class IntelligentMCPAgent(ReactAgent):
                 )
 
             except Exception as e:
-                logger.error(f"Failed to discover servers: {e}")
+                logger.exception(f"Failed to discover servers: {e}")
                 return json.dumps({"error": str(e)})
 
         @tool
@@ -313,7 +314,7 @@ class IntelligentMCPAgent(ReactAgent):
 
                 # Refresh tools if successful
                 if result.success:
-                    available_tools = await self.mcp_manager.get_all_tools(refresh=True)
+                    await self.mcp_manager.get_all_tools(refresh=True)
 
                 return json.dumps(
                     {
@@ -326,7 +327,7 @@ class IntelligentMCPAgent(ReactAgent):
                 )
 
             except Exception as e:
-                logger.error(f"Failed to install server: {e}")
+                logger.exception(f"Failed to install server: {e}")
                 return json.dumps({"success": False, "error": str(e)})
 
         @tool
@@ -396,7 +397,6 @@ class IntelligentMCPAgent(ReactAgent):
         Returns:
             Approval request with status
         """
-
         request = HITLApprovalRequest(
             request_id=str(uuid.uuid4()),
             request_type="server_installation",
@@ -422,7 +422,7 @@ class IntelligentMCPAgent(ReactAgent):
                     ApprovalStatus.APPROVED if approved else ApprovalStatus.REJECTED
                 )
             except Exception as e:
-                logger.error(f"Approval callback failed: {e}")
+                logger.exception(f"Approval callback failed: {e}")
                 request.status = ApprovalStatus.REJECTED
         else:
             # Default approval mechanism - log and auto-approve for now
@@ -480,7 +480,7 @@ If no special capabilities are needed, return: []
                 return [cap for cap in capabilities if isinstance(cap, str)]
 
         except Exception as e:
-            logger.error(f"Failed to analyze capabilities: {e}")
+            logger.exception(f"Failed to analyze capabilities: {e}")
 
         return []
 
@@ -569,7 +569,7 @@ If no special capabilities are needed, return: []
                                         )
 
                         except Exception as e:
-                            logger.error(
+                            logger.exception(
                                 f"Failed to handle capability {capability}: {e}"
                             )
 

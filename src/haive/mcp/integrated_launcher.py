@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Integrated MCP System Launcher
+"""Integrated MCP System Launcher.
 
 Provides easy access to all components of the integrated MCP discovery and management system.
 """
@@ -10,84 +10,64 @@ import subprocess
 import sys
 from pathlib import Path
 
-import aiohttp
-import pandas
-import plotly
-import psutil
-import streamlit
-
 
 def print_banner():
-    """Print system banner"""
-    print(
-        """
-╔══════════════════════════════════════════════════════════════════╗
-║       🚀 MCP Integrated Discovery & Management System 🚀         ║
-║                                                                  ║
-║  Seamlessly discover, install, and manage MCP servers           ║
-╚══════════════════════════════════════════════════════════════════╝
-    """
-    )
+    """Print system banner."""
 
 
 def check_dependencies():
-    """Check required dependencies"""
+    """Check required dependencies."""
     missing = []
 
     try:
+        import streamlit
     except ImportError:
         missing.append("streamlit")
 
     try:
+        import plotly
     except ImportError:
         missing.append("plotly")
 
     try:
+        import pandas
     except ImportError:
         missing.append("pandas")
 
     try:
+        import aiohttp
     except ImportError:
         missing.append("aiohttp")
 
     try:
+        import psutil
     except ImportError:
         missing.append("psutil")
 
-    if missing:
-        print("❌ Missing dependencies:")
-        print(f"   Run: pip install {' '.join(missing)}")
-        return False
-
-    return True
+    return not missing
 
 
 def run_integrated_web():
-    """Launch the integrated web interface"""
-    print("🌐 Launching Integrated MCP Web Interface...")
+    """Launch the integrated web interface."""
     script_path = Path(__file__).parent / "integrated_mcp_system.py"
     subprocess.run(["streamlit", "run", str(script_path)], check=False)
 
 
 def run_discovery_test():
-    """Test the discovery system"""
-    print("🔍 Testing MCP Discovery System...")
+    """Test the discovery system."""
     script_path = Path(__file__).parent / "self_query_mcp_agent.py"
     subprocess.run([sys.executable, str(script_path)], check=False)
 
 
 def run_fastmcp_manager(args):
-    """Run FastMCP server management commands"""
+    """Run FastMCP server management commands."""
     script_path = Path(__file__).parent / "fastmcp_runner.py"
-    cmd = [sys.executable, str(script_path)] + args
+    cmd = [sys.executable, str(script_path), *args]
     subprocess.run(cmd, check=False)
 
 
 def show_status():
-    """Show system status"""
-    print("\n📊 System Status")
-    print("=" * 50)
-
+    """Show system status."""
     # Check for MCP servers data
     data_path = (
         Path(__file__).parent.parent.parent.parent
@@ -100,9 +80,8 @@ def show_status():
         with open(data_path) as f:
             data = json.load(f)
             servers = data.get("all_servers", [])
-            print(f"✅ MCP Database: {len(servers)} servers available")
     else:
-        print("❌ MCP Database: Not found")
+        pass
 
     # Check for FastMCP config
     fastmcp_config = Path.home() / ".fastmcp" / "servers.json"
@@ -111,37 +90,30 @@ def show_status():
         with open(fastmcp_config) as f:
             data = json.load(f)
             servers = data.get("servers", {})
-            print(f"✅ Installed Servers: {len(servers)} servers configured")
 
             # List installed servers
             if servers:
-                print("\n   Installed servers:")
-                for name, config in servers.items():
-                    active = "✅" if config.get("active", True) else "❌"
-                    print(f"   {active} {name} ({config.get('transport', 'stdio')})")
+                for _name, config in servers.items():
+                    "✅" if config.get("active", True) else "❌"
     else:
-        print("❌ Installed Servers: None")
+        pass
 
     # Check for vector store
     vector_store_path = Path(__file__).parent / "vector_store"
     if vector_store_path.exists():
-        print("✅ Search Index: Initialized")
+        pass
     else:
-        print("⚠️  Search Index: Not initialized (will be created on first search)")
+        pass
 
 
 def run_csv_viewer():
-    """Launch CSV data viewer"""
-    print("📊 Launching CSV Data Viewer...")
+    """Launch CSV data viewer."""
     script_path = Path(__file__).parent / "csv_viewer.py"
     subprocess.run([sys.executable, str(script_path), "--web"], check=False)
 
 
 def install_server_interactive():
-    """Interactive server installation"""
-    print("\n📦 Interactive Server Installation")
-    print("=" * 50)
-
+    """Interactive server installation."""
     # Load available servers
     data_path = (
         Path(__file__).parent.parent.parent.parent
@@ -151,7 +123,6 @@ def install_server_interactive():
     )
 
     if not data_path.exists():
-        print("❌ MCP database not found")
         return
 
     with open(data_path) as f:
@@ -163,53 +134,39 @@ def install_server_interactive():
         s for s in servers if s.get("install_command") or s.get("repository_url")
     ]
 
-    print(f"Found {len(installable)} installable servers")
-
     # Show categories
     categories = {}
     for server in installable:
         cat = server.get("category", "unknown")
         categories[cat] = categories.get(cat, 0) + 1
 
-    print("\nCategories:")
-    for i, (cat, count) in enumerate(sorted(categories.items()), 1):
-        print(f"  {i}. {cat} ({count} servers)")
+    for _i, (cat, _count) in enumerate(sorted(categories.items()), 1):
+        pass
 
     try:
         cat_choice = int(input("\nSelect category (number): ")) - 1
         selected_category = sorted(categories.keys())[cat_choice]
     except:
-        print("Invalid selection")
         return
 
     # Show servers in category
     cat_servers = [s for s in installable if s.get("category") == selected_category]
 
-    print(f"\nServers in '{selected_category}':")
-    for i, server in enumerate(cat_servers[:20], 1):  # Limit to 20
-        name = server.get("name", "Unknown")
-        stars = server.get("stars", 0)
-        desc = server.get("description", "No description")[:50] + "..."
-        print(f"  {i}. {name} ({stars}⭐) - {desc}")
+    for _i, server in enumerate(cat_servers[:20], 1):  # Limit to 20
+        server.get("name", "Unknown")
+        server.get("stars", 0)
+        server.get("description", "No description")[:50] + "..."
 
     try:
         server_choice = int(input("\nSelect server to install (number): ")) - 1
-        selected_server = cat_servers[server_choice]
+        cat_servers[server_choice]
     except:
-        print("Invalid selection")
         return
 
     # Show server details
-    print(f"\n📋 Server: {selected_server.get('name')}")
-    print(f"Description: {selected_server.get('description', 'N/A')}")
-    print(f"Language: {selected_server.get('language', 'unknown')}")
-    print(
-        f"Install: {selected_server.get('install_command', 'Manual installation required')}"
-    )
 
     if input("\nProceed with installation? (y/n): ").lower() == "y":
-        print("Please use the web interface for automated installation")
-        print("Run: python integrated_launcher.py web")
+        pass
 
 
 def main():
@@ -259,7 +216,6 @@ Examples:
 
     elif args.command == "server":
         if not args.args:
-            print("Error: Server command required (start, stop, status, list, monitor)")
             sys.exit(1)
         run_fastmcp_manager(args.args)
 

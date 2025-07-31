@@ -2,9 +2,8 @@
 """Simple test of MCP server functionality."""
 
 import logging
-from pathlib import Path
 import sys
-
+from pathlib import Path
 
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent / "src"))
@@ -23,7 +22,7 @@ def test_imports():
 
         logger.info("✓ Imported FastMCP from mcp.server")
     except ImportError as e:
-        logger.error(f"✗ Failed to import FastMCP: {e}")
+        logger.exception(f"✗ Failed to import FastMCP: {e}")
         return False
 
     try:
@@ -31,7 +30,7 @@ def test_imports():
 
         logger.info("✓ Imported mcp.types")
     except ImportError as e:
-        logger.error(f"✗ Failed to import mcp.types: {e}")
+        logger.exception(f"✗ Failed to import mcp.types: {e}")
         return False
 
     try:
@@ -39,7 +38,7 @@ def test_imports():
 
         logger.info("✓ Imported mcp.server.stdio")
     except ImportError as e:
-        logger.error(f"✗ Failed to import mcp.server.stdio: {e}")
+        logger.exception(f"✗ Failed to import mcp.server.stdio: {e}")
         return False
 
     return True
@@ -70,7 +69,7 @@ def test_server_creation():
         return True
 
     except Exception as e:
-        logger.error(f"✗ Failed to create server: {e}")
+        logger.exception(f"✗ Failed to create server: {e}")
         import traceback
 
         traceback.print_exc()
@@ -93,7 +92,7 @@ def test_langchain_mcp():
         return True
 
     except ImportError as e:
-        logger.error(f"✗ Failed to import LangChain MCP adapters: {e}")
+        logger.exception(f"✗ Failed to import LangChain MCP adapters: {e}")
         return False
 
 

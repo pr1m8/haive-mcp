@@ -1,18 +1,15 @@
 #!/usr/bin/env python3
 """Get ALL MCP servers with complete processing."""
 
-from datetime import UTC, datetime
 import json
+from datetime import UTC, datetime
 from pathlib import Path
-
 
 # Paths
 data_dir = Path("data/mcp_servers")
 production_db = data_dir / "production_mcp_database.json"
 output_file = data_dir / "ALL_MCP_SERVERS_COMPLETE.json"
 
-print("🚀 GETTING ALL MCP SERVERS!")
-print("=" * 60)
 
 # Load all servers
 with open(production_db) as f:
@@ -22,7 +19,6 @@ servers_dict = data.get("servers", {})
 servers = list(servers_dict.values())
 total = len(servers)
 
-print(f"📊 Found {total} servers in production database")
 
 # Organize by category
 by_category = {}
@@ -84,27 +80,20 @@ output = {
 with open(output_file, "w") as f:
     json.dump(output, f, indent=2)
 
-print(f"\n✅ COMPLETE! All {total} servers saved to: {output_file}")
-print("\n📊 Category Distribution:")
-for cat, count in sorted(
+for cat, _count in sorted(
     output["statistics"]["category_distribution"].items(),
     key=lambda x: x[1],
     reverse=True,
 ):
-    print(f"  {cat}: {count} servers")
+    pass
 
-print("\n📈 Source Distribution:")
-for src, count in sorted(
+for _src, _count in sorted(
     output["statistics"]["source_distribution"].items(),
     key=lambda x: x[1],
     reverse=True,
 )[:10]:
-    print(f"  {src}: {count} servers")
+    pass
 
-print("\n🎯 Special Collections:")
-print(f"  Official servers: {len(official_servers)}")
-print(f"  NPM packages: {len(npm_servers)}")
-print(f"  Python packages: {len(pip_servers)}")
 
 # Also create a simple list file
 simple_list = data_dir / "ALL_SERVERS_LIST.txt"
@@ -119,6 +108,3 @@ with open(simple_list, "w") as f:
             name = server.get("name", "Unknown")
             repo = server.get("repository_url", "")
             f.write(f"- {name}: {repo}\n")
-
-print(f"\n📄 Simple list saved to: {simple_list}")
-print("\n✨ ALL DONE! You now have ALL MCP servers!")

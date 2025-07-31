@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Dynamic MCP Agent System
+"""Dynamic MCP Agent System.
 
 Flow:
 1. Agent checks what tools are available vs installed
@@ -10,10 +10,10 @@ Flow:
 """
 
 import asyncio
-from dataclasses import dataclass
 import json
-from pathlib import Path
 import subprocess
+from dataclasses import dataclass
+from pathlib import Path
 
 from langchain_core.tools import StructuredTool
 from pydantic import BaseModel, Field
@@ -21,7 +21,7 @@ from pydantic import BaseModel, Field
 
 @dataclass
 class MCPServerInfo:
-    """Information about an MCP server"""
+    """Information about an MCP server."""
 
     name: str
     description: str
@@ -35,7 +35,7 @@ class MCPServerInfo:
 
 
 class ToolNeed(BaseModel):
-    """Agent's tool requirement"""
+    """Agent's tool requirement."""
 
     capability: str = Field(description="What the agent needs to do")
     category: str = Field(description="Tool category needed")
@@ -43,7 +43,7 @@ class ToolNeed(BaseModel):
 
 
 class DynamicMCPManager:
-    """Manages MCP servers dynamically for agents"""
+    """Manages MCP servers dynamically for agents."""
 
     def __init__(self):
         # Load MCP server database
@@ -63,16 +63,14 @@ class DynamicMCPManager:
         self.available_tools: dict[str, StructuredTool] = {}
         self.request_counters: dict[str, int] = {}
 
-        print(f"📊 Loaded {len(self.all_servers)} MCP servers from database")
-
     def get_installed_tools(self) -> list[str]:
-        """Get list of currently available tools"""
+        """Get list of currently available tools."""
         return list(self.available_tools.keys())
 
     def search_available_servers(
         self, capability: str, category: str = ""
     ) -> list[MCPServerInfo]:
-        """Search for servers that could provide a capability"""
+        """Search for servers that could provide a capability."""
         matches = []
         capability_lower = capability.lower()
         category_lower = category.lower()
@@ -111,7 +109,7 @@ class DynamicMCPManager:
         return matches
 
     async def assess_tool_needs(self, agent_request: str) -> ToolNeed:
-        """Analyze what tool capabilities the agent needs"""
+        """Analyze what tool capabilities the agent needs."""
         # Simple keyword-based analysis (could be enhanced with LLM)
         request_lower = agent_request.lower()
 
@@ -137,7 +135,7 @@ class DynamicMCPManager:
         return ToolNeed(capability="general", category="utility", priority="low")
 
     def find_missing_tools(self, needed: ToolNeed) -> list[MCPServerInfo]:
-        """Find what tools we need but don't have"""
+        """Find what tools we need but don't have."""
         # Check if we already have tools for this capability
         current_tools = self.get_installed_tools()
 
@@ -147,7 +145,6 @@ class DynamicMCPManager:
         )
 
         if has_capability:
-            print(f"✅ Already have tools for {needed.capability}")
             return []
 
         # Search for servers that could provide this capability
@@ -158,18 +155,12 @@ class DynamicMCPManager:
             s for s in candidates if s.install_command and not s.is_installed
         ]
 
-        print(
-            f"🔍 Found {len(installable)} installable servers for {needed.capability}"
-        )
         return installable[:3]  # Top 3 candidates
 
     async def install_server(self, server_info: MCPServerInfo) -> bool:
-        """Install an MCP server"""
+        """Install an MCP server."""
         if not server_info.install_command:
-            print(f"❌ No install command for {server_info.name}")
             return False
-
-        print(f"📦 Installing {server_info.name}...")
 
         try:
             process = await asyncio.create_subprocess_shell(
@@ -181,21 +172,17 @@ class DynamicMCPManager:
             stdout, stderr = await process.communicate()
 
             if process.returncode == 0:
-                print(f"✅ Installed {server_info.name}")
                 server_info.is_installed = True
                 self.installed_servers[server_info.name] = server_info
                 return True
-            print(f"❌ Installation failed: {stderr.decode()}")
             return False
 
-        except Exception as e:
-            print(f"❌ Installation error: {e}")
+        except Exception:
             return False
 
     async def start_server(self, server_info: MCPServerInfo) -> bool:
-        """Start an MCP server process"""
+        """Start an MCP server process."""
         if server_info.name in self.running_processes:
-            print(f"✅ {server_info.name} already running")
             return True
 
         # Try different start commands based on server type
@@ -207,7 +194,6 @@ class DynamicMCPManager:
 
         for cmd in start_commands:
             try:
-                print(f"🚀 Starting {server_info.name} with: {cmd}")
 
                 process = subprocess.Popen(
                     cmd.split(),
@@ -224,18 +210,16 @@ class DynamicMCPManager:
                     self.request_counters[server_info.name] = 1
 
                     if await self._initialize_server(server_info.name):
-                        print(f"✅ {server_info.name} started and initialized")
                         server_info.is_running = True
                         return True
 
-            except Exception as e:
-                print(f"❌ Failed to start with {cmd}: {e}")
+            except Exception:
                 continue
 
         return False
 
     async def _initialize_server(self, server_name: str) -> bool:
-        """Initialize MCP server connection"""
+        """Initialize MCP server connection."""
         try:
             process = self.running_processes[server_name]
 
@@ -264,16 +248,16 @@ class DynamicMCPManager:
                     process.stdin.flush()
                     return True
 
-        except Exception as e:
-            print(f"❌ Initialization failed for {server_name}: {e}")
+        except Exception:
+            pass
 
         return False
 
     def create_dynamic_tool(self, server_name: str, tool_name: str) -> StructuredTool:
-        """Create a tool dynamically for any MCP server"""
+        """Create a tool dynamically for any MCP server."""
 
         def execute_mcp_tool(query: str) -> str:
-            """Execute any MCP tool dynamically"""
+            """Execute any MCP tool dynamically."""
             try:
                 process = self.running_processes[server_name]
                 request = {
@@ -322,9 +306,8 @@ class DynamicMCPManager:
     async def auto_discover_and_install_tools(
         self, server_info: MCPServerInfo
     ) -> list[StructuredTool]:
-        """Automatically discover available tools from a running server and create them"""
+        """Automatically discover available tools from a running server and create them."""
         if server_info.name not in self.running_processes:
-            print(f"❌ Server {server_info.name} not running")
             return []
 
         try:
@@ -357,35 +340,29 @@ class DynamicMCPManager:
                             )
                             created_tools.append(dynamic_tool)
                             self.available_tools[dynamic_tool.name] = dynamic_tool
-                            print(f"✅ Created tool: {dynamic_tool.name}")
 
                     return created_tools
 
-        except Exception as e:
-            print(f"❌ Tool discovery failed: {e}")
+        except Exception:
+            pass
 
         return []
 
     async def dynamic_tool_provision(self, agent_request: str) -> list[StructuredTool]:
-        """Main method: Dynamically provision tools based on agent needs"""
-        print(f"\n🤖 Agent request: {agent_request}")
-
+        """Main method: Dynamically provision tools based on agent needs."""
         # 1. Assess what tools are needed
         needed = await self.assess_tool_needs(agent_request)
-        print(f"🎯 Need: {needed.capability} tools (priority: {needed.priority})")
 
         # 2. Check what's missing
         missing_servers = self.find_missing_tools(needed)
 
         if not missing_servers:
-            print("✅ All needed tools already available")
             return list(self.available_tools.values())
 
         # 3. Install and setup missing tools
         newly_created_tools = []
 
         for server_info in missing_servers:
-            print(f"\n📦 Setting up {server_info.name}...")
 
             # Install if needed
             if await self.install_server(server_info):
@@ -396,28 +373,25 @@ class DynamicMCPManager:
                     newly_created_tools.extend(tools)
 
                     if tools:
-                        print(f"🔥 HOT-RELOADED {len(tools)} new tools!")
                         break  # Got what we need
 
         # 4. Return all available tools (existing + new)
         all_tools = list(self.available_tools.values())
-        print(f"\n✅ Total tools available: {len(all_tools)}")
 
         return all_tools
 
     def cleanup(self):
-        """Stop all running servers"""
-        for name, process in self.running_processes.items():
+        """Stop all running servers."""
+        for _name, process in self.running_processes.items():
             try:
                 process.terminate()
                 process.wait(timeout=5)
-                print(f"✅ Stopped {name}")
             except:
                 process.kill()
 
 
 class DynamicAgent:
-    """Agent that can dynamically acquire new tools"""
+    """Agent that can dynamically acquire new tools."""
 
     def __init__(self, name: str):
         self.name = name
@@ -425,11 +399,7 @@ class DynamicAgent:
         self.current_tools: list[StructuredTool] = []
 
     async def process_request(self, user_request: str) -> str:
-        """Process user request, dynamically acquiring tools if needed"""
-        print(f"\n{'=' * 60}")
-        print(f"🤖 {self.name} processing: {user_request}")
-        print(f"{'=' * 60}")
-
+        """Process user request, dynamically acquiring tools if needed."""
         # Get tools (existing + dynamically provisioned)
         all_tools = await self.mcp_manager.dynamic_tool_provision(user_request)
 
@@ -437,52 +407,37 @@ class DynamicAgent:
         self.current_tools = all_tools
 
         # Simulate agent using the tools
-        print(f"\n🔧 Agent now has {len(self.current_tools)} tools available:")
-        for tool in self.current_tools:
-            print(f"   - {tool.name}: {tool.description}")
+        for _tool in self.current_tools:
+            pass
 
         # In a real implementation, this would use the actual haive agent
         return f"✅ Agent processed '{user_request}' with {len(self.current_tools)} available tools"
 
     def cleanup(self):
-        """Cleanup resources"""
+        """Cleanup resources."""
         self.mcp_manager.cleanup()
 
 
 async def demo_dynamic_mcp_system():
-    """Demonstrate the dynamic MCP system"""
-    print("🚀 Dynamic MCP Agent System Demo")
-    print("=" * 60)
-
+    """Demonstrate the dynamic MCP system."""
     agent = DynamicAgent("DynamicAssistant")
 
     try:
         # Test 1: Request that needs filesystem tools
-        result1 = await agent.process_request("I need to read a file called config.txt")
-        print(f"\nResult: {result1}")
+        await agent.process_request("I need to read a file called config.txt")
 
         await asyncio.sleep(2)
 
         # Test 2: Request that needs calculation tools
-        result2 = await agent.process_request("Calculate 15 * 23 + 100")
-        print(f"\nResult: {result2}")
+        await agent.process_request("Calculate 15 * 23 + 100")
 
         await asyncio.sleep(2)
 
         # Test 3: Request that needs web scraping
-        result3 = await agent.process_request("Scrape the content from a website")
-        print(f"\nResult: {result3}")
+        await agent.process_request("Scrape the content from a website")
 
     finally:
         agent.cleanup()
-
-    print("\n🏆 Dynamic MCP System Demo Complete!")
-    print("\n🎯 What happened:")
-    print("- Agent analyzed each request")
-    print("- Discovered what tools were needed")
-    print("- Dynamically installed missing MCP servers")
-    print("- Hot-reloaded new tools into the agent")
-    print("- Agent continued with expanded capabilities")
 
 
 if __name__ == "__main__":

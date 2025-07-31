@@ -28,66 +28,47 @@ from haive.mcp.tools.server_selector import MCPServerSelector
 def print_servers(servers: list[dict], show_details: bool = False):
     """Print server information in a readable format."""
     if not servers:
-        print("No servers found.")
         return
-
-    print(f"\nFound {len(servers)} servers:")
-    print("=" * 50)
 
     for server in servers:
         metadata = server.get("metadata", {})
-        name = metadata.get("name", "Unknown")
+        metadata.get("name", "Unknown")
         description = metadata.get("description", "No description")
-        category = metadata.get("category", "Uncategorized")
-
-        print(f"\n📦 {name}")
-        print(f"   Category: {category}")
+        metadata.get("category", "Uncategorized")
 
         if show_details:
-            print(f"   Description: {description}")
 
             # Show capabilities if available
             loader = MCPDocumentationLoader()
             setup_info = loader.extract_setup_info(server)
             if setup_info.get("capabilities"):
-                caps = setup_info["capabilities"][:5]  # Show first 5
-                more = "..." if len(setup_info["capabilities"]) > 5 else ""
-                print(f"   Capabilities: {', '.join(caps)}{more}")
+                setup_info["capabilities"][:5]  # Show first 5
+                "..." if len(setup_info["capabilities"]) > 5 else ""
         else:
             # Truncate description
-            desc_short = (
-                description[:60] + "..." if len(description) > 60 else description
-            )
-            print(f"   Description: {desc_short}")
+            (description[:60] + "..." if len(description) > 60 else description)
 
 
 def print_recommendations(recommendations: list, show_reasoning: bool = False):
     """Print server recommendations."""
     if not recommendations:
-        print("No recommendations found.")
         return
 
-    print(f"\n🎯 Top {len(recommendations)} recommendations:")
-    print("=" * 50)
-
-    for i, rec in enumerate(recommendations, 1):
-        confidence = getattr(rec, "confidence", getattr(rec, "score", 0))
-        server_name = getattr(rec, "server_name", rec)
+    for _i, rec in enumerate(recommendations, 1):
+        getattr(rec, "confidence", getattr(rec, "score", 0))
+        getattr(rec, "server_name", rec)
 
         if hasattr(rec, "confidence"):
             # From AI assistant
-            print(f"\n{i}. {server_name} (confidence: {confidence:.1%})")
             if show_reasoning and hasattr(rec, "reasoning"):
-                print(f"   💡 {rec.reasoning}")
+                pass
             if hasattr(rec, "estimated_setup_time"):
-                print(f"   ⏱️  Setup time: ~{rec.estimated_setup_time}s")
+                pass
             if hasattr(rec, "required_env_vars") and rec.required_env_vars:
-                print(f"   🔑 Required env: {', '.join(rec.required_env_vars)}")
-        else:
-            # From basic selector
-            print(f"\n{i}. {server_name} (score: {confidence:.1f})")
-            if show_reasoning and hasattr(rec, "reasons"):
-                print(f"   💡 {'; '.join(rec.reasons)}")
+                pass
+        # From basic selector
+        elif show_reasoning and hasattr(rec, "reasons"):
+            pass
 
 
 async def cmd_list_servers(args):
@@ -96,13 +77,10 @@ async def cmd_list_servers(args):
 
     if args.prefix:
         servers = selector.filter_by_prefix(args.prefix)
-        print(f"Servers with prefix '{args.prefix}':")
     elif args.category:
         servers = selector.filter.filter_by_category(args.category)
-        print(f"Servers in category '{args.category}':")
     else:
         servers = selector.servers
-        print("All available MCP servers:")
 
     print_servers(servers, args.details)
 
@@ -128,7 +106,6 @@ async def cmd_filter(args):
     if args.exclude_prefix:
         criteria.append(f"excluding: {args.exclude_prefix}")
 
-    print(f"Filtering by {', '.join(criteria)}:")
     print_servers(servers, args.details)
 
 
@@ -140,30 +117,21 @@ async def cmd_recommend(args):
             args.task, prefer_simple_setup=args.simple, max_servers=args.max_servers
         )
 
-        print(f"\n🤖 AI Assistant Recommendations for: '{args.task}'")
-        print("=" * 60)
-        print(f"💭 Reasoning: {config.reasoning}")
-        print(f"🔧 Setup complexity: {config.setup_complexity}")
-
         if config.warnings:
-            print("⚠️  Warnings:")
-            for warning in config.warnings:
-                print(f"   - {warning}")
+            for _warning in config.warnings:
+                pass
 
-        print("\n📋 Selected servers:")
-        for server_name in config.primary_servers:
-            print(f"   ✅ {server_name}")
+        for _server_name in config.primary_servers:
+            pass
 
         if config.fallback_servers:
-            print("\n🔄 Fallback servers:")
-            for server_name in config.fallback_servers:
-                print(f"   🔄 {server_name}")
+            for _server_name in config.fallback_servers:
+                pass
 
         if args.save_config:
             config_dict = config.config.model_dump()
             with open(args.save_config, "w") as f:
                 json.dump(config_dict, f, indent=2)
-            print(f"\n💾 Configuration saved to: {args.save_config}")
 
     else:
         selector = MCPServerSelector()
@@ -171,7 +139,6 @@ async def cmd_recommend(args):
             args.task, max_servers=args.max_servers
         )
 
-        print(f"\n🎯 Recommendations for: '{args.task}'")
         print_recommendations(recommendations, args.reasoning)
 
 
@@ -179,20 +146,15 @@ async def cmd_select(args):
     """Interactive server selection."""
     selector = MCPServerSelector()
 
-    print("🔍 Interactive MCP Server Selection")
-    print("=" * 40)
-
     # Show available filters
     if not args.no_filters:
-        print("\nAvailable prefixes:")
         prefixes = selector.get_available_prefixes()
-        for i, prefix in enumerate(prefixes[:10], 1):  # Show first 10
-            print(f"  {i}. {prefix}")
+        for _i, _prefix in enumerate(prefixes[:10], 1):  # Show first 10
+            pass
 
-        print("\nAvailable categories:")
         categories = selector.get_available_categories()
-        for i, category in enumerate(categories, 1):
-            print(f"  {i}. {category}")
+        for _i, _category in enumerate(categories, 1):
+            pass
 
     # Get filter preferences
     filter_prefixes = None
@@ -220,9 +182,8 @@ async def cmd_select(args):
     )
 
     if selected:
-        print(f"\n✅ Selected {len(selected)} servers:")
-        for server in selected:
-            print(f"   - {server}")
+        for _server in selected:
+            pass
 
         # Generate configuration
         config = selector.create_config_for_selection(selected)
@@ -231,25 +192,17 @@ async def cmd_select(args):
             config_dict = config.model_dump()
             with open(args.save_config, "w") as f:
                 json.dump(config_dict, f, indent=2)
-            print(f"\n💾 Configuration saved to: {args.save_config}")
 
         # Show summary
-        summary = selector.get_selection_summary(selected)
-        print("\n📊 Selection Summary:")
-        print(f"   Total servers: {summary['total_servers']}")
-        print(f"   Categories: {', '.join(summary['categories'].keys())}")
-        print(f"   Estimated capabilities: {', '.join(summary['capabilities'])}")
+        selector.get_selection_summary(selected)
 
     else:
-        print("No servers selected.")
+        pass
 
 
 async def cmd_auto_config(args):
     """Auto-configure servers for a task using AI."""
     assistant = MCPAssistant()
-
-    print(f"🤖 Auto-configuring MCP servers for: '{args.task}'")
-    print("=" * 60)
 
     config = await assistant.auto_configure_for_task(
         args.task,
@@ -258,47 +211,33 @@ async def cmd_auto_config(args):
         include_fallbacks=not args.no_fallbacks,
     )
 
-    print("\n💭 Analysis:")
-    print(f"   Task pattern: {config.reasoning}")
-    print(f"   Setup complexity: {config.setup_complexity}")
-    print(f"   Primary servers: {len(config.primary_servers)}")
-    print(f"   Fallback servers: {len(config.fallback_servers)}")
-
     if config.warnings:
-        print("\n⚠️  Warnings:")
-        for warning in config.warnings:
-            print(f"   - {warning}")
+        for _warning in config.warnings:
+            pass
 
-    print("\n📋 Configuration:")
-    for server_name in config.primary_servers:
-        print(f"   ✅ {server_name}")
+    for _server_name in config.primary_servers:
+        pass
 
     # Validate configuration
     validation = await assistant.validate_configuration(config.config)
 
     if not validation["valid"]:
-        print("\n❌ Configuration Issues:")
-        for issue in validation["issues"]:
-            print(f"   - {issue}")
+        for _issue in validation["issues"]:
+            pass
 
     if validation["suggestions"]:
-        print("\n💡 Suggestions:")
-        for suggestion in validation["suggestions"]:
-            print(f"   - {suggestion}")
-
-    print(f"\n⏱️  Estimated setup time: {validation['estimated_setup_time']}s")
+        for _suggestion in validation["suggestions"]:
+            pass
 
     if validation["required_env_vars"]:
-        print("\n🔑 Required environment variables:")
-        for var in set(validation["required_env_vars"]):
-            print(f"   - {var}")
+        for _var in set(validation["required_env_vars"]):
+            pass
 
     # Save configuration
     if args.output:
         config_dict = config.config.model_dump()
         with open(args.output, "w") as f:
             json.dump(config_dict, f, indent=2)
-        print(f"\n💾 Configuration saved to: {args.output}")
 
     # Generate setup script
     if args.generate_script:
@@ -306,7 +245,6 @@ async def cmd_auto_config(args):
         script_path = args.generate_script
         with open(script_path, "w") as f:
             f.write(script)
-        print(f"📝 Setup script generated: {script_path}")
 
 
 def generate_setup_script(config) -> str:
@@ -336,25 +274,25 @@ async def main():
         ),
         name="mcp_test_engine"
     )
-    
+
     # Create MCP configuration
     mcp_config = MCPConfig(**MCP_CONFIG)
-    
+
     # Create agent
     agent = MCPAgent(
         engine=engine,
         mcp_config=mcp_config,
         name="auto_configured_agent"
     )
-    
+
     # Initialize
     print("Initializing MCP agent...")
     await agent.setup()
-    
+
     # Test
     status = agent.get_mcp_status()
     print(f"MCP Status: {{status}}")
-    
+
     if status["connected_servers"]:
         print("✅ MCP agent ready!")
         print(f"Connected servers: {{', '.join(status['connected_servers'])}}")
@@ -485,13 +423,11 @@ Examples:
         try:
             asyncio.run(command_func(args))
         except KeyboardInterrupt:
-            print("\n❌ Operation cancelled by user.")
             sys.exit(1)
         except Exception:
             # The custom excepthook will handle printing the error
             sys.exit(1)
     else:
-        print(f"Unknown command: {args.command}")
         parser.print_help()
         sys.exit(1)
 

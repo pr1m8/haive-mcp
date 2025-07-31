@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Production MCP Server Harvester
+"""Production MCP Server Harvester.
 
 Downloads and parses MCP servers from all major sources in standardized format.
 Keeps track of sources, deduplicates, and maintains data quality.
@@ -10,16 +10,15 @@ Usage:
 
 import asyncio
 import base64
-from dataclasses import asdict, dataclass
-from datetime import UTC, datetime
 import json
 import logging
-from pathlib import Path
 import re
+from dataclasses import asdict, dataclass
+from datetime import UTC, datetime
+from pathlib import Path
 from typing import Any
 
 import aiohttp
-
 
 # Set up logging
 logging.basicConfig(
@@ -193,7 +192,7 @@ class GitHubRepoHarvester(MCPSourceHarvester):
             return servers
 
         except Exception as e:
-            logger.error(f"❌ Failed to harvest {self.repo_url}: {e}")
+            logger.exception(f"❌ Failed to harvest {self.repo_url}: {e}")
             return []
 
     async def _get_repo_info(self) -> dict[str, Any]:
@@ -433,7 +432,7 @@ class GitHubTopicHarvester(MCPSourceHarvester):
             return servers
 
         except Exception as e:
-            logger.error(f"❌ Failed to search topic {self.topic}: {e}")
+            logger.exception(f"❌ Failed to search topic {self.topic}: {e}")
             return []
 
 
@@ -461,7 +460,7 @@ class RegistryWebHarvester(MCPSourceHarvester):
             return await self._harvest_generic_registry()
 
         except Exception as e:
-            logger.error(f"❌ Failed to harvest {self.registry_name}: {e}")
+            logger.exception(f"❌ Failed to harvest {self.registry_name}: {e}")
             return []
 
     async def _harvest_pulsemcp(self) -> list[MCPServerRecord]:
@@ -644,7 +643,7 @@ class ProductionMCPHarvester:
                     await self._harvest_source(source)
                     self.sources_processed += 1
                 except Exception as e:
-                    logger.error(
+                    logger.exception(
                         f"❌ Failed to harvest {source.__class__.__name__}: {e}"
                     )
 
@@ -708,7 +707,7 @@ class ProductionMCPHarvester:
                 f"📊 Progress: {self.sources_processed + 1}/{self.total_sources} sources"
             )
         except Exception as e:
-            logger.error(f"❌ Source {harvester.source_name} failed: {e}")
+            logger.exception(f"❌ Source {harvester.source_name} failed: {e}")
 
     def _deduplicate_servers(
         self, servers: list[MCPServerRecord]
@@ -869,14 +868,10 @@ async def main():
     """Run production MCP harvest."""
     import os
 
-    print("🚀 Production MCP Server Harvester")
-    print("=" * 50)
-
     # Get GitHub token from environment
     github_token = os.environ.get("GITHUB_TOKEN")
     if not github_token:
-        print("⚠️  No GITHUB_TOKEN found - API rate limits may apply")
-        print("   Set GITHUB_TOKEN environment variable for better results")
+        pass
 
     # Create harvester
     harvester = ProductionMCPHarvester(github_token=github_token)
@@ -885,26 +880,11 @@ async def main():
     results = await harvester.harvest_all()
 
     # Print summary
-    print("\n📊 Harvest Summary:")
-    print(f"   Total servers: {results['total_servers']}")
-    print(f"   Sources processed: {results['sources_processed']}")
-    print(
-        f"   Success rate: {results['sources_processed']}/{results.get('total_sources', 'unknown')}"
-    )
 
-    analytics = results["analytics"]
-    print("\n📈 Analytics:")
-    print(f"   Categories: {len(analytics['by_category'])}")
-    print(f"   Sources: {len(analytics['by_source'])}")
-    print(f"   Owners: {len(analytics['by_owner'])}")
-    print(f"   With documentation: {analytics['quality_metrics']['has_documentation']}")
-    print(f"   Official servers: {analytics['quality_metrics']['is_official']}")
+    results["analytics"]
 
-    print("\n📁 Files saved:")
-    for file_type, path in results["files"].items():
-        print(f"   {file_type}: {path}")
-
-    print("\n✅ Production harvest complete!")
+    for _file_type, _path in results["files"].items():
+        pass
 
 
 if __name__ == "__main__":

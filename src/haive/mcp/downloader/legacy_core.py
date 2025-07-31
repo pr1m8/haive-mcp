@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""General MCP Server Downloader - A flexible, configuration-driven approach
+"""General MCP Server Downloader - A flexible, configuration-driven approach.
 
 This script provides a general, extensible system for downloading and configuring
 MCP servers from various sources using configurable installation strategies.
@@ -29,13 +29,11 @@ from urllib.parse import urlparse
 
 try:
     import aiohttp
-
-import yaml
-
 except ImportError:
     aiohttp = None
 
 try:
+    import yaml
 except ImportError:
     yaml = None
 
@@ -477,7 +475,8 @@ class DockerInstaller(MCPInstaller):
 
 class GeneralMCPDownloader:
     """General MCP Server Downloader with configurable patterns and
-    installers."""
+    installers.
+    """
 
     def __init__(self, config_file: str | None = None, install_dir: str | None = None):
         self.config_file = config_file or "mcp_downloader_config.yaml"
@@ -539,7 +538,7 @@ class GeneralMCPDownloader:
             )
 
         except Exception as e:
-            logger.error(f"Error loading config: {e}")
+            logger.exception(f"Error loading config: {e}")
             self.create_default_config()
 
     def create_default_config(self):
@@ -631,7 +630,7 @@ class GeneralMCPDownloader:
                             discovered.extend(self._parse_github_api(content))
 
         except Exception as e:
-            logger.error(f"Error discovering servers from {registry_url}: {e}")
+            logger.exception(f"Error discovering servers from {registry_url}: {e}")
 
         return discovered
 
@@ -645,7 +644,6 @@ class GeneralMCPDownloader:
 
     def _parse_markdown_registry(self, content: str) -> list[dict[str, Any]]:
         """Parse markdown format with server links."""
-
         servers = []
 
         # Look for npm package patterns
@@ -907,7 +905,6 @@ class GeneralMCPDownloader:
 
 async def main():
     """Main function for CLI usage."""
-
     parser = argparse.ArgumentParser(description="General MCP Server Downloader")
     parser.add_argument("--config", help="Configuration file path")
     parser.add_argument("--install-dir", help="Installation directory")
@@ -939,24 +936,14 @@ async def main():
         )
 
     # Print results
-    print("\n" + "=" * 60)
-    print("📦 MCP SERVER DOWNLOAD RESULTS")
-    print("=" * 60)
-    print(f"Total servers: {result['total']}")
-    print(f"Successful: {result['successful']} ({result['success_rate']:.1f}%)")
-    print(f"Failed: {result['failed']}")
 
     if result["successful_servers"]:
-        print("\n✅ Successful installations:")
-        for server in result["successful_servers"]:
-            print(f"  - {server['server']}")
+        for _server in result["successful_servers"]:
+            pass
 
     if result["failed_servers"]:
-        print("\n❌ Failed installations:")
-        for server in result["failed_servers"]:
-            print(f"  - {server['server']}: {server['error']}")
-
-    print(f"\n📋 Configuration saved to: {result['config_file']}")
+        for _server in result["failed_servers"]:
+            pass
 
 
 if __name__ == "__main__":

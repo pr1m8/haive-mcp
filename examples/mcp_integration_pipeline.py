@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""MCP Integration Pipeline
+"""MCP Integration Pipeline.
 
 Automatically installs, sets up, and reads documentation for discovered MCP servers.
 Creates a complete integration pipeline from discovery to agent configuration.
@@ -9,16 +9,15 @@ Usage:
 """
 
 import asyncio
-from dataclasses import asdict, dataclass
-from datetime import UTC, datetime
 import json
 import logging
 import os
+from dataclasses import asdict, dataclass
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
 import aiohttp
-
 
 # Set up logging
 logging.basicConfig(
@@ -231,7 +230,7 @@ class MCPIntegrationPipeline:
                     await asyncio.sleep(1)
 
             except Exception as e:
-                logger.error(f"❌ Failed to install {server.get('name')}: {e}")
+                logger.exception(f"❌ Failed to install {server.get('name')}: {e}")
                 installations.append(
                     MCPServerInstallation(
                         name=server.get("name", "Unknown"),
@@ -310,7 +309,7 @@ class MCPIntegrationPipeline:
         except Exception as e:
             installation.installation_status = "failed"
             installation.error_message = str(e)
-            logger.error(f"❌ Failed to process {name}: {e}")
+            logger.exception(f"❌ Failed to process {name}: {e}")
 
         return installation
 
@@ -637,9 +636,7 @@ class MCPIntegrationPipeline:
             by_method[method] += 1
 
         # Group by category (from original server data)
-        successful_installations = [
-            i for i in installations if i.installation_status == "success"
-        ]
+        [i for i in installations if i.installation_status == "success"]
 
         report = {
             "timestamp": timestamp,
@@ -691,9 +688,6 @@ class MCPIntegrationPipeline:
 
 async def main():
     """Run the MCP integration pipeline."""
-    print("🚀 MCP Integration Pipeline")
-    print("=" * 50)
-
     # Create pipeline with configurable max installations
     max_installs = int(os.environ.get("MAX_INSTALLATIONS", "50"))
     pipeline = MCPIntegrationPipeline(max_installations=max_installs)
@@ -702,25 +696,12 @@ async def main():
     report = await pipeline.run_pipeline()
 
     # Print summary
-    print("\n📊 Integration Summary:")
-    print(f"   Total servers processed: {report['summary']['total_installations']}")
-    print(f"   Successful installations: {report['summary']['successful']}")
-    print(f"   Failed installations: {report['summary']['failed']}")
-    print(f"   Success rate: {report['summary']['success_rate']:.1f}%")
-    print(
-        f"   Configurations generated: {report['summary']['configurations_generated']}"
-    )
 
-    print("\n📈 By Installation Method:")
-    for method, count in report["by_installation_method"].items():
-        print(f"   {method}: {count}")
+    for _method, _count in report["by_installation_method"].items():
+        pass
 
-    print("\n📁 Files Created:")
-    for file_type, count in report["files_created"].items():
-        print(f"   {file_type}: {count}")
-
-    print("\n✅ Integration pipeline complete!")
-    print("📄 Full report saved to: data/integration_report.json")
+    for _file_type, _count in report["files_created"].items():
+        pass
 
 
 if __name__ == "__main__":

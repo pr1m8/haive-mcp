@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""MCP Discovery Tools Launcher
+"""MCP Discovery Tools Launcher.
 
 Easy launcher for all MCP discovery and analysis tools.
 """
 
 import argparse
-from pathlib import Path
 import subprocess
 import sys
+from pathlib import Path
 
 
 def run_csv_viewer():
@@ -59,38 +59,22 @@ def main():
     args = parser.parse_args()
 
     if args.tool == "web":
-        print("🚀 Launching Comprehensive Web Interface...")
         run_comprehensive_web()
 
     elif args.tool == "csv":
-        print("📊 Launching CSV Viewer...")
         run_csv_viewer()
 
     elif args.tool == "test":
-        print("🧪 Running Self-Query Agent Test...")
         run_self_query_test()
 
     elif args.tool == "enhance":
-        print("📈 Running Data Enhancement...")
         run_data_enhancement(args.max_servers)
 
     elif args.tool == "rag":
-        print("🤖 Launching Original RAG Agent...")
         run_original_rag_agent()
 
     elif args.tool == "all":
-        print("🎯 Available Tools:")
-        print("=" * 50)
-        print("1. web      - Comprehensive web interface (recommended)")
-        print("2. csv      - CSV data viewer")
-        print("3. test     - Test self-query search")
-        print("4. enhance  - Enhance data with GitHub info")
-        print("5. rag      - Original RAG agent")
-        print()
-        print("Usage examples:")
-        print("  poetry run python launcher.py web")
-        print("  poetry run python launcher.py enhance --max-servers 10")
-        print("  poetry run python launcher.py test")
+        pass
 
 
 if __name__ == "__main__":

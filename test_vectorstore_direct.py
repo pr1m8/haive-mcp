@@ -1,4 +1,4 @@
-"""Direct test of vector store functionality without haive imports"""
+"""Direct test of vector store functionality without haive imports."""
 
 import json
 from pathlib import Path
@@ -10,15 +10,11 @@ from langchain_huggingface import HuggingFaceEmbeddings
 
 def test_vector_store():
     """Test vector store creation and search directly."""
-    print("📚 Loading documents...")
-
     # Load MCP data
     data_path = Path("data/mcp_servers/ALL_MCP_SERVERS_COMPLETE.json")
     with open(data_path) as f:
         data = json.load(f)
         servers = data.get("all_servers", [])
-
-    print(f"📊 Found {len(servers)} servers")
 
     # Create documents focusing on database-related servers
     documents = []
@@ -52,10 +48,7 @@ Keywords: {category} {name.lower().replace("-", " ")} MCP server
         )
         documents.append(doc)
 
-    print(f"✅ Created {len(documents)} documents")
-
     # Create embeddings
-    print("\n🔧 Creating embeddings...")
     embeddings = HuggingFaceEmbeddings(
         model_name="sentence-transformers/all-mpnet-base-v2",
         model_kwargs={"device": "cuda"},
@@ -63,9 +56,7 @@ Keywords: {category} {name.lower().replace("-", " ")} MCP server
     )
 
     # Create vector store
-    print("\n📊 Creating FAISS vector store...")
     vectorstore = FAISS.from_documents(documents, embeddings)
-    print("✅ Vector store created")
 
     # Test searches
     queries = [
@@ -77,21 +68,14 @@ Keywords: {category} {name.lower().replace("-", " ")} MCP server
     ]
 
     for query in queries:
-        print(f"\n{'=' * 60}")
-        print(f"🔍 Query: {query}")
-        print(f"{'=' * 60}")
 
         # Search
         results = vectorstore.similarity_search(query, k=5)
 
-        print(f"\n📚 Found {len(results)} results:")
-        for i, doc in enumerate(results, 1):
-            print(f"\n{i}. {doc.metadata.get('server_name', 'Unknown')}")
-            print(f"   Category: {doc.metadata.get('category', 'unknown')}")
+        for _i, doc in enumerate(results, 1):
             if doc.metadata.get("description"):
-                print(f"   Description: {doc.metadata.get('description')[:100]}...")
+                pass
 
 
 if __name__ == "__main__":
-    print("🧪 Testing vector store directly...")
     test_vector_store()

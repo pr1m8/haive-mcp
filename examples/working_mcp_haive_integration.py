@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Working MCP + Haive Integration
+"""Working MCP + Haive Integration.
 
 Actually install MCP server, run it, and integrate with haive agent using proper Tool structure.
 """
@@ -14,7 +14,7 @@ from pydantic import BaseModel, Field
 
 
 class MCPFilesystemTool(BaseTool):
-    """Real MCP filesystem tool that communicates with running MCP server"""
+    """Real MCP filesystem tool that communicates with running MCP server."""
 
     name: str = "mcp_filesystem"
     description: str = "Read and write files using MCP filesystem server"
@@ -25,7 +25,7 @@ class MCPFilesystemTool(BaseTool):
         self.request_id = 100  # Start with a higher ID
 
     def _run(self, query: str) -> str:
-        """Execute the MCP filesystem tool"""
+        """Execute the MCP filesystem tool."""
         try:
             # Parse the query to determine what operation to perform
             if "read" in query.lower():
@@ -38,7 +38,7 @@ class MCPFilesystemTool(BaseTool):
             return f"MCP tool error: {e}"
 
     def _read_file(self, file_path: str) -> str:
-        """Read a file via MCP"""
+        """Read a file via MCP."""
         request = {
             "jsonrpc": "2.0",
             "id": self.request_id,
@@ -66,7 +66,7 @@ class MCPFilesystemTool(BaseTool):
         return "No response from MCP server"
 
     def _list_directory(self, dir_path: str) -> str:
-        """List directory via MCP"""
+        """List directory via MCP."""
         request = {
             "jsonrpc": "2.0",
             "id": self.request_id,
@@ -95,13 +95,13 @@ class MCPFilesystemTool(BaseTool):
 
 
 class MCPCalculatorInput(BaseModel):
-    """Input schema for calculator tool"""
+    """Input schema for calculator tool."""
 
     expression: str = Field(description="Mathematical expression to calculate")
 
 
 class MCPCalculatorTool(BaseTool):
-    """Structured MCP calculator tool"""
+    """Structured MCP calculator tool."""
 
     name: str = "mcp_calculator"
     description: str = "Calculate mathematical expressions using MCP calculator server"
@@ -113,7 +113,7 @@ class MCPCalculatorTool(BaseTool):
         self.request_id = 200
 
     def _run(self, expression: str) -> str:
-        """Execute calculation via MCP"""
+        """Execute calculation via MCP."""
         request = {
             "jsonrpc": "2.0",
             "id": self.request_id,
@@ -142,15 +142,13 @@ class MCPCalculatorTool(BaseTool):
 
 
 class MCPServerManager:
-    """Manage MCP server installation and execution"""
+    """Manage MCP server installation and execution."""
 
     def __init__(self):
         self.running_processes = {}
 
     async def install_server(self, package_name: str) -> bool:
-        """Install an MCP server package"""
-        print(f"📦 Installing {package_name}...")
-
+        """Install an MCP server package."""
         try:
             process = await asyncio.create_subprocess_shell(
                 f"npm install -g {package_name}",
@@ -160,20 +158,13 @@ class MCPServerManager:
 
             stdout, stderr = await process.communicate()
 
-            if process.returncode == 0:
-                print(f"✅ {package_name} installed successfully!")
-                return True
-            print(f"❌ Installation failed: {stderr.decode()}")
-            return False
+            return process.returncode == 0
 
-        except Exception as e:
-            print(f"❌ Installation error: {e}")
+        except Exception:
             return False
 
     async def start_filesystem_server(self) -> subprocess.Popen | None:
-        """Start filesystem MCP server"""
-        print("🚀 Starting filesystem server...")
-
+        """Start filesystem MCP server."""
         try:
             # Create test file first
             with open("/tmp/test.txt", "w") as f:
@@ -190,20 +181,19 @@ class MCPServerManager:
             await asyncio.sleep(2)
 
             if process.poll() is None:
-                print(f"✅ Filesystem server running (PID: {process.pid})")
 
                 # Initialize the server
                 if await self._initialize_server(process):
                     self.running_processes["filesystem"] = process
                     return process
 
-        except Exception as e:
-            print(f"❌ Error starting filesystem server: {e}")
+        except Exception:
+            pass
 
         return None
 
     async def _initialize_server(self, process: subprocess.Popen) -> bool:
-        """Initialize MCP server connection"""
+        """Initialize MCP server connection."""
         try:
             init_request = {
                 "jsonrpc": "2.0",
@@ -232,32 +222,25 @@ class MCPServerManager:
                     process.stdin.write(json.dumps(initialized) + "\n")
                     process.stdin.flush()
 
-                    print("✅ Server initialized successfully")
                     return True
 
-        except Exception as e:
-            print(f"❌ Initialization error: {e}")
+        except Exception:
+            pass
 
         return False
 
     def cleanup(self):
-        """Stop all servers"""
-        for name, process in self.running_processes.items():
+        """Stop all servers."""
+        for _name, process in self.running_processes.items():
             try:
                 process.terminate()
                 process.wait(timeout=5)
-                print(f"✅ Stopped {name} server")
             except:
                 process.kill()
-                print(f"🔥 Force killed {name} server")
 
 
 async def test_with_simple_tool_wrapper():
-    """Test with simple tool wrapper (no haive agents needed)"""
-    print("\n" + "=" * 60)
-    print("🔧 Testing MCP Tool Wrapper (No Haive Required)")
-    print("=" * 60)
-
+    """Test with simple tool wrapper (no haive agents needed)."""
     manager = MCPServerManager()
 
     try:
@@ -266,134 +249,35 @@ async def test_with_simple_tool_wrapper():
             "@modelcontextprotocol/server-filesystem"
         )
         if not installed:
-            print("❌ Installation failed - proceeding with demo pattern anyway")
             return
 
         process = await manager.start_filesystem_server()
         if not process:
-            print("❌ Failed to start server")
             return
 
         # Create real MCP tool
         filesystem_tool = MCPFilesystemTool(process)
 
-        print("\n🔧 Testing MCP filesystem tool directly:")
-
         # Test the tool
-        result1 = filesystem_tool._run("list directory")
-        print(f"📁 List result: {result1}")
+        filesystem_tool._run("list directory")
 
-        result2 = filesystem_tool._run("read test file")
-        print(f"📄 Read result: {result2}")
-
-        print(f"\n✅ Tool Name: {filesystem_tool.name}")
-        print(f"✅ Tool Description: {filesystem_tool.description}")
-        print(f"✅ Tool Class: {type(filesystem_tool).__name__}")
-
-        print("\n🤖 This tool can now be used with haive agents:")
-        print(
-            """
-# Example usage with haive agent:
-from haive.agents.simple import SimpleAgent
-from haive.core.engine.aug_llm import AugLLMConfig
-
-agent = SimpleAgent(
-    name="filesystem_agent",
-    engine=AugLLMConfig(),
-    tools=[filesystem_tool]  # Real MCP tool!
-)
-
-result = await agent.arun("List the files in the directory")
-# Agent will use the real MCP filesystem server
-        """
-        )
+        filesystem_tool._run("read test file")
 
     finally:
         manager.cleanup()
 
 
 async def demo_structured_tool():
-    """Demonstrate structured tool pattern"""
-    print("\n" + "=" * 60)
-    print("📊 Structured MCP Tool Demo")
-    print("=" * 60)
-
-    print(
-        """
-For more complex MCP tools, use structured tools:
-
-```python
-from langchain_core.tools import StructuredTool
-from pydantic import BaseModel, Field
-
-class FileOperationInput(BaseModel):
-    operation: str = Field(description="Operation: read, write, delete")
-    file_path: str = Field(description="Path to the file")
-    content: str = Field(default="", description="Content for write operations")
-
-def mcp_file_operation(operation: str, file_path: str, content: str = "") -> str:
-    # Real MCP communication here
-    request = {
-        "jsonrpc": "2.0",
-        "id": 1,
-        "method": "tools/call",
-        "params": {
-            "name": f"{operation}_file",
-            "arguments": {"path": file_path, "content": content}
-        }
-    }
-    # Send to MCP server and return result
-    return f"Performed {operation} on {file_path}"
-
-structured_tool = StructuredTool.from_function(
-    func=mcp_file_operation,
-    name="file_operations",
-    description="Perform file operations via MCP",
-    args_schema=FileOperationInput
-)
-
-# Use with haive agent
-agent = SimpleAgent(
-    name="advanced_filesystem_agent", 
-    engine=AugLLMConfig(),
-    tools=[structured_tool]
-)
-```
-
-Benefits:
-✅ Type safety with Pydantic schemas
-✅ Better error handling
-✅ Clear parameter documentation
-✅ IDE autocompletion support
-"""
-    )
+    """Demonstrate structured tool pattern."""
 
 
 async def main():
-    """Run the complete working integration"""
-    print("🚀 Working MCP + Haive Integration Test")
-    print("=" * 60)
-    print("This demonstrates proper Tool classes for MCP integration\n")
-
+    """Run the complete working integration."""
     # Test tool wrapper (works without haive imports)
     await test_with_simple_tool_wrapper()
 
     # Show structured tool pattern
     await demo_structured_tool()
-
-    print("\n✅ Integration Complete!")
-    print("\n🎯 Key Achievements:")
-    print("- Installed real MCP server")
-    print("- Created proper BaseTool/StructuredTool classes")
-    print("- Demonstrated real MCP protocol communication")
-    print("- Showed haive agent integration pattern")
-    print("- Used correct langchain_core.tools imports")
-
-    print("\n📋 Next Steps:")
-    print("1. Add error handling and reconnection logic")
-    print("2. Create tool factories for different MCP servers")
-    print("3. Build a registry of tested MCP tools")
-    print("4. Use FastMCP for production server management")
 
 
 if __name__ == "__main__":

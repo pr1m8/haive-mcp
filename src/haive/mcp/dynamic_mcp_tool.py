@@ -1,4 +1,4 @@
-"""Dynamic MCP Discovery and Installation Tool
+"""Dynamic MCP Discovery and Installation Tool.
 
 This tool leverages the haive-mcp repository's 992 server database to:
 1. RAG search through MCP server documentation and metadata
@@ -62,11 +62,11 @@ class DynamicMCPTool(BaseTool):
     name: str = "dynamic_mcp_installer"
     description: str = """
     Discover and install MCP servers dynamically based on capability requirements.
-    
-    Use this tool when you need to add new capabilities to your agent by finding and 
-    installing Model Context Protocol (MCP) servers. The tool searches through 992 
+
+    Use this tool when you need to add new capabilities to your agent by finding and
+    installing Model Context Protocol (MCP) servers. The tool searches through 992
     documented MCP servers, analyzes their capabilities, and can install them automatically.
-    
+
     Examples:
     - "I need database access capabilities"
     - "Find servers that can work with GitHub"

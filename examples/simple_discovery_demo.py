@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Simple Discovery Demo
+"""Simple Discovery Demo.
 
 Shows how to use existing haive-mcp components to discover and analyze
 MCP servers and other ecosystem resources.
@@ -9,6 +9,7 @@ Usage:
 """
 
 import asyncio
+import contextlib
 from typing import Any
 
 from haive.core.engine import AugLLMConfig
@@ -52,18 +53,11 @@ class SimpleDiscoveryAgent:
 
     async def setup(self):
         """Initialize the discovery agent."""
-        print("🔧 Setting up discovery agent...")
-        try:
+        with contextlib.suppress(Exception):
             await self.agent.setup()
-            print("✅ Agent setup complete")
-        except Exception as e:
-            print(f"⚠️  Agent setup failed (MCP servers may not be installed): {e}")
-            print("   Continuing with documentation analysis only...")
 
     async def analyze_current_database(self) -> dict[str, Any]:
         """Analyze our current 992-server database."""
-        print("📊 Analyzing current MCP server database...")
-
         try:
             # Load our comprehensive database
             all_servers = self.loader.load_all_mcp_documents()
@@ -118,24 +112,21 @@ class SimpleDiscoveryAgent:
             return analysis
 
         except Exception as e:
-            print(f"❌ Database analysis failed: {e}")
             return {"error": str(e)}
 
     async def find_capability_gaps(self) -> list[str]:
         """Identify capability gaps in our current database."""
-        print("🔍 Identifying capability gaps...")
-
         # Use our agent to analyze what capabilities might be missing
         gap_analysis_prompt = """
         Based on the current MCP server ecosystem, what types of capabilities
         or integrations might be missing that would be valuable for AI agents?
-        
+
         Consider:
         1. Popular APIs that don't have MCP servers yet
-        2. Common developer tools lacking MCP integration  
+        2. Common developer tools lacking MCP integration
         3. Emerging technologies that could benefit from MCP
         4. Workflow automation opportunities
-        
+
         Provide a prioritized list of missing capabilities.
         """
 
@@ -147,8 +138,7 @@ class SimpleDiscoveryAgent:
             # Parse the result to extract gaps
             return self._parse_capability_gaps(result)
 
-        except Exception as e:
-            print(f"⚠️  Gap analysis failed: {e}")
+        except Exception:
             # Return some common gaps we know about
             return [
                 "Microsoft Office integration",
@@ -180,9 +170,7 @@ class SimpleDiscoveryAgent:
 
         for line in lines:
             line = line.strip()
-            if line and (
-                line.startswith("-") or line.startswith("*") or line[0].isdigit()
-            ):
+            if line and (line.startswith(("-", "*")) or line[0].isdigit()):
                 # Clean up the line
                 clean_line = line.lstrip("-*0123456789. ").strip()
                 if clean_line:
@@ -192,8 +180,6 @@ class SimpleDiscoveryAgent:
 
     async def suggest_ecosystem_expansions(self) -> dict[str, list[str]]:
         """Suggest other ecosystems we could apply this pattern to."""
-        print("🌐 Suggesting ecosystem expansions...")
-
         ecosystems = {
             "langchain_tools": [
                 "Document loaders",
@@ -237,49 +223,30 @@ class SimpleDiscoveryAgent:
 
 async def main():
     """Run the simple discovery demo."""
-    print("🚀 Simple Discovery Demo")
-    print("=" * 40)
-
     # Create discovery agent
     agent = SimpleDiscoveryAgent()
     await agent.setup()
 
     # 1. Analyze current database
-    print("\n1️⃣  Current Database Analysis")
     analysis = await agent.analyze_current_database()
 
     if "error" not in analysis:
-        print(f"📊 Database contains {analysis['total_servers']} servers")
-        print("📂 Categories found:")
-        for category, count in analysis["categories"].items():
-            print(f"   {category}: {count} servers")
+        for _category, _count in analysis["categories"].items():
+            pass
 
-        print("⚙️  Installation methods:")
-        for method, count in analysis["installation_methods"].items():
-            print(f"   {method}: {count} servers")
+        for _method, _count in analysis["installation_methods"].items():
+            pass
 
     # 2. Find capability gaps
-    print("\n2️⃣  Capability Gap Analysis")
     gaps = await agent.find_capability_gaps()
-    print("🔍 Missing capabilities identified:")
-    for i, gap in enumerate(gaps, 1):
-        print(f"   {i}. {gap}")
+    for _i, _gap in enumerate(gaps, 1):
+        pass
 
     # 3. Suggest ecosystem expansions
-    print("\n3️⃣  Ecosystem Expansion Opportunities")
     ecosystems = await agent.suggest_ecosystem_expansions()
-    print("🌐 Other ecosystems we could document:")
-    for ecosystem, examples in ecosystems.items():
-        print(f"   {ecosystem.replace('_', ' ').title()}:")
-        for example in examples[:3]:  # Show first 3 examples
-            print(f"     • {example}")
-
-    print("\n✅ Discovery analysis complete!")
-    print("\n💡 Next steps:")
-    print("   • Implement agents to discover missing capabilities")
-    print("   • Extend documentation processing to other ecosystems")
-    print("   • Create automated integration workflows")
-    print("   • Build self-improving discovery system")
+    for _ecosystem, examples in ecosystems.items():
+        for _example in examples[:3]:  # Show first 3 examples
+            pass
 
 
 if __name__ == "__main__":

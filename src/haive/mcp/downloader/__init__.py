@@ -1,6 +1,6 @@
 """Module exports."""
 
-from downloader.config import (
+from haive.mcp.downloader.config import (
     DiscoveryConfig,
     DownloaderConfig,
     InstallationMethod,
@@ -9,28 +9,19 @@ from downloader.config import (
     load_config,
     save_config,
 )
-from downloader.core import (
+from haive.mcp.downloader.core import (  # add_custom_server,; add_custom_template,; get_all_status,; get_server_status,; save_configuration,; servers,; templates,
     DownloadResult,
     GeneralMCPDownloader,
     ServerStatus,
-    add_custom_server,
-    add_custom_template,
-    get_all_status,
-    get_server_status,
-    save_configuration,
-    servers,
-    templates,
 )
-from downloader.discovery import DiscoveredServer, ServerDiscovery, determine_template
-from downloader.github_mass_downloader import (
+from haive.mcp.downloader.discovery import (  # , determine_template
+    DiscoveredServer,
+    ServerDiscovery,
+)
+from haive.mcp.downloader.github_mass_downloader import (
     GitHubMCPDownloader,
-    categorize_servers,
-    create_master_config,
-    create_server_config,
-    load_all_servers,
-    show_results,
 )
-from downloader.installers import (
+from haive.mcp.downloader.installers import (
     BinaryInstaller,
     CurlInstaller,
     DockerInstaller,
@@ -39,7 +30,7 @@ from downloader.installers import (
     NPMInstaller,
     PipInstaller,
 )
-from downloader.integration import (
+from haive.mcp.downloader.integration import (
     Config,
     MCPAgentIntegration,
     MCPCapabilityExtractor,
@@ -51,7 +42,7 @@ from downloader.integration import (
     get_tools_by_capability,
     get_tools_by_server,
 )
-from downloader.legacy_core import (
+from haive.mcp.downloader.legacy_core import (
     DockerInstaller,
     GeneralMCPDownloader,
     GitInstaller,
@@ -88,26 +79,13 @@ __all__ = [
     "ServerDiscovery",
     "ServerStatus",
     "ServerTemplate",
-    "add_custom_server",
-    "add_custom_template",
-    "categorize_servers",
     "create_default_config",
-    "create_master_config",
-    "create_server_config",
-    "determine_template",
     "get_all_prompts",
     "get_all_resources",
-    "get_all_status",
     "get_all_tools",
     "get_capability_summary",
-    "get_server_status",
     "get_tools_by_capability",
     "get_tools_by_server",
-    "load_all_servers",
     "load_config",
     "save_config",
-    "save_configuration",
-    "servers",
-    "show_results",
-    "templates",
 ]

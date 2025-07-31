@@ -1,4 +1,4 @@
-"""MCP server testing and validation tools.
+r"""MCP server testing and validation tools.
 
 This module provides tools for testing MCP server configurations, validating
 connections, and ensuring servers are working correctly before use in production.
@@ -49,13 +49,13 @@ Note:
 """
 
 import asyncio
+import contextlib
 import logging
 import os
 import time
 from dataclasses import dataclass
 from typing import Any
 
-from langchain_mcp_adapters import MCPClient
 from langchain_mcp_adapters.client import MultiServerMCPClient
 
 from haive.mcp.config import MCPConfig, MCPServerConfig
@@ -132,10 +132,8 @@ class HealthMonitor:
         self.monitoring = False
         if self.monitor_task:
             self.monitor_task.cancel()
-            try:
+            with contextlib.suppress(asyncio.CancelledError):
                 await self.monitor_task
-            except asyncio.CancelledError:
-                pass
 
         logger.info("Stopped health monitoring")
 
@@ -174,7 +172,7 @@ class HealthMonitor:
                 await asyncio.sleep(self.check_interval)
 
             except Exception as e:
-                logger.error(f"Error in monitoring loop: {e}")
+                logger.exception(f"Error in monitoring loop: {e}")
                 await asyncio.sleep(self.check_interval)
 
     def get_health_report(self) -> dict[str, HealthStatus]:
@@ -212,6 +210,7 @@ class MCPServerTester:
         try:
             # Import MCP client dependencies
             try:
+                from langchain_mcp_adapters import MCPAdapter
             except ImportError:
                 return TestResult(
                     server_name=server_config.name,
@@ -254,10 +253,8 @@ class MCPServerTester:
             finally:
                 # Clean up client
                 if client and hasattr(client, "close"):
-                    try:
+                    with contextlib.suppress(Exception):
                         await client.close()
-                    except Exception:
-                        pass
 
         except TimeoutError:
             result = TestResult(
@@ -411,9 +408,7 @@ class MCPServerTester:
         # Check for missing environment variables
         if server_config.env:
 
-            missing_vars = [
-                var for var in server_config.env.keys() if var not in os.environ
-            ]
+            missing_vars = [var for var in server_config.env if var not in os.environ]
             if missing_vars:
                 warnings.append(
                     f"Environment variables not set: {', '.join(missing_vars)}"
@@ -421,14 +416,16 @@ class MCPServerTester:
 
         # Check for common authentication requirements
         server_name = server_config.name.lower()
-        if any(
-            service in server_name
-            for service in ["github", "gmail", "notion", "calendar"]
+        if (
+            any(
+                service in server_name
+                for service in ["github", "gmail", "notion", "calendar"]
+            )
+            and not server_config.env
         ):
-            if not server_config.env:
-                warnings.append(
-                    "Server likely requires authentication but no env vars configured"
-                )
+            warnings.append(
+                "Server likely requires authentication but no env vars configured"
+            )
 
         return warnings
 

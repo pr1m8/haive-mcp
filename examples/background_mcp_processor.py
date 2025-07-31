@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Background MCP Server Processing Service
+"""Background MCP Server Processing Service.
 
 A continuous background service that discovers, downloads, processes, and organizes
 MCP servers with comprehensive documentation, categorization, and quality assessment.
@@ -57,21 +57,20 @@ Note:
 """
 
 import asyncio
-from dataclasses import asdict, dataclass
-from datetime import UTC, datetime
 import json
 import logging
+import signal
+import sys
+import time
+from dataclasses import asdict, dataclass
+from datetime import UTC, datetime
 
 # Configure logging with rotation
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
-import signal
-import sys
-import time
 from typing import Any
 
 import aiohttp
-
 
 # Set up comprehensive logging
 log_dir = Path(__file__).parent.parent / "logs"
@@ -284,7 +283,7 @@ class ServerQualityAssessor:
             return metrics
 
         except Exception as e:
-            logger.error(f"Error assessing server {name}: {e}")
+            logger.exception(f"Error assessing server {name}: {e}")
             return ServerQualityMetrics(
                 name=name,
                 repository_url=repo_url,
@@ -976,7 +975,7 @@ Quality Metrics
 ~~~~~~~~~~~~~~~
 
 * **Documentation Score:** {metrics.documentation_score:.1f}/100
-* **Popularity Score:** {metrics.popularity_score:.1f}/100  
+* **Popularity Score:** {metrics.popularity_score:.1f}/100
 * **Maintenance Score:** {metrics.maintenance_score:.1f}/100
 * **Completeness Score:** {metrics.completeness_score:.1f}/100
 
@@ -1188,7 +1187,7 @@ Key Features
                 break
 
             # Extract bullet points
-            if in_features_section and (line.startswith("*") or line.startswith("-")):
+            if in_features_section and (line.startswith(("*", "-"))):
                 feature = line.lstrip("*- ").strip()
                 if feature and len(feature) > 10:  # Filter out short items
                     features.append(feature)
@@ -1603,7 +1602,7 @@ class CategoryOrganizer:
                     {"server": server, "metrics": metrics.to_dict()}
                     for server, metrics in servers[:5]
                 ],  # Top 5 by quality
-                "install_methods": list(set(m.install_method for m in metrics_list)),
+                "install_methods": list({m.install_method for m in metrics_list}),
                 "common_tags": self._get_common_tags([m.tags for m in metrics_list]),
                 "complexity_distribution": self._get_complexity_distribution(
                     metrics_list
@@ -1900,7 +1899,7 @@ class BackgroundMCPProcessor:
                 try:
                     await self._generate_batch_documentation()
                 except Exception as e:
-                    logger.error(f"Failed to generate documentation: {e}")
+                    logger.exception(f"Failed to generate documentation: {e}")
 
                 # Sleep before next cycle
                 cycle_time = time.time() - cycle_start
@@ -1919,7 +1918,7 @@ class BackgroundMCPProcessor:
         except KeyboardInterrupt:
             logger.info("Graceful shutdown requested")
         except Exception as e:
-            logger.error(f"Unexpected error in processing loop: {e}")
+            logger.exception(f"Unexpected error in processing loop: {e}")
             raise
         finally:
             await self._cleanup()
@@ -1969,7 +1968,7 @@ class BackgroundMCPProcessor:
             return []
 
         except Exception as e:
-            logger.error(f"Failed to load source servers: {e}")
+            logger.exception(f"Failed to load source servers: {e}")
             return []
 
     def _get_server_id(self, server_data: dict[str, Any]) -> str:
@@ -2047,9 +2046,7 @@ class BackgroundMCPProcessor:
             metrics = await self.quality_assessor.assess_server(server_data, session)
 
             # Generate documentation
-            doc_path = await self.doc_generator.generate_server_docs(
-                server_data, metrics
-            )
+            await self.doc_generator.generate_server_docs(server_data, metrics)
 
             # Save individual server data
             await self._save_server_data(server_data, metrics)
@@ -2061,7 +2058,7 @@ class BackgroundMCPProcessor:
             return metrics
 
         except Exception as e:
-            logger.error(f"❌ Failed to process {server_name}: {e}")
+            logger.exception(f"❌ Failed to process {server_name}: {e}")
             raise
 
     async def _save_server_data(
@@ -2140,7 +2137,7 @@ class BackgroundMCPProcessor:
             logger.info(f"Generated documentation for {len(processed_servers)} servers")
 
         except Exception as e:
-            logger.error(f"Failed to generate batch documentation: {e}")
+            logger.exception(f"Failed to generate batch documentation: {e}")
 
     def _serialize_organized_data(self, data: Any) -> Any:
         """Serialize organized data for JSON storage.
@@ -2216,7 +2213,7 @@ class BackgroundMCPProcessor:
         try:
             await self._generate_batch_documentation()
         except Exception as e:
-            logger.error(f"Failed to generate final documentation: {e}")
+            logger.exception(f"Failed to generate final documentation: {e}")
 
         logger.info("Cleanup completed")
 
@@ -2290,7 +2287,7 @@ class BackgroundMCPProcessor:
             return result
 
         except Exception as e:
-            logger.error(f"Failed to get quality rankings: {e}")
+            logger.exception(f"Failed to get quality rankings: {e}")
             return []
 
 
@@ -2306,20 +2303,10 @@ async def main():
             # Custom settings via environment variables
             BATCH_SIZE=20 SLEEP_INTERVAL=600 MAX_SERVERS=2000 python background_mcp_processor.py
     """
-    print("🚀 Background MCP Server Processor")
-    print("=" * 50)
-
     # Configuration from environment
     batch_size = int(os.environ.get("BATCH_SIZE", "10"))
     sleep_interval = int(os.environ.get("SLEEP_INTERVAL", "300"))  # 5 minutes
     max_servers = int(os.environ.get("MAX_SERVERS", "1000"))
-
-    print("Configuration:")
-    print(f"  Batch size: {batch_size}")
-    print(f"  Sleep interval: {sleep_interval}s")
-    print(f"  Max servers: {max_servers}")
-    print("  Log file: logs/background_processor.log")
-    print()
 
     # Create processor
     processor = BackgroundMCPProcessor(
@@ -2332,12 +2319,12 @@ async def main():
     except KeyboardInterrupt:
         logger.info("Shutdown requested by user")
     except Exception as e:
-        logger.error(f"Fatal error: {e}")
+        logger.exception(f"Fatal error: {e}")
         sys.exit(1)
 
 
 if __name__ == "__main__":
-    from datetime import timedelta
     import os
+    from datetime import timedelta
 
     asyncio.run(main())

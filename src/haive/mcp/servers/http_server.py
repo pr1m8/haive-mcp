@@ -73,7 +73,6 @@ async def list_tools() -> list[str]:
 @mcp.tool()
 async def get_system_info() -> dict[str, Any]:
     """Get system information."""
-
     return {
         "platform": platform.platform(),
         "python_version": platform.python_version(),
@@ -120,7 +119,7 @@ async def help_prompt() -> list[dict[str, str]]:
         },
         {
             "role": "user",
-            "content": """Please help me understand how to use this MCP server. 
+            "content": """Please help me understand how to use this MCP server.
 
 Available tools:
 - echo: Echo back a message
@@ -192,7 +191,7 @@ async def handle_sse(request: Request):
             async for message in sse_transport.handle_connection(request):
                 yield f"data: {json.dumps(message)}\n\n"
         except Exception as e:
-            logger.error(f"SSE error: {e}")
+            logger.exception(f"SSE error: {e}")
             yield f"data: {json.dumps({'error': str(e)})}\n\n"
 
     return StreamingResponse(

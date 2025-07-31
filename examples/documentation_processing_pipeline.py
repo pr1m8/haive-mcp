@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Documentation Processing Pipeline
+"""Documentation Processing Pipeline.
 
 Processes discovered MCP servers to extract README content and convert to
 the same format as our original all_mcp_documents.json database.
@@ -10,16 +10,15 @@ Usage:
 
 import asyncio
 import base64
-from datetime import UTC, datetime
 import json
 import logging
 import os
-from pathlib import Path
 import re
+from datetime import UTC, datetime
+from pathlib import Path
 from typing import Any
 
 import aiohttp
-
 
 # Set up logging
 logging.basicConfig(
@@ -222,7 +221,7 @@ class DocumentationProcessor:
                 await asyncio.sleep(0.5)
 
             except Exception as e:
-                logger.error(f"❌ Failed to process {server_name}: {e}")
+                logger.exception(f"❌ Failed to process {server_name}: {e}")
                 continue
 
         return documented_servers
@@ -272,7 +271,7 @@ class DocumentationProcessor:
             return None
 
         except Exception as e:
-            logger.error(f"Failed to get documentation for {owner}/{repo}: {e}")
+            logger.exception(f"Failed to get documentation for {owner}/{repo}: {e}")
             return None
 
     async def _get_readme_content(self, owner: str, repo: str) -> str | None:
@@ -294,7 +293,7 @@ class DocumentationProcessor:
                 )
                 return None
         except Exception as e:
-            logger.error(f"Error getting README for {owner}/{repo}: {e}")
+            logger.exception(f"Error getting README for {owner}/{repo}: {e}")
             return None
 
     async def _get_repository_info(
@@ -312,7 +311,7 @@ class DocumentationProcessor:
                 )
                 return None
         except Exception as e:
-            logger.error(f"Error getting repo info for {owner}/{repo}: {e}")
+            logger.exception(f"Error getting repo info for {owner}/{repo}: {e}")
             return None
 
     def _convert_to_standard_format(
@@ -451,51 +450,31 @@ class DocumentationProcessor:
 
 async def main():
     """Run the documentation processing pipeline."""
-    print("🚀 Documentation Processing Pipeline")
-    print("=" * 50)
-
     # Create processor with configurable max servers
     max_servers = int(os.environ.get("MAX_SERVERS", "100"))
     processor = DocumentationProcessor(max_servers=max_servers)
 
     # Check GitHub token
     if not processor.github_token:
-        print("⚠️  No GITHUB_TOKEN found - API rate limits may apply")
-        print("   Set GITHUB_TOKEN environment variable for better results")
+        pass
 
     # Run processing pipeline
     results = await processor.process_all_servers()
 
     # Print summary
-    print("\n📊 Processing Summary:")
-    print(f"   Total servers processed: {results['summary']['total_servers']}")
-    print(
-        f"   Servers with documentation: {results['summary']['servers_with_documentation']}"
-    )
-    print(f"   Documentation rate: {results['summary']['documentation_rate']:.1f}%")
-    print(f"   Categories found: {results['summary']['categories']}")
-    print(f"   Sources processed: {results['summary']['sources']}")
 
-    print("\n📈 By Category:")
-    for category, count in sorted(
+    for _category, _count in sorted(
         results["by_category"].items(), key=lambda x: x[1], reverse=True
     )[:10]:
-        print(f"   {category}: {count}")
+        pass
 
-    print("\n📈 By Source:")
-    for source, count in sorted(
+    for _source, _count in sorted(
         results["by_source"].items(), key=lambda x: x[1], reverse=True
     )[:5]:
-        print(f"   {source}: {count}")
+        pass
 
-    print("\n📁 Files Created:")
-    for file_type, path in results["files"].items():
-        print(f"   {file_type}: {path}")
-
-    print("\n✅ Documentation processing complete!")
-    print(
-        f"📄 Updated all_mcp_documents.json with {results['summary']['total_servers']} servers"
-    )
+    for _file_type, _path in results["files"].items():
+        pass
 
 
 if __name__ == "__main__":

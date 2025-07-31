@@ -6,7 +6,6 @@ from pathlib import Path
 
 from mcp.server import FastMCP
 
-
 # Use FastMCP from mcp.server
 
 
@@ -43,7 +42,7 @@ async def read_file(path: str) -> str:
         return content
 
     except Exception as e:
-        logger.error(f"Error reading file {path}: {e}")
+        logger.exception(f"Error reading file {path}: {e}")
         return f"Error reading file: {e!s}"
 
 
@@ -71,7 +70,7 @@ async def write_file(path: str, content: str) -> str:
         return f"Successfully wrote {len(content)} characters to {path}"
 
     except Exception as e:
-        logger.error(f"Error writing file {path}: {e}")
+        logger.exception(f"Error writing file {path}: {e}")
         return f"Error writing file: {e!s}"
 
 
@@ -102,7 +101,7 @@ async def list_directory(path: str = ".", pattern: str = "*") -> list[str]:
         return sorted(files)
 
     except Exception as e:
-        logger.error(f"Error listing directory {path}: {e}")
+        logger.exception(f"Error listing directory {path}: {e}")
         return [f"Error listing directory: {e!s}"]
 
 
@@ -148,7 +147,7 @@ async def search_files(
         return results
 
     except Exception as e:
-        logger.error(f"Error searching files: {e}")
+        logger.exception(f"Error searching files: {e}")
         return {"error": [str(e)]}
 
 

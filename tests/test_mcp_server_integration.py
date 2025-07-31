@@ -3,10 +3,9 @@
 
 import asyncio
 import logging
-from pathlib import Path
 import subprocess
 import time
-
+from pathlib import Path
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -24,7 +23,7 @@ async def test_example_server():
 
         logger.info("✓ MCP SDK is installed")
     except ImportError:
-        logger.error("✗ MCP SDK not installed. Run: pip install mcp")
+        logger.exception("✗ MCP SDK not installed. Run: pip install mcp")
         return False
 
     try:
@@ -32,7 +31,7 @@ async def test_example_server():
 
         logger.info("✓ LangChain MCP adapters installed")
     except ImportError:
-        logger.error(
+        logger.exception(
             "✗ LangChain MCP adapters not installed. Run: pip install langchain-mcp-adapters"
         )
         return False
@@ -96,7 +95,7 @@ async def test_example_server():
         return True
 
     except Exception as e:
-        logger.error(f"Error testing MCP server: {e}")
+        logger.exception(f"Error testing MCP server: {e}")
         return False
 
     finally:
@@ -135,7 +134,7 @@ async def test_langchain_integration():
         return True
 
     except Exception as e:
-        logger.error(f"Error testing LangChain integration: {e}")
+        logger.exception(f"Error testing LangChain integration: {e}")
         return False
 
 
@@ -193,7 +192,7 @@ async def test_mcp_with_dataflow():
         return True
 
     except Exception as e:
-        logger.error(f"Error testing MCP with dataflow: {e}")
+        logger.exception(f"Error testing MCP with dataflow: {e}")
         import traceback
 
         traceback.print_exc()

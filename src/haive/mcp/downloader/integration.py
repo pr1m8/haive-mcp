@@ -37,11 +37,12 @@ from typing import Any
 
 from haive.core.engine.aug_llm import AugLLMConfig
 from langchain_core.tools import BaseTool
-from langchain_mcp_adapters.client import (
-    SSEConnection,
-    StdioServerParameters,
-    stdio_client,
-)
+
+# from langchain_mcp_adapters.client import (
+#     SSEConnection,
+#     StdioServerParameters,
+#     stdio_client,
+# )
 from pydantic import BaseModel, Field
 
 from haive.mcp.agents import MCPAgent, TransferableMCPAgent
@@ -134,7 +135,7 @@ class MCPServerConnection(BaseModel):
             return True
 
         except Exception as e:
-            logger.error(f"Failed to connect to {self.name}: {e}")
+            logger.exception(f"Failed to connect to {self.name}: {e}")
             self.connected = False
             return False
 
@@ -177,7 +178,7 @@ class MCPServerConnection(BaseModel):
                 capabilities["prompts"] = prompts
 
         except Exception as e:
-            logger.error(f"Error discovering capabilities for {self.name}: {e}")
+            logger.exception(f"Error discovering capabilities for {self.name}: {e}")
 
         return capabilities
 
@@ -495,7 +496,7 @@ class MCPAgentIntegration:
         """
         # Auto-discover and install servers
         logger.info("Auto-discovering MCP servers...")
-        result = await self.downloader.auto_discover_and_download(limit=limit)
+        await self.downloader.auto_discover_and_download(limit=limit)
 
         # Filter by categories and tags
         selected_servers = []
@@ -588,11 +589,11 @@ class MCPAgentIntegration:
         elif server_distribution == "specialized":
             # Each agent gets servers from specific categories
             categories = list(
-                set(
+                {
                     self.downloader.templates[s.template].category
                     for s in self.downloader.servers
                     if s.enabled and s.template in self.downloader.templates
-                )
+                }
             )
 
             for i in range(num_agents):

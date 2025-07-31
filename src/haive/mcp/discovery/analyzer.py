@@ -184,7 +184,7 @@ class MCPServerAnalyzer:
             # Try to extract config from object attributes
             return self._analyze_object(obj, source)
         except Exception as e:
-            logger.error(f"Failed to analyze MCP server: {e}")
+            logger.exception(f"Failed to analyze MCP server: {e}")
             return None
 
     def _analyze_dict_config(
@@ -249,7 +249,7 @@ class MCPServerAnalyzer:
             return server_config
 
         except Exception as e:
-            logger.error(f"Failed to analyze dict config: {e}")
+            logger.exception(f"Failed to analyze dict config: {e}")
             return None
 
     def _analyze_object(
@@ -303,7 +303,7 @@ class MCPServerAnalyzer:
             return None
 
         except Exception as e:
-            logger.error(f"Failed to analyze object: {e}")
+            logger.exception(f"Failed to analyze object: {e}")
             return None
 
     def discover_from_directory(self, directory: Path) -> list[MCPServerConfig]:
@@ -459,7 +459,7 @@ class MCPServerAnalyzer:
                             discovered.append(config)
 
         except Exception as e:
-            logger.error(f"Failed to read registry: {e}")
+            logger.exception(f"Failed to read registry: {e}")
 
         return discovered
 

@@ -23,10 +23,13 @@ import logging
 import time
 
 import click
-from general_mcp_downloader import GeneralMCPDownloader, ServerConfig
+
+from haive.mcp.downloader.core import GeneralMCPDownloader, ServerConfig
 
 # Setup logging
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
 logger = logging.getLogger(__name__)
 
 
@@ -125,7 +128,9 @@ class MCPServerManager:
         tags = server_data.get("tags", [])
 
         if "npm" in tags or "npm" in source:
-            if "@modelcontextprotocol" in server_data.get("variables", {}).get("package", ""):
+            if "@modelcontextprotocol" in server_data.get("variables", {}).get(
+                "package", ""
+            ):
                 return "npm_official"
             if "@" in server_data.get("variables", {}).get("package", ""):
                 return "npm_scoped"
@@ -173,7 +178,9 @@ class MCPServerManager:
                 "category": getattr(template, "category", "unknown"),
                 "enabled": server.enabled,
                 "tags": list(server.tags) if hasattr(server, "tags") else [],
-                "installation_method": getattr(template, "installation_method", "unknown"),
+                "installation_method": getattr(
+                    template, "installation_method", "unknown"
+                ),
                 "status": server_status.get("status", "unknown"),
                 "last_check": server_status.get("last_check"),
                 "last_success": server_status.get("last_success"),
@@ -200,7 +207,9 @@ class MCPServerManager:
 
         servers_to_check = []
         if server_names:
-            servers_to_check = [s for s in self.downloader.servers if s.name in server_names]
+            servers_to_check = [
+                s for s in self.downloader.servers if s.name in server_names
+            ]
         else:
             servers_to_check = [s for s in self.downloader.servers if s.enabled]
 
@@ -222,7 +231,9 @@ class MCPServerManager:
 
             if installer:
                 try:
-                    is_healthy = await installer.verify(server, template, self.install_dir)
+                    is_healthy = await installer.verify(
+                        server, template, self.install_dir
+                    )
                     status = "healthy" if is_healthy else "unhealthy"
                 except Exception as e:
                     status = "error"
@@ -250,7 +261,9 @@ class MCPServerManager:
         click.echo("\n📊 Health Check Summary:")
         click.echo(f"  Healthy: {healthy}/{total}")
         click.echo(
-            f"  Health rate: {healthy / total * 100:.1f}%" if total > 0 else "  No servers checked"
+            f"  Health rate: {healthy / total * 100:.1f}%"
+            if total > 0
+            else "  No servers checked"
         )
 
         return {"results": results, "healthy": healthy, "total": total}
@@ -324,13 +337,15 @@ class MCPServerManager:
 @click.option("--install-dir", help="Installation directory")
 @click.pass_context
 def cli(ctx, config, install_dir):
-    """MCP Server Manager - Comprehensive management for Model Context Protocol servers"""
+    """MCP Server Manager - Comprehensive management for Model Context Protocol servers."""
     ctx.ensure_object(dict)
     ctx.obj["manager"] = MCPServerManager(config, install_dir)
 
 
 @cli.command()
-@click.option("--auto-install", is_flag=True, help="Automatically install discovered servers")
+@click.option(
+    "--auto-install", is_flag=True, help="Automatically install discovered servers"
+)
 @click.option("--limit", type=int, help="Limit number of servers to discover")
 @click.pass_context
 def discover(ctx, auto_install, limit):
