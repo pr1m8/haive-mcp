@@ -9,6 +9,7 @@ The Model Context Protocol (MCP) is a standardized protocol that allows AI model
 ### 1. **MCP Servers**
 
 MCP servers are standalone programs that expose functionality to AI models. They can:
+
 - Provide tools (functions the AI can call)
 - Offer resources (data the AI can access)
 - Supply prompts (templates for optimal usage)
@@ -16,6 +17,7 @@ MCP servers are standalone programs that expose functionality to AI models. They
 ### 2. **Transport Layers**
 
 MCP supports multiple transport mechanisms:
+
 - **stdio**: Communication via standard input/output
 - **HTTP/SSE**: Web-based communication
 - **WebSocket**: Real-time bidirectional communication
@@ -23,6 +25,7 @@ MCP supports multiple transport mechanisms:
 ### 3. **Capabilities**
 
 Each MCP server declares its capabilities:
+
 - **Tools**: Executable functions
 - **Resources**: Accessible data
 - **Prompts**: Predefined templates
@@ -69,7 +72,7 @@ The filesystem MCP server provides tools for file operations:
       "inputSchema": {
         "type": "object",
         "properties": {
-          "path": {"type": "string"}
+          "path": { "type": "string" }
         }
       }
     },
@@ -79,8 +82,8 @@ The filesystem MCP server provides tools for file operations:
       "inputSchema": {
         "type": "object",
         "properties": {
-          "path": {"type": "string"},
-          "content": {"type": "string"}
+          "path": { "type": "string" },
+          "content": { "type": "string" }
         }
       }
     }
@@ -90,13 +93,13 @@ The filesystem MCP server provides tools for file operations:
 
 ## MCP vs Traditional APIs
 
-| Feature | MCP | Traditional API |
-|---------|-----|-----------------|
-| **Protocol** | Standardized | Varies per API |
-| **Discovery** | Built-in | Manual documentation |
-| **Type Safety** | JSON Schema | Varies |
-| **Tool Chaining** | Native support | Custom implementation |
-| **Error Handling** | Standardized | API-specific |
+| Feature            | MCP            | Traditional API       |
+| ------------------ | -------------- | --------------------- |
+| **Protocol**       | Standardized   | Varies per API        |
+| **Discovery**      | Built-in       | Manual documentation  |
+| **Type Safety**    | JSON Schema    | Varies                |
+| **Tool Chaining**  | Native support | Custom implementation |
+| **Error Handling** | Standardized   | API-specific          |
 
 ## Getting Started
 

@@ -45,20 +45,20 @@ from src.haive.mcp.downloader.config import ServerConfig, ServerTemplate
 
 async def test_npm():
     installer = NPMInstaller()
-    
+
     config = ServerConfig(
         name="test-npm",
         template="npm",
         source="npm",
         variables={"package": "@modelcontextprotocol/server-filesystem"}
     )
-    
+
     template = ServerTemplate(
         name="npm",
         installation_method="npm",
         command_pattern="{package}"
     )
-    
+
     # Install
     result = await installer.install(config, template, Path("./test"))
     print(f"Success: {result['success']}")
@@ -68,6 +68,7 @@ async def test_npm():
 ### Common NPM Issues
 
 1. **Permission Errors**
+
    ```bash
    # Fix: Use npm prefix
    npm config set prefix ~/.npm-global
@@ -75,6 +76,7 @@ async def test_npm():
    ```
 
 2. **Version Conflicts**
+
    ```bash
    # Fix: Use specific version
    npm install package@1.2.3
@@ -131,24 +133,24 @@ from src.haive.mcp.downloader.installers import PipInstaller
 
 async def test_pip():
     installer = PipInstaller()
-    
+
     config = ServerConfig(
         name="test-pip",
         template="pip",
         source="pypi",
         variables={"package": "requests"}  # Test with known package
     )
-    
+
     template = ServerTemplate(
         name="pip",
         installation_method="pip",
         command_pattern="{package}"
     )
-    
+
     # Install
     result = await installer.install(config, template, Path("./test"))
     print(f"Success: {result['success']}")
-    
+
     # Verify
     verified = await installer.verify(config, template, Path("./test"))
     print(f"Verified: {verified}")
@@ -157,6 +159,7 @@ async def test_pip():
 ### Common Pip Issues
 
 1. **Import Errors**
+
    ```bash
    # Fix: Install in virtual environment
    python -m venv venv
@@ -215,21 +218,21 @@ from src.haive.mcp.downloader.installers import GitInstaller
 
 async def test_git():
     installer = GitInstaller()
-    
+
     config = ServerConfig(
         name="test-git",
         template="git",
         source="https://github.com/octocat/Hello-World.git",
         variables={"owner": "octocat", "repo": "Hello-World"}
     )
-    
+
     template = ServerTemplate(
         name="git",
         installation_method="git",
         command_pattern="echo 'Installed {repo}'",
         post_install=[]  # No post-install for test
     )
-    
+
     # Install
     result = await installer.install(config, template, Path("./test"))
     print(f"Success: {result['success']}")
@@ -239,6 +242,7 @@ async def test_git():
 ### Common Git Issues
 
 1. **Authentication**
+
    ```bash
    # Fix: Use SSH or token
    git clone git@github.com:user/repo.git
@@ -291,20 +295,20 @@ from src.haive.mcp.downloader.installers import DockerInstaller
 
 async def test_docker():
     installer = DockerInstaller()
-    
+
     config = ServerConfig(
         name="test-docker",
         template="docker",
         source="docker",
         variables={"image": "alpine:latest"}  # Small test image
     )
-    
+
     template = ServerTemplate(
         name="docker",
         installation_method="docker",
         command_pattern="{image}"
     )
-    
+
     # Install (pull image)
     result = await installer.install(config, template, Path("./test"))
     print(f"Success: {result['success']}")
@@ -314,6 +318,7 @@ async def test_docker():
 ### Common Docker Issues
 
 1. **Permission Denied**
+
    ```bash
    # Fix: Add user to docker group
    sudo usermod -aG docker $USER
@@ -328,34 +333,38 @@ async def test_docker():
 
 ## Comparison Table
 
-| Feature | NPM | Pip | Git | Docker |
-|---------|-----|-----|-----|--------|
-| **Language** | JavaScript | Python | Any | Any |
-| **Dependencies** | Automatic | Automatic | Manual | Included |
-| **Isolation** | No | Virtual env | No | Full |
-| **Version Control** | Yes | Yes | Yes | Yes |
-| **Binary Support** | Limited | Limited | Yes | Yes |
-| **Setup Complexity** | Low | Low | Medium | Medium |
-| **Resource Usage** | Low | Low | Low | High |
+| Feature              | NPM        | Pip         | Git    | Docker   |
+| -------------------- | ---------- | ----------- | ------ | -------- |
+| **Language**         | JavaScript | Python      | Any    | Any      |
+| **Dependencies**     | Automatic  | Automatic   | Manual | Included |
+| **Isolation**        | No         | Virtual env | No     | Full     |
+| **Version Control**  | Yes        | Yes         | Yes    | Yes      |
+| **Binary Support**   | Limited    | Limited     | Yes    | Yes      |
+| **Setup Complexity** | Low        | Low         | Medium | Medium   |
+| **Resource Usage**   | Low        | Low         | Low    | High     |
 
 ## Choosing the Right Installer
 
 ### Use NPM when:
+
 - Server is written in JavaScript/TypeScript
 - You want automatic dependency management
 - You need wide distribution
 
 ### Use Pip when:
+
 - Server is written in Python
 - You want PyPI distribution
 - You need Python ecosystem integration
 
 ### Use Git when:
+
 - Server is in development
 - You need latest changes
 - You want to contribute
 
 ### Use Docker when:
+
 - You need complete isolation
 - Server has complex dependencies
 - You want consistent environments
@@ -375,6 +384,7 @@ pytest tests/integration/test_each_installer_type.py::test_npm_installer_real -v
 ## Summary
 
 Each installer type serves different needs:
+
 - **NPM**: Best for JavaScript-based servers
 - **Pip**: Ideal for Python servers
 - **Git**: Perfect for development and customization
