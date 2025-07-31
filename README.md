@@ -124,7 +124,7 @@ async def my_approval_handler(request: HITLApprovalRequest) -> bool:
     print(f"🔔 Install {request.recommendation.server_name}?")
     print(f"Reason: {request.recommendation.reason}")
     print(f"Capabilities: {', '.join(request.recommendation.capabilities)}")
-    
+
     # Your approval logic here
     user_input = input("Approve? (y/n): ")
     return user_input.lower() == 'y'
@@ -141,20 +141,26 @@ agent = IntelligentMCPAgent(
 ### Agents
 
 #### IntelligentMCPAgent
+
 The flagship agent with dynamic discovery and management:
+
 - Auto-discovers needed MCP servers from 992+ database
 - HITL approval workflows
 - Built-in discovery and management tools
 - Hot-reload support
 
 #### MCPAgent
+
 Production agent for static MCP configurations:
+
 - Connect to multiple MCP servers
 - Access all tools, resources, and prompts
 - Integrates with Haive agent framework
 
 #### TransferableMCPAgent
+
 Agent that can share tools with other agents:
+
 - Transfer specific tools between agents
 - Share entire tool sets
 - Collaborative multi-agent workflows
@@ -164,7 +170,7 @@ Agent that can share tools with other agents:
 The IntelligentMCPAgent includes these tools:
 
 - **discover_mcp_servers(capability)** - Find servers by capability
-- **install_mcp_server(server_name)** - Install with optional approval  
+- **install_mcp_server(server_name)** - Install with optional approval
 - **list_mcp_status()** - Get current server and tool status
 - **reload_mcp_server(server_name)** - Hot-reload specific server
 
@@ -249,7 +255,7 @@ await agent2.setup()
 
 # Transfer specific tools
 await agent1.transfer_tools_to_agent(
-    agent2, 
+    agent2,
     tool_names=["file_read", "file_write"]
 )
 ```
@@ -386,7 +392,7 @@ import asyncio
 
 configs = [postgres_config, github_config, filesystem_config]
 tasks = [
-    manager.add_server(f"server{i}", cfg) 
+    manager.add_server(f"server{i}", cfg)
     for i, cfg in enumerate(configs)
 ]
 results = await asyncio.gather(*tasks)
@@ -397,12 +403,14 @@ results = await asyncio.gather(*tasks)
 ### Common Issues
 
 1. **Import Errors**
+
    ```bash
    # Ensure MCP dependencies are installed
    poetry install --all-extras
    ```
 
 2. **Server Connection Failed**
+
    ```python
    # Check server requirements
    result = await manager.add_server("test", config)
@@ -448,5 +456,6 @@ MIT License - see LICENSE file for details.
 ## Support
 
 For issues and questions:
+
 - GitHub Issues: [haive/issues](https://github.com/algebraic-ai/haive/issues)
 - Documentation: [haive.readthedocs.io](https://haive.readthedocs.io)

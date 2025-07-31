@@ -32,7 +32,7 @@ Model Context Protocol (MCP) is a standardized protocol for exposing tools, reso
 
 ### 1. Basic FastMCP Server
 
-```python
+````python
 from mcp.server import FastMCP
 
 # Create server
@@ -63,7 +63,7 @@ async def code_review(code: str) -> List[Dict[str, str]]:
 # Run server
 if __name__ == "__main__":
     mcp.run(transport="stdio")
-```
+````
 
 ### 2. HTTP-Based MCP Server
 
@@ -93,10 +93,10 @@ async def execute(request):
     data = await request.json()
     tool = data["tool"]
     params = data["params"]
-    
+
     # Execute tool based on name
     result = await mcp._tools[tool](**params)
-    
+
     return web.json_response({"result": result})
 
 app = web.Application()
@@ -204,19 +204,25 @@ async def test_http_server():
 ## Example Servers
 
 ### 1. File System Server
+
 Located at: `src/haive/mcp/servers/example_server_fastmcp.py`
+
 - Tools: read_file, write_file, list_directory, search_files
 - Resources: file:// protocol support
 - Prompts: code_review, refactor
 
 ### 2. Dataflow Server
+
 Located at: `src/haive/mcp/servers/dataflow_server.py`
+
 - Tools: list_components, register_component, discover_components
 - Integration with haive-dataflow registry
 - Component management capabilities
 
 ### 3. HTTP Server
+
 Located at: `src/haive/mcp/servers/simple_http_server.py`
+
 - Simple HTTP API for MCP tools
 - Easy to test and deploy
 - REST-style endpoints
@@ -233,6 +239,7 @@ Located at: `src/haive/mcp/servers/simple_http_server.py`
 ## Deployment
 
 ### Stdio Transport
+
 ```bash
 # Run directly
 python my_server.py
@@ -242,6 +249,7 @@ fastmcp run my_server.py
 ```
 
 ### HTTP Transport
+
 ```bash
 # Run with uvicorn (FastAPI)
 uvicorn my_server:app --host 0.0.0.0 --port 8000

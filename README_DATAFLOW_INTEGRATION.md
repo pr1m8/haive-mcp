@@ -5,6 +5,7 @@ This document describes the integration between Haive's MCP (Model Context Proto
 ## Overview
 
 The integration provides:
+
 - **MCP Server** exposing Haive's dataflow capabilities as MCP tools and resources
 - **AugLLMConfig Extension** adding MCP support to Haive's core engine
 - **Dynamic Tool Discovery** from the dataflow registry
@@ -17,16 +18,19 @@ The integration provides:
 A FastMCP server that exposes Haive's dataflow system through MCP:
 
 #### Tools
+
 - `query_registry`: Search for components in the Haive registry
 - `discover_components`: Discover agents and tools in the system
 - `create_agent`: Create new Haive agents with configuration
 - `execute_tool`: Execute registered Haive tools
 
 #### Resources
+
 - `registry://entities`: Complete registry state grouped by type
 - `registry://statistics`: Statistics about registered components
 
 #### Prompts
+
 - `component_search_prompt`: Help find suitable components
 - `agent_configuration_prompt`: Guide agent configuration
 
@@ -42,6 +46,7 @@ class MCPAugLLMConfig(AugLLMConfig):
 ```
 
 Features:
+
 - Automatic MCP tool discovery and wrapping
 - Resource injection into agent context
 - Prompt template integration
@@ -99,7 +104,7 @@ await agent.setup()
 
 # Agent now has access to:
 # - dataflow_query_registry tool
-# - dataflow_discover_components tool  
+# - dataflow_discover_components tool
 # - dataflow_create_agent tool
 # - Registry resources
 # - Configuration prompts
@@ -124,7 +129,7 @@ async with stdio_client(server_params) as (read, write):
             "query_registry",
             arguments={"entity_type": "agent"}
         )
-        
+
         # Create agent
         result = await session.call_tool(
             "create_agent",
@@ -166,6 +171,7 @@ poetry run python examples/dataflow_mcp_example.py
 ```
 
 This will demonstrate:
+
 - Connecting to the dataflow MCP server
 - Querying the registry
 - Discovering components

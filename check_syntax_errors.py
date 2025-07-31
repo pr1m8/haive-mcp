@@ -66,7 +66,7 @@ def main():
         print(f"   ❌ {error_msg}")
         print()
 
-    print(f"📊 Error Summary:")
+    print("📊 Error Summary:")
     error_counts = {}
     for _, error_msg in results["invalid"]:
         error_type = error_msg.split(":")[0] if ":" in error_msg else error_msg

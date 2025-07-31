@@ -5,18 +5,21 @@ A complete end-to-end solution for discovering, installing, and managing Model C
 ## 🌟 Key Features
 
 ### 1. **Unified Discovery & Installation**
+
 - 🔍 Natural language search with Self-Query RAG
 - 📦 One-click installation from search results
 - 🔧 Automatic FastMCP configuration
 - ✅ Instant server availability
 
 ### 2. **FastMCP-Compatible Management**
+
 - 💻 CLI commands similar to `claude mcp add`
 - 🎮 Process lifecycle management
 - 📊 Real-time monitoring
 - 🔄 Auto-restart capabilities
 
 ### 3. **Comprehensive Web Interface**
+
 - 🌐 Single interface for all operations
 - 📈 Analytics and usage statistics
 - 🔴 Live server status monitoring
@@ -48,6 +51,7 @@ python integrated_launcher.py web
 ## 📋 System Components
 
 ### 1. **Integrated Launcher** (`integrated_launcher.py`)
+
 Central entry point for all system features:
 
 ```bash
@@ -67,14 +71,18 @@ python integrated_launcher.py install
 ```
 
 ### 2. **Integrated MCP System** (`integrated_mcp_system.py`)
+
 Core system combining discovery and management:
+
 - Enhanced search with multiple retrieval methods
 - Automated installation pipeline
 - FastMCP configuration management
 - Streamlit web interface
 
 ### 3. **FastMCP Runner** (`fastmcp_runner.py`)
+
 Process management for MCP servers:
+
 - Start/stop/restart servers
 - Monitor server health
 - Auto-restart failed servers
@@ -83,6 +91,7 @@ Process management for MCP servers:
 ## 🔍 Discovery Features
 
 ### Natural Language Search
+
 ```
 Examples:
 - "Python database servers with more than 10 stars"
@@ -92,6 +101,7 @@ Examples:
 ```
 
 ### Search Methods
+
 1. **Self-Query**: Structured queries with metadata filtering
 2. **Parent Docs**: Full documentation retrieval
 3. **Similarity**: Semantic similarity search
@@ -172,18 +182,21 @@ Servers are stored in `~/.fastmcp/servers.json`:
 ### Tabs Overview
 
 1. **🔍 Discover**
+
    - Search MCP servers
    - View detailed information
    - One-click installation
    - Multiple search methods
 
 2. **📦 Installed**
+
    - View all installed servers
    - Server configuration details
    - Start/stop controls
    - Remove servers
 
 3. **🎮 Running**
+
    - Live server status
    - Process monitoring
    - Stop running servers
@@ -205,7 +218,7 @@ Enable auto-restart for critical servers:
 {
   "servers": {
     "critical-server": {
-      "auto_restart": true,
+      "auto_restart": true
       // ... other config
     }
   }
@@ -265,17 +278,20 @@ Configure server environment:
 ### Common Issues
 
 1. **Import Errors**
+
    ```bash
    # Always use poetry run
    poetry run python integrated_launcher.py web
    ```
 
 2. **Server Won't Start**
+
    - Check the command in `~/.fastmcp/servers.json`
    - Verify the server is properly installed
    - Check logs for error messages
 
 3. **Installation Fails**
+
    - Ensure you have the required package manager (npm, pip, etc.)
    - Check internet connectivity
    - Try manual installation first
@@ -288,6 +304,7 @@ Configure server environment:
 ### Debug Mode
 
 View detailed logs:
+
 ```bash
 # Set logging level
 export LOG_LEVEL=DEBUG
