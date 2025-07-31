@@ -7,6 +7,8 @@ Example:
     Basic integration::
 
         from haive.mcp.downloader import MCPAgentIntegration
+from haive import core
+
 
         integration = MCPAgentIntegration()
         agent = await integration.create_agent_with_mcp_servers(
@@ -28,10 +30,12 @@ Classes:
     MCPCapabilityExtractor: Extract tools, resources, and prompts
 """
 
+import json
 import logging
 from pathlib import Path
 from typing import Any
 
+from haive.core.engine.aug_llm import AugLLMConfig
 from langchain_core.tools import BaseTool
 from langchain_mcp_adapters.client import (
     SSEConnection,
@@ -40,13 +44,11 @@ from langchain_mcp_adapters.client import (
 )
 from pydantic import BaseModel, Field
 
-from haive.core.engine.aug_llm import AugLLMConfig
 from haive.mcp.agents import MCPAgent, TransferableMCPAgent
 from haive.mcp.config import MCPConfig, MCPServerConfig
 from haive.mcp.downloader.config import ServerConfig
 from haive.mcp.downloader.core import GeneralMCPDownloader
 from haive.mcp.manager import MCPManager
-
 
 logger = logging.getLogger(__name__)
 
@@ -282,8 +284,6 @@ class MCPCapabilityExtractor:
             # Load server configuration
             config_file = config_dir / "mcp_servers_config.json"
             if config_file.exists():
-                import json
-
                 with open(config_file) as f:
                     mcp_configs = json.load(f).get("mcpServers", {})
 
@@ -655,8 +655,6 @@ class MCPAgentIntegration:
         """
         config_file = self.downloader.install_dir / "mcp_servers_config.json"
         if config_file.exists():
-            import json
-
             with open(config_file) as f:
                 config = json.load(f)
                 return set(config.get("mcpServers", {}).keys())

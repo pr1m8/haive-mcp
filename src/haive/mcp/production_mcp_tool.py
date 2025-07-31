@@ -22,9 +22,10 @@ from pydantic import BaseModel, Field
 
 from haive.core.engine.aug_llm import AugLLMConfig
 from haive.mcp.agents import MCPDocumentationAgent
+from haive.mcp.documentation import MCPDocumentationLoader
+
 
 # Import existing haive-mcp infrastructure
-from haive.mcp.documentation import MCPDocumentationLoader
 
 
 logger = logging.getLogger(__name__)
@@ -462,10 +463,6 @@ Generated FastMCP server for {server.name}
 Capabilities: {", ".join(server.capabilities)}
 """
 
-from fastmcp import FastMCP
-from typing import Dict, Any, List, Optional
-import json
-import os
 
 # Initialize FastMCP server
 mcp = FastMCP("{server_name_clean}")
@@ -555,7 +552,6 @@ async def list_tables(database_name: Optional[str] = None) -> List[str]:
 @mcp.tool()
 async def fetch_url(url: str) -> str:
     """Fetch content from a URL."""
-    import aiohttp
     try:
         async with aiohttp.ClientSession() as session:
             async with session.get(url, timeout=10) as response:
@@ -570,7 +566,6 @@ async def fetch_url(url: str) -> str:
 @mcp.tool()
 async def git_status(repo_path: str = ".") -> str:
     """Get git repository status."""
-    import subprocess
     try:
         result = subprocess.run(['git', 'status', '--porcelain'], 
                               cwd=repo_path, capture_output=True, text=True)
@@ -638,7 +633,6 @@ async def get_info() -> Dict[str, Any]:
 🚀 **Ready to Use!** You can now connect to this server using:
 
 ```python
-from langchain_mcp_adapters.client import MultiServerMCPClient
 
 client = MultiServerMCPClient({{
     "{result.server_name}": {json.dumps(result.client_config)}
@@ -648,7 +642,6 @@ client = MultiServerMCPClient({{
 tools = await client.get_tools()
 
 # Use in LangGraph
-from langgraph.prebuilt import create_react_agent
 agent = create_react_agent(model, tools)
 ```
 """

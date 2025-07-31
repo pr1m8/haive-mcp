@@ -32,6 +32,7 @@ from pydantic import BaseModel, Field
 
 from haive.mcp.downloader.config import DiscoveryConfig
 
+
 logger = logging.getLogger(__name__)
 
 

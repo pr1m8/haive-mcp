@@ -24,6 +24,8 @@ Example:
 
         from haive.mcp.agents import MCPAgent
         from haive.mcp.config import MCPConfig, MCPServerConfig
+from haive import agents
+
 
         # Method 1: Direct instantiation
         agent = MCPAgent(

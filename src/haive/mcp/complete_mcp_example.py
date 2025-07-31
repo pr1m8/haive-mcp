@@ -235,9 +235,7 @@ Install: {server_data.get("install_command", "Not specified")}
         print("\nBuilding category tree...")
 
         # Load comprehensive server data
-        all_servers_path = (
-            self.doc_loader.mcp_servers_path / "ALL_MCP_SERVERS_COMPLETE.json"
-        )
+        all_servers_path = self.doc_loader.mcp_servers_path / "ALL_MCP_SERVERS_COMPLETE.json"
         with open(all_servers_path) as f:
             data = json.load(f)
             servers = data.get("all_servers", [])
@@ -304,9 +302,7 @@ Install: {server_data.get("install_command", "Not specified")}
             return None
 
         # Sort by stars and pick top
-        sorted_docs = sorted(
-            docs, key=lambda d: d.metadata.get("stars", 0), reverse=True
-        )
+        sorted_docs = sorted(docs, key=lambda d: d.metadata.get("stars", 0), reverse=True)
 
         top_doc = sorted_docs[0]
         server_name = top_doc.metadata["name"]
@@ -452,9 +448,7 @@ if __name__ == "__main__":
                 # List resources
                 resources_result = await session.list_resources()
                 resources = (
-                    resources_result.resources
-                    if hasattr(resources_result, "resources")
-                    else []
+                    resources_result.resources if hasattr(resources_result, "resources") else []
                 )
                 print(f"   Found {len(resources)} resources:")
                 for resource in resources:
@@ -477,9 +471,7 @@ if __name__ == "__main__":
 
                 # List prompts
                 prompts_result = await session.list_prompts()
-                prompts = (
-                    prompts_result.prompts if hasattr(prompts_result, "prompts") else []
-                )
+                prompts = prompts_result.prompts if hasattr(prompts_result, "prompts") else []
                 print(f"   Found {len(prompts)} prompts:")
                 for prompt in prompts:
                     print(f"   - {prompt.name}: {prompt.description}")

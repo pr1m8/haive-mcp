@@ -13,11 +13,13 @@ from datetime import datetime
 import json
 from typing import Any
 
-# Import our custom components
 from csv_viewer import create_csv_export, load_mcp_servers_data
 import plotly.express as px
 from self_query_mcp_agent import SelfQueryMCPAgent
 import streamlit as st
+
+
+# Import our custom components
 
 
 st.set_page_config(

@@ -9,17 +9,17 @@ Collects comprehensive information about MCP servers including:
 - Dependencies
 """
 
+import argparse
 import asyncio
 import base64
 import json
 import logging
-from pathlib import Path
 import time
+from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
 
 import aiohttp
-
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -393,7 +393,6 @@ class MCPDataEnhancer:
 
 async def main():
     """Main execution function."""
-    import argparse
 
     parser = argparse.ArgumentParser(description="Enhance MCP servers data")
     parser.add_argument(

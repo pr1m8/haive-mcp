@@ -14,11 +14,11 @@ import json
 import tempfile
 from typing import Any
 
+from haive.core.engine.aug_llm import AugLLMConfig
 from langchain_core.tools import BaseTool
 from langchain_mcp_adapters.client import MultiServerMCPClient
 from pydantic import BaseModel, Field
 
-from haive.core.engine.aug_llm import AugLLMConfig
 from haive.mcp.agents import MCPDocumentationAgent
 from haive.mcp.documentation import MCPDocumentationLoader
 
@@ -321,8 +321,6 @@ Generated FastMCP server for {server_name}
 {description}
 """
 
-from fastmcp import FastMCP
-from typing import Dict, Any, List
 
 # Initialize FastMCP server
 mcp = FastMCP("{server_name}")
@@ -373,7 +371,6 @@ def write_file(filepath: str, content: str) -> str:
 @mcp.tool()
 def list_directory(path: str = ".") -> List[str]:
     """List contents of a directory."""
-    import os
     try:
         return os.listdir(path)
     except Exception as e:
@@ -404,7 +401,6 @@ def list_tables(connection_string: str = None) -> List[str]:
 @mcp.tool()
 def fetch_url(url: str) -> str:
     """Fetch content from a URL."""
-    import requests
     try:
         response = requests.get(url, timeout=10)
         response.raise_for_status()
@@ -415,7 +411,6 @@ def fetch_url(url: str) -> str:
 @mcp.tool()
 def post_data(url: str, data: Dict[str, Any]) -> str:
     """Post data to a URL."""
-    import requests
     try:
         response = requests.post(url, json=data, timeout=10)
         response.raise_for_status()
@@ -431,13 +426,11 @@ def post_data(url: str, data: Dict[str, Any]) -> str:
 @mcp.tool()
 def get_current_time() -> str:
     """Get current time."""
-    import datetime
     return datetime.datetime.now().isoformat()
 
 @mcp.tool()
 def format_time(timestamp: str, format_string: str = "%Y-%m-%d %H:%M:%S") -> str:
     """Format a timestamp."""
-    import datetime
     try:
         dt = datetime.datetime.fromisoformat(timestamp)
         return dt.strftime(format_string)
@@ -463,7 +456,6 @@ The server is now ready for use! You can connect to it using the MultiServerMCPC
 
 To use with AugLLMConfig:
 ```python
-from langchain_mcp_adapters.client import MultiServerMCPClient
 
 client = MultiServerMCPClient({{
     "{result.server_name}": {json.dumps(result.server_config)}

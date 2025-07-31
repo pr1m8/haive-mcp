@@ -11,17 +11,20 @@ from pathlib import Path
 import sys
 from typing import Any
 
-
-# Add parent path for imports
-sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent.parent))
-
+from fastapi import FastAPI, HTTPException
 from langchain_core.documents import Document
 from langchain_core.retrievers import BaseRetriever
 from langchain_openai import ChatOpenAI
+from pydantic import BaseModel
+import uvicorn
 
 from haive.agents.rag.simple.agent import SimpleRAGAgent
 from haive.core.engine.aug_llm import AugLLMConfig
 from haive.mcp.working_enhanced_retriever import WorkingEnhancedRetriever
+
+
+# Add parent path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent.parent))
 
 
 class MCPSimpleRAGAgent(SimpleRAGAgent):
@@ -132,8 +135,6 @@ async def demo_mcp_rag_agent():
 
 
 # FastAPI Integration
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
 
 
 class QueryRequest(BaseModel):
@@ -357,7 +358,6 @@ if __name__ == "__main__":
         asyncio.run(demo_mcp_rag_agent())
     else:
         # Run FastAPI server
-        import uvicorn
 
         print("🚀 Starting MCP SimpleRAG Agent API on port 6969")
         print("📍 Open http://localhost:6969 to use the agent")

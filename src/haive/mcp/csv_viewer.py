@@ -4,8 +4,10 @@
 Creates a browsable CSV export with sorting and filtering capabilities.
 """
 
-from datetime import datetime
 import json
+import subprocess
+import sys
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 
@@ -217,14 +219,12 @@ def streamlit_viewer():
 
 def main():
     """Main CLI interface."""
-    import sys
 
     if len(sys.argv) > 1 and sys.argv[1] == "--csv":
         # Export to CSV
         export_to_csv()
     elif len(sys.argv) > 1 and sys.argv[1] == "--web":
         # Launch Streamlit web interface
-        import subprocess
 
         script_path = Path(__file__).absolute()
         subprocess.run(

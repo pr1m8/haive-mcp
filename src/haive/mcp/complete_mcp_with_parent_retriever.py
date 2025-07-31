@@ -92,9 +92,7 @@ class MCPSystemWithParentRetriever:
         print("🔧 Setting up Parent-Child Document Retriever...")
 
         # Load all server documents
-        all_servers_path = (
-            self.doc_loader.mcp_servers_path / "ALL_MCP_SERVERS_COMPLETE.json"
-        )
+        all_servers_path = self.doc_loader.mcp_servers_path / "ALL_MCP_SERVERS_COMPLETE.json"
         with open(all_servers_path) as f:
             data = json.load(f)
             servers = data.get("all_servers", [])
@@ -272,9 +270,7 @@ class MCPSystemWithParentRetriever:
             return None
 
         # Sort by stars and pick top
-        sorted_docs = sorted(
-            docs, key=lambda d: d.metadata.get("stars", 0), reverse=True
-        )
+        sorted_docs = sorted(docs, key=lambda d: d.metadata.get("stars", 0), reverse=True)
         top_doc = sorted_docs[0]
 
         server_info = MCPServerInfo(
@@ -415,9 +411,7 @@ if __name__ == "__main__":
                 print("\n📌 Testing Resources:")
                 resources_result = await session.list_resources()
                 resources = (
-                    resources_result.resources
-                    if hasattr(resources_result, "resources")
-                    else []
+                    resources_result.resources if hasattr(resources_result, "resources") else []
                 )
 
                 print(f"   Found {len(resources)} resources")
@@ -436,9 +430,7 @@ if __name__ == "__main__":
                 # 3. Test Prompts
                 print("\n📌 Testing Prompts:")
                 prompts_result = await session.list_prompts()
-                prompts = (
-                    prompts_result.prompts if hasattr(prompts_result, "prompts") else []
-                )
+                prompts = prompts_result.prompts if hasattr(prompts_result, "prompts") else []
 
                 print(f"   Found {len(prompts)} prompts")
                 for prompt in prompts:

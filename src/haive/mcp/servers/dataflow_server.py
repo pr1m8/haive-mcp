@@ -1,23 +1,22 @@
 #!/usr/bin/env python3
 """Haive Dataflow MCP Server - Provides access to haive-dataflow registry and components."""
 
+import asyncio
 import json
 import logging
 from typing import Any
 
+from haive.dataflow import (
+    EntityType,
+    discover_agents,
+    discover_engines,
+    discover_tools,
+    registry_system,
+)
 from mcp.server.fastmcp import FastMCP
-
 
 # Import haive-dataflow components
 try:
-    from haive.dataflow import (
-        EntityType,
-        discover_agents,
-        discover_engines,
-        discover_tools,
-        registry_system,
-    )
-
     DATAFLOW_AVAILABLE = True
 except ImportError:
     DATAFLOW_AVAILABLE = False
@@ -358,8 +357,6 @@ async def get_server_info() -> dict[str, Any]:
 
 
 if __name__ == "__main__":
-    import asyncio
-
     logger.info("Starting haive-dataflow MCP server...")
     logger.info(f"Dataflow available: {DATAFLOW_AVAILABLE}")
 

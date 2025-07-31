@@ -19,6 +19,7 @@ import json
 import sys
 
 from haive.core.errors import install_short_tracebacks
+
 from haive.mcp.documentation.doc_loader import MCPDocumentationLoader
 from haive.mcp.tools.ai_assistant import MCPAssistant
 from haive.mcp.tools.server_selector import MCPServerSelector

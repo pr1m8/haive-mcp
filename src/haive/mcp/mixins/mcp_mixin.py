@@ -18,6 +18,9 @@ Example:
         from haive.agents.base import Agent
         from haive.mcp.mixins import MCPMixin
         from haive.mcp.config import MCPConfig
+from haive import core
+from haive import agents
+
 
         class MyCustomAgent(MCPMixin, Agent):
             '''Agent with MCP capabilities.'''
@@ -40,19 +43,23 @@ See Also:
 """
 
 import asyncio
-from contextlib import asynccontextmanager
 import logging
+from contextlib import asynccontextmanager
 from typing import Any
 
+from haive.core.utils.component_discovery import (
+    ComponentMetadata,
+    ComponentType,
+    create_component_registry,
+)
+from langchain_core.tools import BaseTool
+from langchain_mcp_adapters.client import MultiServerMCPClient
 from pydantic import BaseModel, Field, PrivateAttr
 
 from haive.mcp.config import MCPConfig, MCPServerConfig
 
-
 # Conditional imports
 try:
-    from langchain_core.tools import BaseTool
-    from langchain_mcp_adapters.client import MultiServerMCPClient
 
     MCP_AVAILABLE = True
 except ImportError:
@@ -120,7 +127,6 @@ class MCPMixin(BaseModel):
                         )
                     }
                 )
-            )
     """
 
     # MCP configuration
@@ -337,10 +343,6 @@ class MCPMixin(BaseModel):
     async def _register_tools_with_registry(self):
         """Register MCP tools with the component registry if available."""
         try:
-            from haive.core.utils.component_discovery import (
-                ComponentMetadata,
-                ComponentType,
-                create_component_registry,
             )
 
             registry = create_component_registry()

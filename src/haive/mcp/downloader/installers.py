@@ -23,20 +23,23 @@ Version: 1.0.0
 Author: Haive MCP Team
 """
 
-from abc import ABC, abstractmethod
 import asyncio
+import json
 import logging
 import os
-from pathlib import Path
+import shlex
 import shutil
 import stat
+import tarfile
+import zipfile
+from abc import ABC, abstractmethod
+from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
 
 import aiohttp
 
 from haive.mcp.downloader.config import InstallationMethod, ServerConfig, ServerTemplate
-
 
 logger = logging.getLogger(__name__)
 
@@ -239,8 +242,6 @@ class NPMInstaller(MCPInstaller):
             "version": "1.0.0",
             "dependencies": {package.split("@")[0]: server_config.version or "latest"},
         }
-
-        import json
 
         with open(package_dir / "package.json", "w") as f:
             json.dump(package_json, f, indent=2)
@@ -447,7 +448,6 @@ class GitInstaller(MCPInstaller):
             logger.info(f"Running post-install: {formatted_cmd}")
 
             # Split command properly (handle quoted arguments)
-            import shlex
 
             cmd_parts = shlex.split(formatted_cmd)
 
@@ -666,8 +666,6 @@ class BinaryInstaller(MCPInstaller):
                     **server_config.variables, binary_path=str(binary_path)
                 )
 
-                import shlex
-
                 cmd_parts = shlex.split(formatted_cmd)
 
                 await self._run_command(
@@ -790,8 +788,6 @@ class CurlInstaller(MCPInstaller):
                     **server_config.variables, download_dir=str(server_dir)
                 )
 
-                import shlex
-
                 cmd_parts = shlex.split(formatted_cmd)
 
                 await self._run_command(
@@ -827,13 +823,10 @@ class CurlInstaller(MCPInstaller):
             extract_dir: Directory to extract to
         """
         if archive_path.suffix == ".zip":
-            import zipfile
-
             with zipfile.ZipFile(archive_path, "r") as zip_ref:
                 zip_ref.extractall(extract_dir)
         else:
             # Handle tar archives
-            import tarfile
 
             with tarfile.open(archive_path, "r:*") as tar_ref:
                 tar_ref.extractall(extract_dir)

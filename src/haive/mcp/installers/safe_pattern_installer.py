@@ -31,12 +31,8 @@ class InstallationRequest(BaseModel):
     pattern_type: str = Field(
         description="Pattern type: filesystem, database, web_api, python_server"
     )
-    custom_args: list[str] = Field(
-        default_factory=list, description="Custom startup arguments"
-    )
-    env_vars: dict[str, str] = Field(
-        default_factory=dict, description="Environment variables"
-    )
+    custom_args: list[str] = Field(default_factory=list, description="Custom startup arguments")
+    env_vars: dict[str, str] = Field(default_factory=dict, description="Environment variables")
     require_approval: bool = Field(default=True, description="Require human approval")
 
 
@@ -75,22 +71,16 @@ class SafePatternInstaller:
         if "database" in package_name.lower() or "sql" in package_name.lower():
             return self.config_manager.get_pattern("database")
         if "@modelcontextprotocol" in package_name:
-            return self.config_manager.get_pattern(
-                "web_api"
-            )  # Default for MCP packages
+            return self.config_manager.get_pattern("web_api")  # Default for MCP packages
         if package_name.startswith("mcp-server-"):
             return self.config_manager.get_pattern("python_server")
 
         return None
 
-    def validate_installation_request(
-        self, request: InstallationRequest
-    ) -> tuple[bool, str]:
+    def validate_installation_request(self, request: InstallationRequest) -> tuple[bool, str]:
         """Validate that installation request is safe."""
         # Check if pattern exists
-        pattern = self.get_pattern_for_server(
-            request.package_name, request.pattern_type
-        )
+        pattern = self.get_pattern_for_server(request.package_name, request.pattern_type)
         if not pattern:
             return False, f"Unknown pattern type: {request.pattern_type}"
 
@@ -148,9 +138,7 @@ class SafePatternInstaller:
                 return f"❌ Validation failed: {message}"
 
             # Get pattern
-            pattern = self.get_pattern_for_server(
-                request.package_name, request.pattern_type
-            )
+            pattern = self.get_pattern_for_server(request.package_name, request.pattern_type)
             if not pattern:
                 return f"❌ No pattern found for {request.package_name}"
 
@@ -172,9 +160,7 @@ class SafePatternInstaller:
 
                 # Prepare installation command
                 if pattern.install_command != "none":
-                    install_cmd = pattern.install_command.format(
-                        package_name=request.package_name
-                    )
+                    install_cmd = pattern.install_command.format(package_name=request.package_name)
 
                     result = subprocess.run(
                         install_cmd.split(),
@@ -365,13 +351,8 @@ class SafePatternInstaller:
                     tools_response = process.stdout.readline()
                     if tools_response.strip():
                         tools_result = json.loads(tools_response)
-                        if (
-                            "result" in tools_result
-                            and "tools" in tools_result["result"]
-                        ):
-                            tools = [
-                                tool["name"] for tool in tools_result["result"]["tools"]
-                            ]
+                        if "result" in tools_result and "tools" in tools_result["result"]:
+                            tools = [tool["name"] for tool in tools_result["result"]["tools"]]
                             return tools
 
         except Exception:

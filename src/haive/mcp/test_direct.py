@@ -1,6 +1,7 @@
 """Test MCP RAG Agent directly without server."""
 
 import asyncio
+import traceback
 
 from haive.mcp.mcp_simple_rag_agent import create_mcp_rag_agent
 
@@ -18,7 +19,6 @@ async def test_direct():
     ]
 
     for query in queries:
-
         try:
             # Run with debug mode
             result = await agent.arun(query, debug=True)
@@ -47,8 +47,6 @@ async def test_direct():
                     pass
 
         except Exception:
-            import traceback
-
             traceback.print_exc()
 
         await asyncio.sleep(1)  # Small delay between queries

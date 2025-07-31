@@ -55,6 +55,7 @@ import time
 from dataclasses import dataclass
 from typing import Any
 
+from langchain_mcp_adapters import MCPClient
 from langchain_mcp_adapters.client import MultiServerMCPClient
 
 from haive.mcp.config import MCPConfig, MCPServerConfig
@@ -211,7 +212,6 @@ class MCPServerTester:
         try:
             # Import MCP client dependencies
             try:
-                from langchain_mcp_adapters import MCPClient
             except ImportError:
                 return TestResult(
                     server_name=server_config.name,

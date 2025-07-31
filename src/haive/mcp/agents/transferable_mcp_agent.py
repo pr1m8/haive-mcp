@@ -24,6 +24,8 @@ Example:
 
         from haive.mcp.agents import TransferableMCPAgent
         from haive.mcp.config import MCPConfig
+from haive import agents
+
 
         # Create collaborative agents with shared client
         agents = TransferableMCPAgent.create_collaborative_agents(
@@ -54,12 +56,14 @@ Note:
     Transfer operations are tracked for auditing and debugging purposes.
 """
 
+import hashlib
+import json
 from contextlib import asynccontextmanager
 from typing import Any, ClassVar
 
+from haive.agents.simple import SimpleAgent
 from pydantic import Field, PrivateAttr
 
-from haive.agents.simple import SimpleAgent
 from haive.mcp.config import MCPConfig
 from haive.mcp.mixins.mcp_mixin import MCPMixin
 
@@ -217,8 +221,6 @@ class TransferableMCPAgent(MCPMixin, SimpleAgent):
             The hash is based on the sorted JSON representation to ensure
             consistency across different dictionary orderings.
         """
-        import hashlib
-        import json
 
         config_str = json.dumps(self.mcp_config.model_dump(), sort_keys=True)
         return hashlib.md5(config_str.encode()).hexdigest()

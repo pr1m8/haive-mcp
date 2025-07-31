@@ -17,6 +17,8 @@ Example:
     Loading and using MCP documentation::
 
         from haive.mcp.documentation import MCPDocumentationLoader
+from haive import agents
+
 
         # Initialize loader
         loader = MCPDocumentationLoader()
@@ -46,18 +48,14 @@ import logging
 from pathlib import Path
 from typing import Any
 
+from haive.agents.research.open_perplexity.structured_tools import (
+    GitHubLoader,
+    WebScraper,
+)
 from langchain_core.documents import Document
-
 
 # Try to import haive document loaders
 try:
-    from haive.agents.research.open_perplexity.structured_tools import (
-        ArXivLoader,
-        GitHubLoader,
-        WebScraper,
-        WikipediaLoader,
-    )
-
     LOADERS_AVAILABLE = True
 except ImportError:
     LOADERS_AVAILABLE = False

@@ -22,10 +22,12 @@ from typing import Any
 
 from csv_viewer import load_mcp_servers_data
 import pandas as pd
-
-# Import our components
+import plotly.express as px
 from self_query_mcp_agent import SelfQueryMCPAgent
 import streamlit as st
+
+
+# Import our components
 
 
 # Configure logging
@@ -594,7 +596,6 @@ def show_analytics_tab(system):
             categories[category] = categories.get(category, 0) + 1
 
         # Create bar chart
-        import plotly.express as px
 
         df = pd.DataFrame(list(categories.items()), columns=["Category", "Count"])
 

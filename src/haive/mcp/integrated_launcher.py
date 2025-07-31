@@ -6,9 +6,15 @@ Provides easy access to all components of the integrated MCP discovery and manag
 
 import argparse
 import json
-from pathlib import Path
 import subprocess
 import sys
+from pathlib import Path
+
+import aiohttp
+import pandas
+import plotly
+import psutil
+import streamlit
 
 
 def print_banner():
@@ -29,27 +35,22 @@ def check_dependencies():
     missing = []
 
     try:
-        import streamlit
     except ImportError:
         missing.append("streamlit")
 
     try:
-        import plotly
     except ImportError:
         missing.append("plotly")
 
     try:
-        import pandas
     except ImportError:
         missing.append("pandas")
 
     try:
-        import aiohttp
     except ImportError:
         missing.append("aiohttp")
 
     try:
-        import psutil
     except ImportError:
         missing.append("psutil")
 

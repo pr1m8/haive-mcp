@@ -5,6 +5,7 @@ Manages the lifecycle of FastMCP servers registered in the system.
 Provides process management, monitoring, and integration with the discovery system.
 """
 
+import argparse
 import asyncio
 from datetime import datetime
 import json
@@ -372,7 +373,6 @@ class FastMCPCLI:
 
 async def main():
     """Main CLI entry point"""
-    import argparse
 
     parser = argparse.ArgumentParser(description="FastMCP Server Runner")
     parser.add_argument("command", help="Command to execute")

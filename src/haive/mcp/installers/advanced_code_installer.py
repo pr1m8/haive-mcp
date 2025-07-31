@@ -30,15 +30,11 @@ class CodeGenerationRequest(BaseModel):
 
     server_name: str = Field(description="Unique name for server instance")
     server_description: str = Field(description="Description of what the server does")
-    package_info: dict[str, Any] = Field(
-        description="Package metadata (name, repo, docs)"
-    )
+    package_info: dict[str, Any] = Field(description="Package metadata (name, repo, docs)")
     context_documents: list[str] = Field(
         default_factory=list, description="Context from documentation"
     )
-    custom_requirements: str = Field(
-        default="", description="Special installation requirements"
-    )
+    custom_requirements: str = Field(default="", description="Special installation requirements")
     risk_tolerance: str = Field(default="low", description="low, medium, high")
 
 
@@ -83,9 +79,7 @@ class AdvancedCodeInstaller:
         print("🧠 Advanced Code Installer initialized")
         print("⚠️  Human oversight required for all generated code")
 
-    def _mock_llm_code_generation(
-        self, request: CodeGenerationRequest
-    ) -> GeneratedInstallPlan:
+    def _mock_llm_code_generation(self, request: CodeGenerationRequest) -> GeneratedInstallPlan:
         """Mock LLM code generation (replace with real agent)"""
         # This simulates what the LLM would generate
         package_name = request.package_info.get("name", "")
@@ -121,9 +115,7 @@ class AdvancedCodeInstaller:
                 confidence_score=0.8,
                 fallback_to_safe=False,
             )
-        if "git" in package_name.lower() or "github" in request.package_info.get(
-            "repo", ""
-        ):
+        if "git" in package_name.lower() or "github" in request.package_info.get("repo", ""):
             # Git-based installation
             repo_url = request.package_info.get("repo", "")
             return GeneratedInstallPlan(
@@ -208,11 +200,10 @@ class AdvancedCodeInstaller:
                 return f"❌ BLOCKED: Command contains dangerous pattern: {command}"
 
             # Risk assessment check
-            if (
-                plan.risk_assessment.startswith("HIGH")
-                and request.risk_tolerance == "low"
-            ):
-                return f"❌ BLOCKED: High risk command not allowed with low risk tolerance: {command}"
+            if plan.risk_assessment.startswith("HIGH") and request.risk_tolerance == "low":
+                return (
+                    f"❌ BLOCKED: High risk command not allowed with low risk tolerance: {command}"
+                )
 
             try:
                 print(f"🔧 Executing: {command}")
@@ -247,11 +238,10 @@ class AdvancedCodeInstaller:
         # Create structured tool
         subprocess_tool = StructuredTool.from_function(
             func=execute_subprocess,
-            name=f"execute_install_{
-                request.server_name}",
-            description=f"Execute installation commands for {
-                request.server_name} (Risk: {
-                plan.risk_assessment})",
+            name=f"execute_install_{request.server_name}",
+            description=f"Execute installation commands for {request.server_name} (Risk: {
+                plan.risk_assessment
+            })",
             args_schema=SubprocessExecutionInput,
         )
 
@@ -288,9 +278,7 @@ class AdvancedCodeInstaller:
                             check=False,
                         )
                         if result.returncode == 0:
-                            results.append(
-                                f"   ✅ npx available: {result.stdout.strip()}"
-                            )
+                            results.append(f"   ✅ npx available: {result.stdout.strip()}")
                         else:
                             results.append("   ❌ npx not available")
                     except BaseException:
@@ -305,9 +293,7 @@ class AdvancedCodeInstaller:
                             check=False,
                         )
                         if result.returncode == 0:
-                            results.append(
-                                f"   ✅ pip available: {result.stdout.strip()}"
-                            )
+                            results.append(f"   ✅ pip available: {result.stdout.strip()}")
                         else:
                             results.append("   ❌ pip not available")
                     except BaseException:
@@ -322,9 +308,7 @@ class AdvancedCodeInstaller:
                             check=False,
                         )
                         if result.returncode == 0:
-                            results.append(
-                                f"   ✅ git available: {result.stdout.strip()}"
-                            )
+                            results.append(f"   ✅ git available: {result.stdout.strip()}")
                         else:
                             results.append("   ❌ git not available")
                     except BaseException:

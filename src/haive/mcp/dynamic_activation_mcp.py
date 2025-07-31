@@ -10,14 +10,15 @@ Based on:
 - Existing haive-mcp infrastructure
 """
 
+import uuid
+from datetime import datetime
 from typing import Any
-
-from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from haive.agents.discovery.component_discovery_agent import ComponentDiscoveryAgent
 from haive.core.registry import DynamicRegistry, RegistryItem
 from haive.core.schema.prebuilt.dynamic_activation_state import DynamicActivationState
 from haive.core.schema.prebuilt.meta_state import MetaStateSchema
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 
 class MCPTool(BaseModel):
@@ -197,7 +198,6 @@ class DynamicMCPState(DynamicActivationState):
                     result=4
                 )
         """
-        from datetime import datetime
 
         self.tool_call_history.append(
             {
@@ -659,7 +659,6 @@ class DynamicActivationMCPServer(BaseModel):
         self.state.mcp_client_id = client_id
 
         # Generate session ID
-        import uuid
 
         session_id = str(uuid.uuid4())
         self.state.mcp_session_id = session_id

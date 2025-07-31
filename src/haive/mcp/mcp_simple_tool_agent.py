@@ -4,18 +4,24 @@ from datetime import datetime
 import json
 from pathlib import Path
 import sys
+import traceback
 
-
-# Add parent path for imports
-sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent.parent))
-
+from fastapi import FastAPI, HTTPException
+from fastapi.responses import HTMLResponse
 from langchain_community.vectorstores import FAISS
 from langchain_core.documents import Document
 from langchain_core.tools import tool
+from langchain_huggingface import HuggingFaceEmbeddings
+from pydantic import BaseModel
+import uvicorn
 
 from haive.agents.simple.agent import SimpleAgent
 from haive.core.models.llm.base import AzureLLMConfig, LLMConfig
 from haive.mcp.documentation import MCPDocumentationLoader
+
+
+# Add parent path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent.parent))
 
 
 # Global vector store
@@ -116,7 +122,6 @@ def initialize_vector_store():
     documents = create_mcp_documents()
 
     # Create embeddings
-    from langchain_huggingface import HuggingFaceEmbeddings
 
     embeddings = HuggingFaceEmbeddings(
         model_name="sentence-transformers/all-mpnet-base-v2",
@@ -206,10 +211,6 @@ Always search before answering questions about specific servers or capabilities.
 
 
 # FastAPI Integration
-from fastapi import FastAPI, HTTPException
-from fastapi.responses import HTMLResponse
-from pydantic import BaseModel
-import uvicorn
 
 
 class QueryRequest(BaseModel):
@@ -461,7 +462,6 @@ async def ask_agent(request: QueryRequest):
 
     except Exception as e:
         print(f"❌ Error processing query: {e}")
-        import traceback
 
         traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))

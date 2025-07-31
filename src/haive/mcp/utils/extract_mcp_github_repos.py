@@ -95,9 +95,7 @@ class MCPScope(str, Enum):
 class MCPServerMetadata(BaseModel):
     """Metadata for an MCP Server."""
 
-    model_config = ConfigDict(
-        extra="forbid", validate_assignment=True, use_enum_values=True
-    )
+    model_config = ConfigDict(extra="forbid", validate_assignment=True, use_enum_values=True)
 
     name: str = Field(..., description="Server name")
     owner: str = Field(..., description="GitHub owner/organization")
@@ -108,12 +106,8 @@ class MCPServerMetadata(BaseModel):
     languages: list[MCPLanguage] = Field(
         default_factory=list, description="Programming languages used"
     )
-    is_official: bool = Field(
-        False, description="Whether this is an official implementation"
-    )
-    platforms: list[MCPPlatform] = Field(
-        default_factory=list, description="Supported platforms"
-    )
+    is_official: bool = Field(False, description="Whether this is an official implementation")
+    platforms: list[MCPPlatform] = Field(default_factory=list, description="Supported platforms")
     scopes: list[MCPScope] = Field(
         default_factory=list, description="Server scopes (cloud/local/embedded)"
     )
@@ -148,9 +142,7 @@ class MCPServerMetadata(BaseModel):
             "platforms": [platform for platform in self.platforms],
             "scopes": [scope for scope in self.scopes],
             "stars": self.stars,
-            "last_updated": (
-                self.last_updated.isoformat() if self.last_updated else None
-            ),
+            "last_updated": (self.last_updated.isoformat() if self.last_updated else None),
             "license": self.license,
             "description": self.description,
         }
@@ -163,9 +155,7 @@ class MCPServerDocument(BaseModel):
 
     metadata: MCPServerMetadata = Field(..., description="Server metadata")
     readme_content: str | None = Field(None, description="README content")
-    extracted_at: datetime = Field(
-        default_factory=datetime.now, description="Extraction timestamp"
-    )
+    extracted_at: datetime = Field(default_factory=datetime.now, description="Extraction timestamp")
     content_hash: str | None = Field(None, description="SHA256 hash of README content")
 
     def compute_content_hash(self) -> str:
@@ -285,7 +275,9 @@ class MCPRepositoryExtractor:
         """
         try:
             # Fetch the raw README content
-            raw_url = "https://raw.githubusercontent.com/TensorBlock/awesome-mcp-servers/main/README.md"
+            raw_url = (
+                "https://raw.githubusercontent.com/TensorBlock/awesome-mcp-servers/main/README.md"
+            )
             async with self.session.get(raw_url) as response:
                 readme_content = await response.text()
 
@@ -296,9 +288,7 @@ class MCPRepositoryExtractor:
             lines = readme_content.split("\n")
 
             # Regex patterns
-            repo_pattern = re.compile(
-                r"\[([^\]]+)\]\(https://github\.com/([^/]+)/([^)]+)\)"
-            )
+            repo_pattern = re.compile(r"\[([^\]]+)\]\(https://github\.com/([^/]+)/([^)]+)\)")
             official_pattern = re.compile(r"⭐|🎖️")
 
             for line in lines:
@@ -404,9 +394,7 @@ class MCPRepositoryExtractor:
         """Fetch additional metadata from GitHub API."""
         try:
             # Use GitHub API to get repo info
-            api_url = (
-                f"https://api.github.com/repos/{metadata.owner}/{metadata.repo_name}"
-            )
+            api_url = f"https://api.github.com/repos/{metadata.owner}/{metadata.repo_name}"
 
             headers = {
                 "Accept": "application/vnd.github.v3+json",
@@ -424,9 +412,7 @@ class MCPRepositoryExtractor:
 
                     metadata.stars = data.get("stargazers_count")
                     metadata.license = (
-                        data.get("license", {}).get("name")
-                        if data.get("license")
-                        else None
+                        data.get("license", {}).get("name") if data.get("license") else None
                     )
                     metadata.last_updated = datetime.fromisoformat(
                         data.get("updated_at", "").replace("Z", "+00:00")
@@ -440,9 +426,7 @@ class MCPRepositoryExtractor:
                 }[/yellow]"
             )
 
-    async def process_repository(
-        self, metadata: MCPServerMetadata
-    ) -> MCPServerDocument | None:
+    async def process_repository(self, metadata: MCPServerMetadata) -> MCPServerDocument | None:
         """Process a single repository."""
         try:
             # Fetch README content
@@ -452,9 +436,7 @@ class MCPRepositoryExtractor:
             await self.fetch_github_metadata(metadata)
 
             # Create document
-            document = MCPServerDocument(
-                metadata=metadata, readme_content=readme_content
-            )
+            document = MCPServerDocument(metadata=metadata, readme_content=readme_content)
 
             # Compute content hash
             document.content_hash = document.compute_content_hash()
@@ -462,9 +444,7 @@ class MCPRepositoryExtractor:
             return document
 
         except Exception as e:
-            console.print(
-                f"[red]Error processing {metadata.get_unique_id()}: {e}[/red]"
-            )
+            console.print(f"[red]Error processing {metadata.get_unique_id()}: {e}[/red]")
             return None
 
     def save_documents(self, documents: list[MCPServerDocument]) -> None:
@@ -475,9 +455,7 @@ class MCPRepositoryExtractor:
         for doc in documents:
             # Save raw README
             if doc.readme_content:
-                raw_path = (
-                    self.raw_dir / f"{doc.metadata.owner}_{doc.metadata.repo_name}.md"
-                )
+                raw_path = self.raw_dir / f"{doc.metadata.owner}_{doc.metadata.repo_name}.md"
                 raw_path.write_text(doc.readme_content, encoding="utf-8")
 
             # Convert to LangChain document
@@ -485,17 +463,13 @@ class MCPRepositoryExtractor:
             langchain_docs.append(langchain_doc)
 
             # Save individual document as JSON
-            doc_path = (
-                self.docs_dir / f"{doc.metadata.owner}_{doc.metadata.repo_name}.json"
-            )
+            doc_path = self.docs_dir / f"{doc.metadata.owner}_{doc.metadata.repo_name}.json"
             doc_path.write_text(doc.model_dump_json(indent=2), encoding="utf-8")
 
         # Save all documents as a single JSON file
         all_docs_path = self.output_dir / "all_mcp_documents.json"
         all_docs_data = [doc.model_dump() for doc in documents]
-        all_docs_path.write_text(
-            json.dumps(all_docs_data, indent=2, default=str), encoding="utf-8"
-        )
+        all_docs_path.write_text(json.dumps(all_docs_data, indent=2, default=str), encoding="utf-8")
 
         # Save metadata summary
         metadata_summary = {
@@ -532,19 +506,13 @@ class MCPRepositoryExtractor:
                 for doc in documents
             ]
         }
-        yaml_path.write_text(
-            yaml.dump(yaml_data, default_flow_style=False), encoding="utf-8"
-        )
+        yaml_path.write_text(yaml.dump(yaml_data, default_flow_style=False), encoding="utf-8")
 
     def generate_statistics_report(self, documents: list[MCPServerDocument]) -> None:
         """Generate statistics report."""
         # Update stats
-        self.stats.successfully_extracted = len(
-            [d for d in documents if d.readme_content]
-        )
-        self.stats.failed_extractions = (
-            len(documents) - self.stats.successfully_extracted
-        )
+        self.stats.successfully_extracted = len([d for d in documents if d.readme_content])
+        self.stats.failed_extractions = len(documents) - self.stats.successfully_extracted
 
         # Count by category
         for doc in documents:
@@ -602,9 +570,7 @@ class MCPRepositoryExtractor:
             self.session = session
 
             # Step 1: Extract repository information
-            console.print(
-                "\n[yellow]Step 1: Extracting repository information...[/yellow]"
-            )
+            console.print("\n[yellow]Step 1: Extracting repository information...[/yellow]")
             repositories = await self.extract_repositories_from_readme()
             console.print(f"[green]Found {len(repositories)} repositories[/green]")
 
@@ -620,9 +586,7 @@ class MCPRepositoryExtractor:
                 TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
                 console=console,
             ) as progress:
-                task = progress.add_task(
-                    "Processing repositories...", total=len(repositories)
-                )
+                task = progress.add_task("Processing repositories...", total=len(repositories))
 
                 # Process in batches to avoid rate limiting
                 batch_size = 10

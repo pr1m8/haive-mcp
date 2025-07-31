@@ -17,16 +17,18 @@ from langchain.retrievers import ParentDocumentRetriever
 from langchain.retrievers.self_query.base import SelfQueryRetriever
 from langchain.storage import InMemoryStore
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-
-# LangChain imports
 from langchain_core.documents import Document
 
-# Haive imports
 from haive.core.engine.aug_llm import AugLLMConfig
 from haive.core.engine.vectorstore.providers.ChromaVectorStoreConfig import (
     ChromaVectorStoreConfig,
 )
 from haive.mcp.documentation import MCPDocumentationLoader
+
+
+# LangChain imports
+
+# Haive imports
 
 
 class EnhancedMCPRetriever:

@@ -35,6 +35,7 @@ from enum import Enum
 from pathlib import Path
 from typing import Any
 
+import yaml
 from pydantic import BaseModel, ConfigDict, Field
 
 
@@ -274,7 +275,6 @@ def load_config(config_file: Path) -> DownloaderConfig:
             config = load_config(Path("mcp_config.yaml"))
             print(f"Loaded {len(config.templates)} templates")
     """
-    import yaml
 
     if not config_file.exists():
         raise FileNotFoundError(f"Config file not found: {config_file}")
@@ -317,7 +317,6 @@ def save_config(config: DownloaderConfig, config_file: Path) -> None:
             config = DownloaderConfig(max_concurrent=10)
             save_config(config, Path("my_config.yaml"))
     """
-    import yaml
 
     # Convert to dict for YAML serialization
     data = config.model_dump(mode="json")

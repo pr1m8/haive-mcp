@@ -29,11 +29,13 @@ from urllib.parse import urlparse
 
 try:
     import aiohttp
+
+import yaml
+
 except ImportError:
     aiohttp = None
 
 try:
-    import yaml
 except ImportError:
     yaml = None
 

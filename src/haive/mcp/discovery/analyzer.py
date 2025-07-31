@@ -47,8 +47,9 @@ import logging
 from pathlib import Path
 from typing import Any
 
-from haive.mcp.config import MCPServerConfig, MCPTransport
+import yaml
 
+from haive.mcp.config import MCPServerConfig, MCPTransport
 
 logger = logging.getLogger(__name__)
 
@@ -364,8 +365,6 @@ class MCPServerAnalyzer:
 
         # Look for YAML config files
         try:
-            import yaml
-
             for config_file in directory.glob("**/*.yaml"):
                 try:
                     with open(config_file) as f:

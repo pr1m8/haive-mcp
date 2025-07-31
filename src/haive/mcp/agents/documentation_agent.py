@@ -24,6 +24,9 @@ Example:
     Processing MCP server documentation::
 
         from haive.mcp.agents import MCPDocumentationAgent
+from haive import core
+from haive import agents
+
 
         # Create documentation agent
         doc_agent = MCPDocumentationAgent.create_for_mcp_setup()

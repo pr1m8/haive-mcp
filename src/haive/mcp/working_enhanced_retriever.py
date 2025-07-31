@@ -6,13 +6,7 @@ self-query filtering while returning full parent documents.
 
 import asyncio
 import json
-
-# Core imports - using direct imports to avoid issues
 import sys
-
-
-sys.path.insert(0, "/home/will/Projects/haive/backend/haive/packages/haive-core/src")
-sys.path.insert(0, "/home/will/Projects/haive/backend/haive/packages/haive-mcp/src")
 
 from langchain.chains.query_constructor.base import AttributeInfo
 from langchain.retrievers import ParentDocumentRetriever
@@ -20,13 +14,21 @@ from langchain.retrievers.self_query.base import SelfQueryRetriever
 from langchain.storage import InMemoryStore
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
-
-# LangChain imports
 from langchain_core.documents import Document
 from langchain_huggingface import HuggingFaceEmbeddings
 
 from haive.core.engine.aug_llm import AugLLMConfig
 from haive.mcp.documentation import MCPDocumentationLoader
+
+
+# Core imports - using direct imports to avoid issues
+
+
+sys.path.insert(0, "/home/will/Projects/haive/backend/haive/packages/haive-core/src")
+sys.path.insert(0, "/home/will/Projects/haive/backend/haive/packages/haive-mcp/src")
+
+
+# LangChain imports
 
 
 class WorkingEnhancedRetriever:

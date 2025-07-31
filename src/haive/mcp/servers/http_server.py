@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 """HTTP-based MCP server for haive using FastAPI and SSE transport."""
 
-from datetime import datetime
 import json
 import logging
+import os
+import platform
+from datetime import datetime
 from typing import Any
 
+import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.responses import StreamingResponse
-import uvicorn
-
 from mcp.server import FastMCP
 from mcp.server.sse import SSEServerTransport
-
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -73,8 +73,6 @@ async def list_tools() -> list[str]:
 @mcp.tool()
 async def get_system_info() -> dict[str, Any]:
     """Get system information."""
-    import os
-    import platform
 
     return {
         "platform": platform.platform(),

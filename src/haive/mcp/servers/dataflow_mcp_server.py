@@ -12,19 +12,18 @@ import asyncio
 import logging
 from typing import Any
 
+from haive.core.engine.aug_llm import AugLLMConfig
+from haive.core.models.llm.base import LLMConfig
+from haive.dataflow import EntityType, registry_system
+from haive.dataflow.discovery import discover_agents, discover_tools
+from mcp.server import FastMCP
 from pydantic import BaseModel, Field
 
 # Haive imports
-from haive.core.engine.aug_llm import AugLLMConfig
-from haive.core.models.llm.base import LLMConfig
-from mcp.server import FastMCP
 
 
 # Import dataflow components
 try:
-    from haive.dataflow import EntityType, registry_system
-    from haive.dataflow.discovery import discover_agents, discover_tools
-
     DATAFLOW_AVAILABLE = True
 except ImportError:
     DATAFLOW_AVAILABLE = False
