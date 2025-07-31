@@ -49,13 +49,15 @@ Note:
 """
 
 import asyncio
-from dataclasses import dataclass
 import logging
+import os
 import time
+from dataclasses import dataclass
 from typing import Any
 
-from haive.mcp.config import MCPConfig, MCPServerConfig
+from langchain_mcp_adapters.client import MultiServerMCPClient
 
+from haive.mcp.config import MCPConfig, MCPServerConfig
 
 logger = logging.getLogger(__name__)
 
@@ -209,7 +211,7 @@ class MCPServerTester:
         try:
             # Import MCP client dependencies
             try:
-                from langchain_mcp_adapters.client import MultiServerMCPClient
+                from langchain_mcp_adapters import MCPClient
             except ImportError:
                 return TestResult(
                     server_name=server_config.name,
@@ -408,7 +410,6 @@ class MCPServerTester:
 
         # Check for missing environment variables
         if server_config.env:
-            import os
 
             missing_vars = [
                 var for var in server_config.env.keys() if var not in os.environ
@@ -524,17 +525,21 @@ class MCPServerTester:
 
             if success_rate < 0.5:
                 recommendations.append(
-                    f"Server '{server_name}' has low success rate ({success_rate:.1%}) - check configuration"
+                    f"Server '{server_name}' has low success rate ({
+                        success_rate:.1%}) - check configuration"
                 )
 
             if latest_test.response_time > 30:
                 recommendations.append(
-                    f"Server '{server_name}' has slow response time ({latest_test.response_time:.1f}s)"
+                    f"Server '{server_name}' has slow response time ({
+                        latest_test.response_time:.1f}s)"
                 )
 
             if latest_test.warnings:
                 recommendations.append(
-                    f"Server '{server_name}' has warnings: {'; '.join(latest_test.warnings)}"
+                    f"Server '{server_name}' has warnings: {
+                        '; '.join(
+                            latest_test.warnings)}"
                 )
 
         return recommendations

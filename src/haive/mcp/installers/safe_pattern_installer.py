@@ -10,10 +10,10 @@ import os
 import subprocess
 from typing import Any
 
+from haive.core.tools.interrupt_tool_wrapper import add_human_in_the_loop
 from langchain_core.tools import StructuredTool, tool
 from pydantic import BaseModel, Field
 
-from haive.core.tools.interrupt_tool_wrapper import add_human_in_the_loop
 from haive.mcp.installers.config_manager import (
     MCPConfigManager,
     MCPEnvironmentConfig,
@@ -98,7 +98,9 @@ class SafePatternInstaller:
         if pattern.security_level == "high_risk":
             return (
                 False,
-                f"Pattern {request.pattern_type} is marked as high risk and not allowed in safe mode",
+                f"Pattern {
+                    request.pattern_type
+                } is marked as high risk and not allowed in safe mode",
             )
 
         # Validate package name format
@@ -219,7 +221,9 @@ class SafePatternInstaller:
         tool_func = StructuredTool.from_function(
             func=install_server_func,
             name=f"install_{request.server_name}",
-            description=f"Install MCP server '{request.server_name}' using pattern '{request.pattern_type}'",
+            description=f"Install MCP server '{request.server_name}' using pattern '{
+                request.pattern_type
+            }'",
         )
 
         # Wrap with human approval if requested
@@ -408,7 +412,7 @@ class SafePatternInstaller:
             try:
                 process.terminate()
                 process.wait(timeout=5)
-            except:
+            except BaseException:
                 process.kill()
 
         self.running_servers.clear()

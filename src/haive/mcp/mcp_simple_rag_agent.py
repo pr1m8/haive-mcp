@@ -4,21 +4,24 @@ This agent uses BaseRAGAgent and SimpleAgent to create a proper RAG system
 for MCP server discovery.
 """
 
-from datetime import datetime
 import json
-from pathlib import Path
 import sys
+import traceback
+from datetime import datetime
+from pathlib import Path
 
-
-# Add parent path for imports
-sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent.parent))
-
-from langchain_core.documents import Document
-
+import uvicorn
+from fastapi import FastAPI, HTTPException
+from fastapi.responses import HTMLResponse
 from haive.agents.rag.base.agent import BaseRAGAgent
 from haive.core.engine.vectorstore.vectorstore import VectorStoreConfig
 from haive.core.models.embeddings.base import HuggingFaceEmbeddingConfig
 from haive.core.models.llm.base import AzureLLMConfig, LLMConfig
+from langchain_core.documents import Document
+from pydantic import BaseModel
+
+# Add parent path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent.parent))
 
 
 def create_mcp_documents() -> list[Document]:
@@ -155,10 +158,6 @@ def create_mcp_rag_agent(llm_config: LLMConfig | None = None) -> BaseRAGAgent:
 
 
 # FastAPI Integration for web interface
-from fastapi import FastAPI, HTTPException
-from fastapi.responses import HTMLResponse
-from pydantic import BaseModel
-import uvicorn
 
 
 class QueryRequest(BaseModel):
@@ -334,23 +333,23 @@ async def root():
     <div class="container">
         <h1>🤖 MCP Discovery Agent</h1>
         <p class="subtitle">Your intelligent assistant for finding the perfect MCP servers</p>
-        
+
         <div class="chat-container" id="chat"></div>
-        
+
         <div class="loading" id="loading">
             <p>🔍 Searching through 1,960 MCP servers...</p>
         </div>
-        
+
         <div class="input-container">
-            <input 
-                type="text" 
-                id="query" 
+            <input
+                type="text"
+                id="query"
                 placeholder="Ask about MCP servers... e.g., 'Python servers for databases'"
                 onkeypress="handleKeyPress(event)"
             />
             <button onclick="askQuestion()" id="askBtn">Ask</button>
         </div>
-        
+
         <div class="examples">
             <h3>💡 Try these examples:</h3>
             <div class="example" onclick="setExample(this)">
@@ -373,50 +372,50 @@ async def root():
             </div>
         </div>
     </div>
-    
+
     <script>
         function setExample(element) {
             document.getElementById('query').value = element.textContent.trim();
             document.getElementById('query').focus();
         }
-        
+
         function handleKeyPress(event) {
             if (event.key === 'Enter') {
                 askQuestion();
             }
         }
-        
+
         async function askQuestion() {
             const input = document.getElementById('query');
             const query = input.value.trim();
             if (!query) return;
-            
+
             const chatDiv = document.getElementById('chat');
             const loadingDiv = document.getElementById('loading');
             const askBtn = document.getElementById('askBtn');
-            
+
             // Add user message
             chatDiv.innerHTML += `
                 <div class="message user-message">
                     <strong>You:</strong> ${query}
                 </div>
             `;
-            
+
             // Clear input and show loading
             input.value = '';
             input.disabled = true;
             askBtn.disabled = true;
             loadingDiv.classList.add('active');
-            
+
             try {
                 const response = await fetch('/ask', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({query: query})
                 });
-                
+
                 const data = await response.json();
-                
+
                 // Add agent response
                 chatDiv.innerHTML += `
                     <div class="message agent-message">
@@ -424,10 +423,10 @@ async def root():
                         ${data.response}
                     </div>
                 `;
-                
+
                 // Scroll to bottom
                 chatDiv.scrollTop = chatDiv.scrollHeight;
-                
+
             } catch (error) {
                 chatDiv.innerHTML += `
                     <div class="message agent-message" style="color: red;">
@@ -441,7 +440,7 @@ async def root():
                 input.focus();
             }
         }
-        
+
         // Focus on load
         window.onload = () => {
             document.getElementById('query').focus();
@@ -463,7 +462,6 @@ async def ask_agent(request: QueryRequest):
 
         # Run the query through the agent with debug
         print("🔍 Running agent with debug=True...")
-        import sys
 
         sys.stdout.flush()
 
@@ -533,7 +531,9 @@ async def ask_agent(request: QueryRequest):
                             )
 
                             if direct_results:
-                                response_text = f"Found {len(direct_results)} MCP servers matching '{request.query}' (via direct search):\n\n"
+                                response_text = f"Found {
+                                    len(direct_results)
+                                } MCP servers matching '{request.query}' (via direct search):\n\n"
                                 for i, doc in enumerate(direct_results[:5], 1):
                                     server_name = doc.metadata.get(
                                         "server_name", "Unknown"
@@ -602,7 +602,6 @@ async def ask_agent(request: QueryRequest):
 
     except Exception as e:
         print(f"❌ Error processing query: {e}")
-        import traceback
 
         traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))

@@ -1,4 +1,4 @@
-"""Advanced Code-Generating MCP Server Installer
+"""Advanced Code-Generating MCP Server Installer.
 
 Version 2: Uses Aug_LLM agents to generate custom installation code.
 More flexible but requires human oversight for safety.
@@ -8,19 +8,25 @@ import os
 import subprocess
 from typing import Any
 
+from haive.core.tools.interrupt_tool_wrapper import add_human_in_the_loop
 from langchain_core.tools import StructuredTool, tool
 from pydantic import BaseModel, Field
+
+from haive.mcp.installers.config_manager import MCPConfigManager, MCPEnvironmentConfig
+from haive.mcp.installers.safe_pattern_installer import (
+    InstallationRequest as SafeRequest,
+)
+from haive.mcp.installers.safe_pattern_installer import (
+    SafePatternInstaller,
+)
 
 # Import haive agent for code generation (would need actual import)
 # from haive.agents.simple import SimpleAgent
 # from haive.core.engine.aug_llm import AugLLMConfig
-from haive.core.tools.interrupt_tool_wrapper import add_human_in_the_loop
-from haive.mcp.installers.config_manager import MCPConfigManager, MCPEnvironmentConfig
-from haive.mcp.installers.safe_pattern_installer import SafePatternInstaller
 
 
 class CodeGenerationRequest(BaseModel):
-    """Request for LLM-generated installation code"""
+    """Request for LLM-generated installation code."""
 
     server_name: str = Field(description="Unique name for server instance")
     server_description: str = Field(description="Description of what the server does")
@@ -37,7 +43,7 @@ class CodeGenerationRequest(BaseModel):
 
 
 class GeneratedInstallPlan(BaseModel):
-    """LLM-generated installation plan"""
+    """LLM-generated installation plan."""
 
     install_commands: list[str] = Field(description="Installation commands to execute")
     startup_command: str = Field(description="Command to start the server")
@@ -53,7 +59,7 @@ class GeneratedInstallPlan(BaseModel):
 
 
 class SubprocessExecutionInput(BaseModel):
-    """Input for subprocess execution tool"""
+    """Input for subprocess execution tool."""
 
     command: str = Field(description="Command to execute")
     timeout: int = Field(default=30, description="Timeout in seconds")
@@ -64,7 +70,7 @@ class SubprocessExecutionInput(BaseModel):
 
 
 class AdvancedCodeInstaller:
-    """Advanced MCP installer with LLM code generation"""
+    """Advanced MCP installer with LLM code generation."""
 
     def __init__(self, config_manager: MCPConfigManager | None = None):
         self.config_manager = config_manager or MCPConfigManager()
@@ -99,6 +105,7 @@ class AdvancedCodeInstaller:
                 confidence_score=0.9,
                 fallback_to_safe=True,
             )
+
         if "python" in request.server_description.lower():
             # Python-based server
             return GeneratedInstallPlan(
@@ -149,21 +156,21 @@ class AdvancedCodeInstaller:
     async def generate_installation_plan(
         self, request: CodeGenerationRequest
     ) -> GeneratedInstallPlan:
-        """Generate installation plan using LLM"""
+        """Generate installation plan using LLM."""
         # In real implementation, this would use the haive agent:
         """
         prompt = f'''
         Generate an installation plan for MCP server:
-        
+
         Server Name: {request.server_name}
         Description: {request.server_description}
         Package Info: {json.dumps(request.package_info, indent=2)}
         Custom Requirements: {request.custom_requirements}
         Risk Tolerance: {request.risk_tolerance}
-        
+
         Context Documentation:
         {chr(10).join(request.context_documents)}
-        
+
         Please provide:
         1. Installation commands (step by step)
         2. Startup command
@@ -171,11 +178,11 @@ class AdvancedCodeInstaller:
         4. Validation steps
         5. Security risk assessment
         6. Confidence score (0-1)
-        
+
         Focus on standard patterns: npm, pip, git clone, docker.
         Prefer official package managers over manual compilation.
         '''
-        
+
         result = await self.code_generation_agent.arun(prompt)
         # Parse LLM result into GeneratedInstallPlan
         """
@@ -186,7 +193,7 @@ class AdvancedCodeInstaller:
     def create_subprocess_execution_tool(
         self, plan: GeneratedInstallPlan, request: CodeGenerationRequest
     ) -> StructuredTool:
-        """Create tool for executing subprocess commands with oversight"""
+        """Create tool for executing subprocess commands with oversight."""
 
         def execute_subprocess(
             command: str,
@@ -194,7 +201,7 @@ class AdvancedCodeInstaller:
             working_directory: str | None = None,
             environment_vars: dict[str, str] = None,
         ) -> str:
-            """Execute subprocess command with safety checks"""
+            """Execute subprocess command with safety checks."""
             # Security validation
             dangerous_patterns = ["rm -rf", "sudo", "curl | sh", "wget | sh", "| bash"]
             if any(pattern in command.lower() for pattern in dangerous_patterns):
@@ -230,7 +237,9 @@ class AdvancedCodeInstaller:
 
                 if result.returncode == 0:
                     return f"✅ Command succeeded:\n{result.stdout}"
-                return f"❌ Command failed (exit code {result.returncode}):\n{result.stderr}"
+                return f"❌ Command failed (exit code {
+                    result.returncode}):\n{
+                    result.stderr}"
 
             except subprocess.TimeoutExpired:
                 return f"❌ Command timed out after {timeout} seconds"
@@ -240,8 +249,11 @@ class AdvancedCodeInstaller:
         # Create structured tool
         subprocess_tool = StructuredTool.from_function(
             func=execute_subprocess,
-            name=f"execute_install_{request.server_name}",
-            description=f"Execute installation commands for {request.server_name} (Risk: {plan.risk_assessment})",
+            name=f"execute_install_{
+                request.server_name}",
+            description=f"Execute installation commands for {
+                request.server_name} (Risk: {
+                plan.risk_assessment})",
             args_schema=SubprocessExecutionInput,
         )
 
@@ -258,11 +270,11 @@ class AdvancedCodeInstaller:
     def create_validation_tool(
         self, plan: GeneratedInstallPlan, request: CodeGenerationRequest
     ) -> StructuredTool:
-        """Create tool for validating installation"""
+        """Create tool for validating installation."""
 
         @tool
         def validate_installation() -> str:
-            """Validate that MCP server installation was successful"""
+            """Validate that MCP server installation was successful."""
             results = []
 
             for step in plan.validation_steps:
@@ -283,7 +295,7 @@ class AdvancedCodeInstaller:
                             )
                         else:
                             results.append("   ❌ npx not available")
-                    except:
+                    except BaseException:
                         results.append("   ❌ npx check failed")
 
                 elif "pip" in step.lower():
@@ -300,7 +312,7 @@ class AdvancedCodeInstaller:
                             )
                         else:
                             results.append("   ❌ pip not available")
-                    except:
+                    except BaseException:
                         results.append("   ❌ pip check failed")
 
                 elif "git" in step.lower():
@@ -317,7 +329,7 @@ class AdvancedCodeInstaller:
                             )
                         else:
                             results.append("   ❌ git not available")
-                    except:
+                    except BaseException:
                         results.append("   ❌ git check failed")
 
                 else:
@@ -330,7 +342,7 @@ class AdvancedCodeInstaller:
     async def install_server_advanced(
         self, request: CodeGenerationRequest
     ) -> tuple[bool, str, list[StructuredTool]]:
-        """Advanced server installation with code generation"""
+        """Advanced server installation with code generation."""
         print(f"🧠 Generating installation plan for {request.server_name}...")
 
         # Generate installation plan
@@ -346,10 +358,6 @@ class AdvancedCodeInstaller:
             print("🛡️  High confidence + safe fallback - using SafePatternInstaller")
 
             # Try to find matching pattern
-            from haive.mcp.installers.safe_pattern_installer import (
-                InstallationRequest as SafeRequest,
-            )
-
             safe_request = SafeRequest(
                 server_name=request.server_name,
                 package_name=request.package_info.get("name", ""),
@@ -374,7 +382,7 @@ class AdvancedCodeInstaller:
         # 3. Configuration creation tool
         @tool
         def create_server_config() -> str:
-            """Create server configuration after successful installation"""
+            """Create server configuration after successful installation."""
             try:
                 env_config = MCPEnvironmentConfig(
                     server_name=request.server_name,
@@ -420,7 +428,7 @@ class AdvancedCodeInstaller:
         return True, summary, tools
 
     def get_advanced_status(self) -> dict[str, Any]:
-        """Get status of advanced installer"""
+        """Get status of advanced installer."""
         return {
             "installer_type": "AdvancedCodeInstaller",
             "llm_agent_available": self.code_generation_agent is not None,
@@ -430,13 +438,13 @@ class AdvancedCodeInstaller:
         }
 
     def cleanup(self):
-        """Clean up all resources"""
+        """Clean up all resources."""
         self.safe_installer.cleanup()
         for name, process in self.running_servers.items():
             try:
                 process.terminate()
                 process.wait(timeout=5)
                 print(f"✅ Stopped {name} server")
-            except:
+            except BaseException:
                 process.kill()
                 print(f"🔥 Force killed {name} server")

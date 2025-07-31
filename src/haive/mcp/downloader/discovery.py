@@ -25,13 +25,12 @@ import asyncio
 import logging
 import re
 from typing import Any
-from urllib.parse import parse_qs, urlparse
+from urllib.parse import parse_qs, urlencode, urlparse
 
 import aiohttp
 from pydantic import BaseModel, Field
 
 from haive.mcp.downloader.config import DiscoveryConfig
-
 
 logger = logging.getLogger(__name__)
 
@@ -227,9 +226,10 @@ class ServerDiscovery:
             query_params["size"] = [str(min(limit, 250))]  # NPM max is 250
 
             # Rebuild URL
-            from urllib.parse import urlencode
 
-            url = f"{parsed.scheme}://{parsed.netloc}{parsed.path}?{urlencode(query_params, doseq=True)}"
+            url = f"{parsed.scheme}://{parsed.netloc}{parsed.path}?{
+                urlencode(query_params, doseq=True)
+            }"
 
             async with session.get(url) as response:
                 if response.status == 200:
@@ -279,12 +279,11 @@ class ServerDiscovery:
         discovered = []
 
         try:
-            session = await self._get_session()
+            await self._get_session()
 
             # PyPI JSON API endpoint
             if "search" in search_url:
                 # Convert search URL to API URL
-                api_url = "https://pypi.org/pypi"
 
                 # Search for packages matching patterns
                 for pattern in self.config.patterns.get("pypi", []):
@@ -361,7 +360,7 @@ class ServerDiscovery:
 
                     for repo in data.get("items", []):
                         name = repo.get("name", "")
-                        full_name = repo.get("full_name", "")
+                        repo.get("full_name", "")
 
                         # Check if it matches our patterns
                         if self._matches_github_pattern(name):
@@ -422,7 +421,7 @@ class ServerDiscovery:
                     content = await response.text()
 
                     # Look for npm install commands
-                    npm_pattern = r"npm\s+install\s+(?:-g\s+)?([^\s]+)"
+                    npm_pattern = r"npm install (?:-g )?([^\s]+)"
                     for match in re.finditer(npm_pattern, content):
                         package = match.group(1)
                         if self._matches_npm_pattern(package):

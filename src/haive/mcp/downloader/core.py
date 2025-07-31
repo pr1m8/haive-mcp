@@ -30,16 +30,18 @@ Author: Haive MCP Team
 """
 
 import asyncio
-from datetime import datetime
 import json
 import logging
-from pathlib import Path
+import shutil
 import time
+from datetime import datetime
+from pathlib import Path
 from typing import Any
 
 from pydantic import BaseModel, Field
 
 from haive.mcp.downloader.config import (
+    DiscoveryConfig,
     DownloaderConfig,
     InstallationMethod,
     ServerConfig,
@@ -57,7 +59,6 @@ from haive.mcp.downloader.installers import (
     NPMInstaller,
     PipInstaller,
 )
-
 
 logger = logging.getLogger(__name__)
 
@@ -217,11 +218,6 @@ class GeneralMCPDownloader:
             This creates a sensible default configuration that covers
             the most common MCP server patterns.
         """
-        from haive.mcp.downloader.config import (
-            DiscoveryConfig,
-            ServerConfig,
-            ServerTemplate,
-        )
 
         # Default templates
         templates = [
@@ -359,8 +355,8 @@ class GeneralMCPDownloader:
     def _load_status(self) -> None:
         """Load server status from persistent storage.
 
-        Loads the status tracking information from the status file
-        if it exists.
+        Loads the status tracking information from the status file if it
+        exists.
         """
         status_file = self.config.config_dir / "server_status.json"
 
@@ -390,8 +386,8 @@ class GeneralMCPDownloader:
     def _save_status(self) -> None:
         """Save server status to persistent storage.
 
-        Saves the current status tracking information to a JSON file
-        for persistence across runs.
+        Saves the current status tracking information to a JSON file for
+        persistence across runs.
         """
         status_file = self.config.config_dir / "server_status.json"
 
@@ -794,7 +790,6 @@ class GeneralMCPDownloader:
             backup_path = (
                 self.config.backup_dir / f"mcp_servers_config_{int(time.time())}.json"
             )
-            import shutil
 
             shutil.copy2(config_path, backup_path)
             logger.debug(f"Backed up config to {backup_path}")

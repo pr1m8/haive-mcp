@@ -1,4 +1,4 @@
-"""Complete End-to-End MCP Example with Parent Document Retriever
+"""Complete End-to-End MCP Example with Parent Document Retriever.
 
 This example demonstrates:
 1. Parent-child document retrieval for MCP servers
@@ -15,23 +15,12 @@ The parent-child pattern allows:
 
 import asyncio
 import json
-
-# For running the actual test
 import subprocess
 import sys
 import tempfile
 from typing import Any
 
-# LangChain imports
-from langchain_core.documents import Document
-from langchain_mcp_adapters.client import MultiServerMCPClient
-
-# Pydantic models
-from pydantic import BaseModel, Field
-
 from haive.agents.rag.base.agent import BaseRAGAgent
-
-# Haive imports
 from haive.core.engine.aug_llm import AugLLMConfig
 from haive.core.engine.retriever.providers.ParentDocumentRetrieverConfig import (
     ParentDocumentRetrieverConfig,
@@ -42,7 +31,20 @@ from haive.core.engine.retriever.providers.SelfQueryRetrieverConfig import (
 from haive.core.engine.vectorstore.providers.ChromaVectorStoreConfig import (
     ChromaVectorStoreConfig,
 )
+from langchain_core.documents import Document
+from langchain_mcp_adapters.client import MultiServerMCPClient
+from pydantic import BaseModel, Field
+
 from haive.mcp.documentation import MCPDocumentationLoader
+
+# For running the actual test
+
+
+# Haive imports
+
+# LangChain imports
+
+# Pydantic models
 
 
 # === MODELS ===
@@ -318,7 +320,6 @@ Category: {server_info.category}
 Generated from haive-mcp database
 """
 
-from fastmcp import FastMCP
 
 mcp = FastMCP("{server_info.name}")
 
@@ -452,7 +453,9 @@ if __name__ == "__main__":
                     if prompt_result.messages:
                         msg = prompt_result.messages[0]
                         print(
-                            f"   Generated: {msg.content.text if hasattr(msg.content, 'text') else msg}"
+                            f"   Generated: {
+                                msg.content.text if hasattr(msg.content, 'text') else msg
+                            }"
                         )
 
                 print("\n✅ All tests completed successfully!")
@@ -501,7 +504,7 @@ async def main():
 if __name__ == "__main__":
     # Ensure we have FastMCP available
     try:
-        import fastmcp
+        pass
     except ImportError:
         print("Installing FastMCP...")
         subprocess.run([sys.executable, "-m", "pip", "install", "fastmcp"], check=True)

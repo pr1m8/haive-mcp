@@ -44,14 +44,13 @@ Note:
     adapt their capabilities based on task requirements.
 """
 
-from dataclasses import dataclass
 import logging
+from dataclasses import dataclass
 from typing import Any
 
 from haive.mcp.config import MCPConfig, MCPServerConfig
 from haive.mcp.documentation.doc_loader import MCPDocumentationLoader
 from haive.mcp.tools.server_selector import MCPServerSelector, TaskAnalyzer
-
 
 logger = logging.getLogger(__name__)
 
@@ -574,7 +573,9 @@ class MCPAssistant:
         if recommendations:
             top_server = recommendations[0]
             parts.append(
-                f"Primary server: {top_server.server_name} (confidence: {top_server.confidence:.1%})"
+                f"Primary server: {top_server.server_name} (confidence: {
+                    top_server.confidence:.1%
+                })"
             )
 
             if len(recommendations) > 1:

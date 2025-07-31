@@ -1,4 +1,5 @@
-"""Complete MCP Example with Self-Query Retriever, HITL, and Live Server Testing
+"""Complete MCP Example with Self-Query Retriever, HITL, and Live Server
+Testing.
 
 This example demonstrates:
 1. Setting up a self-query retriever for the MCP server database
@@ -12,16 +13,7 @@ import json
 import tempfile
 from typing import Any, Union
 
-# LangChain imports
-from langchain_core.documents import Document
-from langchain_mcp_adapters.client import MultiServerMCPClient
-
-# Pydantic models
-from pydantic import BaseModel, Field
-
 from haive.core.common.structures.tree import AutoTree
-
-# Haive imports
 from haive.core.engine.aug_llm import AugLLMConfig
 from haive.core.engine.retriever.providers.SelfQueryRetrieverConfig import (
     SelfQueryRetrieverConfig,
@@ -29,7 +21,17 @@ from haive.core.engine.retriever.providers.SelfQueryRetrieverConfig import (
 from haive.core.engine.vectorstore.providers.ChromaVectorStoreConfig import (
     ChromaVectorStoreConfig,
 )
+from langchain_core.documents import Document
+from langchain_mcp_adapters.client import MultiServerMCPClient
+from pydantic import BaseModel, Field
+
 from haive.mcp.documentation import MCPDocumentationLoader
+
+# Haive imports
+
+# LangChain imports
+
+# Pydantic models
 
 
 # === MODELS FOR MCP SERVER HIERARCHY ===
@@ -348,7 +350,6 @@ Auto-generated MCP server for {server_name}
 Category: {metadata.get("category", "general")}
 """
 
-from fastmcp import FastMCP
 
 mcp = FastMCP("{server_name}")
 
@@ -465,7 +466,11 @@ if __name__ == "__main__":
                     resource_content = await session.read_resource(resources[0].uri)
                     if resource_content.contents:
                         print(
-                            f"   Content: {resource_content.contents[0].text if hasattr(resource_content.contents[0], 'text') else 'Binary content'}"
+                            f"   Content: {
+                                resource_content.contents[0].text
+                                if hasattr(resource_content.contents[0], 'text')
+                                else 'Binary content'
+                            }"
                         )
 
                 print("\n3️⃣ Testing Prompts...")
@@ -487,7 +492,11 @@ if __name__ == "__main__":
                     )
                     if prompt_result.messages:
                         print(
-                            f"   Generated: {prompt_result.messages[0].content.text if hasattr(prompt_result.messages[0].content, 'text') else prompt_result.messages[0]}"
+                            f"   Generated: {
+                                prompt_result.messages[0].content.text
+                                if hasattr(prompt_result.messages[0].content, 'text')
+                                else prompt_result.messages[0]
+                            }"
                         )
 
                 print("\n✅ All tests completed!")
@@ -513,7 +522,9 @@ if __name__ == "__main__":
             print(f"Found {len(docs)} results:")
             for i, doc in enumerate(docs[:3]):  # Show top 3
                 print(
-                    f"  {i + 1}. {doc.metadata['name']} ({doc.metadata['category']}, {doc.metadata.get('stars', 0)} stars)"
+                    f"  {i + 1}. {doc.metadata['name']} ({doc.metadata['category']}, {
+                        doc.metadata.get('stars', 0)
+                    } stars)"
                 )
 
 

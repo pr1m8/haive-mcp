@@ -13,17 +13,19 @@ Key features:
 - Progress tracking and logging
 """
 
-from abc import ABC, abstractmethod
+import argparse
 import asyncio
-from dataclasses import dataclass, field
-from enum import Enum
+import importlib
 import json
 import logging
-from pathlib import Path
+import re
 import time
+from abc import ABC, abstractmethod
+from dataclasses import dataclass, field
+from enum import Enum
+from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
-
 
 try:
     import aiohttp
@@ -43,7 +45,7 @@ logger = logging.getLogger(__name__)
 
 
 class InstallationMethod(Enum):
-    """Supported installation methods"""
+    """Supported installation methods."""
 
     NPM = "npm"
     PIP = "pip"
@@ -57,7 +59,7 @@ class InstallationMethod(Enum):
 
 @dataclass
 class ServerTemplate:
-    """Template for MCP server configuration"""
+    """Template for MCP server configuration."""
 
     name: str
     installation_method: InstallationMethod
@@ -73,7 +75,7 @@ class ServerTemplate:
 
 @dataclass
 class ServerConfig:
-    """Configuration for a specific MCP server"""
+    """Configuration for a specific MCP server."""
 
     name: str
     template: str
@@ -85,29 +87,29 @@ class ServerConfig:
 
 
 class MCPInstaller(ABC):
-    """Abstract base class for MCP installers"""
+    """Abstract base class for MCP installers."""
 
     @abstractmethod
     async def can_handle(
         self, server_config: ServerConfig, template: ServerTemplate
     ) -> bool:
-        """Check if this installer can handle the given configuration"""
+        """Check if this installer can handle the given configuration."""
 
     @abstractmethod
     async def install(
         self, server_config: ServerConfig, template: ServerTemplate, install_dir: Path
     ) -> dict[str, Any]:
-        """Install the MCP server"""
+        """Install the MCP server."""
 
     @abstractmethod
     async def verify(
         self, server_config: ServerConfig, template: ServerTemplate, install_dir: Path
     ) -> bool:
-        """Verify the installation was successful"""
+        """Verify the installation was successful."""
 
 
 class NPMInstaller(MCPInstaller):
-    """Installer for NPM-based MCP servers"""
+    """Installer for NPM-based MCP servers."""
 
     async def can_handle(
         self, server_config: ServerConfig, template: ServerTemplate
@@ -117,7 +119,7 @@ class NPMInstaller(MCPInstaller):
     async def _run_command(
         self, cmd: list[str], cwd: Path | None = None, timeout: int = 300
     ) -> dict[str, Any]:
-        """Run a command and return results"""
+        """Run a command and return results."""
         process = await asyncio.create_subprocess_exec(
             *cmd,
             stdout=asyncio.subprocess.PIPE,
@@ -182,13 +184,13 @@ class NPMInstaller(MCPInstaller):
             # Check if package is available
             result = await self._run_command(["npx", package, "--help"], timeout=10)
             return result["returncode"] == 0
-        except:
+        except BaseException:
             return False
 
     async def _run_command(
         self, cmd: list[str], cwd: Path | None = None, timeout: int = 300
     ) -> dict[str, Any]:
-        """Run a command and return results"""
+        """Run a command and return results."""
         process = await asyncio.create_subprocess_exec(
             *cmd,
             stdout=asyncio.subprocess.PIPE,
@@ -211,7 +213,7 @@ class NPMInstaller(MCPInstaller):
 
 
 class PipInstaller(MCPInstaller):
-    """Installer for Python/pip-based MCP servers"""
+    """Installer for Python/pip-based MCP servers."""
 
     async def can_handle(
         self, server_config: ServerConfig, template: ServerTemplate
@@ -219,7 +221,7 @@ class PipInstaller(MCPInstaller):
         return template.installation_method == InstallationMethod.PIP
 
     async def _run_command(self, cmd: list[str], timeout: int = 300) -> dict[str, Any]:
-        """Run a command and return results"""
+        """Run a command and return results."""
         process = await asyncio.create_subprocess_exec(
             *cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
         )
@@ -263,7 +265,6 @@ class PipInstaller(MCPInstaller):
     ) -> bool:
         package = template.command_pattern.format(**server_config.variables)
         try:
-            import importlib
 
             module_name = package.replace("-", "_")
             importlib.import_module(module_name)
@@ -272,7 +273,7 @@ class PipInstaller(MCPInstaller):
             return False
 
     async def _run_command(self, cmd: list[str], timeout: int = 300) -> dict[str, Any]:
-        """Run a command and return results"""
+        """Run a command and return results."""
         process = await asyncio.create_subprocess_exec(
             *cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
         )
@@ -292,7 +293,7 @@ class PipInstaller(MCPInstaller):
 
 
 class GitInstaller(MCPInstaller):
-    """Installer for Git-based MCP servers"""
+    """Installer for Git-based MCP servers."""
 
     async def can_handle(
         self, server_config: ServerConfig, template: ServerTemplate
@@ -302,7 +303,7 @@ class GitInstaller(MCPInstaller):
     async def _run_command(
         self, cmd: list[str], cwd: Path | None = None, timeout: int = 300
     ) -> dict[str, Any]:
-        """Run a command and return results"""
+        """Run a command and return results."""
         process = await asyncio.create_subprocess_exec(
             *cmd,
             stdout=asyncio.subprocess.PIPE,
@@ -368,7 +369,7 @@ class GitInstaller(MCPInstaller):
     async def _run_command(
         self, cmd: list[str], cwd: Path | None = None, timeout: int = 300
     ) -> dict[str, Any]:
-        """Run a command and return results"""
+        """Run a command and return results."""
         process = await asyncio.create_subprocess_exec(
             *cmd,
             stdout=asyncio.subprocess.PIPE,
@@ -391,7 +392,7 @@ class GitInstaller(MCPInstaller):
 
 
 class DockerInstaller(MCPInstaller):
-    """Installer for Docker-based MCP servers"""
+    """Installer for Docker-based MCP servers."""
 
     async def can_handle(
         self, server_config: ServerConfig, template: ServerTemplate
@@ -399,7 +400,7 @@ class DockerInstaller(MCPInstaller):
         return template.installation_method == InstallationMethod.DOCKER
 
     async def _run_command(self, cmd: list[str], timeout: int = 300) -> dict[str, Any]:
-        """Run a command and return results"""
+        """Run a command and return results."""
         process = await asyncio.create_subprocess_exec(
             *cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
         )
@@ -449,11 +450,11 @@ class DockerInstaller(MCPInstaller):
         try:
             result = await self._run_command(["docker", "image", "inspect", image])
             return result["returncode"] == 0
-        except:
+        except BaseException:
             return False
 
     async def _run_command(self, cmd: list[str], timeout: int = 300) -> dict[str, Any]:
-        """Run a command and return results"""
+        """Run a command and return results."""
         process = await asyncio.create_subprocess_exec(
             *cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
         )
@@ -473,7 +474,8 @@ class DockerInstaller(MCPInstaller):
 
 
 class GeneralMCPDownloader:
-    """General MCP Server Downloader with configurable patterns and installers"""
+    """General MCP Server Downloader with configurable patterns and
+    installers."""
 
     def __init__(self, config_file: str | None = None, install_dir: str | None = None):
         self.config_file = config_file or "mcp_downloader_config.yaml"
@@ -496,7 +498,7 @@ class GeneralMCPDownloader:
         self.load_config()
 
     def load_config(self):
-        """Load configuration from file"""
+        """Load configuration from file."""
         config_path = Path(self.config_file)
 
         if not config_path.exists():
@@ -539,7 +541,7 @@ class GeneralMCPDownloader:
             self.create_default_config()
 
     def create_default_config(self):
-        """Create a default configuration file"""
+        """Create a default configuration file."""
         default_config = {
             "templates": [
                 {
@@ -607,7 +609,7 @@ class GeneralMCPDownloader:
     async def discover_servers_from_registry(
         self, registry_url: str
     ) -> list[dict[str, Any]]:
-        """Discover MCP servers from a registry or documentation source"""
+        """Discover MCP servers from a registry or documentation source."""
         discovered = []
 
         try:
@@ -632,7 +634,7 @@ class GeneralMCPDownloader:
         return discovered
 
     def _parse_json_registry(self, data: list | dict) -> list[dict[str, Any]]:
-        """Parse JSON registry format"""
+        """Parse JSON registry format."""
         if isinstance(data, list):
             return data
         if isinstance(data, dict) and "servers" in data:
@@ -640,13 +642,12 @@ class GeneralMCPDownloader:
         return []
 
     def _parse_markdown_registry(self, content: str) -> list[dict[str, Any]]:
-        """Parse markdown format with server links"""
-        import re
+        """Parse markdown format with server links."""
 
         servers = []
 
         # Look for npm package patterns
-        npm_pattern = r"npm\s+install\s+([^\s]+)"
+        npm_pattern = r"npm install ([^\s]+)"
         for match in re.finditer(npm_pattern, content):
             package = match.group(1)
             servers.append(
@@ -676,7 +677,7 @@ class GeneralMCPDownloader:
         return servers
 
     def _parse_github_api(self, content: str) -> list[dict[str, Any]]:
-        """Parse GitHub API response"""
+        """Parse GitHub API response."""
         try:
             data = json.loads(content)
             servers = []
@@ -698,7 +699,7 @@ class GeneralMCPDownloader:
                         )
 
             return servers
-        except:
+        except BaseException:
             return []
 
     async def download_servers(
@@ -707,7 +708,7 @@ class GeneralMCPDownloader:
         categories: list[str] | None = None,
         max_concurrent: int = 5,
     ) -> dict[str, Any]:
-        """Download and install MCP servers"""
+        """Download and install MCP servers."""
         # Filter servers to download
         servers_to_download = []
         for server in self.servers:
@@ -780,12 +781,12 @@ class GeneralMCPDownloader:
     async def _download_server_with_semaphore(
         self, semaphore: asyncio.Semaphore, server: ServerConfig
     ) -> dict[str, Any]:
-        """Download a server with concurrency control"""
+        """Download a server with concurrency control."""
         async with semaphore:
             return await self._download_server(server)
 
     async def _download_server(self, server: ServerConfig) -> dict[str, Any]:
-        """Download and install a single MCP server"""
+        """Download and install a single MCP server."""
         template = self.templates.get(server.template)
         if not template:
             return {"success": False, "error": f"Template {server.template} not found"}
@@ -824,7 +825,7 @@ class GeneralMCPDownloader:
         return result
 
     async def _save_server_config(self, successful_servers: list[dict[str, Any]]):
-        """Save successful server configurations to a file"""
+        """Save successful server configurations to a file."""
         config = {
             "mcpServers": {},
             "generated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
@@ -869,7 +870,7 @@ class GeneralMCPDownloader:
     async def auto_discover_and_download(
         self, limit: int | None = None
     ) -> dict[str, Any]:
-        """Auto-discover servers from registries and download them"""
+        """Auto-discover servers from registries and download them."""
         logger.info("Starting auto-discovery of MCP servers...")
 
         discovered_servers = []
@@ -903,8 +904,7 @@ class GeneralMCPDownloader:
 
 
 async def main():
-    """Main function for CLI usage"""
-    import argparse
+    """Main function for CLI usage."""
 
     parser = argparse.ArgumentParser(description="General MCP Server Downloader")
     parser.add_argument("--config", help="Configuration file path")
