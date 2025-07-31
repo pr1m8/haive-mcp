@@ -5,6 +5,7 @@ MCP server implementations using FastMCP for the Haive framework.
 ## Overview
 
 This module provides ready-to-use MCP server implementations:
+
 - Example servers demonstrating MCP capabilities
 - HTTP-based servers for production deployment
 - Integration servers for haive-dataflow
@@ -118,7 +119,7 @@ class MyHTTPServer(HTTPMCPServer):
     def setup_routes(self):
         self.router.add_post("/execute", self.execute_tool)
         self.router.add_get("/tools", self.list_tools)
-    
+
     async def execute_tool(self, request):
         data = await request.json()
         result = await self.mcp.execute(
@@ -178,7 +179,7 @@ CMD ["python", "server.py"]
 # Test tools directly
 async def test_server():
     from my_server import mcp
-    
+
     result = await mcp._tools["my_tool"]("test")
     assert result == expected
 ```

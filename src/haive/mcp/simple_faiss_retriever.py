@@ -4,9 +4,9 @@ Uses FAISS for vector storage and auto-loads MCP server documentation.
 """
 
 import json
-from pathlib import Path
 import pickle
 import sys
+from pathlib import Path
 from typing import Any
 
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -15,7 +15,6 @@ from langchain_core.documents import Document
 from langchain_huggingface import HuggingFaceEmbeddings
 
 from haive.mcp.documentation import MCPDocumentationLoader
-
 
 # Add parent path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent.parent))

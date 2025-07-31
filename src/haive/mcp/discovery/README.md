@@ -5,6 +5,7 @@ Automatic discovery and analysis of MCP servers from various sources.
 ## Overview
 
 The discovery module provides comprehensive MCP server discovery capabilities:
+
 - npm package discovery (`@modelcontextprotocol/*`)
 - PyPI package discovery (`mcp-*`)
 - GitHub repository discovery

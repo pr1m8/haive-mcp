@@ -5,11 +5,11 @@ Manage installed MCP servers, view logs, test connections, and configure setting
 """
 
 import asyncio
-from datetime import datetime
 import json
-from pathlib import Path
 import subprocess
 import sys
+from datetime import datetime
+from pathlib import Path
 
 import click
 from rich.console import Console
@@ -17,12 +17,10 @@ from rich.live import Live
 from rich.panel import Panel
 from rich.table import Table
 
-
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.haive.mcp.manager import MCPServerManager
-
 
 console = Console()
 
