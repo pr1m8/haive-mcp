@@ -198,7 +198,7 @@ class MCPProcessManager:
                         f"{ps_process.memory_info().rss / 1024 / 1024:.1f} MB"
                     )
                     status["cpu_usage"] = f"{ps_process.cpu_percent(interval=0.1):.1f}%"
-                except:
+                except Exception:
                     pass
             else:
                 # Process died

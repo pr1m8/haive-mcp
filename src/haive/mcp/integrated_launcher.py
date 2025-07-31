@@ -146,7 +146,7 @@ def install_server_interactive():
     try:
         cat_choice = int(input("\nSelect category (number): ")) - 1
         selected_category = sorted(categories.keys())[cat_choice]
-    except:
+    except (ValueError, IndexError):
         return
 
     # Show servers in category
@@ -160,7 +160,7 @@ def install_server_interactive():
     try:
         server_choice = int(input("\nSelect server to install (number): ")) - 1
         cat_servers[server_choice]
-    except:
+    except (ValueError, IndexError):
         return
 
     # Show server details

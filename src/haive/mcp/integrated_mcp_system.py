@@ -544,7 +544,7 @@ def show_running_tab(system):
             try:
                 os.kill(pid, 0)  # Check if process exists
                 st.success("🟢 Running")
-            except:
+            except OSError:
                 st.error("🔴 Stopped")
                 del running[server_name]
 

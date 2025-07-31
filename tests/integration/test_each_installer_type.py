@@ -6,15 +6,14 @@ with real-world examples to verify functionality.
 """
 
 import asyncio
-from pathlib import Path
 import subprocess
 import sys
+from pathlib import Path
 
 import pytest
 from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
-
 
 # Add parent to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
@@ -26,7 +25,6 @@ from src.haive.mcp.downloader.installers import (
     NPMInstaller,
     PipInstaller,
 )
-
 
 console = Console()
 
@@ -449,7 +447,7 @@ class TestInstallerTypes:
         try:
             subprocess.run(["npm", "--version"], capture_output=True, check=True)
             return True
-        except:
+        except (subprocess.CalledProcessError, FileNotFoundError):
             return False
 
     def _check_git_available(self) -> bool:
@@ -457,7 +455,7 @@ class TestInstallerTypes:
         try:
             subprocess.run(["git", "--version"], capture_output=True, check=True)
             return True
-        except:
+        except (subprocess.CalledProcessError, FileNotFoundError):
             return False
 
     def _check_docker_available(self) -> bool:
@@ -465,7 +463,7 @@ class TestInstallerTypes:
         try:
             subprocess.run(["docker", "--version"], capture_output=True, check=True)
             return True
-        except:
+        except (subprocess.CalledProcessError, FileNotFoundError):
             return False
 
 

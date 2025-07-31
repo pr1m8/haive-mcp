@@ -89,7 +89,7 @@ class MCPServerManager:
         for ws in self.websocket_clients:
             try:
                 await ws.send_json(message)
-            except:
+            except Exception:
                 disconnected.append(ws)
 
         # Clean up disconnected clients
