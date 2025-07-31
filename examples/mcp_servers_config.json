@@ -8,13 +8,18 @@
       "env": {
         "FILESYSTEM_ROOT": "/tmp"
       },
-      "capabilities": ["read_file", "write_file", "list_directory", "create_directory"],
+      "capabilities": [
+        "read_file",
+        "write_file",
+        "list_directory",
+        "create_directory"
+      ],
       "category": "filesystem",
       "description": "Local filesystem operations via MCP",
       "enabled": true
     },
     "github": {
-      "name": "github", 
+      "name": "github",
       "transport": "stdio",
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-github"],
@@ -22,13 +27,13 @@
         "GITHUB_TOKEN": "${GITHUB_TOKEN}"
       },
       "capabilities": ["repo_access", "issue_management", "pr_operations"],
-      "category": "development", 
+      "category": "development",
       "description": "GitHub repository operations via MCP",
       "enabled": true
     },
     "sqlite": {
       "name": "sqlite",
-      "transport": "stdio", 
+      "transport": "stdio",
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-sqlite"],
       "capabilities": ["database_query", "schema_inspect", "data_analysis"],
@@ -39,7 +44,7 @@
     "brave_search": {
       "name": "brave_search",
       "transport": "stdio",
-      "command": "npx", 
+      "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-brave-search"],
       "env": {
         "BRAVE_API_KEY": "${BRAVE_API_KEY}"
@@ -53,8 +58,13 @@
       "name": "puppeteer",
       "transport": "stdio",
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-puppeteer"], 
-      "capabilities": ["web_scraping", "screenshot", "pdf_generation", "automation"],
+      "args": ["-y", "@modelcontextprotocol/server-puppeteer"],
+      "capabilities": [
+        "web_scraping",
+        "screenshot",
+        "pdf_generation",
+        "automation"
+      ],
       "category": "web",
       "description": "Web automation and scraping via Puppeteer",
       "enabled": true
