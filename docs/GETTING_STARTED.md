@@ -3,6 +3,7 @@
 This guide will walk you through setting up and using haive-mcp for dynamic MCP server management in your Haive agents.
 
 ## Table of Contents
+
 1. [Installation](#installation)
 2. [Understanding MCP](#understanding-mcp)
 3. [Your First Dynamic Agent](#your-first-dynamic-agent)
@@ -13,6 +14,7 @@ This guide will walk you through setting up and using haive-mcp for dynamic MCP 
 ## Installation
 
 ### Prerequisites
+
 - Python 3.12+
 - Poetry (for dependency management)
 - Node.js (for MCP servers that use npm)
@@ -48,6 +50,7 @@ Model Context Protocol (MCP) enables AI models to access external tools and data
 ### MCP Servers
 
 MCP servers are programs that provide tools/resources/prompts. Examples:
+
 - `filesystem` - Read/write files
 - `postgres` - Database operations
 - `github` - Repository management
@@ -69,10 +72,10 @@ async def main():
         auto_discover=True,          # Auto-find needed servers
         require_approval=True        # Ask before installing
     )
-    
+
     # Initialize the agent
     await agent.setup()
-    
+
     # Ask it to do something that needs tools
     result = await agent.arun({
         "messages": [{
@@ -80,9 +83,9 @@ async def main():
             "content": "Search for Python decorators tutorial and save it to decorators.md"
         }]
     })
-    
+
     print(result)
-    
+
     # What happened behind the scenes:
     # 1. Agent analyzed your request
     # 2. Detected need for: web search + file writing
@@ -129,17 +132,17 @@ async def my_approval(request):
     print(f"\n🔔 APPROVAL REQUEST")
     print(f"Server: {request.recommendation.server_name}")
     print(f"Reason: {request.recommendation.reason}")
-    
+
     # You could:
     # - Check against allowlist
     # - Log to audit system
     # - Send to Slack for approval
     # - Auto-approve trusted servers
-    
+
     if "postgres" in request.recommendation.server_name:
         print("⚠️  Database access requested!")
         return False  # Deny database servers
-    
+
     return True  # Approve others
 
 agent = IntelligentMCPAgent(
@@ -282,13 +285,13 @@ from haive.mcp.agents import TransferableMCPAgent
 researcher = TransferableMCPAgent(engine=engine, mcp_config=research_config)
 await researcher.setup()
 
-# Writer agent creates content  
+# Writer agent creates content
 writer = TransferableMCPAgent(engine=engine, mcp_config=writer_config)
 await writer.setup()
 
 # Share research tools with writer
 await researcher.transfer_tools_to_agent(
-    writer, 
+    writer,
     tool_names=["web_search", "arxiv_search"]
 )
 
@@ -341,18 +344,18 @@ async def production_approval(request):
     # Check allowlist
     allowed_servers = ["filesystem", "postgres", "github"]
     server_name = request.recommendation.server_name
-    
+
     if any(allowed in server_name for allowed in allowed_servers):
         # Log approval
         logger.info(f"Auto-approved: {server_name}")
         return True
-    
+
     # Send to human for review
     await send_slack_message(
         f"MCP Server approval needed: {server_name}\n"
         f"Reason: {request.recommendation.reason}"
     )
-    
+
     # Wait for human response (simplified)
     return await wait_for_human_approval(request.request_id)
 ```
@@ -364,16 +367,16 @@ async def production_approval(request):
 async def monitor_servers(agent):
     while True:
         status = agent.mcp_manager.get_all_server_status()
-        
+
         # Check for failures
         if status['summary']['failed_servers'] > 0:
             logger.warning(f"Failed servers: {status['summary']['failed_servers']}")
-            
+
             # Try to recover
             for server_name, info in status['servers'].items():
                 if info['status'] == 'failed':
                     await agent.mcp_manager.reload_server(server_name)
-        
+
         await asyncio.sleep(60)  # Check every minute
 ```
 
@@ -405,16 +408,19 @@ github_config = MCPServerConfig(
 ## Troubleshooting
 
 ### Agent won't install servers?
+
 - Check `require_approval` setting
 - Verify npm/npx is installed
 - Look at logs for connection errors
 
 ### Tools not showing up?
+
 - Use `refresh=True` when getting tools
 - Check server status with `list_mcp_status` tool
 - Verify server installed successfully
 
 ### Performance issues?
+
 - Disable auto-discovery for production
 - Use static configurations
 - Limit health check frequency
@@ -424,7 +430,7 @@ github_config = MCPServerConfig(
 haive-mcp makes it easy to give your agents access to external tools and data:
 
 1. **Start simple** with auto-discovery
-2. **Stay in control** with HITL approval  
+2. **Stay in control** with HITL approval
 3. **Scale up** with static configs
 4. **Keep running** with hot-reload
 

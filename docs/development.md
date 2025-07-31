@@ -68,27 +68,27 @@ Follow PEP 8 with these additions:
 ### Docstring Format
 
 ```python
-def process_server(server_config: ServerConfig, 
+def process_server(server_config: ServerConfig,
                   timeout: int = 30) -> Dict[str, Any]:
     """Process and install an MCP server.
-    
+
     Downloads and configures an MCP server based on the provided
     configuration. Handles retries and error recovery.
-    
+
     Args:
         server_config: Server configuration object
         timeout: Connection timeout in seconds (default: 30)
-        
+
     Returns:
         Dictionary containing:
             - success: Whether installation succeeded
             - command: Command to run the server
             - error: Error message if failed
-            
+
     Raises:
         ValueError: If server_config is invalid
         TimeoutError: If installation times out
-        
+
     Example:
         >>> config = ServerConfig(name="test", template="npm")
         >>> result = process_server(config)
@@ -152,7 +152,7 @@ class TestNPMInstaller:
     @pytest.fixture
     def installer(self):
         return NPMInstaller()
-        
+
     @pytest.fixture
     def server_config(self):
         return ServerConfig(
@@ -161,17 +161,17 @@ class TestNPMInstaller:
             source="npm",
             variables={"package": "@test/package"}
         )
-        
+
     async def test_can_handle_npm_template(self, installer, server_config):
         template = ServerTemplate(
             name="npm_test",
             installation_method="npm",
             command_pattern="npx {package}"
         )
-        
+
         result = await installer.can_handle(server_config, template)
         assert result is True
-        
+
     async def test_install_success(self, installer, server_config, tmp_path):
         # Test implementation
         pass
@@ -194,7 +194,7 @@ class TestGeneralMCPDownloader:
             config_file=str(config_file),
             install_dir=str(tmp_path / "servers")
         )
-        
+
     async def test_download_real_server(self, downloader):
         # This test requires network access
         result = await downloader.download_servers(["filesystem"])
@@ -248,14 +248,14 @@ def mock_server_response():
 # src/haive/mcp/downloader/installers.py
 class NewMethodInstaller(MCPInstaller):
     """Installer for new method."""
-    
+
     async def can_handle(self, server_config, template):
         return template.installation_method == "new_method"
-        
+
     async def install(self, server_config, template, install_dir):
         # Implementation
         return {"success": True}
-        
+
     async def verify(self, server_config, template, install_dir):
         # Verification logic
         return True
@@ -335,19 +335,19 @@ settings:
 
 ```json
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Debug Downloader",
-            "type": "python",
-            "request": "launch",
-            "module": "scripts.download_servers",
-            "args": ["download", "--servers", "filesystem"],
-            "env": {
-                "PYTHONPATH": "${workspaceFolder}"
-            }
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Downloader",
+      "type": "python",
+      "request": "launch",
+      "module": "scripts.download_servers",
+      "args": ["download", "--servers", "filesystem"],
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      }
+    }
+  ]
 }
 ```
 
