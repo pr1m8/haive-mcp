@@ -44,16 +44,13 @@ Note:
     adapt their capabilities based on task requirements.
 """
 
-import asyncio
-import json
 import logging
-from dataclasses import asdict, dataclass
-from pathlib import Path
-from typing import Any, Dict, List, Optional, Set, Tuple
+from dataclasses import dataclass
+from typing import Any
 
 from haive.mcp.config import MCPConfig, MCPServerConfig
 from haive.mcp.documentation.doc_loader import MCPDocumentationLoader
-from haive.mcp.tools.server_selector import MCPServerSelector, ServerScore, TaskAnalyzer
+from haive.mcp.tools.server_selector import MCPServerSelector, TaskAnalyzer
 
 logger = logging.getLogger(__name__)
 
@@ -65,10 +62,10 @@ class ServerRecommendation:
     server_name: str
     confidence: float  # 0.0 to 1.0
     reasoning: str
-    capabilities: List[str]
+    capabilities: list[str]
     estimated_setup_time: int  # seconds
-    fallback_servers: List[str]
-    required_env_vars: List[str]
+    fallback_servers: list[str]
+    required_env_vars: list[str]
 
 
 @dataclass
@@ -76,12 +73,12 @@ class SmartConfiguration:
     """A complete MCP configuration with metadata."""
 
     config: MCPConfig
-    primary_servers: List[str]
-    fallback_servers: List[str]
-    estimated_capabilities: List[str]
+    primary_servers: list[str]
+    fallback_servers: list[str]
+    estimated_capabilities: list[str]
     setup_complexity: str  # "simple", "moderate", "complex"
     reasoning: str
-    warnings: List[str]
+    warnings: list[str]
 
 
 class TaskMatcher:
@@ -93,7 +90,7 @@ class TaskMatcher:
         self.server_profiles = self._load_server_profiles()
         self.success_history = {}  # Track successful combinations
 
-    def _load_task_patterns(self) -> Dict[str, Any]:
+    def _load_task_patterns(self) -> dict[str, Any]:
         """Load predefined task patterns for better matching."""
         return {
             "code_analysis": {
@@ -141,7 +138,7 @@ class TaskMatcher:
             },
         }
 
-    def _load_server_profiles(self) -> Dict[str, Any]:
+    def _load_server_profiles(self) -> dict[str, Any]:
         """Load detailed server profiles for better recommendations."""
         return {
             "github": {
@@ -181,7 +178,7 @@ class TaskMatcher:
             },
         }
 
-    def match_task_to_pattern(self, task_description: str) -> Optional[str]:
+    def match_task_to_pattern(self, task_description: str) -> str | None:
         """Match a task description to a known pattern.
 
         Args:
@@ -215,7 +212,7 @@ class TaskMatcher:
         return best_match if best_score > 1 else None
 
     def get_server_recommendation_score(
-        self, server_name: str, task_pattern: Optional[str], task_description: str
+        self, server_name: str, task_pattern: str | None, task_description: str
     ) -> float:
         """Calculate recommendation score for a server.
 
@@ -352,10 +349,10 @@ class MCPAssistant:
         self,
         task_description: str,
         requirements: Any,
-        task_pattern: Optional[str],
+        task_pattern: str | None,
         max_servers: int,
         prefer_simple_setup: bool,
-    ) -> List[ServerRecommendation]:
+    ) -> list[ServerRecommendation]:
         """Get intelligent server recommendations."""
         # Get base recommendations from selector
         base_scores = self.selector.recommend_for_task(
@@ -412,7 +409,7 @@ class MCPAssistant:
         return recommendations[:max_servers]
 
     def _create_smart_config(
-        self, recommendations: List[ServerRecommendation], include_fallbacks: bool
+        self, recommendations: list[ServerRecommendation], include_fallbacks: bool
     ) -> MCPConfig:
         """Create optimized MCP configuration."""
         servers = {}
@@ -447,7 +444,7 @@ class MCPAssistant:
 
     def _create_optimized_server_config(
         self, recommendation: ServerRecommendation
-    ) -> Optional[MCPServerConfig]:
+    ) -> MCPServerConfig | None:
         """Create optimized server config from recommendation."""
         try:
             # Get server documentation
@@ -481,7 +478,7 @@ class MCPAssistant:
 
     def _create_fallback_server_config(
         self, server_name: str
-    ) -> Optional[MCPServerConfig]:
+    ) -> MCPServerConfig | None:
         """Create fallback server configuration."""
         # Simplified configs for common fallback servers
         fallback_configs = {
@@ -525,7 +522,7 @@ class MCPAssistant:
 
         return 60  # Default estimate
 
-    def _get_required_env_vars(self, server_name: str) -> List[str]:
+    def _get_required_env_vars(self, server_name: str) -> list[str]:
         """Get required environment variables for a server."""
         # Common patterns for environment variables
         env_patterns = {
@@ -542,7 +539,7 @@ class MCPAssistant:
         short_name = server_name.split("/")[-1]
         return env_patterns.get(short_name, [])
 
-    def _suggest_fallbacks(self, server_name: str, requirements: Any) -> List[str]:
+    def _suggest_fallbacks(self, server_name: str, requirements: Any) -> list[str]:
         """Suggest fallback servers for a primary server."""
         fallback_map = {
             "brave-search": ["fetch", "filesystem"],
@@ -559,8 +556,8 @@ class MCPAssistant:
     def _generate_reasoning(
         self,
         task_description: str,
-        task_pattern: Optional[str],
-        recommendations: List[ServerRecommendation],
+        task_pattern: str | None,
+        recommendations: list[ServerRecommendation],
         requirements: Any,
     ) -> str:
         """Generate human-readable reasoning for the selection."""
@@ -576,7 +573,9 @@ class MCPAssistant:
         if recommendations:
             top_server = recommendations[0]
             parts.append(
-                f"Primary server: {top_server.server_name} (confidence: {top_server.confidence:.1%})"
+                f"Primary server: {top_server.server_name} (confidence: {
+                    top_server.confidence:.1%
+                })"
             )
 
             if len(recommendations) > 1:
@@ -586,7 +585,7 @@ class MCPAssistant:
         return ". ".join(parts)
 
     def _assess_setup_complexity(
-        self, recommendations: List[ServerRecommendation]
+        self, recommendations: list[ServerRecommendation]
     ) -> str:
         """Assess overall setup complexity."""
         if not recommendations:
@@ -597,14 +596,13 @@ class MCPAssistant:
 
         if max_setup_time > 240 or total_env_vars > 3:
             return "complex"
-        elif max_setup_time > 90 or total_env_vars > 1:
+        if max_setup_time > 90 or total_env_vars > 1:
             return "moderate"
-        else:
-            return "simple"
+        return "simple"
 
     def _generate_warnings(
-        self, recommendations: List[ServerRecommendation]
-    ) -> List[str]:
+        self, recommendations: list[ServerRecommendation]
+    ) -> list[str]:
         """Generate warnings about potential issues."""
         warnings = []
 
@@ -628,8 +626,8 @@ class MCPAssistant:
         return warnings
 
     def _get_fallback_servers(
-        self, recommendations: List[ServerRecommendation]
-    ) -> List[str]:
+        self, recommendations: list[ServerRecommendation]
+    ) -> list[str]:
         """Get all fallback servers from recommendations."""
         fallbacks = set()
         for rec in recommendations:
@@ -640,7 +638,7 @@ class MCPAssistant:
         """Get the reasoning for the last selection."""
         return self.last_reasoning
 
-    def explain_recommendation(self, server_name: str) -> Dict[str, Any]:
+    def explain_recommendation(self, server_name: str) -> dict[str, Any]:
         """Get detailed explanation for a server recommendation.
 
         Args:
@@ -670,7 +668,7 @@ class MCPAssistant:
 
         return explanation
 
-    async def validate_configuration(self, config: MCPConfig) -> Dict[str, Any]:
+    async def validate_configuration(self, config: MCPConfig) -> dict[str, Any]:
         """Validate a configuration and provide feedback.
 
         Args:

@@ -44,9 +44,10 @@ Note:
 import json
 import logging
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from langchain_core.documents import Document
+
 
 # Try to import haive document loaders
 try:
@@ -65,57 +66,64 @@ logger = logging.getLogger(__name__)
 
 
 class MCPDocumentationLoader:
-    """
-    Loads and processes MCP server documentation from various sources.
-    """
+    """Loads and processes MCP server documentation from various sources."""
 
-    def __init__(self, resources_path: Optional[Path] = None):
-        """
-        Initialize the documentation loader.
+    def __init__(self, resources_path: Path | None = None):
+        """Initialize the documentation loader.
 
         Args:
-            resources_path: Path to the agent_resources directory
+            resources_path: Path to the data directory containing MCP servers
         """
         if resources_path is None:
-            # Default to the package's agent_resources directory
-            resources_path = (
-                Path(__file__).parent.parent.parent.parent.parent / "agent_resources"
-            )
+            # Default to the package's data directory
+            resources_path = Path(__file__).parent.parent.parent.parent.parent / "data"
 
         self.resources_path = resources_path
         self.mcp_servers_path = self.resources_path / "mcp_servers"
-        self._loaded_docs: Dict[str, Any] = {}
+        self._loaded_docs: dict[str, Any] = {}
 
-    def load_all_mcp_documents(self) -> List[Dict[str, Any]]:
-        """
-        Load all MCP server documentation from the stored JSON.
+    def load_all_mcp_documents(self) -> dict[str, dict[str, Any]]:
+        """Load all MCP server documentation from the stored JSON.
 
         Returns:
-            List of MCP server documentation dictionaries
+            Dictionary mapping server names to documentation dictionaries
         """
         all_docs_path = self.mcp_servers_path / "all_mcp_documents.json"
 
         if not all_docs_path.exists():
             logger.error(f"MCP documents file not found: {all_docs_path}")
-            return []
+            return {}
 
         try:
-            with open(all_docs_path, "r") as f:
-                docs = json.load(f)
+            with open(all_docs_path) as f:
+                data = json.load(f)
 
-            # Cache the loaded documents
-            for doc in docs:
-                if doc.get("metadata", {}).get("name"):
-                    self._loaded_docs[doc["metadata"]["name"]] = doc
+            # Handle both old list format and new structured format
+            if isinstance(data, list):
+                # Old format: list of documents
+                docs_dict = {}
+                for doc in data:
+                    if doc.get("metadata", {}).get("name"):
+                        name = doc["metadata"]["name"]
+                        docs_dict[name] = doc
+                        self._loaded_docs[name] = doc
+            # New format: {metadata: {...}, servers: {...}}
+            elif "servers" in data:
+                docs_dict = data["servers"]
+                self._loaded_docs = docs_dict.copy()
+            else:
+                # Fallback: treat as direct dictionary
+                docs_dict = data
+                self._loaded_docs = docs_dict.copy()
 
-            return docs
+            logger.info(f"Loaded {len(docs_dict)} MCP server documents")
+            return docs_dict
         except Exception as e:
             logger.error(f"Failed to load MCP documents: {e}")
-            return []
+            return {}
 
-    def get_server_documentation(self, server_name: str) -> Optional[Dict[str, Any]]:
-        """
-        Get documentation for a specific MCP server.
+    def get_server_documentation(self, server_name: str) -> dict[str, Any] | None:
+        """Get documentation for a specific MCP server.
 
         Args:
             server_name: Name of the MCP server (e.g., "modelcontextprotocol/server-filesystem")
@@ -129,9 +137,8 @@ class MCPDocumentationLoader:
 
         return self._loaded_docs.get(server_name)
 
-    def search_servers_by_category(self, category: str) -> List[Dict[str, Any]]:
-        """
-        Search for MCP servers by category.
+    def search_servers_by_category(self, category: str) -> list[dict[str, Any]]:
+        """Search for MCP servers by category.
 
         Args:
             category: Category to search for (e.g., "Databases", "File Systems")
@@ -144,15 +151,21 @@ class MCPDocumentationLoader:
 
         matching = []
         for server_doc in self._loaded_docs.values():
-            server_category = server_doc.get("metadata", {}).get("category", "")
+            # Handle both old and new format
+            if "metadata" in server_doc:
+                # Old format
+                server_category = server_doc.get("metadata", {}).get("category", "")
+            else:
+                # New format
+                server_category = server_doc.get("category", "")
+
             if category.lower() in server_category.lower():
                 matching.append(server_doc)
 
         return matching
 
-    def search_servers_by_capability(self, capability: str) -> List[Dict[str, Any]]:
-        """
-        Search for MCP servers by capability mentioned in description.
+    def search_servers_by_capability(self, capability: str) -> list[dict[str, Any]]:
+        """Search for MCP servers by capability mentioned in description.
 
         Args:
             capability: Capability to search for
@@ -165,8 +178,15 @@ class MCPDocumentationLoader:
 
         matching = []
         for server_doc in self._loaded_docs.values():
-            description = server_doc.get("metadata", {}).get("description", "")
-            readme = server_doc.get("readme_content", "")
+            # Handle both old and new format
+            if "metadata" in server_doc:
+                # Old format
+                description = server_doc.get("metadata", {}).get("description", "")
+                readme = server_doc.get("readme_content", "")
+            else:
+                # New format
+                description = server_doc.get("description", "")
+                readme = server_doc.get("documentation", "")
 
             if (
                 capability.lower() in description.lower()
@@ -176,9 +196,8 @@ class MCPDocumentationLoader:
 
         return matching
 
-    async def fetch_github_readme(self, repo_url: str) -> Optional[Document]:
-        """
-        Fetch README from GitHub repository.
+    async def fetch_github_readme(self, repo_url: str) -> Document | None:
+        """Fetch README from GitHub repository.
 
         Args:
             repo_url: GitHub repository URL
@@ -202,9 +221,8 @@ class MCPDocumentationLoader:
             logger.error(f"Failed to fetch GitHub README: {e}")
             return None
 
-    async def fetch_server_website(self, url: str) -> Optional[Document]:
-        """
-        Fetch documentation from server website.
+    async def fetch_server_website(self, url: str) -> Document | None:
+        """Fetch documentation from server website.
 
         Args:
             url: Website URL
@@ -224,9 +242,8 @@ class MCPDocumentationLoader:
             logger.error(f"Failed to fetch website: {e}")
             return None
 
-    def extract_setup_info(self, server_doc: Dict[str, Any]) -> Dict[str, Any]:
-        """
-        Extract setup information from server documentation.
+    def extract_setup_info(self, server_doc: dict[str, Any]) -> dict[str, Any]:
+        """Extract setup information from server documentation.
 
         Args:
             server_doc: Server documentation dictionary
@@ -234,26 +251,53 @@ class MCPDocumentationLoader:
         Returns:
             Extracted setup information
         """
-        metadata = server_doc.get("metadata", {})
-        readme = server_doc.get("readme_content", "")
-
-        setup_info = {
-            "name": metadata.get("name", ""),
-            "repo_url": metadata.get("repo_url", ""),
-            "description": metadata.get("description", ""),
-            "category": metadata.get("category", ""),
-            "platforms": metadata.get("platforms", []),
-            "languages": metadata.get("languages", []),
-            "license": metadata.get("license", ""),
-            "installation": self._extract_installation_steps(readme),
-            "configuration": self._extract_configuration(readme),
-            "usage": self._extract_usage_examples(readme),
-            "dependencies": self._extract_dependencies(readme),
-        }
+        # Handle both old and new format
+        if "metadata" in server_doc:
+            # Old format
+            metadata = server_doc.get("metadata", {})
+            readme = server_doc.get("readme_content", "")
+            setup_info = {
+                "name": metadata.get("name", ""),
+                "repo_url": metadata.get("repo_url", ""),
+                "description": metadata.get("description", ""),
+                "category": metadata.get("category", ""),
+                "platforms": metadata.get("platforms", []),
+                "languages": metadata.get("languages", []),
+                "license": metadata.get("license", ""),
+                "installation": self._extract_installation_steps(readme),
+                "configuration": self._extract_configuration(readme),
+                "usage": self._extract_usage_examples(readme),
+                "dependencies": self._extract_dependencies(readme),
+            }
+        else:
+            # New format
+            readme = server_doc.get("documentation", "")
+            meta = server_doc.get("metadata", {})
+            setup_info = {
+                "name": server_doc.get("name", ""),
+                "repo_url": server_doc.get("repository", ""),
+                "description": server_doc.get("description", ""),
+                "category": server_doc.get("category", ""),
+                "platforms": [],
+                "languages": [],
+                "license": "",
+                "stars": meta.get("stars"),
+                "last_updated": meta.get("last_updated"),
+                "is_official": meta.get("is_official", False),
+                "npm_package": meta.get("npm_package"),
+                "install_command": meta.get("install_command"),
+                "setup_instructions": meta.get("setup_instructions"),
+                "transport_types": meta.get("transport_types", []),
+                "capabilities": meta.get("capabilities", []),
+                "dependencies": meta.get("dependencies", []),
+                "installation": self._extract_installation_steps(readme),
+                "configuration": self._extract_configuration(readme),
+                "usage": self._extract_usage_examples(readme),
+            }
 
         return setup_info
 
-    def _extract_installation_steps(self, readme: Optional[str]) -> List[str]:
+    def _extract_installation_steps(self, readme: str | None) -> list[str]:
         """Extract installation steps from README."""
         if not readme:
             return []
@@ -293,7 +337,7 @@ class MCPDocumentationLoader:
 
         return steps
 
-    def _extract_configuration(self, readme: Optional[str]) -> Dict[str, Any]:
+    def _extract_configuration(self, readme: str | None) -> dict[str, Any]:
         """Extract configuration information from README."""
         if not readme:
             return {}
@@ -336,7 +380,7 @@ class MCPDocumentationLoader:
 
         return config
 
-    def _extract_usage_examples(self, readme: Optional[str]) -> List[str]:
+    def _extract_usage_examples(self, readme: str | None) -> list[str]:
         """Extract usage examples from README."""
         if not readme:
             return []
@@ -387,7 +431,7 @@ class MCPDocumentationLoader:
 
         return examples
 
-    def _extract_dependencies(self, readme: Optional[str]) -> List[str]:
+    def _extract_dependencies(self, readme: str | None) -> list[str]:
         """Extract dependencies from README."""
         if not readme:
             return []

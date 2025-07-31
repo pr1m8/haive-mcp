@@ -1,0 +1,49 @@
+{
+  "server_data": {
+    "name": "Rootly-AI-Labs/Rootly-MCP-server",
+    "source": "github:wong2/awesome-mcp-servers",
+    "source_url": "https://github.com/wong2/awesome-mcp-servers",
+    "repository_url": "https://github.com/Rootly-AI-Labs/Rootly-MCP-server",
+    "repository_owner": "Rootly-AI-Labs",
+    "repository_name": "Rootly-MCP-server",
+    "description": "",
+    "category": "ai_ml",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.263084+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 1717
+    }
+  },
+  "quality_metrics": {
+    "name": "Rootly-AI-Labs/Rootly-MCP-server",
+    "repository_url": "https://github.com/Rootly-AI-Labs/Rootly-MCP-server",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "ai_ml",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T15:11:41.027032+00:00",
+    "processing_time": 4.673004150390625e-05
+  },
+  "processed_at": "2025-07-03T15:11:41.028064+00:00",
+  "processor_version": "1.0.0"
+}

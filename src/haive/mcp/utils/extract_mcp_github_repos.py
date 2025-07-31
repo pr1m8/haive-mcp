@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Enhanced MCP Repository Extractor with README Processing
+"""Enhanced MCP Repository Extractor with README Processing.
 
 This script:
 1. Extracts repository URLs from awesome-mcp-servers
@@ -30,7 +30,7 @@ console = Console()
 
 
 class MCPCategory(str, Enum):
-    """MCP Server Categories"""
+    """MCP Server Categories."""
 
     FILE_SYSTEMS = "File Systems"
     SANDBOX_VIRTUALIZATION = "Sandbox & Virtualization"
@@ -63,7 +63,7 @@ class MCPCategory(str, Enum):
 
 
 class MCPLanguage(str, Enum):
-    """Programming Languages"""
+    """Programming Languages."""
 
     PYTHON = "Python"
     TYPESCRIPT_JAVASCRIPT = "TypeScript/JavaScript"
@@ -76,7 +76,7 @@ class MCPLanguage(str, Enum):
 
 
 class MCPPlatform(str, Enum):
-    """Supported Platforms"""
+    """Supported Platforms."""
 
     MACOS = "macOS"
     WINDOWS = "Windows"
@@ -85,7 +85,7 @@ class MCPPlatform(str, Enum):
 
 
 class MCPScope(str, Enum):
-    """Server Scope"""
+    """Server Scope."""
 
     CLOUD = "cloud"
     LOCAL = "local"
@@ -93,7 +93,7 @@ class MCPScope(str, Enum):
 
 
 class MCPServerMetadata(BaseModel):
-    """Metadata for an MCP Server"""
+    """Metadata for an MCP Server."""
 
     model_config = ConfigDict(
         extra="forbid", validate_assignment=True, use_enum_values=True
@@ -126,17 +126,17 @@ class MCPServerMetadata(BaseModel):
     @field_validator("repo_url")
     @classmethod
     def validate_repo_url(cls, v: str) -> str:
-        """Validate GitHub repository URL"""
+        """Validate GitHub repository URL."""
         if not v.startswith(("https://github.com/", "http://github.com/")):
             raise ValueError("Invalid GitHub repository URL")
         return v
 
     def get_unique_id(self) -> str:
-        """Generate unique ID for this server"""
+        """Generate unique ID for this server."""
         return f"{self.owner}/{self.repo_name}"
 
     def to_langchain_metadata(self) -> dict[str, Any]:
-        """Convert to LangChain Document metadata format"""
+        """Convert to LangChain Document metadata format."""
         return {
             "source": self.repo_url,
             "server_name": self.name,
@@ -157,7 +157,7 @@ class MCPServerMetadata(BaseModel):
 
 
 class MCPServerDocument(BaseModel):
-    """Complete MCP Server Document"""
+    """Complete MCP Server Document."""
 
     model_config = ConfigDict(extra="forbid", validate_assignment=True)
 
@@ -169,13 +169,13 @@ class MCPServerDocument(BaseModel):
     content_hash: str | None = Field(None, description="SHA256 hash of README content")
 
     def compute_content_hash(self) -> str:
-        """Compute SHA256 hash of README content"""
+        """Compute SHA256 hash of README content."""
         if self.readme_content:
             return hashlib.sha256(self.readme_content.encode()).hexdigest()
         return ""
 
     def to_langchain_document(self) -> Document:
-        """Convert to LangChain Document"""
+        """Convert to LangChain Document."""
         metadata = self.metadata.to_langchain_metadata()
         metadata.update(
             {
@@ -193,7 +193,7 @@ class MCPServerDocument(BaseModel):
 
 
 class ExtractionStats(BaseModel):
-    """Statistics for extraction process"""
+    """Statistics for extraction process."""
 
     total_found: int = 0
     successfully_extracted: int = 0
@@ -204,7 +204,7 @@ class ExtractionStats(BaseModel):
 
 
 class MCPRepositoryExtractor:
-    """Enhanced MCP Repository Extractor"""
+    """Enhanced MCP Repository Extractor."""
 
     def __init__(self, output_dir: str = "agent_resources/mcp_servers"):
         self.output_dir = Path(output_dir)
@@ -246,7 +246,7 @@ class MCPRepositoryExtractor:
             "📊": MCPCategory.DATA_VISUALIZATION,
             "🆔": MCPCategory.IDENTITY,
             "🔗": MCPCategory.AGGREGATORS,
-            "💬": MCPCategory.LANGUAGE_TRANSLATION,
+            "🌐": MCPCategory.LANGUAGE_TRANSLATION,
             "🔒": MCPCategory.SECURITY,
             "🔌": MCPCategory.IOT,
             "🧑‍🎨": MCPCategory.ART_LITERATURE,
@@ -280,7 +280,9 @@ class MCPRepositoryExtractor:
         self.stats = ExtractionStats()
 
     async def extract_repositories_from_readme(self) -> list[MCPServerMetadata]:
-        """Extract repository information from the awesome-mcp-servers README"""
+        """Extract repository information from the awesome-mcp-servers
+        README.
+        """
         try:
             # Fetch the raw README content
             raw_url = "https://raw.githubusercontent.com/TensorBlock/awesome-mcp-servers/main/README.md"
@@ -336,7 +338,7 @@ class MCPRepositoryExtractor:
                             scopes.append(scope)
 
                     # Extract description (text after the dash)
-                    desc_match = re.search(r"-\s+(.+?)(?:\[|$)", line)
+                    desc_match = re.search(r"- (.+?)(?:\[|$)", line)
                     description = desc_match.group(1).strip() if desc_match else None
 
                     # Create metadata object
@@ -363,13 +365,15 @@ class MCPRepositoryExtractor:
             return []
 
     async def fetch_readme_content(self, metadata: MCPServerMetadata) -> str | None:
-        """Fetch README content from GitHub"""
+        """Fetch README content from GitHub."""
         try:
             # Try multiple README file names
             readme_names = ["README.md", "readme.md", "README.MD", "Readme.md"]
 
             for readme_name in readme_names:
-                raw_url = f"https://raw.githubusercontent.com/{metadata.owner}/{metadata.repo_name}/main/{readme_name}"
+                raw_url = f"https://raw.githubusercontent.com/{metadata.owner}/{
+                    metadata.repo_name
+                }/main/{readme_name}"
 
                 async with self.session.get(raw_url) as response:
                     if response.status == 200:
@@ -378,7 +382,9 @@ class MCPRepositoryExtractor:
                         return content
 
                 # Try master branch
-                raw_url = f"https://raw.githubusercontent.com/{metadata.owner}/{metadata.repo_name}/master/{readme_name}"
+                raw_url = f"https://raw.githubusercontent.com/{metadata.owner}/{
+                    metadata.repo_name
+                }/master/{readme_name}"
 
                 async with self.session.get(raw_url) as response:
                     if response.status == 200:
@@ -395,7 +401,7 @@ class MCPRepositoryExtractor:
             return None
 
     async def fetch_github_metadata(self, metadata: MCPServerMetadata) -> None:
-        """Fetch additional metadata from GitHub API"""
+        """Fetch additional metadata from GitHub API."""
         try:
             # Use GitHub API to get repo info
             api_url = (
@@ -429,13 +435,15 @@ class MCPRepositoryExtractor:
 
         except Exception as e:
             console.print(
-                f"[yellow]Error fetching GitHub metadata for {metadata.get_unique_id()}: {e}[/yellow]"
+                f"[yellow]Error fetching GitHub metadata for {metadata.get_unique_id()}: {
+                    e
+                }[/yellow]"
             )
 
     async def process_repository(
         self, metadata: MCPServerMetadata
     ) -> MCPServerDocument | None:
-        """Process a single repository"""
+        """Process a single repository."""
         try:
             # Fetch README content
             readme_content = await self.fetch_readme_content(metadata)
@@ -460,7 +468,7 @@ class MCPRepositoryExtractor:
             return None
 
     def save_documents(self, documents: list[MCPServerDocument]) -> None:
-        """Save documents in various formats"""
+        """Save documents in various formats."""
         # Save as LangChain documents
         langchain_docs = []
 
@@ -529,7 +537,7 @@ class MCPRepositoryExtractor:
         )
 
     def generate_statistics_report(self, documents: list[MCPServerDocument]) -> None:
-        """Generate statistics report"""
+        """Generate statistics report."""
         # Update stats
         self.stats.successfully_extracted = len(
             [d for d in documents if d.readme_content]
@@ -584,7 +592,7 @@ class MCPRepositoryExtractor:
         console.print("\n", lang_table)
 
     async def extract_all(self) -> list[MCPServerDocument]:
-        """Main extraction method"""
+        """Main extraction method."""
         start_time = datetime.now()
 
         console.print("[bold blue]MCP Repository Extractor[/bold blue]")
@@ -655,14 +663,14 @@ class MCPRepositoryExtractor:
 
 
 def create_agent_loader(output_dir: str = "agent_resources/mcp_servers") -> callable:
-    """Create a loader function for agents to access MCP documents"""
+    """Create a loader function for agents to access MCP documents."""
 
     def load_mcp_documents(
         category: MCPCategory | None = None,
         language: MCPLanguage | None = None,
         search_query: str | None = None,
     ) -> list[Document]:
-        """Load MCP server documents with optional filtering"""
+        """Load MCP server documents with optional filtering."""
         # Load all documents
         all_docs_path = Path(output_dir) / "all_mcp_documents.json"
 
@@ -697,7 +705,9 @@ def create_agent_loader(output_dir: str = "agent_resources/mcp_servers") -> call
                 continue
 
             if search_query:
-                search_text = f"{doc.metadata.name} {doc.metadata.description or ''} {doc.readme_content or ''}".lower()
+                search_text = f"{doc.metadata.name} {doc.metadata.description or ''} {
+                    doc.readme_content or ''
+                }".lower()
                 if search_query.lower() not in search_text:
                     continue
 
@@ -709,9 +719,9 @@ def create_agent_loader(output_dir: str = "agent_resources/mcp_servers") -> call
 
 
 async def main():
-    """Main function"""
+    """Main function."""
     extractor = MCPRepositoryExtractor()
-    documents = await extractor.extract_all()
+    await extractor.extract_all()
 
     # Create a loader for agents
     loader = create_agent_loader()

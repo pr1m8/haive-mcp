@@ -1,0 +1,51 @@
+{
+  "server_data": {
+    "name": "rae-api-com/rae-mcp",
+    "source": "github:punkpeye/awesome-mcp-servers",
+    "source_url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "repository_url": "https://github.com/rae-api-com/rae-mcp",
+    "repository_owner": "rae-api-com",
+    "repository_name": "rae-mcp",
+    "description": "\ud83c\udfce\ufe0f \u2601\ufe0f \ud83c\udf4e \ud83e\ude9f \ud83d\udc27 MPC Server to connect your preferred model with https://rae-api.com, Roya Academy of Spanish Dictionary",
+    "category": "api_integration",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.744707+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 59325
+    }
+  },
+  "quality_metrics": {
+    "name": "rae-api-com/rae-mcp",
+    "repository_url": "https://github.com/rae-api-com/rae-mcp",
+    "quality_score": 27.25,
+    "documentation_score": 10.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 75.0,
+    "category": "api_integration",
+    "subcategories": [
+      "rest_api"
+    ],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T20:19:31.910416+00:00",
+    "processing_time": 7.05718994140625e-05
+  },
+  "processed_at": "2025-07-03T20:19:31.911834+00:00",
+  "processor_version": "1.0.0"
+}

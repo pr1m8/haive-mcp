@@ -1,0 +1,49 @@
+{
+  "server_data": {
+    "name": "automateyournetwork/pyATS_MCP",
+    "source": "github:punkpeye/awesome-mcp-servers",
+    "source_url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "repository_url": "https://github.com/automateyournetwork/pyATS_MCP",
+    "repository_owner": "automateyournetwork",
+    "repository_name": "pyATS_MCP",
+    "description": "Cisco pyATS server enabling structured, model-driven interaction with network devices.",
+    "category": "ai_ml",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.480648+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 59325
+    }
+  },
+  "quality_metrics": {
+    "name": "automateyournetwork/pyATS_MCP",
+    "repository_url": "https://github.com/automateyournetwork/pyATS_MCP",
+    "quality_score": 25.5,
+    "documentation_score": 5.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 75.0,
+    "category": "ai_ml",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T16:16:41.975713+00:00",
+    "processing_time": 3.4332275390625e-05
+  },
+  "processed_at": "2025-07-03T16:16:41.976697+00:00",
+  "processor_version": "1.0.0"
+}

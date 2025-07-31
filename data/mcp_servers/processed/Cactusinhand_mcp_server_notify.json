@@ -1,0 +1,49 @@
+{
+  "server_data": {
+    "name": "Cactusinhand/mcp_server_notify",
+    "source": "github:punkpeye/awesome-mcp-servers",
+    "source_url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "repository_url": "https://github.com/Cactusinhand/mcp_server_notify",
+    "repository_owner": "Cactusinhand",
+    "repository_name": "mcp_server_notify",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.487593+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 59325
+    }
+  },
+  "quality_metrics": {
+    "name": "Cactusinhand/mcp_server_notify",
+    "repository_url": "https://github.com/Cactusinhand/mcp_server_notify",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "utility",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T16:26:42.145341+00:00",
+    "processing_time": 2.5272369384765625e-05
+  },
+  "processed_at": "2025-07-03T16:26:42.147040+00:00",
+  "processor_version": "1.0.0"
+}

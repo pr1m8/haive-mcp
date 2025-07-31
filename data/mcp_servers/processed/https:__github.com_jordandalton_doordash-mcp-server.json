@@ -1,0 +1,51 @@
+{
+  "server_data": {
+    "name": "https://github.com/jordandalton/doordash-mcp-server",
+    "source": "github:punkpeye/awesome-mcp-servers",
+    "source_url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "repository_url": "https://github.com/JordanDalton/DoorDash-MCP-Server",
+    "repository_owner": "JordanDalton",
+    "repository_name": "DoorDash-MCP-Server",
+    "description": "",
+    "category": "version_control",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.576899+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 59325
+    }
+  },
+  "quality_metrics": {
+    "name": "https://github.com/jordandalton/doordash-mcp-server",
+    "repository_url": "https://github.com/JordanDalton/DoorDash-MCP-Server",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "version_control",
+    "subcategories": [
+      "git_operations"
+    ],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T17:41:43.456896+00:00",
+    "processing_time": 4.291534423828125e-05
+  },
+  "processed_at": "2025-07-03T17:41:43.458617+00:00",
+  "processor_version": "1.0.0"
+}

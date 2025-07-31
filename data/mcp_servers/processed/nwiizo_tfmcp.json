@@ -1,0 +1,49 @@
+{
+  "server_data": {
+    "name": "nwiizo/tfmcp",
+    "source": "github:punkpeye/awesome-mcp-servers",
+    "source_url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "repository_url": "https://github.com/nwiizo/tfmcp",
+    "repository_owner": "nwiizo",
+    "repository_name": "tfmcp",
+    "description": "\ud83e\udd80 \ud83c\udfe0 - A Terraform MCP server allowing AI assistants to manage and operate Terraform environments, enabling reading configurations, analyzing plans, applying configurations, and managing Terraform state.",
+    "category": "ai_ml",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:38.468874+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 59325
+    }
+  },
+  "quality_metrics": {
+    "name": "nwiizo/tfmcp",
+    "repository_url": "https://github.com/nwiizo/tfmcp",
+    "quality_score": 27.25,
+    "documentation_score": 10.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 75.0,
+    "category": "ai_ml",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T16:06:41.836323+00:00",
+    "processing_time": 0.000576019287109375
+  },
+  "processed_at": "2025-07-03T16:06:41.837855+00:00",
+  "processor_version": "1.0.0"
+}

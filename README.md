@@ -1,260 +1,327 @@
 # haive-mcp
 
-Model Context Protocol (MCP) integration for the Haive framework, providing type-safe access to MCP servers and their tools, resources, and prompts.
+[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
+[![Poetry](https://img.shields.io/badge/dependency-poetry-blue.svg)](https://python-poetry.org/)
+[![MCP 1.0](https://img.shields.io/badge/MCP-1.0-green.svg)](https://modelcontextprotocol.io/)
 
-## Overview
+Dynamic Model Context Protocol (MCP) integration for Haive agents with hot-reload capabilities, intelligent discovery, and human-in-the-loop approval workflows.
 
-The haive-mcp package enables Haive agents to connect to and use MCP servers, which provide:
+## What is haive-mcp?
 
-- **Tools**: Functions the model can call
-- **Resources**: Data sources the application controls
-- **Prompts**: User-defined templates for optimal tool usage
+haive-mcp brings the power of [Model Context Protocol](https://modelcontextprotocol.io/) to Haive agents, enabling them to dynamically discover, install, and use external tools and resources. With access to a database of 1,960+ MCP servers, your agents can automatically find and install the right tools for any task - all without restarting.
 
-This integration supports the full MCP ecosystem with type checking, automatic discovery, and seamless agent integration.
+### Key Capabilities
 
-## Features
-
-- 🔧 **Type-Safe Configuration**: Full Pydantic model validation
-- 🔄 **Tool Transfer**: Share tools between agents dynamically
-- 📚 **Documentation Processing**: Extract setup from 992+ MCP server docs
-- 🔍 **Discovery System**: Find servers by capability or category
-- 🤝 **Agent Integration**: Extends any Haive agent with MCP capabilities
-- ⚡ **Lazy Loading**: Initialize MCP servers on-demand
-- 🛡️ **Graceful Degradation**: Handles missing dependencies and failures
-
-## Installation
-
-```bash
-# Install the package
-cd packages/haive-mcp
-poetry install
-
-# Install MCP adapter dependencies
-poetry add langchain-mcp-adapters
-```
+- 🔄 **Hot-Reload** - Add servers and refresh tools without restart
+- 🤖 **Intelligent Discovery** - AI analyzes needs and suggests servers
+- 👤 **HITL Approval** - Human approval for server installations
+- 📚 **1,960+ Servers** - Pre-indexed database of MCP servers
+- 🔧 **Dynamic Tools** - Tools, resources, and prompts from MCP servers
+- ⚡ **Real-time Updates** - Install and use immediately
 
 ## Quick Start
 
-### Basic Usage
+### Installation
+
+```bash
+# Install with poetry (recommended)
+poetry add haive-mcp
+
+# Or install from source
+cd packages/haive-mcp
+poetry install
+```
+
+### Basic Usage - Dynamic Discovery
 
 ```python
+from haive.mcp.agents import IntelligentMCPAgent
 from haive.core.engine.aug_llm import AugLLMConfig
-from haive.core.models.llm.base import LLMConfig
-from haive.mcp.agents import MCPAgent
-from haive.mcp.config import MCPConfig, MCPServerConfig
 
-# Create engine
-engine = AugLLMConfig(
-    llm_config=LLMConfig(
-        provider="openai",
-        model="gpt-4o-mini"
-    ),
-    name="my_engine"
+# Create an intelligent agent that auto-discovers MCP servers
+agent = IntelligentMCPAgent(
+    engine=AugLLMConfig(),
+    auto_discover=True,      # Automatically find needed servers
+    require_approval=True    # Ask before installing
 )
 
-# Configure MCP
-mcp_config = MCPConfig(
-    enabled=True,
+await agent.setup()
+
+# Agent automatically installs servers based on your needs!
+result = await agent.arun({
+    "messages": [{
+        "role": "user",
+        "content": "Search the web for Python async tutorials and save to a file"
+    }]
+})
+# Agent detects need for:
+# - Web search → installs brave-search server
+# - File operations → installs filesystem server
+# Then completes your task!
+```
+
+## Core Concepts
+
+### 1. Dynamic Server Management
+
+The `MCPManager` handles all server lifecycle operations with hot-reload support:
+
+```python
+from haive.mcp.manager import MCPManager
+from haive.mcp.config import MCPServerConfig
+
+manager = MCPManager()
+
+# Add servers dynamically
+await manager.add_server("filesystem", MCPServerConfig(
+    name="filesystem",
+    transport="stdio",
+    command="npx",
+    args=["-y", "@modelcontextprotocol/server-filesystem"]
+))
+
+# Get all tools (with refresh)
+tools = await manager.get_all_tools(refresh=True)
+
+# Get resources and prompts
+resources = await manager.get_resources()
+prompts = await manager.get_prompts()
+
+# Hot-reload a specific server
+await manager.reload_server("filesystem")
+```
+
+### 2. Intelligent Discovery
+
+The `IntelligentMCPAgent` uses AI to analyze user requests and automatically find appropriate MCP servers:
+
+```python
+# Agent with built-in discovery tools
+agent = IntelligentMCPAgent(engine=engine)
+
+# Use discovery tools directly
+await agent.arun({
+    "messages": [{
+        "role": "user",
+        "content": "Use discover_mcp_servers to find database servers"
+    }]
+})
+
+# Or let the agent auto-discover
+agent = IntelligentMCPAgent(
+    engine=engine,
+    auto_discover=True  # AI analyzes needs automatically
+)
+```
+
+### 3. HITL Approval Workflows
+
+Control server installations with human-in-the-loop approval:
+
+```python
+# Custom approval callback
+async def my_approval_handler(request: HITLApprovalRequest) -> bool:
+    print(f"🔔 Install {request.recommendation.server_name}?")
+    print(f"Reason: {request.recommendation.reason}")
+    print(f"Capabilities: {', '.join(request.recommendation.capabilities)}")
+    
+    # Your approval logic here
+    user_input = input("Approve? (y/n): ")
+    return user_input.lower() == 'y'
+
+agent = IntelligentMCPAgent(
+    engine=engine,
+    require_approval=True,
+    approval_callback=my_approval_handler
+)
+```
+
+## Available Components
+
+### Agents
+
+#### IntelligentMCPAgent
+The flagship agent with dynamic discovery and management:
+- Auto-discovers needed MCP servers from 992+ database
+- HITL approval workflows
+- Built-in discovery and management tools
+- Hot-reload support
+
+#### MCPAgent
+Production agent for static MCP configurations:
+- Connect to multiple MCP servers
+- Access all tools, resources, and prompts
+- Integrates with Haive agent framework
+
+#### TransferableMCPAgent
+Agent that can share tools with other agents:
+- Transfer specific tools between agents
+- Share entire tool sets
+- Collaborative multi-agent workflows
+
+### Built-in Tools
+
+The IntelligentMCPAgent includes these tools:
+
+- **discover_mcp_servers(capability)** - Find servers by capability
+- **install_mcp_server(server_name)** - Install with optional approval  
+- **list_mcp_status()** - Get current server and tool status
+- **reload_mcp_server(server_name)** - Hot-reload specific server
+
+## Common Workflows
+
+### 1. Auto-Discovery Workflow
+
+```python
+# Let the agent figure out what it needs
+agent = IntelligentMCPAgent(
+    engine=engine,
+    auto_discover=True,
+    require_approval=True
+)
+
+# Agent analyzes request and installs needed servers
+result = await agent.arun({
+    "messages": [{
+        "role": "user",
+        "content": "Connect to PostgreSQL and analyze user data"
+    }]
+})
+# Automatically installs postgres MCP server!
+```
+
+### 2. Manual Discovery Workflow
+
+```python
+# Control discovery manually
+agent = IntelligentMCPAgent(
+    engine=engine,
+    auto_discover=False  # Manual control
+)
+
+# Discover database servers
+result = await agent.arun({
+    "messages": [{
+        "role": "user",
+        "content": "Use discover_mcp_servers to find database servers"
+    }]
+})
+
+# Install specific server
+result = await agent.arun({
+    "messages": [{
+        "role": "user",
+        "content": "Install modelcontextprotocol/server-postgres"
+    }]
+})
+```
+
+### 3. Static Configuration Workflow
+
+```python
+# Traditional approach with known servers
+from haive.mcp.config import MCPConfig, MCPServerConfig
+
+config = MCPConfig(
     servers={
-        "filesystem": MCPServerConfig(
-            name="filesystem",
+        "github": MCPServerConfig(
+            name="github",
             transport="stdio",
             command="npx",
-            args=["-y", "@modelcontextprotocol/server-filesystem"],
-            capabilities=["file_read", "file_write"]
+            args=["-y", "@modelcontextprotocol/server-github"],
+            env={"GITHUB_TOKEN": token}
         )
     }
 )
 
-# Create agent
-agent = MCPAgent(
-    engine=engine,
-    mcp_config=mcp_config,
-    name="mcp_assistant"
-)
-
-# Initialize and use
-await agent.setup()
-result = await agent.arun({
-    "messages": [{"role": "user", "content": "List files in current directory"}]
-})
+agent = MCPAgent(engine=engine, mcp_config=config)
 ```
 
-### Using Convenience Methods
+### 4. Tool Transfer Workflow
 
 ```python
-# Create agent with multiple MCP servers
-agent = MCPAgent.create_with_mcp_servers(
-    engine=engine,
-    server_configs={
-        "filesystem": {
-            "transport": "stdio",
-            "command": "npx",
-            "args": ["-y", "@modelcontextprotocol/server-filesystem"]
-        },
-        "github": {
-            "transport": "stdio",
-            "command": "npx",
-            "args": ["-y", "@modelcontextprotocol/server-github"],
-            "env": {"GITHUB_TOKEN": github_token}
-        }
-    }
+# Share tools between agents
+agent1 = TransferableMCPAgent(engine=engine, mcp_config=config1)
+agent2 = TransferableMCPAgent(engine=engine, mcp_config=config2)
+
+await agent1.setup()
+await agent2.setup()
+
+# Transfer specific tools
+await agent1.transfer_tools_to_agent(
+    agent2, 
+    tool_names=["file_read", "file_write"]
 )
 ```
 
-## Advanced Features
+## Server Database
 
-### Tool Transfer Between Agents
+haive-mcp includes a pre-processed database of 1,960+ MCP servers from GitHub:
 
-```python
-from haive.mcp.agents import TransferableMCPAgent
+- Categorized by capability (database, filesystem, search, etc.)
+- Extracted setup instructions and configurations
+- Quality scores and popularity metrics
+- Ready-to-use configurations
 
-# Create collaborative agents
-agents = TransferableMCPAgent.create_collaborative_agents(
-    engine=engine,
-    mcp_config=mcp_config,
-    num_agents=3,
-    shared_client=True  # Share MCP client
-)
-
-# Transfer tools between agents
-agent1, agent2 = agents[:2]
-await agent1.transfer_all_tools_to_agent(agent2)
-
-# Share resources
-resources = await agent1.delegate_resource_access(
-    agent2,
-    server_name="github",
-    resource_uris=["repo:owner/name"]
-)
-```
-
-### Documentation-Based Setup
+Access the database directly:
 
 ```python
-from haive.mcp.agents import MCPDocumentationAgent
+from haive.mcp.documentation import MCPDocumentationLoader
 
-# Create documentation agent
-doc_agent = MCPDocumentationAgent.create_for_mcp_setup()
+loader = MCPDocumentationLoader()
+all_servers = loader.load_all_mcp_documents()
+print(f"Found {len(all_servers)} MCP servers")  # 1,960+ servers available
 
-# Process MCP server documentation
-result = await doc_agent.process_mcp_server(
-    "modelcontextprotocol/server-filesystem"
+# Find specific server
+postgres_doc = loader.get_server_documentation(
+    "modelcontextprotocol/server-postgres"
 )
-
-# Get setup instructions
-setup_instructions = result["setup_instructions"]
-mcp_config = result["mcp_config"]
-
-# Find servers by capability
-servers = await doc_agent.find_servers_by_capability("search", limit=5)
-
-# Generate implementation guide
-guide = await doc_agent.generate_implementation_guide(
-    server_names=["server1", "server2"],
-    target_agent_type="research"
-)
-```
-
-### Dynamic Server Discovery
-
-```python
-from haive.mcp.discovery import MCPServerDiscovery
-
-# Discover available servers
-discovery = MCPServerDiscovery()
-servers = await discovery.discover_all()
-
-# Filter by capability
-file_servers = discovery.get_servers_by_capability("file_operations")
-
-# Create configuration from discovered servers
-mcp_config = discovery.create_mcp_config()
 ```
 
 ## Configuration
 
-### MCPConfig Structure
+### Environment Variables
 
-```python
-MCPConfig(
-    enabled=True,                    # Enable/disable MCP
-    auto_discover=True,             # Auto-discover servers
-    lazy_init=True,                 # Initialize on-demand
-    servers={...},                  # Server configurations
-    discovery_paths=[               # Paths to search
-        "~/.mcp/servers",
-        ".mcp/servers"
-    ],
-    categories=["dev", "util"],     # Filter by category
-    required_capabilities=["file"]   # Required capabilities
-)
+```bash
+# Optional: Set default MCP settings
+export MCP_AUTO_DISCOVER=true
+export MCP_REQUIRE_APPROVAL=false
+export MCP_HEALTH_CHECK_INTERVAL=30
 ```
 
-### MCPServerConfig Options
+### Configuration Options
 
 ```python
-MCPServerConfig(
-    name="server_name",
-    transport="stdio",              # stdio, sse, streamable_http
-    command="npx",                  # Command to run
-    args=["-y", "package"],        # Command arguments
-    url="http://...",              # For HTTP transports
-    env={"KEY": "value"},          # Environment variables
-    capabilities=["file_ops"],      # Server capabilities
-    category="filesystem",          # Server category
-    timeout=30,                     # Connection timeout
-    retry_attempts=3,              # Retry on failure
-    health_check_interval=60       # Health check interval
+# MCPManager options
+manager = MCPManager(
+    auto_health_check=True,      # Monitor server health
+    health_check_interval=30.0,  # Check every 30 seconds
+    max_retry_attempts=3,        # Retry failed connections
+    connection_timeout=10.0      # Connection timeout
+)
+
+# IntelligentMCPAgent options
+agent = IntelligentMCPAgent(
+    auto_discover=True,          # Auto-discover servers
+    require_approval=True,       # Require HITL approval
+    approval_timeout=30.0,       # Approval timeout
+    approval_callback=handler    # Custom approval handler
 )
 ```
-
-## Agent Types
-
-### MCPAgent
-
-Basic agent with MCP capabilities.
-
-### TransferableMCPAgent
-
-Agent with enhanced transfer capabilities for sharing tools, resources, and prompts.
-
-### MCPDocumentationAgent
-
-Specialized agent for processing MCP documentation and generating setups.
 
 ## Examples
 
-See the `examples/` directory for complete examples:
+Complete examples are provided in the `examples/` directory:
 
-- `basic_mcp_agent.py` - Basic MCP usage
-- `mcp_documentation_example.py` - Documentation processing
-- `complete_mcp_integration.py` - Full integration demo
+```bash
+# Basic dynamic discovery
+poetry run python examples/dynamic_mcp_workflow.py
 
-## Architecture
+# Static MCP configuration
+poetry run python examples/mcp_agent_example.py
 
-```
-haive-mcp/
-├── src/haive/mcp/
-│   ├── agents/              # MCP-enabled agents
-│   │   ├── mcp_agent.py
-│   │   ├── transferable_mcp_agent.py
-│   │   └── documentation_agent.py
-│   ├── mixins/              # MCP mixin for agents
-│   │   └── mcp_mixin.py
-│   ├── discovery/           # Server discovery
-│   │   ├── analyzer.py
-│   │   └── server_discovery.py
-│   ├── documentation/       # Documentation processing
-│   │   └── doc_loader.py
-│   └── config.py           # Configuration models
-├── agent_resources/         # MCP server documentation
-│   └── mcp_servers/
-│       ├── all_mcp_documents.json
-│       └── documents/      # Individual server docs
-├── tests/                  # Test suite
-├── examples/              # Usage examples
-└── README.md
+# Documentation processing
+poetry run python examples/mcp_documentation_example.py
 ```
 
 ## Testing
@@ -263,27 +330,110 @@ haive-mcp/
 # Run all tests
 poetry run pytest
 
-# Run specific test file
-poetry run pytest tests/test_mcp_real.py -v
+# Run integration tests
+poetry run pytest tests/test_hot_reload_integration.py -v
 
 # Run with coverage
 poetry run pytest --cov=haive.mcp
 ```
 
-## Dependencies
+## Architecture
 
-- `pydantic>=2.0` - Configuration validation
-- `langchain-mcp-adapters` - MCP client implementation
-- `mcp` or `fastmcp` - Core MCP protocol
-- `langchain-core` - Tool interfaces
-- `langgraph` - Graph workflows
+```
+haive-mcp/
+├── agents/                    # Agent implementations
+│   ├── intelligent_mcp_agent  # Dynamic discovery agent
+│   ├── mcp_agent             # Standard MCP agent
+│   └── transferable_mcp      # Tool sharing agent
+├── manager.py                # Dynamic server management
+├── config.py                 # Configuration models
+├── documentation/            # 992+ server database
+└── mixins/                   # MCP capabilities mixin
+```
+
+## Advanced Usage
+
+### Custom Server Discovery
+
+```python
+# Create custom discovery logic
+class MyDiscoveryAgent(IntelligentMCPAgent):
+    async def _analyze_capability_needs(self, user_message: str) -> list[str]:
+        # Custom capability analysis
+        if "spreadsheet" in user_message.lower():
+            return ["excel", "sheets"]
+        return await super()._analyze_capability_needs(user_message)
+```
+
+### Server Health Monitoring
+
+```python
+# Get health status
+status = manager.get_all_server_status()
+print(f"Connected: {status['summary']['connected_servers']}")
+print(f"Failed: {status['summary']['failed_servers']}")
+
+# Check specific server
+health = await manager.check_server_health("postgres")
+print(f"Response time: {health.response_time}s")
+```
+
+### Concurrent Operations
+
+```python
+# Add multiple servers concurrently
+import asyncio
+
+configs = [postgres_config, github_config, filesystem_config]
+tasks = [
+    manager.add_server(f"server{i}", cfg) 
+    for i, cfg in enumerate(configs)
+]
+results = await asyncio.gather(*tasks)
+```
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Import Errors**
+   ```bash
+   # Ensure MCP dependencies are installed
+   poetry install --all-extras
+   ```
+
+2. **Server Connection Failed**
+   ```python
+   # Check server requirements
+   result = await manager.add_server("test", config)
+   if not result.success:
+       print(f"Error: {result.error_message}")
+   ```
+
+3. **Tools Not Refreshing**
+   ```python
+   # Force refresh
+   tools = await manager.get_all_tools(refresh=True)
+   ```
+
+### Debug Mode
+
+```python
+# Enable debug logging
+import logging
+logging.getLogger("haive.mcp").setLevel(logging.DEBUG)
+
+# Check manager state
+print(manager.get_all_server_status())
+```
 
 ## Contributing
 
-1. Follow Google-style docstrings
-2. Add type hints to all functions
-3. Write tests for new features
-4. Update documentation
+1. Fork the repository
+2. Create your feature branch
+3. Add tests for new functionality
+4. Ensure all tests pass
+5. Submit a pull request
 
 ## License
 
@@ -292,5 +442,11 @@ MIT License - see LICENSE file for details.
 ## References
 
 - [Model Context Protocol](https://modelcontextprotocol.io/)
-- [MCP Specification](https://github.com/modelcontextprotocol/specification)
-- [Haive Framework](https://github.com/yourusername/haive)
+- [MCP Specification](https://spec.modelcontextprotocol.io/)
+- [Haive Framework](https://github.com/algebraic-ai/haive)
+
+## Support
+
+For issues and questions:
+- GitHub Issues: [haive/issues](https://github.com/algebraic-ai/haive/issues)
+- Documentation: [haive.readthedocs.io](https://haive.readthedocs.io)

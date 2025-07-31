@@ -1,0 +1,49 @@
+{
+  "server_data": {
+    "name": "xinlei413/MCP-DOC-Server-OpenRouter",
+    "source": "github:TensorBlock/awesome-mcp-servers",
+    "source_url": "https://github.com/TensorBlock/awesome-mcp-servers",
+    "repository_url": "https://github.com/xinlei413/MCP-DOC-Server-OpenRouter",
+    "repository_owner": "xinlei413",
+    "repository_name": "MCP-DOC-Server-OpenRouter",
+    "description": "",
+    "category": "utility",
+    "tags": [],
+    "npm_package": null,
+    "install_command": null,
+    "setup_instructions": null,
+    "transport_types": [],
+    "capabilities": [],
+    "dependencies": [],
+    "stars": null,
+    "last_updated": null,
+    "has_documentation": true,
+    "is_official": false,
+    "discovered_at": "2025-07-03T12:02:39.236153+00:00",
+    "last_checked": null,
+    "source_metadata": {
+      "readme_source": true,
+      "awesome_list": true,
+      "repo_stars": 391
+    }
+  },
+  "quality_metrics": {
+    "name": "xinlei413/MCP-DOC-Server-OpenRouter",
+    "repository_url": "https://github.com/xinlei413/MCP-DOC-Server-OpenRouter",
+    "quality_score": 21.5,
+    "documentation_score": 0.0,
+    "popularity_score": 0.0,
+    "maintenance_score": 50.0,
+    "completeness_score": 60.0,
+    "category": "utility",
+    "subcategories": [],
+    "tags": [],
+    "install_method": "manual",
+    "setup_complexity": 4,
+    "error_count": 0,
+    "last_updated": "2025-07-03T21:11:06.975627+00:00",
+    "processing_time": 3.552436828613281e-05
+  },
+  "processed_at": "2025-07-03T21:11:06.976664+00:00",
+  "processor_version": "1.0.0"
+}

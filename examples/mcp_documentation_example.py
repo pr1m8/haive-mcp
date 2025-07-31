@@ -1,5 +1,4 @@
-"""
-Example demonstrating MCP Documentation Agent for setting up MCP servers.
+"""Example demonstrating MCP Documentation Agent for setting up MCP servers.
 
 This example shows how to:
 1. Load MCP server documentation
@@ -10,11 +9,9 @@ This example shows how to:
 
 import asyncio
 import json
-from pathlib import Path
 
 from haive.core.engine.aug_llm import AugLLMConfig
 from haive.core.models.llm.base import LLMConfig
-
 from haive.mcp.agents.documentation_agent import MCPDocumentationAgent
 
 
@@ -38,7 +35,7 @@ async def example_process_single_server():
         print(f"  {instruction}")
 
     if result["mcp_config"]:
-        print(f"\nGenerated MCP Config:")
+        print("\nGenerated MCP Config:")
         print(json.dumps(result["mcp_config"].model_dump(), indent=2))
 
 

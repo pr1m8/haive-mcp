@@ -1,0 +1,45 @@
+Configuration for andybrandt/mcp-simple-openai-assistant
+========================================================
+
+This page contains configuration information for the andybrandt/mcp-simple-openai-assistant MCP server.
+
+.. contents:: Table of Contents
+   :depth: 2
+   :local:
+
+Basic Configuration
+-------------------
+
+**Installation Method:** manual
+
+**Setup Complexity:** 4/5
+
+**Transport Types:** stdio
+
+Environment Variables
+---------------------
+
+.. note::
+   Environment variables may be required for this server to function properly.
+   Check the repository documentation for specific requirements.
+
+
+Transport Configuration
+-----------------------
+
+This server supports the following transport types:
+
+* ``stdio``
+
+For Claude Desktop configuration:
+
+.. code-block:: json
+
+   {
+     "mcpServers": {
+       "andybrandt_mcp-simple-openai-assistant": {
+         "command": "npx",
+         "args": ["andybrandt/mcp-simple-openai-assistant"]
+       }
+     }
+   }

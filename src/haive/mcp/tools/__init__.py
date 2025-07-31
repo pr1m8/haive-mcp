@@ -1,36 +1,77 @@
-"""MCP tools for intelligent server selection and management.
+"""Module exports."""
 
-This package provides tools to help AI agents and users intelligently select,
-filter, and manage MCP servers based on various criteria.
-"""
-
-from .ai_assistant import (
+from tools.ai_assistant import (
     MCPAssistant,
     ServerRecommendation,
     SmartConfiguration,
     TaskMatcher,
+    explain_recommendation,
+    get_selection_reasoning,
+    get_server_recommendation_score,
+    match_task_to_pattern,
 )
-from .server_selector import (
+from tools.server_selector import (
     MCPServerSelector,
     ServerFilter,
     ServerScore,
     TaskAnalyzer,
     TaskRequirements,
+    analyze_task,
+    create_config_for_selection,
+    filter_by_capability_keyword,
+    filter_by_category,
+    filter_by_multiple_criteria,
+    filter_by_prefix,
+    get_available_categories,
+    get_available_prefixes,
+    get_selection_summary,
+    recommend_for_task,
 )
-from .server_tester import HealthMonitor, HealthStatus, MCPServerTester, TestResult
+from tools.server_tester import (
+    HealthMonitor,
+    HealthStatus,
+    MCPServerTester,
+    TestResult,
+    create_health_monitor,
+    generate_test_report,
+    get_health_report,
+    get_success_rate,
+    get_test_history,
+    get_unhealthy_servers,
+)
 
 __all__ = [
-    "MCPServerSelector",
-    "ServerFilter",
-    "TaskAnalyzer",
-    "ServerScore",
-    "TaskRequirements",
-    "MCPAssistant",
-    "SmartConfiguration",
-    "ServerRecommendation",
-    "TaskMatcher",
-    "MCPServerTester",
-    "TestResult",
     "HealthMonitor",
     "HealthStatus",
+    "MCPAssistant",
+    "MCPServerSelector",
+    "MCPServerTester",
+    "ServerFilter",
+    "ServerRecommendation",
+    "ServerScore",
+    "SmartConfiguration",
+    "TaskAnalyzer",
+    "TaskMatcher",
+    "TaskRequirements",
+    "TestResult",
+    "analyze_task",
+    "create_config_for_selection",
+    "create_health_monitor",
+    "explain_recommendation",
+    "filter_by_capability_keyword",
+    "filter_by_category",
+    "filter_by_multiple_criteria",
+    "filter_by_prefix",
+    "generate_test_report",
+    "get_available_categories",
+    "get_available_prefixes",
+    "get_health_report",
+    "get_selection_reasoning",
+    "get_selection_summary",
+    "get_server_recommendation_score",
+    "get_success_rate",
+    "get_test_history",
+    "get_unhealthy_servers",
+    "match_task_to_pattern",
+    "recommend_for_task",
 ]

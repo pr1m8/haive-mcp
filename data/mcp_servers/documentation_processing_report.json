@@ -1,0 +1,32 @@
+{
+  "timestamp": "2025-07-03T12:09:26.655918+00:00",
+  "summary": {
+    "total_servers": 64,
+    "servers_with_documentation": 64,
+    "documentation_rate": 100.0,
+    "categories": 10,
+    "sources": 4
+  },
+  "by_category": {
+    "ai_ml": 30,
+    "cloud": 3,
+    "search": 2,
+    "api_integration": 19,
+    "database": 3,
+    "version_control": 1,
+    "security": 3,
+    "productivity": 1,
+    "communication": 1,
+    "filesystem": 1
+  },
+  "by_source": {
+    "github:docker/mcp-servers": 1,
+    "github:smithery-ai/reference-servers": 1,
+    "github:cyanheads/model-context-protocol-resources": 1,
+    "github-topic:mcp-server": 61
+  },
+  "files": {
+    "main_database": "/home/will/Projects/haive/backend/haive/packages/haive-mcp/data/mcp_servers/all_mcp_documents.json",
+    "timestamped_backup": "/home/will/Projects/haive/backend/haive/packages/haive-mcp/data/mcp_servers/processed_mcp_documents_20250703_080926.json"
+  }
+}

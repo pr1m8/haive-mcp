@@ -141,7 +141,41 @@ class MCPServerConfig(BaseModel):
 
 
 class MCPConfig(BaseModel):
-    """Complete MCP configuration for an agent."""
+    """Complete MCP configuration for an agent.
+
+    This class provides the main configuration structure for MCP integration with Haive agents.
+    It controls server discovery, filtering, initialization, and runtime behavior.
+
+    Attributes:
+        enabled: Whether MCP functionality is enabled
+        auto_discover: Automatically discover servers from configured paths
+        lazy_init: Initialize servers on-demand rather than at startup
+        servers: Dictionary mapping server names to their configurations
+        discovery_paths: List of paths to search for MCP server configurations
+        categories: Optional filter for server categories
+        required_capabilities: Optional list of required server capabilities
+        global_timeout: Timeout for all MCP operations in seconds
+        max_concurrent_servers: Maximum number of concurrent server connections
+        enable_health_checks: Whether to enable periodic server health checks
+        on_server_connected: Optional callback name when server connects
+        on_server_failed: Optional callback name when server fails
+        on_tool_discovered: Optional callback name when tool is discovered
+
+    Example:
+        Creating a comprehensive MCP configuration::
+
+            config = MCPConfig(
+                enabled=True,
+                servers={
+                    "filesystem": MCPServerConfig(...),
+                    "github": MCPServerConfig(...),
+                },
+                categories=["development", "filesystem"],
+                required_capabilities=["file_read"],
+                global_timeout=120,
+                max_concurrent_servers=5
+            )
+    """
 
     # Control flags
     enabled: bool = Field(default=False, description="Whether MCP is enabled")

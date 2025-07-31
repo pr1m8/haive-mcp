@@ -49,15 +49,14 @@ Note:
     reducing the need for manual server configuration.
 """
 
-import asyncio
+from dataclasses import dataclass
 import logging
 import re
-from dataclasses import dataclass
-from pathlib import Path
-from typing import Any, Dict, List, Optional, Set, Tuple, Union
+from typing import Any
 
 from haive.mcp.config import MCPConfig, MCPServerConfig
 from haive.mcp.documentation.doc_loader import MCPDocumentationLoader
+
 
 logger = logging.getLogger(__name__)
 
@@ -68,8 +67,8 @@ class ServerScore:
 
     server_name: str
     score: float
-    reasons: List[str]
-    capabilities_match: List[str]
+    reasons: list[str]
+    capabilities_match: list[str]
     category_match: bool
     prefix_match: bool
 
@@ -78,17 +77,17 @@ class ServerScore:
 class TaskRequirements:
     """Analyzed requirements from a task description."""
 
-    keywords: List[str]
-    required_capabilities: List[str]
-    preferred_categories: List[str]
-    suggested_servers: List[str]
+    keywords: list[str]
+    required_capabilities: list[str]
+    preferred_categories: list[str]
+    suggested_servers: list[str]
     complexity_score: float
 
 
 class ServerFilter:
     """Flexible filtering system for MCP servers."""
 
-    def __init__(self, servers: List[Dict[str, Any]]):
+    def __init__(self, servers: list[dict[str, Any]]):
         """Initialize filter with server list.
 
         Args:
@@ -129,7 +128,7 @@ class ServerFilter:
                         self.by_capability[word] = []
                     self.by_capability[word].append(server)
 
-    def filter_by_prefix(self, prefix: str) -> List[Dict[str, Any]]:
+    def filter_by_prefix(self, prefix: str) -> list[dict[str, Any]]:
         """Filter servers by name prefix (namespace).
 
         Args:
@@ -143,7 +142,7 @@ class ServerFilter:
 
         return self.by_prefix.get(prefix, [])
 
-    def filter_by_category(self, category: str) -> List[Dict[str, Any]]:
+    def filter_by_category(self, category: str) -> list[dict[str, Any]]:
         """Filter servers by category.
 
         Args:
@@ -154,7 +153,7 @@ class ServerFilter:
         """
         return self.by_category.get(category, [])
 
-    def filter_by_capability_keyword(self, keyword: str) -> List[Dict[str, Any]]:
+    def filter_by_capability_keyword(self, keyword: str) -> list[dict[str, Any]]:
         """Filter servers by capability keyword in description.
 
         Args:
@@ -178,11 +177,11 @@ class ServerFilter:
 
     def filter_by_multiple_criteria(
         self,
-        prefixes: Optional[List[str]] = None,
-        categories: Optional[List[str]] = None,
-        keywords: Optional[List[str]] = None,
-        exclude_prefixes: Optional[List[str]] = None,
-    ) -> List[Dict[str, Any]]:
+        prefixes: list[str] | None = None,
+        categories: list[str] | None = None,
+        keywords: list[str] | None = None,
+        exclude_prefixes: list[str] | None = None,
+    ) -> list[dict[str, Any]]:
         """Filter servers by multiple criteria.
 
         Args:
@@ -351,7 +350,7 @@ class TaskAnalyzer:
 class MCPServerSelector:
     """Intelligent MCP server selection and recommendation system."""
 
-    def __init__(self, servers: Optional[List[Dict[str, Any]]] = None):
+    def __init__(self, servers: list[dict[str, Any]] | None = None):
         """Initialize server selector.
 
         Args:
@@ -373,7 +372,7 @@ class MCPServerSelector:
             if name:
                 self.server_map[name] = server
 
-    def get_available_prefixes(self) -> List[str]:
+    def get_available_prefixes(self) -> list[str]:
         """Get all available server prefixes/namespaces.
 
         Returns:
@@ -381,7 +380,7 @@ class MCPServerSelector:
         """
         return sorted(self.filter.by_prefix.keys())
 
-    def get_available_categories(self) -> List[str]:
+    def get_available_categories(self) -> list[str]:
         """Get all available server categories.
 
         Returns:
@@ -389,7 +388,7 @@ class MCPServerSelector:
         """
         return sorted(self.filter.by_category.keys())
 
-    def filter_by_prefix(self, prefix: str) -> List[Dict[str, Any]]:
+    def filter_by_prefix(self, prefix: str) -> list[dict[str, Any]]:
         """Filter servers by prefix/namespace.
 
         Args:
@@ -405,7 +404,7 @@ class MCPServerSelector:
         task_description: str,
         max_servers: int = 5,
         include_experimental: bool = False,
-    ) -> List[ServerScore]:
+    ) -> list[ServerScore]:
         """Recommend servers for a specific task.
 
         Args:
@@ -486,10 +485,10 @@ class MCPServerSelector:
     async def interactive_select(
         self,
         prompt: str = "Select MCP servers to use:",
-        categories: Optional[List[str]] = None,
-        prefixes: Optional[List[str]] = None,
-        max_selections: Optional[int] = None,
-    ) -> List[str]:
+        categories: list[str] | None = None,
+        prefixes: list[str] | None = None,
+        max_selections: int | None = None,
+    ) -> list[str]:
         """Interactive server selection interface.
 
         Args:
@@ -581,7 +580,7 @@ class MCPServerSelector:
         return selected_names
 
     def create_config_for_selection(
-        self, selected_servers: List[str], lazy_init: bool = True
+        self, selected_servers: list[str], lazy_init: bool = True
     ) -> MCPConfig:
         """Create MCPConfig for selected servers.
 
@@ -611,8 +610,8 @@ class MCPServerSelector:
         )
 
     def _create_server_config_from_setup(
-        self, setup_info: Dict[str, Any]
-    ) -> Optional[MCPServerConfig]:
+        self, setup_info: dict[str, Any]
+    ) -> MCPServerConfig | None:
         """Create MCPServerConfig from setup information."""
         try:
             # Determine transport and connection info
@@ -650,7 +649,7 @@ class MCPServerSelector:
             logger.error(f"Failed to create server config: {e}")
             return None
 
-    def get_selection_summary(self, selected_servers: List[str]) -> Dict[str, Any]:
+    def get_selection_summary(self, selected_servers: list[str]) -> dict[str, Any]:
         """Get summary of selected servers.
 
         Args:

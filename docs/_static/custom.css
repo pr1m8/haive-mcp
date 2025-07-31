@@ -1,0 +1,140 @@
+/* Custom styles for haive-mcp documentation */
+
+/* Improve code block styling */
+.highlight {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.highlight pre {
+    margin: 0;
+    overflow-x: auto;
+}
+
+/* Enhance parameter lists */
+dl.field-list > dt {
+    font-weight: bold;
+    background: #f8f9fa;
+    padding: 0.25rem 0.5rem;
+    border-left: 3px solid #007bff;
+    margin-bottom: 0.25rem;
+}
+
+dl.field-list > dd {
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Style return type information */
+.sig-return-typehint {
+    color: #6f42c1;
+    font-style: italic;
+}
+
+/* Improve table styling */
+table.docutils {
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+table.docutils th {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    padding: 0.75rem;
+    text-align: left;
+}
+
+table.docutils td {
+    border: 1px solid #dee2e6;
+    padding: 0.75rem;
+}
+
+/* Style admonitions */
+.admonition {
+    margin: 1rem 0;
+    padding: 1rem;
+    border-left: 4px solid #007bff;
+    background: #f8f9fa;
+}
+
+.admonition.note {
+    border-left-color: #17a2b8;
+}
+
+.admonition.warning {
+    border-left-color: #ffc107;
+}
+
+.admonition.important {
+    border-left-color: #dc3545;
+}
+
+/* Improve navigation */
+.wy-nav-content {
+    max-width: 1200px;
+}
+
+/* Style class signatures */
+.class > dt {
+    background: #e9ecef;
+    padding: 0.5rem;
+    border-radius: 4px;
+    margin: 1rem 0 0.5rem 0;
+}
+
+/* Style method signatures */
+.method > dt {
+    background: #f8f9fa;
+    padding: 0.25rem 0.5rem;
+    border-left: 3px solid #28a745;
+    margin: 0.5rem 0 0.25rem 0;
+}
+
+/* Improve spacing in autosummary tables */
+.autosummary td {
+    padding: 0.5rem;
+    vertical-align: top;
+}
+
+.autosummary td:first-child {
+    white-space: nowrap;
+    font-family: monospace;
+}
+
+/* Custom styling for MCP-specific content */
+.mcp-server-config {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 4px;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.mcp-tool-list {
+    background: #d1ecf1;
+    border: 1px solid #bee5eb;
+    border-radius: 4px;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+/* Improve code examples */
+.literal-block {
+    font-size: 0.9em;
+    line-height: 1.4;
+}
+
+/* Style type hints more subtly */
+.sig-param .o,
+.sig-param .n,
+.sig-param .p {
+    color: #495057;
+}
+
+.sig-param .kt {
+    color: #6f42c1;
+    font-weight: normal;
+}

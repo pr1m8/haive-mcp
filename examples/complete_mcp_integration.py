@@ -1,5 +1,4 @@
-"""
-Complete MCP Integration Example
+"""Complete MCP Integration Example
 
 This example demonstrates the full MCP integration with haive-agents:
 1. Type-checked MCP configuration
@@ -9,15 +8,11 @@ This example demonstrates the full MCP integration with haive-agents:
 """
 
 import asyncio
-import json
-from typing import List
 
 from haive.core.engine.aug_llm import AugLLMConfig
 from haive.core.models.llm.base import LLMConfig
-
 from haive.mcp.agents import MCPAgent, MCPDocumentationAgent, TransferableMCPAgent
 from haive.mcp.config import MCPConfig, MCPServerConfig
-from haive.mcp.discovery import MCPServerDiscovery
 
 
 async def example_basic_mcp_integration():
@@ -119,7 +114,8 @@ async def example_documentation_based_setup():
 
     for server_name in servers_to_setup:
         result = await doc_agent.process_mcp_server(
-            server_name, fetch_latest=False  # Use cached docs
+            server_name,
+            fetch_latest=False,  # Use cached docs
         )
 
         if result["mcp_config"]:
@@ -212,7 +208,7 @@ async def example_complete_workflow():
 
         # Show final status
         status = research_agent.get_mcp_status()
-        print(f"\n4. Final MCP Status:")
+        print("\n4. Final MCP Status:")
         print(f"   Enabled: {status['enabled']}")
         print(f"   Connected servers: {status['connected_servers']}")
         print(f"   Available tools: {status['tool_count']}")

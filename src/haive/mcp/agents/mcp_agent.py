@@ -58,80 +58,123 @@ Example:
         result = await agent.arun({"messages": [...]})
 """
 
-from typing import Any, Dict, List, Optional, Type
+from typing import Any
 
-from haive.agents.simple import SimpleAgent
 from pydantic import Field
 
-from haive.mcp.config import MCPConfig, MCPServerConfig, MCPTransport
+from haive.agents.simple import SimpleAgent
+from haive.mcp.config import MCPConfig, MCPServerConfig
 from haive.mcp.mixins.mcp_mixin import MCPMixin
 
 
 class MCPAgent(MCPMixin, SimpleAgent):
-    """
-    An agent with MCP (Model Context Protocol) capabilities.
+    """An agent with MCP (Model Context Protocol) capabilities.
 
     This agent extends SimpleAgent with the ability to connect to and use
-    MCP servers for additional tools and resources.
+    MCP servers for additional tools and resources. It provides seamless
+    integration with MCP servers while maintaining all SimpleAgent functionality.
+
+    Attributes:
+        mcp_config: Optional MCP configuration for connecting to MCP servers
+
+    The agent automatically:
+        - Connects to configured MCP servers
+        - Discovers available tools and resources
+        - Registers MCP tools with the agent's tool system
+        - Handles server health monitoring and reconnection
+        - Provides unified tool access across all servers
 
     Example:
-        ```python
-        from haive.mcp.agents import MCPAgent
-        from haive.mcp.config import MCPConfig, MCPServerConfig
+        Basic MCP agent setup::
 
-        # Configure MCP servers
-        mcp_config = MCPConfig(
-            enabled=True,
-            servers={
-                "filesystem": MCPServerConfig(
-                    name="filesystem",
-                    transport="stdio",
-                    command="npx",
-                    args=["-y", "@modelcontextprotocol/server-filesystem"],
-                    capabilities=["file_read", "file_write", "directory_list"]
-                ),
-                "github": MCPServerConfig(
-                    name="github",
-                    transport="stdio",
-                    command="npx",
-                    args=["-y", "@modelcontextprotocol/server-github"],
-                    env={"GITHUB_TOKEN": "your_token"},
-                    capabilities=["repo_access", "issue_management"]
-                )
-            }
-        )
+            from haive.mcp.agents import MCPAgent
+            from haive.mcp.config import MCPConfig, MCPServerConfig
 
-        # Create agent with MCP
-        agent = MCPAgent(
-            engine=my_engine,
-            mcp_config=mcp_config,
-            name="mcp_assistant"
-        )
+            # Configure MCP servers
+            mcp_config = MCPConfig(
+                enabled=True,
+                servers={
+                    "filesystem": MCPServerConfig(
+                        name="filesystem",
+                        transport="stdio",
+                        command="npx",
+                        args=["-y", "@modelcontextprotocol/server-filesystem"],
+                        capabilities=["file_read", "file_write", "directory_list"]
+                    ),
+                    "github": MCPServerConfig(
+                        name="github",
+                        transport="stdio",
+                        command="npx",
+                        args=["-y", "@modelcontextprotocol/server-github"],
+                        env={"GITHUB_TOKEN": "your_token"},
+                        capabilities=["repo_access", "issue_management"]
+                    )
+                }
+            )
 
-        # Tools from MCP servers are automatically available
-        result = await agent.arun({
-            "messages": [{"role": "user", "content": "List files in current directory"}]
-        })
-        ```
+            # Create agent with MCP
+            agent = MCPAgent(
+                engine=my_engine,
+                mcp_config=mcp_config,
+                name="mcp_assistant"
+            )
+
+            # Initialize agent and MCP connections
+            await agent.setup()
+
+            # Tools from MCP servers are automatically available
+            result = await agent.arun({
+                "messages": [{"role": "user", "content": "List files in current directory"}]
+            })
+
+        Factory method usage::
+
+            # Using convenience factory
+            agent = MCPAgent.create_with_mcp_servers(
+                engine=engine,
+                server_configs={
+                    "filesystem": {
+                        "transport": "stdio",
+                        "command": "npx",
+                        "args": ["-y", "@modelcontextprotocol/server-filesystem"]
+                    }
+                }
+            )
     """
 
-    mcp_config: Optional[MCPConfig] = Field(
+    mcp_config: MCPConfig | None = Field(
         default=None, description="MCP configuration for connecting to MCP servers"
     )
 
-    def __init__(self, **kwargs):
-        """Initialize MCP-enabled agent."""
-        super().__init__(**kwargs)
+    def setup_agent(self) -> None:
+        """Override setup_agent to configure MCP after base setup.
+
+        This method extends the base SimpleAgent setup to include MCP configuration.
+        It ensures that MCP is initialized after the base agent setup is complete.
+        """
+        # Call parent setup_agent first
+        super().setup_agent()
 
         # Setup MCP after base initialization
         if self.mcp_config and self.mcp_config.enabled:
             self.setup_mcp()
 
-    async def setup(self):
-        """Setup agent including MCP initialization."""
-        # Run parent setup first
-        await super().setup()
+    async def setup(self) -> None:
+        """Setup agent including MCP initialization.
 
+        This async setup method should be called after agent creation
+        to initialize MCP connections and discover available tools.
+
+        The method handles:
+            - MCP server connections (if not lazy_init)
+            - Tool discovery and registration
+            - Resource loading
+            - Health monitoring setup
+
+        Note:
+            This method is required for MCP functionality. Call it after
+            creating the agent but before using it.
+        """
         # Initialize MCP if configured
         if (
             self.mcp_config
@@ -147,8 +190,8 @@ class MCPAgent(MCPMixin, SimpleAgent):
     def create_with_mcp_servers(
         cls,
         engine: Any,
-        server_configs: Dict[str, Dict[str, Any]],
-        name: Optional[str] = None,
+        server_configs: dict[str, dict[str, Any]],
+        name: str | None = None,
         **kwargs,
     ) -> "MCPAgent":
         """Create an MCP agent with server configurations.
@@ -205,7 +248,7 @@ class MCPAgent(MCPMixin, SimpleAgent):
             engine=engine, mcp_config=mcp_config, name=name or "mcp_agent", **kwargs
         )
 
-    def get_available_capabilities(self) -> List[str]:
+    def get_available_capabilities(self) -> list[str]:
         """Get all available capabilities from connected MCP servers."""
         capabilities = []
 
@@ -215,9 +258,8 @@ class MCPAgent(MCPMixin, SimpleAgent):
 
         return list(set(capabilities))
 
-    async def discover_tools_by_capability(self, capability: str) -> List[Any]:
-        """
-        Discover tools that provide a specific capability.
+    async def discover_tools_by_capability(self, capability: str) -> list[Any]:
+        """Discover tools that provide a specific capability.
 
         Args:
             capability: The capability to search for
@@ -241,10 +283,9 @@ class MCPAgent(MCPMixin, SimpleAgent):
         return matching_tools
 
     async def call_tool_with_retry(
-        self, tool_name: str, arguments: Dict[str, Any], max_retries: int = 3
+        self, tool_name: str, arguments: dict[str, Any], max_retries: int = 3
     ) -> Any:
-        """
-        Call an MCP tool with retry logic.
+        """Call an MCP tool with retry logic.
 
         Args:
             tool_name: Name of the tool
@@ -324,7 +365,7 @@ def create_github_agent(engine: Any, github_token: str) -> MCPAgent:
     )
 
 
-def create_multi_mcp_agent(engine: Any, github_token: Optional[str] = None) -> MCPAgent:
+def create_multi_mcp_agent(engine: Any, github_token: str | None = None) -> MCPAgent:
     """Create an agent with multiple MCP servers."""
     server_configs = {
         "filesystem": {
