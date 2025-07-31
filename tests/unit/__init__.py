@@ -43,7 +43,6 @@ from unit.test_installer_types import (
     test_optional_command_detection,
 )
 
-
 __all__ = [
     "TestDockerInstaller",
     "TestGitInstaller",

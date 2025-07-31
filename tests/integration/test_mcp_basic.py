@@ -1,7 +1,7 @@
 """Basic MCP tests that don't rely on haive-agents."""
 
-from pydantic import BaseModel
 import pytest
+from pydantic import BaseModel
 
 from haive.mcp.config import MCPConfig, MCPServerConfig
 from haive.mcp.mixins.mcp_mixin import MCPMixin
