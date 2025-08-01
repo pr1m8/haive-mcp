@@ -1,0 +1,27 @@
+# Git LFS tracking for large data files
+data/mcp_servers/*.json filter=lfs diff=lfs merge=lfs -text
+data/mcp_servers/**/*.json filter=lfs diff=lfs merge=lfs -text
+data/mcp_servers/metadata/*.yaml filter=lfs diff=lfs merge=lfs -text
+data/mcp_servers/metadata/*.json filter=lfs diff=lfs merge=lfs -text
+# Track any JSON file over 100KB
+*.json filter=lfs diff=lfs merge=lfs -text
+# Track other potentially large data files
+*.pkl filter=lfs diff=lfs merge=lfs -text
+*.pickle filter=lfs diff=lfs merge=lfs -text
+*.h5 filter=lfs diff=lfs merge=lfs -text
+*.hdf5 filter=lfs diff=lfs merge=lfs -text
+*.parquet filter=lfs diff=lfs merge=lfs -text
+*.feather filter=lfs diff=lfs merge=lfs -text
+*.arrow filter=lfs diff=lfs merge=lfs -text
+*.msgpack filter=lfs diff=lfs merge=lfs -text
+*.npy filter=lfs diff=lfs merge=lfs -text
+*.npz filter=lfs diff=lfs merge=lfs -text
+# Track model files
+*.pt filter=lfs diff=lfs merge=lfs -text
+*.pth filter=lfs diff=lfs merge=lfs -text
+*.onnx filter=lfs diff=lfs merge=lfs -text
+*.safetensors filter=lfs diff=lfs merge=lfs -text
+# Track database files
+*.db filter=lfs diff=lfs merge=lfs -text
+*.sqlite filter=lfs diff=lfs merge=lfs -text
+*.sqlite3 filter=lfs diff=lfs merge=lfs -text
