@@ -1,25 +1,3 @@
-{
-  "total_processed": 10,
-  "successful": 10,
-  "failed": 0,
-  "start_time": "2025-07-03T23:33:44.854029+00:00",
-  "last_update": "2025-07-03T23:33:44.888531+00:00",
-  "current_batch": 1,
-  "estimated_completion": "2025-07-04T08:15:18.293634+00:00",
-  "success_rate": 100.0,
-  "progress": 1.0,
-  "processed_server_ids": [
-    "https://github.com/21st-dev/magic-mcp",
-    "https://github.com/apimatic/apimatic-validator-mcp",
-    "https://github.com/apache/doris-mcp-server",
-    "https://github.com/aliyun/alibabacloud-devops-mcp-server",
-    "https://github.com/Adfin-Engineering/mcp-server-adfin",
-    "https://github.com/tinyfish-io/agentql-mcp",
-    "https://github.com/ALAPI-SDK/mcp-alapi-cn",
-    "https://github.com/Aiven-Open/mcp-aiven",
-    "https://github.com/apify/actors-mcp-server",
-    "https://github.com/isaiahbjork/allyson-mcp"
-  ],
-  "failed_server_ids": [],
-  "running": false
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:7bf00c472e758008f5e5ec707017a3a81fba1579a3788b4d7dd138cde7c53872
+size 899
