@@ -1,9 +1,9 @@
+---
 # Production MCP Configuration
 # Optimized for production environments with stricter settings
 
 # Inherit from default config
 extends: default_config.yaml
-
 # Production-specific settings
 settings:
   # More restrictive installation directory
@@ -12,7 +12,7 @@ settings:
   # Production logging
   log_level: WARNING
   log_file: /var/log/mcp/downloader.log
-  log_max_size: 10485760 # 10MB
+  log_max_size: 10485760  # 10MB
   log_backup_count: 5
 
   # Conservative download settings
@@ -22,7 +22,7 @@ settings:
   retry_delay: 10
 
   # Strict health monitoring
-  health_check_interval: 1800 # 30 minutes
+  health_check_interval: 1800  # 30 minutes
   health_check_on_startup: true
   health_check_timeout: 30
   fail_on_health_check: true
@@ -41,9 +41,8 @@ settings:
     - https://github.com
 
   # Resource limits
-  max_install_size: 1073741824 # 1GB
-  max_memory_usage: 536870912 # 512MB
-
+  max_install_size: 1073741824  # 1GB
+  max_memory_usage: 536870912  # 512MB
 # Production servers only
 servers:
   # Only enable stable, verified servers
@@ -56,8 +55,10 @@ servers:
     tags: [file, official, core, production]
     # Add verification
     verify_command:
-      ["npx", "-y", "@modelcontextprotocol/server-filesystem", "--version"]
-
+      - npx
+      - -y
+      - '@modelcontextprotocol/server-filesystem'
+      - --version
   - name: sqlite
     template: npm_official
     source: npm
@@ -66,8 +67,10 @@ servers:
     enabled: true
     tags: [database, official, embedded, production]
     verify_command:
-      ["npx", "-y", "@modelcontextprotocol/server-sqlite", "--version"]
-
+      - npx
+      - -y
+      - '@modelcontextprotocol/server-sqlite'
+      - --version
 # Strict patterns
 patterns:
   # Only official sources
@@ -77,15 +80,15 @@ patterns:
   # Only verified patterns
   package_patterns:
     npm:
-      - "@modelcontextprotocol/server-*"
+      - '@modelcontextprotocol/server-*'
 
   # Extensive exclusions
   exclude_patterns:
-    - "*-test"
-    - "*-demo"
-    - "*-example"
-    - "*-deprecated"
-    - "*-beta"
-    - "*-alpha"
-    - "*-dev"
-    - "*-experimental"
+    - '*-test'
+    - '*-demo'
+    - '*-example'
+    - '*-deprecated'
+    - '*-beta'
+    - '*-alpha'
+    - '*-dev'
+    - '*-experimental'
