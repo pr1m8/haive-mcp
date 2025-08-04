@@ -1,6 +1,6 @@
 """Module exports."""
 
-from documentation.doc_loader import (
+from haive.mcp.documentation.doc_loader import (
     MCPDocumentationLoader,
     extract_setup_info,
     get_server_documentation,
