@@ -315,19 +315,37 @@ agent = IntelligentMCPAgent(
 )
 ```
 
-## Examples
+## Examples & Documentation
 
-Complete examples are provided in the `examples/` directory:
+### 🚀 Quick Start
 
 ```bash
-# Basic dynamic discovery
-poetry run python examples/dynamic_mcp_workflow.py
+# 5-minute setup guide
+see project_docs/guides/quick-start.md
 
-# Static MCP configuration
-poetry run python examples/mcp_agent_example.py
+# Run basic example
+poetry run python examples/basic_mcp_agent.py
+```
 
-# Documentation processing
-poetry run python examples/mcp_documentation_example.py
+### 📚 Comprehensive Documentation
+
+- **[Project Documentation](project_docs/README.md)** - Complete documentation hub
+- **[Integration Guide](project_docs/integration/README.md)** - Add MCP to your agents
+- **[Usage Patterns](project_docs/guides/usage-patterns.md)** - Common scenarios
+- **[Architecture](project_docs/architecture/README.md)** - System design
+- **[Examples](project_docs/examples/README.md)** - Working code examples
+
+### 🎯 Key Examples
+
+```bash
+# Dynamic discovery with approval
+poetry run python examples/intelligent_discovery.py
+
+# Multi-agent coordination
+poetry run python examples/multi_agent_workflow.py
+
+# Tool sharing between agents
+poetry run python examples/tool_sharing.py
 ```
 
 ## Testing
@@ -343,18 +361,26 @@ poetry run pytest tests/test_hot_reload_integration.py -v
 poetry run pytest --cov=haive.mcp
 ```
 
-## Architecture
+## Package Structure
 
 ```
 haive-mcp/
-├── agents/                    # Agent implementations
-│   ├── intelligent_mcp_agent  # Dynamic discovery agent
-│   ├── mcp_agent             # Standard MCP agent
-│   └── transferable_mcp      # Tool sharing agent
-├── manager.py                # Dynamic server management
-├── config.py                 # Configuration models
-├── documentation/            # 992+ server database
-└── mixins/                   # MCP capabilities mixin
+├── 📚 project_docs/          # Comprehensive documentation
+│   ├── guides/               # Usage guides and quick start
+│   ├── integration/          # Integration patterns
+│   ├── architecture/         # System design
+│   ├── implementation/       # Production patterns
+│   └── examples/             # Working code examples
+├── 🧹 src/haive/mcp/         # Clean source code
+│   ├── agents/               # Agent implementations
+│   ├── manager.py            # Dynamic server management
+│   ├── config.py             # Configuration models
+│   └── documentation/        # 1,960+ server database
+├── 🎯 examples/              # Organized examples
+├── 🔧 scripts/               # Setup and utility scripts
+├── 🛠️ tools/                 # Development tools
+├── ✅ tests/                 # Comprehensive tests
+└── 📦 data/                  # MCP server database (55MB)
 ```
 
 ## Advanced Usage
