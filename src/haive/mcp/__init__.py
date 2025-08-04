@@ -6,7 +6,6 @@ import lazy_loader as lazy
 submodules = [
     "agents",
     "cli",
-    "complete_mcp_example",
     "complete_mcp_with_parent_retriever",
     "comprehensive_mcp_web",
     "config",
@@ -35,8 +34,6 @@ submodules = [
     "servers",
     "simple_faiss_retriever",
     "simple_rag_mcp_agent",
-    "test_direct",
-    "test_vectorstore",
     "tools",
     "utils",
     "working_enhanced_retriever",
@@ -47,7 +44,6 @@ submodules = [
 submod_attrs = {
     "agents": [],  # TODO: Add specific exports from agents
     "cli": [],  # TODO: Add specific exports from cli
-    "complete_mcp_example": [],  # TODO: Add specific exports from complete_mcp_example
     "complete_mcp_with_parent_retriever": [],  # TODO: Add specific exports from complete_mcp_with_parent_retriever
     "comprehensive_mcp_web": [],  # TODO: Add specific exports from comprehensive_mcp_web
     "config": [],  # TODO: Add specific exports from config
@@ -76,8 +72,6 @@ submod_attrs = {
     "servers": [],  # TODO: Add specific exports from servers
     "simple_faiss_retriever": [],  # TODO: Add specific exports from simple_faiss_retriever
     "simple_rag_mcp_agent": [],  # TODO: Add specific exports from simple_rag_mcp_agent
-    "test_direct": [],  # TODO: Add specific exports from test_direct
-    "test_vectorstore": [],  # TODO: Add specific exports from test_vectorstore
     "tools": [],  # TODO: Add specific exports from tools
     "utils": [],  # TODO: Add specific exports from utils
     "working_enhanced_retriever": [],  # TODO: Add specific exports from working_enhanced_retriever
