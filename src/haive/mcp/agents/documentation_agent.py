@@ -576,7 +576,7 @@ class MCPDocumentationAgent(MCPMixin, DocumentAgent):
             commands and URLs found in the setup information.
         """
         # Determine transport and connection info
-        transport = "stdio"  # Default
+        transport = MCPTransport.STDIO  # Default
         command = None
         args = []
         url = None
@@ -592,7 +592,7 @@ class MCPDocumentationAgent(MCPMixin, DocumentAgent):
                     args = parts[idx + 1 :]
             elif "http" in step:
                 # URL-based server
-                transport = "sse"
+                transport = MCPTransport.SSE
                 url = step
 
         return MCPServerConfig(

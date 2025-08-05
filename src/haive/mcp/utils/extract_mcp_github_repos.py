@@ -353,6 +353,11 @@ class MCPRepositoryExtractor:
                         is_official=is_official,
                         platforms=platforms or [MCPPlatform.CROSS_PLATFORM],
                         scopes=scopes or [MCPScope.LOCAL],
+                        stars=None,
+                        last_updated=None,
+                        license=None,
+                        readme_url=None,
+                        api_base_url=None,
                     )
 
                     repositories.append(metadata)
