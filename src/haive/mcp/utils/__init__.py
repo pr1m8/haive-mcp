@@ -9,15 +9,7 @@ from haive.mcp.utils.extract_mcp_github_repos import (
     MCPScope,
     MCPServerDocument,
     MCPServerMetadata,
-    compute_content_hash,
     create_agent_loader,
-    generate_statistics_report,
-    get_unique_id,
-    load_mcp_documents,
-    save_documents,
-    to_langchain_document,
-    to_langchain_metadata,
-    validate_repo_url,
 )
 
 __all__ = [
@@ -29,13 +21,5 @@ __all__ = [
     "MCPScope",
     "MCPServerDocument",
     "MCPServerMetadata",
-    "compute_content_hash",
     "create_agent_loader",
-    "generate_statistics_report",
-    "get_unique_id",
-    "load_mcp_documents",
-    "save_documents",
-    "to_langchain_document",
-    "to_langchain_metadata",
-    "validate_repo_url",
 ]

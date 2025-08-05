@@ -588,7 +588,15 @@ class MCPServerSelector:
                     servers[config.name] = config
 
         return MCPConfig(
-            enabled=True, servers=servers, lazy_init=lazy_init, auto_discover=False
+            enabled=True,
+            servers=servers,
+            lazy_init=lazy_init,
+            auto_discover=False,
+            categories=None,
+            required_capabilities=None,
+            on_server_connected=None,
+            on_server_failed=None,
+            on_tool_discovered=None,
         )
 
     def _create_server_config_from_setup(
@@ -626,6 +634,8 @@ class MCPServerSelector:
                 category=setup_info.get("category", ""),
                 description=setup_info.get("description", ""),
                 env=setup_info.get("configuration", {}),
+                api_key=setup_info.get("api_key"),
+                health_check_interval=setup_info.get("health_check_interval", 60),
             )
         except Exception as e:
             logger.exception(f"Failed to create server config: {e}")

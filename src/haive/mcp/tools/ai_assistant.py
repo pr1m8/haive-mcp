@@ -440,6 +440,11 @@ class MCPAssistant:
             lazy_init=True,  # Always use lazy init for flexibility
             auto_discover=False,  # We've done the discovery
             max_concurrent_servers=min(len(servers), 5),  # Reasonable limit
+            categories=None,
+            required_capabilities=None,
+            on_server_connected=None,
+            on_server_failed=None,
+            on_tool_discovered=None,
         )
 
     def _create_optimized_server_config(
@@ -489,6 +494,10 @@ class MCPAssistant:
                 args=["-y", "@modelcontextprotocol/server-fetch"],
                 enabled=False,
                 description="HTTP fetch fallback",
+                url=None,
+                api_key=None,
+                category="web",
+                health_check_interval=60,
             ),
             "filesystem": MCPServerConfig(
                 name="filesystem_fallback",
@@ -497,6 +506,10 @@ class MCPAssistant:
                 args=["-y", "@modelcontextprotocol/server-filesystem"],
                 enabled=False,
                 description="Local filesystem fallback",
+                url=None,
+                api_key=None,
+                category="filesystem",
+                health_check_interval=60,
             ),
         }
 

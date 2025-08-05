@@ -281,6 +281,11 @@ class IntelligentMCPAgent(ReactAgent):
                         transport="stdio",
                         command="npx",
                         args=["-y", f"@{server_name}"],
+                        url=None,
+                        api_key=None,
+                        category="auto-discovered",
+                        description=f"Auto-discovered server: {server_name}",
+                        health_check_interval=60,
                     )
 
                 # Check if approval needed

@@ -719,7 +719,14 @@ class GeneralMCPDownloader:
             error: Error message if failed
         """
         if name not in self.status_tracker:
-            self.status_tracker[name] = ServerStatus(name=name)
+            self.status_tracker[name] = ServerStatus(
+                name=name,
+                last_check=None,
+                last_success=None,
+                install_result=None,
+                health_status=None,
+                error=None,
+            )
 
         server_status = self.status_tracker[name]
         server_status.status = status
@@ -905,7 +912,17 @@ class GeneralMCPDownloader:
             servers_to_check = [
                 s
                 for s in self.config.servers
-                if self.status_tracker.get(s.name, ServerStatus(name=s.name)).status
+                if self.status_tracker.get(
+                    s.name,
+                    ServerStatus(
+                        name=s.name,
+                        last_check=None,
+                        last_success=None,
+                        install_result=None,
+                        health_status=None,
+                        error=None,
+                    ),
+                ).status
                 == "installed"
             ]
 

@@ -31,34 +31,16 @@ from haive.mcp.downloader.installers import (
     PipInstaller,
 )
 from haive.mcp.downloader.integration import (
-    Config,
     MCPAgentIntegration,
     MCPCapabilityExtractor,
     MCPServerConnection,
-    get_all_prompts,
-    get_all_resources,
-    get_all_tools,
-    get_capability_summary,
-    get_tools_by_capability,
-    get_tools_by_server,
 )
 from haive.mcp.downloader.legacy_core import (
-    DockerInstaller,
     GeneralMCPDownloader,
-    GitInstaller,
-    InstallationMethod,
-    MCPInstaller,
-    NPMInstaller,
-    PipInstaller,
-    ServerConfig,
-    ServerTemplate,
-    create_default_config,
-    load_config,
 )
 
 __all__ = [
     "BinaryInstaller",
-    "Config",
     "CurlInstaller",
     "DiscoveredServer",
     "DiscoveryConfig",
@@ -79,13 +61,6 @@ __all__ = [
     "ServerDiscovery",
     "ServerStatus",
     "ServerTemplate",
-    "create_default_config",
-    "get_all_prompts",
-    "get_all_resources",
-    "get_all_tools",
-    "get_capability_summary",
-    "get_tools_by_capability",
-    "get_tools_by_server",
     "load_config",
     "save_config",
 ]

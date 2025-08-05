@@ -340,7 +340,16 @@ async def create_mcp_enabled_aug_config(
         Initialized MCPAugLLMConfig with MCP integration
     """
     # Create MCP config
-    mcp_config = MCPConfig(enabled=True, servers=mcp_servers or {}, auto_discover=False)
+    mcp_config = MCPConfig(
+        enabled=True,
+        servers=mcp_servers or {},
+        auto_discover=False,
+        categories=None,
+        required_capabilities=None,
+        on_server_connected=None,
+        on_server_failed=None,
+        on_tool_discovered=None,
+    )
 
     # Create extended config
     config = MCPAugLLMConfig(

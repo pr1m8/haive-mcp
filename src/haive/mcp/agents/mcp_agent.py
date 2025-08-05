@@ -62,9 +62,9 @@ from haive import agents
 
 from typing import Any
 
+from haive.agents.simple import SimpleAgent
 from pydantic import Field
 
-from haive.agents.simple import SimpleAgent
 from haive.mcp.config import MCPConfig, MCPServerConfig
 from haive.mcp.mixins.mcp_mixin import MCPMixin
 
@@ -244,7 +244,15 @@ class MCPAgent(MCPMixin, SimpleAgent):
             servers[server_name] = MCPServerConfig(name=server_name, **config)
 
         # Create MCP config
-        mcp_config = MCPConfig(enabled=True, servers=servers)
+        mcp_config = MCPConfig(
+            enabled=True,
+            servers=servers,
+            categories=None,
+            required_capabilities=None,
+            on_server_connected=None,
+            on_server_failed=None,
+            on_tool_discovered=None,
+        )
 
         return cls(
             engine=engine, mcp_config=mcp_config, name=name or "mcp_agent", **kwargs

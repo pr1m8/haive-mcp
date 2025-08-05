@@ -678,8 +678,22 @@ class MCPAgentIntegration:
                 url=connection.config.get("url"),
                 env=connection.config.get("env", {}),
                 capabilities=list(connection.tools.keys()),
+                api_key=connection.config.get("api_key"),
+                category=connection.config.get("category", "integration"),
+                description=connection.config.get("description", f"MCP server: {name}"),
+                health_check_interval=connection.config.get(
+                    "health_check_interval", 60
+                ),
             )
 
         return MCPConfig(
-            enabled=True, servers=servers, auto_discover=False, lazy_init=False
+            enabled=True,
+            servers=servers,
+            auto_discover=False,
+            lazy_init=False,
+            categories=None,
+            required_capabilities=None,
+            on_server_connected=None,
+            on_server_failed=None,
+            on_tool_discovered=None,
         )

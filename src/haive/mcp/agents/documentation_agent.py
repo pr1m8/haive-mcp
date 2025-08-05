@@ -605,6 +605,8 @@ class MCPDocumentationAgent(MCPMixin, DocumentAgent):
             category=setup_info.get("category", ""),
             description=setup_info.get("description", ""),
             env=setup_info.get("configuration", {}),
+            api_key=setup_info.get("api_key"),
+            health_check_interval=setup_info.get("health_check_interval", 60),
         )
 
     def _extract_setup_from_content(self, content: str) -> dict[str, Any]:
@@ -653,7 +655,16 @@ class MCPDocumentationAgent(MCPMixin, DocumentAgent):
         for config in server_configs:
             servers[config.name] = config
 
-        return MCPConfig(enabled=True, servers=servers, auto_discover=False)
+        return MCPConfig(
+            enabled=True,
+            servers=servers,
+            auto_discover=False,
+            categories=None,
+            required_capabilities=None,
+            on_server_connected=None,
+            on_server_failed=None,
+            on_tool_discovered=None,
+        )
 
     def _generate_implementation_code(
         self, agent_type: str, mcp_config: MCPConfig | None
