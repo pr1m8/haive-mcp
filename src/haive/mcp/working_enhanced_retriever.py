@@ -9,7 +9,7 @@ import json
 import sys
 
 from haive.core.engine.aug_llm import AugLLMConfig
-from langchain.chains.query_constructor.base import AttributeInfo
+from langchain.chains.query_constructor.schema import AttributeInfo
 from langchain.retrievers import ParentDocumentRetriever
 from langchain.retrievers.self_query.base import SelfQueryRetriever
 from langchain.storage import InMemoryStore

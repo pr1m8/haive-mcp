@@ -15,8 +15,9 @@ from typing import Any
 
 import plotly.express as px
 import streamlit as st
-from csv_viewer import create_csv_export, load_mcp_servers_data
-from self_query_mcp_agent import SelfQueryMCPAgent
+
+from haive.mcp.csv_viewer import create_csv_export, load_mcp_servers_data
+from haive.mcp.self_query_mcp_agent import SelfQueryMCPAgent
 
 # Import our custom components
 

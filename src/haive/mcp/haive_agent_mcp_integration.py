@@ -13,12 +13,13 @@ import logging
 import sys
 from typing import Any
 
-from fastmcp_runner import MCPProcessManager
 from haive.agents.react import ReactAgent
 from haive.agents.simple import SimpleAgent
 from haive.core.engine.aug_llm import AugLLMConfig
-from integrated_mcp_system import IntegratedMCPSystem
 from langchain_core.tools import Tool
+
+from haive.mcp.fastmcp_runner import MCPProcessManager
+from haive.mcp.integrated_mcp_system import IntegratedMCPSystem
 
 # Import our MCP components
 
