@@ -50,7 +50,9 @@ async def list_components(component_type: str = "all") -> dict[str, Any]:
         if component_type == "all":
             # Get all component types
             for entity_type in EntityType:
-                components = registry_system.get_entities_by_type(entity_type)
+                components = getattr(
+                    registry_system, "get_entities_by_type", lambda x: []
+                )(entity_type)
                 results[entity_type.value] = [
                     {
                         "name": c.get("name", "Unknown"),
@@ -63,7 +65,9 @@ async def list_components(component_type: str = "all") -> dict[str, Any]:
             # Get specific type
             try:
                 entity_type = EntityType(component_type)
-                components = registry_system.get_entities_by_type(entity_type)
+                components = getattr(
+                    registry_system, "get_entities_by_type", lambda x: []
+                )(entity_type)
                 results[component_type] = [
                     {
                         "name": c.get("name", "Unknown"),

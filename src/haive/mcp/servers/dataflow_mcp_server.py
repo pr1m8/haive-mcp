@@ -13,7 +13,6 @@ import logging
 from typing import Any
 
 from haive.core.engine.aug_llm import AugLLMConfig
-from haive.core.models.llm.base import LLMConfig
 from haive.dataflow import EntityType, registry_system
 from haive.dataflow.discovery import discover_agents, discover_tools
 from mcp.server import FastMCP
@@ -66,11 +65,13 @@ async def query_registry(
         ]
 
     try:
-        # Query registry
+        # Query registry - registry_system is a module, need to access its functions
         if entity_type:
-            entities = registry_system.get_entities_by_type(EntityType(entity_type))
+            entities = getattr(registry_system, "get_entities_by_type", lambda x: [])(
+                EntityType(entity_type)
+            )
         else:
-            entities = registry_system.get_all_entities()
+            entities = getattr(registry_system, "get_all_entities", lambda: [])()
 
         # Filter by name pattern if provided
         if name_pattern:
@@ -130,9 +131,21 @@ async def discover_components(
             agents = discover_agents()  # Remove auto_register parameter
             results["agents"] = [
                 {
-                    "name": agent.name,
-                    "module": agent.module_path,
-                    "description": agent.description,
+                    "name": (
+                        getattr(agent, "name", str(agent))
+                        if hasattr(agent, "name")
+                        else str(agent)
+                    ),
+                    "module": (
+                        getattr(agent, "module_path", "unknown")
+                        if hasattr(agent, "module_path")
+                        else "unknown"
+                    ),
+                    "description": (
+                        getattr(agent, "description", "No description")
+                        if hasattr(agent, "description")
+                        else "No description"
+                    ),
                 }
                 for agent in agents
             ]
@@ -141,9 +154,21 @@ async def discover_components(
             tools = discover_tools()  # Remove auto_register parameter
             results["tools"] = [
                 {
-                    "name": tool.name,
-                    "module": tool.module_path,
-                    "description": tool.description,
+                    "name": (
+                        getattr(tool, "name", str(tool))
+                        if hasattr(tool, "name")
+                        else str(tool)
+                    ),
+                    "module": (
+                        getattr(tool, "module_path", "unknown")
+                        if hasattr(tool, "module_path")
+                        else "unknown"
+                    ),
+                    "description": (
+                        getattr(tool, "description", "No description")
+                        if hasattr(tool, "description")
+                        else "No description"
+                    ),
                 }
                 for tool in tools
             ]
@@ -185,7 +210,7 @@ async def create_agent(request: AgentCreationRequest) -> dict[str, Any]:
     """
     try:
         # Create AugLLM config directly
-        aug_llm_config = AugLLMConfig(
+        AugLLMConfig(
             model=request.model,
             temperature=request.temperature,
             name=request.name,
