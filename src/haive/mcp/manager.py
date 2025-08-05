@@ -467,10 +467,13 @@ class MCPManager(BaseModel):
             if config.transport.value == "sse":
                 # For SSE, try a simple HTTP request
 
-                async with aiohttp.ClientSession() as session, session.get(
-                    config.url,
-                    timeout=aiohttp.ClientTimeout(total=self.connection_timeout),
-                ) as response:
+                async with (
+                    aiohttp.ClientSession() as session,
+                    session.get(
+                        config.url,
+                        timeout=aiohttp.ClientTimeout(total=self.connection_timeout),
+                    ) as response,
+                ):
                     return response.status < 500
             return True
         except Exception as e:

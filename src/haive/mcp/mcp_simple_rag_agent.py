@@ -446,7 +446,6 @@ async def ask_agent(request: QueryRequest):
         raise HTTPException(status_code=503, detail="Agent not initialized")
 
     try:
-
         # Run the query through the agent with debug
 
         sys.stdout.flush()
@@ -577,7 +576,6 @@ async def ask_agent(request: QueryRequest):
         )
 
     except Exception as e:
-
         traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
 

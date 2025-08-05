@@ -117,7 +117,6 @@ async def demo_mcp_rag_agent():
     ]
 
     for query in queries:
-
         # Get response
         await agent.arun(query)
 

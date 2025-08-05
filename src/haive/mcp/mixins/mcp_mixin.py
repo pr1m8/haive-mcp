@@ -60,7 +60,6 @@ from haive.mcp.config import MCPConfig, MCPServerConfig
 
 # Conditional imports
 try:
-
     MCP_AVAILABLE = True
 except ImportError:
     MCP_AVAILABLE = False

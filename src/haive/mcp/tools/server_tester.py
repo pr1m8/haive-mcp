@@ -407,7 +407,6 @@ class MCPServerTester:
 
         # Check for missing environment variables
         if server_config.env:
-
             missing_vars = [var for var in server_config.env if var not in os.environ]
             if missing_vars:
                 warnings.append(

@@ -9,14 +9,17 @@ Based on:
 - MCP protocol specification
 - Existing haive-mcp infrastructure
 """
+
 import uuid
 from datetime import datetime
 from typing import Any
+
 from haive.agents.discovery.component_discovery_agent import ComponentDiscoveryAgent
 from haive.core.registry import DynamicRegistry, RegistryItem
 from haive.core.schema.prebuilt.dynamic_activation_state import DynamicActivationState
 from haive.core.schema.prebuilt.meta_state import MetaStateSchema
 from pydantic import BaseModel, ConfigDict, Field, model_validator
+
 
 class MCPTool(BaseModel):
     """MCP tool representation for dynamic activation.
@@ -40,12 +43,16 @@ class MCPTool(BaseModel):
                 handler=calculator_handler
             )
     """
+
     model_config = ConfigDict(arbitrary_types_allowed=True, validate_assignment=True)
-    name: str = Field(..., description='Tool name')
-    description: str = Field(..., description='Tool description')
-    input_schema: dict[str, Any] = Field(..., description='JSON schema for tool input')
-    handler: Any = Field(..., description='Function to handle tool execution')
-    metadata: dict[str, Any] = Field(default_factory=dict, description='Additional metadata')
+    name: str = Field(..., description="Tool name")
+    description: str = Field(..., description="Tool description")
+    input_schema: dict[str, Any] = Field(..., description="JSON schema for tool input")
+    handler: Any = Field(..., description="Function to handle tool execution")
+    metadata: dict[str, Any] = Field(
+        default_factory=dict, description="Additional metadata"
+    )
+
 
 class DynamicMCPRegistry(DynamicRegistry[MCPTool]):
     """MCP-specific registry for dynamic tool activation.
@@ -74,7 +81,9 @@ class DynamicMCPRegistry(DynamicRegistry[MCPTool]):
             registry.register(item)
     """
 
-    async def activate_mcp_tool(self, tool_id: str, mcp_server: Any | None=None) -> MCPTool | None:
+    async def activate_mcp_tool(
+        self, tool_id: str, mcp_server: Any | None = None
+    ) -> MCPTool | None:
         """Activate an MCP tool and register with server.
 
         Args:
@@ -94,7 +103,7 @@ class DynamicMCPRegistry(DynamicRegistry[MCPTool]):
         if self.activate(tool_id):
             item = self.items[tool_id]
             tool = item.component
-            if mcp_server and hasattr(mcp_server, 'register_tool'):
+            if mcp_server and hasattr(mcp_server, "register_tool"):
                 await mcp_server.register_tool(tool)
             return tool
         return None
@@ -117,6 +126,7 @@ class DynamicMCPRegistry(DynamicRegistry[MCPTool]):
             if isinstance(item.component, MCPTool):
                 schemas[item.component.name] = item.component.input_schema
         return schemas
+
 
 class DynamicMCPState(DynamicActivationState):
     """MCP-specific state for dynamic activation.
@@ -146,12 +156,21 @@ class DynamicMCPState(DynamicActivationState):
                 "timestamp": "2025-01-15T10:30:00"
             })
     """
-    mcp_client_id: str | None = Field(default=None, description='ID of connected MCP client')
-    mcp_session_id: str | None = Field(default=None, description='Current MCP session ID')
-    mcp_protocol_version: str = Field(default='1.0', description='MCP protocol version')
-    tool_call_history: list[dict[str, Any]] = Field(default_factory=list, description='History of MCP tool calls')
 
-    def track_tool_call(self, tool_name: str, input_data: dict[str, Any], result: Any) -> None:
+    mcp_client_id: str | None = Field(
+        default=None, description="ID of connected MCP client"
+    )
+    mcp_session_id: str | None = Field(
+        default=None, description="Current MCP session ID"
+    )
+    mcp_protocol_version: str = Field(default="1.0", description="MCP protocol version")
+    tool_call_history: list[dict[str, Any]] = Field(
+        default_factory=list, description="History of MCP tool calls"
+    )
+
+    def track_tool_call(
+        self, tool_name: str, input_data: dict[str, Any], result: Any
+    ) -> None:
         """Track an MCP tool call.
 
         Args:
@@ -168,7 +187,17 @@ class DynamicMCPState(DynamicActivationState):
                     result=4
                 )
         """
-        self.tool_call_history.append({'tool': tool_name, 'input': input_data, 'result': str(result), 'timestamp': str(datetime.now()), 'client_id': self.mcp_client_id, 'session_id': self.mcp_session_id})
+        self.tool_call_history.append(
+            {
+                "tool": tool_name,
+                "input": input_data,
+                "result": str(result),
+                "timestamp": str(datetime.now()),
+                "client_id": self.mcp_client_id,
+                "session_id": self.mcp_session_id,
+            }
+        )
+
 
 class DynamicActivationMCPServer(BaseModel):
     """MCP server with dynamic tool activation capabilities.
@@ -221,19 +250,28 @@ class DynamicActivationMCPServer(BaseModel):
                 }
             )
     """
+
     model_config = ConfigDict(arbitrary_types_allowed=True, validate_assignment=True)
-    name: str = Field(..., description='Server name')
-    discovery_source: str = Field(..., description='Source for tool discovery')
-    tool_registry: DynamicMCPRegistry = Field(default_factory=DynamicMCPRegistry, description='Registry for managing tools')
-    discovery_config: dict[str, Any] = Field(default_factory=dict, description='Configuration for discovery')
-    meta_state: MetaStateSchema | None = Field(default=None, description='MetaStateSchema for tracking')
-    state: DynamicMCPState = Field(default_factory=DynamicMCPState, description='MCP state for session management')
+    name: str = Field(..., description="Server name")
+    discovery_source: str = Field(..., description="Source for tool discovery")
+    tool_registry: DynamicMCPRegistry = Field(
+        default_factory=DynamicMCPRegistry, description="Registry for managing tools"
+    )
+    discovery_config: dict[str, Any] = Field(
+        default_factory=dict, description="Configuration for discovery"
+    )
+    meta_state: MetaStateSchema | None = Field(
+        default=None, description="MetaStateSchema for tracking"
+    )
+    state: DynamicMCPState = Field(
+        default_factory=DynamicMCPState, description="MCP state for session management"
+    )
     _discovery_agent: ComponentDiscoveryAgent | None = None
     _is_running: bool = False
     _clients: dict[str, Any] = {}
 
-    @model_validator(mode='after')
-    def setup_mcp_server(self) -> 'DynamicActivationMCPServer':
+    @model_validator(mode="after")
+    def setup_mcp_server(self) -> "DynamicActivationMCPServer":
         """Initialize MCP server components.
 
         This validator:
@@ -243,12 +281,30 @@ class DynamicActivationMCPServer(BaseModel):
         4. Configures MCP protocol settings
         """
         if not self.discovery_config:
-            self.discovery_config = {'source': self.discovery_source, 'auto_discover': True, 'max_tools': 100, 'cache_ttl': 3600}
+            self.discovery_config = {
+                "source": self.discovery_source,
+                "auto_discover": True,
+                "max_tools": 100,
+                "cache_ttl": 3600,
+            }
         try:
-            self._discovery_agent = ComponentDiscoveryAgent(document_path=self.discovery_source)
+            self._discovery_agent = ComponentDiscoveryAgent(
+                document_path=self.discovery_source
+            )
         except Exception:
             self._discovery_agent = None
-        self.meta_state = MetaStateSchema(agent=self, agent_state={'mcp_mode': True, 'protocol_version': self.state.mcp_protocol_version}, graph_context={'protocol': 'mcp', 'server_name': self.name, 'discovery_enabled': self._discovery_agent is not None})
+        self.meta_state = MetaStateSchema(
+            agent=self,
+            agent_state={
+                "mcp_mode": True,
+                "protocol_version": self.state.mcp_protocol_version,
+            },
+            graph_context={
+                "protocol": "mcp",
+                "server_name": self.name,
+                "discovery_enabled": self._discovery_agent is not None,
+            },
+        )
         return self
 
     async def start(self) -> None:
@@ -262,11 +318,11 @@ class DynamicActivationMCPServer(BaseModel):
         """
         if self._is_running:
             return
-        if self.discovery_config.get('auto_discover', False) and self._discovery_agent:
+        if self.discovery_config.get("auto_discover", False) and self._discovery_agent:
             await self._prediscover_tools()
         self._is_running = True
         if self.meta_state:
-            self.meta_state.execution_status = 'running'
+            self.meta_state.execution_status = "running"
 
     async def stop(self) -> None:
         """Stop the MCP server.
@@ -280,7 +336,7 @@ class DynamicActivationMCPServer(BaseModel):
         self._is_running = False
         self._clients.clear()
         if self.meta_state:
-            self.meta_state.execution_status = 'stopped'
+            self.meta_state.execution_status = "stopped"
 
     async def handle_tool_request(self, request: dict[str, Any]) -> dict[str, Any]:
         """Handle dynamic tool requests from MCP clients.
@@ -303,11 +359,11 @@ class DynamicActivationMCPServer(BaseModel):
                 result = await server.handle_tool_request(request)
                 print(f"Result: {result}")
         """
-        tool_name = request.get('tool')
-        input_data = request.get('input', {})
-        client_id = request.get('client_id')
+        tool_name = request.get("tool")
+        input_data = request.get("input", {})
+        client_id = request.get("client_id")
         if not tool_name:
-            return {'error': 'Tool name is required'}
+            return {"error": "Tool name is required"}
         if client_id:
             self._clients[client_id] = request
             self.state.mcp_client_id = client_id
@@ -318,14 +374,23 @@ class DynamicActivationMCPServer(BaseModel):
                 if discovered:
                     tool = discovered
                 else:
-                    return {'error': f"Tool '{tool_name}' not found and could not be discovered"}
-            result = await self.meta_state.execute_agent(input_data={'tool_name': tool_name, 'tool_input': input_data, 'mcp_request': request}, update_state=True)
+                    return {
+                        "error": f"Tool '{tool_name}' not found and could not be discovered"
+                    }
+            result = await self.meta_state.execute_agent(
+                input_data={
+                    "tool_name": tool_name,
+                    "tool_input": input_data,
+                    "mcp_request": request,
+                },
+                update_state=True,
+            )  # type: ignore
             self.state.track_tool_call(tool_name, input_data, result)
-            return {'result': result.get('output', ''), 'success': True}
+            return {"result": result.get("output", ""), "success": True}
         except Exception as e:
-            error_msg = f'Tool execution failed: {e!s}'
-            self.state.track_tool_call(tool_name, input_data, {'error': error_msg})
-            return {'error': error_msg, 'success': False}
+            error_msg = f"Tool execution failed: {e!s}"
+            self.state.track_tool_call(tool_name, input_data, {"error": error_msg})
+            return {"error": error_msg, "success": False}
 
     async def _prediscover_tools(self) -> None:
         """Pre-discover tools during server startup.
@@ -336,7 +401,7 @@ class DynamicActivationMCPServer(BaseModel):
         if not self._discovery_agent:
             return
         try:
-            tools = await self._discovery_agent.discover_components('available tools')
+            tools = await self._discovery_agent.discover_components("available tools")
             for tool_data in tools:
                 await self._register_tool_from_data(tool_data)
         except Exception:
@@ -354,16 +419,18 @@ class DynamicActivationMCPServer(BaseModel):
         if not self._discovery_agent:
             return None
         try:
-            query = f'tool named {tool_name}'
+            query = f"tool named {tool_name}"
             tools = await self._discovery_agent.discover_components(query)
             for tool_data in tools:
-                if tool_data.get('name', '').lower() == tool_name.lower():
+                if tool_data.get("name", "").lower() == tool_name.lower():
                     return await self._register_and_activate_tool(tool_data)
             return None
         except Exception:
             return None
 
-    async def _register_and_activate_tool(self, tool_data: dict[str, Any]) -> MCPTool | None:
+    async def _register_and_activate_tool(
+        self, tool_data: dict[str, Any]
+    ) -> MCPTool | None:
         """Register and activate a tool from discovery data.
 
         Args:
@@ -373,8 +440,19 @@ class DynamicActivationMCPServer(BaseModel):
             Activated MCPTool or None if registration failed
         """
         try:
-            mcp_tool = MCPTool(name=tool_data.get('name', 'unknown'), description=tool_data.get('description', ''), input_schema=tool_data.get('input_schema', {'type': 'object'}), handler=self._create_tool_handler(tool_data), metadata=tool_data.get('metadata', {}))
-            item = RegistryItem(id=tool_data.get('id', tool_data.get('name', 'unknown')), name=tool_data.get('name', 'Unknown Tool'), description=tool_data.get('description', ''), component=mcp_tool)
+            mcp_tool = MCPTool(
+                name=tool_data.get("name", "unknown"),
+                description=tool_data.get("description", ""),
+                input_schema=tool_data.get("input_schema", {"type": "object"}),
+                handler=self._create_tool_handler(tool_data),
+                metadata=tool_data.get("metadata", {}),
+            )
+            item = RegistryItem(
+                id=tool_data.get("id", tool_data.get("name", "unknown")),
+                name=tool_data.get("name", "Unknown Tool"),
+                description=tool_data.get("description", ""),
+                component=mcp_tool,
+            )
             self.tool_registry.register(item)
             return await self.tool_registry.activate_mcp_tool(item.id, self)
         except Exception:
@@ -403,7 +481,10 @@ class DynamicActivationMCPServer(BaseModel):
 
         async def tool_handler(input_data: dict[str, Any]) -> Any:
             """Handle tool execution."""
-            return f'Executed {tool_data.get('name', 'unknown')} with input: {input_data}'
+            return (
+                f"Executed {tool_data.get('name', 'unknown')} with input: {input_data}"
+            )
+
         return tool_handler
 
     def _get_active_tool(self, tool_name: str) -> MCPTool | None:
@@ -437,7 +518,14 @@ class DynamicActivationMCPServer(BaseModel):
         tools = []
         for item in self.tool_registry.items.values():
             if isinstance(item.component, MCPTool):
-                tools.append({'name': item.component.name, 'description': item.component.description, 'input_schema': item.component.input_schema, 'active': item.is_active})
+                tools.append(
+                    {
+                        "name": item.component.name,
+                        "description": item.component.description,
+                        "input_schema": item.component.input_schema,
+                        "active": item.is_active,
+                    }
+                )
         return tools
 
     def get_server_stats(self) -> dict[str, Any]:
@@ -455,9 +543,19 @@ class DynamicActivationMCPServer(BaseModel):
                 print(f"Clients: {stats['connected_clients']}")
         """
         registry_stats = self.tool_registry.get_stats()
-        return {**registry_stats, 'server_name': self.name, 'is_running': self._is_running, 'connected_clients': len(self._clients), 'protocol_version': self.state.mcp_protocol_version, 'tool_calls': len(self.state.tool_call_history), 'discovery_enabled': self._discovery_agent is not None}
+        return {
+            **registry_stats,
+            "server_name": self.name,
+            "is_running": self._is_running,
+            "connected_clients": len(self._clients),
+            "protocol_version": self.state.mcp_protocol_version,
+            "tool_calls": len(self.state.tool_call_history),
+            "discovery_enabled": self._discovery_agent is not None,
+        }
 
-    async def handle_client_connect(self, client_id: str, client_info: dict[str, Any]) -> dict[str, Any]:
+    async def handle_client_connect(
+        self, client_id: str, client_info: dict[str, Any]
+    ) -> dict[str, Any]:
         """Handle MCP client connection.
 
         Args:
@@ -479,7 +577,13 @@ class DynamicActivationMCPServer(BaseModel):
         self.state.mcp_client_id = client_id
         session_id = str(uuid.uuid4())
         self.state.mcp_session_id = session_id
-        return {'status': 'connected', 'session_id': session_id, 'server_name': self.name, 'protocol_version': self.state.mcp_protocol_version, 'available_tools': self.get_available_tools()}
+        return {
+            "status": "connected",
+            "session_id": session_id,
+            "server_name": self.name,
+            "protocol_version": self.state.mcp_protocol_version,
+            "available_tools": self.get_available_tools(),
+        }
 
     async def handle_client_disconnect(self, client_id: str) -> None:
         """Handle MCP client disconnection.

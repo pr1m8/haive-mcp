@@ -265,7 +265,6 @@ class PipInstaller(MCPInstaller):
     ) -> bool:
         package = template.command_pattern.format(**server_config.variables)
         try:
-
             module_name = package.replace("-", "_")
             importlib.import_module(module_name)
             return True

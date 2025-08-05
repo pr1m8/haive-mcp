@@ -37,7 +37,6 @@ def print_servers(servers: list[dict], show_details: bool = False):
         metadata.get("category", "Uncategorized")
 
         if show_details:
-
             # Show capabilities if available
             loader = MCPDocumentationLoader()
             setup_info = loader.extract_setup_info(server)

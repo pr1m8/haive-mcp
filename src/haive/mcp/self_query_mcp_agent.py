@@ -349,7 +349,6 @@ async def test_enhanced_agent():
     ]
 
     for query in test_queries:
-
         # Determine best search method
         agent.analyze_query_intent(query)
 
@@ -357,7 +356,6 @@ async def test_enhanced_agent():
         results = await agent.hybrid_search(query, k=3)
 
         for _search_type, docs in results.items():
-
             for _i, doc in enumerate(docs, 1):
                 (
                     doc.page_content[:200] + "..."
@@ -367,5 +365,4 @@ async def test_enhanced_agent():
 
 
 if __name__ == "__main__":
-
     asyncio.run(test_enhanced_agent())

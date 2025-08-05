@@ -232,7 +232,6 @@ def main():
         # Internal streamlit mode
         streamlit_viewer()
     else:
-
         # Show basic stats
         create_csv_export()
 
