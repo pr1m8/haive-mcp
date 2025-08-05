@@ -30,12 +30,10 @@ def test_vector_store():
     ]
 
     for query in queries:
-
         # Search
         results = vectorstore.similarity_search(query, k=5)
 
         for _i, doc in enumerate(results, 1):
-
             # Extract description
             content_lines = doc.page_content.split("\n")
             for line in content_lines:

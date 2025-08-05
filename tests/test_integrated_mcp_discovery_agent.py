@@ -335,7 +335,6 @@ When they want to use a specific capability, help them install and activate the 
     ]
 
     for query in test_queries:
-
         try:
             # The agent would process this and use the appropriate tools
             await agent.arun({"messages": [{"role": "user", "content": query}]})

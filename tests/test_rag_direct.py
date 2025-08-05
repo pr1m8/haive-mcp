@@ -24,7 +24,6 @@ async def test_direct():
     ]
 
     for query in queries:
-
         try:
             # Run with debug mode
             result = await agent.arun(query, debug=True)

@@ -33,13 +33,10 @@ async def test_tool_discovery():
     ]
 
     for query in test_queries:
-
         results = await system.search_servers(query, method="auto")
 
         if results["documents"]:
-
             for _i, doc in enumerate(results["documents"][:3], 1):
-
                 # Show description snippet
                 content = doc.page_content
                 desc_start = content.find("Description")
@@ -64,7 +61,6 @@ async def test_specific_tool_search():
     ]
 
     for query in structured_queries:
-
         try:
             docs = await agent.search_with_self_query(query, k=3)
 

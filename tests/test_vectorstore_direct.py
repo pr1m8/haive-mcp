@@ -68,7 +68,6 @@ Keywords: {category} {name.lower().replace("-", " ")} MCP server
     ]
 
     for query in queries:
-
         # Search
         results = vectorstore.similarity_search(query, k=5)
 
