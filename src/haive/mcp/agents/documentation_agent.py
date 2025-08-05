@@ -635,7 +635,7 @@ class MCPDocumentationAgent(MCPMixin, DocumentAgent):
         Returns:
             List[str]: Extracted code example strings
         """
-        return self.doc_loader.extract_usage_examples(content)
+        return self.doc_loader._extract_usage_examples(content)
 
     def _create_combined_config(
         self, server_configs: list[MCPServerConfig]

@@ -60,7 +60,12 @@ from haive import agents
         result = await agent.arun({"messages": [...]})
 """
 
-from typing import Any
+from typing import TYPE_CHECKING, Any, TypeVar
+
+if TYPE_CHECKING:
+    from haive.agents.base.agent import Agent
+
+Self = TypeVar("Self", bound="MCPAgent")
 
 from haive.agents.simple import SimpleAgent
 from pydantic import Field
@@ -190,12 +195,12 @@ class MCPAgent(MCPMixin, SimpleAgent):
 
     @classmethod
     def create_with_mcp_servers(
-        cls,
+        cls: type[Self],
         engine: Any,
         server_configs: dict[str, dict[str, Any]],
         name: str | None = None,
         **kwargs,
-    ) -> "MCPAgent":
+    ) -> Self:
         """Create an MCP agent with server configurations.
 
         Convenience factory method that simplifies agent creation by accepting
@@ -254,9 +259,14 @@ class MCPAgent(MCPMixin, SimpleAgent):
             on_tool_discovered=None,
         )
 
-        return cls(
-            engine=engine, mcp_config=mcp_config, name=name or "mcp_agent", **kwargs
-        )
+        # Create agent arguments
+        agent_kwargs = {
+            "engine": engine,
+            "mcp_config": mcp_config,
+            "name": name or "mcp_agent",
+            **kwargs,
+        }
+        return cls(**agent_kwargs)
 
     def get_available_capabilities(self) -> list[str]:
         """Get all available capabilities from connected MCP servers."""
@@ -305,7 +315,7 @@ class MCPAgent(MCPMixin, SimpleAgent):
         Returns:
             Tool result
         """
-        last_error = None
+        last_error: Exception | None = None
 
         for attempt in range(max_retries):
             try:
@@ -319,7 +329,12 @@ class MCPAgent(MCPMixin, SimpleAgent):
                         # Try to reconnect
                         await self.refresh_mcp_servers()
 
-        raise last_error
+        if last_error is not None:
+            raise last_error
+        else:
+            raise RuntimeError(
+                f"Failed to call tool {tool_name} after {max_retries} attempts"
+            )
 
     @property
     def tool_count(self) -> int:
