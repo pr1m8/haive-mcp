@@ -46,7 +46,7 @@ from langchain_core.tools import BaseTool
 from pydantic import BaseModel, Field
 
 from haive.mcp.agents import MCPAgent, TransferableMCPAgent
-from haive.mcp.config import MCPConfig, MCPServerConfig
+from haive.mcp.config import MCPConfig, MCPServerConfig, MCPTransport
 from haive.mcp.downloader.config import ServerConfig
 from haive.mcp.downloader.core import GeneralMCPDownloader
 from haive.mcp.manager import MCPManager
@@ -672,7 +672,7 @@ class MCPAgentIntegration:
         for name, connection in self.extractor.connections.items():
             servers[name] = MCPServerConfig(
                 name=name,
-                transport=connection.transport,
+                transport=MCPTransport(connection.transport),
                 command=connection.config.get("command"),
                 args=connection.config.get("args", []),
                 url=connection.config.get("url"),

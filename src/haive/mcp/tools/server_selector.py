@@ -54,7 +54,7 @@ import re
 from dataclasses import dataclass
 from typing import Any
 
-from haive.mcp.config import MCPConfig, MCPServerConfig
+from haive.mcp.config import MCPConfig, MCPServerConfig, MCPTransport
 from haive.mcp.documentation.doc_loader import MCPDocumentationLoader
 
 logger = logging.getLogger(__name__)
@@ -355,7 +355,8 @@ class MCPServerSelector:
         """
         if servers is None:
             loader = MCPDocumentationLoader()
-            servers = loader.load_all_mcp_documents()
+            servers_dict = loader.load_all_mcp_documents()
+            servers = list(servers_dict.values())
 
         self.servers = servers
         self.filter = ServerFilter(servers)
@@ -605,7 +606,7 @@ class MCPServerSelector:
         """Create MCPServerConfig from setup information."""
         try:
             # Determine transport and connection info
-            transport = "stdio"  # Default
+            transport = MCPTransport.STDIO  # Default
             command = None
             args = []
             url = None
@@ -621,7 +622,7 @@ class MCPServerSelector:
                         args = parts[idx + 1 :]
                 elif "http" in step:
                     # URL-based server
-                    transport = "sse"
+                    transport = MCPTransport.SSE
                     url = step
 
             return MCPServerConfig(

@@ -48,7 +48,7 @@ import logging
 from dataclasses import dataclass
 from typing import Any
 
-from haive.mcp.config import MCPConfig, MCPServerConfig
+from haive.mcp.config import MCPConfig, MCPServerConfig, MCPTransport
 from haive.mcp.documentation.doc_loader import MCPDocumentationLoader
 from haive.mcp.tools.server_selector import MCPServerSelector, TaskAnalyzer
 
@@ -489,7 +489,7 @@ class MCPAssistant:
         fallback_configs = {
             "fetch": MCPServerConfig(
                 name="fetch_fallback",
-                transport="stdio",
+                transport=MCPTransport.STDIO,
                 command="npx",
                 args=["-y", "@modelcontextprotocol/server-fetch"],
                 enabled=False,
@@ -501,7 +501,7 @@ class MCPAssistant:
             ),
             "filesystem": MCPServerConfig(
                 name="filesystem_fallback",
-                transport="stdio",
+                transport=MCPTransport.STDIO,
                 command="npx",
                 args=["-y", "@modelcontextprotocol/server-filesystem"],
                 enabled=False,

@@ -159,7 +159,7 @@ class MCPServerManager:
         )
 
         # Update status tracking
-        await self._update_server_status(result)
+        await self._update_server_status(result.model_dump())
 
         return result
 
