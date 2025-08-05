@@ -374,8 +374,8 @@ def show_data_browser():
     )
 
     # Show selected server details
-    if len(event.selection.rows) > 0:
-        selected_idx = event.selection.rows[0]
+    if len(event.selection.rows) > 0:  # type: ignore
+        selected_idx = event.selection.rows[0]  # type: ignore
         selected_server = filtered_df.iloc[selected_idx]
 
         st.subheader(f"📋 Details: {selected_server['name']}")

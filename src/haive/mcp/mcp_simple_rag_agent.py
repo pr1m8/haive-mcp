@@ -129,7 +129,8 @@ def create_mcp_rag_agent(llm_config: LLMConfig | None = None) -> BaseRAGAgent:
 
     # Create vector store config with documents
     vs_config = VectorStoreConfig(
-        provider="FAISS",
+        name="mcp_rag_vectorstore",
+        vector_store_provider="FAISS",
         embedding_model=embedding_model,
         documents=documents,  # Pass documents directly
         k=10,  # Return top 10 results

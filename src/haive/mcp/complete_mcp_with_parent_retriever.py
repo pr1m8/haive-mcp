@@ -217,6 +217,10 @@ class MCPSystemWithParentRetriever:
     async def demonstrate_retrieval(self) -> None:
         """Demonstrate different retrieval patterns."""
         # 1. Parent-child retrieval (semantic search)
+        if self.parent_retriever is None:
+            raise RuntimeError(
+                "Parent retriever not initialized. Call create_retrievers() first."
+            )
         parent_docs = await self.parent_retriever.aget_relevant_documents(
             "database integration PostgreSQL"
         )
@@ -225,6 +229,10 @@ class MCPSystemWithParentRetriever:
             pass
 
         # 2. Self-query retrieval (metadata filtering)
+        if self.self_query_retriever is None:
+            raise RuntimeError(
+                "Self-query retriever not initialized. Call create_retrievers() first."
+            )
         self_query_docs = await self.self_query_retriever.aget_relevant_documents(
             "database servers with more than 50 stars"
         )
@@ -233,7 +241,11 @@ class MCPSystemWithParentRetriever:
             pass
 
         # 3. RAG agent query
-        rag_result = await self.rag_agent.arun(
+        if self.rag_agent is None:
+            raise RuntimeError(
+                "RAG agent not initialized. Call create_rag_agent() first."
+            )
+        rag_result = await self.rag_agent.arun(  # type: ignore
             {"query": "Find MCP servers for GitHub integration with good documentation"}
         )
 
@@ -244,6 +256,10 @@ class MCPSystemWithParentRetriever:
     async def install_top_server_with_hitl(self) -> str | None:
         """Find and install top server with HITL approval."""
         # Use self-query to find high-quality servers
+        if self.self_query_retriever is None:
+            raise RuntimeError(
+                "Self-query retriever not initialized. Call create_retrievers() first."
+            )
         query = "GitHub or database servers with more than 100 stars"
         docs = await self.self_query_retriever.aget_relevant_documents(query)
 
@@ -351,7 +367,7 @@ if __name__ == "__main__":
             }
         }
 
-        client = MultiServerMCPClient(client_config)
+        client = MultiServerMCPClient(client_config)  # type: ignore
 
         try:
             async with client.session(server_name) as session:

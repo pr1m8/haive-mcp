@@ -122,7 +122,7 @@ class MCPAugLLMConfig(AugLLMConfig):
 
         try:
             # Create MCP manager
-            self.mcp_manager = MCPManager(self.mcp_config)
+            self.mcp_manager = MCPManager()
             await self.mcp_manager.initialize()
 
             # Discover and wrap tools
@@ -198,6 +198,7 @@ class MCPAugLLMConfig(AugLLMConfig):
                         name=resource.get("name", resource["uri"]),
                         description=resource.get("description", ""),
                         mime_type=resource.get("mimeType", "application/json"),
+                        content=None,
                     )
                     self.mcp_resources.append(mcp_resource)
 

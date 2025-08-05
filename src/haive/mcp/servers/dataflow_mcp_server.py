@@ -127,7 +127,7 @@ async def discover_components(
         results = {"agents": [], "tools": [], "total": 0}
 
         if component_type in ["agents", "all"]:
-            agents = discover_agents(auto_register=auto_register)
+            agents = discover_agents()  # Remove auto_register parameter
             results["agents"] = [
                 {
                     "name": agent.name,
@@ -138,7 +138,7 @@ async def discover_components(
             ]
 
         if component_type in ["tools", "all"]:
-            tools = discover_tools(auto_register=auto_register)
+            tools = discover_tools()  # Remove auto_register parameter
             results["tools"] = [
                 {
                     "name": tool.name,
@@ -184,14 +184,10 @@ async def create_agent(request: AgentCreationRequest) -> dict[str, Any]:
         Agent creation result with ID and status
     """
     try:
-        # Create LLM config
-        llm_config = LLMConfig(
-            provider="openai", model=request.model, temperature=request.temperature
-        )
-
-        # Create AugLLM config
-        AugLLMConfig(
-            llm_config=llm_config,
+        # Create AugLLM config directly
+        aug_llm_config = AugLLMConfig(
+            model=request.model,
+            temperature=request.temperature,
             name=request.name,
             tools=request.tools,
             system_message=request.system_prompt

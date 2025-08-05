@@ -350,7 +350,7 @@ class MCPDocumentationAgent(MCPMixin, DocumentAgent):
             if repo_url:
                 try:
                     # Use document agent to process GitHub README
-                    github_result = await self.arun(
+                    github_result = await self.arun(  # type: ignore
                         {"sources": [repo_url], "source_type": "url"}
                     )
 

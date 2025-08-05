@@ -75,7 +75,7 @@ class GitHubDataEnhancer:
         await self.check_rate_limit()
 
         try:
-            async with self.session.get(url) as response:
+            async with self.session.get(url) as response:  # type: ignore
                 # Update rate limit info
                 self.rate_limit_remaining = int(
                     response.headers.get(
@@ -156,7 +156,7 @@ class GitHubDataEnhancer:
             ),
             "readme_content": readme_content,
             "dependencies": dependencies,
-            "releases": releases[:3] if releases else [],
+            "releases": releases[:3] if releases else [],  # type: ignore
             "homepage": repo_data.get("homepage"),
             "has_wiki": repo_data.get("has_wiki", False),
             "has_projects": repo_data.get("has_projects", False),

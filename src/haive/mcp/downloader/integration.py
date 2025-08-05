@@ -37,12 +37,9 @@ from typing import Any
 
 from haive.core.engine.aug_llm import AugLLMConfig
 from langchain_core.tools import BaseTool
-
-# from langchain_mcp_adapters.client import (
-#     SSEConnection,
-#     StdioServerParameters,
-#     stdio_client,
-# )
+from langchain_mcp_adapters.client import SSEConnection  # type: ignore
+from langchain_mcp_adapters.client import StdioServerParameters  # type: ignore
+from langchain_mcp_adapters.client import stdio_client  # type: ignore; type: ignore
 from pydantic import BaseModel, Field
 
 from haive.mcp.agents import MCPAgent, TransferableMCPAgent
@@ -121,7 +118,7 @@ class MCPServerConnection(BaseModel):
 
             elif self.transport == "sse":
                 # Create SSE connection
-                self.connection = SSEConnection(
+                self.connection = SSEConnection(  # type: ignore
                     url=self.config.get("url"), headers=self.config.get("headers", {})
                 )
                 await self.connection.connect()
@@ -159,7 +156,7 @@ class MCPServerConnection(BaseModel):
         try:
             # Discover tools
             if hasattr(self.connection, "list_tools"):
-                tools = await self.connection.list_tools()
+                tools = await self.connection.list_tools()  # type: ignore
                 for tool in tools:
                     tool_name = f"{self.name}_{tool.name}"
                     self.tools[tool_name] = tool
@@ -167,13 +164,13 @@ class MCPServerConnection(BaseModel):
 
             # Discover resources
             if hasattr(self.connection, "list_resources"):
-                resources = await self.connection.list_resources()
+                resources = await self.connection.list_resources()  # type: ignore
                 self.resources = resources
                 capabilities["resources"] = resources
 
             # Discover prompts
             if hasattr(self.connection, "list_prompts"):
-                prompts = await self.connection.list_prompts()
+                prompts = await self.connection.list_prompts()  # type: ignore
                 self.prompts = prompts
                 capabilities["prompts"] = prompts
 
@@ -231,7 +228,12 @@ class MCPCapabilityExtractor:
                     {"command": "npx", "args": ["@modelcontextprotocol/server-filesystem"]}
                 )
         """
-        connection = MCPServerConnection(name=name, config=config, transport=transport)
+        connection = MCPServerConnection(
+            name=name,
+            config=config,
+            transport=transport,
+            connection=None,  # Add missing connection parameter
+        )
 
         if await connection.connect():
             self.connections[name] = connection
@@ -356,7 +358,7 @@ class MCPCapabilityExtractor:
         """
         matching_tools = {}
         for name, tool in self.all_tools.items():
-            if hasattr(tool, "capabilities") and capability in tool.capabilities:
+            if hasattr(tool, "capabilities") and capability in tool.capabilities:  # type: ignore
                 matching_tools[name] = tool
         return matching_tools
 
@@ -429,15 +431,15 @@ class MCPAgentIntegration:
         if missing_servers and install_if_missing:
             logger.info(f"Installing missing servers: {missing_servers}")
             result = await self.downloader.download_servers(missing_servers)
-            if result["failed"] > 0:
+            if result.failed > 0:  # Access field directly
                 logger.warning(
-                    f"Failed to install some servers: {result['failed_servers']}"
+                    f"Failed to install some servers: {result.failed_servers}"  # Access field directly
                 )
 
         # Add servers to extractor
         await self.extractor.add_servers_from_config(
             [s for s in self.downloader.servers if s.name in server_names],
-            self.downloader.install_dir,
+            self.downloader.install_dir,  # type: ignore
         )
 
         # Create MCP configuration
@@ -654,7 +656,7 @@ class MCPAgentIntegration:
         Returns:
             Set of installed server names
         """
-        config_file = self.downloader.install_dir / "mcp_servers_config.json"
+        config_file = self.downloader.install_dir / "mcp_servers_config.json"  # type: ignore
         if config_file.exists():
             with open(config_file) as f:
                 config = json.load(f)

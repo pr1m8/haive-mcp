@@ -266,7 +266,7 @@ class MCPAgent(MCPMixin, SimpleAgent):
             "name": name or "mcp_agent",
             **kwargs,
         }
-        return cls(**agent_kwargs)
+        return cls(**agent_kwargs)  # type: ignore
 
     def get_available_capabilities(self) -> list[str]:
         """Get all available capabilities from connected MCP servers."""

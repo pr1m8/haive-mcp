@@ -162,7 +162,11 @@ class MCPMixin(BaseModel):
 
     async def _setup_mcp_tools(self):
         """Setup MCP tools for the agent."""
-        if not self._mcp_initialized and not self.mcp_config.lazy_init:
+        if (
+            not self._mcp_initialized
+            and self.mcp_config
+            and not self.mcp_config.lazy_init
+        ):
             await self.initialize_mcp()
 
         # Add discovered tools to agent's tools
@@ -256,6 +260,9 @@ class MCPMixin(BaseModel):
             Dictionary of successfully connected server configurations
         """
         connected = {}
+
+        if not self.mcp_config:
+            return connected
 
         for server_name, server_config in self.mcp_config.servers.items():
             if not server_config.enabled:

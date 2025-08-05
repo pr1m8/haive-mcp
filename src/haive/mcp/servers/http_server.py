@@ -187,6 +187,10 @@ async def handle_sse(request: Request):
     # Handle the SSE connection
     async def event_generator():
         try:
+            if not sse_transport:
+                yield f"data: {json.dumps({'error': 'SSE transport not available'})}\n\n"
+                return
+
             # Process MCP messages through the transport
             async for message in sse_transport.handle_connection(request):
                 yield f"data: {json.dumps(message)}\n\n"

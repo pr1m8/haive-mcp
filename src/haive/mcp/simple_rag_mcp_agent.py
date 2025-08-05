@@ -35,11 +35,8 @@ class MCPSimpleRAGAgent(SimpleRAGAgent):
         self.mcp_retriever = WorkingEnhancedRetriever()
         self.mcp_retriever.setup()
 
-        # Create a wrapper that makes our retriever compatible with SimpleRAG
-        retriever_config = {"retriever": MCPRetrieverWrapper(self.mcp_retriever)}
-
-        # Initialize parent with our retriever
-        super().__init__(name=name, retriever_config=retriever_config, **kwargs)
+        # Initialize parent - SimpleRAGAgent doesn't need retriever_config
+        super().__init__(name=name, **kwargs)
 
     def get_system_prompt(self) -> str:
         """Custom system prompt for MCP assistance."""

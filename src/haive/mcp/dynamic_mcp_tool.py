@@ -98,7 +98,7 @@ class DynamicMCPTool(BaseTool):
         try:
             # Step 1: RAG search through the MCP server database
             doc_agent = MCPDocumentationAgent.create_for_mcp_setup(engine=self.engine)
-            await doc_agent.setup()
+            await doc_agent.setup()  # type: ignore
 
             # Find servers matching the capability
             matching_servers = await doc_agent.find_servers_by_capability(
@@ -211,7 +211,7 @@ To install a specific server, use the dynamic_mcp_installer tool again with:
             }
 
             # Test connection
-            client = MultiServerMCPClient(client_config)
+            client = MultiServerMCPClient(client_config)  # type: ignore
             async with client.session(server_name) as session:
                 tools = await session.list_tools()
                 tool_names = (
@@ -276,7 +276,7 @@ To install a specific server, use the dynamic_mcp_installer tool again with:
             }
 
             # Test connection
-            client = MultiServerMCPClient(client_config)
+            client = MultiServerMCPClient(client_config)  # type: ignore
             async with client.session(server_name) as session:
                 tools = await session.list_tools()
                 tool_names = (

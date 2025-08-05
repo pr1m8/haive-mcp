@@ -621,7 +621,7 @@ class ServerDiscovery:
                 if "go" in tags:
                     return "git_go_repo"
                 return "git_repo"  # Default
-            return None
+            return "git_repo"  # Return default instead of None
 
         if source == "docker":
             return "docker_image"

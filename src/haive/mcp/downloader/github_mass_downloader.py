@@ -149,6 +149,7 @@ class GitHubMCPDownloader:
             source=source,
             variables=variables,
             tags={cat.lower() for cat in metadata.get("category", "").split() if cat},
+            version=None,  # Add missing version parameter
         )
 
     async def download_all_servers(self):
@@ -223,8 +224,8 @@ class GitHubMCPDownloader:
                                 server_names=batch, max_concurrent=3
                             )
 
-                            successful += result.get("successful", 0)
-                            failed += result.get("failed", 0)
+                            successful += result.successful  # Access field directly
+                            failed += result.failed  # Access field directly
 
                             progress.update(task, advance=len(batch))
 

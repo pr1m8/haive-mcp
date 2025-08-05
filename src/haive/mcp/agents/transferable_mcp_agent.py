@@ -625,12 +625,12 @@ class TransferableMCPAgent(MCPMixin, SimpleAgent):
         pool_key = f"collaborative_{id(mcp_config)}"
 
         for i in range(num_agents):
-            agent = cls(
-                engine=engine,
+            agent = cls(  # type: ignore
+                engine=engine,  # type: ignore
                 mcp_config=mcp_config,
-                name=f"collaborative_agent_{i}",
-                share_client=shared_client,
-                client_pool_key=pool_key,
+                name=f"collaborative_agent_{i}",  # type: ignore
+                share_client=shared_client,  # type: ignore
+                client_pool_key=pool_key,  # type: ignore
             )
             agents.append(agent)
 

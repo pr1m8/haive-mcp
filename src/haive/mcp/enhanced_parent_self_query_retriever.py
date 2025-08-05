@@ -199,7 +199,7 @@ Supported transport types: {", ".join(server_data.get("transport_types", ["stdio
 
         return SelfQueryRetriever.from_llm(
             llm=llm,
-            vectorstore=self.child_vectorstore,
+            vectorstore=self.child_vectorstore,  # type: ignore
             document_contents="MCP server documentation including setup, capabilities, and configuration",
             metadata_field_info=self.metadata_fields,
             search_kwargs={"k": k * 2},  # Get more chunks, we'll dedupe parents

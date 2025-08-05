@@ -38,7 +38,7 @@ class MCPServerManager:
 
     def __init__(self, config_file: str | None = None, install_dir: str | None = None):
         self.downloader = GeneralMCPDownloader(config_file, install_dir)
-        self.install_dir = self.downloader.install_dir
+        self.install_dir = self.downloader.install_dir  # type: ignore
         self.status_file = self.install_dir / "server_status.json"
 
     async def discover_all_sources(
@@ -50,10 +50,10 @@ class MCPServerManager:
         discovered = {}
 
         # Use the downloader's discovery method
-        for source in self.downloader.patterns.get("discovery_sources", []):
+        for source in self.downloader.patterns.get("discovery_sources", []):  # type: ignore
             click.echo(f"  Checking: {source}")
             try:
-                servers = await self.downloader.discover_servers_from_registry(source)
+                servers = await self.downloader.discover_servers_from_registry(source)  # type: ignore
                 discovered[source] = servers
                 click.echo(f"    Found: {len(servers)} servers")
             except Exception as e:
@@ -112,6 +112,7 @@ class MCPServerManager:
                 source=server_data.get("source", ""),
                 variables=server_data.get("variables", {}),
                 tags=set(server_data.get("tags", [])),
+                version=server_data.get("version"),  # Add missing version parameter
             )
 
             # Check if server already exists
@@ -120,7 +121,8 @@ class MCPServerManager:
                 self.downloader.servers.append(server)
 
         # Install all servers
-        return await self.downloader.download_servers()
+        result = await self.downloader.download_servers()
+        return result.model_dump()  # Convert DownloadResult to dict
 
     def _determine_template(self, server_data: dict) -> str:
         """Determine the best template for a discovered server."""
@@ -161,7 +163,7 @@ class MCPServerManager:
         # Update status tracking
         await self._update_server_status(result.model_dump())
 
-        return result
+        return result.model_dump()  # Convert DownloadResult to dict
 
     async def list_servers(self, status_filter: str = "all") -> dict:
         """List servers with their status."""

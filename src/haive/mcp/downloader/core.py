@@ -227,6 +227,7 @@ class GeneralMCPDownloader:
                 capabilities=["tools"],
                 category="official",
                 prerequisites=["node", "npm"],
+                health_check=None,  # Add missing health_check parameter
             ),
             ServerTemplate(
                 name="npm_community",
@@ -235,6 +236,7 @@ class GeneralMCPDownloader:
                 capabilities=["tools"],
                 category="community",
                 prerequisites=["node", "npm"],
+                health_check=None,  # Add missing health_check parameter
             ),
             ServerTemplate(
                 name="git_repo",
@@ -243,6 +245,7 @@ class GeneralMCPDownloader:
                 post_install=["pip install -r requirements.txt"],
                 capabilities=["tools"],
                 category="development",
+                health_check=None,  # Add missing health_check parameter
                 prerequisites=["git", "python"],
             ),
             ServerTemplate(
@@ -252,6 +255,7 @@ class GeneralMCPDownloader:
                 capabilities=["tools"],
                 category="containerized",
                 prerequisites=["docker"],
+                health_check=None,  # Add missing health_check parameter
             ),
             ServerTemplate(
                 name="pypi_package",
@@ -260,6 +264,7 @@ class GeneralMCPDownloader:
                 capabilities=["tools"],
                 category="python",
                 prerequisites=["python", "pip"],
+                health_check=None,  # Add missing health_check parameter
             ),
         ]
 
@@ -271,6 +276,7 @@ class GeneralMCPDownloader:
                 source="npm",
                 variables={"service": "filesystem"},
                 tags={"official", "file-operations", "core"},
+                version=None,  # Add missing version parameter
             ),
             ServerConfig(
                 name="github",
@@ -278,6 +284,7 @@ class GeneralMCPDownloader:
                 source="npm",
                 variables={"service": "github"},
                 tags={"official", "git", "development"},
+                version=None,  # Add missing version parameter
             ),
             ServerConfig(
                 name="sqlite",
@@ -285,6 +292,7 @@ class GeneralMCPDownloader:
                 source="npm",
                 variables={"service": "sqlite"},
                 tags={"official", "database", "sql"},
+                version=None,  # Add missing version parameter
             ),
         ]
 
@@ -861,6 +869,7 @@ class GeneralMCPDownloader:
                 variables=server_data.get("variables", {}),
                 tags=set(server_data.get("tags", [])),
                 enabled=True,
+                version=server_data.get("version"),  # Add missing version parameter
             )
 
             new_servers.append(server)
@@ -880,6 +889,7 @@ class GeneralMCPDownloader:
             success_rate=100.0,
             successful_servers=[{"server": s.name} for s in new_servers],
             failed_servers=[],
+            config_file=None,  # Add missing config_file parameter
             duration=0,
         )
 

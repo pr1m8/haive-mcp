@@ -337,19 +337,21 @@ class SafePatternInstaller:
                 },
             }
 
-            process.stdin.write(json.dumps(init_request) + "\n")
-            process.stdin.flush()
+            if process.stdin:
+                process.stdin.write(json.dumps(init_request) + "\n")
+                process.stdin.flush()
             self.request_counters[server_name] += 1
 
             # Read initialization response
-            response = process.stdout.readline()
+            response = process.stdout.readline() if process.stdout else ""
             if response.strip():
                 init_result = json.loads(response)
                 if "result" in init_result:
                     # Send initialized notification
                     notify = {"jsonrpc": "2.0", "method": "notifications/initialized"}
-                    process.stdin.write(json.dumps(notify) + "\n")
-                    process.stdin.flush()
+                    if process.stdin:
+                        process.stdin.write(json.dumps(notify) + "\n")
+                        process.stdin.flush()
 
                     # List tools
                     tools_request = {
@@ -358,11 +360,12 @@ class SafePatternInstaller:
                         "method": "tools/list",
                     }
 
-                    process.stdin.write(json.dumps(tools_request) + "\n")
-                    process.stdin.flush()
+                    if process.stdin:
+                        process.stdin.write(json.dumps(tools_request) + "\n")
+                        process.stdin.flush()
                     self.request_counters[server_name] += 1
 
-                    tools_response = process.stdout.readline()
+                    tools_response = process.stdout.readline() if process.stdout else ""
                     if tools_response.strip():
                         tools_result = json.loads(tools_response)
                         if (

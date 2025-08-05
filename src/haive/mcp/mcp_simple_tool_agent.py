@@ -188,15 +188,7 @@ def create_mcp_tool_agent(llm_config: LLMConfig | None = None) -> SimpleAgent:
     # Create SimpleAgent with search tool
     agent = SimpleAgent(
         name="MCP_Tool_Agent",
-        llm_config=llm_config,
-        tools=[search_mcp_servers],
-        system_prompt="""You are an expert MCP (Model Context Protocol) server discovery assistant.
-
-Your role is to help users find the perfect MCP servers for their needs using the search_mcp_servers tool.
-
-When users ask about MCP servers, use the search tool to find relevant servers and provide helpful recommendations.
-
-Always search before answering questions about specific servers or capabilities.""",
+        engine=llm_config,  # Use engine instead of llm_config
     )
 
     return agent

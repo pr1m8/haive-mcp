@@ -451,6 +451,8 @@ class MCPManager(BaseModel):
                 config = MCPServerConfig(**config)
             if config.transport.value == "stdio":
                 # For stdio, check if command exists
+                if not config.command:
+                    return False
 
                 result = subprocess.run(
                     [config.command, "--version"],
@@ -604,8 +606,9 @@ class MCPManager(BaseModel):
                     "status": status.value,
                     "tools": self._server_tools.get(name, []),
                     "health": (
-                        self._server_health.get(name).dict()
+                        self._server_health[name].dict()
                         if name in self._server_health
+                        and self._server_health[name] is not None
                         else None
                     ),
                 }

@@ -100,7 +100,10 @@ class MCPServerManager:
         self, query: str, max_results: int = 5
     ) -> list[ServerInfo]:
         """Search for MCP servers using enhanced retriever."""
-        docs = await self.retriever.enhanced_query(self.llm, query, max_results)
+        if not self.retriever:
+            await self.initialize()
+
+        docs = await self.retriever.enhanced_query(self.llm, query, max_results)  # type: ignore
 
         servers = []
         for doc in docs:
