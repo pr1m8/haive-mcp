@@ -551,7 +551,10 @@ If no special capabilities are needed, return: []
                     for capability in missing:
                         try:
                             # Use discovery tool
-                            discovery_result = await discover_mcp_servers(capability)
+                            discovery_tool = self._discovery_tools[
+                                "discover_mcp_servers"
+                            ]
+                            discovery_result = await discovery_tool.arun(capability)
                             discovery_data = json.loads(discovery_result)
 
                             if discovery_data.get("servers_found", 0) > 0:
@@ -565,9 +568,14 @@ If no special capabilities are needed, return: []
                                         f"Installing {server_name} for {capability}"
                                     )
 
-                                    install_result = await install_mcp_server(
-                                        server_name,
-                                        require_approval=self.require_approval,
+                                    install_tool = self._discovery_tools[
+                                        "install_mcp_server"
+                                    ]
+                                    install_result = await install_tool.arun(
+                                        {
+                                            "server_name": server_name,
+                                            "require_approval": self.require_approval,
+                                        }
                                     )
 
                                     install_data = json.loads(install_result)

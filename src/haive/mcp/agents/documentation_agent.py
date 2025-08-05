@@ -621,7 +621,7 @@ class MCPDocumentationAgent(MCPMixin, DocumentAgent):
         Returns:
             Dict[str, Any]: Extracted setup information
         """
-        return self.doc_loader._extract_setup_info({"readme_content": content})
+        return self.doc_loader.extract_setup_info({"readme_content": content})
 
     def _extract_usage_examples(self, content: str) -> list[str]:
         """Extract usage examples from content.
@@ -635,7 +635,7 @@ class MCPDocumentationAgent(MCPMixin, DocumentAgent):
         Returns:
             List[str]: Extracted code example strings
         """
-        return self.doc_loader._extract_usage_examples(content)
+        return self.doc_loader.extract_usage_examples(content)
 
     def _create_combined_config(
         self, server_configs: list[MCPServerConfig]
