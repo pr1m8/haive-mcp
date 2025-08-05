@@ -286,6 +286,8 @@ class MCPRepositoryExtractor:
         try:
             # Fetch the raw README content
             raw_url = "https://raw.githubusercontent.com/TensorBlock/awesome-mcp-servers/main/README.md"
+            if not self.session:
+                raise RuntimeError("Session not initialized")
             async with self.session.get(raw_url) as response:
                 readme_content = await response.text()
 
@@ -380,6 +382,8 @@ class MCPRepositoryExtractor:
                     metadata.repo_name
                 }/main/{readme_name}"
 
+                if not self.session:
+                    return None
                 async with self.session.get(raw_url) as response:
                     if response.status == 200:
                         content = await response.text()
@@ -391,6 +395,8 @@ class MCPRepositoryExtractor:
                     metadata.repo_name
                 }/master/{readme_name}"
 
+                if not self.session:
+                    return None
                 async with self.session.get(raw_url) as response:
                     if response.status == 200:
                         content = await response.text()
@@ -423,6 +429,8 @@ class MCPRepositoryExtractor:
             if github_token:
                 headers["Authorization"] = f"token {github_token}"
 
+            if not self.session:
+                return metadata
             async with self.session.get(api_url, headers=headers) as response:
                 if response.status == 200:
                     data = await response.json()
@@ -458,7 +466,9 @@ class MCPRepositoryExtractor:
 
             # Create document
             document = MCPServerDocument(
-                metadata=metadata, readme_content=readme_content
+                metadata=metadata,
+                readme_content=readme_content,
+                content_hash=None,  # Will be computed if needed
             )
 
             # Compute content hash

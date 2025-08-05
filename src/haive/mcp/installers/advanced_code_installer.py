@@ -212,7 +212,6 @@ class AdvancedCodeInstaller:
                 return f"❌ BLOCKED: High risk command not allowed with low risk tolerance: {command}"
 
             try:
-
                 # Prepare environment
                 env = os.environ.copy()
                 if environment_vars:
@@ -341,7 +340,6 @@ class AdvancedCodeInstaller:
 
         # Check if we should fallback to safe installer
         if plan.fallback_to_safe and plan.confidence_score > 0.7:
-
             # Try to find matching pattern
             safe_request = SafeRequest(
                 server_name=request.server_name,
