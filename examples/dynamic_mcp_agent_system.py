@@ -194,7 +194,6 @@ class DynamicMCPManager:
 
         for cmd in start_commands:
             try:
-
                 process = subprocess.Popen(
                     cmd.split(),
                     stdin=subprocess.PIPE,
@@ -363,7 +362,6 @@ class DynamicMCPManager:
         newly_created_tools = []
 
         for server_info in missing_servers:
-
             # Install if needed
             if await self.install_server(server_info):
                 # Start the server

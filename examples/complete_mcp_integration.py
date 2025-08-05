@@ -151,7 +151,6 @@ async def example_complete_workflow():
 
     # Step 4: Create agent with the configuration
     if guide["combined_config"]:
-
         engine = AugLLMConfig(
             llm_config=LLMConfig(provider="openai", model="gpt-4o-mini"),
             name="research_engine",

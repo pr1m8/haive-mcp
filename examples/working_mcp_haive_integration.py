@@ -181,7 +181,6 @@ class MCPServerManager:
             await asyncio.sleep(2)
 
             if process.poll() is None:
-
                 # Initialize the server
                 if await self._initialize_server(process):
                     self.running_processes["filesystem"] = process

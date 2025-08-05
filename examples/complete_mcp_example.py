@@ -392,7 +392,6 @@ if __name__ == "__main__":
         try:
             # Test connection and capabilities
             async with client.session(server_name) as session:
-
                 # List tools
                 tools_result = await session.list_tools()
                 tools = tools_result.tools if hasattr(tools_result, "tools") else []

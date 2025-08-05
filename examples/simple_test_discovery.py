@@ -11,7 +11,6 @@ data_path = (
 )
 
 if data_path.exists():
-
     with open(data_path) as f:
         data = json.load(f)
         servers = data.get("all_servers", [])
