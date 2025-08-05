@@ -60,7 +60,7 @@ from haive.core.engine.aug_llm import AugLLMConfig
 from langchain_core.tools import tool
 from pydantic import BaseModel, Field
 
-from haive.mcp.config import MCPServerConfig
+from haive.mcp.config import MCPServerConfig, MCPTransport
 from haive.mcp.manager import MCPManager
 
 # from haive.mcp.agents.documentation_agent import MCPDocumentationAgent
@@ -196,6 +196,9 @@ class IntelligentMCPAgent(ReactAgent):
         existing_tools = kwargs.get("tools", [])
         kwargs["tools"] = existing_tools + discovery_tools
 
+        # Store tool references for internal use
+        self._discovery_tools = {tool.name: tool for tool in discovery_tools}
+
         super().__init__(**kwargs)
 
         # Initialize documentation agent
@@ -278,7 +281,7 @@ class IntelligentMCPAgent(ReactAgent):
                     # Basic config without documentation
                     config = MCPServerConfig(
                         name=server_name.split("/")[-1],
-                        transport="stdio",
+                        transport=MCPTransport.STDIO,
                         command="npx",
                         args=["-y", f"@{server_name}"],
                         url=None,

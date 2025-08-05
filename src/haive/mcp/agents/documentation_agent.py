@@ -68,7 +68,7 @@ from typing import Any
 from haive.agents.document.agent import DocumentAgent
 from pydantic import Field
 
-from haive.mcp.config import MCPConfig, MCPServerConfig
+from haive.mcp.config import MCPConfig, MCPServerConfig, MCPTransport
 from haive.mcp.documentation.doc_loader import MCPDocumentationLoader
 from haive.mcp.mixins.mcp_mixin import MCPMixin
 
@@ -694,7 +694,7 @@ from haive.core.engine.aug_llm import AugLLMConfig
 from haive.core.models.llm.base import LLMConfig
 
 from haive.mcp.agents import MCPAgent
-from haive.mcp.config import MCPConfig, MCPServerConfig
+from haive.mcp.config import MCPConfig, MCPServerConfig, MCPTransport
 
 # Create engine configuration
 engine = AugLLMConfig(
