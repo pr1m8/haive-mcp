@@ -7,8 +7,10 @@ with metadata filtering and parent document retrieval.
 
 import asyncio
 import json
+import os
 from pathlib import Path
 
+from haive.core.engine.aug_llm import AugLLMConfig
 from langchain.chains.query_constructor.schema import AttributeInfo
 from langchain.retrievers import ParentDocumentRetriever
 from langchain.retrievers.self_query.base import SelfQueryRetriever
@@ -17,7 +19,6 @@ from langchain.storage import InMemoryStore
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
-from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, Field
 
 
@@ -160,11 +161,15 @@ class EnhancedMCPDocument:
 class SelfQueryMCPAgent:
     """Enhanced MCP Discovery Agent with Self Query and Parent Document Retrieval."""
 
-    def __init__(self):
+    def __init__(self, config: AugLLMConfig = None):
+        """Initialize with proper Haive configuration system."""
         self.embeddings = HuggingFaceEmbeddings(
             model_name="sentence-transformers/all-mpnet-base-v2"
         )
-        self.llm = ChatOpenAI(temperature=0, model="gpt-4")
+        # Use Haive's configuration system to get the LLM
+        self.config = config or AugLLMConfig(temperature=0.0, model="gpt-4")
+        # Extract the actual LLM instance from the config
+        self.llm = self.config.llm  # This should give us the ChatOpenAI instance
         self.setup_retrievers()
 
     def setup_retrievers(self):
