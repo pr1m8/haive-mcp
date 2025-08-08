@@ -36,6 +36,13 @@ haive-mcp: Model Context Protocol Integration for Haive
 
 .. toctree::
    :maxdepth: 2
+   :caption: MCP Servers:
+   :hidden:
+
+   mcp_servers
+
+.. toctree::
+   :maxdepth: 2
    :caption: Development:
    :hidden:
 

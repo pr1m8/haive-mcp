@@ -19,6 +19,10 @@ sys.path.insert(0, str(src_dir.absolute()))
 haive_backend_dir = package_dir.parent.parent
 sys.path.insert(0, str(haive_backend_dir.absolute()))
 
+# Add extensions directory to path
+ext_dir = docs_dir / "_ext"
+sys.path.insert(0, str(ext_dir.absolute()))
+
 # Project information
 project = "haive-mcp"
 copyright = f"{datetime.now().year}, Haive Team"
@@ -40,6 +44,7 @@ extensions = [
     "myst_parser",
     "sphinx_tabs.tabs",
     "sphinx_design",
+    "mcp_doc_generator",  # Custom extension for MCP docs
 ]
 
 # Autodoc settings
