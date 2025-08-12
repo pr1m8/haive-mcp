@@ -18,9 +18,6 @@ Example:
         from haive.agents.base import Agent
         from haive.mcp.mixins import MCPMixin
         from haive.mcp.config import MCPConfig
-from haive import core
-from haive import agents
-
 
         class MyCustomAgent(MCPMixin, Agent):
             '''Agent with MCP capabilities.'''
@@ -47,10 +44,8 @@ import logging
 from contextlib import asynccontextmanager
 from typing import Any
 
-from haive.core.utils.component_discovery import (
-    ComponentMetadata,
-    ComponentType,
-    create_component_registry,
+from haive.core.registry import (
+    RegistryManager,
 )
 from langchain_core.tools import BaseTool
 from langchain_mcp_adapters.client import MultiServerMCPClient
@@ -349,40 +344,46 @@ class MCPMixin(BaseModel):
     async def _register_tools_with_registry(self):
         """Register MCP tools with the component registry if available."""
         try:
-            registry = create_component_registry()
+            # Get MCP registry
+            mcp_registry = RegistryManager.get_registry("mcp")
+            tool_registry = RegistryManager.get_registry("tools")
 
             # Register each MCP server
             for server_name, server_config in self._mcp_servers.items():
-                metadata = ComponentMetadata(
-                    name=server_name,
-                    component_type=ComponentType.MCP,
-                    capabilities=server_config.capabilities,
-                    tags=(
+                metadata = {
+                    "name": server_name,
+                    "component_type": "mcp",
+                    "capabilities": server_config.capabilities,
+                    "tags": (
                         ["mcp", server_config.category]
                         if server_config.category
                         else ["mcp"]
                     ),
-                    description=server_config.description
+                    "description": server_config.description
                     or f"MCP Server: {server_name}",
-                )
-                registry.register_component(
+                }
+                mcp_registry.register(
+                    name=server_name,
                     component={"name": server_name, "config": server_config},
-                    component_type=ComponentType.MCP,
                     metadata=metadata,
                 )
 
             # Register each tool
             for tool_name, tool in self._mcp_tools.items():
                 server_name = tool_name.split("_")[0] if "_" in tool_name else "unknown"
-                metadata = ComponentMetadata(
+                metadata = {
+                    "name": tool_name,
+                    "component_type": "tool",
+                    "capabilities": ["mcp_tool", "remote_execution"],
+                    "tags": ["mcp", f"mcp_{server_name}"],
+                    "description": getattr(
+                        tool, "description", f"MCP Tool: {tool_name}"
+                    ),
+                }
+                tool_registry.register(
                     name=tool_name,
-                    component_type=ComponentType.TOOL,
-                    capabilities=["mcp_tool", "remote_execution"],
-                    tags=["mcp", f"mcp_{server_name}"],
-                    description=getattr(tool, "description", f"MCP Tool: {tool_name}"),
-                )
-                registry.register_component(
-                    component=tool, component_type=ComponentType.TOOL, metadata=metadata
+                    component=tool,
+                    metadata=metadata,
                 )
 
             logger.info(

@@ -63,7 +63,7 @@ from haive import agents
 from typing import TYPE_CHECKING, Any, TypeVar
 
 if TYPE_CHECKING:
-    from haive.agents.base.agent import Agent
+    pass
 
 Self = TypeVar("Self", bound="MCPAgent")
 
@@ -331,10 +331,9 @@ class MCPAgent(MCPMixin, SimpleAgent):
 
         if last_error is not None:
             raise last_error
-        else:
-            raise RuntimeError(
-                f"Failed to call tool {tool_name} after {max_retries} attempts"
-            )
+        raise RuntimeError(
+            f"Failed to call tool {tool_name} after {max_retries} attempts"
+        )
 
     @property
     def tool_count(self) -> int:

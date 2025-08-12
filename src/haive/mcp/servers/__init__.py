@@ -6,4 +6,4 @@ from haive.mcp.servers.simple_http_server import create_app
 
 # SSEServerTransport = None  # TODO: Implement SSE transport
 
-__all__ = ["AgentCreationRequest", "create_app", "run_server", "SSEServerTransport"]
+__all__ = ["AgentCreationRequest", "SSEServerTransport", "create_app", "run_server"]

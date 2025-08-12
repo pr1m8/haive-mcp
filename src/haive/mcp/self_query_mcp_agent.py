@@ -7,7 +7,6 @@ with metadata filtering and parent document retrieval.
 
 import asyncio
 import json
-import os
 from pathlib import Path
 
 from haive.core.engine.aug_llm import AugLLMConfig

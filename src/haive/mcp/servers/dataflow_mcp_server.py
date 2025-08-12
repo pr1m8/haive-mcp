@@ -71,7 +71,7 @@ async def query_registry(
                 EntityType(entity_type)
             )
         else:
-            entities = getattr(registry_system, "get_all_entities", lambda: [])()
+            entities = getattr(registry_system, "get_all_entities", list)()
 
         # Filter by name pattern if provided
         if name_pattern:

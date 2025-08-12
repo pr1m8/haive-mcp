@@ -21,3 +21,16 @@ class MCPServerDiscovery:
     def create_mcp_config(self) -> dict[str, Any]:
         """Create MCP config - placeholder."""
         return {}
+
+
+# Module-level functions for compatibility
+def get_discovery_report() -> dict[str, Any]:
+    """Get discovery report - creates a temporary instance."""
+    discovery = MCPServerDiscovery()
+    return discovery.get_discovery_report()
+
+
+def create_mcp_config() -> dict[str, Any]:
+    """Create MCP config - creates a temporary instance."""
+    discovery = MCPServerDiscovery()
+    return discovery.create_mcp_config()

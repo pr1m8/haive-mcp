@@ -7,7 +7,6 @@ and using SelfQueryRetrieverConfig instead of manually creating retrievers.
 
 import json
 from pathlib import Path
-from typing import Any, Dict, List
 
 from haive.agents.rag.base.agent import BaseRAGAgent
 from haive.core.engine.aug_llm import AugLLMConfig
@@ -21,7 +20,6 @@ from haive.core.engine.vectorstore.providers.FAISSVectorStoreConfig import (
     FAISSVectorStoreConfig,
 )
 from langchain.schema import Document
-from langchain.text_splitter import RecursiveCharacterTextSplitter
 from pydantic import BaseModel, Field
 
 
@@ -43,7 +41,7 @@ class MCPDocumentLoader:
     """Load and process MCP server documents."""
 
     @staticmethod
-    def create_mcp_documents() -> List[Document]:
+    def create_mcp_documents() -> list[Document]:
         """Create documents from MCP servers data."""
         # Load the data
         data_path = (
@@ -277,7 +275,7 @@ class SelfQueryMCPAgent(BaseRAGAgent):
 
         return "semantic"
 
-    async def search_mcp_servers(self, query: str, k: int = 5) -> List[Document]:
+    async def search_mcp_servers(self, query: str, k: int = 5) -> list[Document]:
         """Search for MCP servers using the configured retriever."""
         try:
             # Use the retriever from our BaseRAGAgent

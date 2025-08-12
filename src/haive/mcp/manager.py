@@ -73,9 +73,8 @@ from typing import Any
 import aiohttp
 from langchain_mcp_adapters.client import (
     MultiServerMCPClient,
-    stdio_client,
 )
-from mcp.client.stdio import StdioServerParameters
+from mcp.client.stdio import StdioServerParameters, stdio_client
 from pydantic import BaseModel, Field, PrivateAttr
 
 from haive.mcp.config import MCPServerConfig
