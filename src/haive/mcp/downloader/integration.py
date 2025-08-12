@@ -37,10 +37,22 @@ from typing import Any
 
 from haive.core.engine.aug_llm import AugLLMConfig
 from langchain_core.tools import BaseTool
-from langchain_mcp_adapters.client import SSEConnection  # type: ignore
-from langchain_mcp_adapters.client import StdioServerParameters  # type: ignore
-from langchain_mcp_adapters.client import stdio_client  # type: ignore; type: ignore
 from pydantic import BaseModel, Field
+
+# Try to import MCP adapters, handle gracefully if missing
+try:
+    from langchain_mcp_adapters.client import SSEConnection  # type: ignore
+    from langchain_mcp_adapters.client import StdioServerParameters  # type: ignore
+    from langchain_mcp_adapters.client import stdio_client  # type: ignore
+
+    MCP_ADAPTERS_AVAILABLE = True
+except ImportError as e:
+    # Handle missing MCP adapters gracefully for documentation builds
+    print(f"Warning: MCP adapters not available: {e}")
+    SSEConnection = None
+    StdioServerParameters = None
+    stdio_client = None
+    MCP_ADAPTERS_AVAILABLE = False
 
 from haive.mcp.agents import MCPAgent, TransferableMCPAgent
 from haive.mcp.config import MCPConfig, MCPServerConfig, MCPTransport
@@ -103,6 +115,10 @@ class MCPServerConnection(BaseModel):
                 if await connection.connect():
                     print(f"Connected to {connection.name}")
         """
+        if not MCP_ADAPTERS_AVAILABLE:
+            logger.warning("MCP adapters not available, cannot connect to servers")
+            return False
+
         try:
             if self.transport == "stdio":
                 # Create stdio connection

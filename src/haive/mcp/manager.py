@@ -71,24 +71,25 @@ from enum import Enum
 from typing import Any
 
 import aiohttp
-from langchain_mcp_adapters.client import (
-    MultiServerMCPClient,
-)
-from mcp.client.stdio import StdioServerParameters, stdio_client
 from pydantic import BaseModel, Field, PrivateAttr
+
+# Try to import MCP adapters, handle gracefully if missing
+try:
+    from langchain_mcp_adapters.client import MultiServerMCPClient
+    from mcp.client.stdio import StdioServerParameters, stdio_client
+
+    MCP_AVAILABLE = True
+except ImportError as e:
+    # Handle missing MCP adapters gracefully for documentation builds
+    print(f"Warning: MCP adapters not available: {e}")
+    MultiServerMCPClient = None
+    StdioServerParameters = None
+    stdio_client = None
+    MCP_AVAILABLE = False
 
 from haive.mcp.config import MCPServerConfig
 
 logger = logging.getLogger(__name__)
-
-# Check for MCP availability
-try:
-    MCP_AVAILABLE = True
-except ImportError:
-    MCP_AVAILABLE = False
-    logger.warning(
-        "MCP adapters not available. Install with: pip install langchain-mcp-adapters"
-    )
 
 
 class MCPServerStatus(str, Enum):
@@ -318,6 +319,15 @@ class MCPManager(BaseModel):
         self, server_name: str, config: MCPServerConfig
     ) -> MCPRegistrationResult:
         """Connect to a specific MCP server."""
+        if not MCP_AVAILABLE:
+            logger.warning("MCP adapters not available, cannot connect to servers")
+            return MCPRegistrationResult(
+                server_name=server_name,
+                success=False,
+                status=MCPServerStatus.FAILED,
+                error_message="MCP adapters not available",
+            )
+
         self._server_status[server_name] = MCPServerStatus.CONNECTING
 
         try:
