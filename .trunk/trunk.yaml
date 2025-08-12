@@ -29,6 +29,18 @@ lint:
     - taplo@0.9.3
     - trufflehog@3.89.1
     - yamllint@1.37.1
+  ignore:
+    - linters: [ALL]
+      paths:
+        - data/mcp_servers/raw_readmes/** # Third-party README files
+        - tools/extracted_data/** # Generated data files
+        - deprecated/** # Deprecated code
+        - legacy/** # Legacy code
+    - linters: [bandit]
+      paths:
+        - examples/** # Example scripts
+        - scripts/** # Utility scripts
+        - tools/** # Development tools
 actions:
   enabled:
     - trunk-announce
