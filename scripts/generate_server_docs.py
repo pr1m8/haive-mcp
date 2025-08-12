@@ -14,7 +14,7 @@ import json
 import logging
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
@@ -62,7 +62,7 @@ class MCPDocumentationGenerator:
 
         logger.info("Documentation generation complete!")
 
-    def _load_server_data(self) -> Dict[str, Any]:
+    def _load_server_data(self) -> dict[str, Any]:
         """Load all server data from JSON files."""
         all_servers = {}
 
@@ -90,8 +90,8 @@ class MCPDocumentationGenerator:
         return all_servers
 
     def _categorize_servers(
-        self, servers: Dict[str, Any]
-    ) -> Dict[str, List[Dict[str, Any]]]:
+        self, servers: dict[str, Any]
+    ) -> dict[str, list[dict[str, Any]]]:
         """Organize servers by category."""
         categories = {}
 
@@ -112,7 +112,7 @@ class MCPDocumentationGenerator:
 
         return categories
 
-    def _get_server_category(self, server_data: Dict[str, Any]) -> str:
+    def _get_server_category(self, server_data: dict[str, Any]) -> str:
         """Determine the category for a server."""
         # Check metadata for category
         if "metadata" in server_data:
@@ -150,7 +150,7 @@ class MCPDocumentationGenerator:
         # Default category
         return "utility" if category else "uncategorized"
 
-    def _calculate_quality_score(self, server_data: Dict[str, Any]) -> float:
+    def _calculate_quality_score(self, server_data: dict[str, Any]) -> float:
         """Calculate quality score for a server."""
         score = 0.0
 
@@ -214,7 +214,7 @@ class MCPDocumentationGenerator:
         return score
 
     def _generate_server_documentation(
-        self, server_name: str, server_data: Dict[str, Any]
+        self, server_name: str, server_data: dict[str, Any]
     ) -> None:
         """Generate documentation for a single server."""
         # Determine category and create directory
@@ -230,7 +230,7 @@ class MCPDocumentationGenerator:
         self._generate_server_configuration(server_dir, server_name, server_data)
 
     def _generate_server_index(
-        self, server_dir: Path, server_name: str, server_data: Dict[str, Any]
+        self, server_dir: Path, server_name: str, server_data: dict[str, Any]
     ) -> None:
         """Generate index.rst for a server."""
         quality_score = self._calculate_quality_score(server_data)
@@ -362,7 +362,7 @@ See Also
         index_file.write_text(content)
 
     def _generate_server_configuration(
-        self, server_dir: Path, server_name: str, server_data: Dict[str, Any]
+        self, server_dir: Path, server_name: str, server_data: dict[str, Any]
     ) -> None:
         """Generate configuration.rst for a server."""
         # Extract metadata
@@ -412,7 +412,7 @@ This server supports the following transport types:
         config_file.write_text(content)
 
     def _generate_category_index(
-        self, category: str, servers: List[Dict[str, Any]]
+        self, category: str, servers: list[dict[str, Any]]
     ) -> None:
         """Generate index.rst for a category."""
         category_dir = self.docs_path / category
@@ -488,7 +488,7 @@ Quick Reference
         index_file.write_text(content)
 
     def _generate_master_index(
-        self, categorized_servers: Dict[str, List[Dict[str, Any]]]
+        self, categorized_servers: dict[str, list[dict[str, Any]]]
     ) -> None:
         """Generate the master mcp_servers.rst index file."""
         total_servers = sum(len(servers) for servers in categorized_servers.values())
@@ -638,7 +638,7 @@ See Also
         )
 
     # Helper methods for documentation generation
-    def _estimate_complexity(self, server_data: Dict[str, Any]) -> int:
+    def _estimate_complexity(self, server_data: dict[str, Any]) -> int:
         """Estimate setup complexity (1-5)."""
         complexity = 1
 
@@ -667,7 +667,7 @@ See Also
 
         return min(complexity, 5)
 
-    def _calculate_doc_score(self, server_data: Dict[str, Any]) -> float:
+    def _calculate_doc_score(self, server_data: dict[str, Any]) -> float:
         """Calculate documentation quality score."""
         doc = server_data.get("readme_content") or server_data.get("documentation", "")
         if not doc:
@@ -700,7 +700,7 @@ See Also
 
         return min(score, 100)
 
-    def _calculate_popularity_score(self, server_data: Dict[str, Any]) -> float:
+    def _calculate_popularity_score(self, server_data: dict[str, Any]) -> float:
         """Calculate popularity score based on stars, forks, etc."""
         if "metadata" in server_data:
             meta = server_data["metadata"]
@@ -711,17 +711,17 @@ See Also
 
         if stars > 5000:
             return 100.0
-        elif stars > 1000:
+        if stars > 1000:
             return 80.0
-        elif stars > 100:
+        if stars > 100:
             return 60.0
-        elif stars > 10:
+        if stars > 10:
             return 40.0
-        elif stars > 0:
+        if stars > 0:
             return 20.0
         return 0.0
 
-    def _calculate_maintenance_score(self, server_data: Dict[str, Any]) -> float:
+    def _calculate_maintenance_score(self, server_data: dict[str, Any]) -> float:
         """Calculate maintenance score based on last update."""
         if "metadata" in server_data:
             meta = server_data["metadata"]
@@ -739,18 +739,17 @@ See Also
 
             if days_ago < 30:
                 return 100.0
-            elif days_ago < 90:
+            if days_ago < 90:
                 return 80.0
-            elif days_ago < 180:
+            if days_ago < 180:
                 return 60.0
-            elif days_ago < 365:
+            if days_ago < 365:
                 return 40.0
-            else:
-                return 20.0
+            return 20.0
         except:
             return 50.0
 
-    def _calculate_completeness_score(self, server_data: Dict[str, Any]) -> float:
+    def _calculate_completeness_score(self, server_data: dict[str, Any]) -> float:
         """Calculate completeness score based on available metadata."""
         score = 0.0
 
@@ -781,7 +780,7 @@ See Also
 
         return min(score, 100)
 
-    def _generate_tags(self, server_data: Dict[str, Any]) -> str:
+    def _generate_tags(self, server_data: dict[str, Any]) -> str:
         """Generate tags for the server."""
         tags = []
 
@@ -806,7 +805,7 @@ See Also
 
         return "\n".join(tags) if tags else "No tags available"
 
-    def _generate_install_command(self, server_data: Dict[str, Any]) -> str:
+    def _generate_install_command(self, server_data: dict[str, Any]) -> str:
         """Generate installation command."""
         if "metadata" in server_data:
             meta = server_data["metadata"]
@@ -830,16 +829,16 @@ See Also
 
         return "# Installation instructions not available"
 
-    def _generate_detailed_installation(self, server_data: Dict[str, Any]) -> str:
+    def _generate_detailed_installation(self, server_data: dict[str, Any]) -> str:
         """Generate detailed installation section."""
         content = []
 
         if "metadata" in server_data:
             meta = server_data["metadata"]
-            doc = server_data.get("readme_content", "")
+            server_data.get("readme_content", "")
         else:
             meta = server_data.get("metadata", {})
-            doc = server_data.get("documentation", "")
+            server_data.get("documentation", "")
 
         # Check for dependencies
         deps = meta.get("dependencies", [])
@@ -868,7 +867,7 @@ See Also
 
         return "\n".join(content)
 
-    def _extract_features(self, server_data: Dict[str, Any]) -> str:
+    def _extract_features(self, server_data: dict[str, Any]) -> str:
         """Extract features from documentation."""
         if "metadata" in server_data:
             meta = server_data["metadata"]
@@ -903,7 +902,7 @@ See Also
             return "\n".join(features)
         return "Feature list not available. Check the repository for details."
 
-    def _extract_api_info(self, server_data: Dict[str, Any]) -> str:
+    def _extract_api_info(self, server_data: dict[str, Any]) -> str:
         """Extract API information."""
         if "metadata" in server_data:
             doc = server_data.get("readme_content", "")
@@ -915,7 +914,7 @@ See Also
 
         return "API documentation not available in the extracted content."
 
-    def _extract_env_vars(self, server_data: Dict[str, Any]) -> str:
+    def _extract_env_vars(self, server_data: dict[str, Any]) -> str:
         """Extract environment variables."""
         content = []
 
@@ -942,7 +941,7 @@ See Also
                     if "=" in line and any(
                         var in line for var in ["API", "KEY", "TOKEN", "URL"]
                     ):
-                        content.append(f".. code-block:: bash")
+                        content.append(".. code-block:: bash")
                         content.append("")
                         content.append(f"   {line.strip()}")
                         content.append("")
@@ -950,7 +949,7 @@ See Also
         return "\n".join(content) if content else "No environment variables documented."
 
     def _generate_transport_examples(
-        self, server_name: str, transport_types: List[str]
+        self, server_name: str, transport_types: list[str]
     ) -> str:
         """Generate transport configuration examples."""
         content = []
