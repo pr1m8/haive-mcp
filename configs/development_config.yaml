@@ -21,7 +21,7 @@ settings:
   retry_delay: 2
 
   # Frequent health checks
-  health_check_interval: 300  # 5 minutes
+  health_check_interval: 300 # 5 minutes
   health_check_on_startup: false
 
   # Enable auto-features
@@ -73,7 +73,7 @@ servers:
     variables:
       owner: example
       repo: test-mcp
-    enabled: false  # Enable when testing
+    enabled: false # Enable when testing
     tags: [test, git, dev]
 # Broader patterns for discovery
 patterns:
@@ -83,11 +83,11 @@ patterns:
     - https://api.github.com/search/repositories?q=mcp+in:name
     - https://pypi.org/search/?q=mcp
   package_patterns:
-    npm: ['*mcp*', mcp-*, '*-mcp-*']
-    pypi: ['*mcp*', mcp*]
+    npm: ["*mcp*", mcp-*, "*-mcp-*"]
+    pypi: ["*mcp*", mcp*]
     docker:
-      - '*/mcp*'
+      - "*/mcp*"
       - mcp/*
 
   # Minimal exclusions for testing
-  exclude_patterns: ['*-deprecated']
+  exclude_patterns: ["*-deprecated"]

@@ -6,7 +6,7 @@ templates:
   # Official ModelContextProtocol servers
   - name: npm_official
     installation_method: npm
-    command_pattern: '@modelcontextprotocol/server-{service}'
+    command_pattern: "@modelcontextprotocol/server-{service}"
     args_pattern: []
     env_vars: {}
     capabilities: [tools]
@@ -18,7 +18,7 @@ templates:
   # Community NPM packages with various patterns
   - name: npm_community
     installation_method: npm
-    command_pattern: '{package}'
+    command_pattern: "{package}"
     args_pattern: []
     env_vars: {}
     capabilities: [tools]
@@ -26,7 +26,7 @@ templates:
     prerequisites: [node, npm]
   - name: npm_scoped
     installation_method: npm
-    command_pattern: '@{org}/{package}'
+    command_pattern: "@{org}/{package}"
     args_pattern: []
     env_vars: {}
     capabilities: [tools]
@@ -44,7 +44,7 @@ templates:
   # Python-based servers
   - name: pypi_package
     installation_method: pip
-    command_pattern: '{package}'
+    command_pattern: "{package}"
     args_pattern: []
     env_vars: {}
     capabilities: [tools]
@@ -91,7 +91,7 @@ templates:
   # Docker-based servers
   - name: docker_image
     installation_method: docker
-    command_pattern: '{image}'
+    command_pattern: "{image}"
     args_pattern: []
     env_vars: {}
     capabilities: [tools]
@@ -271,17 +271,17 @@ patterns:
   # Package naming patterns for different registries
   package_patterns:
     npm:
-      - '@modelcontextprotocol/server-*'
+      - "@modelcontextprotocol/server-*"
       - mcp-server-*
-      - '*-mcp-server'
+      - "*-mcp-server"
       - mcp-*
-      - '@*/mcp-server'
-      - '@mcp-*/*'
-    pypi: [mcp-*, '*-mcp', mcp-server-*, '*-mcp-server']
-    docker: [mcp/*, modelcontextprotocol/*, '*/mcp-*']
+      - "@*/mcp-server"
+      - "@mcp-*/*"
+    pypi: [mcp-*, "*-mcp", mcp-server-*, "*-mcp-server"]
+    docker: [mcp/*, modelcontextprotocol/*, "*/mcp-*"]
     github:
-      - '*mcp*server*'
-      - '*model*context*protocol*'
+      - "*mcp*server*"
+      - "*model*context*protocol*"
       - mcp-*
 
   # Service categories for pattern generation
@@ -423,7 +423,7 @@ installation:
 
   # Auto-update settings
   auto_update: false
-  update_check_interval: 86400  # 24 hours
+  update_check_interval: 86400 # 24 hours
 
   # Backup settings
   backup_config: true
