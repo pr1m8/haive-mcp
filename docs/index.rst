@@ -1,7 +1,7 @@
 .. haive-mcp documentation master file
 
 haive-mcp: Model Context Protocol Integration for Haive
-========================================================
+=======================================================
 
 .. toctree::
    :maxdepth: 2
