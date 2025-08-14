@@ -1,5 +1,5 @@
 Configuration for flowcore/mcp-flowcore-platform
-================================================
+===============================================
 
 This page contains configuration information for the flowcore/mcp-flowcore-platform MCP server.
 
@@ -10,9 +10,9 @@ This page contains configuration information for the flowcore/mcp-flowcore-platf
 Basic Configuration
 -------------------
 
-**Installation Method:** manual
+**Installation Method:** npm
 
-**Setup Complexity:** 4/5
+**Setup Complexity:** 1/5
 
 **Transport Types:** stdio
 
@@ -23,6 +23,7 @@ Environment Variables
    Environment variables may be required for this server to function properly.
    Check the repository documentation for specific requirements.
 
+No environment variables documented.
 
 Transport Configuration
 -----------------------
@@ -37,7 +38,7 @@ For Claude Desktop configuration:
 
    {
      "mcpServers": {
-       "flowcore_mcp-flowcore-platform": {
+       "flowcore/mcp-flowcore-platform": {
          "command": "npx",
          "args": ["flowcore/mcp-flowcore-platform"]
        }

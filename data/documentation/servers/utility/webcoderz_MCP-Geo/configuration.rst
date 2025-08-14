@@ -1,5 +1,5 @@
 Configuration for webcoderz/MCP-Geo
-===================================
+==================================
 
 This page contains configuration information for the webcoderz/MCP-Geo MCP server.
 
@@ -10,9 +10,9 @@ This page contains configuration information for the webcoderz/MCP-Geo MCP serve
 Basic Configuration
 -------------------
 
-**Installation Method:** manual
+**Installation Method:** npm
 
-**Setup Complexity:** 4/5
+**Setup Complexity:** 1/5
 
 **Transport Types:** stdio
 
@@ -23,6 +23,7 @@ Environment Variables
    Environment variables may be required for this server to function properly.
    Check the repository documentation for specific requirements.
 
+No environment variables documented.
 
 Transport Configuration
 -----------------------
@@ -37,7 +38,7 @@ For Claude Desktop configuration:
 
    {
      "mcpServers": {
-       "webcoderz_MCP-Geo": {
+       "webcoderz/MCP-Geo": {
          "command": "npx",
          "args": ["webcoderz/MCP-Geo"]
        }

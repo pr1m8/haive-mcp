@@ -1,7 +1,7 @@
 Email
 =====
 
-.. badge:: Quality: Needs Improvement (<70)
+.. badge:: Quality: Needs Improvement (<50)
 .. badge:: Category: ai_ml
 
 .. contents:: Table of Contents
@@ -13,22 +13,22 @@ Overview
 
 
 
-**Quality Score:** 21.5/100
+**Quality Score:** 0.0/100
 
 **Category:** ai_ml
 
-**Installation Method:** manual
+**Installation Method:** npm
 
-**Setup Complexity:** 4/5
+**Setup Complexity:** 1/5
 
 Repository
 ~~~~~~~~~~
 
-**URL:** https://github.com/Shy2593666979/mcp-server-email
+**URL:** 
 
-**Source:** github:wong2/awesome-mcp-servers
+**Source:** github
 
-**Last Updated:** 2025-07-03T14:29:54.102457+00:00
+**Last Updated:** Unknown
 
 Quality Metrics
 ~~~~~~~~~~~~~~~
@@ -36,13 +36,12 @@ Quality Metrics
 * **Documentation Score:** 0.0/100
 * **Popularity Score:** 0.0/100  
 * **Maintenance Score:** 50.0/100
-* **Completeness Score:** 60.0/100
+* **Completeness Score:** 0.0/100
 
 Tags
 ~~~~
 
-
-
+No tags available
 
 Installation
 ------------
@@ -52,20 +51,19 @@ Quick Install
 
 .. code-block:: bash
 
-   # Installation method: manual
-   # Please refer to the repository for installation instructions
-   git clone https://github.com/Shy2593666979/mcp-server-email
+   # Installation instructions not available
 
 
 
 Features
 --------
 
-
+Feature list not available. Check the repository for details.
 
 API Reference
 -------------
 
+API documentation not available in the extracted content.
 
 Configuration
 -------------

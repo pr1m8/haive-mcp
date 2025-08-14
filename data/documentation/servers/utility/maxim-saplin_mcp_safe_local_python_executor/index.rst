@@ -1,7 +1,7 @@
 maxim-saplin/mcp_safe_local_python_executor
 ===========================================
 
-.. badge:: Quality: Needs Improvement (<70)
+.. badge:: Quality: Needs Improvement (<50)
 .. badge:: Category: utility
 
 .. contents:: Table of Contents
@@ -13,36 +13,35 @@ Overview
 
 Safe Python interpreter based on HF Smolagents `LocalPythonExecutor`
 
-**Quality Score:** 25.5/100
+**Quality Score:** 0.0/100
 
 **Category:** utility
 
-**Installation Method:** manual
+**Installation Method:** npm
 
-**Setup Complexity:** 4/5
+**Setup Complexity:** 1/5
 
 Repository
 ~~~~~~~~~~
 
-**URL:** https://github.com/maxim-saplin/mcp_safe_local_python_executor
+**URL:** 
 
-**Source:** github:punkpeye/awesome-mcp-servers
+**Source:** github
 
-**Last Updated:** 2025-07-03T16:16:41.979791+00:00
+**Last Updated:** Unknown
 
 Quality Metrics
 ~~~~~~~~~~~~~~~
 
-* **Documentation Score:** 5.0/100
+* **Documentation Score:** 0.0/100
 * **Popularity Score:** 0.0/100  
 * **Maintenance Score:** 50.0/100
-* **Completeness Score:** 75.0/100
+* **Completeness Score:** 0.0/100
 
 Tags
 ~~~~
 
-
-
+No tags available
 
 Installation
 ------------
@@ -52,20 +51,19 @@ Quick Install
 
 .. code-block:: bash
 
-   # Installation method: manual
-   # Please refer to the repository for installation instructions
-   git clone https://github.com/maxim-saplin/mcp_safe_local_python_executor
+   # Installation instructions not available
 
 
 
 Features
 --------
 
-
+Feature list not available. Check the repository for details.
 
 API Reference
 -------------
 
+API documentation not available in the extracted content.
 
 Configuration
 -------------

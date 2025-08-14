@@ -1,7 +1,7 @@
 areweai/tsgram-mcp
 ==================
 
-.. badge:: Quality: Needs Improvement (<70)
+.. badge:: Quality: Needs Improvement (<50)
 .. badge:: Category: ai_ml
 
 .. contents:: Table of Contents
@@ -13,36 +13,35 @@ Overview
 
 TSgram: Telegram + Claude with local workspace access on your phone in typescript. Read, write, and vibe code on the go!
 
-**Quality Score:** 27.2/100
+**Quality Score:** 0.0/100
 
 **Category:** ai_ml
 
-**Installation Method:** manual
+**Installation Method:** npm
 
-**Setup Complexity:** 4/5
+**Setup Complexity:** 1/5
 
 Repository
 ~~~~~~~~~~
 
-**URL:** https://github.com/areweai/tsgram-mcp
+**URL:** 
 
-**Source:** github:punkpeye/awesome-mcp-servers
+**Source:** github
 
-**Last Updated:** 2025-07-03T16:21:42.082131+00:00
+**Last Updated:** Unknown
 
 Quality Metrics
 ~~~~~~~~~~~~~~~
 
-* **Documentation Score:** 10.0/100
+* **Documentation Score:** 0.0/100
 * **Popularity Score:** 0.0/100  
 * **Maintenance Score:** 50.0/100
-* **Completeness Score:** 75.0/100
+* **Completeness Score:** 0.0/100
 
 Tags
 ~~~~
 
-
-
+No tags available
 
 Installation
 ------------
@@ -52,20 +51,19 @@ Quick Install
 
 .. code-block:: bash
 
-   # Installation method: manual
-   # Please refer to the repository for installation instructions
-   git clone https://github.com/areweai/tsgram-mcp
+   # Installation instructions not available
 
 
 
 Features
 --------
 
-
+Feature list not available. Check the repository for details.
 
 API Reference
 -------------
 
+API documentation not available in the extracted content.
 
 Configuration
 -------------

@@ -1,5 +1,5 @@
 Configuration for heurist-network/heurist-mesh-mcp-server
-=========================================================
+========================================================
 
 This page contains configuration information for the heurist-network/heurist-mesh-mcp-server MCP server.
 
@@ -10,9 +10,9 @@ This page contains configuration information for the heurist-network/heurist-mes
 Basic Configuration
 -------------------
 
-**Installation Method:** manual
+**Installation Method:** npm
 
-**Setup Complexity:** 4/5
+**Setup Complexity:** 1/5
 
 **Transport Types:** stdio
 
@@ -23,6 +23,7 @@ Environment Variables
    Environment variables may be required for this server to function properly.
    Check the repository documentation for specific requirements.
 
+No environment variables documented.
 
 Transport Configuration
 -----------------------
@@ -37,7 +38,7 @@ For Claude Desktop configuration:
 
    {
      "mcpServers": {
-       "heurist-network_heurist-mesh-mcp-server": {
+       "heurist-network/heurist-mesh-mcp-server": {
          "command": "npx",
          "args": ["heurist-network/heurist-mesh-mcp-server"]
        }

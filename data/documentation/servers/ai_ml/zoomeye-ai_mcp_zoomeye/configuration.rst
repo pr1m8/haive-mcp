@@ -1,5 +1,5 @@
 Configuration for zoomeye-ai/mcp_zoomeye
-========================================
+=======================================
 
 This page contains configuration information for the zoomeye-ai/mcp_zoomeye MCP server.
 
@@ -10,9 +10,9 @@ This page contains configuration information for the zoomeye-ai/mcp_zoomeye MCP 
 Basic Configuration
 -------------------
 
-**Installation Method:** manual
+**Installation Method:** npm
 
-**Setup Complexity:** 4/5
+**Setup Complexity:** 1/5
 
 **Transport Types:** stdio
 
@@ -23,6 +23,7 @@ Environment Variables
    Environment variables may be required for this server to function properly.
    Check the repository documentation for specific requirements.
 
+No environment variables documented.
 
 Transport Configuration
 -----------------------
@@ -37,7 +38,7 @@ For Claude Desktop configuration:
 
    {
      "mcpServers": {
-       "zoomeye-ai_mcp_zoomeye": {
+       "zoomeye-ai/mcp_zoomeye": {
          "command": "npx",
          "args": ["zoomeye-ai/mcp_zoomeye"]
        }

@@ -1,5 +1,5 @@
 Configuration for neilberkman/editorconfig_mcp
-==============================================
+=============================================
 
 This page contains configuration information for the neilberkman/editorconfig_mcp MCP server.
 
@@ -10,9 +10,9 @@ This page contains configuration information for the neilberkman/editorconfig_mc
 Basic Configuration
 -------------------
 
-**Installation Method:** manual
+**Installation Method:** npm
 
-**Setup Complexity:** 4/5
+**Setup Complexity:** 1/5
 
 **Transport Types:** stdio
 
@@ -23,6 +23,7 @@ Environment Variables
    Environment variables may be required for this server to function properly.
    Check the repository documentation for specific requirements.
 
+No environment variables documented.
 
 Transport Configuration
 -----------------------
@@ -37,7 +38,7 @@ For Claude Desktop configuration:
 
    {
      "mcpServers": {
-       "neilberkman_editorconfig_mcp": {
+       "neilberkman/editorconfig_mcp": {
          "command": "npx",
          "args": ["neilberkman/editorconfig_mcp"]
        }

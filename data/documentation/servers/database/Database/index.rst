@@ -1,7 +1,7 @@
 Database
 ========
 
-.. badge:: Quality: Needs Improvement (<70)
+.. badge:: Quality: Needs Improvement (<50)
 .. badge:: Category: database
 
 .. contents:: Table of Contents
@@ -13,36 +13,35 @@ Overview
 
 Universal database MCP server supporting multiple database types including PostgreSQL, Redshift, CockroachDB, MySQL, RDS MySQL, Microsoft SQL Server, BigQuery, Oracle DB, and SQLite
 
-**Quality Score:** 27.2/100
+**Quality Score:** 0.0/100
 
 **Category:** database
 
-**Installation Method:** manual
+**Installation Method:** npm
 
-**Setup Complexity:** 4/5
+**Setup Complexity:** 1/5
 
 Repository
 ~~~~~~~~~~
 
-**URL:** https://github.com/TheRaLabs/legion-mcp
+**URL:** 
 
-**Source:** github:wong2/awesome-mcp-servers
+**Source:** github
 
-**Last Updated:** 2025-07-03T14:24:27.923075+00:00
+**Last Updated:** Unknown
 
 Quality Metrics
 ~~~~~~~~~~~~~~~
 
-* **Documentation Score:** 10.0/100
+* **Documentation Score:** 0.0/100
 * **Popularity Score:** 0.0/100  
 * **Maintenance Score:** 50.0/100
-* **Completeness Score:** 75.0/100
+* **Completeness Score:** 0.0/100
 
 Tags
 ~~~~
 
-
-
+No tags available
 
 Installation
 ------------
@@ -52,20 +51,19 @@ Quick Install
 
 .. code-block:: bash
 
-   # Installation method: manual
-   # Please refer to the repository for installation instructions
-   git clone https://github.com/TheRaLabs/legion-mcp
+   # Installation instructions not available
 
 
 
 Features
 --------
 
-
+Feature list not available. Check the repository for details.
 
 API Reference
 -------------
 
+API documentation not available in the extracted content.
 
 Configuration
 -------------

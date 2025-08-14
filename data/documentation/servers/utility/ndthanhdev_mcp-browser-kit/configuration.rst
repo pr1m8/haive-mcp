@@ -1,5 +1,5 @@
 Configuration for ndthanhdev/mcp-browser-kit
-============================================
+===========================================
 
 This page contains configuration information for the ndthanhdev/mcp-browser-kit MCP server.
 
@@ -10,9 +10,9 @@ This page contains configuration information for the ndthanhdev/mcp-browser-kit 
 Basic Configuration
 -------------------
 
-**Installation Method:** manual
+**Installation Method:** npm
 
-**Setup Complexity:** 4/5
+**Setup Complexity:** 1/5
 
 **Transport Types:** stdio
 
@@ -23,6 +23,7 @@ Environment Variables
    Environment variables may be required for this server to function properly.
    Check the repository documentation for specific requirements.
 
+No environment variables documented.
 
 Transport Configuration
 -----------------------
@@ -37,7 +38,7 @@ For Claude Desktop configuration:
 
    {
      "mcpServers": {
-       "ndthanhdev_mcp-browser-kit": {
+       "ndthanhdev/mcp-browser-kit": {
          "command": "npx",
          "args": ["ndthanhdev/mcp-browser-kit"]
        }

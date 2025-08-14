@@ -1,5 +1,5 @@
 Configuration for joshuarileydev/supabase-mcp-server
-====================================================
+===================================================
 
 This page contains configuration information for the joshuarileydev/supabase-mcp-server MCP server.
 
@@ -10,9 +10,9 @@ This page contains configuration information for the joshuarileydev/supabase-mcp
 Basic Configuration
 -------------------
 
-**Installation Method:** manual
+**Installation Method:** npm
 
-**Setup Complexity:** 4/5
+**Setup Complexity:** 1/5
 
 **Transport Types:** stdio
 
@@ -23,6 +23,7 @@ Environment Variables
    Environment variables may be required for this server to function properly.
    Check the repository documentation for specific requirements.
 
+No environment variables documented.
 
 Transport Configuration
 -----------------------
@@ -37,7 +38,7 @@ For Claude Desktop configuration:
 
    {
      "mcpServers": {
-       "joshuarileydev_supabase-mcp-server": {
+       "joshuarileydev/supabase-mcp-server": {
          "command": "npx",
          "args": ["joshuarileydev/supabase-mcp-server"]
        }

@@ -1,7 +1,7 @@
 kelvin6365/plane-mcp-server
 ===========================
 
-.. badge:: Quality: Needs Improvement (<70)
+.. badge:: Quality: Needs Improvement (<50)
 .. badge:: Category: api_integration
 
 .. contents:: Table of Contents
@@ -13,36 +13,35 @@ Overview
 
 🏎️ 🏠 This MCP Server will help you to manage projects and issues through [Plane's](https://plane.so) API
 
-**Quality Score:** 27.2/100
+**Quality Score:** 0.0/100
 
 **Category:** api_integration
 
-**Installation Method:** manual
+**Installation Method:** npm
 
-**Setup Complexity:** 4/5
+**Setup Complexity:** 1/5
 
 Repository
 ~~~~~~~~~~
 
-**URL:** https://github.com/kelvin6365/plane-mcp-server
+**URL:** 
 
-**Source:** github:punkpeye/awesome-mcp-servers
+**Source:** github
 
-**Last Updated:** 2025-07-03T20:04:06.106655+00:00
+**Last Updated:** Unknown
 
 Quality Metrics
 ~~~~~~~~~~~~~~~
 
-* **Documentation Score:** 10.0/100
+* **Documentation Score:** 0.0/100
 * **Popularity Score:** 0.0/100  
 * **Maintenance Score:** 50.0/100
-* **Completeness Score:** 75.0/100
+* **Completeness Score:** 0.0/100
 
 Tags
 ~~~~
 
-
-
+No tags available
 
 Installation
 ------------
@@ -52,20 +51,19 @@ Quick Install
 
 .. code-block:: bash
 
-   # Installation method: manual
-   # Please refer to the repository for installation instructions
-   git clone https://github.com/kelvin6365/plane-mcp-server
+   # Installation instructions not available
 
 
 
 Features
 --------
 
-
+Feature list not available. Check the repository for details.
 
 API Reference
 -------------
 
+API documentation not available in the extracted content.
 
 Configuration
 -------------

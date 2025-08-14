@@ -1,5 +1,5 @@
 Configuration for nkapila6/mcp-local-rag
-========================================
+=======================================
 
 This page contains configuration information for the nkapila6/mcp-local-rag MCP server.
 
@@ -10,9 +10,9 @@ This page contains configuration information for the nkapila6/mcp-local-rag MCP 
 Basic Configuration
 -------------------
 
-**Installation Method:** manual
+**Installation Method:** npm
 
-**Setup Complexity:** 4/5
+**Setup Complexity:** 1/5
 
 **Transport Types:** stdio
 
@@ -23,6 +23,7 @@ Environment Variables
    Environment variables may be required for this server to function properly.
    Check the repository documentation for specific requirements.
 
+No environment variables documented.
 
 Transport Configuration
 -----------------------
@@ -37,7 +38,7 @@ For Claude Desktop configuration:
 
    {
      "mcpServers": {
-       "nkapila6_mcp-local-rag": {
+       "nkapila6/mcp-local-rag": {
          "command": "npx",
          "args": ["nkapila6/mcp-local-rag"]
        }

@@ -1,7 +1,7 @@
 alexanderzuev/supabase-mcp-server
 =================================
 
-.. badge:: Quality: Needs Improvement (<70)
+.. badge:: Quality: Needs Improvement (<50)
 .. badge:: Category: database
 
 .. contents:: Table of Contents
@@ -13,36 +13,35 @@ Overview
 
 Supabase MCP Server with support for SQL query execution and database exploration tools
 
-**Quality Score:** 25.5/100
+**Quality Score:** 0.0/100
 
 **Category:** database
 
-**Installation Method:** manual
+**Installation Method:** npm
 
-**Setup Complexity:** 4/5
+**Setup Complexity:** 1/5
 
 Repository
 ~~~~~~~~~~
 
-**URL:** https://github.com/alexander-zuev/supabase-mcp-server
+**URL:** 
 
-**Source:** github:punkpeye/awesome-mcp-servers
+**Source:** github
 
-**Last Updated:** 2025-07-03T16:36:42.326061+00:00
+**Last Updated:** Unknown
 
 Quality Metrics
 ~~~~~~~~~~~~~~~
 
-* **Documentation Score:** 5.0/100
+* **Documentation Score:** 0.0/100
 * **Popularity Score:** 0.0/100  
 * **Maintenance Score:** 50.0/100
-* **Completeness Score:** 75.0/100
+* **Completeness Score:** 0.0/100
 
 Tags
 ~~~~
 
-
-
+No tags available
 
 Installation
 ------------
@@ -52,20 +51,19 @@ Quick Install
 
 .. code-block:: bash
 
-   # Installation method: manual
-   # Please refer to the repository for installation instructions
-   git clone https://github.com/alexander-zuev/supabase-mcp-server
+   # Installation instructions not available
 
 
 
 Features
 --------
 
-
+Feature list not available. Check the repository for details.
 
 API Reference
 -------------
 
+API documentation not available in the extracted content.
 
 Configuration
 -------------

@@ -1,5 +1,5 @@
 Configuration for longevity-genie/gget-mcp
-==========================================
+=========================================
 
 This page contains configuration information for the longevity-genie/gget-mcp MCP server.
 
@@ -10,9 +10,9 @@ This page contains configuration information for the longevity-genie/gget-mcp MC
 Basic Configuration
 -------------------
 
-**Installation Method:** manual
+**Installation Method:** npm
 
-**Setup Complexity:** 4/5
+**Setup Complexity:** 1/5
 
 **Transport Types:** stdio
 
@@ -23,6 +23,7 @@ Environment Variables
    Environment variables may be required for this server to function properly.
    Check the repository documentation for specific requirements.
 
+No environment variables documented.
 
 Transport Configuration
 -----------------------
@@ -37,7 +38,7 @@ For Claude Desktop configuration:
 
    {
      "mcpServers": {
-       "longevity-genie_gget-mcp": {
+       "longevity-genie/gget-mcp": {
          "command": "npx",
          "args": ["longevity-genie/gget-mcp"]
        }
