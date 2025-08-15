@@ -35,66 +35,13 @@ for key, value in _config.items():
 # Override autoapi_dirs for this specific project structure
 autoapi_dirs = ["../../src"]
 
-# Use enhanced AutoAPI templates from PyDevelop-Docs
-from pathlib import Path
+# Add custom CSS files
+html_css_files = html_css_files if "html_css_files" in globals() else []
+html_css_files.append("enhanced-index.css")
 
-pydevelop_path = (
-    Path(__file__).parent.parent.parent.parent.parent
-    / "tools"
-    / "pydevelop-docs"
-    / "src"
-)
-if pydevelop_path.exists():
-    autoapi_template_dir = str(
-        pydevelop_path / "pydevelop_docs" / "templates" / "_autoapi_templates"
-    )
-else:
-    autoapi_template_dir = None
-
-# -- Linkcode configuration for GitHub source links -------------------------
-
-
-def linkcode_resolve(domain, info):
-    """Generate GitHub source links for AutoAPI documentation.
-
-    This function is called by sphinx.ext.linkcode to generate source code links
-    that point to the actual source files on GitHub.
-
-    Args:
-        domain: The language domain (e.g., 'py' for Python)
-        info: Dictionary containing module and object information
-
-    Returns:
-        String URL pointing to the source code on GitHub, or None if not found
-    """
-    if domain != "py":
-        return None
-
-    if not info.get("module"):
-        return None
-
-    # Get the module name and convert to file path
-    module_name = info["module"]
-
-    # For haive-mcp, module names start with 'mcp.'
-    if module_name.startswith("mcp."):
-        # Remove mcp prefix and convert to path
-        module_path = module_name.replace("mcp.", "").replace(".", "/")
-        package_prefix = "packages/haive-mcp/src/mcp"
-    else:
-        # Fallback for other modules
-        package_prefix = "packages/haive-mcp/src"
-        module_path = module_name.replace(".", "/")
-
-    # Construct the full file path
-    file_path = f"{package_prefix}/{module_path}.py"
-
-    # Generate GitHub URL
-    github_base = "https://github.com/haive-ai/haive"
-    branch = "main"
-
-    return f"{github_base}/blob/{branch}/{file_path}"
-
+# -- Viewcode configuration for source viewing ------------------------------
+# Use viewcode extension for local source code viewing (works with Furo)
+# Removed linkcode_resolve function to avoid conflict with viewcode
 
 # -- Additional setup --------------------------------------------------------
 
@@ -103,5 +50,9 @@ def setup(app):
     """Sphinx setup hook."""
     if os.path.exists("_static/css/custom.css"):
         app.add_css_file("css/custom.css")
+    if os.path.exists(
+        os.path.join(os.path.dirname(__file__), "_static/enhanced-index.css")
+    ):
+        app.add_css_file("enhanced-index.css")
     if os.path.exists("_static/js/api-enhancements.js"):
         app.add_js_file("js/api-enhancements.js")
