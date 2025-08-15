@@ -35,24 +35,25 @@ for key, value in _config.items():
 # Override autoapi_dirs for this specific project structure
 autoapi_dirs = ["../../src"]
 
-# Add custom CSS files
-html_css_files = html_css_files if "html_css_files" in globals() else []
-html_css_files.append("enhanced-index.css")
-
-# -- Viewcode configuration for source viewing ------------------------------
-# Use viewcode extension for local source code viewing (works with Furo)
-# Removed linkcode_resolve function to avoid conflict with viewcode
-
 # -- Additional setup --------------------------------------------------------
 
 
 def setup(app):
     """Sphinx setup hook."""
+    # Modern CSS files (matches html_css_files)
+    css_files = [
+        "enhanced-design.css",
+        "breadcrumb-navigation.css",
+        "mermaid-custom.css",
+        "tippy-enhancements.css",
+    ]
+    for css_file in css_files:
+        if os.path.exists("_static/" + css_file):
+            app.add_css_file(css_file)
+
+    # Legacy fallback
     if os.path.exists("_static/css/custom.css"):
         app.add_css_file("css/custom.css")
-    if os.path.exists(
-        os.path.join(os.path.dirname(__file__), "_static/enhanced-index.css")
-    ):
-        app.add_css_file("enhanced-index.css")
+
     if os.path.exists("_static/js/api-enhancements.js"):
         app.add_js_file("js/api-enhancements.js")
