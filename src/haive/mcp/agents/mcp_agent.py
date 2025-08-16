@@ -20,7 +20,9 @@ Functions:
     create_multi_mcp_agent: Factory for multi-server MCP agent
 
 Example:
-    Creating and using an MCP agent::
+    Creating and using an MCP agent:
+
+    .. code-block:: python
 
         from haive.mcp.agents import MCPAgent
         from haive.mcp.config import MCPConfig, MCPServerConfig
@@ -92,7 +94,9 @@ class MCPAgent(MCPMixin, SimpleAgent):
         - Provides unified tool access across all servers
 
     Example:
-        Basic MCP agent setup::
+        Basic MCP agent setup:
+
+        .. code-block:: python
 
             from haive.mcp.agents import MCPAgent
             from haive.mcp.config import MCPConfig, MCPServerConfig
@@ -134,7 +138,9 @@ class MCPAgent(MCPMixin, SimpleAgent):
                 "messages": [{"role": "user", "content": "List files in current directory"}]
             })
 
-        Factory method usage::
+        Factory method usage:
+
+        .. code-block:: python
 
             # Using convenience factory
             agent = MCPAgent.create_with_mcp_servers(
@@ -220,7 +226,9 @@ class MCPAgent(MCPMixin, SimpleAgent):
             ValueError: If server configurations are invalid
 
         Example:
-            Creating an agent with multiple servers::
+            Creating an agent with multiple servers:
+
+            .. code-block:: python
 
                 agent = MCPAgent.create_with_mcp_servers(
                     engine=engine,

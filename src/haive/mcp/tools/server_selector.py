@@ -20,7 +20,10 @@ Classes:
     ServerRecommender: Provides smart server recommendations
 
 Example:
-    Basic server selection::\n
+    Basic server selection:
+
+    .. code-block:: python
+
         from haive.mcp.tools import MCPServerSelector
         from haive.mcp.documentation import MCPDocumentationLoader
 

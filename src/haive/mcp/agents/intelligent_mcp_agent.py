@@ -18,7 +18,9 @@ Classes:
     ServerRecommendation: Recommendation for MCP server installation
 
 Example:
-    Dynamic server discovery and installation::
+    Dynamic server discovery and installation:
+
+    .. code-block:: python
 
         from haive.mcp.agents import IntelligentMCPAgent
 from haive import core
@@ -126,7 +128,9 @@ class IntelligentMCPAgent(ReactAgent):
         recommendation_history: History of recommendations
 
     Example:
-        Basic intelligent agent setup::
+        Basic intelligent agent setup:
+
+        .. code-block:: python
 
             agent = IntelligentMCPAgent(
                 engine=engine,

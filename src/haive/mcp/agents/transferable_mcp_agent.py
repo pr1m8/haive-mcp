@@ -20,7 +20,9 @@ Functions:
     create_collaborative_agents: Factory for creating collaborative agent groups
 
 Example:
-    Creating and using transferable agents::
+    Creating and using transferable agents:
+
+    .. code-block:: python
 
         from haive.mcp.agents import TransferableMCPAgent
         from haive.mcp.config import MCPConfig
@@ -95,7 +97,9 @@ class TransferableMCPAgent(MCPMixin, SimpleAgent):
         _shared_sessions: Pool of shared MCP sessions
 
     Example:
-        Basic usage with tool transfer::
+        Basic usage with tool transfer:
+
+        .. code-block:: python
 
             # Create source agent with tools
             source = TransferableMCPAgent(
@@ -163,7 +167,9 @@ class TransferableMCPAgent(MCPMixin, SimpleAgent):
             Exception: Logged but not raised, ensures graceful degradation
 
         Example:
-            Manual initialization with shared client::
+            Manual initialization with shared client:
+
+            .. code-block:: python
 
                 agent1 = TransferableMCPAgent(
                     engine=engine,
@@ -266,7 +272,9 @@ class TransferableMCPAgent(MCPMixin, SimpleAgent):
             RuntimeError: If target agent initialization fails
 
         Example:
-            Transferring a specific tool::
+            Transferring a specific tool:
+
+            .. code-block:: python
 
                 # Transfer GitHub issue creation tool
                 success = await source_agent.transfer_tool_to_agent(
@@ -316,7 +324,9 @@ class TransferableMCPAgent(MCPMixin, SimpleAgent):
             int: Number of tools successfully transferred
 
         Example:
-            Creating a fully-equipped worker::
+            Creating a fully-equipped worker:
+
+            .. code-block:: python
 
                 # Leader has all MCP servers configured
                 leader = TransferableMCPAgent(

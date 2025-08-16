@@ -17,7 +17,9 @@ Classes:
     MCPConfig: Complete MCP configuration for agents
 
 Example:
-    Creating an MCP server configuration::
+    Creating an MCP server configuration:
+
+    .. code-block:: python
 
         from haive.mcp.config import MCPConfig, MCPServerConfig, MCPTransport
 
@@ -89,7 +91,9 @@ class MCPServerConfig(BaseModel):
         health_check_interval: Interval for health checks in seconds
 
     Example:
-        Creating a GitHub MCP server config::
+        Creating a GitHub MCP server config:
+
+        .. code-block:: python
 
             config = MCPServerConfig(
                 name="github",
@@ -162,7 +166,9 @@ class MCPConfig(BaseModel):
         on_tool_discovered: Optional callback name when tool is discovered
 
     Example:
-        Creating a comprehensive MCP configuration::
+        Creating a comprehensive MCP configuration:
+
+        .. code-block:: python
 
             config = MCPConfig(
                 enabled=True,

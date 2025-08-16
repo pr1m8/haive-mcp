@@ -16,7 +16,10 @@ Classes:
     HealthMonitor: Continuous health monitoring
 
 Example:
-    Testing server configurations::\n
+    Testing server configurations:
+
+    .. code-block:: python
+
         from haive.mcp.tools import MCPServerTester
         from haive.mcp.config import MCPServerConfig
 

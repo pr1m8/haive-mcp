@@ -18,7 +18,10 @@ Classes:
     TaskMatcher: Advanced task-to-server matching system
 
 Example:
-    AI agent usage::\n
+    AI agent usage:
+
+    .. code-block:: python
+
         from haive.mcp.tools import MCPAssistant
 
         # Create assistant

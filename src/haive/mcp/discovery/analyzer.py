@@ -15,7 +15,9 @@ Classes:
     MCPServerAnalyzer: Main analyzer for MCP server discovery
 
 Example:
-    Analyzing server configurations::
+    Analyzing server configurations:
+
+    .. code-block:: python
 
         from haive.mcp.discovery import MCPServerAnalyzer
 
@@ -70,7 +72,9 @@ class MCPServerAnalyzer:
         discovered_servers: Dictionary of servers found during analysis
 
     Example:
-        Basic server analysis::
+        Basic server analysis:
+
+        .. code-block:: python
 
             analyzer = MCPServerAnalyzer()
 
@@ -110,7 +114,9 @@ class MCPServerAnalyzer:
             bool: True if the object appears to be MCP-related
 
         Example:
-            Checking various objects::
+            Checking various objects:
+
+            .. code-block:: python
 
                 # Dictionary config
                 config = {"command": "npx", "args": [...]}

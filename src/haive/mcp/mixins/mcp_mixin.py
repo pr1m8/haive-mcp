@@ -13,7 +13,9 @@ providing:
     - Lazy initialization support
 
 Example:
-    Adding MCP capabilities to a custom agent::
+    Adding MCP capabilities to a custom agent:
+
+    .. code-block:: python
 
         from haive.agents.base import Agent
         from haive.mcp.mixins import MCPMixin
@@ -91,7 +93,9 @@ class MCPMixin(BaseModel):
         - Resource and prompt management
 
     Example:
-        Creating a custom agent with MCP capabilities::
+        Creating a custom agent with MCP capabilities:
+
+        .. code-block:: python
 
             from haive.agents.base import Agent
             from haive.mcp.mixins import MCPMixin
@@ -195,7 +199,9 @@ class MCPMixin(BaseModel):
             Exception: Logged but not raised to ensure graceful degradation
 
         Example:
-            Manual initialization::
+            Manual initialization:
+
+            .. code-block:: python
 
                 agent = MCPAgent(engine=engine, mcp_config=config)
                 success = await agent.initialize_mcp()

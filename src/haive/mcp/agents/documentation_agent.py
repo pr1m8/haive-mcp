@@ -21,7 +21,9 @@ Functions:
     create_for_mcp_research: Factory for research-focused documentation agent
 
 Example:
-    Processing MCP server documentation::
+    Processing MCP server documentation:
+
+    .. code-block:: python
 
         from haive.mcp.agents import MCPDocumentationAgent
 from haive import core
@@ -100,7 +102,9 @@ class MCPDocumentationAgent(MCPMixin, DocumentAgent):
         DocumentAgent: Provides document processing capabilities
 
     Example:
-        Basic documentation processing::
+        Basic documentation processing:
+
+        .. code-block:: python
 
             # Create documentation agent
             doc_agent = MCPDocumentationAgent.create_for_mcp_setup(
@@ -124,7 +128,9 @@ class MCPDocumentationAgent(MCPMixin, DocumentAgent):
             for step in setup_steps:
                 print(f"  {step}")
 
-        Advanced multi-server setup::
+        Advanced multi-server setup:
+
+        .. code-block:: python
 
             # Generate implementation guide for multiple servers
             guide = await doc_agent.generate_implementation_guide(
@@ -204,7 +210,9 @@ class MCPDocumentationAgent(MCPMixin, DocumentAgent):
                 - Language detection for code blocks
 
         Example:
-            Creating a setup-focused agent::
+            Creating a setup-focused agent:
+
+            .. code-block:: python
 
                 agent = MCPDocumentationAgent.create_for_mcp_setup(
                     engine=engine
@@ -252,7 +260,9 @@ class MCPDocumentationAgent(MCPMixin, DocumentAgent):
                 - Maximum worker threads for speed
 
         Example:
-            Researching MCP capabilities::
+            Researching MCP capabilities:
+
+            .. code-block:: python
 
                 agent = MCPDocumentationAgent.create_for_mcp_research(
                     engine=engine
