@@ -4,18 +4,27 @@ This module provides the main GeneralMCPDownloader class that orchestrates
 the downloading, installation, and configuration of MCP servers from various sources.
 
 Example:
-    Basic usage::
+    Basic usage:
 
+        .. code-block:: python
         downloader = GeneralMCPDownloader()
         result = await downloader.download_servers(["filesystem", "github"])
 
-    Auto-discovery::
+    Auto-discovery:
 
-        result = await downloader.auto_discover_and_download(limit=10)
 
-    Custom configuration::
 
-        downloader = GeneralMCPDownloader(
+        .. code-block:: python
+
+
+
+            result = await downloader.auto_discover_and_download(limit=10)
+
+    Custom configuration:
+
+        .. code-block:: python
+
+            downloader = GeneralMCPDownloader(
             config_file="my_config.yaml",
             install_dir="/custom/path"
         )
@@ -76,8 +85,9 @@ class ServerStatus(BaseModel):
         error: Error message if failed
 
     Example:
-        Creating status::
+        Creating status:
 
+        .. code-block:: python
             status = ServerStatus(
                 name="filesystem",
                 status="installed",
@@ -109,8 +119,9 @@ class DownloadResult(BaseModel):
         duration: Operation duration in seconds
 
     Example:
-        Checking results::
+        Checking results:
 
+        .. code-block:: python
             if result.success_rate > 80:
                 print(f"Good success rate: {result.success_rate}%")
     """
@@ -139,8 +150,9 @@ class GeneralMCPDownloader:
         status_tracker: Server status tracking
 
     Example:
-        Creating and using downloader::
+        Creating and using downloader:
 
+        .. code-block:: python
             downloader = GeneralMCPDownloader()
 
             # Download specific servers
@@ -167,8 +179,9 @@ class GeneralMCPDownloader:
                 ~/.mcp/servers if not specified.
 
         Example:
-            Initialization::
+            Initialization:
 
+        .. code-block:: python
                 # Use defaults
                 downloader = GeneralMCPDownloader()
 
@@ -425,8 +438,9 @@ class GeneralMCPDownloader:
             Dict mapping template names to ServerTemplate objects
 
         Example:
-            Accessing templates::
+            Accessing templates:
 
+        .. code-block:: python
                 npm_template = downloader.templates["npm_official"]
                 print(f"Command: {npm_template.command_pattern}")
         """
@@ -440,8 +454,9 @@ class GeneralMCPDownloader:
             List of ServerConfig objects
 
         Example:
-            Listing servers::
+            Listing servers:
 
+        .. code-block:: python
                 for server in downloader.servers:
                     print(f"{server.name}: {server.template}")
         """
@@ -471,18 +486,23 @@ class GeneralMCPDownloader:
             DownloadResult with details of the operation
 
         Example:
-            Download specific servers::
+            Download specific servers:
 
+        .. code-block:: python
                 result = await downloader.download_servers(["filesystem", "github"])
                 print(f"Success rate: {result.success_rate}%")
 
-            Download by category::
+            Download by category:
 
-                result = await downloader.download_servers(categories=["official"])
+                .. code-block:: python
 
-            Download by tags::
+                    result = await downloader.download_servers(categories=["official"])
 
-                result = await downloader.download_servers(tags={"database", "sql"})
+            Download by tags:
+
+                .. code-block:: python
+
+                    result = await downloader.download_servers(tags={"database", "sql"})
 
         Raises:
             ValueError: If no servers match the criteria
@@ -830,14 +850,17 @@ class GeneralMCPDownloader:
             DownloadResult with discovery and installation details
 
         Example:
-            Auto-discover and install::
+            Auto-discover and install:
 
+        .. code-block:: python
                 result = await downloader.auto_discover_and_download(limit=20)
                 print(f"Discovered and installed {result.successful} servers")
 
-            Discover only::
+            Discover only:
 
-                result = await downloader.auto_discover_and_download(
+                .. code-block:: python
+
+                    result = await downloader.auto_discover_and_download(
                     limit=50,
                     auto_install=False
                 )
@@ -905,8 +928,9 @@ class GeneralMCPDownloader:
             Dict with health check results
 
         Example:
-            Checking health::
+            Checking health:
 
+        .. code-block:: python
                 health = await downloader.check_server_health()
                 for server, status in health["servers"].items():
                     print(f"{server}: {status}")
@@ -996,8 +1020,9 @@ class GeneralMCPDownloader:
             server: ServerConfig to add
 
         Example:
-            Adding custom server::
+            Adding custom server:
 
+        .. code-block:: python
                 custom = ServerConfig(
                     name="my-custom-mcp",
                     template="git_repo",
@@ -1023,8 +1048,9 @@ class GeneralMCPDownloader:
             template: ServerTemplate to add
 
         Example:
-            Adding custom template::
+            Adding custom template:
 
+        .. code-block:: python
                 template = ServerTemplate(
                     name="rust_binary",
                     installation_method=InstallationMethod.BINARY,
@@ -1055,8 +1081,9 @@ class GeneralMCPDownloader:
             ServerStatus if found, None otherwise
 
         Example:
-            Checking status::
+            Checking status:
 
+        .. code-block:: python
                 status = downloader.get_server_status("filesystem")
                 if status and status.status == "installed":
                     print(f"Last success: {status.last_success}")
@@ -1078,8 +1105,9 @@ class GeneralMCPDownloader:
             config_file: Path to save configuration
 
         Example:
-            Saving config::
+            Saving config:
 
+        .. code-block:: python
                 downloader.save_configuration(Path("my_config.yaml"))
         """
         save_config(self.config, config_file)

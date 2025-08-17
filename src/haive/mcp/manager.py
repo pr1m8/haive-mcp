@@ -17,8 +17,9 @@ Classes:
     MCPHealthStatus: Health monitoring information
 
 Examples:
-    Adding MCP servers procedurally::
+    Adding MCP servers procedurally:
 
+        .. code-block:: python
         from haive.mcp.manager import MCPManager
         from haive.mcp.config import MCPServerConfig
 
@@ -44,16 +45,28 @@ Examples:
         # Get all available tools
         tools = await manager.get_all_tools()
 
-    Health monitoring example::
+    Health monitoring example:
 
-        # Check server health
+
+
+        .. code-block:: python
+
+
+
+            # Check server health
         health = await manager.check_server_health("filesystem")
         if health.status == MCPServerStatus.UNHEALTHY:
             await manager.reconnect_server("filesystem")
 
-    Tool execution example::
+    Tool execution example:
 
-        # Execute a tool on specific server
+
+
+        .. code-block:: python
+
+
+
+            # Execute a tool on specific server
         result = await manager.execute_tool(
             server="filesystem",
             tool="read_file",
@@ -156,8 +169,9 @@ class MCPHealthStatus(BaseModel):
         error_details: Details of the most recent error (if any)
 
     Example:
-        Health status after monitoring::
+        Health status after monitoring:
 
+        .. code-block:: python
             status = MCPHealthStatus(
                 server_name="filesystem",
                 status=MCPServerStatus.CONNECTED,
@@ -273,8 +287,9 @@ class MCPManager(BaseModel):
             MCPRegistrationResult: Result of the registration attempt
 
         Example:
-            Adding a filesystem server::
+            Adding a filesystem server:
 
+        .. code-block:: python
                 result = await manager.add_server("filesystem", MCPServerConfig(
                     name="filesystem",
                     transport="stdio",

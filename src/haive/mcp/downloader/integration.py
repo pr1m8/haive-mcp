@@ -4,8 +4,9 @@ This module provides integration between the MCP downloader system and Haive age
 enabling automatic tool, resource, and prompt discovery from downloaded MCP servers.
 
 Example:
-    Basic integration::
+    Basic integration:
 
+        .. code-block:: python
         from haive.mcp.downloader import MCPAgentIntegration
 from haive import core
 
@@ -16,9 +17,15 @@ from haive import core
             server_names=["filesystem", "github"]
         )
 
-    Auto-discovery integration::
+    Auto-discovery integration:
 
-        agent = await integration.create_agent_with_auto_discovery(
+
+
+        .. code-block:: python
+
+
+
+            agent = await integration.create_agent_with_auto_discovery(
             engine=engine,
             limit=10,
             categories=["official", "core"]
@@ -77,8 +84,9 @@ class MCPServerConnection(BaseModel):
         connected: Connection status
 
     Example:
-        Creating a connection::
+        Creating a connection:
 
+        .. code-block:: python
             connection = MCPServerConnection(
                 name="filesystem",
                 config=server_config,
@@ -110,8 +118,9 @@ class MCPServerConnection(BaseModel):
             bool: True if connection successful
 
         Example:
-            Connecting to server::
+            Connecting to server:
 
+        .. code-block:: python
                 if await connection.connect():
                     print(f"Connected to {connection.name}")
         """
@@ -159,8 +168,9 @@ class MCPServerConnection(BaseModel):
             Dict containing discovered capabilities
 
         Example:
-            Discovering capabilities::
+            Discovering capabilities:
 
+        .. code-block:: python
                 caps = await connection.discover_capabilities()
                 print(f"Found {len(caps['tools'])} tools")
         """
@@ -209,8 +219,9 @@ class MCPCapabilityExtractor:
         all_prompts: Aggregated prompts
 
     Example:
-        Extracting capabilities::
+        Extracting capabilities:
 
+        .. code-block:: python
             extractor = MCPCapabilityExtractor()
             await extractor.add_server("filesystem", config)
             tools = extractor.get_all_tools()
@@ -237,8 +248,9 @@ class MCPCapabilityExtractor:
             bool: True if server added successfully
 
         Example:
-            Adding a server::
+            Adding a server:
 
+        .. code-block:: python
                 success = await extractor.add_server(
                     "filesystem",
                     {"command": "npx", "args": ["@modelcontextprotocol/server-filesystem"]}
@@ -287,8 +299,9 @@ class MCPCapabilityExtractor:
             Dict mapping server names to success status
 
         Example:
-            Adding from config::
+            Adding from config:
 
+        .. code-block:: python
                 results = await extractor.add_servers_from_config(
                     downloader.servers,
                     downloader.install_dir
@@ -324,8 +337,9 @@ class MCPCapabilityExtractor:
             Dict of tool name to tool object
 
         Example:
-            Getting tools::
+            Getting tools:
 
+        .. code-block:: python
                 tools = extractor.get_all_tools()
                 for name, tool in tools.items():
                     print(f"Tool: {name}")
@@ -391,8 +405,9 @@ class MCPAgentIntegration:
         manager: MCP manager for agent integration
 
     Example:
-        Creating integrated agent::
+        Creating integrated agent:
 
+        .. code-block:: python
             integration = MCPAgentIntegration()
             agent = await integration.create_agent_with_mcp_servers(
                 engine=engine,
@@ -432,8 +447,9 @@ class MCPAgentIntegration:
             Configured agent with MCP servers
 
         Example:
-            Creating agent with servers::
+            Creating agent with servers:
 
+        .. code-block:: python
                 agent = await integration.create_agent_with_mcp_servers(
                     engine=engine,
                     server_names=["filesystem", "github", "postgres"],
@@ -503,8 +519,9 @@ class MCPAgentIntegration:
             Configured agent with discovered servers
 
         Example:
-            Auto-discovery agent::
+            Auto-discovery agent:
 
+        .. code-block:: python
                 agent = await integration.create_agent_with_auto_discovery(
                     engine=engine,
                     limit=10,
@@ -560,8 +577,9 @@ class MCPAgentIntegration:
             List of configured transferable agents
 
         Example:
-            Creating agent team::
+            Creating agent team:
 
+        .. code-block:: python
                 agents = await integration.create_transferable_agent_team(
                     engine=engine,
                     num_agents=3,
@@ -642,8 +660,9 @@ class MCPAgentIntegration:
             Dict with capability statistics
 
         Example:
-            Getting summary::
+            Getting summary:
 
+        .. code-block:: python
                 summary = integration.get_capability_summary()
                 print(f"Total tools: {summary['total_tools']}")
         """
