@@ -34,8 +34,9 @@ class MCPTool(BaseModel):
         metadata: Additional metadata
 
     Examples:
-        Create MCP tool::
+        Create MCP tool:
 
+        .. code-block:: python
             tool = MCPTool(
                 name="calculator",
                 description="Mathematical calculations",
@@ -61,8 +62,9 @@ class DynamicMCPRegistry(DynamicRegistry[MCPTool]):
     registration and activation with MCP servers.
 
     Examples:
-        Create MCP registry::
+        Create MCP registry:
 
+        .. code-block:: python
             registry = DynamicMCPRegistry()
 
             # Register MCP tool
@@ -94,8 +96,9 @@ class DynamicMCPRegistry(DynamicRegistry[MCPTool]):
             Activated MCPTool or None if activation failed
 
         Examples:
-            Activate MCP tool::
+            Activate MCP tool:
 
+        .. code-block:: python
                 tool = await registry.activate_mcp_tool("search_001", server)
                 if tool:
                     print(f"Activated: {tool.name}")
@@ -115,8 +118,9 @@ class DynamicMCPRegistry(DynamicRegistry[MCPTool]):
             Dictionary of tool name to input schema
 
         Examples:
-            Get schemas for MCP registration::
+            Get schemas for MCP registration:
 
+        .. code-block:: python
                 schemas = registry.get_tool_schemas()
                 for tool_name, schema in schemas.items():
                     print(f"{tool_name}: {schema}")
@@ -141,8 +145,9 @@ class DynamicMCPState(DynamicActivationState):
         tool_call_history: History of MCP tool calls
 
     Examples:
-        Create MCP state::
+        Create MCP state:
 
+        .. code-block:: python
             state = DynamicMCPState(
                 mcp_client_id="client_123",
                 mcp_session_id="session_456",
@@ -179,8 +184,9 @@ class DynamicMCPState(DynamicActivationState):
             result: Result from tool execution
 
         Examples:
-            Track tool call::
+            Track tool call:
 
+        .. code-block:: python
                 state.track_tool_call(
                     tool_name="calculator",
                     input_data={"expression": "2 + 2"},
@@ -222,8 +228,9 @@ class DynamicActivationMCPServer(BaseModel):
         state: DynamicMCPState for session management
 
     Examples:
-        Create MCP server::
+        Create MCP server:
 
+        .. code-block:: python
             server = DynamicActivationMCPServer(
                 name="dynamic_mcp_server",
                 discovery_source="@haive-tools"
@@ -238,9 +245,11 @@ class DynamicActivationMCPServer(BaseModel):
                 "input": {"expression": "2 + 2"}
             })
 
-        With custom discovery::
+        With custom discovery:
 
-            server = DynamicActivationMCPServer(
+            .. code-block:: python
+
+                server = DynamicActivationMCPServer(
                 name="custom_mcp_server",
                 discovery_source="/path/to/tools",
                 discovery_config={
@@ -311,8 +320,9 @@ class DynamicActivationMCPServer(BaseModel):
         """Start the MCP server.
 
         Examples:
-            Start server::
+            Start server:
 
+        .. code-block:: python
                 await server.start()
                 print("MCP server started")
         """
@@ -328,8 +338,9 @@ class DynamicActivationMCPServer(BaseModel):
         """Stop the MCP server.
 
         Examples:
-            Stop server::
+            Stop server:
 
+        .. code-block:: python
                 await server.stop()
                 print("MCP server stopped")
         """
@@ -348,8 +359,9 @@ class DynamicActivationMCPServer(BaseModel):
             Tool execution result
 
         Examples:
-            Handle tool request::
+            Handle tool request:
 
+        .. code-block:: python
                 request = {
                     "tool": "calculator",
                     "input": {"expression": "2 + 2"},
@@ -509,8 +521,9 @@ class DynamicActivationMCPServer(BaseModel):
             List of tool descriptions for MCP protocol
 
         Examples:
-            Get tools for MCP registration::
+            Get tools for MCP registration:
 
+        .. code-block:: python
                 tools = server.get_available_tools()
                 for tool in tools:
                     print(f"{tool['name']}: {tool['description']}")
@@ -535,8 +548,9 @@ class DynamicActivationMCPServer(BaseModel):
             Dictionary with server statistics
 
         Examples:
-            Get server status::
+            Get server status:
 
+        .. code-block:: python
                 stats = server.get_server_stats()
                 print(f"Tools: {stats['total_tools']}")
                 print(f"Active: {stats['active_tools']}")
@@ -566,8 +580,9 @@ class DynamicActivationMCPServer(BaseModel):
             Connection response
 
         Examples:
-            Handle client connection::
+            Handle client connection:
 
+        .. code-block:: python
                 response = await server.handle_client_connect("client_123", {
                     "name": "My Client",
                     "version": "1.0"
@@ -592,8 +607,9 @@ class DynamicActivationMCPServer(BaseModel):
             client_id: ID of disconnecting client
 
         Examples:
-            Handle client disconnect::
+            Handle client disconnect:
 
+        .. code-block:: python
                 await server.handle_client_disconnect("client_123")
         """
         if client_id in self._clients:

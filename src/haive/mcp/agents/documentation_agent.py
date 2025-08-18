@@ -315,8 +315,9 @@ class MCPDocumentationAgent(MCPMixin, DocumentAgent):
                 - capabilities: List of capability strings
 
         Example:
-            Processing with latest documentation::
+            Processing with latest documentation:
 
+        .. code-block:: python
                 result = await agent.process_mcp_server(
                     "modelcontextprotocol/server-github",
                     fetch_latest=True
@@ -407,8 +408,9 @@ class MCPDocumentationAgent(MCPMixin, DocumentAgent):
                 - capabilities: List of all server capabilities
 
         Example:
-            Finding database servers::
+            Finding database servers:
 
+        .. code-block:: python
                 # Find all database-capable servers
                 db_servers = await agent.find_servers_by_capability(
                     "database",
@@ -476,8 +478,9 @@ class MCPDocumentationAgent(MCPMixin, DocumentAgent):
                 - usage_examples: List of example code snippets
 
         Example:
-            Generating a research agent guide::
+            Generating a research agent guide:
 
+        .. code-block:: python
                 # Generate guide for research agent with multiple servers
                 guide = await doc_agent.generate_implementation_guide(
                     server_names=[

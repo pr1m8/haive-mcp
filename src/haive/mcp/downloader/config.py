@@ -4,8 +4,9 @@ This module defines the configuration models used throughout the MCP downloader
 system, including templates, server configurations, and installation methods.
 
 Example:
-    Creating a server template::
+    Creating a server template:
 
+        .. code-block:: python
         template = ServerTemplate(
             name="npm_official",
             installation_method=InstallationMethod.NPM,
@@ -14,9 +15,11 @@ Example:
             category="official"
         )
 
-    Creating a server configuration::
+    Creating a server configuration:
 
-        config = ServerConfig(
+        .. code-block:: python
+
+            config = ServerConfig(
             name="filesystem",
             template="npm_official",
             source="npm",
@@ -83,8 +86,9 @@ class ServerTemplate(BaseModel):
         timeout: Installation timeout in seconds
 
     Example:
-        NPM template::
+        NPM template:
 
+        .. code-block:: python
             template = ServerTemplate(
                 name="npm_official",
                 installation_method=InstallationMethod.NPM,
@@ -140,8 +144,9 @@ class ServerConfig(BaseModel):
         version: Specific version to install
 
     Example:
-        Filesystem server config::
+        Filesystem server config:
 
+        .. code-block:: python
             config = ServerConfig(
                 name="filesystem",
                 template="npm_official",
@@ -210,8 +215,9 @@ class DownloaderConfig(BaseModel):
         discovery: Discovery configuration
 
     Example:
-        Full configuration::
+        Full configuration:
 
+        .. code-block:: python
             config = DownloaderConfig(
                 install_dir="/home/user/.mcp/servers",
                 max_concurrent=5,
@@ -270,8 +276,9 @@ def load_config(config_file: Path) -> DownloaderConfig:
         ValueError: If config file is invalid
 
     Example:
-        Loading config::
+        Loading config:
 
+        .. code-block:: python
             config = load_config(Path("mcp_config.yaml"))
             print(f"Loaded {len(config.templates)} templates")
     """
@@ -311,8 +318,9 @@ def save_config(config: DownloaderConfig, config_file: Path) -> None:
         config_file: Path to save file
 
     Example:
-        Saving config::
+        Saving config:
 
+        .. code-block:: python
             config = DownloaderConfig(max_concurrent=10)
             save_config(config, Path("my_config.yaml"))
     """

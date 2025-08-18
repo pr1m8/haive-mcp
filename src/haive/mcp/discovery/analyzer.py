@@ -162,8 +162,9 @@ class MCPServerAnalyzer:
                 None if the object cannot be converted to a valid config.
 
         Example:
-            Analyzing different object types::
+            Analyzing different object types:
 
+        .. code-block:: python
                 # From dictionary
                 config = analyzer.analyze({
                     "name": "test",
@@ -333,8 +334,9 @@ class MCPServerAnalyzer:
             List[MCPServerConfig]: All valid configurations found
 
         Example:
-            Discovering from a config directory::
+            Discovering from a config directory:
 
+        .. code-block:: python
                 configs_dir = Path("~/.mcp/configs").expanduser()
                 servers = analyzer.discover_from_directory(configs_dir)
 
@@ -421,8 +423,9 @@ class MCPServerAnalyzer:
             List[MCPServerConfig]: Configurations from the registry
 
         Example:
-            Using a custom registry::
+            Using a custom registry:
 
+        .. code-block:: python
                 # Load from specific registry
                 servers = analyzer.discover_from_registry(
                     Path("/opt/mcp/registry.json")

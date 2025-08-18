@@ -14,8 +14,9 @@ Classes:
     MCPDocumentationLoader: Main class for loading and processing MCP documentation
 
 Example:
-    Loading and using MCP documentation::
+    Loading and using MCP documentation:
 
+        .. code-block:: python
         from haive.mcp.documentation import MCPDocumentationLoader
 from haive import agents
 

@@ -4,8 +4,9 @@ This module provides installer implementations for various installation methods
 including NPM, pip, Git, Docker, binary downloads, and more.
 
 Example:
-    Using installers directly::
+    Using installers directly:
 
+        .. code-block:: python
         installer = NPMInstaller()
         if await installer.can_handle(server_config, template):
             result = await installer.install(server_config, template, install_dir)
@@ -51,8 +52,9 @@ class MCPInstaller(ABC):
     the required methods.
 
     Example:
-        Creating a custom installer::
+        Creating a custom installer:
 
+        .. code-block:: python
             class MyInstaller(MCPInstaller):
                 async def can_handle(self, server_config, template):
                     return template.installation_method == "custom"
@@ -171,8 +173,9 @@ class NPMInstaller(MCPInstaller):
     Supports both global and local installations.
 
     Example:
-        NPM installation::
+        NPM installation:
 
+        .. code-block:: python
             installer = NPMInstaller()
             result = await installer.install(
                 server_config,
@@ -298,8 +301,9 @@ class PipInstaller(MCPInstaller):
     Handles installation of MCP servers distributed as Python packages.
 
     Example:
-        Pip installation::
+        Pip installation:
 
+        .. code-block:: python
             installer = PipInstaller()
             result = await installer.install(
                 server_config,
@@ -383,8 +387,9 @@ class GitInstaller(MCPInstaller):
     Handles cloning Git repositories and running post-install commands.
 
     Example:
-        Git installation::
+        Git installation:
 
+        .. code-block:: python
             installer = GitInstaller()
             result = await installer.install(
                 server_config,
@@ -498,8 +503,9 @@ class DockerInstaller(MCPInstaller):
     Handles pulling Docker images for containerized MCP servers.
 
     Example:
-        Docker installation::
+        Docker installation:
 
+        .. code-block:: python
             installer = DockerInstaller()
             result = await installer.install(
                 server_config,
@@ -592,8 +598,9 @@ class BinaryInstaller(MCPInstaller):
     Downloads and installs pre-compiled binary executables.
 
     Example:
-        Binary installation::
+        Binary installation:
 
+        .. code-block:: python
             installer = BinaryInstaller()
             result = await installer.install(
                 server_config,
@@ -714,8 +721,9 @@ class CurlInstaller(MCPInstaller):
     Downloads files directly via HTTP/HTTPS without package managers.
 
     Example:
-        Curl installation::
+        Curl installation:
 
+        .. code-block:: python
             installer = CurlInstaller()
             result = await installer.install(
                 server_config,

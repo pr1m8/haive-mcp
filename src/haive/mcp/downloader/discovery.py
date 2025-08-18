@@ -4,14 +4,17 @@ This module provides functionality to discover MCP servers from multiple
 registries and sources including npm, PyPI, GitHub, and custom registries.
 
 Example:
-    Basic discovery::
+    Basic discovery:
 
+        .. code-block:: python
         discovery = ServerDiscovery(config)
         servers = await discovery.discover_all(limit_per_source=10)
 
-    Discover from specific source::
+    Discover from specific source:
 
-        servers = await discovery.discover_from_npm(query="mcp server", limit=20)
+        .. code-block:: python
+
+            servers = await discovery.discover_from_npm(query="mcp server", limit=20)
 
 Classes:
     ServerDiscovery: Main discovery class
@@ -52,8 +55,9 @@ class DiscoveredServer(BaseModel):
         metadata: Additional metadata
 
     Example:
-        Discovered server info::
+        Discovered server info:
 
+        .. code-block:: python
             server = DiscoveredServer(
                 name="filesystem",
                 source="npm",
@@ -88,8 +92,9 @@ class ServerDiscovery:
         session: Aiohttp session for HTTP requests
 
     Example:
-        Using discovery::
+        Using discovery:
 
+        .. code-block:: python
             discovery = ServerDiscovery(config)
 
             # Discover from all sources
@@ -145,8 +150,9 @@ class ServerDiscovery:
             List of discovered server dictionaries
 
         Example:
-            Discovering from all sources::
+            Discovering from all sources:
 
+        .. code-block:: python
                 servers = await discovery.discover_all(limit_per_source=50)
                 print(f"Found {len(servers)} unique servers")
         """
@@ -206,8 +212,9 @@ class ServerDiscovery:
             List of discovered servers
 
         Example:
-            NPM discovery::
+            NPM discovery:
 
+        .. code-block:: python
                 servers = await discovery.discover_from_npm_registry(
                     "https://registry.npmjs.org/-/v1/search?text=mcp+server",
                     limit=50
@@ -328,8 +335,9 @@ class ServerDiscovery:
             List of discovered servers
 
         Example:
-            GitHub discovery::
+            GitHub discovery:
 
+        .. code-block:: python
                 servers = await discovery.discover_from_github(
                     "https://api.github.com/search/repositories?q=mcp+server",
                     limit=30
@@ -509,8 +517,9 @@ class ServerDiscovery:
             Clean server name
 
         Example:
-            Extracting names::
+            Extracting names:
 
+        .. code-block:: python
                 name = _extract_server_name("@modelcontextprotocol/server-filesystem")
                 # Returns: "filesystem"
 
@@ -581,8 +590,9 @@ class ServerDiscovery:
             Template name to use
 
         Example:
-            Determining template::
+            Determining template:
 
+        .. code-block:: python
                 template = discovery.determine_template({
                     "source": "npm",
                     "package_name": "@modelcontextprotocol/server-example"
@@ -642,8 +652,9 @@ class ServerDiscovery:
             List of matching servers
 
         Example:
-            Searching for servers::
+            Searching for servers:
 
+        .. code-block:: python
                 results = await discovery.search_servers(
                     "database",
                     sources=["npm", "github"],

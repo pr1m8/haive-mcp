@@ -26,7 +26,20 @@ from haive.mcp.tools.server_selector import MCPServerSelector
 
 
 def print_servers(servers: list[dict], show_details: bool = False):
-    """Print server information in a readable format."""
+    """Print server information in a readable format.
+
+    Displays a list of MCP servers with their metadata in a human-readable format.
+    Can optionally show detailed information including capabilities.
+
+    Args:
+        servers: List of server dictionaries containing metadata.
+        show_details: If True, show additional details like capabilities.
+            Defaults to False for concise output.
+
+    Note:
+        Server dictionaries should contain a 'metadata' key with nested
+        'name', 'description', and 'category' fields.
+    """
     if not servers:
         return
 
@@ -49,7 +62,21 @@ def print_servers(servers: list[dict], show_details: bool = False):
 
 
 def print_recommendations(recommendations: list, show_reasoning: bool = False):
-    """Print server recommendations."""
+    """Print server recommendations.
+
+    Displays recommended MCP servers with optional reasoning for each recommendation.
+    Handles both AI assistant recommendations (with confidence scores) and basic
+    selector recommendations.
+
+    Args:
+        recommendations: List of recommendation objects or dictionaries.
+        show_reasoning: If True, show the reasoning behind each recommendation.
+            Defaults to False.
+
+    Note:
+        Recommendations can be either simple server names or objects with
+        attributes like 'confidence', 'reasoning', and 'required_env_vars'.
+    """
     if not recommendations:
         return
 
@@ -71,7 +98,20 @@ def print_recommendations(recommendations: list, show_reasoning: bool = False):
 
 
 async def cmd_list_servers(args):
-    """List all available MCP servers."""
+    """List all available MCP servers.
+
+    Command handler for listing MCP servers with optional filtering by prefix
+    or category. Displays results using the print_servers function.
+
+    Args:
+        args: Parsed command line arguments containing:
+            - prefix: Optional server prefix filter
+            - category: Optional category filter
+            - details: Whether to show detailed information
+
+    Example:
+        Called when user runs: mcp-cli list-servers --prefix "anthropic/"
+    """
     selector = MCPServerSelector()
 
     if args.prefix:
@@ -85,7 +125,23 @@ async def cmd_list_servers(args):
 
 
 async def cmd_filter(args):
-    """Filter servers by various criteria."""
+    """Filter servers by various criteria.
+
+    Command handler for filtering MCP servers using multiple criteria including
+    prefixes, categories, keywords, and exclusions. Supports combining multiple
+    filters for precise server selection.
+
+    Args:
+        args: Parsed command line arguments containing:
+            - prefix: List of prefixes to include
+            - category: List of categories to include
+            - keyword: List of keywords to search for
+            - exclude_prefix: List of prefixes to exclude
+            - details: Whether to show detailed information
+
+    Example:
+        Called when user runs: mcp-cli filter --category "development" --keyword "git"
+    """
     selector = MCPServerSelector()
 
     servers = selector.filter.filter_by_multiple_criteria(
@@ -109,7 +165,27 @@ async def cmd_filter(args):
 
 
 async def cmd_recommend(args):
-    """Get server recommendations for a task."""
+    """Get server recommendations for a task.
+
+    Command handler for getting MCP server recommendations based on a task
+    description. Can use either basic keyword matching or AI-powered analysis
+    for more intelligent recommendations.
+
+    Args:
+        args: Parsed command line arguments containing:
+            - task: Description of the task requiring MCP servers
+            - ai_mode: Whether to use AI assistant for recommendations
+            - max_servers: Maximum number of servers to recommend
+            - simple: Prefer servers with simple setup
+            - reasoning: Show reasoning for recommendations
+            - save_config: Path to save configuration file
+
+    Returns:
+        Displays recommendations and optionally saves configuration.
+
+    Example:
+        Called when user runs: mcp-cli recommend "analyze GitHub repository" --ai-mode
+    """
     if args.ai_mode:
         assistant = MCPAssistant()
         config = await assistant.auto_configure_for_task(
@@ -142,7 +218,25 @@ async def cmd_recommend(args):
 
 
 async def cmd_select(args):
-    """Interactive server selection."""
+    """Interactive server selection.
+
+    Command handler for interactive MCP server selection. Presents available
+    servers and filters, allowing users to interactively choose servers for
+    their project.
+
+    Args:
+        args: Parsed command line arguments containing:
+            - max_servers: Maximum number of servers to select
+            - no_filters: Skip showing available filters
+            - skip_filters: Skip filter input prompts
+            - save_config: Path to save configuration file
+
+    Returns:
+        Creates configuration for selected servers and optionally saves it.
+
+    Example:
+        Called when user runs: mcp-cli select --save-config my_project.json
+    """
     selector = MCPServerSelector()
 
     # Show available filters
@@ -200,7 +294,27 @@ async def cmd_select(args):
 
 
 async def cmd_auto_config(args):
-    """Auto-configure servers for a task using AI."""
+    """Auto-configure servers for a task using AI.
+
+    Command handler for automatic MCP server configuration using AI analysis.
+    Analyzes the task description and automatically selects and configures
+    appropriate servers with validation.
+
+    Args:
+        args: Parsed command line arguments containing:
+            - task: Description of the task requiring MCP servers
+            - max_servers: Maximum number of servers to include
+            - complex_ok: Allow servers with complex setup
+            - no_fallbacks: Don't include fallback servers
+            - output: Path to save configuration file
+            - generate_script: Path to generate Python setup script
+
+    Returns:
+        Creates optimized configuration and optionally generates setup script.
+
+    Example:
+        Called when user runs: mcp-cli auto-config "research papers" --output config.json
+    """
     assistant = MCPAssistant()
 
     config = await assistant.auto_configure_for_task(
@@ -247,7 +361,24 @@ async def cmd_auto_config(args):
 
 
 def generate_setup_script(config) -> str:
-    """Generate a Python setup script for the configuration."""
+    """Generate a Python setup script for the configuration.
+
+    Creates a ready-to-run Python script that sets up an MCP agent with the
+    given configuration. The script includes all necessary imports, configuration,
+    and basic testing code.
+
+    Args:
+        config: Configuration object containing MCP setup details including
+            server configurations and selected servers.
+
+    Returns:
+        Complete Python script as a string, ready to be saved and executed.
+
+    Example:
+        script = generate_setup_script(auto_config)
+        with open("setup_mcp.py", "w") as f:
+            f.write(script)
+    """
     script = f'''#!/usr/bin/env python3
 """
 Auto-generated MCP setup script.
@@ -306,7 +437,22 @@ if __name__ == "__main__":
 
 
 def main():
-    """Main CLI entry point."""
+    """Main CLI entry point.
+
+    Sets up the command-line argument parser and routes commands to appropriate
+    handlers. Configures all subcommands with their respective options and
+    handles execution with proper error handling.
+
+    The CLI supports the following commands:
+        - list-servers: List all available MCP servers
+        - filter: Filter servers by various criteria
+        - recommend: Get server recommendations for a task
+        - select: Interactive server selection
+        - auto-config: Auto-configure servers using AI
+
+    Example:
+        python -m haive.mcp.cli list-servers --details
+    """
     install_short_tracebacks()  # Apply minimal tracebacks globally
     parser = argparse.ArgumentParser(
         description="MCP Server Selection and Configuration CLI",

@@ -379,8 +379,9 @@ class TransferableMCPAgent(MCPMixin, SimpleAgent):
             ValueError: If server not found
 
         Example:
-            Delegating file access::
+            Delegating file access:
 
+        .. code-block:: python
                 # Admin agent has filesystem access
                 admin = TransferableMCPAgent(
                     engine=engine,
@@ -440,8 +441,9 @@ class TransferableMCPAgent(MCPMixin, SimpleAgent):
             ValueError: If server or prompt not found
 
         Example:
-            Sharing a code review prompt::
+            Sharing a code review prompt:
 
+        .. code-block:: python
                 # Lead agent gets specialized prompt
                 review_prompt = await lead_agent.share_prompt_with_agent(
                     reviewer_agent,
@@ -483,8 +485,9 @@ class TransferableMCPAgent(MCPMixin, SimpleAgent):
             Any: Shared MCP session instance
 
         Example:
-            Coordinated file operations::
+            Coordinated file operations:
 
+        .. code-block:: python
                 # Multiple agents work on the same project
                 async with agent1.shared_mcp_session("project_x", "filesystem") as session:
                     # Agent 1 creates project structure
@@ -532,8 +535,9 @@ class TransferableMCPAgent(MCPMixin, SimpleAgent):
                 - shared_resources: Total number of resources shared
 
         Example:
-            Setting up a collaborative analysis::
+            Setting up a collaborative analysis:
 
+        .. code-block:: python
                 # Leader agent has all necessary tools
                 leader = TransferableMCPAgent(
                     engine=engine,
@@ -587,8 +591,9 @@ class TransferableMCPAgent(MCPMixin, SimpleAgent):
                 - client_pool_key: Key used for client pooling
 
         Example:
-            Checking transfer history::
+            Checking transfer history:
 
+        .. code-block:: python
                 status = agent.get_transfer_status()
                 print(f"Tools transferred: {len(status['transferred_tools'])}")
                 print(f"Resources delegated: {len(status['transferred_resources'])}")
