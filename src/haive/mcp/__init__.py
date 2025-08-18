@@ -82,7 +82,7 @@ from haive.mcp.manager import (
 
 # Mixins for adding MCP to existing agents
 from haive.mcp.mixins import (
-    MCPDiscoveryMixin,
+    # MCPDiscoveryMixin,  # TODO: Missing class - needs to be implemented
     MCPMixin,
 )
 
@@ -101,7 +101,7 @@ __all__ = [
     "TransferableMCPAgent",
     # Mixins
     "MCPMixin",
-    "MCPDiscoveryMixin",
+    # "MCPDiscoveryMixin",  # TODO: Missing class
     # Discovery
     "MCPServerDiscovery",
     # Documentation
