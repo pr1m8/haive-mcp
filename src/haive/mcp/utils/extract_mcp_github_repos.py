@@ -207,6 +207,11 @@ class MCPRepositoryExtractor:
     """Enhanced MCP Repository Extractor."""
 
     def __init__(self, output_dir: str = "agent_resources/mcp_servers"):
+        """  Init  .
+
+Args:
+    output_dir: [TODO: Add description]
+"""
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -280,7 +285,7 @@ class MCPRepositoryExtractor:
         self.stats = ExtractionStats()
 
     async def extract_repositories_from_readme(self) -> list[MCPServerMetadata]:
-        """Extract repository information from the awesome-mcp-servers
+        """Extract repository information from the awesome-mcp-servers.
         README.
         """
         try:

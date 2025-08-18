@@ -43,6 +43,8 @@ if "df" not in st.session_state:
 
 # Main app
 def main():
+    """Main.
+"""
     st.title("🔍 MCP Discovery Hub")
     st.markdown("**Comprehensive Model Context Protocol Server Discovery & Analysis**")
 

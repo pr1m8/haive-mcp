@@ -14,7 +14,7 @@ The analyzer supports:
 Classes:
     MCPServerAnalyzer: Main analyzer for MCP server discovery
 
-Example:
+Examples:
     Analyzing server configurations:
 
     .. code-block:: python
@@ -71,7 +71,7 @@ class MCPServerAnalyzer:
     Attributes:
         discovered_servers: Dictionary of servers found during analysis
 
-    Example:
+    Examples:
         Basic server analysis:
 
         .. code-block:: python
@@ -113,7 +113,7 @@ class MCPServerAnalyzer:
         Returns:
             bool: True if the object appears to be MCP-related
 
-        Example:
+        Examples:
             Checking various objects:
 
             .. code-block:: python
@@ -161,7 +161,7 @@ class MCPServerAnalyzer:
             Optional[MCPServerConfig]: Extracted configuration if successful,
                 None if the object cannot be converted to a valid config.
 
-        Example:
+        Examples:
             Analyzing different object types:
 
         .. code-block:: python
@@ -333,7 +333,7 @@ class MCPServerAnalyzer:
         Returns:
             List[MCPServerConfig]: All valid configurations found
 
-        Example:
+        Examples:
             Discovering from a config directory:
 
         .. code-block:: python
@@ -422,7 +422,7 @@ class MCPServerAnalyzer:
         Returns:
             List[MCPServerConfig]: Configurations from the registry
 
-        Example:
+        Examples:
             Using a custom registry:
 
         .. code-block:: python

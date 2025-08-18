@@ -46,6 +46,8 @@ def run_original_rag_agent():
 
 
 def main():
+    """Main.
+"""
     parser = argparse.ArgumentParser(description="MCP Discovery Tools Launcher")
     parser.add_argument(
         "tool",

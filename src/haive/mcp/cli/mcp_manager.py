@@ -37,6 +37,12 @@ class MCPServerManager:
     """Comprehensive MCP Server Manager."""
 
     def __init__(self, config_file: str | None = None, install_dir: str | None = None):
+        """  Init  .
+
+Args:
+    config_file: [TODO: Add description]
+    install_dir: [TODO: Add description]
+"""
         self.downloader = GeneralMCPDownloader(config_file, install_dir)
         self.install_dir = self.downloader.install_dir  # type: ignore
         self.status_file = self.install_dir / "server_status.json"

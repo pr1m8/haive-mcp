@@ -73,6 +73,11 @@ class AdvancedCodeInstaller:
     """Advanced MCP installer with LLM code generation."""
 
     def __init__(self, config_manager: MCPConfigManager | None = None):
+        """  Init  .
+
+Args:
+    config_manager: [TODO: Add description]
+"""
         self.config_manager = config_manager or MCPConfigManager()
         self.safe_installer = SafePatternInstaller(config_manager)
         self.running_servers: dict[str, subprocess.Popen] = {}

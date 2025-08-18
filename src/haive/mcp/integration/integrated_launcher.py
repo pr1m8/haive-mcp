@@ -170,6 +170,8 @@ def install_server_interactive():
 
 
 def main():
+    """Main.
+"""
     parser = argparse.ArgumentParser(
         description="MCP Integrated System Launcher",
         formatter_class=argparse.RawDescriptionHelpFormatter,

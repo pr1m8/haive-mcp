@@ -55,6 +55,11 @@ class SafePatternInstaller:
     """Safe MCP installer using only predefined patterns."""
 
     def __init__(self, config_manager: MCPConfigManager | None = None):
+        """  Init  .
+
+Args:
+    config_manager: [TODO: Add description]
+"""
         self.config_manager = config_manager or MCPConfigManager()
         self.running_servers: dict[str, subprocess.Popen] = {}
         self.request_counters: dict[str, int] = {}

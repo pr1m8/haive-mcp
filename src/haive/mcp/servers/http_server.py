@@ -186,6 +186,8 @@ async def handle_sse(request: Request):
 
     # Handle the SSE connection
     async def event_generator():
+        """Event Generator.
+"""
         try:
             if not sse_transport:
                 yield f"data: {json.dumps({'error': 'SSE transport not available'})}\n\n"

@@ -3,7 +3,7 @@
 This module provides installer implementations for various installation methods
 including NPM, pip, Git, Docker, binary downloads, and more.
 
-Example:
+Examples:
     Using installers directly:
 
         .. code-block:: python
@@ -51,7 +51,7 @@ class MCPInstaller(ABC):
     All installer implementations must inherit from this class and implement
     the required methods.
 
-    Example:
+    Examples:
         Creating a custom installer:
 
         .. code-block:: python
@@ -172,7 +172,7 @@ class NPMInstaller(MCPInstaller):
     Handles installation of MCP servers distributed as NPM packages.
     Supports both global and local installations.
 
-    Example:
+    Examples:
         NPM installation:
 
         .. code-block:: python
@@ -300,7 +300,7 @@ class PipInstaller(MCPInstaller):
 
     Handles installation of MCP servers distributed as Python packages.
 
-    Example:
+    Examples:
         Pip installation:
 
         .. code-block:: python
@@ -386,7 +386,7 @@ class GitInstaller(MCPInstaller):
 
     Handles cloning Git repositories and running post-install commands.
 
-    Example:
+    Examples:
         Git installation:
 
         .. code-block:: python
@@ -502,7 +502,7 @@ class DockerInstaller(MCPInstaller):
 
     Handles pulling Docker images for containerized MCP servers.
 
-    Example:
+    Examples:
         Docker installation:
 
         .. code-block:: python
@@ -597,7 +597,7 @@ class BinaryInstaller(MCPInstaller):
 
     Downloads and installs pre-compiled binary executables.
 
-    Example:
+    Examples:
         Binary installation:
 
         .. code-block:: python
@@ -720,7 +720,7 @@ class CurlInstaller(MCPInstaller):
 
     Downloads files directly via HTTP/HTTPS without package managers.
 
-    Example:
+    Examples:
         Curl installation:
 
         .. code-block:: python

@@ -12,7 +12,7 @@ providing:
     - Component registry integration
     - Lazy initialization support
 
-Example:
+Examples:
     Adding MCP capabilities to a custom agent:
 
     .. code-block:: python
@@ -92,7 +92,7 @@ class MCPMixin(BaseModel):
         - Lazy initialization support
         - Resource and prompt management
 
-    Example:
+    Examples:
         Creating a custom agent with MCP capabilities:
 
         .. code-block:: python
@@ -198,7 +198,7 @@ class MCPMixin(BaseModel):
         Raises:
             Exception: Logged but not raised to ensure graceful degradation
 
-        Example:
+        Examples:
             Manual initialization:
 
             .. code-block:: python

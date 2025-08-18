@@ -19,7 +19,7 @@ Functions:
     create_github_agent: Factory for GitHub MCP agent
     create_multi_mcp_agent: Factory for multi-server MCP agent
 
-Example:
+Examples:
     Creating and using an MCP agent:
 
     .. code-block:: python
@@ -93,7 +93,7 @@ class MCPAgent(MCPMixin, SimpleAgent):
         - Handles server health monitoring and reconnection
         - Provides unified tool access across all servers
 
-    Example:
+    Examples:
         Basic MCP agent setup:
 
         .. code-block:: python
@@ -225,7 +225,7 @@ class MCPAgent(MCPMixin, SimpleAgent):
         Raises:
             ValueError: If server configurations are invalid
 
-        Example:
+        Examples:
             Creating an agent with multiple servers:
 
             .. code-block:: python

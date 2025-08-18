@@ -24,6 +24,11 @@ class SimpleFAISSRetriever:
     """Simple FAISS-based retriever for MCP servers."""
 
     def __init__(self, cache_dir: str = "/tmp/mcp_faiss_cache"):
+        """  Init  .
+
+Args:
+    cache_dir: [TODO: Add description]
+"""
         self.cache_dir = Path(cache_dir)
         self.cache_dir.mkdir(exist_ok=True)
 

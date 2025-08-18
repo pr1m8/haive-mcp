@@ -101,6 +101,11 @@ class ProductionMCPTool(BaseTool):
     args_schema: type[BaseModel] = MCPCapabilityRequest
 
     def __init__(self, engine: AugLLMConfig, **kwargs):
+        """  Init  .
+
+Args:
+    engine: [TODO: Add description]
+"""
         super().__init__(**kwargs)
         self.engine = engine
         self.doc_loader = MCPDocumentationLoader()
@@ -654,6 +659,11 @@ class ListInstalledMCPTool(BaseTool):
     description: str = "List all currently installed MCP servers and their capabilities"
 
     def __init__(self, production_tool: ProductionMCPTool, **kwargs):
+        """  Init  .
+
+Args:
+    production_tool: [TODO: Add description]
+"""
         super().__init__(**kwargs)
         self.production_tool = production_tool
 

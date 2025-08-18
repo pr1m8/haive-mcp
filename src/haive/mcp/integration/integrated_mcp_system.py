@@ -51,6 +51,11 @@ class MCPServerInstaller:
     """Handles server installation and setup."""
 
     def __init__(self, manager_config_path: Path | None = None):
+        """  Init  .
+
+Args:
+    manager_config_path: [TODO: Add description]
+"""
         self.manager_config_path = (
             manager_config_path or Path.home() / ".fastmcp" / "servers.json"
         )
@@ -247,6 +252,8 @@ class IntegratedMCPSystem:
     """Main integrated system combining discovery and management."""
 
     def __init__(self):
+        """  Init  .
+"""
         self.discovery_agent = SelfQueryMCPAgent()
         self.installer = MCPServerInstaller()
         self.fastmcp_manager = None  # Will be initialized when needed

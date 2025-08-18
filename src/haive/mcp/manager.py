@@ -168,7 +168,7 @@ class MCPHealthStatus(BaseModel):
         successful_requests: Number of successful requests
         error_details: Details of the most recent error (if any)
 
-    Example:
+    Examples:
         Health status after monitoring:
 
         .. code-block:: python
@@ -286,7 +286,7 @@ class MCPManager(BaseModel):
         Returns:
             MCPRegistrationResult: Result of the registration attempt
 
-        Example:
+        Examples:
             Adding a filesystem server:
 
         .. code-block:: python

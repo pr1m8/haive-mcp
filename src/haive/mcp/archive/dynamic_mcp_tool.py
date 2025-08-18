@@ -77,6 +77,11 @@ class DynamicMCPTool(BaseTool):
     args_schema: type[BaseModel] = MCPServerInstallRequest
 
     def __init__(self, engine: AugLLMConfig, **kwargs):
+        """  Init  .
+
+Args:
+    engine: [TODO: Add description]
+"""
         super().__init__(**kwargs)
         self.engine = engine
         self.doc_loader = MCPDocumentationLoader()
@@ -473,6 +478,11 @@ class MCPServerListTool(BaseTool):
     description: str = "List all currently installed and available MCP servers"
 
     def __init__(self, dynamic_mcp_tool: DynamicMCPTool, **kwargs):
+        """  Init  .
+
+Args:
+    dynamic_mcp_tool: [TODO: Add description]
+"""
         super().__init__(**kwargs)
         self.dynamic_mcp_tool = dynamic_mcp_tool
 

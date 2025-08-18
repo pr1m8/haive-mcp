@@ -79,6 +79,8 @@ class TestResult:
     warnings: list[str] = None
 
     def __post_init__(self):
+        """  Post Init  .
+"""
         if self.capabilities_found is None:
             self.capabilities_found = []
         if self.warnings is None:

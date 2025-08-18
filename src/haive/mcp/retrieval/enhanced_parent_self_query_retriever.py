@@ -40,6 +40,11 @@ class EnhancedMCPRetriever:
     """
 
     def __init__(self, engine: AugLLMConfig):
+        """  Init  .
+
+Args:
+    engine: [TODO: Add description]
+"""
         self.engine = engine
         self.doc_loader = MCPDocumentationLoader()
         self.parent_retriever = None

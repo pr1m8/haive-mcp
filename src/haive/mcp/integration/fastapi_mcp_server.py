@@ -64,6 +64,8 @@ class ServerInfo(BaseModel):
 # Global state
 class MCPServerManager:
     def __init__(self):
+        """  Init  .
+"""
         self.retriever = None
         self.installed_servers: dict[str, dict] = {}
         self.pending_approvals: dict[str, dict] = {}
@@ -292,6 +294,11 @@ manager = MCPServerManager()
 # Lifespan context manager
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    """Lifespan.
+
+Args:
+    app: [TODO: Add description]
+"""
     # Startup
     await manager.initialize()
     yield

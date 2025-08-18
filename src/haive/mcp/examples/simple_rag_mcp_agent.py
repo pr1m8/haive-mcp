@@ -31,6 +31,11 @@ class MCPSimpleRAGAgent(SimpleRAGAgent):
     """SimpleRAG agent specialized for MCP server discovery."""
 
     def __init__(self, name: str = "mcp_rag_agent", **kwargs):
+        """  Init  .
+
+Args:
+    name: [TODO: Add description]
+"""
         # Initialize the enhanced retriever
         self.mcp_retriever = WorkingEnhancedRetriever()
         self.mcp_retriever.setup()
@@ -63,12 +68,19 @@ class MCPRetrieverWrapper(BaseRetriever):
     """Wrapper to make our enhanced retriever compatible with LangChain."""
 
     def __init__(self, enhanced_retriever: WorkingEnhancedRetriever):
+        """  Init  .
+
+Args:
+    enhanced_retriever: [TODO: Add description]
+"""
         super().__init__()
         self.enhanced_retriever = enhanced_retriever
         self._llm = None
 
     @property
     def llm(self):
+        """Llm.
+"""
         if self._llm is None:
             self._llm = ChatOpenAI(temperature=0.3)
         return self._llm

@@ -27,6 +27,11 @@ class MCPProcessManager:
     """Manages MCP server processes with monitoring and auto-restart."""
 
     def __init__(self, config_path: Path | None = None):
+        """  Init  .
+
+Args:
+    config_path: [TODO: Add description]
+"""
         self.config_path = config_path or Path.home() / ".fastmcp" / "servers.json"
         self.processes: dict[str, subprocess.Popen] = {}
         self.process_info: dict[str, dict[str, Any]] = {}
@@ -269,6 +274,8 @@ class FastMCPCLI:
     """Command-line interface for FastMCP server management."""
 
     def __init__(self):
+        """  Init  .
+"""
         self.manager = MCPProcessManager()
 
     async def run_command(self, command: str, args: list[str]):

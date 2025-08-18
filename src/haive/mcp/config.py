@@ -16,7 +16,7 @@ Classes:
     MCPServerConfig: Configuration for individual MCP servers
     MCPConfig: Complete MCP configuration for agents
 
-Example:
+Examples:
     Creating an MCP server configuration:
 
     .. code-block:: python
@@ -90,7 +90,7 @@ class MCPServerConfig(BaseModel):
         auto_start: Whether to automatically start the server
         health_check_interval: Interval for health checks in seconds
 
-    Example:
+    Examples:
         Creating a GitHub MCP server config:
 
         .. code-block:: python
@@ -165,7 +165,7 @@ class MCPConfig(BaseModel):
         on_server_failed: Optional callback name when server fails
         on_tool_discovered: Optional callback name when tool is discovered
 
-    Example:
+    Examples:
         Creating a comprehensive MCP configuration:
 
         .. code-block:: python

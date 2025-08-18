@@ -34,6 +34,8 @@ class WorkingEnhancedRetriever:
     """Working implementation of combined parent-child + self-query retriever."""
 
     def __init__(self):
+        """  Init  .
+"""
         self.doc_loader = MCPDocumentationLoader()
         self.embeddings = HuggingFaceEmbeddings()
         self.parent_store = InMemoryStore()

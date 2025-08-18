@@ -67,6 +67,11 @@ class MCPConfigManager:
     """Manages MCP server configurations and environment files."""
 
     def __init__(self, config_dir: Path | None = None):
+        """  Init  .
+
+Args:
+    config_dir: [TODO: Add description]
+"""
         self.config_dir = config_dir or Path.home() / ".haive" / "mcp"
         self.config_dir.mkdir(parents=True, exist_ok=True)
 

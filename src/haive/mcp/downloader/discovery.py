@@ -3,7 +3,7 @@
 This module provides functionality to discover MCP servers from multiple
 registries and sources including npm, PyPI, GitHub, and custom registries.
 
-Example:
+Examples:
     Basic discovery:
 
         .. code-block:: python
@@ -54,7 +54,7 @@ class DiscoveredServer(BaseModel):
         tags: Extracted tags
         metadata: Additional metadata
 
-    Example:
+    Examples:
         Discovered server info:
 
         .. code-block:: python
@@ -91,7 +91,7 @@ class ServerDiscovery:
         discovered_cache: Cache of discovered servers
         session: Aiohttp session for HTTP requests
 
-    Example:
+    Examples:
         Using discovery:
 
         .. code-block:: python
@@ -149,7 +149,7 @@ class ServerDiscovery:
         Returns:
             List of discovered server dictionaries
 
-        Example:
+        Examples:
             Discovering from all sources:
 
         .. code-block:: python
@@ -211,7 +211,7 @@ class ServerDiscovery:
         Returns:
             List of discovered servers
 
-        Example:
+        Examples:
             NPM discovery:
 
         .. code-block:: python
@@ -334,7 +334,7 @@ class ServerDiscovery:
         Returns:
             List of discovered servers
 
-        Example:
+        Examples:
             GitHub discovery:
 
         .. code-block:: python
@@ -516,7 +516,7 @@ class ServerDiscovery:
         Returns:
             Clean server name
 
-        Example:
+        Examples:
             Extracting names:
 
         .. code-block:: python
@@ -589,7 +589,7 @@ class ServerDiscovery:
         Returns:
             Template name to use
 
-        Example:
+        Examples:
             Determining template:
 
         .. code-block:: python
@@ -651,7 +651,7 @@ class ServerDiscovery:
         Returns:
             List of matching servers
 
-        Example:
+        Examples:
             Searching for servers:
 
         .. code-block:: python

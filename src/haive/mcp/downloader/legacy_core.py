@@ -114,6 +114,15 @@ class NPMInstaller(MCPInstaller):
     async def can_handle(
         self, server_config: ServerConfig, template: ServerTemplate
     ) -> bool:
+        """Can Handle.
+
+Args:
+    server_config: [TODO: Add description]
+    template: [TODO: Add description]
+
+Returns:
+    [TODO: Add return description]
+"""
         return template.installation_method == InstallationMethod.NPM
 
     async def _run_command(  # type: ignore
@@ -143,6 +152,16 @@ class NPMInstaller(MCPInstaller):
     async def install(
         self, server_config: ServerConfig, template: ServerTemplate, install_dir: Path
     ) -> dict[str, Any]:
+        """Install.
+
+Args:
+    server_config: [TODO: Add description]
+    template: [TODO: Add description]
+    install_dir: [TODO: Add description]
+
+Returns:
+    [TODO: Add return description]
+"""
         package = template.command_pattern.format(**server_config.variables)
 
         # Try global install first, fallback to local
@@ -179,6 +198,16 @@ class NPMInstaller(MCPInstaller):
     async def verify(
         self, server_config: ServerConfig, template: ServerTemplate, install_dir: Path
     ) -> bool:
+        """Verify.
+
+Args:
+    server_config: [TODO: Add description]
+    template: [TODO: Add description]
+    install_dir: [TODO: Add description]
+
+Returns:
+    [TODO: Add return description]
+"""
         package = template.command_pattern.format(**server_config.variables)
         try:
             # Check if package is available
@@ -218,6 +247,15 @@ class PipInstaller(MCPInstaller):
     async def can_handle(
         self, server_config: ServerConfig, template: ServerTemplate
     ) -> bool:
+        """Can Handle.
+
+Args:
+    server_config: [TODO: Add description]
+    template: [TODO: Add description]
+
+Returns:
+    [TODO: Add return description]
+"""
         return template.installation_method == InstallationMethod.PIP
 
     async def _run_command(self, cmd: list[str], timeout: int = 300) -> dict[str, Any]:  # type: ignore
@@ -242,6 +280,16 @@ class PipInstaller(MCPInstaller):
     async def install(
         self, server_config: ServerConfig, template: ServerTemplate, install_dir: Path
     ) -> dict[str, Any]:
+        """Install.
+
+Args:
+    server_config: [TODO: Add description]
+    template: [TODO: Add description]
+    install_dir: [TODO: Add description]
+
+Returns:
+    [TODO: Add return description]
+"""
         package = template.command_pattern.format(**server_config.variables)
 
         try:
@@ -263,6 +311,16 @@ class PipInstaller(MCPInstaller):
     async def verify(
         self, server_config: ServerConfig, template: ServerTemplate, install_dir: Path
     ) -> bool:
+        """Verify.
+
+Args:
+    server_config: [TODO: Add description]
+    template: [TODO: Add description]
+    install_dir: [TODO: Add description]
+
+Returns:
+    [TODO: Add return description]
+"""
         package = template.command_pattern.format(**server_config.variables)
         try:
             module_name = package.replace("-", "_")
@@ -297,6 +355,15 @@ class GitInstaller(MCPInstaller):
     async def can_handle(
         self, server_config: ServerConfig, template: ServerTemplate
     ) -> bool:
+        """Can Handle.
+
+Args:
+    server_config: [TODO: Add description]
+    template: [TODO: Add description]
+
+Returns:
+    [TODO: Add return description]
+"""
         return template.installation_method == InstallationMethod.GIT
 
     async def _run_command(  # type: ignore
@@ -326,6 +393,16 @@ class GitInstaller(MCPInstaller):
     async def install(
         self, server_config: ServerConfig, template: ServerTemplate, install_dir: Path
     ) -> dict[str, Any]:
+        """Install.
+
+Args:
+    server_config: [TODO: Add description]
+    template: [TODO: Add description]
+    install_dir: [TODO: Add description]
+
+Returns:
+    [TODO: Add return description]
+"""
         repo_url = server_config.source
         repo_name = Path(urlparse(repo_url).path).stem
         clone_dir = install_dir / repo_name
@@ -360,6 +437,16 @@ class GitInstaller(MCPInstaller):
     async def verify(
         self, server_config: ServerConfig, template: ServerTemplate, install_dir: Path
     ) -> bool:
+        """Verify.
+
+Args:
+    server_config: [TODO: Add description]
+    template: [TODO: Add description]
+    install_dir: [TODO: Add description]
+
+Returns:
+    [TODO: Add return description]
+"""
         repo_url = server_config.source
         repo_name = Path(urlparse(repo_url).path).stem
         clone_dir = install_dir / repo_name
@@ -396,6 +483,15 @@ class DockerInstaller(MCPInstaller):
     async def can_handle(
         self, server_config: ServerConfig, template: ServerTemplate
     ) -> bool:
+        """Can Handle.
+
+Args:
+    server_config: [TODO: Add description]
+    template: [TODO: Add description]
+
+Returns:
+    [TODO: Add return description]
+"""
         return template.installation_method == InstallationMethod.DOCKER
 
     async def _run_command(self, cmd: list[str], timeout: int = 300) -> dict[str, Any]:  # type: ignore
@@ -420,6 +516,16 @@ class DockerInstaller(MCPInstaller):
     async def install(
         self, server_config: ServerConfig, template: ServerTemplate, install_dir: Path
     ) -> dict[str, Any]:
+        """Install.
+
+Args:
+    server_config: [TODO: Add description]
+    template: [TODO: Add description]
+    install_dir: [TODO: Add description]
+
+Returns:
+    [TODO: Add return description]
+"""
         image = template.command_pattern.format(**server_config.variables)
 
         try:
@@ -445,6 +551,16 @@ class DockerInstaller(MCPInstaller):
     async def verify(
         self, server_config: ServerConfig, template: ServerTemplate, install_dir: Path
     ) -> bool:
+        """Verify.
+
+Args:
+    server_config: [TODO: Add description]
+    template: [TODO: Add description]
+    install_dir: [TODO: Add description]
+
+Returns:
+    [TODO: Add return description]
+"""
         image = template.command_pattern.format(**server_config.variables)
         try:
             result = await self._run_command(["docker", "image", "inspect", image])
@@ -473,11 +589,17 @@ class DockerInstaller(MCPInstaller):
 
 
 class GeneralMCPDownloader:
-    """General MCP Server Downloader with configurable patterns and
+    """General MCP Server Downloader with configurable patterns and.
     installers.
     """
 
     def __init__(self, config_file: str | None = None, install_dir: str | None = None):
+        """  Init  .
+
+Args:
+    config_file: [TODO: Add description]
+    install_dir: [TODO: Add description]
+"""
         self.config_file = config_file or "mcp_downloader_config.yaml"
         self.install_dir = Path(install_dir or Path.home() / ".mcp" / "servers")
         self.install_dir.mkdir(parents=True, exist_ok=True)

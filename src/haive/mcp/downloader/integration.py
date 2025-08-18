@@ -3,7 +3,7 @@
 This module provides integration between the MCP downloader system and Haive agents,
 enabling automatic tool, resource, and prompt discovery from downloaded MCP servers.
 
-Example:
+Examples:
     Basic integration:
 
         .. code-block:: python
@@ -83,7 +83,7 @@ class MCPServerConnection(BaseModel):
         prompts: Available prompts
         connected: Connection status
 
-    Example:
+    Examples:
         Creating a connection:
 
         .. code-block:: python
@@ -117,7 +117,7 @@ class MCPServerConnection(BaseModel):
         Returns:
             bool: True if connection successful
 
-        Example:
+        Examples:
             Connecting to server:
 
         .. code-block:: python
@@ -167,7 +167,7 @@ class MCPServerConnection(BaseModel):
         Returns:
             Dict containing discovered capabilities
 
-        Example:
+        Examples:
             Discovering capabilities:
 
         .. code-block:: python
@@ -218,7 +218,7 @@ class MCPCapabilityExtractor:
         all_resources: Aggregated resources
         all_prompts: Aggregated prompts
 
-    Example:
+    Examples:
         Extracting capabilities:
 
         .. code-block:: python
@@ -247,7 +247,7 @@ class MCPCapabilityExtractor:
         Returns:
             bool: True if server added successfully
 
-        Example:
+        Examples:
             Adding a server:
 
         .. code-block:: python
@@ -298,7 +298,7 @@ class MCPCapabilityExtractor:
         Returns:
             Dict mapping server names to success status
 
-        Example:
+        Examples:
             Adding from config:
 
         .. code-block:: python
@@ -336,7 +336,7 @@ class MCPCapabilityExtractor:
         Returns:
             Dict of tool name to tool object
 
-        Example:
+        Examples:
             Getting tools:
 
         .. code-block:: python
@@ -404,7 +404,7 @@ class MCPAgentIntegration:
         extractor: Capability extractor
         manager: MCP manager for agent integration
 
-    Example:
+    Examples:
         Creating integrated agent:
 
         .. code-block:: python
@@ -446,7 +446,7 @@ class MCPAgentIntegration:
         Returns:
             Configured agent with MCP servers
 
-        Example:
+        Examples:
             Creating agent with servers:
 
         .. code-block:: python
@@ -518,7 +518,7 @@ class MCPAgentIntegration:
         Returns:
             Configured agent with discovered servers
 
-        Example:
+        Examples:
             Auto-discovery agent:
 
         .. code-block:: python
@@ -576,7 +576,7 @@ class MCPAgentIntegration:
         Returns:
             List of configured transferable agents
 
-        Example:
+        Examples:
             Creating agent team:
 
         .. code-block:: python
@@ -659,7 +659,7 @@ class MCPAgentIntegration:
         Returns:
             Dict with capability statistics
 
-        Example:
+        Examples:
             Getting summary:
 
         .. code-block:: python

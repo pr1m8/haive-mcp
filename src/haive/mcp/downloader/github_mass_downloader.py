@@ -40,6 +40,11 @@ class GitHubMCPDownloader:
     """Download all MCP servers from GitHub resources."""
 
     def __init__(self, resources_dir: str = "agent_resources/mcp_servers"):
+        """  Init  .
+
+Args:
+    resources_dir: [TODO: Add description]
+"""
         self.resources_dir = Path(resources_dir)
         self.all_servers_file = self.resources_dir / "all_mcp_documents.json"
         self.documents_dir = self.resources_dir / "documents"

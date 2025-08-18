@@ -30,12 +30,19 @@ class GitHubDataEnhancer:
     """Enhanced data collection from GitHub repositories."""
 
     def __init__(self, github_token: str | None = None):
+        """  Init  .
+
+Args:
+    github_token: [TODO: Add description]
+"""
         self.github_token = github_token
         self.session = None
         self.rate_limit_remaining = 5000
         self.rate_limit_reset = 0
 
     async def __aenter__(self):
+        """  Aenter  .
+"""
         headers = {"User-Agent": "MCP-Data-Enhancer/1.0"}
         if self.github_token:
             headers["Authorization"] = f"token {self.github_token}"
@@ -44,6 +51,13 @@ class GitHubDataEnhancer:
         return self
 
     async def __aexit__(self, exc_type, exc_val, exc_tb):
+        """  Aexit  .
+
+Args:
+    exc_type: [TODO: Add description]
+    exc_val: [TODO: Add description]
+    exc_tb: [TODO: Add description]
+"""
         if self.session:
             await self.session.close()
 
@@ -227,6 +241,11 @@ class MCPDataEnhancer:
     """Main class for enhancing MCP server data."""
 
     def __init__(self, github_token: str | None = None):
+        """  Init  .
+
+Args:
+    github_token: [TODO: Add description]
+"""
         self.github_token = github_token
         self.data_path = (
             Path(__file__).parent.parent.parent.parent / "data" / "mcp_servers"

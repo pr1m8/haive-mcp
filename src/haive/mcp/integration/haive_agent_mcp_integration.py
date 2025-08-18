@@ -32,6 +32,11 @@ class HaiveMCPIntegration:
     """Integrates discovered MCP tools with Haive agents."""
 
     def __init__(self) -> None:
+        """  Init  .
+
+Returns:
+    [TODO: Add return description]
+"""
         self.mcp_system = IntegratedMCPSystem()
         self.process_manager = MCPProcessManager()
         self.mcp_tools = {}
