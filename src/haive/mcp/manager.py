@@ -333,7 +333,7 @@ class MCPManager(BaseModel):
     async def _connect_server(
         self, server_name: str, config: MCPServerConfig
     ) -> MCPRegistrationResult:
-        """Connect to a specific MCP server."""
+        """Connect to a specific MCP server using correct LangChain patterns."""
         if not MCP_AVAILABLE:
             logger.warning("MCP adapters not available, cannot connect to servers")
             return MCPRegistrationResult(
@@ -346,39 +346,54 @@ class MCPManager(BaseModel):
         self._server_status[server_name] = MCPServerStatus.CONNECTING
 
         try:
-            # Debug: Check config type
-            logger.debug(f"Connect config type for {server_name}: {type(config)}")
-            if isinstance(config, dict):
-                logger.warning(
-                    f"Connect config is dict, converting to MCPServerConfig for {server_name}"
-                )
-                config = MCPServerConfig(**config)
-            # Test server connection first
-            if not await self._test_server_connection(server_name, config):
-                self._server_status[server_name] = MCPServerStatus.FAILED
-                return MCPRegistrationResult(
-                    server_name=server_name,
-                    success=False,
-                    status=MCPServerStatus.FAILED,
-                    error_message="Server connection test failed",
-                )
-
-            # Create connection based on transport type
-
+            # Create connection configuration based on transport type
             if config.transport.value == "stdio":
-                server_params = StdioServerParameters(
+                # Import StdioConnection for LangChain adapters
+                from langchain_mcp_adapters.client import StdioConnection
+                
+                # Create StdioConnection for LangChain adapters
+                connection = StdioConnection(
                     command=config.command,
                     args=config.args or [],
-                    env=config.env or {},
-                    cwd=None,
-                    encoding="utf-8",
-                    encoding_error_handler="strict",
+                    env=config.env or {}
                 )
-                # Create session with stdio client
-                async with stdio_client(server_params) as session:
-                    return await self._handle_session_connection(
-                        server_name, config, session, server_params
+                
+                # Store the connection configuration
+                self._clients[server_name] = connection
+                
+                # Test connection by creating a temporary client
+                test_client = MultiServerMCPClient({server_name: connection})
+                
+                # Try to get tools as a connection test
+                try:
+                    tools = await test_client.get_tools()
+                    tool_names = [tool.name for tool in tools] if tools else []
+                    self._server_tools[server_name] = tool_names
+                    
+                    self._server_status[server_name] = MCPServerStatus.CONNECTED
+                    
+                    # Update health status
+                    self._server_health[server_name] = MCPHealthStatus(
+                        server_name=server_name,
+                        status=MCPServerStatus.CONNECTED,
+                        last_check=datetime.now(),
+                        response_time=0.0,
+                        total_requests=1,
+                        successful_requests=1
                     )
+                    
+                    return MCPRegistrationResult(
+                        server_name=server_name,
+                        success=True,
+                        status=MCPServerStatus.CONNECTED,
+                        tools=tool_names,
+                        tools_count=len(tool_names)
+                    )
+                    
+                except Exception as e:
+                    logger.error(f"Failed to get tools from {server_name}: {e}")
+                    raise
+                    
             elif config.transport.value == "sse":
                 # For SSE, we'll need to handle differently
                 raise NotImplementedError("SSE transport not yet implemented")
@@ -397,69 +412,6 @@ class MCPManager(BaseModel):
                 error_message=str(e),
             )
 
-    async def _handle_session_connection(
-        self, server_name: str, config: MCPServerConfig, session, server_params
-    ):
-        """Handle successful session connection and tool discovery."""
-        try:
-            # Store session info (simplified for now)
-            self._clients[server_name] = {
-                "session": session,
-                "server_params": server_params,
-            }
-
-            # Try to list available tools
-            try:
-                # Simple fallback tool discovery
-                if hasattr(session, "list_tools"):
-                    tools_result = await session.list_tools()
-                    tool_names = (
-                        [tool.name for tool in tools_result.tools]
-                        if hasattr(tools_result, "tools")
-                        else []
-                    )
-                else:
-                    logger.debug(
-                        f"Session for {server_name} does not have list_tools method"
-                    )
-                    tool_names = []
-            except Exception as tool_error:
-                logger.debug(f"Could not load tools for {server_name}: {tool_error}")
-                tool_names = []
-
-            self._server_tools[server_name] = tool_names
-            self._server_status[server_name] = MCPServerStatus.CONNECTED
-
-            # Update health status
-            self._server_health[server_name] = MCPHealthStatus(
-                server_name=server_name,
-                status=MCPServerStatus.CONNECTED,
-                last_check=datetime.now(),
-                response_time=0.0,
-                total_requests=1,
-                successful_requests=1,
-            )
-
-            return MCPRegistrationResult(
-                server_name=server_name,
-                success=True,
-                status=MCPServerStatus.CONNECTED,
-                tools=tool_names,
-                tools_count=len(tool_names),
-                error_message=None,
-            )
-
-        except Exception as e:
-            logger.exception(f"Error handling session for {server_name}: {e}")
-            self._server_status[server_name] = MCPServerStatus.FAILED
-            self._retry_counts[server_name] = self._retry_counts.get(server_name, 0) + 1
-
-            return MCPRegistrationResult(
-                server_name=server_name,
-                success=False,
-                status=MCPServerStatus.FAILED,
-                error_message=str(e),
-            )
 
     async def _test_server_connection(
         self, server_name: str, config: MCPServerConfig
@@ -523,6 +475,7 @@ class MCPManager(BaseModel):
 
         if connected_clients:
             try:
+                # Create new MultiServerMCPClient (NOT as context manager)
                 self._multi_client = MultiServerMCPClient(connected_clients)
                 logger.debug(
                     f"Rebuilt multi-client with {len(connected_clients)} servers"
@@ -580,10 +533,17 @@ class MCPManager(BaseModel):
             await self.refresh_tools()
 
         if not self._multi_client:
-            return []
+            # Return tools from individual servers if no multi-client
+            all_tools = []
+            for tools in self._server_tools.values():
+                if isinstance(tools, list):
+                    all_tools.extend(tools)
+            return all_tools
 
         try:
-            return self._multi_client.get_tools() or []
+            # Get tools from multi-client
+            tools = await self._multi_client.get_tools()
+            return tools or []
         except Exception as e:
             logger.exception(f"Failed to get tools: {e}")
             return []
@@ -603,11 +563,12 @@ class MCPManager(BaseModel):
 
         # Find tool in available tools
         tools = await self.get_all_tools()
-        tool = next((t for t in tools if t.name == tool_name), None)
+        tool = next((t for t in tools if hasattr(t, 'name') and t.name == tool_name), None)
 
         if not tool:
             raise ValueError(f"Tool '{tool_name}' not found")
 
+        # LangChain tools use ainvoke
         return await tool.ainvoke(arguments)
 
     def get_server_status(self, server_name: str) -> MCPServerStatus | None:
@@ -763,27 +724,35 @@ class MCPManager(BaseModel):
         # Clear cached tool lists
         self._server_tools.clear()
 
-        # Rediscover tools from each connected server
-        for server_name, client_info in self._clients.items():
-            if self._server_status.get(server_name) == MCPServerStatus.CONNECTED:
-                try:
-                    session = client_info.get("session")
-                    if session and hasattr(session, "list_tools"):
-                        tools_result = await session.list_tools()
-                        tool_names = (
-                            [tool.name for tool in tools_result.tools]
-                            if hasattr(tools_result, "tools")
-                            else []
-                        )
-                        self._server_tools[server_name] = tool_names
-                        logger.debug(
-                            f"Refreshed {len(tool_names)} tools from {server_name}"
-                        )
-                except Exception as e:
-                    logger.exception(f"Failed to refresh tools from {server_name}: {e}")
-
-        # Rebuild multi-client with fresh tool registry
+        # Rebuild multi-client first
         await self._rebuild_multi_client()
+        
+        # If we have a multi-client, use it
+        if self._multi_client:
+            try:
+                all_tools = await self._multi_client.get_tools()
+                
+                # Group tools by server (assuming tool names have server prefix)
+                for tool in all_tools:
+                    server_name = tool.name.split("_")[0] if "_" in tool.name else "unknown"
+                    if server_name not in self._server_tools:
+                        self._server_tools[server_name] = []
+                    self._server_tools[server_name].append(tool.name)
+                    
+                logger.info(f"Refreshed {len(all_tools)} tools total")
+            except Exception as e:
+                logger.exception(f"Failed to refresh tools from multi-client: {e}")
+        else:
+            # Fallback: Try to get tools from individual connections
+            for server_name, connection in self._clients.items():
+                if self._server_status.get(server_name) == MCPServerStatus.CONNECTED:
+                    try:
+                        temp_client = MultiServerMCPClient({server_name: connection})
+                        tools = await temp_client.get_tools()
+                        self._server_tools[server_name] = [tool.name for tool in tools] if tools else []
+                        logger.debug(f"Refreshed {len(tools or [])} tools from {server_name}")
+                    except Exception as e:
+                        logger.exception(f"Failed to refresh tools from {server_name}: {e}")
 
         logger.info(
             f"Tool refresh complete. Total tools: {sum(len(tools) for tools in self._server_tools.values())}"
