@@ -1,15 +1,18 @@
-"""Dynamic MCP Manager for procedural server addition.
+"""Dynamic MCP Manager for procedural server addition and bulk operations.
 
 This module provides a comprehensive system for adding MCP servers procedurally,
-one by one, during runtime. It supports incremental configuration, health monitoring,
-and graceful integration with existing agents.
+one by one, during runtime, plus industrial-strength bulk operations for managing
+hundreds of servers from the 1900+ available MCP server ecosystem.
 
 The manager enables:
     - Step-by-step MCP server addition
+    - Bulk installation and management operations
     - Runtime configuration updates
     - Health monitoring and retry logic
     - Incremental capability discovery
     - Safe server removal and replacement
+    - Progress tracking for bulk operations
+    - Category-based server management
 
 Classes:
     MCPManager: Main manager for dynamic MCP operations
@@ -197,6 +200,165 @@ class MCPHealthStatus(BaseModel):
     error_details: str | None = Field(default=None, description="Latest error details")
 
 
+class MCPBulkOperation(BaseModel):
+    """Represents a bulk operation on multiple MCP servers.
+    
+    Tracks progress, results, and errors for bulk installation, removal,
+    or update operations across multiple servers.
+    """
+    
+    operation_id: str = Field(description="Unique operation identifier")
+    operation_type: str = Field(description="Type of operation (install, remove, update)")
+    server_names: list[str] = Field(description="List of servers in operation")
+    started_at: datetime = Field(description="Operation start time")
+    completed_at: datetime | None = Field(default=None, description="Operation completion time")
+    total_count: int = Field(description="Total number of servers")
+    completed_count: int = Field(default=0, description="Number completed")
+    success_count: int = Field(default=0, description="Number successful")
+    failed_count: int = Field(default=0, description="Number failed")
+    current_server: str | None = Field(default=None, description="Currently processing server")
+    succeeded_servers: list[str] = Field(default_factory=list, description="Successfully processed")
+    failed_servers: list[dict] = Field(default_factory=list, description="Failed with errors")
+    is_complete: bool = Field(default=False, description="Whether operation is complete")
+    
+    @property
+    def progress_percentage(self) -> float:
+        """Get completion percentage."""
+        if self.total_count == 0:
+            return 100.0
+        return (self.completed_count / self.total_count) * 100.0
+    
+    @property
+    def success_rate(self) -> float:
+        """Get success rate percentage."""
+        if self.completed_count == 0:
+            return 0.0
+        return (self.success_count / self.completed_count) * 100.0
+
+
+class MCPServerCategory(BaseModel):
+    """Represents a category of MCP servers for bulk operations."""
+    
+    name: str = Field(description="Category name")
+    description: str = Field(description="Category description")
+    servers: list[str] = Field(description="Server names in this category")
+    tags: list[str] = Field(default_factory=list, description="Category tags")
+    popularity_threshold: int | None = Field(default=None, description="Minimum stars for inclusion")
+
+
+class MCPBulkInstaller(BaseModel):
+    """Handles bulk installation of MCP servers with progress tracking."""
+    
+    max_concurrent: int = Field(default=5, description="Maximum concurrent installations")
+    timeout_per_server: float = Field(default=60.0, description="Timeout per server installation")
+    retry_attempts: int = Field(default=2, description="Retry attempts for failed installations")
+    show_progress: bool = Field(default=True, description="Show progress updates")
+    
+    # Private attributes
+    _active_operations: dict[str, MCPBulkOperation] = PrivateAttr(default_factory=dict)
+    _npm_cache_path: str | None = PrivateAttr(default=None)
+    
+    async def bulk_install_servers(
+        self, 
+        server_packages: list[str], 
+        operation_id: str | None = None
+    ) -> MCPBulkOperation:
+        """Install multiple MCP servers in parallel with progress tracking."""
+        import uuid
+        import subprocess
+        
+        if operation_id is None:
+            operation_id = str(uuid.uuid4())
+        
+        operation = MCPBulkOperation(
+            operation_id=operation_id,
+            operation_type="install",
+            server_names=server_packages,
+            started_at=datetime.now(),
+            total_count=len(server_packages)
+        )
+        
+        self._active_operations[operation_id] = operation
+        
+        # Create semaphore for concurrent control
+        semaphore = asyncio.Semaphore(self.max_concurrent)
+        
+        async def install_single_server(package_name: str):
+            async with semaphore:
+                operation.current_server = package_name
+                success = False
+                error_msg = None
+                
+                for attempt in range(self.retry_attempts + 1):
+                    try:
+                        # Install the MCP server package using npm install -g
+                        # This ensures the package is actually installed, not just validated
+                        cmd = ["npm", "install", "-g", package_name]
+                        
+                        if self.show_progress:
+                            logger.info(f"Installing {package_name} (attempt {attempt + 1}/{self.retry_attempts + 1})")
+                        
+                        process = await asyncio.create_subprocess_exec(
+                            *cmd,
+                            stdout=asyncio.subprocess.PIPE,
+                            stderr=asyncio.subprocess.PIPE
+                        )
+                        
+                        stdout, stderr = await asyncio.wait_for(
+                            process.communicate(),
+                            timeout=self.timeout_per_server
+                        )
+                        
+                        if process.returncode == 0:
+                            success = True
+                            operation.succeeded_servers.append(package_name)
+                            operation.success_count += 1
+                            if self.show_progress:
+                                logger.info(f"✅ Successfully installed {package_name}")
+                            break
+                        else:
+                            error_msg = stderr.decode() if stderr else f"Exit code: {process.returncode}"
+                            if self.show_progress:
+                                logger.warning(f"❌ Failed to install {package_name}: {error_msg}")
+                    
+                    except asyncio.TimeoutError:
+                        error_msg = f"Installation timeout after {self.timeout_per_server}s"
+                        if self.show_progress:
+                            logger.warning(f"⏰ Timeout installing {package_name}")
+                    except Exception as e:
+                        error_msg = str(e)
+                        if self.show_progress:
+                            logger.warning(f"💥 Error installing {package_name}: {e}")
+                
+                if not success:
+                    operation.failed_servers.append({
+                        "server": package_name,
+                        "error": error_msg,
+                        "attempts": self.retry_attempts + 1
+                    })
+                    operation.failed_count += 1
+                
+                operation.completed_count += 1
+                operation.current_server = None
+        
+        # Run all installations in parallel (with semaphore limiting)
+        await asyncio.gather(*[
+            install_single_server(package) for package in server_packages
+        ])
+        
+        operation.completed_at = datetime.now()
+        operation.is_complete = True
+        
+        if self.show_progress:
+            logger.info(f"🎉 Bulk installation complete: {operation.success_count}/{operation.total_count} successful")
+        
+        return operation
+    
+    def get_operation_status(self, operation_id: str) -> MCPBulkOperation | None:
+        """Get status of a bulk operation."""
+        return self._active_operations.get(operation_id)
+
+
 class MCPManager(BaseModel):
     """Dynamic MCP manager for procedural server addition.
 
@@ -246,6 +408,10 @@ class MCPManager(BaseModel):
         # Call parent's model_post_init if it exists
         with contextlib.suppress(AttributeError):
             super().model_post_init(__context)
+
+        # Initialize bulk operations
+        self._bulk_installer = MCPBulkInstaller()
+        self._server_categories = self._load_default_categories()
 
         # Start health monitoring if enabled
         if self.enabled and self.auto_health_check:
@@ -351,12 +517,13 @@ class MCPManager(BaseModel):
                 # Import StdioConnection for LangChain adapters
                 from langchain_mcp_adapters.client import StdioConnection
                 
-                # Create StdioConnection for LangChain adapters
-                connection = StdioConnection(
-                    command=config.command,
-                    args=config.args or [],
-                    env=config.env or {}
-                )
+                # Create connection configuration with required 'transport' field
+                connection = {
+                    "transport": "stdio",
+                    "command": config.command,
+                    "args": config.args or [],
+                    "env": config.env or {}
+                }
                 
                 # Store the connection configuration
                 self._clients[server_name] = connection
@@ -854,3 +1021,296 @@ class MCPManager(BaseModel):
             await self.refresh_tools()
 
         return result
+
+    # ========== BULK OPERATIONS ==========
+    
+    # Bulk operations will be initialized in model_post_init
+    
+    def _load_default_categories(self) -> dict[str, MCPServerCategory]:
+        """Load default server categories for bulk operations."""
+        return {
+            "development": MCPServerCategory(
+                name="development",
+                description="Development tools and utilities",
+                servers=[
+                    "@modelcontextprotocol/server-filesystem",
+                    "@modelcontextprotocol/server-git", 
+                    "@modelcontextprotocol/server-github",
+                    "@modelcontextprotocol/server-gitlab",
+                    "@modelcontextprotocol/server-puppeteer"
+                ],
+                tags=["dev", "git", "code"]
+            ),
+            "data": MCPServerCategory(
+                name="data",
+                description="Data processing and analysis tools",
+                servers=[
+                    "@modelcontextprotocol/server-postgres",
+                    "@modelcontextprotocol/server-sqlite",
+                    "@modelcontextprotocol/server-memory",
+                    "@modelcontextprotocol/server-fetch"
+                ],
+                tags=["database", "data", "storage"]
+            ),
+            "productivity": MCPServerCategory(
+                name="productivity",
+                description="Productivity and automation tools",
+                servers=[
+                    "@modelcontextprotocol/server-time",
+                    "@modelcontextprotocol/server-brave-search",
+                    "@modelcontextprotocol/server-slack",
+                    "@modelcontextprotocol/server-todoist"
+                ],
+                tags=["productivity", "automation", "search"]
+            ),
+            "ai": MCPServerCategory(
+                name="ai",
+                description="AI and machine learning tools",
+                servers=[
+                    "@modelcontextprotocol/server-sequential-thinking",
+                    "@modelcontextprotocol/server-memory"
+                ],
+                tags=["ai", "ml", "thinking"]
+            )
+        }
+    
+    async def bulk_install_category(
+        self, 
+        category_name: str, 
+        max_concurrent: int = 5
+    ) -> MCPBulkOperation:
+        """Install all servers in a category.
+        
+        Args:
+            category_name: Name of the category to install
+            max_concurrent: Maximum concurrent installations
+            
+        Returns:
+            MCPBulkOperation: Operation tracking object
+        """
+        if category_name not in self._server_categories:
+            available = list(self._server_categories.keys())
+            raise ValueError(f"Category '{category_name}' not found. Available: {available}")
+        
+        category = self._server_categories[category_name]
+        self._bulk_installer.max_concurrent = max_concurrent
+        
+        logger.info(f"🚀 Starting bulk installation of '{category_name}' category ({len(category.servers)} servers)")
+        
+        operation = await self._bulk_installer.bulk_install_servers(category.servers)
+        
+        # After installation, add successful servers to manager
+        for server_package in operation.succeeded_servers:
+            try:
+                # Extract server name from package (e.g., @modelcontextprotocol/server-filesystem -> filesystem)
+                server_name = server_package.split("/")[-1].replace("server-", "")
+                
+                config = MCPServerConfig(
+                    name=server_name,
+                    transport="stdio",
+                    command="npx",
+                    args=["-y", server_package]
+                )
+                
+                await self.add_server(server_name, config, connect_immediately=False)
+                logger.info(f"✅ Added {server_name} to manager")
+                
+            except Exception as e:
+                logger.warning(f"Failed to add {server_package} to manager: {e}")
+        
+        return operation
+    
+    async def bulk_install_servers(
+        self, 
+        server_packages: list[str], 
+        add_to_manager: bool = True,
+        max_concurrent: int = 5
+    ) -> MCPBulkOperation:
+        """Install multiple MCP servers in parallel.
+        
+        Args:
+            server_packages: List of npm package names to install
+            add_to_manager: Whether to add installed servers to the manager
+            max_concurrent: Maximum concurrent installations
+            
+        Returns:
+            MCPBulkOperation: Operation tracking object
+        """
+        self._bulk_installer.max_concurrent = max_concurrent
+        
+        logger.info(f"🚀 Starting bulk installation of {len(server_packages)} servers")
+        
+        operation = await self._bulk_installer.bulk_install_servers(server_packages)
+        
+        if add_to_manager:
+            # Add successful installations to manager
+            for server_package in operation.succeeded_servers:
+                try:
+                    server_name = server_package.split("/")[-1].replace("server-", "")
+                    
+                    config = MCPServerConfig(
+                        name=server_name,
+                        transport="stdio", 
+                        command="npx",
+                        args=["-y", server_package]
+                    )
+                    
+                    await self.add_server(server_name, config, connect_immediately=False)
+                    
+                except Exception as e:
+                    logger.warning(f"Failed to add {server_package} to manager: {e}")
+        
+        return operation
+    
+    async def bulk_remove_servers(self, server_names: list[str]) -> MCPBulkOperation:
+        """Remove multiple servers from the manager.
+        
+        Args:
+            server_names: List of server names to remove
+            
+        Returns:
+            MCPBulkOperation: Operation tracking object
+        """
+        import uuid
+        
+        operation = MCPBulkOperation(
+            operation_id=str(uuid.uuid4()),
+            operation_type="remove",
+            server_names=server_names,
+            started_at=datetime.now(),
+            total_count=len(server_names)
+        )
+        
+        for server_name in server_names:
+            operation.current_server = server_name
+            
+            try:
+                success = await self.remove_server(server_name)
+                if success:
+                    operation.succeeded_servers.append(server_name)
+                    operation.success_count += 1
+                    logger.info(f"✅ Removed {server_name}")
+                else:
+                    operation.failed_servers.append({
+                        "server": server_name,
+                        "error": "Server not found or removal failed",
+                        "attempts": 1
+                    })
+                    operation.failed_count += 1
+                    
+            except Exception as e:
+                operation.failed_servers.append({
+                    "server": server_name,
+                    "error": str(e),
+                    "attempts": 1
+                })
+                operation.failed_count += 1
+                logger.warning(f"❌ Failed to remove {server_name}: {e}")
+            
+            operation.completed_count += 1
+            operation.current_server = None
+        
+        operation.completed_at = datetime.now()
+        operation.is_complete = True
+        
+        logger.info(f"🎉 Bulk removal complete: {operation.success_count}/{operation.total_count} successful")
+        
+        return operation
+    
+    async def bulk_health_check(self) -> dict[str, Any]:
+        """Perform health check on all connected servers.
+        
+        Returns:
+            Dict with health status for all servers
+        """
+        logger.info("🔍 Starting bulk health check on all connected servers")
+        
+        health_results = {}
+        
+        for server_name in self._servers.keys():
+            if self._server_status.get(server_name) == MCPServerStatus.CONNECTED:
+                try:
+                    await self._check_server_health(server_name)
+                    health_info = self._server_health.get(server_name)
+                    
+                    health_results[server_name] = {
+                        "status": health_info.status.value if health_info else "unknown",
+                        "response_time": health_info.response_time if health_info else None,
+                        "consecutive_failures": health_info.consecutive_failures if health_info else 0,
+                        "last_check": health_info.last_check.isoformat() if health_info else None
+                    }
+                    
+                except Exception as e:
+                    health_results[server_name] = {
+                        "status": "error", 
+                        "error": str(e),
+                        "last_check": datetime.now().isoformat()
+                    }
+        
+        healthy_count = sum(1 for h in health_results.values() if h["status"] == "connected")
+        total_count = len(health_results)
+        
+        logger.info(f"🏥 Health check complete: {healthy_count}/{total_count} servers healthy")
+        
+        return {
+            "summary": {
+                "total_servers": total_count,
+                "healthy_servers": healthy_count,
+                "unhealthy_servers": total_count - healthy_count,
+                "check_time": datetime.now().isoformat()
+            },
+            "details": health_results
+        }
+    
+    def get_available_categories(self) -> dict[str, MCPServerCategory]:
+        """Get all available server categories for bulk operations."""
+        return self._server_categories.copy()
+    
+    def add_custom_category(self, category: MCPServerCategory) -> None:
+        """Add a custom server category."""
+        self._server_categories[category.name] = category
+        logger.info(f"Added custom category: {category.name} ({len(category.servers)} servers)")
+    
+    async def bulk_update_servers(self) -> MCPBulkOperation:
+        """Update all installed MCP servers to their latest versions.
+        
+        Returns:
+            MCPBulkOperation: Operation tracking object
+        """
+        import uuid
+        
+        # Get all currently managed servers
+        server_packages = []
+        for server_name, config in self._servers.items():
+            if config.command == "npx" and config.args:
+                # Extract package name from args
+                package_name = next((arg for arg in config.args if arg.startswith("@") or arg.startswith("server-")), None)
+                if package_name:
+                    server_packages.append(package_name)
+        
+        if not server_packages:
+            # Return empty operation
+            operation = MCPBulkOperation(
+                operation_id=str(uuid.uuid4()),
+                operation_type="update",
+                server_names=[],
+                started_at=datetime.now(),
+                completed_at=datetime.now(),
+                total_count=0,
+                is_complete=True
+            )
+            return operation
+        
+        logger.info(f"🔄 Updating {len(server_packages)} MCP servers")
+        
+        # Use bulk installer to reinstall (which updates)
+        operation = await self._bulk_installer.bulk_install_servers(server_packages)
+        operation.operation_type = "update"
+        
+        logger.info(f"🎉 Bulk update complete: {operation.success_count}/{operation.total_count} successful")
+        
+        return operation
+    
+    def get_bulk_operation_status(self, operation_id: str) -> MCPBulkOperation | None:
+        """Get the status of a bulk operation."""
+        return self._bulk_installer.get_operation_status(operation_id)
