@@ -1,145 +1,109 @@
 # MCP Tests
 
-Comprehensive test suite for the haive-mcp package.
+This directory contains comprehensive tests for the MCP (Model Context Protocol) functionality in the haive-mcp package.
 
 ## Test Structure
 
-```
-tests/
-├── unit/                    # Unit tests for individual components
-│   ├── test_config.py      # Configuration model tests
-│   ├── test_manager.py     # Manager functionality tests
-│   └── test_discovery.py   # Discovery system tests
-├── integration/            # Integration tests
-│   ├── test_mcp_servers.py # Server integration tests
-│   ├── test_agents.py      # Agent integration tests
-│   └── test_dataflow.py    # Dataflow integration tests
-├── fixtures/               # Test fixtures and mocks
-└── conftest.py            # Pytest configuration
-```
+### Test Files
+
+1. **test_mcp_server_setup.py**
+   - Tests for MCP server setup and management
+   - Server lifecycle (start, stop, status)
+   - Simple, filesystem, and time server functionality
+   - Non-interactive mode testing
+
+2. **test_bulk_download.py**
+   - Tests for bulk installation of MCP servers
+   - Star-based filtering and installation
+   - Category-based installation
+   - Top N server installation
+   - Installation report generation
+
+3. **test_specific_download.py**
+   - Tests for specific installer types (NPM, pip, Git, Docker, Binary, Curl)
+   - Individual server installation
+   - Installation verification
+   - Error handling for failed installations
+
+4. **test_viewing_installed.py**
+   - Tests for discovering installed MCP servers
+   - NPM and pip server discovery
+   - Configuration file discovery
+   - Server availability checking
+   - Export functionality
 
 ## Running Tests
 
-### All Tests
-
+### Run All Tests
 ```bash
-poetry run pytest
+poetry run pytest tests/ -v
 ```
 
-### Specific Test Category
-
+### Run Specific Test File
 ```bash
-poetry run pytest tests/unit/
-poetry run pytest tests/integration/
+poetry run pytest tests/test_mcp_server_setup.py -v
 ```
 
-### With Coverage
-
+### Run with Coverage
 ```bash
-poetry run pytest --cov=haive.mcp --cov-report=html
+poetry run pytest tests/ --cov=haive.mcp --cov-report=html
 ```
 
-### Verbose Output
-
+### Run Only Unit Tests (Fast)
 ```bash
-poetry run pytest -v
+poetry run pytest tests/ -v -m "not integration and not slow"
+```
+
+### Run Integration Tests
+```bash
+poetry run pytest tests/ -v -m integration
 ```
 
 ## Test Categories
 
-### Unit Tests
+Tests are marked with the following categories:
 
-- Fast, isolated tests
-- Mock external dependencies
-- Test individual functions/classes
+- **integration**: Tests that require external resources or take longer
+- **slow**: Tests that take significant time to complete
+- **requires_network**: Tests that need network access
 
-### Integration Tests
+## Fixtures
 
-- Test component interactions
-- May use real MCP servers
-- Test with haive-dataflow
+Common fixtures are provided in `conftest.py`:
 
-### End-to-End Tests
+- `temp_test_dir`: Temporary directory for test files
+- `event_loop`: Event loop for async tests
+- `mock_subprocess_run`: Mock for subprocess.run calls
+- `sample_mcp_servers`: Sample server data for testing
 
-- Full workflow tests
-- Test real-world scenarios
-- May require external services
+## Writing New Tests
 
-## Writing Tests
+When adding new tests:
 
-### Test Structure
+1. Use appropriate fixtures from conftest.py
+2. Mock external dependencies (subprocess, network calls)
+3. Test both success and failure cases
+4. Add appropriate markers (@pytest.mark.integration, etc.)
+5. Follow the existing test structure
 
+Example:
 ```python
-import pytest
-from haive.mcp import MCPManager
-
-class TestMCPManager:
-    """Test suite for MCPManager.
-
-    Tests cover:
-    - Server addition and removal
-    - Tool discovery
-    - Health monitoring
-    - Error handling
-    """
-
-    @pytest.fixture
-    def manager(self):
-        """Create test manager instance."""
-        return MCPManager()
-
-    async def test_add_server(self, manager):
-        """Test adding an MCP server.
-
-        Verifies:
-        - Server is added successfully
-        - Tools are discovered
-        - Status is updated correctly
-        """
-        result = await manager.add_server("test", config)
-        assert result.success
-        assert result.tools_count > 0
+def test_new_functionality(temp_test_dir, mock_subprocess_run):
+    """Test description here."""
+    # Setup
+    mock_subprocess_run.return_value.returncode = 0
+    
+    # Execute
+    result = your_function()
+    
+    # Assert
+    assert result is not None
+    mock_subprocess_run.assert_called_once()
 ```
 
-### Fixtures
+## Coverage Goals
 
-Common fixtures are available in `conftest.py`:
-
-- `mock_mcp_client`: Mock MCP client
-- `test_server_config`: Test server configuration
-- `test_engine`: Test LLM engine
-
-## Test Data
-
-Test data is stored in `fixtures/`:
-
-- `mock_servers.json`: Mock server definitions
-- `test_responses.json`: Mock API responses
-
-## Continuous Integration
-
-Tests run automatically on:
-
-- Pull requests
-- Main branch commits
-- Release tags
-
-## Debugging Tests
-
-### Run Single Test
-
-```bash
-poetry run pytest tests/unit/test_manager.py::TestMCPManager::test_add_server -v
-```
-
-### Debug Mode
-
-```bash
-poetry run pytest --pdb
-```
-
-### Show Output
-
-```bash
-poetry run pytest -s
-```
+We aim for:
+- 80%+ overall coverage
+- 90%+ coverage for critical functionality
+- 100% coverage for error handling paths

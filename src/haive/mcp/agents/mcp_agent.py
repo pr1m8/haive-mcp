@@ -75,6 +75,12 @@ from pydantic import Field
 from haive.mcp.config import MCPConfig, MCPServerConfig
 from haive.mcp.mixins.mcp_mixin import MCPMixin
 
+# Force model rebuild to resolve forward references
+try:
+    SimpleAgent.model_rebuild()
+except Exception:
+    pass  # Ignore if already built
+
 
 class MCPAgent(MCPMixin, SimpleAgent):
     """An agent with MCP (Model Context Protocol) capabilities.
@@ -433,3 +439,10 @@ def create_multi_mcp_agent(engine: Any, github_token: str | None = None) -> MCPA
     return MCPAgent.create_with_mcp_servers(
         engine=engine, server_configs=server_configs, name="multi_mcp_assistant"
     )
+
+
+# Force model rebuild to resolve any forward reference issues
+try:
+    MCPAgent.model_rebuild()
+except Exception:
+    pass  # Ignore if already built or if there are import issues

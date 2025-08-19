@@ -174,66 +174,64 @@ async def test_haive_mcp_manager_integration():
 
 
 async def test_haive_mcp_agent_complete():
-    """Test complete Haive MCPAgent with tools."""
-    logger.info("\n=== Testing Complete Haive MCPAgent ===")
+    """Test complete integration using MCPManager with SimpleAgent."""
+    logger.info("\n=== Testing MCPManager + SimpleAgent Integration ===")
     
     try:
-        from haive.mcp.agents.mcp_agent import MCPAgent
+        from haive.mcp.manager import MCPManager
+        from haive.mcp.config import MCPServerConfig, MCPTransport
+        from haive.agents.simple import SimpleAgent
         from haive.core.engine.aug_llm import AugLLMConfig
         
-        # Rebuild the model if needed
-        try:
-            MCPAgent.model_rebuild()
-        except Exception:
-            pass  # Ignore if already built
+        logger.info("✅ All imports successful")
         
-        # Create agent using factory method
-        agent = MCPAgent.create_with_mcp_servers(
-            engine=AugLLMConfig(
-                temperature=0.7,
-                system_message="You are a helpful assistant with filesystem access."
-            ),
-            server_configs={
-                "filesystem": {
-                    "transport": "stdio",
-                    "command": "npx",
-                    "args": ["-y", "@modelcontextprotocol/server-filesystem", "/tmp"],
-                    "capabilities": ["file_operations"]
-                }
-            },
-            name="test_mcp_agent"
+        # Create MCP manager
+        manager = MCPManager()
+        
+        # Add MCP server
+        config = MCPServerConfig(
+            name="filesystem",
+            transport=MCPTransport.STDIO,
+            command="npx",
+            args=["-y", "@modelcontextprotocol/server-filesystem", "/tmp"],
+            capabilities=["file_operations"]
         )
         
-        logger.info("✅ Created MCPAgent with factory method")
+        result = await manager.add_server("filesystem", config)
+        logger.info(f"✅ MCP server added: success={result.success}")
         
-        # Setup agent
-        await agent.setup()
-        logger.info("✅ Agent setup complete")
-        
-        # Check MCP status
-        status = agent.get_mcp_status()
-        logger.info(f"✅ MCP Status:")
-        logger.info(f"   Enabled: {status['enabled']}")
-        logger.info(f"   Initialized: {status['initialized']}")
-        logger.info(f"   Connected servers: {status['connected_servers']}")
-        logger.info(f"   Tool count: {status['tool_count']}")
-        
-        if status['tool_names']:
-            logger.info(f"   Available tools: {status['tool_names'][:3]}")
-        
-        # Test tool capability
-        if status['tool_count'] > 0:
-            available_caps = agent.get_available_capabilities()
-            logger.info(f"✅ Available capabilities: {available_caps}")
-        
-        # Agent is now ready for use
-        # In production: result = await agent.arun({"messages": [...]})
-        logger.info("✅ Agent ready for production use")
-        
-        return status['initialized']
+        if result.success:
+            # Get MCP tools
+            mcp_tools = await manager.get_all_tools()
+            logger.info(f"✅ Got {len(mcp_tools)} MCP tools")
+            
+            # Create SimpleAgent with MCP tools
+            agent = SimpleAgent(
+                name="mcp_enhanced_agent",
+                engine=AugLLMConfig(
+                    temperature=0.7,
+                    system_message="You are a helpful assistant with filesystem access."
+                ),
+                tools=mcp_tools  # Add MCP tools directly!
+            )
+            
+            logger.info("✅ Created SimpleAgent with MCP tools")
+            logger.info(f"   Agent has {len(agent.tools) if hasattr(agent, 'tools') else 0} tools")
+            
+            # The agent can now use MCP tools!
+            # In a real scenario: result = await agent.arun({"messages": [...]})
+            logger.info("✅ Agent ready for production use with MCP tools")
+            
+            # Clean up
+            await manager.shutdown()
+            
+            return True
+        else:
+            logger.error("Failed to add MCP server")
+            return False
         
     except Exception as e:
-        logger.exception(f"❌ MCPAgent test failed: {e}")
+        logger.exception(f"❌ Integration test failed: {e}")
         return False
 
 

@@ -1,182 +1,89 @@
-"""Pytest configuration and fixtures for haive-mcp tests.
-
-This module provides common fixtures and configuration for all tests
-in the haive-mcp package.
-
-Fixtures:
-    mock_mcp_client: Mock MCP client for testing
-    test_server_config: Test server configuration
-    test_engine: Test LLM engine
-    temp_directory: Temporary directory for file operations
-"""
-
-import asyncio
-import sys
-from pathlib import Path
-from unittest.mock import AsyncMock, MagicMock
+"""Pytest configuration and shared fixtures for MCP tests."""
 
 import pytest
-
-# Add the src directory to sys.path
-sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
-
-from haive.mcp.config import MCPConfig, MCPServerConfig
-
-
-@pytest.fixture
-def mock_mcp_client():
-    """Create a mock MCP client for testing.
-
-    Returns:
-        Mock MCP client with common methods stubbed.
-    """
-    client = MagicMock()
-
-    # Mock tool loading
-    mock_tools = [
-        MagicMock(name="read_file", description="Read a file"),
-        MagicMock(name="write_file", description="Write a file"),
-        MagicMock(name="list_files", description="List files"),
-    ]
-
-    client.load_tools = AsyncMock(return_value=mock_tools)
-    client.execute_tool = AsyncMock(return_value={"result": "success"})
-    client.get_server_info = AsyncMock(
-        return_value={
-            "name": "test-server",
-            "version": "1.0.0",
-            "capabilities": ["tools", "resources"],
-        }
-    )
-
-    return client
+import asyncio
+import tempfile
+import shutil
+from pathlib import Path
+from unittest.mock import MagicMock
 
 
-@pytest.fixture
-def test_server_config():
-    """Create a test server configuration.
-
-    Returns:
-        MCPServerConfig: Test server configuration
-    """
-    return MCPServerConfig(
-        name="test-server",
-        transport="stdio",
-        command="python",
-        args=["test_server.py"],
-        capabilities=["file_ops", "search"],
-        env={"TEST_MODE": "true"},
-    )
-
-
-@pytest.fixture
-def test_mcp_config(test_server_config):
-    """Create a test MCP configuration.
-
-    Args:
-        test_server_config: Test server configuration fixture
-
-    Returns:
-        MCPConfig: Test MCP configuration
-    """
-    return MCPConfig(
-        enabled=True, servers={"test": test_server_config}, auto_discover=False
-    )
-
-
-@pytest.fixture
-def test_engine():
-    """Create a mock LLM engine for testing.
-
-    Returns:
-        Mock engine with required methods
-    """
-    engine = MagicMock()
-    engine.name = "test-engine"
-    engine.llm_config = MagicMock(model="gpt-4")
-    engine.create_runnable = MagicMock()
-
-    return engine
-
-
-@pytest.fixture
-def temp_directory(tmp_path):
-    """Create a temporary directory for file operations.
-
-    Args:
-        tmp_path: Pytest tmp_path fixture
-
-    Returns:
-        Path: Temporary directory path
-    """
-    test_dir = tmp_path / "mcp_test"
-    test_dir.mkdir()
-
-    # Create some test files
-    (test_dir / "test1.txt").write_text("Test content 1")
-    (test_dir / "test2.txt").write_text("Test content 2")
-
-    subdir = test_dir / "subdir"
-    subdir.mkdir()
-    (subdir / "test3.txt").write_text("Test content 3")
-
-    return test_dir
-
-
-@pytest.fixture
-def mock_server_discovery():
-    """Create a mock server discovery instance.
-
-    Returns:
-        Mock discovery with test servers
-    """
-    discovery = MagicMock()
-
-    test_servers = [
-        {
-            "name": "filesystem-server",
-            "description": "File system operations",
-            "transport": "stdio",
-            "command": "npx",
-            "args": ["-y", "@modelcontextprotocol/server-filesystem"],
-            "capabilities": ["file_read", "file_write"],
-        },
-        {
-            "name": "github-server",
-            "description": "GitHub operations",
-            "transport": "stdio",
-            "command": "npx",
-            "args": ["-y", "@modelcontextprotocol/server-github"],
-            "capabilities": ["repo_read", "issue_create"],
-        },
-    ]
-
-    discovery.discover_all = AsyncMock(return_value=test_servers)
-    discovery.get_servers_by_capability = MagicMock(
-        side_effect=lambda cap: [
-            s for s in test_servers if cap in s.get("capabilities", [])
-        ]
-    )
-
-    return discovery
-
-
-# Pytest configuration
-def pytest_configure(config):
-    """Configure pytest with custom markers."""
-    config.addinivalue_line(
-        "markers", "slow: marks tests as slow (deselect with '-m \"not slow\"')"
-    )
-    config.addinivalue_line("markers", "integration: marks tests as integration tests")
-    config.addinivalue_line(
-        "markers", "requires_mcp: marks tests that require MCP to be installed"
-    )
-
-
-# Async test support
 @pytest.fixture(scope="session")
 def event_loop():
     """Create an event loop for async tests."""
     loop = asyncio.get_event_loop_policy().new_event_loop()
     yield loop
     loop.close()
+
+
+@pytest.fixture
+def temp_test_dir():
+    """Create a temporary directory that's cleaned up after the test."""
+    temp_dir = tempfile.mkdtemp(prefix="mcp_test_")
+    yield Path(temp_dir)
+    shutil.rmtree(temp_dir)
+
+
+@pytest.fixture
+def mock_subprocess_run():
+    """Mock subprocess.run for tests that need it."""
+    mock = MagicMock()
+    mock.return_value.returncode = 0
+    mock.return_value.stdout = ""
+    mock.return_value.stderr = ""
+    return mock
+
+
+@pytest.fixture
+def sample_mcp_servers():
+    """Sample MCP server data for testing."""
+    return [
+        {
+            "name": "@modelcontextprotocol/server-filesystem",
+            "stars": 5432,
+            "category": "utility",
+            "install_command": "npm install -g @modelcontextprotocol/server-filesystem",
+            "repository_url": "https://github.com/modelcontextprotocol/servers"
+        },
+        {
+            "name": "mcp-server-python-example",
+            "stars": 234,
+            "category": "example",
+            "install_command": "pip install mcp-server-python-example",
+            "repository_url": "https://github.com/example/mcp-python"
+        },
+        {
+            "name": "custom-mcp-server",
+            "stars": 0,
+            "category": "custom",
+            "install_command": "",
+            "repository_url": "https://github.com/user/custom-mcp"
+        }
+    ]
+
+
+@pytest.fixture
+def mock_mcp_server_response():
+    """Mock response for MCP server communication."""
+    return {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+            "status": "success",
+            "data": "Mock response data"
+        }
+    }
+
+
+# Skip markers for different test categories
+def pytest_configure(config):
+    """Configure pytest with custom markers."""
+    config.addinivalue_line(
+        "markers", "integration: mark test as integration test"
+    )
+    config.addinivalue_line(
+        "markers", "slow: mark test as slow running"
+    )
+    config.addinivalue_line(
+        "markers", "requires_network: mark test as requiring network access"
+    )

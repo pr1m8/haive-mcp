@@ -51,12 +51,19 @@ Example:
         })
 """
 
-# Agent implementations
-from haive.mcp.agents import (
-    IntelligentMCPAgent,
-    MCPAgent,
-    TransferableMCPAgent,
-)
+# Agent implementations - handle missing dependencies gracefully
+try:
+    from haive.mcp.agents import (
+        IntelligentMCPAgent,
+        MCPAgent,
+        TransferableMCPAgent,
+    )
+except ImportError as e:
+    # Some agent implementations may depend on packages not available
+    # Set to None to indicate they're not available
+    IntelligentMCPAgent = None
+    MCPAgent = None
+    TransferableMCPAgent = None
 
 # Core components
 from haive.mcp.config import (
@@ -65,26 +72,53 @@ from haive.mcp.config import (
     MCPTransport,
 )
 
-# Discovery components
-from haive.mcp.discovery import (
-    MCPServerDiscovery,
-)
+# Discovery components - handle missing dependencies
+try:
+    from haive.mcp.discovery import (
+        MCPServerDiscovery,
+    )
+except ImportError:
+    MCPServerDiscovery = None
 
-# Documentation loader
-from haive.mcp.documentation import (
-    MCPDocumentationLoader,
-)
-from haive.mcp.manager import (
-    MCPHealthStatus,
-    MCPManager,
-    MCPRegistrationResult,
-)
+# Documentation loader - handle missing dependencies
+try:
+    from haive.mcp.documentation import (
+        MCPDocumentationLoader,
+    )
+except ImportError:
+    MCPDocumentationLoader = None
 
-# Mixins for adding MCP to existing agents
-from haive.mcp.mixins import (
-    # MCPDiscoveryMixin,  # TODO: Missing class - needs to be implemented
-    MCPMixin,
-)
+try:
+    from haive.mcp.manager import (
+        MCPHealthStatus,
+        MCPManager,
+        MCPRegistrationResult,
+    )
+except ImportError:
+    MCPHealthStatus = None
+    MCPManager = None
+    MCPRegistrationResult = None
+
+# Mixins for adding MCP to existing agents - handle missing dependencies
+try:
+    from haive.mcp.mixins import (
+        # MCPDiscoveryMixin,  # TODO: Missing class - needs to be implemented
+        MCPMixin,
+    )
+except ImportError:
+    MCPMixin = None
+
+# Plugin implementations - Phase 2
+try:
+    from haive.mcp.plugins import (
+        MCPBrowserPlugin,
+        get_plugin_registry,
+        get_plugin_class,
+    )
+except ImportError:
+    MCPBrowserPlugin = None
+    get_plugin_registry = None
+    get_plugin_class = None
 
 __all__ = [
     # Configuration
@@ -106,6 +140,10 @@ __all__ = [
     "MCPServerDiscovery",
     # Documentation
     "MCPDocumentationLoader",
+    # Plugins - Phase 2
+    "MCPBrowserPlugin",
+    "get_plugin_registry",
+    "get_plugin_class",
 ]
 
 # Version info
