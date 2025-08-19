@@ -12,7 +12,7 @@ import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.responses import StreamingResponse
 from mcp.server import FastMCP
-from mcp.server.sse import SSEServerTransport
+from mcp.server.sse import SseServerTransport
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -182,7 +182,7 @@ async def handle_sse(request: Request):
     global sse_transport
 
     if sse_transport is None:
-        sse_transport = SSEServerTransport("/sse")
+        sse_transport = SseServerTransport("/sse")
 
     # Handle the SSE connection
     async def event_generator():
