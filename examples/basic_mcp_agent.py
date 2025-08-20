@@ -5,7 +5,7 @@ import logging
 
 from haive.core.engine import create_engine
 
-from haive.mcp.agents import MCPAgent
+from haive.mcp.agents.basic_mcp_agent import BasicMCPAgent
 from haive.mcp.config import MCPConfig, MCPServerConfig
 from haive.mcp.discovery import MCPServerDiscovery
 
@@ -34,7 +34,7 @@ async def example_basic_mcp_agent():
     )
 
     # Create MCP-enabled agent
-    agent = MCPAgent(engine=engine, mcp_config=mcp_config, name="filesystem_assistant")
+    agent = BasicMCPAgent(engine=engine, mcp_config=mcp_config, name="filesystem_assistant")
 
     # Initialize the agent
     await agent.setup()
@@ -73,7 +73,7 @@ async def example_dynamic_discovery():
         # Use discovered configuration
         mcp_config = discovery.create_mcp_config()
 
-        agent = MCPAgent(
+        agent = BasicMCPAgent(
             engine=engine, mcp_config=mcp_config, name="discovered_mcp_agent"
         )
 
@@ -88,7 +88,7 @@ async def example_multi_server_agent():
     engine = create_engine(model="gpt-4o-mini")
 
     # Create agent with multiple servers using convenience method
-    agent = MCPAgent.create_with_mcp_servers(
+    agent = BasicMCPAgent.create_with_mcp_servers(
         engine=engine,
         server_configs={
             "filesystem": {
@@ -127,7 +127,7 @@ async def example_capability_based_tools():
     engine = create_engine(model="gpt-4o-mini")
 
     # Create agent
-    agent = MCPAgent.create_with_mcp_servers(
+    agent = BasicMCPAgent.create_with_mcp_servers(
         engine=engine,
         server_configs={
             "filesystem": {

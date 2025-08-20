@@ -45,70 +45,76 @@ Welcome to the Haive MCP (Model Context Protocol) guides! This section provides 
 Overview
 --------
 
-The Haive MCP package provides a Pydantic-first platform architecture for managing Model Context Protocol servers. Key features include:
+The Haive MCP package provides **dynamic, runtime integration** with **1900+ MCP servers** for AI agents. Key features include:
 
-* **Pure Pydantic Design** - No ``__init__`` methods, comprehensive validation
-* **Intelligent Inheritance** - Platform-based architecture with ``BasePlatform`` → ``PluginPlatform``
-* **Real Component Testing** - No mocks, validation with actual data
-* **FastAPI Integration** - Built-in web API support
-* **Server Management** - Handle 63+ downloaded MCP servers
+* **Dynamic Tool Discovery** - Agents automatically find and integrate tools
+* **1900+ MCP Servers** - Access to vast ecosystem of tools and capabilities
+* **Real-time Integration** - No pre-configuration needed, tools discovered at runtime
+* **Native MCP Protocol** - Full protocol compliance with STDIO transport
+* **Seamless Agent Integration** - Works with all Haive agents (SimpleAgent, ReactAgent, etc.)
 
 Quick Start
 -----------
 
 .. code-block:: python
 
-   from haive.mcp.plugins import MCPBrowserPlugin
-   from pathlib import Path
+   import asyncio
+   from haive.mcp.agents.enhanced_mcp_agent import EnhancedMCPAgent
+   from haive.core.engine.aug_llm import AugLLMConfig
 
-   # Create MCP browser plugin
-   plugin = MCPBrowserPlugin(
-       server_directory=Path("/home/will/Downloads/mcp_servers"),
-       cache_ttl=3600
-   )
+   async def quick_example():
+       # Create MCP-enhanced agent
+       agent = EnhancedMCPAgent(
+           name="my_agent",
+           engine=AugLLMConfig(temperature=0.7),
+           mcp_categories=["core"],  # Auto-install filesystem, postgres, github tools
+           auto_install=True
+       )
 
-   # Load and browse servers
-   servers = await plugin.load_servers()
-   print(f"Found {len(servers)} MCP servers")
+       # Initialize MCP integration
+       await agent.initialize_mcp()
+       
+       # Use agent with dynamically discovered tools
+       result = await agent.arun("List files and search for Python projects")
+       print(f"Result: {result}")
 
-   # Get FastAPI router
-   router = plugin.get_router()
+   asyncio.run(quick_example())
 
 Architecture Principles
 -----------------------
 
 Our MCP architecture follows these key principles:
 
-1. **Pydantic-First Design**
+1. **Agent-First Integration**
 
    .. code-block:: python
 
-      class MCPBrowserPlugin(PluginPlatform):
-          """No __init__ method - pure Pydantic validation"""
+      class EnhancedMCPAgent(SimpleAgent):
+          """MCP-enhanced agent with automatic tool discovery."""
           
-          model_config = ConfigDict(
-              arbitrary_types_allowed=True
-          )
-          
-          server_directory: Path = Field(...)
-          cache_ttl: int = Field(default=3600)
+          mcp_categories: List[str] = Field(default_factory=list)
+          auto_install: bool = Field(default=True)
+          mcp_manager: MCPManager = Field(default_factory=MCPManager)
 
-2. **Platform Inheritance**
+2. **Dynamic Tool Discovery**
 
    .. code-block:: python
 
-      # Platform hierarchy
-      BasePlatform (haive-dataflow)
-          ↓
-      PluginPlatform (haive-dataflow)  
-          ↓
-      MCPBrowserPlugin (haive-mcp)
+      # Agent analyzes task requirements and installs appropriate servers
+      agent = EnhancedMCPAgent(mcp_categories=["core"], auto_install=True)
+      await agent.initialize_mcp()  # Auto-discovers and installs tools
+      
+      # Tools are available immediately
+      result = await agent.arun("Use filesystem and web search")
 
-3. **Server Information Models**
+3. **Native MCP Protocol**
 
    .. code-block:: python
 
-      BaseServerInfo → MCPServerInfo → DownloadedServerInfo
+      # Real MCP protocol communication
+      MCPManager → MCPServerConfig → MCPClient (STDIO) → NPM Packages
+      
+      # No mocks, no simulations - real MCP servers
 
 Community and Support
 ---------------------

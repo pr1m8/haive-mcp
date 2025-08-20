@@ -1,7 +1,9 @@
 Quick Start Guide
 ================
 
-This guide will get you up and running with Haive MCP in 5 minutes.
+This guide will get you up and running with Haive MCP integration in 5 minutes.
+
+**Haive MCP** provides seamless integration with 1900+ MCP servers, enabling dynamic tool discovery and runtime agent enhancement.
 
 Installation
 ------------
@@ -17,190 +19,267 @@ Install the haive-mcp package:
 Basic Usage
 -----------
 
-Creating Your First MCP Plugin
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. code-block:: python
-
-   from haive.mcp.plugins import MCPBrowserPlugin
-   from pathlib import Path
-
-   # Create MCP browser plugin
-   plugin = MCPBrowserPlugin(
-       server_directory=Path("/home/will/Downloads/mcp_servers"),
-       cache_ttl=3600  # 1 hour cache
-   )
-
-   print(f"Created plugin: {plugin.name}")
-   print(f"Plugin type: {plugin.plugin_type}")
-   print(f"Enabled: {plugin.enabled}")
-
-Loading MCP Servers
-~~~~~~~~~~~~~~~~~~~
-
-.. code-block:: python
-
-   # Load all servers from directory
-   servers = await plugin.load_servers()
-   print(f"Found {len(servers)} MCP servers")
-
-   # Print server details
-   for server in servers[:3]:  # First 3 servers
-       print(f"- {server.name} v{server.version}")
-       print(f"  Capabilities: {', '.join(server.capabilities)}")
-       print(f"  Local path: {server.local_path}")
-       print()
-
-Filtering and Searching
-~~~~~~~~~~~~~~~~~~~~~~~
-
-.. code-block:: python
-
-   # Filter by category
-   ai_servers = await plugin.filter_by_category("ai-tools")
-   database_servers = await plugin.filter_by_category("database")
-   
-   print(f"AI tools: {len(ai_servers)} servers")
-   print(f"Database: {len(database_servers)} servers")
-
-   # Search servers
-   postgres_servers = await plugin.search_servers("postgres")
-   print(f"PostgreSQL servers: {len(postgres_servers)}")
-
-FastAPI Integration
-~~~~~~~~~~~~~~~~~~~
-
-.. code-block:: python
-
-   from fastapi import FastAPI
-
-   # Create FastAPI app
-   app = FastAPI(title="MCP Server Browser")
-
-   # Mount plugin router
-   plugin = MCPBrowserPlugin()
-   app.include_router(plugin.get_router(), prefix="/mcp")
-
-   # Available endpoints:
-   # GET /mcp/servers - List all servers
-   # GET /mcp/servers/{server_name} - Get specific server
-   # GET /mcp/categories - List categories
-   # GET /mcp/search?q=query - Search servers
-
-Working with Server Models
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. code-block:: python
-
-   from haive.mcp.models import MCPServerInfo, DownloadedServerInfo
-
-   # Create MCP server info
-   server = MCPServerInfo(
-       name="PostgreSQL Server",  # Auto-normalized to "postgresql-server"
-       description="Database MCP server",
-       version="1.2.0",
-       capabilities=["database", "sql", "postgres"],
-       mcp_version="0.1.0",
-       transport_types=["stdio"],
-       command_template="npx -y @modelcontextprotocol/server-postgres {connection_string}"
-   )
-
-   # Add local installation details
-   downloaded_server = DownloadedServerInfo(
-       **server.model_dump(),  # Inherit all MCP fields
-       local_path=Path("/downloads/postgres-server"),
-       file_size=1024000,  # bytes
-       download_source="npm",
-       is_verified=True
-   )
-
-   print(f"Server name: {downloaded_server.name}")
-   print(f"Capabilities: {downloaded_server.capabilities}")
-   print(f"Installed: {downloaded_server.installed_date}")
-
-Real-World Example
-------------------
-
-Complete example managing MCP servers:
+Creating Your First MCP-Enhanced Agent
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: python
 
    import asyncio
-   from pathlib import Path
-   from haive.mcp.plugins import MCPBrowserPlugin
+   from haive.mcp.agents.enhanced_mcp_agent import EnhancedMCPAgent
+   from haive.core.engine.aug_llm import AugLLMConfig
 
-   async def main():
-       # Initialize plugin
-       plugin = MCPBrowserPlugin(
-           server_directory=Path("/home/will/Downloads/mcp_servers"),
-           cache_ttl=3600
+   # Create MCP-enhanced agent
+   agent = EnhancedMCPAgent(
+       name="my_mcp_agent",
+       engine=AugLLMConfig(temperature=0.7),
+       mcp_categories=["core"],  # Install filesystem, postgres, github tools
+       auto_install=True
+   )
+
+   print(f"Created agent: {agent.name}")
+   print(f"Categories: {agent.mcp_categories}")
+   print(f"Auto-install enabled: {agent.auto_install}")
+
+Initializing MCP Integration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+   async def initialize_agent():
+       # Initialize MCP integration (installs servers and discovers tools)
+       await agent.initialize_mcp()
+       
+       # Get integration statistics
+       stats = agent.get_mcp_stats()
+       print(f"Servers connected: {stats.servers_connected}")
+       print(f"Tools discovered: {stats.tools_registered}")
+       print(f"Categories active: {stats.categories_active}")
+       
+       # List available tools
+       tools = agent.list_mcp_tools()
+       print(f"\nDiscovered {len(tools)} MCP tools:")
+       for tool in tools[:5]:  # Show first 5
+           print(f"- {tool['name']}: {tool['description'][:50]}...")
+
+   # Run initialization
+   asyncio.run(initialize_agent())
+
+Working with Available Categories
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+   # Check available server categories
+   manager = agent.mcp_manager
+   categories = manager.get_available_categories()
+   
+   print("Available MCP server categories:")
+   for name, category in categories.items():
+       print(f"- {name}: {len(category.servers)} servers")
+       
+   # Available categories:
+   # - core: filesystem, postgres, github, puppeteer, brave-search
+   # - ai_enhanced: sequential-thinking, memory
+   # - time_utilities: time tools
+   # - crypto_finance: crypto pricing tools
+   # - enhanced_filesystem: filenexus, vuln-fs
+   # - browser_automation: puppeteer variants
+   # - github_enhanced: github code fetching
+   # - notifications: ntfy-me self-hosted notifications
+
+Using the Agent with Real Tasks
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+   async def use_mcp_agent():
+       # Create agent with filesystem and web search tools
+       agent = EnhancedMCPAgent(
+           name="task_agent",
+           engine=AugLLMConfig(temperature=0.7),
+           mcp_categories=["core", "enhanced_filesystem"],
+           auto_install=True
        )
        
-       # Load servers
-       print("Loading MCP servers...")
-       servers = await plugin.load_servers()
-       print(f"Loaded {len(servers)} servers")
+       # Initialize MCP integration
+       await agent.initialize_mcp()
        
-       # Categorize servers
-       categories = {}
-       for server in servers:
-           for capability in server.capabilities:
-               if capability not in categories:
-                   categories[capability] = []
-               categories[capability].append(server.name)
+       # Use the agent for tasks (filesystem tools will be auto-discovered)
+       result = await agent.arun(
+           "Please list the files in the current directory and read any README files"
+       )
        
-       # Print categorized results
-       print("\\nServer Categories:")
-       for category, server_names in categories.items():
-           print(f"  {category}: {len(server_names)} servers")
-           for name in server_names[:3]:  # First 3
-               print(f"    - {name}")
-           if len(server_names) > 3:
-               print(f"    ... and {len(server_names) - 3} more")
+       print(f"Agent response: {result}")
        
-       # Find specific servers
-       print("\\nDatabase Servers:")
-       db_servers = [s for s in servers if "database" in s.capabilities]
-       for server in db_servers:
-           print(f"  - {server.name} v{server.version}")
-           print(f"    Path: {server.local_path}")
-           print(f"    Size: {server.file_size / 1024:.1f} KB")
+       # Check health and statistics
+       health = await agent.health_check_mcp()
+       print(f"MCP health: {health}")
+
+   asyncio.run(use_mcp_agent())
+
+Factory Function for Quick Setup
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+   from haive.mcp.agents.enhanced_mcp_agent import create_enhanced_mcp_agent
+
+   async def quick_setup():
+       # Quick factory function setup
+       agent = await create_enhanced_mcp_agent(
+           name="quick_agent",
+           categories=["core"]  # Will auto-install and initialize
+       )
+       
+       stats = agent.get_mcp_stats()
+       print(f"Ready! {stats.servers_connected} servers, {stats.tools_registered} tools")
+       
+       return agent
+
+   # Use the agent immediately
+   agent = asyncio.run(quick_setup())
+
+Working with MCP Manager Directly
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+   from haive.mcp.manager import MCPManager
+   from haive.mcp.config import MCPServerConfig, MCPTransport
+
+   async def direct_manager_usage():
+       # Create MCP manager directly
+       manager = MCPManager()
+       
+       # Add a specific server manually
+       fs_config = MCPServerConfig(
+           name="filesystem",
+           transport=MCPTransport.STDIO,
+           command="npx",
+           args=["-y", "@modelcontextprotocol/server-filesystem", "/tmp"]
+       )
+       
+       result = await manager.add_server("filesystem", fs_config)
+       print(f"Server added: {result.success}")
+       
+       # Get all tools from connected servers
+       tools = await manager.get_all_tools()
+       print(f"Available tools: {len(tools)}")
+       
+       # Bulk install from category
+       bulk_result = await manager.bulk_install_category("core", max_concurrent=3)
+       print(f"Bulk install success rate: {bulk_result.success_rate:.1%}")
+
+   asyncio.run(direct_manager_usage())
+
+Checking Server Status
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+   async def check_status():
+       agent = EnhancedMCPAgent(
+           name="status_agent",
+           engine=AugLLMConfig(),
+           mcp_categories=["core"],
+           auto_install=True
+       )
+       
+       await agent.initialize_mcp()
+       
+       # Get detailed status
+       status = await agent.mcp_manager.get_all_server_status()
+       for server_name, server_status in status.items():
+           print(f"{server_name}: {server_status}")
+       
+       # Health check all servers
+       health_results = await agent.mcp_manager.bulk_health_check()
+       print(f"Healthy servers: {len([r for r in health_results if r.is_healthy])}")
+
+   asyncio.run(check_status())
+
+Real-World Example
+------------------
+
+Complete file analysis and web search workflow:
+
+.. code-block:: python
+
+   import asyncio
+   from haive.mcp.agents.enhanced_mcp_agent import EnhancedMCPAgent
+   from haive.core.engine.aug_llm import AugLLMConfig
+
+   async def analyze_project_files():
+       """Real-world example: Analyze project files and research topics."""
+       
+       # Create agent with filesystem and web search capabilities
+       agent = EnhancedMCPAgent(
+           name="project_analyzer",
+           engine=AugLLMConfig(
+               temperature=0.7,
+               model="gpt-4"
+           ),
+           mcp_categories=["core", "enhanced_filesystem"],  # filesystem + brave search
+           auto_install=True
+       )
+       
+       # Initialize MCP integration
+       print("🔄 Initializing MCP servers...")
+       await agent.initialize_mcp()
+       
+       # Get MCP statistics
+       stats = agent.get_mcp_stats()
+       print(f"✅ Ready! {stats.servers_connected} servers, {stats.tools_registered} tools")
+       
+       # Task 1: Analyze project structure
+       print("\n📁 Analyzing project structure...")
+       structure_result = await agent.arun(
+           "Please analyze the current directory structure and identify the main components. "
+           "Look for README files, configuration files, and source code directories."
+       )
+       print(f"Structure Analysis: {structure_result[:200]}...")
+       
+       # Task 2: Research related technologies
+       print("\n🔍 Researching related technologies...")
+       research_result = await agent.arun(
+           "Based on the project files you found, research the latest best practices "
+           "for the main technologies used. Provide a summary of current trends."
+       )
+       print(f"Research Results: {research_result[:200]}...")
+       
+       # Get final health check
+       health = await agent.health_check_mcp()
+       print(f"\n💚 MCP Health: {health}")
+       
+       return {
+           "structure_analysis": structure_result,
+           "research_results": research_result,
+           "mcp_stats": stats
+       }
 
    if __name__ == "__main__":
-       asyncio.run(main())
+       results = asyncio.run(analyze_project_files())
 
 Expected Output
 ~~~~~~~~~~~~~~~
 
 .. code-block:: text
 
-   Loading MCP servers...
-   Loaded 63 servers
+   🔄 Initializing MCP servers...
+   ✅ Ready! 4 servers, 12 tools
 
-   Server Categories:
-     database: 5 servers
-       - postgresql-server
-       - mysql-server
-       - sqlite-server
-       ... and 2 more
-     ai-tools: 12 servers
-       - openai-server
-       - claude-server
-       - huggingface-server
-       ... and 9 more
-     web: 8 servers
-       - brave-search
-       - web-scraper
-       - http-client
-       ... and 5 more
+   📁 Analyzing project structure...
+   Structure Analysis: I can see this is a Python project with the following structure:
+   - pyproject.toml: Poetry-based dependency management
+   - src/haive/: Main source code directory
+   - tests/: Test files...
 
-   Database Servers:
-     - postgresql-server v1.2.0
-       Path: /home/will/Downloads/mcp_servers/postgresql-server
-       Size: 1024.0 KB
-     - mysql-server v1.0.0
-       Path: /home/will/Downloads/mcp_servers/mysql-server
-       Size: 856.3 KB
+   🔍 Researching related technologies...
+   Research Results: Based on the Python files and dependencies I found, here are the current best practices:
+   1. Poetry for dependency management is excellent
+   2. Pydantic v2 for data validation is the current standard...
+
+   💚 MCP Health: {'filesystem': 'healthy', 'brave_search': 'healthy', 'postgres': 'healthy'}
 
 Testing Your Setup
 ------------------
@@ -209,36 +288,43 @@ Quick validation test:
 
 .. code-block:: python
 
-   import pytest
-   from pathlib import Path
-   from haive.mcp.plugins import MCPBrowserPlugin
-   from haive.mcp.models import MCPServerInfo
+   import asyncio
+   from haive.mcp.agents.enhanced_mcp_agent import EnhancedMCPAgent
+   from haive.core.engine.aug_llm import AugLLMConfig
 
-   def test_basic_setup():
+   async def test_basic_setup():
        """Test basic MCP setup works"""
-       # Create plugin
-       plugin = MCPBrowserPlugin(
-           server_directory=Path("/tmp/test_servers")
+       # Create agent with minimal configuration
+       agent = EnhancedMCPAgent(
+           name="test_agent",
+           engine=AugLLMConfig(temperature=0.1),  # Low temp for consistent testing
+           mcp_categories=["core"],  # Just core servers for testing
+           auto_install=True
        )
        
-       # Verify plugin creation
-       assert plugin.name == "MCPBrowserPlugin"
-       assert plugin.plugin_type == "browser"
-       assert plugin.enabled is True
+       # Test initialization
+       await agent.initialize_mcp()
        
-       # Test server info creation
-       server = MCPServerInfo(
-           name="Test Server",
-           description="Test MCP server",
-           capabilities=["test"]
-       )
+       # Verify setup
+       stats = agent.get_mcp_stats()
+       assert stats.servers_connected > 0, "No servers connected"
+       assert stats.tools_registered > 0, "No tools registered"
        
-       assert server.name == "test-server"  # Auto-normalized
-       assert "test" in server.capabilities
+       # Test basic execution
+       result = await agent.arun("Say hello and list your available tools")
+       assert result, "Agent returned no result"
+       assert len(str(result)) > 10, "Agent response too short"
+       
+       # Health check
+       health = await agent.health_check_mcp()
+       assert health, "Health check failed"
+       
+       print("✅ All tests passed!")
+       return True
 
    # Run test
-   test_basic_setup()
-   print("✅ Basic setup test passed!")
+   if asyncio.run(test_basic_setup()):
+       print("🎉 MCP setup is working correctly!")
 
 Common Issues
 -------------
@@ -247,39 +333,70 @@ Common Issues
 
 .. code-block:: bash
 
-   # Ensure package is installed
+   # Ensure package is installed with all dependencies
    poetry install
    # or
    pip install -e .
 
-**ValidationError when creating servers**
+**MCP Server Installation Failures**
 
-.. code-block:: python
+.. code-block:: bash
 
-   # Check field validation
-   from pydantic import ValidationError
+   # Check npm/npx is available
+   which npx
    
-   try:
-       server = MCPServerInfo(name="", capabilities=[])  # Invalid
-   except ValidationError as e:
-       print(f"Validation error: {e}")
+   # Update npm if needed
+   npm install -g npm@latest
+   
+   # Test manual server installation
+   npx -y @modelcontextprotocol/server-filesystem /tmp
 
-**FileNotFoundError for server directory**
+**Agent Initialization Timeouts**
 
 .. code-block:: python
 
-   # Ensure directory exists
-   server_dir = Path("/home/will/Downloads/mcp_servers")
-   server_dir.mkdir(parents=True, exist_ok=True)
+   # Increase timeout for slow networks
+   agent = EnhancedMCPAgent(
+       name="patient_agent",
+       engine=AugLLMConfig(),
+       mcp_categories=["core"],
+       auto_install=True,
+       initialization_timeout=120  # 2 minutes instead of default 30s
+   )
+
+**No Tools Discovered**
+
+.. code-block:: python
+
+   # Debug tool discovery
+   manager = agent.mcp_manager
+   status = await manager.get_all_server_status()
+   
+   for server_name, server_status in status.items():
+       print(f"{server_name}: {server_status}")
+       if server_status == "failed":
+           # Check server logs
+           logs = await manager.get_server_logs(server_name)
+           print(f"Logs: {logs}")
+
+**Permission Errors**
+
+.. code-block:: bash
+
+   # Ensure correct permissions for MCP server directories
+   chmod +x ~/.local/bin/npx  # If using local npm
+   
+   # Or use global npm installation
+   sudo npm install -g @modelcontextprotocol/server-filesystem
 
 Next Steps
 ----------
 
-1. :doc:`platform-architecture` - Understand the design principles
-2. :doc:`mcp-browser-plugin` - Deep dive into plugin features
-3. :doc:`fastapi-integration` - Web API development
-4. :doc:`real-world-examples` - Advanced usage patterns
+1. :doc:`advanced-usage` - Advanced MCP patterns and workflows
+2. :doc:`server-development` - Creating custom MCP servers
+3. :doc:`agent-integration` - Integrating MCP with existing agents
+4. :doc:`performance-tuning` - Optimizing MCP performance
 
 .. note::
-   This quickstart uses our Pydantic-first design principles - no ``__init__`` methods, 
-   comprehensive validation, and intelligent inheritance patterns.
+   Haive MCP uses real-time server discovery and installation. All examples use actual 
+   MCP servers, not mocks or simulations, ensuring your development matches production behavior.

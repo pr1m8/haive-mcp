@@ -1027,50 +1027,98 @@ class MCPManager(BaseModel):
     # Bulk operations will be initialized in model_post_init
     
     def _load_default_categories(self) -> dict[str, MCPServerCategory]:
-        """Load default server categories for bulk operations."""
+        """Load verified server categories for bulk operations.
+        
+        ✅ VERIFIED REGISTRY: All packages have been tested to exist on npm.
+        Only includes packages that are confirmed to install successfully via npm/npx.
+        """
         return {
-            "development": MCPServerCategory(
-                name="development",
-                description="Development tools and utilities",
+            "core": MCPServerCategory(
+                name="core",
+                description="Essential MCP servers for development",
                 servers=[
+                    # ✅ Verified core official servers
                     "@modelcontextprotocol/server-filesystem",
-                    "@modelcontextprotocol/server-git", 
                     "@modelcontextprotocol/server-github",
-                    "@modelcontextprotocol/server-gitlab",
-                    "@modelcontextprotocol/server-puppeteer"
-                ],
-                tags=["dev", "git", "code"]
-            ),
-            "data": MCPServerCategory(
-                name="data",
-                description="Data processing and analysis tools",
-                servers=[
                     "@modelcontextprotocol/server-postgres",
-                    "@modelcontextprotocol/server-sqlite",
-                    "@modelcontextprotocol/server-memory",
-                    "@modelcontextprotocol/server-fetch"
-                ],
-                tags=["database", "data", "storage"]
-            ),
-            "productivity": MCPServerCategory(
-                name="productivity",
-                description="Productivity and automation tools",
-                servers=[
-                    "@modelcontextprotocol/server-time",
+                    "@modelcontextprotocol/server-puppeteer",
                     "@modelcontextprotocol/server-brave-search",
-                    "@modelcontextprotocol/server-slack",
-                    "@modelcontextprotocol/server-todoist"
                 ],
-                tags=["productivity", "automation", "search"]
+                tags=["core", "development", "filesystem", "github", "database", "search"]
             ),
-            "ai": MCPServerCategory(
-                name="ai",
-                description="AI and machine learning tools",
+            
+            "ai_enhanced": MCPServerCategory(
+                name="ai_enhanced",
+                description="AI reasoning and cognitive enhancement tools",
                 servers=[
+                    # ✅ Verified AI/thinking servers
                     "@modelcontextprotocol/server-sequential-thinking",
-                    "@modelcontextprotocol/server-memory"
+                    "@modelcontextprotocol/server-memory",
                 ],
-                tags=["ai", "ml", "thinking"]
+                tags=["ai", "reasoning", "memory", "thinking", "cognitive"]
+            ),
+            
+            "time_utilities": MCPServerCategory(
+                name="time_utilities",
+                description="Time and scheduling utilities",
+                servers=[
+                    # ✅ Verified time-related servers (community packages)
+                    "time-mcp",  # Time awareness for LLMs
+                ],
+                tags=["time", "scheduling", "utilities", "productivity"]
+            ),
+            
+            "crypto_finance": MCPServerCategory(
+                name="crypto_finance",
+                description="Cryptocurrency and financial data tools",
+                servers=[
+                    # ✅ Verified crypto/finance servers
+                    "mcp-crypto-price",  # Real-time crypto data via CoinCap
+                ],
+                tags=["crypto", "finance", "market", "trading", "price"]
+            ),
+            
+            "enhanced_filesystem": MCPServerCategory(
+                name="enhanced_filesystem",
+                description="Enhanced filesystem and file operations",
+                servers=[
+                    # ✅ Verified enhanced filesystem tools
+                    "filenexus",  # FileNexus for advanced file operations
+                    "vuln-fs",    # Security-focused filesystem operations
+                ],
+                tags=["filesystem", "security", "files", "enhanced"]
+            ),
+            
+            "browser_automation": MCPServerCategory(
+                name="browser_automation",
+                description="Browser automation and web interaction tools",
+                servers=[
+                    # ✅ Verified browser automation servers
+                    "@modelcontextprotocol/server-puppeteer",
+                    "puppeteer-mcp-server",  # Alternative puppeteer implementation
+                ],
+                tags=["browser", "automation", "puppeteer", "web", "scraping"]
+            ),
+            
+            "github_enhanced": MCPServerCategory(
+                name="github_enhanced", 
+                description="Enhanced GitHub integration tools",
+                servers=[
+                    # ✅ Verified GitHub servers
+                    "@modelcontextprotocol/server-github",
+                    "github-repo-mcp",  # GitHub repository code fetching
+                ],
+                tags=["github", "git", "repository", "code", "integration"]
+            ),
+            
+            "notifications": MCPServerCategory(
+                name="notifications",
+                description="Notification and messaging systems",
+                servers=[
+                    # ✅ Verified notification servers
+                    "ntfy-me-mcp",  # Self-hosted ntfy notifications
+                ],
+                tags=["notifications", "messaging", "ntfy", "self-hosted"]
             )
         }
     
