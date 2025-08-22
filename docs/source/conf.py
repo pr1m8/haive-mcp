@@ -8,18 +8,100 @@ from sphinx.application import Sphinx
 # Path setup
 sys.path.insert(0, os.path.abspath("../../src"))
 
-# Import shared Haive configuration from pydevelop-docs package
-from pydevelop_docs.config import get_haive_config
+# -- Project information -----------------------------------------------------
+project = "haive-mcp"
+copyright = "2025, Haive Team"
+author = "Haive Team"
+release = "0.1.0"
 
-# Get package-specific configuration
-package_name = "haive-mcp"
-package_path = "../../src"
+# -- General configuration ---------------------------------------------------
+extensions = [
+    "autoapi.extension",  # Must be first
+    "sphinx.ext.autodoc", 
+    "sphinx.ext.napoleon",
+    "sphinx.ext.viewcode",
+    "sphinx.ext.intersphinx",
+    "sphinx_copybutton",
+    "sphinx_design",
+    "sphinxcontrib.mermaid",
+    "sphinx.ext.graphviz",
+]
 
-config = get_haive_config(
-    package_name=package_name,
-    package_path=package_path,
-    is_central_hub=False
-)
+# AutoAPI Configuration
+autoapi_dirs = ["../../src"]
+autoapi_type = "python"
+autoapi_add_toctree_entry = True
+autoapi_keep_files = True
+autoapi_root = "autoapi"
+autoapi_include_inheritance_diagram = False
+autoapi_options = [
+    "members",
+    "undoc-members",
+    "show-inheritance",
+    "show-module-summary",
+    "imported-members",
+    "special-members",
+]
 
-# Apply configuration to globals
-globals().update(config)
+# CRITICAL: Use module-level pages for hierarchical organization
+autoapi_own_page_level = "module"
+autoapi_member_order = "groupwise"
+
+# -- Options for HTML output -------------------------------------------------
+html_theme = "furo"
+html_static_path = ["_static"]
+
+# Furo theme configuration
+html_theme_options = {
+    "light_css_variables": {
+        "color-brand-primary": "#8b5cf6",
+        "color-brand-content": "#7c3aed",
+    },
+    "dark_css_variables": {
+        "color-brand-primary": "#a78bfa",
+        "color-brand-content": "#c084fc",
+    },
+}
+
+# Napoleon settings
+napoleon_google_docstring = True
+napoleon_numpy_docstring = True
+
+# Intersphinx
+intersphinx_mapping = {
+    "python": ("https://docs.python.org/3", None),
+    "sphinx": ("https://www.sphinx-doc.org/en/master", None),
+}
+
+# -- Purple Theme Configuration ----------------------------------------------
+# Syntax highlighting - use purple-friendly themes
+pygments_style = "default"  # Better for light mode with our custom CSS
+pygments_dark_style = "monokai"  # Good for dark mode
+
+# AutoAPI configuration for prominent API Reference
+autoapi_add_toctree_entry = True
+autoapi_toctree_caption = "🔍 API Reference"
+autoapi_toctree_first = True  # Put at top!
+
+# Graphviz configuration for beautiful diagrams
+graphviz_output_format = "svg"
+graphviz_dot_args = [
+    "-Kdot",
+    "-Tsvg",
+    "-Gfontname=Inter",
+    "-Nfontname=Inter",
+    "-Efontname=Inter",
+    "-Gbgcolor=transparent",
+    "-Gpad=0.5",
+    "-Grankdir=TB",
+    "-Gnodesep=0.7",
+    "-Granksep=0.8",
+    "-Gsplines=true",
+]
+
+# CSS files in correct order - purple theme loads last to override
+html_css_files = [
+    "graphviz-purple-theme.css",  # Purple diagram theme
+    "code-purple-theme.css",  # Purple code blocks (MUST be last)
+    "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap",
+]
