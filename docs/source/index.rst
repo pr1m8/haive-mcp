@@ -3,12 +3,11 @@ Haive MCP Documentation
 
 .. toctree::
    :maxdepth: 4
-   :caption: 🔍 API Reference
+   :caption: 📖 Documentation
    :hidden:
 
    API Overview <api_reference>
    Class Inheritance <inheritance_diagram>
-   autoapi/index
 
 .. toctree::
    :maxdepth: 3
