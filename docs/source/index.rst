@@ -7,6 +7,7 @@ Haive MCP Documentation
    :hidden:
 
    API Overview <api_reference>
+   Class Inheritance <inheritance_diagram>
    autoapi/index
 
 .. toctree::
