@@ -3,52 +3,89 @@
 This package provides dynamic MCP (Model Context Protocol) integration for Haive agents,
 enabling them to discover and use external tools and resources at runtime.
 
-Key Components:
-    - MCPManager: Central manager for MCP server lifecycle and tool management
-    - MCPAgent: Production-ready agent with static MCP configuration
-    - IntelligentMCPAgent: AI-powered agent with automatic server discovery
-    - TransferableMCPAgent: Agent that can share tools with other agents
+Key Components
+--------------
 
-Example:
-    Basic MCP agent usage:
+- **MCPManager**: Central manager for MCP server lifecycle and tool management
+- **MCPAgent**: Production-ready agent with static MCP configuration  
+- **IntelligentMCPAgent**: AI-powered agent with automatic server discovery
+- **TransferableMCPAgent**: Agent that can share tools with other agents
 
-        from haive.mcp import MCPAgent, MCPConfig
-        from haive.core.engine import AugLLMConfig
+Quick Start
+-----------
 
-        # Create agent with MCP capabilities
-        agent = MCPAgent(
-            engine=AugLLMConfig(),
-            mcp_config=MCPConfig(
-                enabled=True,
-                servers={
-                    "filesystem": {
-                        "transport": "stdio",
-                        "command": "npx",
-                        "args": ["-y", "@modelcontextprotocol/server-filesystem"]
-                    }
+Basic MCP Agent Usage
+~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    from haive.mcp import MCPAgent, MCPConfig
+    from haive.core.engine import AugLLMConfig
+
+    # Create agent with MCP capabilities
+    agent = MCPAgent(
+        engine=AugLLMConfig(),
+        mcp_config=MCPConfig(
+            enabled=True,
+            servers={
+                "filesystem": {
+                    "transport": "stdio",
+                    "command": "npx",
+                    "args": ["-y", "@modelcontextprotocol/server-filesystem"]
                 }
-            )
+            }
         )
+    )
 
-        # Initialize and use
-        await agent.setup()
-        result = await agent.arun({"messages": [...]})
+    # Initialize and use
+    await agent.setup()
+    result = await agent.arun({"messages": [...]})
 
-    Dynamic discovery with IntelligentMCPAgent:
+Dynamic Discovery with IntelligentMCPAgent
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-        from haive.mcp import IntelligentMCPAgent
+.. code-block:: python
 
-        # Create agent with auto-discovery
-        agent = IntelligentMCPAgent(
-            engine=AugLLMConfig(),
-            auto_discover=True,
-            require_approval=True
-        )
+    from haive.mcp import IntelligentMCPAgent
 
-        # Agent will automatically find and install needed MCP servers
-        result = await agent.arun({
-            "messages": [{"role": "user", "content": "Search web and save to database"}]
-        })
+    # Create agent with auto-discovery
+    agent = IntelligentMCPAgent(
+        engine=AugLLMConfig(),
+        auto_discover=True,
+        require_approval=True
+    )
+
+    # Agent will automatically find and install needed MCP servers
+    result = await agent.arun({
+        "messages": [{"role": "user", "content": "Search web and save to database"}]
+    })
+
+Available Classes
+-----------------
+
+Configuration
+~~~~~~~~~~~~~
+- :class:`MCPConfig` - Main configuration for MCP integration
+- :class:`MCPServerConfig` - Individual server configuration
+- :class:`MCPTransport` - Transport protocol enumeration
+
+Agents
+~~~~~~
+- :class:`MCPAgent` - Basic MCP-enabled agent
+- :class:`IntelligentMCPAgent` - Agent with automatic discovery
+- :class:`TransferableMCPAgent` - Agent with tool sharing capabilities
+
+Management
+~~~~~~~~~~
+- :class:`MCPManager` - Server lifecycle management
+- :class:`MCPHealthStatus` - Health monitoring
+- :class:`MCPRegistrationResult` - Registration status
+
+Utilities
+~~~~~~~~~
+- :class:`MCPMixin` - Add MCP capabilities to existing agents
+- :class:`MCPServerDiscovery` - Discover available servers
+- :class:`MCPDocumentationLoader` - Load server documentation
 """
 
 # Agent implementations - handle missing dependencies gracefully
