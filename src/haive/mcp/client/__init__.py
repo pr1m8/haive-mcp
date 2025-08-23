@@ -4,46 +4,78 @@ This package provides native MCP protocol client implementation for connecting
 to and communicating with MCP servers according to the Model Context Protocol
 specification.
 
-Key Classes:
-    MCPClient: Main client for protocol communication
-    MCPTransport: Transport layer abstraction
-    MCPConnection: Connection management
-    MCPProtocol: Protocol implementation
+Key Components
+--------------
 
-Transport Support:
-    - STDIO: Communication via stdin/stdout
-    - HTTP: RESTful communication
-    - SSE: Server-sent events
-    - WebSocket: Real-time bidirectional communication
+**Core Classes**
+    - :class:`MCPClient`: Main client for protocol communication
+    - :class:`MCPTransport`: Transport layer abstraction  
+    - :class:`MCPConnection`: Connection management
+    - :class:`MCPProtocol`: Protocol implementation
 
-Usage:
-    Basic connection::
+**Transport Support**
+    - **STDIO**: Communication via stdin/stdout
+    - **HTTP**: RESTful communication  
+    - **SSE**: Server-sent events
+    - **WebSocket**: Real-time bidirectional communication
 
-        from haive.mcp.client import MCPClient, StdioTransport
+Usage Examples
+--------------
 
-        # Create transport and client
-        transport = StdioTransport(
-            command="npx",
-            args=["-y", "@modelcontextprotocol/server-filesystem"]
-        )
-        client = MCPClient(transport)
+Basic Connection
+~~~~~~~~~~~~~~~~
 
-        # Connect and use
-        await client.connect()
+.. code-block:: python
+
+    from haive.mcp.client import MCPClient, StdioTransport
+
+    # Create transport and client
+    transport = StdioTransport(
+        command="npx",
+        args=["-y", "@modelcontextprotocol/server-filesystem"]
+    )
+    client = MCPClient(transport)
+
+    # Connect and use
+    await client.connect()
+    tools = await client.list_tools()
+    result = await client.call_tool("read_file", {"path": "/etc/hosts"})
+    await client.disconnect()
+
+Context Manager Usage
+~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    async with MCPClient(transport) as client:
         tools = await client.list_tools()
-        result = await client.call_tool("read_file", {"path": "/etc/hosts"})
-        await client.disconnect()
+        result = await client.call_tool("tool_name", args)
 
-    With context manager::
+Available Classes
+-----------------
 
-        async with MCPClient(transport) as client:
-            tools = await client.list_tools()
-            result = await client.call_tool("tool_name", args)
+Transport Classes
+~~~~~~~~~~~~~~~~~
+- :class:`StdioTransport` - Standard I/O transport
+- :class:`HttpTransport` - HTTP-based transport
+- :class:`SseTransport` - Server-Sent Events transport
+- :class:`WebSocketTransport` - WebSocket transport
 
-Note:
-    This is a native implementation of the MCP protocol, designed to work
-    with any MCP-compliant server. It handles the full protocol lifecycle
-    including initialization, capability discovery, and tool execution.
+Exception Classes
+~~~~~~~~~~~~~~~~~
+- :class:`MCPError` - Base MCP exception
+- :class:`MCPConnectionError` - Connection-related errors
+- :class:`MCPProtocolError` - Protocol violation errors
+- :class:`MCPTimeoutError` - Timeout-related errors
+- :class:`MCPTransportError` - Transport layer errors
+- :class:`MCPAuthenticationError` - Authentication failures
+- :class:`MCPCapabilityError` - Capability negotiation errors
+- :class:`MCPToolError` - Tool execution errors
+
+.. note::
+   This is a native implementation of the MCP protocol, designed to work
+   with any MCP-compliant server. It handles the full protocol lifecycle
+   including initialization, capability discovery, and tool execution.
 """
 
 from .mcp_client import MCPClient

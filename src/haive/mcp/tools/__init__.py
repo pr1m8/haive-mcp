@@ -1,4 +1,106 @@
-"""Module exports."""
+"""MCP Server Tools Package.
+
+This package provides comprehensive tools for exploring, managing, and interacting 
+with Model Context Protocol (MCP) servers. These tools enable discovery of server 
+capabilities, resource inspection, and interactive management of MCP server lifecycles.
+
+Key Components
+--------------
+
+**Server Management Tools**
+    - :class:`MCPResourceInspector` - Discovers server tools, resources, and capabilities
+    - :class:`MCPServerViewer` - Interactive interface for server management and exploration  
+    - :class:`MCPServerSelector` - Intelligent server selection based on requirements
+    - :class:`MCPServerTester` - Comprehensive testing and validation of server functionality
+
+**AI-Powered Tools**
+    - :class:`MCPAIAssistant` - Intelligent assistant for MCP server operations
+    - **Smart Discovery**: Automatic capability detection and optimization
+    - **Resource Analysis**: Deep inspection of server resources and tools
+
+Usage Examples
+--------------
+
+Server Resource Inspection
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    from haive.mcp.tools import MCPResourceInspector
+
+    # Inspect server capabilities
+    inspector = MCPResourceInspector()
+    capabilities = await inspector.inspect_server(
+        "filesystem_server",
+        include_tools=True,
+        include_resources=True,
+        include_prompts=True
+    )
+
+    print(f"Available tools: {capabilities.tools}")
+    print(f"Available resources: {capabilities.resources}")
+
+Interactive Server Management
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    from haive.mcp.tools import MCPServerViewer
+
+    # Launch interactive server viewer
+    viewer = MCPServerViewer()
+    await viewer.start_interactive_session()
+
+    # Select and explore servers
+    server_info = await viewer.select_server()
+    await viewer.explore_capabilities(server_info)
+
+Server Testing and Validation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    from haive.mcp.tools import MCPServerTester
+
+    # Test server functionality
+    tester = MCPServerTester()
+    results = await tester.run_comprehensive_tests(
+        server_name="web_search_server",
+        test_tools=True,
+        test_resources=True,
+        test_performance=True
+    )
+
+    print(f"Test results: {results.summary}")
+
+Available Classes
+-----------------
+
+Inspection Tools
+~~~~~~~~~~~~~~~~
+- :class:`MCPResourceInspector` - Server capability discovery
+- :class:`MCPServerTester` - Testing and validation
+
+Management Tools  
+~~~~~~~~~~~~~~~~
+- :class:`MCPServerViewer` - Interactive server exploration
+- :class:`MCPServerSelector` - Intelligent server selection
+
+AI-Powered Tools
+~~~~~~~~~~~~~~~~
+- :class:`MCPAIAssistant` - Intelligent MCP assistant
+- **Smart Analysis**: Automated server analysis and optimization
+
+Command Line Interface
+~~~~~~~~~~~~~~~~~~~~~~
+- **Server Explorer**: Interactive CLI for server management
+- **Resource Browser**: Browse server tools and resources
+- **Test Runner**: Execute comprehensive server tests
+
+.. note::
+   These tools provide both programmatic APIs and interactive interfaces
+   for comprehensive MCP server management and exploration.
+"""
 
 from haive.mcp.tools.ai_assistant import (
     MCPAssistant,
@@ -19,13 +121,17 @@ from haive.mcp.tools.server_tester import (
     MCPServerTester,
     TestResult,
 )
+from haive.mcp.tools.resource_inspector import MCPResourceInspector
+from haive.mcp.tools.server_viewer import MCPServerViewer
 
 __all__ = [
     "HealthMonitor",
     "HealthStatus",
     "MCPAssistant",
+    "MCPResourceInspector",
     "MCPServerSelector",
     "MCPServerTester",
+    "MCPServerViewer",
     "ServerFilter",
     "ServerRecommendation",
     "ServerScore",

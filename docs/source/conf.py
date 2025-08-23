@@ -21,8 +21,12 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
     "sphinx.ext.intersphinx",
+    "sphinx.ext.todo",  # For TODO items
+    "sphinx.ext.ifconfig",  # Conditional content
     "sphinx_copybutton",
     "sphinx_design",
+    "sphinx_tabs.tabs",  # For .. tabs:: directive
+    "sphinx_togglebutton",  # For collapsible content
     "sphinxcontrib.mermaid",
     "sphinx.ext.graphviz",
 ]
@@ -100,8 +104,13 @@ pygments_dark_style = "monokai"  # Good for dark mode
 
 # AutoAPI configuration for prominent API Reference
 autoapi_add_toctree_entry = True
-autoapi_toctree_caption = "🔍 API Reference"
+autoapi_toctree_caption = "🔍 Complete API Reference"
 autoapi_toctree_first = True  # Put at top!
+
+# Enhanced AutoAPI display
+autoapi_generate_api_docs = True
+autoapi_python_class_content = "both"  # Include both class and init docstrings
+autoapi_python_use_implicit_namespaces = True
 
 # Graphviz configuration for beautiful diagrams
 graphviz_output_format = "svg"

@@ -2,27 +2,41 @@ Haive MCP Documentation
 =======================
 
 .. toctree::
+   :maxdepth: 4
+   :caption: 🔍 API Reference
+   :hidden:
+
+   API Overview <api_reference>
+   autoapi/index
+
+.. toctree::
    :maxdepth: 3
    :caption: 🚀 Quick Start
    :hidden:
 
    getting_started
-   installation
+   installation 
    quickstart
 
 .. toctree::
-   :maxdepth: 3
-   :caption: 📚 Learning Center
+   :maxdepth: 2
+   :caption: 📚 Tutorials & Examples
    :hidden:
 
    tutorials
    examples
+
+.. toctree::
+   :maxdepth: 2
+   :caption: 📖 User Guides
+   :hidden:
+
    guides
    user_guide
 
 .. toctree::
-   :maxdepth: 3
-   :caption: 🛠️ Developer Guide
+   :maxdepth: 2
+   :caption: 🛠️ Developer Resources
    :hidden:
 
    advanced
@@ -31,7 +45,7 @@ Haive MCP Documentation
    managing_mcp_servers
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    :caption: 🔧 MCP Servers
    :hidden:
 
@@ -45,7 +59,6 @@ Haive MCP Documentation
    :caption: 📖 References
    :hidden:
 
-   api_reference
    changelog
    glossary
 
@@ -95,51 +108,62 @@ Model Context Protocol (MCP) is an open standard that allows AI systems to secur
 Quick Example: Dynamic Discovery in Action
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Watch as an agent automatically discovers and integrates tools based on your request::
+.. code-block:: python
+   :caption: Watch an agent automatically discover and integrate tools
 
-    from haive.mcp.agents import IntelligentMCPAgent
-    from haive.core.engine import AugLLMConfig
+   from haive.mcp.agents import IntelligentMCPAgent
+   from haive.core.engine import AugLLMConfig
 
-    # Create an intelligent agent with dynamic discovery
-    agent = IntelligentMCPAgent(
-        engine=AugLLMConfig(),
-        auto_discover=True  # Enable automatic tool discovery
-    )
+   # Create an intelligent agent with dynamic discovery
+   agent = IntelligentMCPAgent(
+       engine=AugLLMConfig(),
+       auto_discover=True  # Enable automatic tool discovery
+   )
 
-    # Ask it to do something - it will find the tools it needs!
-    result = await agent.arun({
-        "messages": [{
-            "role": "user",
-            "content": "Search GitHub for Python AI projects, analyze their code quality, and save a report"
-        }]
-    })
+   # Ask it to do something - it will find the tools it needs!
+   result = await agent.arun({
+       "messages": [{
+           "role": "user", 
+           "content": "Search GitHub for Python AI projects and create a report"
+       }]
+   })
 
-    # The agent automatically:
-    # 1. Discovers it needs GitHub access → finds @modelcontextprotocol/server-github
-    # 2. Discovers it needs file writing → finds @modelcontextprotocol/server-filesystem  
-    # 3. Discovers it needs code analysis → finds relevant code analysis servers
-    # 4. Installs and integrates all tools dynamically
-    # 5. Completes the complex task with its newly acquired capabilities!
+.. note::
+   The agent automatically:
+   
+   1. **Discovers GitHub access** → finds @modelcontextprotocol/server-github
+   2. **Discovers file writing** → finds @modelcontextprotocol/server-filesystem  
+   3. **Finds code analysis** → locates relevant analysis servers
+   4. **Installs all tools** dynamically at runtime
+   5. **Completes the task** with newly acquired capabilities!
 
-Self-Query Through 1900+ Servers from Top Repositories
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Massive Server Discovery Database
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The agent can search through a massive database of MCP servers from leading GitHub projects::
+.. grid:: 2
+   :gutter: 2
 
-    # Ask for any capability - the agent will find it from top repositories
-    "Extract data from PDFs"           → Discovers PDF processing servers
-    "Connect to PostgreSQL"            → Finds database servers  
-    "Create data visualizations"       → Locates visualization tools
-    "Send emails"                      → Identifies email servers
-    "Scrape websites"                  → Finds web scraping tools
-    "Generate music"                   → Discovers audio generation servers
-    "Analyze stock market data"        → Finds financial data servers
-    "Control smart home devices"       → Finds IoT integration servers
-    "Process medical images"           → Discovers healthcare ML servers
-    "Translate documents"              → Finds translation API servers
-    "Optimize cloud resources"         → Locates cloud management tools
-    "Analyze blockchain data"          → Finds crypto analysis servers
-    ... and 1888+ more capabilities from the most popular GitHub projects!
+   .. grid-item-card:: 🔍 **Smart Discovery**
+      :text-align: center
+
+      Ask for any capability and agents find the right tools:
+      
+      * "Extract data from PDFs" → PDF processing servers
+      * "Connect to PostgreSQL" → Database servers  
+      * "Create visualizations" → Charting tools
+      * "Send emails" → Email API servers
+      * "Scrape websites" → Web scraping tools
+
+   .. grid-item-card:: 🚀 **Vast Ecosystem**
+      :text-align: center
+
+      Access to **1900+ servers** from top repositories:
+      
+      * Financial data & crypto analysis
+      * Smart home & IoT integration  
+      * Medical image processing
+      * Document translation
+      * Cloud resource optimization
 
 Getting Help
 ~~~~~~~~~~~~

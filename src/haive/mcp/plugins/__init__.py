@@ -1,120 +1,44 @@
-# haive-mcp/src/haive/mcp/plugins/__init__.py
-"""
-MCP Plugins Module - Phase 2 Implementation
+"""MCP Plugins Module.
 
 This module provides plugin implementations for the unified MCP platform architecture.
 All plugins inherit from PluginPlatform and implement the Pydantic-first design pattern
 with intelligent inheritance from our Phase 1 base platform models.
 
-Plugin Architecture:
-===================
+Plugin Architecture
+-------------------
 
-Base Inheritance Chain:
-- BasePlatform (haive-dataflow) - Foundation with core capabilities
-- PluginPlatform (haive-dataflow) - Plugin-specific extensions
-- MCPBrowserPlugin (this module) - Specialized for our 63 downloaded servers
+Base Inheritance Chain
+~~~~~~~~~~~~~~~~~~~~~~
+- **BasePlatform** (haive-dataflow) - Foundation with core capabilities
+- **PluginPlatform** (haive-dataflow) - Plugin-specific enhancements
+- **MCPBrowserPlugin** (haive-mcp) - Browser automation plugin
 
-Key Design Principles:
-- Pure Pydantic models (no __init__ methods)
-- Intelligent inheritance with platform capabilities
-- Real data integration with our download infrastructure
-- FastAPI route registration for web interface
-- Intelligent caching for performance
+Key Features
+~~~~~~~~~~~~
+- **Pydantic-First Design**: Full type safety and validation
+- **Intelligent Inheritance**: Automatic capability composition
+- **Phase 2 Implementation**: Advanced plugin functionality
 
-Available Plugins:
-=================
+Available Plugins
+-----------------
 
-MCPBrowserPlugin:
-- Manages our 63 successfully downloaded MCP servers
-- Loads data from CSV files and install reports  
-- Provides web interface for server browsing
-- Implements intelligent caching with TTL
-- Supports filtering by language, stars, and other criteria
+Browser Plugin
+~~~~~~~~~~~~~~
+- :class:`MCPBrowserPlugin` - Browser automation and web interaction
+- **Features**: Page navigation, element interaction, screenshot capture
+- **Integration**: Works with Playwright and Selenium
 
-Usage Examples:
-==============
+Plugin Registry
+~~~~~~~~~~~~~~~
+- :func:`get_plugin_registry` - Get available plugin registry
+- :func:`get_plugin_class` - Load plugin class by name
 
-Basic plugin creation::
-
-    from haive.mcp.plugins import MCPBrowserPlugin
-    
-    # Create plugin with default configuration
-    plugin = MCPBrowserPlugin()
-    
-    # Initialize plugin (validates data sources)
-    await plugin.initialize()
-    
-    # Get our downloaded servers
-    servers = plugin.get_servers()
-    print(f"Loaded {len(servers)} downloaded servers")
-
-Custom configuration::
-
-    plugin = MCPBrowserPlugin(
-        servers_data_file=Path("custom/path/servers.csv"),
-        install_reports_pattern="custom_install_*.json",
-        cache_ttl_seconds=600  # 10 minutes
-    )
-
-FastAPI integration::
-
-    from fastapi import FastAPI
-    
-    app = FastAPI()
-    plugin = MCPBrowserPlugin()
-    
-    # Register plugin routes
-    plugin.register_routes(app)
-    
-    # Routes available at /mcp/servers, /mcp/stats, etc.
-
-Server filtering::
-
-    # Get JavaScript servers
-    js_servers = plugin.get_servers_by_language("JavaScript")
-    
-    # Get popular servers (>100 stars)
-    popular = plugin.get_servers_by_stars(min_stars=100)
-    
-    # Get specific server
-    server = plugin.get_server_by_name("AgentDeskAI/browser-tools-mcp")
-
-Plugin Statistics:
-=================
-
-The plugin provides comprehensive statistics about our downloaded servers:
-- Total server count
-- Language distribution
-- Star count statistics  
-- Transport protocol usage
-- Cache performance metrics
-- Inheritance validation results
-
-Phase 2 Status:
-==============
-
-✅ MCPBrowserPlugin implemented with full PluginPlatform inheritance
-✅ Real data integration with our CSV and install report files
-✅ Intelligent caching system with configurable TTL
-✅ FastAPI routes for web interface
-✅ Server filtering and search capabilities
-✅ Comprehensive statistics and monitoring
-✅ Error handling and validation
-✅ Documentation and examples
-
-Integration Notes:
-=================
-
-This plugin integrates with our existing infrastructure:
-- CSV data from scratches/mcp-analysis/mcp_servers_data.csv
-- Install reports matching pattern mcp_install_report_*.json
-- Uses DownloadedServerInfo models from haive-dataflow
-- Inherits all capabilities from PluginPlatform and BasePlatform
-- Compatible with the broader haive-dataflow and haive-agp ecosystem
-
-The plugin demonstrates the successful Phase 2 implementation of our unified
-MCP platform plan, building on the validated Phase 1 foundation models.
+.. note::
+   This is a Phase 2 implementation focusing on advanced plugin capabilities
+   with full Pydantic integration and intelligent inheritance patterns.
 """
+
+
 
 from .browser_plugin import MCPBrowserPlugin
 
