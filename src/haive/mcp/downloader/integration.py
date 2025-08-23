@@ -108,8 +108,7 @@ class MCPServerConnection(BaseModel):
     prompts: list[dict[str, Any]] = Field(default_factory=list, description="Prompts")
     connected: bool = Field(default=False, description="Connection status")
 
-    class Config:
-        arbitrary_types_allowed = True
+    model_config = {"arbitrary_types_allowed": True}
 
     async def connect(self) -> bool:
         """Establish connection to the MCP server.

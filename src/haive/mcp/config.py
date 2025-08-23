@@ -140,8 +140,7 @@ class MCPServerConfig(BaseModel):
         None, description="Health check interval in seconds"
     )
 
-    class Config:
-        extra = "allow"  # Allow additional fields for flexibility
+    model_config = {"extra": "allow"}  # Allow additional fields for flexibility
 
 
 class MCPConfig(BaseModel):

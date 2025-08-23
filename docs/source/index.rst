@@ -2,11 +2,12 @@ Haive MCP Documentation
 =======================
 
 .. toctree::
-   :maxdepth: 4
-   :caption: 📖 Documentation
+   :maxdepth: 3
+   :caption: 📖 Overview
    :hidden:
 
-   API Overview <api_reference>
+   overview
+   architecture
    Class Inheritance <inheritance_diagram>
 
 .. toctree::
@@ -17,6 +18,43 @@ Haive MCP Documentation
    getting_started
    installation 
    quickstart
+
+.. toctree::
+   :maxdepth: 6
+   :caption: 📚 haive-mcp API
+   :hidden:
+
+   API Overview <autoapi/haive/mcp/index>
+   
+.. toctree::
+   :maxdepth: 4
+   :caption: 🤖 Agents
+   :hidden:
+
+   Agents Module <autoapi/haive/mcp/agents/index>
+   Basic MCP Agent <autoapi/haive/mcp/agents/basic_mcp_agent/index>
+   Intelligent MCP Agent <autoapi/haive/mcp/agents/intelligent_mcp_agent/index>
+   Documentation Agent <autoapi/haive/mcp/agents/documentation_agent/index>
+   
+.. toctree::
+   :maxdepth: 4
+   :caption: 🔧 Core Components
+   :hidden:
+
+   Configuration <autoapi/haive/mcp/config/index>
+   Manager <autoapi/haive/mcp/manager/index>
+   Client <autoapi/haive/mcp/client/index>
+   Servers <autoapi/haive/mcp/servers/index>
+   
+.. toctree::
+   :maxdepth: 4
+   :caption: 🛠️ Tools & Integration
+   :hidden:
+
+   Tools <autoapi/haive/mcp/tools/index>
+   Integration <autoapi/haive/mcp/integration/index>
+   Discovery <autoapi/haive/mcp/discovery/index>
+   Retrieval <autoapi/haive/mcp/retrieval/index>
 
 .. toctree::
    :maxdepth: 2

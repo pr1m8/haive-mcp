@@ -1,0 +1,368 @@
+/* Enhanced Purple Theme for haive-mcp documentation */
+
+/* ===== DARK MODE ===== */
+body[data-theme="dark"] {
+    /* Main background - rich dark purple-black */
+    background-color: #0a0014 !important;
+    color: #e2e8f0 !important;
+}
+
+/* Sidebar styling */
+body[data-theme="dark"] .sidebar-container {
+    background: linear-gradient(180deg, #1a0f2e 0%, #0f0520 100%) !important;
+    border-right: 2px solid #6b46c1 !important;
+    box-shadow: 4px 0 8px rgba(107, 70, 193, 0.1) !important;
+}
+
+body[data-theme="dark"] .sidebar-tree {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+body[data-theme="dark"] .sidebar-tree a {
+    color: #c4b5fd !important;
+    transition: all 0.2s ease !important;
+    padding: 0.5rem 0.75rem !important;
+    border-radius: 6px !important;
+    margin: 2px 4px !important;
+}
+
+body[data-theme="dark"] .sidebar-tree a:hover {
+    color: #f3e8ff !important;
+    background: linear-gradient(90deg, #4c1d95 0%, #5b21b6 100%) !important;
+    transform: translateX(4px) !important;
+}
+
+body[data-theme="dark"] .sidebar-tree .current > a {
+    color: #f9fafb !important;
+    background: linear-gradient(90deg, #7c3aed 0%, #8b5cf6 100%) !important;
+    font-weight: 600 !important;
+    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3) !important;
+}
+
+/* Content area styling */
+body[data-theme="dark"] .content-container {
+    background-color: #0f0a1f !important;
+}
+
+body[data-theme="dark"] article {
+    background-color: #0f0a1f !important;
+    max-width: 1200px !important;
+}
+
+/* Headers with gradient accent */
+body[data-theme="dark"] h1 {
+    background: linear-gradient(135deg, #ddd6fe 0%, #a78bfa 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    font-weight: 700 !important;
+    margin-bottom: 1.5rem !important;
+}
+
+body[data-theme="dark"] h2 {
+    color: #e9d5ff !important;
+    border-bottom: 2px solid #4c1d95 !important;
+    padding-bottom: 0.5rem !important;
+    margin-top: 2rem !important;
+}
+
+body[data-theme="dark"] h3,
+body[data-theme="dark"] h4,
+body[data-theme="dark"] h5,
+body[data-theme="dark"] h6 {
+    color: #ddd6fe !important;
+}
+
+/* Links with smooth transitions */
+body[data-theme="dark"] a {
+    color: #a78bfa !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+}
+
+body[data-theme="dark"] a:hover {
+    color: #c4b5fd !important;
+    text-decoration: underline !important;
+}
+
+/* Beautiful code blocks */
+body[data-theme="dark"] pre {
+    background: linear-gradient(135deg, #1e1b4b 0%, #2e1065 100%) !important;
+    border: 1px solid #6b46c1 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(107, 70, 193, 0.15) !important;
+    padding: 1.5rem !important;
+    margin: 1.5rem 0 !important;
+    overflow-x: auto !important;
+}
+
+body[data-theme="dark"] code {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+    font-size: 0.9rem !important;
+    line-height: 1.6 !important;
+}
+
+body[data-theme="dark"] .highlight {
+    background: transparent !important;
+}
+
+/* Enhanced syntax highlighting */
+body[data-theme="dark"] .highlight .k { color: #c084fc !important; } /* Keywords */
+body[data-theme="dark"] .highlight .s { color: #86efac !important; } /* Strings */
+body[data-theme="dark"] .highlight .c { color: #6b7280 !important; } /* Comments */
+body[data-theme="dark"] .highlight .n { color: #e0e7ff !important; } /* Names */
+body[data-theme="dark"] .highlight .o { color: #f472b6 !important; } /* Operators */
+body[data-theme="dark"] .highlight .p { color: #a5b4fc !important; } /* Punctuation */
+body[data-theme="dark"] .highlight .m { color: #fbbf24 !important; } /* Numbers */
+body[data-theme="dark"] .highlight .kn { color: #f472b6 !important; } /* Import/From */
+body[data-theme="dark"] .highlight .nn { color: #c7d2fe !important; } /* Module names */
+body[data-theme="dark"] .highlight .nc { color: #fbbf24 !important; } /* Class names */
+body[data-theme="dark"] .highlight .nf { color: #60a5fa !important; } /* Function names */
+body[data-theme="dark"] .highlight .nd { color: #a78bfa !important; } /* Decorators */
+
+/* Inline code with purple accent */
+body[data-theme="dark"] p code,
+body[data-theme="dark"] li code,
+body[data-theme="dark"] td code {
+    background: linear-gradient(135deg, #4c1d95 0%, #5b21b6 100%) !important;
+    color: #f3e8ff !important;
+    padding: 0.2em 0.5em !important;
+    border-radius: 6px !important;
+    font-size: 0.85em !important;
+    font-weight: 500 !important;
+    box-shadow: 0 1px 3px rgba(107, 70, 193, 0.2) !important;
+}
+
+/* API documentation styling */
+body[data-theme="dark"] .sig {
+    background: linear-gradient(135deg, #2e1065 0%, #3b0764 100%) !important;
+    border: 1px solid #6b46c1 !important;
+    border-radius: 8px !important;
+    padding: 1rem !important;
+    margin: 1rem 0 !important;
+    font-family: 'JetBrains Mono', monospace !important;
+}
+
+body[data-theme="dark"] .sig-name {
+    color: #ddd6fe !important;
+    font-weight: 600 !important;
+}
+
+body[data-theme="dark"] .sig-param {
+    color: #a78bfa !important;
+}
+
+/* Navigation improvements */
+body[data-theme="dark"] .toc-tree {
+    background-color: #1e1b4b !important;
+    border: 1px solid #4c1d95 !important;
+    border-radius: 8px !important;
+    padding: 1rem !important;
+    margin: 1rem 0 !important;
+}
+
+body[data-theme="dark"] .toc-tree a {
+    color: #c4b5fd !important;
+    padding: 0.25rem 0.5rem !important;
+    border-radius: 4px !important;
+    display: block !important;
+    transition: all 0.2s ease !important;
+}
+
+body[data-theme="dark"] .toc-tree a:hover {
+    background-color: #4c1d95 !important;
+    color: #f3e8ff !important;
+}
+
+/* Cards and panels */
+body[data-theme="dark"] .sd-card {
+    background: linear-gradient(135deg, #1e1b4b 0%, #2e1065 100%) !important;
+    border: 1px solid #6b46c1 !important;
+    box-shadow: 0 4px 12px rgba(107, 70, 193, 0.15) !important;
+}
+
+body[data-theme="dark"] .sd-card-header {
+    background-color: #4c1d95 !important;
+    color: #f3e8ff !important;
+}
+
+/* Tables */
+body[data-theme="dark"] table {
+    border: 1px solid #4c1d95 !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+}
+
+body[data-theme="dark"] th {
+    background: linear-gradient(135deg, #4c1d95 0%, #5b21b6 100%) !important;
+    color: #f3e8ff !important;
+    font-weight: 600 !important;
+    padding: 0.75rem !important;
+}
+
+body[data-theme="dark"] td {
+    background-color: #1e1b4b !important;
+    border-bottom: 1px solid #2e1065 !important;
+    padding: 0.75rem !important;
+}
+
+body[data-theme="dark"] tr:hover td {
+    background-color: #2e1065 !important;
+}
+
+/* Search */
+body[data-theme="dark"] .search-button {
+    background: linear-gradient(135deg, #4c1d95 0%, #5b21b6 100%) !important;
+    border: 1px solid #6b46c1 !important;
+    color: #f3e8ff !important;
+}
+
+body[data-theme="dark"] .search-button:hover {
+    background: linear-gradient(135deg, #5b21b6 0%, #6d28d9 100%) !important;
+}
+
+/* ===== LIGHT MODE ===== */
+body[data-theme="light"] {
+    background-color: #faf5ff !important;
+    color: #1f2937 !important;
+}
+
+body[data-theme="light"] .sidebar-container {
+    background: linear-gradient(180deg, #f3e8ff 0%, #ede9fe 100%) !important;
+    border-right: 2px solid #c084fc !important;
+    box-shadow: 4px 0 8px rgba(192, 132, 252, 0.1) !important;
+}
+
+body[data-theme="light"] .sidebar-tree a {
+    color: #7c3aed !important;
+    padding: 0.5rem 0.75rem !important;
+    border-radius: 6px !important;
+    transition: all 0.2s ease !important;
+}
+
+body[data-theme="light"] .sidebar-tree a:hover {
+    background: linear-gradient(90deg, #ddd6fe 0%, #e9d5ff 100%) !important;
+    color: #5b21b6 !important;
+}
+
+body[data-theme="light"] .sidebar-tree .current > a {
+    background: linear-gradient(90deg, #8b5cf6 0%, #a78bfa 100%) !important;
+    color: white !important;
+    font-weight: 600 !important;
+}
+
+body[data-theme="light"] pre {
+    background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%) !important;
+    border: 1px solid #e9d5ff !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 8px rgba(147, 51, 234, 0.1) !important;
+}
+
+body[data-theme="light"] p code,
+body[data-theme="light"] li code {
+    background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%) !important;
+    color: #6b21a8 !important;
+    padding: 0.2em 0.5em !important;
+    border-radius: 6px !important;
+    font-weight: 500 !important;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    body[data-theme="dark"] pre,
+    body[data-theme="light"] pre {
+        padding: 1rem !important;
+        font-size: 0.85rem !important;
+    }
+}
+
+/* Enhanced AutoAPI Navigation */
+body[data-theme="dark"] .toctree-wrapper {
+    margin: 1.5rem 0 !important;
+}
+
+body[data-theme="dark"] .toctree-l1 {
+    font-weight: 600 !important;
+    font-size: 1.1rem !important;
+    margin-top: 0.5rem !important;
+}
+
+body[data-theme="dark"] .toctree-l1 > a {
+    color: #ddd6fe !important;
+    padding: 0.75rem 1rem !important;
+    display: block !important;
+    background: linear-gradient(135deg, #2e1065 0%, #3b0764 100%) !important;
+    border-radius: 8px !important;
+    margin-bottom: 0.5rem !important;
+    transition: all 0.3s ease !important;
+}
+
+body[data-theme="dark"] .toctree-l1 > a:hover {
+    background: linear-gradient(135deg, #4c1d95 0%, #5b21b6 100%) !important;
+    transform: translateX(5px) !important;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3) !important;
+}
+
+body[data-theme="dark"] .toctree-l2 {
+    margin-left: 1rem !important;
+}
+
+body[data-theme="dark"] .toctree-l2 > a {
+    color: #c4b5fd !important;
+    padding: 0.5rem 0.75rem !important;
+    display: block !important;
+    border-left: 3px solid #6b46c1 !important;
+    transition: all 0.2s ease !important;
+}
+
+body[data-theme="dark"] .toctree-l2 > a:hover {
+    background-color: #2e1065 !important;
+    border-left-color: #a78bfa !important;
+    padding-left: 1rem !important;
+}
+
+/* API Module Headers */
+body[data-theme="dark"] .api-module-header {
+    background: linear-gradient(135deg, #4c1d95 0%, #6b46c1 100%) !important;
+    color: #f3e8ff !important;
+    padding: 1.5rem !important;
+    border-radius: 8px !important;
+    margin: 2rem 0 !important;
+    box-shadow: 0 4px 12px rgba(107, 70, 193, 0.2) !important;
+}
+
+/* Improve class/function visibility */
+body[data-theme="dark"] dl.py.class,
+body[data-theme="dark"] dl.py.function,
+body[data-theme="dark"] dl.py.method {
+    background: linear-gradient(135deg, #1e1b4b 0%, #2e1065 100%) !important;
+    border: 1px solid #6b46c1 !important;
+    border-radius: 8px !important;
+    padding: 1.5rem !important;
+    margin: 1.5rem 0 !important;
+}
+
+body[data-theme="dark"] dt.sig-object {
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+}
+
+/* Better module index */
+body[data-theme="dark"] .modindex-jumpbox {
+    background: linear-gradient(135deg, #2e1065 0%, #3b0764 100%) !important;
+    border: 1px solid #6b46c1 !important;
+    border-radius: 8px !important;
+    padding: 1rem !important;
+}
+
+body[data-theme="dark"] .modindex-jumpbox a {
+    color: #c4b5fd !important;
+    padding: 0.25rem 0.5rem !important;
+    border-radius: 4px !important;
+}
+
+body[data-theme="dark"] .modindex-jumpbox a:hover {
+    background-color: #4c1d95 !important;
+    color: #f3e8ff !important;
+}

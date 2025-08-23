@@ -62,12 +62,11 @@ from haive import agents
         result = await agent.arun({"messages": [...]})
 """
 
-from typing import TYPE_CHECKING, Any, TypeVar
-
-if TYPE_CHECKING:
-    pass
-
-Self = TypeVar("Self", bound="MCPAgent")
+from typing import TYPE_CHECKING, Any
+try:
+    from typing import Self  # Python 3.11+
+except ImportError:
+    from typing_extensions import Self  # Python 3.10 and below
 
 from haive.agents.simple import SimpleAgent
 from pydantic import Field
