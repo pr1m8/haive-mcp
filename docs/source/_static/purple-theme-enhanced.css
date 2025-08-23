@@ -1,26 +1,26 @@
 /* Enhanced Purple Theme for Haive MCP Documentation */
 
-/* Dark Mode Purple Background Enhancements */
+/* Dark Mode Black and Blue Background Enhancements */
 body[data-theme="dark"] {
-    background-color: #0f0019 !important;
+    background-color: #000612 !important; /* Very dark blue-black */
 }
 
 body[data-theme="dark"] .page {
-    background-color: #0f0019 !important;
+    background-color: #000612 !important;
 }
 
 body[data-theme="dark"] article.bd-article {
-    background-color: #0f0019 !important;
+    background-color: #000612 !important;
 }
 
-/* Sidebar purple theming */
+/* Sidebar dark blue theming */
 body[data-theme="dark"] .sidebar-container {
-    background-color: #14001f !important;
-    border-right: 1px solid #4c1d95 !important;
+    background-color: #0a1428 !important; /* Dark navy blue */
+    border-right: 1px solid #1e3a8a !important; /* Medium blue border */
 }
 
 body[data-theme="dark"] .sidebar-drawer {
-    background-color: #14001f !important;
+    background-color: #0a1428 !important;
 }
 
 /* Navigation hierarchy styling */
@@ -67,14 +67,14 @@ body[data-theme="dark"] .sidebar-tree li.current > a {
     color: #f3e8ff !important;
 }
 
-/* Code block purple theming */
+/* Code block dark blue theming */
 body[data-theme="dark"] div.highlight {
-    background-color: #1e0936 !important;
-    border: 1px solid #4c1d95 !important;
+    background-color: #0f172a !important; /* Dark slate blue */
+    border: 1px solid #1e40af !important; /* Medium blue border */
 }
 
 body[data-theme="dark"] .highlight pre {
-    background-color: #1e0936 !important;
+    background-color: #0f172a !important;
 }
 
 /* TOC dropdown improvements */
@@ -106,7 +106,7 @@ body[data-theme="dark"] .highlight pre {
 }
 
 body[data-theme="dark"] .sidebar-tree li.has-children > button.toggle:hover {
-    background-color: #4c1d95;
+    background-color: #1e40af; /* Medium blue hover */
     border-radius: 0.25rem;
 }
 
