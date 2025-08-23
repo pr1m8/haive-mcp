@@ -1,0 +1,172 @@
+/* Enhanced Purple Theme for Haive MCP Documentation */
+
+/* Dark Mode Purple Background Enhancements */
+body[data-theme="dark"] {
+    background-color: #0f0019 !important;
+}
+
+body[data-theme="dark"] .page {
+    background-color: #0f0019 !important;
+}
+
+body[data-theme="dark"] article.bd-article {
+    background-color: #0f0019 !important;
+}
+
+/* Sidebar purple theming */
+body[data-theme="dark"] .sidebar-container {
+    background-color: #14001f !important;
+    border-right: 1px solid #4c1d95 !important;
+}
+
+body[data-theme="dark"] .sidebar-drawer {
+    background-color: #14001f !important;
+}
+
+/* Navigation hierarchy styling */
+.sidebar-tree {
+    font-size: 0.9rem;
+}
+
+.sidebar-tree .toctree-l1 > a {
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.sidebar-tree .toctree-l2 > a {
+    padding-left: 2rem;
+    font-size: 0.875rem;
+}
+
+.sidebar-tree .toctree-l3 > a {
+    padding-left: 3rem;
+    font-size: 0.85rem;
+}
+
+/* Fix duplicate box issues */
+.sidebar-tree .caption {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    padding: 0.25rem 1rem;
+    color: var(--color-sidebar-link-text--top-level);
+}
+
+/* Prevent duplicate backgrounds */
+.sidebar-tree li.has-children > a {
+    background: none !important;
+}
+
+body[data-theme="dark"] .sidebar-tree li.current > a {
+    background-color: #2d0059 !important;
+    color: #f3e8ff !important;
+}
+
+/* Code block purple theming */
+body[data-theme="dark"] div.highlight {
+    background-color: #1e0936 !important;
+    border: 1px solid #4c1d95 !important;
+}
+
+body[data-theme="dark"] .highlight pre {
+    background-color: #1e0936 !important;
+}
+
+/* TOC dropdown improvements */
+.toctree-wrapper {
+    margin-bottom: 2rem;
+}
+
+.toctree-wrapper > ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.toctree-wrapper li {
+    margin-bottom: 0.5rem;
+}
+
+/* Improve expand/collapse indicators */
+.sidebar-tree .reference.external::after {
+    content: none;
+}
+
+.sidebar-tree li.has-children > button.toggle {
+    background-color: transparent;
+    border: none;
+    padding: 0.25rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    color: var(--color-sidebar-link-text);
+}
+
+body[data-theme="dark"] .sidebar-tree li.has-children > button.toggle:hover {
+    background-color: #4c1d95;
+    border-radius: 0.25rem;
+}
+
+/* Better section spacing in content */
+article section {
+    margin-bottom: 3rem;
+}
+
+article h2 {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-background-border);
+}
+
+article h2:first-child {
+    border-top: none;
+    margin-top: 0;
+}
+
+/* Purple accents for links */
+body[data-theme="dark"] a {
+    color: #c084fc;
+}
+
+body[data-theme="dark"] a:hover {
+    color: #e9d5ff;
+    text-decoration: underline;
+}
+
+/* API Reference styling */
+.autoapi-nested-section {
+    margin-left: 1rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--color-background-border);
+}
+
+/* Search box purple theming */
+body[data-theme="dark"] .sidebar-search-container input {
+    background-color: #1e0936 !important;
+    border: 1px solid #4c1d95 !important;
+    color: #ffffff !important;
+}
+
+body[data-theme="dark"] .sidebar-search-container input:focus {
+    border-color: #a78bfa !important;
+    box-shadow: 0 0 0 2px rgba(167, 139, 250, 0.2) !important;
+}
+
+/* Hide duplicate navigation elements */
+.sidebar-tree > ul > li > ul {
+    margin-top: 0;
+}
+
+/* Better mobile responsiveness */
+@media (max-width: 768px) {
+    .sidebar-tree .toctree-l1 > a {
+        padding: 0.75rem 1rem;
+    }
+    
+    .sidebar-tree .caption {
+        font-size: 0.875rem;
+    }
+}

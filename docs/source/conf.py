@@ -51,15 +51,35 @@ autoapi_member_order = "groupwise"
 html_theme = "furo"
 html_static_path = ["_static"]
 
-# Furo theme configuration
+# Furo theme configuration - Enhanced purple theme
 html_theme_options = {
+    "navigation_with_keys": True,
+    "show_nav_level": 3,
+    "collapse_navigation": False,
+    "sidebar_hide_name": False, 
+    "navigation_depth": 4,
+    "show_toc_level": 3,
     "light_css_variables": {
         "color-brand-primary": "#8b5cf6",
         "color-brand-content": "#7c3aed",
+        "color-sidebar-background": "#faf5ff",
+        "color-sidebar-background-border": "#e9d5ff", 
     },
     "dark_css_variables": {
         "color-brand-primary": "#a78bfa",
         "color-brand-content": "#c084fc",
+        "color-background-primary": "#0f0019",  # Very dark purple
+        "color-background-secondary": "#1a0033",  # Dark purple
+        "color-background-hover": "#2d0059",  # Purple hover
+        "color-background-border": "#4c1d95",  # Purple border
+        "color-sidebar-background": "#14001f",  # Darker purple sidebar
+        "color-sidebar-background-border": "#4c1d95",
+        "color-sidebar-link-text": "#e9d5ff",
+        "color-sidebar-link-text--top-level": "#f3e8ff",
+        "color-sidebar-item-background--hover": "#2d0059",
+        "color-sidebar-item-expander-background--hover": "#4c1d95",
+        "color-content-foreground": "#ffffff",
+        "color-code-background": "#1e0936",  # Dark purple code bg
     },
 }
 
@@ -102,6 +122,7 @@ graphviz_dot_args = [
 # CSS files in correct order - purple theme loads last to override
 html_css_files = [
     "graphviz-purple-theme.css",  # Purple diagram theme
-    "code-purple-theme.css",  # Purple code blocks (MUST be last)
+    "code-purple-theme.css",  # Purple code blocks
+    "purple-theme-enhanced.css",  # Enhanced purple theming (MUST be last)
     "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap",
 ]
