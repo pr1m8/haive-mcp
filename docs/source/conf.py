@@ -50,8 +50,8 @@ extensions = [
 
 # AutoAPI Configuration
 autoapi_dirs = [
-    "../../src/haive"
-]  # Point directly to haive package to avoid src prefix
+    "../../src/haive/mcp"
+]  # Only document haive.mcp modules
 autoapi_type = "python"
 autoapi_add_toctree_entry = True  # Allow AutoAPI to add to toctree
 autoapi_keep_files = True
