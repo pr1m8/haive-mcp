@@ -1,0 +1,47 @@
+production_mcp_tool.MCPCapabilityRequest
+========================================
+
+.. py:class:: production_mcp_tool.MCPCapabilityRequest(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Request to find and install MCP servers by capability.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: auto_install
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: capability_query
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: include_experimental
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: max_options
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: prefer_fastmcp
+      :type:  bool
+      :value: None
+
+

@@ -1,0 +1,57 @@
+fastmcp_runner
+==============
+
+.. py:module:: fastmcp_runner
+
+.. autoapi-nested-parse::
+
+   FastMCP Server Runner.
+
+   Manages the lifecycle of FastMCP servers registered in the system.
+   Provides process management, monitoring, and integration with the discovery system.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   fastmcp_runner.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/fastmcp_runner/FastMCPCLI
+   /autoapi/fastmcp_runner/MCPProcessManager
+
+.. autoapisummary::
+
+   fastmcp_runner.FastMCPCLI
+   fastmcp_runner.MCPProcessManager
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   fastmcp_runner.main
+
+
+Module Contents
+---------------
+
+.. py:function:: main()
+   :async:
+
+
+   Main CLI entry point.
+
+
+.. py:data:: logger
+

@@ -1,0 +1,65 @@
+mcp.installers.config_manager.MCPConfigManager
+==============================================
+
+.. py:class:: mcp.installers.config_manager.MCPConfigManager(config_dir: pathlib.Path | None = None)
+
+   Manages MCP server configurations and environment files.
+
+   Init  .
+
+   :param config_dir: [TODO: Add description]
+
+
+   .. py:method:: add_server_config(config: MCPEnvironmentConfig) -> bool
+
+      Add a new server configuration.
+
+
+
+   .. py:method:: export_claude_desktop_config(server_name: str) -> dict[str, Any] | None
+
+      Export server config in Claude Desktop format.
+
+
+
+   .. py:method:: get_config_summary() -> dict[str, Any]
+
+      Get summary of all configurations.
+
+
+
+   .. py:method:: get_pattern(pattern_name: str) -> MCPServerPattern | None
+
+      Get a server pattern by name.
+
+
+
+   .. py:method:: get_server_config(server_name: str) -> MCPEnvironmentConfig | None
+
+      Get server configuration by name.
+
+
+
+   .. py:method:: list_available_patterns() -> list[str]
+
+      List all available server patterns.
+
+
+
+   .. py:method:: list_configured_servers() -> list[str]
+
+      List all configured servers.
+
+
+
+   .. py:attribute:: config_dir
+
+
+   .. py:attribute:: env_file
+
+
+   .. py:attribute:: patterns_config
+
+
+   .. py:attribute:: servers_config
+

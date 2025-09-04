@@ -1,0 +1,49 @@
+enhance_mcp_data.MCPDataEnhancer
+================================
+
+.. py:class:: enhance_mcp_data.MCPDataEnhancer(github_token: str | None = None)
+
+   Main class for enhancing MCP server data.
+
+   Init  .
+
+   :param github_token: [TODO: Add description]
+
+
+   .. py:method:: enhance_all_servers(max_servers: int | None = None) -> None
+      :async:
+
+
+      Enhance data for all MCP servers.
+
+
+
+   .. py:method:: enhance_single_server(server: dict[str, Any], enhancer: GitHubDataEnhancer) -> dict[str, Any]
+      :async:
+
+
+      Enhance data for a single MCP server.
+
+
+
+   .. py:method:: extract_install_instructions(readme_content: str) -> dict[str, str]
+
+      Extract installation instructions from README content.
+
+
+
+   .. py:method:: load_existing_data() -> list[dict[str, Any]]
+      :async:
+
+
+      Load existing MCP servers data.
+
+
+
+   .. py:attribute:: data_path
+
+
+   .. py:attribute:: github_token
+      :value: None
+
+

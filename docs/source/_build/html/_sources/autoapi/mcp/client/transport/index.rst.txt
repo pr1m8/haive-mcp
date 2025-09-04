@@ -1,0 +1,61 @@
+mcp.client.transport
+====================
+
+.. py:module:: mcp.client.transport
+
+.. autoapi-nested-parse::
+
+   MCP Transport Layer Implementation.
+
+   This module provides transport layer implementations for the MCP protocol.
+   Different transports handle the underlying communication mechanism between
+   the MCP client and server.
+
+   Supported Transports:
+       - STDIO: Communication via stdin/stdout with a subprocess
+       - HTTP: RESTful communication over HTTP
+       - SSE: Server-sent events for streaming
+       - WebSocket: Real-time bidirectional communication
+
+   The transport layer is responsible for:
+       - Establishing and managing connections
+       - Sending and receiving raw messages
+       - Handling transport-specific encoding/decoding
+       - Managing connection lifecycle
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.client.transport.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/client/transport/HttpTransport
+   /autoapi/mcp/client/transport/MCPTransport
+   /autoapi/mcp/client/transport/SseTransport
+   /autoapi/mcp/client/transport/StdioTransport
+   /autoapi/mcp/client/transport/WebSocketTransport
+
+.. autoapisummary::
+
+   mcp.client.transport.HttpTransport
+   mcp.client.transport.MCPTransport
+   mcp.client.transport.SseTransport
+   mcp.client.transport.StdioTransport
+   mcp.client.transport.WebSocketTransport
+
+
+Module Contents
+---------------
+
+.. py:data:: logger
+

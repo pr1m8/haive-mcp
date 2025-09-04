@@ -1,0 +1,187 @@
+mcp.agents.intelligent_mcp_agent.IntelligentMCPAgent
+====================================================
+
+.. py:class:: mcp.agents.intelligent_mcp_agent.IntelligentMCPAgent(**kwargs)
+
+   Bases: :py:obj:`haive.agents.react.ReactAgent`
+
+
+   Intelligent agent for dynamic MCP server discovery and management.
+
+   This agent extends ReactAgent with intelligent MCP management capabilities,
+   including dynamic server discovery, HITL approval workflows, and automatic
+   configuration based on user needs.
+
+   .. attribute:: mcp_manager
+
+      Dynamic MCP manager for server operations
+
+   .. attribute:: doc_agent
+
+      Documentation agent for server discovery
+
+   .. attribute:: auto_discover
+
+      Whether to automatically discover servers
+
+   .. attribute:: require_approval
+
+      Whether to require HITL approval
+
+   .. attribute:: approval_timeout
+
+      Timeout for approval requests in seconds
+
+   .. attribute:: approval_callback
+
+      Custom approval callback function
+
+   .. attribute:: capability_cache
+
+      Cache of discovered capabilities
+
+   .. attribute:: recommendation_history
+
+      History of recommendations
+
+   .. rubric:: Example
+
+   Basic intelligent agent setup:
+
+   .. code-block:: python
+
+       agent = IntelligentMCPAgent(
+           engine=engine,
+           auto_discover=True,
+           require_approval=True,
+           approval_timeout=30.0
+       )
+
+       # Agent automatically discovers and recommends servers
+       result = await agent.arun({
+           "messages": [{
+               "role": "user",
+               "content": "Help me search the web for Python tutorials"
+           }]
+       })
+
+       # Agent detects need for web search, recommends brave-search server
+       # Waits for approval, then installs and uses it
+
+   Initialize intelligent MCP agent.
+
+   Sets up the agent with discovery tools and documentation access.
+
+
+   .. py:method:: approve_request(request_id: str) -> bool
+      :async:
+
+
+      Approve a pending request.
+
+      :param request_id: ID of the request to approve
+
+      :returns: True if request was found and approved
+
+
+
+   .. py:method:: arun(inputs: dict[str, Any]) -> Any
+      :async:
+
+
+      Run the agent with intelligent MCP discovery.
+
+      Extends the base arun to add capability analysis and dynamic
+      server installation based on user needs.
+
+      :param inputs: Agent inputs with messages
+
+      :returns: Agent response after processing with dynamic MCP
+
+
+
+   .. py:method:: get_pending_approvals() -> list[HITLApprovalRequest]
+
+      Get list of pending approval requests.
+
+
+
+   .. py:method:: get_recommendation_history() -> list[ServerRecommendation]
+
+      Get history of server recommendations.
+
+
+
+   .. py:method:: reject_request(request_id: str) -> bool
+      :async:
+
+
+      Reject a pending request.
+
+      :param request_id: ID of the request to reject
+
+      :returns: True if request was found and rejected
+
+
+
+   .. py:method:: setup() -> None
+      :async:
+
+
+      Setup the intelligent agent including documentation agent.
+
+
+
+   .. py:attribute:: approval_callback
+      :type:  collections.abc.Callable | None
+      :value: None
+
+
+
+   .. py:attribute:: approval_timeout
+      :type:  float
+      :value: None
+
+
+
+   .. py:attribute:: auto_discover
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: capability_cache
+      :type:  dict[str, list[str]]
+      :value: None
+
+
+
+   .. py:attribute:: doc_agent
+      :type:  Any | None
+      :value: None
+
+
+
+   .. py:attribute:: mcp_manager
+      :type:  haive.mcp.manager.MCPManager
+      :value: None
+
+
+
+   .. py:attribute:: pending_approvals
+      :type:  dict[str, HITLApprovalRequest]
+      :value: None
+
+
+
+   .. py:attribute:: recommendation_history
+      :type:  list[ServerRecommendation]
+      :value: None
+
+
+
+   .. py:attribute:: require_approval
+      :type:  bool
+      :value: None
+
+

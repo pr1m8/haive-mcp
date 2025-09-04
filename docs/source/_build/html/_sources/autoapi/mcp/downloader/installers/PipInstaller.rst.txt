@@ -1,0 +1,58 @@
+mcp.downloader.installers.PipInstaller
+======================================
+
+.. py:class:: mcp.downloader.installers.PipInstaller
+
+   Bases: :py:obj:`MCPInstaller`
+
+
+   Installer for Python pip-based MCP servers.
+
+   Handles installation of MCP servers distributed as Python packages.
+
+   .. rubric:: Examples
+
+   Pip installation:
+
+   .. code-block:: python
+       installer = PipInstaller()
+       result = await installer.install(
+           server_config,
+           template,
+           install_dir
+       )
+
+
+   .. py:method:: can_handle(server_config: haive.mcp.downloader.config.ServerConfig, template: haive.mcp.downloader.config.ServerTemplate) -> bool
+      :async:
+
+
+      Check if this is a pip installation.
+
+
+
+   .. py:method:: install(server_config: haive.mcp.downloader.config.ServerConfig, template: haive.mcp.downloader.config.ServerTemplate, install_dir: pathlib.Path) -> dict[str, Any]
+      :async:
+
+
+      Install Python package via pip.
+
+      :param server_config: Server configuration
+      :param template: Server template
+      :param install_dir: Installation directory
+
+      :returns: Installation result dictionary
+
+
+
+   .. py:method:: verify(server_config: haive.mcp.downloader.config.ServerConfig, template: haive.mcp.downloader.config.ServerTemplate, install_dir: pathlib.Path) -> bool
+      :async:
+
+
+      Verify pip installation.
+
+      Checks if the module can be imported.
+
+      :returns: True if module is installed and importable
+
+

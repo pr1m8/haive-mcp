@@ -1,0 +1,80 @@
+enhanced_parent_self_query_retriever.EnhancedMCPRetriever
+=========================================================
+
+.. py:class:: enhanced_parent_self_query_retriever.EnhancedMCPRetriever(engine: haive.core.engine.aug_llm.AugLLMConfig)
+
+   Enhanced retriever that combines parent-child documents with self-query.
+
+   The trick: Create a custom retriever that:
+   1. Uses self-query to filter child chunks by metadata
+   2. Returns parent documents for matching chunks
+   3. Maintains all metadata relationships
+
+   Init  .
+
+   :param engine: [TODO: Add description]
+
+
+   .. py:method:: create_self_query_retriever(k: int = 5) -> langchain.retrievers.self_query.base.SelfQueryRetriever
+
+      Create a self-query retriever that works with parent documents.
+
+
+
+   .. py:method:: demonstrate_queries() -> None
+      :async:
+
+
+      Demonstrate various query patterns.
+
+
+
+   .. py:method:: find_and_analyze_best_server(requirements: str) -> langchain_core.documents.Document | None
+      :async:
+
+
+      Find the best server matching requirements using enhanced retrieval.
+
+
+
+   .. py:method:: query_with_parent_context(query: str, k: int = 5) -> list[langchain_core.documents.Document]
+      :async:
+
+
+      Query using self-query on chunks but return full parent documents.
+
+      This is the key method that combines both approaches!
+
+
+
+   .. py:method:: setup_enhanced_retriever() -> None
+      :async:
+
+
+      Set up the enhanced parent-child retriever with self-query.
+
+
+
+   .. py:attribute:: child_vectorstore
+      :value: None
+
+
+
+   .. py:attribute:: doc_loader
+
+
+   .. py:attribute:: engine
+
+
+   .. py:attribute:: metadata_fields
+      :value: []
+
+
+
+   .. py:attribute:: parent_retriever
+      :value: None
+
+
+
+   .. py:attribute:: parent_store
+

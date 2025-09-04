@@ -1,0 +1,25 @@
+mcp.client.MCPCapabilityError
+=============================
+
+.. py:exception:: mcp.client.MCPCapabilityError(message: str, error_code: Optional[int] = None, details: Optional[Dict[str, Any]] = None)
+
+   Bases: :py:obj:`MCPProtocolError`
+
+
+   Error related to MCP capabilities.
+
+   Raised when there are issues with capability negotiation, unsupported
+   capabilities, or capability validation failures. This indicates a mismatch
+   between client requirements and server capabilities.
+
+   .. rubric:: Examples
+
+   Unsupported capability::
+
+       raise MCPCapabilityError(
+           "Server doesn't support required capability",
+           details={"required": "tools", "supported": ["logging"]}
+       )
+
+   Initialize self.  See help(type(self)) for accurate signature.
+

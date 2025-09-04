@@ -1,0 +1,40 @@
+mcp.downloader.legacy_core.MCPInstaller
+=======================================
+
+.. py:class:: mcp.downloader.legacy_core.MCPInstaller
+
+   Bases: :py:obj:`abc.ABC`
+
+
+   Abstract base class for MCP installers.
+
+
+   .. py:method:: can_handle(server_config: ServerConfig, template: ServerTemplate) -> bool
+      :abstractmethod:
+
+      :async:
+
+
+      Check if this installer can handle the given configuration.
+
+
+
+   .. py:method:: install(server_config: ServerConfig, template: ServerTemplate, install_dir: pathlib.Path) -> dict[str, Any]
+      :abstractmethod:
+
+      :async:
+
+
+      Install the MCP server.
+
+
+
+   .. py:method:: verify(server_config: ServerConfig, template: ServerTemplate, install_dir: pathlib.Path) -> bool
+      :abstractmethod:
+
+      :async:
+
+
+      Verify the installation was successful.
+
+

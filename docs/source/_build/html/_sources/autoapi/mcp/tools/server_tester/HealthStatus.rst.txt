@@ -1,0 +1,37 @@
+mcp.tools.server_tester.HealthStatus
+====================================
+
+.. py:class:: mcp.tools.server_tester.HealthStatus
+
+   Health status for a server.
+
+
+   .. py:attribute:: average_response_time
+      :type:  float
+      :value: 0.0
+
+
+
+   .. py:attribute:: consecutive_failures
+      :type:  int
+      :value: 0
+
+
+
+   .. py:attribute:: healthy
+      :type:  bool
+
+
+   .. py:attribute:: last_check
+      :type:  float
+
+
+   .. py:attribute:: server_name
+      :type:  str
+
+
+   .. py:attribute:: uptime_percentage
+      :type:  float
+      :value: 100.0
+
+

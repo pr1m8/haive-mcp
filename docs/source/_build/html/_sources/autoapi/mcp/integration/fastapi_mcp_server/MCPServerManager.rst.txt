@@ -1,0 +1,85 @@
+mcp.integration.fastapi_mcp_server.MCPServerManager
+===================================================
+
+.. py:class:: mcp.integration.fastapi_mcp_server.MCPServerManager
+
+   
+   Init  .
+
+
+   .. py:method:: broadcast_message(message: dict)
+      :async:
+
+
+      Broadcast message to all connected WebSocket clients.
+
+
+
+   .. py:method:: initialize()
+      :async:
+
+
+      Initialize the retriever and LLM.
+
+
+
+   .. py:method:: install_server(server_name: str) -> dict
+      :async:
+
+
+      Install an MCP server.
+
+
+
+   .. py:method:: request_install_approval(server_name: str) -> str
+      :async:
+
+
+      Request approval for server installation.
+
+
+
+   .. py:method:: search_servers(query: str, max_results: int = 5) -> list[ServerInfo]
+      :async:
+
+
+      Search for MCP servers using enhanced retriever.
+
+
+
+   .. py:method:: test_server(server_name: str) -> dict
+      :async:
+
+
+      Test an installed MCP server.
+
+
+
+   .. py:attribute:: engine
+      :value: None
+
+
+
+   .. py:attribute:: installed_servers
+      :type:  dict[str, dict]
+
+
+   .. py:attribute:: llm
+      :value: None
+
+
+
+   .. py:attribute:: pending_approvals
+      :type:  dict[str, dict]
+
+
+   .. py:attribute:: retriever
+      :value: None
+
+
+
+   .. py:attribute:: websocket_clients
+      :type:  list[fastapi.WebSocket]
+      :value: []
+
+

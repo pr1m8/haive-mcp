@@ -1,0 +1,99 @@
+simple_rag_mcp_agent
+====================
+
+.. py:module:: simple_rag_mcp_agent
+
+.. autoapi-nested-parse::
+
+   SimpleRAG Agent for MCP Server Discovery.
+
+   This agent uses the enhanced retriever to help users find and understand MCP servers.
+   It can answer questions about server capabilities, suggest servers based on needs,
+   and provide detailed information about specific servers.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   simple_rag_mcp_agent.app
+   simple_rag_mcp_agent.rag_agent
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/simple_rag_mcp_agent/MCPRetrieverWrapper
+   /autoapi/simple_rag_mcp_agent/MCPSimpleRAGAgent
+   /autoapi/simple_rag_mcp_agent/QueryRequest
+   /autoapi/simple_rag_mcp_agent/QueryResponse
+
+.. autoapisummary::
+
+   simple_rag_mcp_agent.MCPRetrieverWrapper
+   simple_rag_mcp_agent.MCPSimpleRAGAgent
+   simple_rag_mcp_agent.QueryRequest
+   simple_rag_mcp_agent.QueryResponse
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   simple_rag_mcp_agent.ask_agent
+   simple_rag_mcp_agent.create_mcp_rag_agent
+   simple_rag_mcp_agent.demo_mcp_rag_agent
+   simple_rag_mcp_agent.root
+   simple_rag_mcp_agent.startup_event
+
+
+Module Contents
+---------------
+
+.. py:function:: ask_agent(request: QueryRequest)
+   :async:
+
+
+   Ask the RAG agent a question about MCP servers.
+
+
+.. py:function:: create_mcp_rag_agent(model: str = 'gpt-3.5-turbo') -> MCPSimpleRAGAgent
+   :async:
+
+
+   Factory function to create configured MCP RAG agent.
+
+
+.. py:function:: demo_mcp_rag_agent()
+   :async:
+
+
+   Demonstrate the MCP RAG agent.
+
+
+.. py:function:: root()
+   :async:
+
+
+   Simple web UI for testing the agent.
+
+
+.. py:function:: startup_event()
+   :async:
+
+
+   Initialize the RAG agent on startup.
+
+
+.. py:data:: app
+
+.. py:data:: rag_agent
+   :value: None
+
+

@@ -1,0 +1,75 @@
+mcp.downloader.legacy_core.GeneralMCPDownloader
+===============================================
+
+.. py:class:: mcp.downloader.legacy_core.GeneralMCPDownloader(config_file: str | None = None, install_dir: str | None = None)
+
+   General MCP Server Downloader with configurable patterns and.
+   installers.
+
+   Init  .
+
+   :param config_file: [TODO: Add description]
+   :param install_dir: [TODO: Add description]
+
+
+   .. py:method:: auto_discover_and_download(limit: int | None = None) -> dict[str, Any]
+      :async:
+
+
+      Auto-discover servers from registries and download them.
+
+
+
+   .. py:method:: create_default_config()
+
+      Create a default configuration file.
+
+
+
+   .. py:method:: discover_servers_from_registry(registry_url: str) -> list[dict[str, Any]]
+      :async:
+
+
+      Discover MCP servers from a registry or documentation source.
+
+
+
+   .. py:method:: download_servers(server_names: list[str] | None = None, categories: list[str] | None = None, max_concurrent: int = 5) -> dict[str, Any]
+      :async:
+
+
+      Download and install MCP servers.
+
+
+
+   .. py:method:: load_config()
+
+      Load configuration from file.
+
+
+
+   .. py:attribute:: config_file
+      :value: 'mcp_downloader_config.yaml'
+
+
+
+   .. py:attribute:: install_dir
+
+
+   .. py:attribute:: installers
+      :type:  list[MCPInstaller]
+
+
+   .. py:attribute:: patterns
+      :type:  dict[str, Any]
+
+
+   .. py:attribute:: servers
+      :type:  list[ServerConfig]
+      :value: []
+
+
+
+   .. py:attribute:: templates
+      :type:  dict[str, ServerTemplate]
+

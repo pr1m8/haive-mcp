@@ -1,0 +1,139 @@
+mcp.downloader.discovery.DiscoveredServer
+=========================================
+
+.. py:class:: mcp.downloader.discovery.DiscoveredServer(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Information about a discovered MCP server.
+
+   .. attribute:: name
+
+      Server name
+
+   .. attribute:: source
+
+      Where it was discovered (npm, github, etc.)
+
+   .. attribute:: source_url
+
+      URL where it was found
+
+   .. attribute:: description
+
+      Server description
+
+   .. attribute:: package_name
+
+      Package name (for npm/pypi)
+
+   .. attribute:: repo_url
+
+      Repository URL (for git)
+
+   .. attribute:: author
+
+      Author/owner name
+
+   .. attribute:: version
+
+      Latest version
+
+   .. attribute:: stars
+
+      GitHub stars or similar metric
+
+   .. attribute:: tags
+
+      Extracted tags
+
+   .. attribute:: metadata
+
+      Additional metadata
+
+   .. rubric:: Examples
+
+   Discovered server info:
+
+   .. code-block:: python
+       server = DiscoveredServer(
+           name="filesystem",
+           source="npm",
+           package_name="@modelcontextprotocol/server-filesystem",
+           description="MCP server for filesystem operations"
+       )
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: author
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: description
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: metadata
+      :type:  dict[str, Any]
+      :value: None
+
+
+
+   .. py:attribute:: name
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: package_name
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: repo_url
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: source
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: source_url
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: stars
+      :type:  int | None
+      :value: None
+
+
+
+   .. py:attribute:: tags
+      :type:  set[str]
+      :value: None
+
+
+
+   .. py:attribute:: version
+      :type:  str | None
+      :value: None
+
+

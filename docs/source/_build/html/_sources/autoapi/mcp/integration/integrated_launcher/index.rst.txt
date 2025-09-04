@@ -1,0 +1,77 @@
+mcp.integration.integrated_launcher
+===================================
+
+.. py:module:: mcp.integration.integrated_launcher
+
+.. autoapi-nested-parse::
+
+   Integrated MCP System Launcher.
+
+   Provides easy access to all components of the integrated MCP discovery and management system.
+
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp.integration.integrated_launcher.check_dependencies
+   mcp.integration.integrated_launcher.install_server_interactive
+   mcp.integration.integrated_launcher.main
+   mcp.integration.integrated_launcher.print_banner
+   mcp.integration.integrated_launcher.run_csv_viewer
+   mcp.integration.integrated_launcher.run_discovery_test
+   mcp.integration.integrated_launcher.run_fastmcp_manager
+   mcp.integration.integrated_launcher.run_integrated_web
+   mcp.integration.integrated_launcher.show_status
+
+
+Module Contents
+---------------
+
+.. py:function:: check_dependencies()
+
+   Check required dependencies.
+
+
+.. py:function:: install_server_interactive()
+
+   Interactive server installation.
+
+
+.. py:function:: main()
+
+   Main.
+
+
+.. py:function:: print_banner()
+
+   Print system banner.
+
+
+.. py:function:: run_csv_viewer()
+
+   Launch CSV data viewer.
+
+
+.. py:function:: run_discovery_test()
+
+   Test the discovery system.
+
+
+.. py:function:: run_fastmcp_manager(args)
+
+   Run FastMCP server management commands.
+
+
+.. py:function:: run_integrated_web()
+
+   Launch the integrated web interface.
+
+
+.. py:function:: show_status()
+
+   Show system status.
+
+

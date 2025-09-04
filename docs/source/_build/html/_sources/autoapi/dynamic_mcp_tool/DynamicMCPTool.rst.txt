@@ -1,0 +1,85 @@
+dynamic_mcp_tool.DynamicMCPTool
+===============================
+
+.. py:class:: dynamic_mcp_tool.DynamicMCPTool(engine: haive.core.engine.aug_llm.AugLLMConfig, **kwargs)
+
+   Bases: :py:obj:`langchain_core.tools.BaseTool`
+
+
+   Tool for dynamic MCP server discovery, installation, and management.
+
+   This tool:
+   1. Uses RAG to search the 992 MCP server database
+   2. Presents options to the user/agent
+   3. Installs selected servers using FastMCP
+   4. Returns ready-to-use MCP client configuration
+
+   Init  .
+
+   :param engine: [TODO: Add description]
+
+
+   .. py:attribute:: args_schema
+      :type:  type[pydantic.BaseModel]
+
+      Pydantic model class to validate and parse the tool's input arguments.
+
+      Args schema should be either:
+
+      - A subclass of pydantic.BaseModel.
+      - A subclass of pydantic.v1.BaseModel if accessing v1 namespace in pydantic 2
+      - a JSON schema dict
+
+
+   .. py:attribute:: description
+      :type:  str
+      :value: Multiline-String
+
+      .. raw:: html
+
+         <details><summary>Show Value</summary>
+
+      .. code-block:: python
+
+         """
+             Discover and install MCP servers dynamically based on capability requirements.
+         
+             Use this tool when you need to add new capabilities to your agent by finding and
+             installing Model Context Protocol (MCP) servers. The tool searches through 992
+             documented MCP servers, analyzes their capabilities, and can install them automatically.
+         
+             Examples:
+             - "I need database access capabilities"
+             - "Find servers that can work with GitHub"
+             - "Install filesystem operations server"
+             - "Get me weather data integration"
+             """
+
+      .. raw:: html
+
+         </details>
+
+
+
+      Used to tell the model how/when/why to use the tool.
+
+      You can provide few-shot examples as a part of the description.
+
+
+   .. py:attribute:: doc_loader
+
+
+   .. py:attribute:: engine
+
+
+   .. py:attribute:: installed_servers
+      :type:  dict[str, dict]
+
+
+   .. py:attribute:: name
+      :type:  str
+      :value: 'dynamic_mcp_installer'
+
+
+      The unique name of the tool that clearly communicates its purpose.
+

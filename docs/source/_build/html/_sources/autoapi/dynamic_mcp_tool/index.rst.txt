@@ -1,0 +1,54 @@
+dynamic_mcp_tool
+================
+
+.. py:module:: dynamic_mcp_tool
+
+.. autoapi-nested-parse::
+
+   Dynamic MCP Discovery and Installation Tool.
+
+   This tool leverages the haive-mcp repository's 992 server database to:
+   1. RAG search through MCP server documentation and metadata
+   2. Let agent pick the right server based on capabilities
+   3. Install it dynamically using FastMCP
+   4. Set up watch dog for server updates
+
+   Integrates with AugLLMConfig pattern and uses FastMCP for modern MCP server setup.
+
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/dynamic_mcp_tool/DynamicMCPTool
+   /autoapi/dynamic_mcp_tool/MCPServerInstallRequest
+   /autoapi/dynamic_mcp_tool/MCPServerInstallResult
+   /autoapi/dynamic_mcp_tool/MCPServerListTool
+
+.. autoapisummary::
+
+   dynamic_mcp_tool.DynamicMCPTool
+   dynamic_mcp_tool.MCPServerInstallRequest
+   dynamic_mcp_tool.MCPServerInstallResult
+   dynamic_mcp_tool.MCPServerListTool
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   dynamic_mcp_tool.create_mcp_discovery_tools
+
+
+Module Contents
+---------------
+
+.. py:function:: create_mcp_discovery_tools(engine: haive.core.engine.aug_llm.AugLLMConfig) -> list[langchain_core.tools.BaseTool]
+
+   Create MCP discovery and management tools.
+
+

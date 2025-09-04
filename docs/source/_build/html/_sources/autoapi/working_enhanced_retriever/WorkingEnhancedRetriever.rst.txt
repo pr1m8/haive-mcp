@@ -1,0 +1,48 @@
+working_enhanced_retriever.WorkingEnhancedRetriever
+===================================================
+
+.. py:class:: working_enhanced_retriever.WorkingEnhancedRetriever
+
+   Working implementation of combined parent-child + self-query retriever.
+
+   Init  .
+
+
+   .. py:method:: create_self_query_on_chunks(llm, query: str, k: int = 5)
+
+      Create self-query retriever that operates on child chunks.
+
+
+
+   .. py:method:: enhanced_query(llm, query: str, k: int = 5)
+      :async:
+
+
+      The magic: Use self-query on chunks, return parent documents.
+
+
+
+   .. py:method:: setup()
+
+      Set up the enhanced retriever.
+
+
+
+   .. py:attribute:: child_vectorstore
+      :value: None
+
+
+
+   .. py:attribute:: doc_loader
+
+
+   .. py:attribute:: embeddings
+
+
+   .. py:attribute:: parent_retriever
+      :value: None
+
+
+
+   .. py:attribute:: parent_store
+

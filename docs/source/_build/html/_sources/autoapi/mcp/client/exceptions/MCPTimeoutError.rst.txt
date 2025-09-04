@@ -1,0 +1,28 @@
+mcp.client.exceptions.MCPTimeoutError
+=====================================
+
+.. py:exception:: mcp.client.exceptions.MCPTimeoutError(message: str, error_code: Optional[int] = None, details: Optional[Dict[str, Any]] = None)
+
+   Bases: :py:obj:`MCPConnectionError`
+
+
+   Timeout during MCP operation.
+
+   Raised when an MCP operation (connection, tool call, etc.) exceeds the
+   configured timeout period. This is a specialized connection error that
+   specifically indicates timing issues.
+
+   :param operation: Name of the operation that timed out
+   :param timeout: Timeout value that was exceeded
+
+   .. rubric:: Examples
+
+   Tool execution timeout::
+
+       raise MCPTimeoutError(
+           "Tool call timed out",
+           details={"operation": "call_tool", "timeout": 30.0}
+       )
+
+   Initialize self.  See help(type(self)) for accurate signature.
+

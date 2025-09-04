@@ -1,0 +1,88 @@
+mcp.tools.server_tester.MCPServerTester
+=======================================
+
+.. py:class:: mcp.tools.server_tester.MCPServerTester
+
+   Main testing interface for MCP servers.
+
+   Initialize server tester.
+
+
+   .. py:method:: create_health_monitor(check_interval: int = 60) -> HealthMonitor
+
+      Create a health monitor instance.
+
+      :param check_interval: Seconds between health checks
+
+      :returns: HealthMonitor instance
+
+
+
+   .. py:method:: generate_test_report() -> dict[str, Any]
+
+      Generate a comprehensive test report.
+
+      :returns: Dictionary with test statistics and details
+
+
+
+   .. py:method:: get_success_rate(server_name: str | None = None) -> float
+
+      Get success rate for a server or overall.
+
+      :param server_name: Specific server name, or None for overall
+
+      :returns: Success rate as percentage (0.0 to 100.0)
+
+
+
+   .. py:method:: get_test_history() -> list[TestResult]
+
+      Get history of all test results.
+
+
+
+   .. py:method:: test_config(config: haive.mcp.config.MCPConfig) -> dict[str, TestResult]
+      :async:
+
+
+      Test an entire MCP configuration.
+
+      :param config: MCP configuration to test
+
+      :returns: Dictionary mapping server names to test results
+
+
+
+   .. py:method:: test_multiple_servers(servers: list[haive.mcp.config.MCPServerConfig], timeout: int = 60, parallel: bool = True) -> list[TestResult]
+      :async:
+
+
+      Test multiple servers.
+
+      :param servers: List of server configurations to test
+      :param timeout: Timeout per server in seconds
+      :param parallel: Whether to test servers in parallel
+
+      :returns: List of TestResult objects
+
+
+
+   .. py:method:: test_server(server_config: haive.mcp.config.MCPServerConfig, timeout: int = 60) -> TestResult
+      :async:
+
+
+      Test a single MCP server configuration.
+
+      :param server_config: Server configuration to test
+      :param timeout: Timeout in seconds for the test
+
+      :returns: TestResult with test outcome
+
+
+
+   .. py:attribute:: test_history
+      :type:  list[TestResult]
+      :value: []
+
+

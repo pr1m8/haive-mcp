@@ -1,0 +1,84 @@
+mcp.downloader.integration
+==========================
+
+.. py:module:: mcp.downloader.integration
+
+.. autoapi-nested-parse::
+
+   Agent integration for MCP Downloader.
+
+   This module provides integration between the MCP downloader system and Haive agents,
+   enabling automatic tool, resource, and prompt discovery from downloaded MCP servers.
+
+   .. rubric:: Examples
+
+   Basic integration:
+
+       .. code-block:: python
+       from haive.mcp.downloader import MCPAgentIntegration
+
+   from haive import core
+
+
+           integration = MCPAgentIntegration()
+           agent = await integration.create_agent_with_mcp_servers(
+               engine=engine,
+               server_names=["filesystem", "github"]
+           )
+
+       Auto-discovery integration:
+
+
+
+           .. code-block:: python
+
+
+
+               agent = await integration.create_agent_with_auto_discovery(
+               engine=engine,
+               limit=10,
+               categories=["official", "core"]
+           )
+
+   Classes:
+       MCPAgentIntegration: Main integration class
+       MCPServerConnection: Connection management for MCP servers
+       MCPCapabilityExtractor: Extract tools, resources, and prompts
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.downloader.integration.MCP_ADAPTERS_AVAILABLE
+   mcp.downloader.integration.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/downloader/integration/MCPAgentIntegration
+   /autoapi/mcp/downloader/integration/MCPCapabilityExtractor
+   /autoapi/mcp/downloader/integration/MCPServerConnection
+
+.. autoapisummary::
+
+   mcp.downloader.integration.MCPAgentIntegration
+   mcp.downloader.integration.MCPCapabilityExtractor
+   mcp.downloader.integration.MCPServerConnection
+
+
+Module Contents
+---------------
+
+.. py:data:: MCP_ADAPTERS_AVAILABLE
+   :value: True
+
+
+.. py:data:: logger
+

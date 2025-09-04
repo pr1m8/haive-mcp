@@ -1,0 +1,59 @@
+mcp.integration.haive_agent_mcp_integration.HaiveMCPIntegration
+===============================================================
+
+.. py:class:: mcp.integration.haive_agent_mcp_integration.HaiveMCPIntegration
+
+   Integrates discovered MCP tools with Haive agents.
+
+   Init  .
+
+   :returns: Add return description]
+   :rtype: [TODO
+
+
+   .. py:method:: create_agent_with_mcp_tool(agent_type: str = 'simple', tool_query: str = 'calculator') -> Any | None
+      :async:
+
+
+      Create a haive agent with a discovered MCP tool.
+
+
+
+   .. py:method:: create_mcp_tool(server_name: str, tool_info: dict[str, Any]) -> langchain_core.tools.Tool
+
+      Create a LangChain tool from MCP server info.
+
+
+
+   .. py:method:: discover_tool(query: str) -> dict[str, Any] | None
+      :async:
+
+
+      Discover an MCP tool/server by query.
+
+
+
+   .. py:method:: install_and_configure(server_name: str) -> bool
+      :async:
+
+
+      Install and configure an MCP server.
+
+
+
+   .. py:method:: start_mcp_server(server_name: str) -> bool
+      :async:
+
+
+      Start an MCP server.
+
+
+
+   .. py:attribute:: mcp_system
+
+
+   .. py:attribute:: mcp_tools
+
+
+   .. py:attribute:: process_manager
+

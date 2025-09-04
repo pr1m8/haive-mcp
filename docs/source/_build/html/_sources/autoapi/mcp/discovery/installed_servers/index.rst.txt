@@ -1,0 +1,53 @@
+mcp.discovery.installed_servers
+===============================
+
+.. py:module:: mcp.discovery.installed_servers
+
+.. autoapi-nested-parse::
+
+   Discover and manage installed MCP servers.
+
+   This module provides utilities to find, check, and manage MCP servers
+   that are already installed on the system.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.discovery.installed_servers.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/discovery/installed_servers/MCPServerDiscovery
+
+.. autoapisummary::
+
+   mcp.discovery.installed_servers.MCPServerDiscovery
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp.discovery.installed_servers.main
+
+
+Module Contents
+---------------
+
+.. py:function:: main()
+
+   Main entry point for CLI usage.
+
+
+.. py:data:: logger
+

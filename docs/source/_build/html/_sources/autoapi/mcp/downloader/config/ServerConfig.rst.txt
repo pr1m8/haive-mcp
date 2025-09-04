@@ -1,0 +1,129 @@
+mcp.downloader.config.ServerConfig
+==================================
+
+.. py:class:: mcp.downloader.config.ServerConfig(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Configuration for a specific MCP server.
+
+   Server configurations define individual servers to be installed,
+   referencing a template and providing server-specific variables.
+
+   .. attribute:: name
+
+      Server name identifier
+
+   .. attribute:: template
+
+      Template name to use
+
+   .. attribute:: source
+
+      Source location (npm, git URL, etc.)
+
+   .. attribute:: variables
+
+      Variables to substitute in template patterns
+
+   .. attribute:: enabled
+
+      Whether the server is enabled for installation
+
+   .. attribute:: priority
+
+      Installation priority (lower = higher priority)
+
+   .. attribute:: tags
+
+      Set of tags for categorization
+
+   .. attribute:: env_vars
+
+      Additional environment variables
+
+   .. attribute:: version
+
+      Specific version to install
+
+   .. rubric:: Example
+
+   Filesystem server config:
+
+   .. code-block:: python
+       config = ServerConfig(
+           name="filesystem",
+           template="npm_official",
+           source="npm",
+           variables={"service": "filesystem"},
+           tags={"official", "file-operations"},
+           priority=1
+       )
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: enabled
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: env_vars
+      :type:  dict[str, str]
+      :value: None
+
+
+
+   .. py:attribute:: model_config
+
+      Configuration for the model, should be a dictionary conforming to [`ConfigDict`][pydantic.config.ConfigDict].
+
+
+   .. py:attribute:: name
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: priority
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: source
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: tags
+      :type:  set[str]
+      :value: None
+
+
+
+   .. py:attribute:: template
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: variables
+      :type:  dict[str, Any]
+      :value: None
+
+
+
+   .. py:attribute:: version
+      :type:  str | None
+      :value: None
+
+

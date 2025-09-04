@@ -1,0 +1,39 @@
+mcp.registry.NPMPackageValidator
+================================
+
+.. py:class:: mcp.registry.NPMPackageValidator
+
+   Validates whether npm packages exist and are installable.
+
+
+   .. py:method:: __aenter__()
+      :async:
+
+
+
+   .. py:method:: __aexit__(*args)
+      :async:
+
+
+
+   .. py:method:: package_exists(package_name: str) -> bool
+      :async:
+
+
+      Check if an npm package exists.
+
+
+
+   .. py:method:: validate_batch(package_names: List[str]) -> Dict[str, bool]
+      :async:
+
+
+      Validate multiple packages in parallel.
+
+
+
+   .. py:attribute:: session
+      :type:  Optional[aiohttp.ClientSession]
+      :value: None
+
+

@@ -1,0 +1,39 @@
+mcp.servers.models.MCPTransport
+===============================
+
+.. py:class:: mcp.servers.models.MCPTransport
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+
+   MCP transport mechanism types.
+
+   Defines the communication transport used by MCP servers.
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+
+   .. py:attribute:: HTTP
+      :value: 'http'
+
+
+
+   .. py:attribute:: IPC
+      :value: 'ipc'
+
+
+
+   .. py:attribute:: STDIO
+      :value: 'stdio'
+
+
+
+   .. py:attribute:: UNKNOWN
+      :value: 'unknown'
+
+
+
+   .. py:attribute:: WEBSOCKET
+      :value: 'websocket'
+
+

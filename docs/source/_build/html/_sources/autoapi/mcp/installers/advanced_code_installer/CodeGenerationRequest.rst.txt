@@ -1,0 +1,53 @@
+mcp.installers.advanced_code_installer.CodeGenerationRequest
+============================================================
+
+.. py:class:: mcp.installers.advanced_code_installer.CodeGenerationRequest(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Request for LLM-generated installation code.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: context_documents
+      :type:  list[str]
+      :value: None
+
+
+
+   .. py:attribute:: custom_requirements
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: package_info
+      :type:  dict[str, Any]
+      :value: None
+
+
+
+   .. py:attribute:: risk_tolerance
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: server_description
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: server_name
+      :type:  str
+      :value: None
+
+

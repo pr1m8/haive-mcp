@@ -1,0 +1,59 @@
+launcher
+========
+
+.. py:module:: launcher
+
+.. autoapi-nested-parse::
+
+   MCP Discovery Tools Launcher.
+
+   Easy launcher for all MCP discovery and analysis tools.
+
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   launcher.main
+   launcher.run_comprehensive_web
+   launcher.run_csv_viewer
+   launcher.run_data_enhancement
+   launcher.run_original_rag_agent
+   launcher.run_self_query_test
+
+
+Module Contents
+---------------
+
+.. py:function:: main()
+
+   Main.
+
+
+.. py:function:: run_comprehensive_web()
+
+   Launch comprehensive web interface.
+
+
+.. py:function:: run_csv_viewer()
+
+   Launch CSV viewer.
+
+
+.. py:function:: run_data_enhancement(max_servers=None)
+
+   Run data enhancement.
+
+
+.. py:function:: run_original_rag_agent()
+
+   Run original RAG agent.
+
+
+.. py:function:: run_self_query_test()
+
+   Run self-query agent test.
+
+

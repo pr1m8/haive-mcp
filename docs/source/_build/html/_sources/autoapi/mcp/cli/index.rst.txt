@@ -1,0 +1,21 @@
+mcp.cli
+=======
+
+.. py:module:: mcp.cli
+
+.. autoapi-nested-parse::
+
+   CLI utilities for haive-mcp.
+
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/mcp/cli/mcp_manager/index
+   /autoapi/mcp/cli/server_manager/index
+
+

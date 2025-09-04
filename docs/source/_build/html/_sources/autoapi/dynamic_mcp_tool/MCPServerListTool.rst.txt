@@ -1,0 +1,35 @@
+dynamic_mcp_tool.MCPServerListTool
+==================================
+
+.. py:class:: dynamic_mcp_tool.MCPServerListTool(dynamic_mcp_tool: DynamicMCPTool, **kwargs)
+
+   Bases: :py:obj:`langchain_core.tools.BaseTool`
+
+
+   Tool to list currently installed MCP servers.
+
+   Init  .
+
+   :param dynamic_mcp_tool: [TODO: Add description]
+
+
+   .. py:attribute:: description
+      :type:  str
+      :value: 'List all currently installed and available MCP servers'
+
+
+      Used to tell the model how/when/why to use the tool.
+
+      You can provide few-shot examples as a part of the description.
+
+
+   .. py:attribute:: dynamic_mcp_tool
+
+
+   .. py:attribute:: name
+      :type:  str
+      :value: 'list_mcp_servers'
+
+
+      The unique name of the tool that clearly communicates its purpose.
+

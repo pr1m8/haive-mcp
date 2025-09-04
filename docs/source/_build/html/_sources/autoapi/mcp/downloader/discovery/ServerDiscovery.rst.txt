@@ -1,0 +1,211 @@
+mcp.downloader.discovery.ServerDiscovery
+========================================
+
+.. py:class:: mcp.downloader.discovery.ServerDiscovery(config: haive.mcp.downloader.config.DiscoveryConfig)
+
+   Discovers MCP servers from various sources.
+
+   This class provides methods to discover MCP servers from multiple
+   registries and sources, with support for various search patterns
+   and filtering options.
+
+   .. attribute:: config
+
+      Discovery configuration
+
+   .. attribute:: discovered_cache
+
+      Cache of discovered servers
+
+   .. attribute:: session
+
+      Aiohttp session for HTTP requests
+
+   .. rubric:: Examples
+
+   Using discovery:
+
+   .. code-block:: python
+       discovery = ServerDiscovery(config)
+
+       # Discover from all sources
+       all_servers = await discovery.discover_all()
+
+       # Discover from specific source
+       npm_servers = await discovery.discover_from_npm("mcp-server")
+
+       # Determine template for discovered server
+       template = discovery.determine_template(server_data)
+
+   Initialize server discovery.
+
+   :param config: Discovery configuration with sources and patterns
+
+
+   .. py:method:: __aenter__()
+      :async:
+
+
+      Async context manager entry.
+
+
+
+   .. py:method:: __aexit__(exc_type, exc_val, exc_tb)
+      :async:
+
+
+      Async context manager exit.
+
+
+
+   .. py:method:: determine_template(server_data: dict[str, Any]) -> str
+
+      Determine the appropriate template for a discovered server.
+
+      :param server_data: Discovered server information
+
+      :returns: Template name to use
+
+      .. rubric:: Examples
+
+      Determining template:
+
+      .. code-block:: python
+              template = discovery.determine_template({
+                  "source": "npm",
+                  "package_name": "@modelcontextprotocol/server-example"
+              })
+              # Returns: "npm_official"
+
+
+
+   .. py:method:: discover_all(limit_per_source: int | None = None) -> list[dict[str, Any]]
+      :async:
+
+
+      Discover servers from all configured sources.
+
+      :param limit_per_source: Maximum servers to discover per source.
+                               Uses config default if not specified.
+
+      :returns: List of discovered server dictionaries
+
+      .. rubric:: Examples
+
+      Discovering from all sources:
+
+      .. code-block:: python
+              servers = await discovery.discover_all(limit_per_source=50)
+              print(f"Found {len(servers)} unique servers")
+
+
+
+   .. py:method:: discover_from_github(api_url: str, limit: int = 100) -> list[dict[str, Any]]
+      :async:
+
+
+      Discover servers from GitHub.
+
+      :param api_url: GitHub API search URL
+      :param limit: Maximum results
+
+      :returns: List of discovered servers
+
+      .. rubric:: Examples
+
+      GitHub discovery:
+
+      .. code-block:: python
+              servers = await discovery.discover_from_github(
+                  "https://api.github.com/search/repositories?q=mcp+server",
+                  limit=30
+              )
+
+
+
+   .. py:method:: discover_from_npm_registry(registry_url: str, limit: int = 100) -> list[dict[str, Any]]
+      :async:
+
+
+      Discover servers from npm registry.
+
+      :param registry_url: NPM registry search URL
+      :param limit: Maximum results to return
+
+      :returns: List of discovered servers
+
+      .. rubric:: Examples
+
+      NPM discovery:
+
+      .. code-block:: python
+              servers = await discovery.discover_from_npm_registry(
+                  "https://registry.npmjs.org/-/v1/search?text=mcp+server",
+                  limit=50
+              )
+
+
+
+   .. py:method:: discover_from_pypi(search_url: str, limit: int = 100) -> list[dict[str, Any]]
+      :async:
+
+
+      Discover servers from PyPI.
+
+      :param search_url: PyPI search URL
+      :param limit: Maximum results
+
+      :returns: List of discovered servers
+
+
+
+   .. py:method:: discover_from_url(url: str, limit: int = 100) -> list[dict[str, Any]]
+      :async:
+
+
+      Discover servers from a generic URL (e.g., README).
+
+      :param url: URL to parse for server information
+      :param limit: Maximum results
+
+      :returns: List of discovered servers
+
+
+
+   .. py:method:: search_servers(query: str, sources: list[str] | None = None, limit: int = 50) -> list[dict[str, Any]]
+      :async:
+
+
+      Search for servers across sources with a specific query.
+
+      :param query: Search query
+      :param sources: Specific sources to search (npm, pypi, github)
+      :param limit: Maximum results
+
+      :returns: List of matching servers
+
+      .. rubric:: Examples
+
+      Searching for servers:
+
+      .. code-block:: python
+              results = await discovery.search_servers(
+                  "database",
+                  sources=["npm", "github"],
+                  limit=20
+              )
+
+
+
+   .. py:attribute:: config
+
+
+   .. py:attribute:: discovered_cache
+      :type:  dict[str, DiscoveredServer]
+
+
+   .. py:attribute:: session
+      :type:  aiohttp.ClientSession | None
+      :value: None
+
+

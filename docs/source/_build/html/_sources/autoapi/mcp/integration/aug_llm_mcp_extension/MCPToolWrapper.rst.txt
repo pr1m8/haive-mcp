@@ -1,0 +1,37 @@
+mcp.integration.aug_llm_mcp_extension.MCPToolWrapper
+====================================================
+
+.. py:class:: mcp.integration.aug_llm_mcp_extension.MCPToolWrapper(**kwargs: Any)
+
+   Bases: :py:obj:`langchain_core.tools.BaseTool`
+
+
+   Wrapper to convert MCP tools to Haive-compatible tools.
+
+   This wrapper allows MCP tools to be used seamlessly within the Haive
+   framework by adapting their interface to match BaseTool expectations.
+
+   Initialize the tool.
+
+
+   .. py:attribute:: description
+      :type:  str
+
+      Used to tell the model how/when/why to use the tool.
+
+      You can provide few-shot examples as a part of the description.
+
+
+   .. py:attribute:: mcp_client
+      :type:  Any
+
+
+   .. py:attribute:: mcp_tool
+      :type:  dict[str, Any]
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      The unique name of the tool that clearly communicates its purpose.
+

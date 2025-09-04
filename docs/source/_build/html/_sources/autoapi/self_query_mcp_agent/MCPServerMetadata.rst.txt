@@ -1,0 +1,71 @@
+self_query_mcp_agent.MCPServerMetadata
+======================================
+
+.. py:class:: self_query_mcp_agent.MCPServerMetadata(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Metadata schema for MCP servers.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: category
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: has_install
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: language
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: prompts_count
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: resources_count
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: server_name
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: stars
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: tools_count
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: total_features
+      :type:  int
+      :value: None
+
+

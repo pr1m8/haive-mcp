@@ -1,0 +1,53 @@
+mcp.agents.intelligent_mcp_agent.ServerRecommendation
+=====================================================
+
+.. py:class:: mcp.agents.intelligent_mcp_agent.ServerRecommendation(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Recommendation for MCP server installation.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: alternative_servers
+      :type:  list[str]
+      :value: None
+
+
+
+   .. py:attribute:: capabilities
+      :type:  list[str]
+      :value: None
+
+
+
+   .. py:attribute:: confidence
+      :type:  float
+      :value: None
+
+
+
+   .. py:attribute:: config
+      :type:  haive.mcp.config.MCPServerConfig
+      :value: None
+
+
+
+   .. py:attribute:: reason
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: server_name
+      :type:  str
+      :value: None
+
+

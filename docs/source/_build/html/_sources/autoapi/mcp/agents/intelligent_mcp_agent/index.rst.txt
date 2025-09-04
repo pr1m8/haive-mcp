@@ -1,0 +1,131 @@
+mcp.agents.intelligent_mcp_agent
+================================
+
+.. py:module:: mcp.agents.intelligent_mcp_agent
+
+.. autoapi-nested-parse::
+
+   Intelligent MCP Agent for dynamic server discovery and management.
+
+   This module provides an advanced agent that can dynamically discover, recommend,
+   install, and manage MCP servers based on user needs. It includes HITL (Human-In-The-Loop)
+   approval workflows and intelligent capability matching.
+
+   The agent supports:
+       - Dynamic server discovery from 992+ server database
+       - Intelligent capability matching
+       - HITL approval workflows
+       - Hot-reload and dynamic tool refresh
+       - Server health monitoring
+       - Automatic retry and recovery
+
+   Classes:
+       IntelligentMCPAgent: Advanced agent for dynamic MCP management
+       HITLApprovalRequest: Request structure for human approval
+       ServerRecommendation: Recommendation for MCP server installation
+
+   .. rubric:: Example
+
+   Dynamic server discovery and installation:
+
+   .. code-block:: python
+
+       from haive.mcp.agents import IntelligentMCPAgent
+
+   from haive import core
+   from haive import agents
+
+
+           # Create intelligent agent
+           agent = IntelligentMCPAgent(
+               engine=engine,
+               auto_discover=True,
+               require_approval=True
+           )
+
+           # Agent discovers need for database capabilities
+           result = await agent.arun({
+               "messages": [{
+                   "role": "user",
+                   "content": "I need to analyze data from PostgreSQL"
+               }]
+           })
+
+           # Agent recommends postgres MCP server and asks for approval
+           # After approval, installs and configures automatically
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.agents.intelligent_mcp_agent.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/agents/intelligent_mcp_agent/ApprovalStatus
+   /autoapi/mcp/agents/intelligent_mcp_agent/HITLApprovalRequest
+   /autoapi/mcp/agents/intelligent_mcp_agent/IntelligentMCPAgent
+   /autoapi/mcp/agents/intelligent_mcp_agent/ServerRecommendation
+
+.. autoapisummary::
+
+   mcp.agents.intelligent_mcp_agent.ApprovalStatus
+   mcp.agents.intelligent_mcp_agent.HITLApprovalRequest
+   mcp.agents.intelligent_mcp_agent.IntelligentMCPAgent
+   mcp.agents.intelligent_mcp_agent.ServerRecommendation
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp.agents.intelligent_mcp_agent.create_agent_with_callback
+   mcp.agents.intelligent_mcp_agent.create_auto_discovering_agent
+   mcp.agents.intelligent_mcp_agent.create_manual_discovery_agent
+
+
+Module Contents
+---------------
+
+.. py:function:: create_agent_with_callback(engine: haive.core.engine.aug_llm.AugLLMConfig, approval_callback: collections.abc.Callable[[HITLApprovalRequest], bool]) -> IntelligentMCPAgent
+   :async:
+
+
+   Create an agent with custom approval callback.
+
+   :param engine: LLM engine configuration
+   :param approval_callback: Custom function to handle approvals
+
+   :returns: Configured IntelligentMCPAgent
+
+
+.. py:function:: create_auto_discovering_agent(engine: haive.core.engine.aug_llm.AugLLMConfig, require_approval: bool = True) -> IntelligentMCPAgent
+
+   Create an agent that automatically discovers and installs MCP servers.
+
+   :param engine: LLM engine configuration
+   :param require_approval: Whether to require HITL approval
+
+   :returns: Configured IntelligentMCPAgent
+
+
+.. py:function:: create_manual_discovery_agent(engine: haive.core.engine.aug_llm.AugLLMConfig) -> IntelligentMCPAgent
+
+   Create an agent with manual discovery tools but no auto-discovery.
+
+   :param engine: LLM engine configuration
+
+   :returns: Configured IntelligentMCPAgent
+
+
+.. py:data:: logger
+

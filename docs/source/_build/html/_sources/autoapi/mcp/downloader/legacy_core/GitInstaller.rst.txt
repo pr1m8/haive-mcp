@@ -1,0 +1,54 @@
+mcp.downloader.legacy_core.GitInstaller
+=======================================
+
+.. py:class:: mcp.downloader.legacy_core.GitInstaller
+
+   Bases: :py:obj:`MCPInstaller`
+
+
+   Installer for Git-based MCP servers.
+
+
+   .. py:method:: can_handle(server_config: ServerConfig, template: ServerTemplate) -> bool
+      :async:
+
+
+      Can Handle.
+
+      :param server_config: [TODO: Add description]
+      :param template: [TODO: Add description]
+
+      :returns: Add return description]
+      :rtype: [TODO
+
+
+
+   .. py:method:: install(server_config: ServerConfig, template: ServerTemplate, install_dir: pathlib.Path) -> dict[str, Any]
+      :async:
+
+
+      Install.
+
+      :param server_config: [TODO: Add description]
+      :param template: [TODO: Add description]
+      :param install_dir: [TODO: Add description]
+
+      :returns: Add return description]
+      :rtype: [TODO
+
+
+
+   .. py:method:: verify(server_config: ServerConfig, template: ServerTemplate, install_dir: pathlib.Path) -> bool
+      :async:
+
+
+      Verify.
+
+      :param server_config: [TODO: Add description]
+      :param template: [TODO: Add description]
+      :param install_dir: [TODO: Add description]
+
+      :returns: Add return description]
+      :rtype: [TODO
+
+

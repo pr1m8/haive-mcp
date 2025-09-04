@@ -1,0 +1,47 @@
+mcp.manager.MCPServerCategory
+=============================
+
+.. py:class:: mcp.manager.MCPServerCategory(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Represents a category of MCP servers for bulk operations.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: description
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: name
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: popularity_threshold
+      :type:  int | None
+      :value: None
+
+
+
+   .. py:attribute:: servers
+      :type:  list[str]
+      :value: None
+
+
+
+   .. py:attribute:: tags
+      :type:  list[str]
+      :value: None
+
+

@@ -1,0 +1,194 @@
+mcp.servers.mcp_server_manager.MCPServerManager
+===============================================
+
+.. py:class:: mcp.servers.mcp_server_manager.MCPServerManager
+
+   Manages MCP servers with proper stdio handling.
+
+   This class provides comprehensive management of Model Context Protocol (MCP)
+   servers, including starting, stopping, monitoring, and health checking.
+
+   .. attribute:: servers
+
+      Dict mapping server names to their process information
+
+   .. attribute:: available_servers
+
+      Dict of pre-configured server definitions
+
+   .. attribute:: shutdown_requested
+
+      Flag indicating graceful shutdown was requested
+
+   .. rubric:: Example
+
+   >>> manager = MCPServerManager()
+   >>> manager.start_server("filesystem")
+   True
+   >>> status = manager.get_status()
+   >>> print(status["filesystem"]["running"])
+   True
+
+
+   .. py:method:: check_server_startup(process: subprocess.Popen, name: str, timeout: float = 5.0) -> Tuple[bool, str]
+
+      Check if a server started successfully.
+
+      For stdio transport servers, output to stderr is normal behavior and not
+      indicative of an error. This method handles the distinction between
+      different transport types.
+
+      :param process: The subprocess.Popen instance for the server
+      :param name: Name of the server being checked
+      :param timeout: Maximum time to wait for startup confirmation
+
+      :returns: bool, message: str) indicating startup status
+      :rtype: Tuple of (success
+
+      .. note::
+
+         Stdio servers are considered successfully started if they remain
+         running after the initial startup period.
+
+
+
+   .. py:method:: get_status() -> Dict[str, dict]
+
+      Get status of all servers.
+
+      Returns current status information for all managed servers,
+      including PID, running state, transport type, and description.
+
+      :returns:     - pid: Process ID of the server
+                    - running: Boolean indicating if server is currently running
+                    - transport: Transport type (e.g., "stdio")
+                    - description: Human-readable server description
+      :rtype: Dict mapping server names to status information dicts with keys
+
+      .. rubric:: Example
+
+      >>> status = manager.get_status()
+      >>> print(status["filesystem"]["running"])
+      True
+
+
+
+   .. py:method:: run(servers_to_start: List[str] = None, blocking: bool = True)
+
+      Run the MCP server manager.
+
+      Main entry point for starting and managing MCP servers. Can run in
+      blocking mode (stays running until interrupted) or non-blocking mode
+      (returns after starting servers).
+
+      :param servers_to_start: List of server names to start. Defaults to
+                               ["filesystem", "time"] if not specified.
+      :param blocking: If True, blocks and monitors servers until interrupted.
+                       If False, returns immediately after starting servers.
+
+      :returns:
+
+                True if servers started successfully, False if critical
+                      error occurred (e.g., npx not available)
+      :rtype: bool
+
+      .. rubric:: Example
+
+      Blocking mode (typical usage)::
+
+          manager = MCPServerManager()
+          manager.run()  # Runs until Ctrl+C
+
+      Non-blocking mode (for integration)::
+
+          manager = MCPServerManager()
+          success = manager.run(blocking=False)
+          # Do other work while servers run
+          manager.stop_all_servers()  # Clean shutdown
+
+      .. note::
+
+         In blocking mode, installs signal handlers for SIGINT and SIGTERM
+         to ensure clean shutdown of all servers.
+
+
+
+   .. py:method:: show_status()
+
+      Show server status.
+
+      Prints a formatted status report of all servers to the logger,
+      including running servers and available servers that aren't running.
+
+      .. note:: Output is sent to the configured logger at INFO level.
+
+
+
+   .. py:method:: start_server(name: str, env_overrides: Dict[str, str] = None) -> bool
+
+      Start an MCP server by name.
+
+      Starts a configured MCP server process with proper environment setup
+      and monitoring. Handles both stdio and other transport types.
+
+      :param name: Name of the server to start (must be in available_servers)
+      :param env_overrides: Optional dict of environment variables to set/override
+
+      :returns: True if server started successfully, False otherwise
+      :rtype: bool
+
+      :raises None: Errors are logged but not raised
+
+      .. rubric:: Example
+
+      >>> manager.start_server("filesystem")
+      True
+      >>> manager.start_server("github", {"GITHUB_TOKEN": "token"})
+      True
+
+
+
+   .. py:method:: stop_all_servers()
+
+      Stop all running servers.
+
+      Gracefully shuts down all managed servers. This method is called
+      automatically during signal handling for clean shutdown.
+
+      .. note:: Sets shutdown_requested flag to signal monitoring threads.
+
+
+
+   .. py:method:: stop_server(name: str) -> bool
+
+      Stop a server by name.
+
+      Attempts graceful termination first, then force kills if necessary.
+      Cleans up all associated resources.
+
+      :param name: Name of the server to stop
+
+      :returns:
+
+                True if server was stopped, False if server wasn't running
+                      or stop failed
+      :rtype: bool
+
+      .. rubric:: Example
+
+      >>> manager.stop_server("filesystem")
+      True
+
+
+
+   .. py:attribute:: available_servers
+
+
+   .. py:attribute:: servers
+      :type:  Dict[str, dict]
+
+
+   .. py:attribute:: shutdown_requested
+      :value: False
+
+

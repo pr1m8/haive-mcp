@@ -1,0 +1,22 @@
+mcp.installers
+==============
+
+.. py:module:: mcp.installers
+
+.. autoapi-nested-parse::
+
+   Module exports.
+
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/mcp/installers/advanced_code_installer/index
+   /autoapi/mcp/installers/config_manager/index
+   /autoapi/mcp/installers/safe_pattern_installer/index
+
+

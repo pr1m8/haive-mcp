@@ -1,0 +1,95 @@
+mcp.discovery.MCPServerDiscovery
+================================
+
+.. py:class:: mcp.discovery.MCPServerDiscovery
+
+   Placeholder for MCP server discovery.
+
+   This class provides basic structure for MCP server discovery functionality.
+   In a complete implementation, it would scan various sources to find available
+   MCP servers and their capabilities.
+
+   .. attribute:: discovered_servers
+
+      Dictionary mapping server names to their metadata.
+      Would contain server configurations, capabilities, and locations.
+
+   .. rubric:: Example
+
+   Basic discovery usage (placeholder):
+
+       discovery = MCPServerDiscovery()
+       servers = await discovery.discover_all()
+       report = discovery.get_discovery_report()
+
+   Initialize discovery.
+
+   Sets up the discovery system with empty server registry.
+   In a full implementation, this would initialize connections
+   to registries and scan configured paths.
+
+
+   .. py:method:: create_mcp_config() -> dict[str, Any]
+
+      Create MCP configuration from discovered servers.
+
+      Converts discovered server information into a valid MCPConfig
+      structure that can be used to initialize MCP agents.
+
+      :returns:     - enabled: Whether MCP should be enabled
+                    - servers: Discovered server configurations
+                    - auto_discover: Discovery settings
+      :rtype: Dictionary representing MCPConfig with
+
+      .. note::
+
+         Currently returns empty config as placeholder.
+         Real implementation would build proper configurations.
+
+
+
+   .. py:method:: discover_all() -> dict[str, Any]
+      :async:
+
+
+      Discover all available MCP servers.
+
+      Placeholder method that would scan all configured sources for MCP servers.
+      In a full implementation, this would:
+          - Query MCP server registries
+          - Scan local installation directories
+          - Parse configuration files
+          - Check for environment-based servers
+
+      :returns: Dictionary mapping server names to their discovery metadata.
+                Currently returns empty dict as placeholder.
+
+      .. note::
+
+         This is a placeholder. Real implementation would perform
+         actual discovery operations.
+
+
+
+   .. py:method:: get_discovery_report() -> dict[str, Any]
+
+      Get a detailed report of discovered servers.
+
+      Generates a summary report of all discovered MCP servers,
+      including counts, sources, and basic statistics.
+
+      :returns:     - servers: Total count of discovered servers
+                    - sources: List of sources where servers were found
+                    - categories: Server categories discovered (future)
+                    - capabilities: Aggregate capabilities (future)
+      :rtype: Dictionary containing
+
+      .. rubric:: Example
+
+      report = discovery.get_discovery_report()
+      print(f"Found {report['servers']} servers")
+
+
+
+   .. py:attribute:: discovered_servers
+

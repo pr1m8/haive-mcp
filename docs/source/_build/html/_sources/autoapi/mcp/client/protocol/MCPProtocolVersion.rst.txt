@@ -1,0 +1,22 @@
+mcp.client.protocol.MCPProtocolVersion
+======================================
+
+.. py:class:: mcp.client.protocol.MCPProtocolVersion
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+
+   Supported MCP protocol versions.
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+
+   .. py:attribute:: V0_9
+      :value: '0.9'
+
+
+
+   .. py:attribute:: V1_0
+      :value: '1.0'
+
+

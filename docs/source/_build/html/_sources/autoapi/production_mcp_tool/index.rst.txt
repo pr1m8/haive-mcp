@@ -1,0 +1,67 @@
+production_mcp_tool
+===================
+
+.. py:module:: production_mcp_tool
+
+.. autoapi-nested-parse::
+
+   Production MCP Discovery and Installation Tool.
+
+   Leverages the existing haive-mcp infrastructure with 1,960 servers to:
+   1. RAG search through the complete MCP server database
+   2. Agent picks the best server based on capabilities
+   3. Install it dynamically using FastMCP or standard MCP
+   4. Return ready-to-use LangChain MCP client configuration
+
+   This tool integrates with the AugLLMConfig pattern and builds on the existing
+   MCPDocumentationLoader and agents.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   production_mcp_tool.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/production_mcp_tool/ListInstalledMCPTool
+   /autoapi/production_mcp_tool/MCPCapabilityRequest
+   /autoapi/production_mcp_tool/MCPInstallationResult
+   /autoapi/production_mcp_tool/MCPServerOption
+   /autoapi/production_mcp_tool/ProductionMCPTool
+
+.. autoapisummary::
+
+   production_mcp_tool.ListInstalledMCPTool
+   production_mcp_tool.MCPCapabilityRequest
+   production_mcp_tool.MCPInstallationResult
+   production_mcp_tool.MCPServerOption
+   production_mcp_tool.ProductionMCPTool
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   production_mcp_tool.create_production_mcp_tools
+
+
+Module Contents
+---------------
+
+.. py:function:: create_production_mcp_tools(engine: haive.core.engine.aug_llm.AugLLMConfig) -> list[langchain_core.tools.BaseTool]
+
+   Create production-ready MCP discovery and management tools.
+
+
+.. py:data:: logger
+

@@ -1,0 +1,163 @@
+mcp.servers.dataflow_mcp_server
+===============================
+
+.. py:module:: mcp.servers.dataflow_mcp_server
+
+.. autoapi-nested-parse::
+
+   MCP Server integrating Haive Dataflow for dynamic tool creation.
+
+   This server demonstrates how to create MCP tools from Haive's dataflow system,
+   exposing dataflow graphs as MCP tools and resources. It integrates with:
+   - haive-core: For agent and engine functionality
+   - haive-dataflow: For registry and discovery systems
+   - haive-tools: For exposing existing tools via MCP
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.servers.dataflow_mcp_server.DATAFLOW_AVAILABLE
+   mcp.servers.dataflow_mcp_server.logger
+   mcp.servers.dataflow_mcp_server.mcp
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/servers/dataflow_mcp_server/AgentCreationRequest
+
+.. autoapisummary::
+
+   mcp.servers.dataflow_mcp_server.AgentCreationRequest
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp.servers.dataflow_mcp_server.agent_configuration_prompt
+   mcp.servers.dataflow_mcp_server.component_search_prompt
+   mcp.servers.dataflow_mcp_server.create_agent
+   mcp.servers.dataflow_mcp_server.discover_components
+   mcp.servers.dataflow_mcp_server.execute_tool
+   mcp.servers.dataflow_mcp_server.get_registry_entities
+   mcp.servers.dataflow_mcp_server.get_registry_statistics
+   mcp.servers.dataflow_mcp_server.initialize_server
+   mcp.servers.dataflow_mcp_server.query_registry
+
+
+Module Contents
+---------------
+
+.. py:function:: agent_configuration_prompt(task_description: str, available_tools: list[str]) -> list[dict[str, str]]
+   :async:
+
+
+   Generate a prompt for agent configuration.
+
+   :param task_description: Description of the task
+   :param available_tools: List of available tool names
+
+   :returns: Prompt messages for agent configuration
+
+
+.. py:function:: component_search_prompt(requirement: str) -> list[dict[str, str]]
+   :async:
+
+
+   Generate a prompt for searching components by requirement.
+
+   :param requirement: User's requirement description
+
+   :returns: Prompt messages for component search
+
+
+.. py:function:: create_agent(request: AgentCreationRequest) -> dict[str, Any]
+   :async:
+
+
+   Create a new Haive agent with specified configuration.
+
+   :param request: Agent creation parameters
+
+   :returns: Agent creation result with ID and status
+
+
+.. py:function:: discover_components(component_type: str = 'all', auto_register: bool = False) -> dict[str, Any]
+   :async:
+
+
+   Discover Haive components in the system.
+
+   :param component_type: Type to discover (agents, tools, or all)
+   :param auto_register: Whether to automatically register discovered components
+
+   :returns: Discovery results with counts and component details
+
+
+.. py:function:: execute_tool(tool_name: str, input_data: dict[str, Any]) -> dict[str, Any]
+   :async:
+
+
+   Execute a Haive tool by name.
+
+   :param tool_name: Name of the tool to execute
+   :param input_data: Input parameters for the tool
+
+   :returns: Tool execution result
+
+
+.. py:function:: get_registry_entities() -> dict[str, Any]
+   :async:
+
+
+   Resource providing all registry entities.
+
+   :returns: Complete registry state
+
+
+.. py:function:: get_registry_statistics() -> dict[str, Any]
+   :async:
+
+
+   Resource providing registry statistics.
+
+   :returns: Statistics about registered components
+
+
+.. py:function:: initialize_server()
+   :async:
+
+
+   Initialize the MCP server with dataflow integration.
+
+
+.. py:function:: query_registry(entity_type: str | None = None, name_pattern: str | None = None, limit: int = 10) -> list[dict[str, Any]]
+   :async:
+
+
+   Query the Haive registry for components.
+
+   :param entity_type: Type of entity to query (agent, tool, engine, etc.)
+   :param name_pattern: Pattern to match entity names
+   :param limit: Maximum number of results to return
+
+   :returns: List of registry entries matching the query
+
+
+.. py:data:: DATAFLOW_AVAILABLE
+   :value: True
+
+
+.. py:data:: logger
+
+.. py:data:: mcp
+

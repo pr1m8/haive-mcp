@@ -1,0 +1,56 @@
+mcp.installer.bulk_installer
+============================
+
+.. py:module:: mcp.installer.bulk_installer
+
+.. autoapi-nested-parse::
+
+   Bulk installer for MCP servers.
+
+   This module provides utilities to install multiple MCP servers based on
+   various criteria like star count, category, or specific lists.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.installer.bulk_installer.console
+   mcp.installer.bulk_installer.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/installer/bulk_installer/MCPBulkInstaller
+
+.. autoapisummary::
+
+   mcp.installer.bulk_installer.MCPBulkInstaller
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp.installer.bulk_installer.main
+
+
+Module Contents
+---------------
+
+.. py:function:: main()
+
+   Main entry point for bulk installer CLI.
+
+
+.. py:data:: console
+
+.. py:data:: logger
+

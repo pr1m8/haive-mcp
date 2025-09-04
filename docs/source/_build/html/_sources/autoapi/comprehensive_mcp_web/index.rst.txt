@@ -1,0 +1,87 @@
+comprehensive_mcp_web
+=====================
+
+.. py:module:: comprehensive_mcp_web
+
+.. autoapi-nested-parse::
+
+   Comprehensive MCP Discovery Web Interface.
+
+   Combines all features:
+   - CSV data browsing with sorting/filtering
+   - Self-query RAG search with metadata filtering
+   - Parent document retrieval for full content
+   - Enhanced data viewing with README content
+
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   comprehensive_mcp_web.display_search_results
+   comprehensive_mcp_web.main
+   comprehensive_mcp_web.perform_advanced_search
+   comprehensive_mcp_web.search_servers
+   comprehensive_mcp_web.show_advanced_search
+   comprehensive_mcp_web.show_analytics
+   comprehensive_mcp_web.show_dashboard
+   comprehensive_mcp_web.show_data_browser
+   comprehensive_mcp_web.show_server_details
+   comprehensive_mcp_web.show_tools
+
+
+Module Contents
+---------------
+
+.. py:function:: display_search_results(results: dict[str, Any], query: str)
+
+   Display search results.
+
+
+.. py:function:: main()
+
+   Main.
+
+
+.. py:function:: perform_advanced_search(query: str, methods: list[str], max_results: int)
+
+   Perform advanced search with multiple methods.
+
+
+.. py:function:: search_servers(query: str, method: str) -> dict[str, Any]
+
+   Perform search based on selected method.
+
+
+.. py:function:: show_advanced_search()
+
+   Advanced search with all retrieval methods.
+
+
+.. py:function:: show_analytics()
+
+   Analytics and visualizations.
+
+
+.. py:function:: show_dashboard()
+
+   Main dashboard with overview and quick search.
+
+
+.. py:function:: show_data_browser()
+
+   Enhanced data browser with filtering and sorting.
+
+
+.. py:function:: show_server_details()
+
+   Detailed server information with enhanced data.
+
+
+.. py:function:: show_tools()
+
+   Tools and utilities.
+
+

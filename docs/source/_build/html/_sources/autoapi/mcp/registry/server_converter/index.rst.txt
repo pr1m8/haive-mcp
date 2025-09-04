@@ -1,0 +1,79 @@
+mcp.registry.server_converter
+=============================
+
+.. py:module:: mcp.registry.server_converter
+
+.. autoapi-nested-parse::
+
+   Server Registry Converter for Phase 3+.
+
+   This module converts GitHub-based server entries from the 1900+ server database
+   into npm package format for the MCP Manager registry.
+
+   Features:
+   - Converts GitHub URLs to potential npm package names
+   - Validates npm package existence
+   - Generates category mappings
+   - Creates installable server lists
+
+   Usage:
+       from haive.mcp.registry.server_converter import ServerConverter
+
+       converter = ServerConverter()
+
+       # Convert known patterns
+       npm_packages = await converter.convert_github_to_npm_batch([
+           "https://github.com/modelcontextprotocol/server-time",
+           "https://github.com/some-org/mcp-server-custom"
+       ])
+
+       # Validate packages exist on npm
+       valid_packages = await converter.validate_npm_packages(npm_packages)
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.registry.server_converter.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/registry/server_converter/NPMPackageValidator
+   /autoapi/mcp/registry/server_converter/ServerConversion
+   /autoapi/mcp/registry/server_converter/ServerConverter
+
+.. autoapisummary::
+
+   mcp.registry.server_converter.NPMPackageValidator
+   mcp.registry.server_converter.ServerConversion
+   mcp.registry.server_converter.ServerConverter
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp.registry.server_converter.main
+
+
+Module Contents
+---------------
+
+.. py:function:: main()
+   :async:
+
+
+   Example usage of ServerConverter.
+
+
+.. py:data:: logger
+

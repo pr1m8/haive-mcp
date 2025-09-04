@@ -1,0 +1,99 @@
+mcp.downloader.core.ServerStatus
+================================
+
+.. py:class:: mcp.downloader.core.ServerStatus(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Status information for an MCP server.
+
+   .. attribute:: name
+
+      Server name
+
+   .. attribute:: status
+
+      Current status (installed, failed, pending)
+
+   .. attribute:: last_check
+
+      Timestamp of last status check
+
+   .. attribute:: last_success
+
+      Timestamp of last successful operation
+
+   .. attribute:: install_result
+
+      Result of installation attempt
+
+   .. attribute:: health_status
+
+      Health check status
+
+   .. attribute:: error
+
+      Error message if failed
+
+   .. rubric:: Example
+
+   Creating status:
+
+   .. code-block:: python
+       status = ServerStatus(
+           name="filesystem",
+           status="installed",
+           last_check=datetime.now(),
+           last_success=datetime.now()
+       )
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: error
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: health_status
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: install_result
+      :type:  dict[str, Any] | None
+      :value: None
+
+
+
+   .. py:attribute:: last_check
+      :type:  datetime.datetime | None
+      :value: None
+
+
+
+   .. py:attribute:: last_success
+      :type:  datetime.datetime | None
+      :value: None
+
+
+
+   .. py:attribute:: name
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: status
+      :type:  str
+      :value: None
+
+

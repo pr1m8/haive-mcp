@@ -1,0 +1,99 @@
+mcp.installer.MCPBulkInstaller
+==============================
+
+.. py:class:: mcp.installer.MCPBulkInstaller(data_path: str = 'mcp_servers_data.csv', dry_run: bool = False)
+
+   Install multiple MCP servers systematically.
+
+   This class provides methods to:
+   - Install servers by star count threshold
+   - Install servers by category
+   - Track installation success/failure
+   - Generate installation reports
+
+   .. attribute:: data_path
+
+      Path to the CSV file with server data
+
+   .. attribute:: install_log
+
+      List of installation attempts and results
+
+   .. attribute:: installed_servers
+
+      Set of successfully installed server names
+
+   .. rubric:: Example
+
+   >>> installer = MCPBulkInstaller()
+   >>> installer.install_by_stars(min_stars=1000)
+   >>> installer.save_install_report()
+
+   Initialize the bulk installer.
+
+   :param data_path: Path to CSV file containing MCP server data
+   :param dry_run: If True, only simulate installations without executing commands
+
+
+   .. py:method:: install_by_category(category: str) -> Dict
+
+      Install all servers in a specific category.
+
+      :param category: Category name (e.g., 'ai_ml', 'database', 'utility')
+
+      :returns: Summary dict with installation statistics
+
+
+
+   .. py:method:: install_by_stars(min_stars: int = 100, max_servers: Optional[int] = None) -> Dict
+
+      Install servers with minimum star count.
+
+      :param min_stars: Minimum number of stars required
+      :param max_servers: Maximum number of servers to install (None for all)
+
+      :returns: Summary dict with installation statistics
+
+
+
+   .. py:method:: install_top_n(n: int = 10) -> Dict
+
+      Install top N servers by star count.
+
+      :param n: Number of top servers to install
+
+      :returns: Summary dict with installation statistics
+
+
+
+   .. py:method:: save_install_report(filename: str = None)
+
+      Save detailed installation report.
+
+      :param filename: Output filename (defaults to timestamp)
+
+
+
+   .. py:method:: show_summary()
+
+      Display installation summary in console.
+
+
+
+   .. py:attribute:: data_path
+
+
+   .. py:attribute:: dry_run
+      :value: False
+
+
+
+   .. py:attribute:: install_log
+      :type:  List[Dict]
+      :value: []
+
+
+
+   .. py:attribute:: installed_servers
+      :type:  set
+

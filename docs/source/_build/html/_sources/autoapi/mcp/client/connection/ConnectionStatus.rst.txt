@@ -1,0 +1,37 @@
+mcp.client.connection.ConnectionStatus
+======================================
+
+.. py:class:: mcp.client.connection.ConnectionStatus
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+
+   Connection status states.
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+
+   .. py:attribute:: CONNECTED
+      :value: 'connected'
+
+
+
+   .. py:attribute:: CONNECTING
+      :value: 'connecting'
+
+
+
+   .. py:attribute:: DISCONNECTED
+      :value: 'disconnected'
+
+
+
+   .. py:attribute:: ERROR
+      :value: 'error'
+
+
+
+   .. py:attribute:: RECONNECTING
+      :value: 'reconnecting'
+
+

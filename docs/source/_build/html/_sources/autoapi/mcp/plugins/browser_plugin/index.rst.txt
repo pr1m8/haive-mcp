@@ -1,0 +1,54 @@
+mcp.plugins.browser_plugin
+==========================
+
+.. py:module:: mcp.plugins.browser_plugin
+
+.. autoapi-nested-parse::
+
+   MCP Browser Plugin - Manage Our 63 Downloaded MCP Servers
+
+   This plugin inherits from PluginPlatform and specializes in managing the 63 MCP servers
+   we successfully downloaded using our bulk installer. It implements the intelligent
+   inheritance pattern from our architecture plan.
+
+   Key Features:
+   - Inherits all PluginPlatform capabilities
+   - Loads servers from our actual CSV and install report data
+   - Intelligent caching for performance
+   - FastAPI route registration for server browsing
+   - Real integration with our download infrastructure
+
+   Architecture:
+   - Inherits from: PluginPlatform (which inherits from BasePlatform)
+   - Manages: DownloadedServerInfo instances
+   - Provides: Server discovery, health checks, browsing interface
+   - Integrates: Real CSV data and install reports from our bulk download
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.plugins.browser_plugin.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/plugins/browser_plugin/MCPBrowserPlugin
+
+.. autoapisummary::
+
+   mcp.plugins.browser_plugin.MCPBrowserPlugin
+
+
+Module Contents
+---------------
+
+.. py:data:: logger
+

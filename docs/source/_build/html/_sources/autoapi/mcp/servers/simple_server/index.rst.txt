@@ -1,0 +1,68 @@
+mcp.servers.simple_server
+=========================
+
+.. py:module:: mcp.servers.simple_server
+
+.. autoapi-nested-parse::
+
+   Simple MCP server that you can easily start and add servers to.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.servers.simple_server.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/servers/simple_server/SimpleMCPServerManager
+
+.. autoapisummary::
+
+   mcp.servers.simple_server.SimpleMCPServerManager
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp.servers.simple_server.interactive_menu
+   mcp.servers.simple_server.main
+   mcp.servers.simple_server.setup_basic_servers
+
+
+Module Contents
+---------------
+
+.. py:function:: interactive_menu(manager: SimpleMCPServerManager)
+   :async:
+
+
+   Interactive menu for managing servers.
+
+
+.. py:function:: main()
+   :async:
+
+
+   Main function.
+
+
+.. py:function:: setup_basic_servers(manager: SimpleMCPServerManager)
+   :async:
+
+
+   Set up some basic MCP servers.
+
+
+.. py:data:: logger
+

@@ -1,0 +1,32 @@
+mcp.client.MCPTransportError
+============================
+
+.. py:exception:: mcp.client.MCPTransportError(message: str, error_code: Optional[int] = None, details: Optional[Dict[str, Any]] = None)
+
+   Bases: :py:obj:`MCPConnectionError`
+
+
+   Error in the transport layer.
+
+   Raised when there are issues with the underlying transport mechanism
+   (STDIO, HTTP, WebSocket, etc.). This includes process management failures,
+   network issues, and transport-specific problems.
+
+   .. rubric:: Examples
+
+   Process died unexpectedly::
+
+       raise MCPTransportError(
+           "Server process died",
+           details={"pid": 12345, "exit_code": -9}
+       )
+
+   Network error::
+
+       raise MCPTransportError(
+           "HTTP connection failed",
+           details={"url": "http://localhost:8080", "status": 500}
+       )
+
+   Initialize self.  See help(type(self)) for accurate signature.
+

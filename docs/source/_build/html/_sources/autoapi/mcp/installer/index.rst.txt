@@ -1,0 +1,33 @@
+mcp.installer
+=============
+
+.. py:module:: mcp.installer
+
+.. autoapi-nested-parse::
+
+   MCP server installation utilities.
+
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/mcp/installer/bulk_installer/index
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/installer/MCPBulkInstaller
+
+.. autoapisummary::
+
+   mcp.installer.MCPBulkInstaller
+
+

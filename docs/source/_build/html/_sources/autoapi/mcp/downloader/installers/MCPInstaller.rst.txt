@@ -1,0 +1,77 @@
+mcp.downloader.installers.MCPInstaller
+======================================
+
+.. py:class:: mcp.downloader.installers.MCPInstaller
+
+   Bases: :py:obj:`abc.ABC`
+
+
+   Abstract base class for MCP installers.
+
+   All installer implementations must inherit from this class and implement
+   the required methods.
+
+   .. rubric:: Examples
+
+   Creating a custom installer:
+
+   .. code-block:: python
+       class MyInstaller(MCPInstaller):
+           async def can_handle(self, server_config, template):
+               return template.installation_method == "custom"
+
+           async def install(self, server_config, template, install_dir):
+               # Custom installation logic
+               return {"success": True}
+
+           async def verify(self, server_config, template, install_dir):
+               # Verification logic
+               return True
+
+
+   .. py:method:: can_handle(server_config: haive.mcp.downloader.config.ServerConfig, template: haive.mcp.downloader.config.ServerTemplate) -> bool
+      :abstractmethod:
+
+      :async:
+
+
+      Check if this installer can handle the given configuration.
+
+      :param server_config: Server configuration
+      :param template: Server template
+
+      :returns: True if this installer can handle the installation
+
+
+
+   .. py:method:: install(server_config: haive.mcp.downloader.config.ServerConfig, template: haive.mcp.downloader.config.ServerTemplate, install_dir: pathlib.Path) -> dict[str, Any]
+      :abstractmethod:
+
+      :async:
+
+
+      Install the MCP server.
+
+      :param server_config: Server configuration
+      :param template: Server template
+      :param install_dir: Installation directory
+
+      :returns: Dict with installation results including success status
+
+
+
+   .. py:method:: verify(server_config: haive.mcp.downloader.config.ServerConfig, template: haive.mcp.downloader.config.ServerTemplate, install_dir: pathlib.Path) -> bool
+      :abstractmethod:
+
+      :async:
+
+
+      Verify the installation was successful.
+
+      :param server_config: Server configuration
+      :param template: Server template
+      :param install_dir: Installation directory
+
+      :returns: True if installation is verified
+
+

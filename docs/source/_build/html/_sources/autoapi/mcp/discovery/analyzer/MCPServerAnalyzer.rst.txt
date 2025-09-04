@@ -1,0 +1,213 @@
+mcp.discovery.analyzer.MCPServerAnalyzer
+========================================
+
+.. py:class:: mcp.discovery.analyzer.MCPServerAnalyzer
+
+   Analyzer for discovering and analyzing MCP servers.
+
+   MCPServerAnalyzer provides comprehensive analysis capabilities for
+   MCP server configurations. It can identify MCP servers from various
+   sources and convert them to standardized MCPServerConfig instances.
+
+   The analyzer integrates with haive-core's component discovery system
+   to automatically find and register MCP servers. It supports multiple
+   configuration formats and can extract server information from objects,
+   dictionaries, and files.
+
+   .. attribute:: discovered_servers
+
+      Dictionary of servers found during analysis
+
+   .. rubric:: Examples
+
+   Basic server analysis:
+
+   .. code-block:: python
+
+       analyzer = MCPServerAnalyzer()
+
+       # Check if object can be analyzed
+       if analyzer.can_analyze(my_object):
+           config = analyzer.analyze(my_object)
+           if config:
+               print(f"Server: {config.name}")
+               print(f"Transport: {config.transport}")
+               print(f"Capabilities: {config.capabilities}")
+
+   Initialize the MCP server analyzer.
+
+   Sets up the analyzer with an empty dictionary to track
+   discovered servers during analysis operations.
+
+
+   .. py:method:: analyze(obj: Any, source: str | None = None) -> haive.mcp.config.MCPServerConfig | None
+
+      Analyze an object and extract MCP server configuration.
+
+      Attempts to extract a valid MCPServerConfig from various object
+      types. Supports dictionaries, MCPServerConfig instances, objects
+      with conversion methods, and arbitrary objects with MCP attributes.
+
+      :param obj: Object to analyze. Can be:
+                  - Dictionary with MCP configuration
+                  - MCPServerConfig instance
+                  - Object with to_mcp_config() method
+                  - Any object with MCP-related attributes
+      :param source: Optional source identifier (file path, registry key, etc.)
+                     Used for naming and debugging.
+
+      :returns:
+
+                Extracted configuration if successful,
+                    None if the object cannot be converted to a valid config.
+      :rtype: Optional[MCPServerConfig]
+
+      .. rubric:: Examples
+
+      Analyzing different object types:
+
+      .. code-block:: python
+              # From dictionary
+              config = analyzer.analyze({
+                  "name": "test",
+                  "command": "test-server",
+                  "capabilities": ["test"]
+              })
+
+              # From custom object
+              class MyServer:
+                  def to_mcp_config(self):
+                      return MCPServerConfig(name="custom", ...)
+
+              server = MyServer()
+              config = analyzer.analyze(server)
+
+
+
+   .. py:method:: can_analyze(obj: Any) -> bool
+
+      Check if an object is an MCP server or configuration.
+
+      Determines whether an object appears to be an MCP server or
+      configuration by checking for characteristic attributes and
+      patterns.
+
+      Detection criteria:
+          - Dictionary with MCP config keys (command, url, transport)
+          - Class name containing "MCPServer" or "MCP"
+          - Object with MCP-related attributes
+
+      :param obj: Object to check for MCP characteristics
+
+      :returns: True if the object appears to be MCP-related
+      :rtype: bool
+
+      .. rubric:: Examples
+
+      Checking various objects:
+
+      .. code-block:: python
+
+          # Dictionary config
+          config = {"command": "npx", "args": [...]}
+          assert analyzer.can_analyze(config) == True
+
+          # Non-MCP object
+          assert analyzer.can_analyze({"foo": "bar"}) == False
+
+          # MCP server instance
+          server = MCPServer(...)
+          assert analyzer.can_analyze(server) == True
+
+
+
+   .. py:method:: create_component_info(server_config: haive.mcp.config.MCPServerConfig) -> dict[str, Any]
+
+      Create component info for registration with component discovery.
+
+
+
+   .. py:method:: discover_from_directory(directory: pathlib.Path) -> list[haive.mcp.config.MCPServerConfig]
+
+      Discover MCP server configurations from a directory.
+
+      Recursively searches a directory for MCP server configuration files.
+      Supports JSON and YAML formats (if PyYAML is available).
+
+      File patterns:
+          - **/*.json: JSON configuration files
+          - **/*.yaml: YAML configuration files (requires PyYAML)
+
+      Configuration formats:
+          - Single server: {"command": "...", "capabilities": [...]}
+          - Multiple servers: [{...}, {...}, ...]
+
+      :param directory: Directory path to search recursively
+
+      :returns: All valid configurations found
+      :rtype: List[MCPServerConfig]
+
+      .. rubric:: Examples
+
+      Discovering from a config directory:
+
+      .. code-block:: python
+              configs_dir = Path("~/.mcp/configs").expanduser()
+              servers = analyzer.discover_from_directory(configs_dir)
+
+              for server in servers:
+                  print(f"Found: {server.name} ({server.transport})")
+
+      .. note::
+
+         Invalid files are skipped with debug logging.
+         YAML support is optional and fails gracefully.
+
+
+
+   .. py:method:: discover_from_registry(registry_path: pathlib.Path | None = None) -> list[haive.mcp.config.MCPServerConfig]
+
+      Discover MCP servers from a registry file.
+
+      Loads MCP server configurations from a JSON registry file. If no
+      path is provided, checks standard registry locations.
+
+      Registry format:
+          {
+              "servers": {
+                  "server_name": {
+                      "command": "...",
+                      "capabilities": [...]
+                  }
+              }
+          }
+
+      Default locations checked:
+          1. ~/.mcp/registry.json
+          2. ~/.config/mcp/servers.json
+          3. /etc/mcp/servers.json
+
+      :param registry_path: Optional path to registry file. If not provided,
+                            searches default locations.
+
+      :returns: Configurations from the registry
+      :rtype: List[MCPServerConfig]
+
+      .. rubric:: Examples
+
+      Using a custom registry:
+
+      .. code-block:: python
+              # Load from specific registry
+              servers = analyzer.discover_from_registry(
+                  Path("/opt/mcp/registry.json")
+              )
+
+              # Use default locations
+              servers = analyzer.discover_from_registry()
+
+
+
+   .. py:attribute:: discovered_servers
+      :type:  dict[str, haive.mcp.config.MCPServerConfig]
+

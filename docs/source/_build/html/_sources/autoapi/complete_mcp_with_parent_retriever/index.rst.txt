@@ -1,0 +1,58 @@
+complete_mcp_with_parent_retriever
+==================================
+
+.. py:module:: complete_mcp_with_parent_retriever
+
+.. autoapi-nested-parse::
+
+   Complete End-to-End MCP Example with Parent Document Retriever.
+
+   This example demonstrates:
+   1. Parent-child document retrieval for MCP servers
+   2. Self-query capabilities with metadata filtering
+   3. HITL approval for server installation
+   4. Live server testing with tools, resources, and prompts
+   5. Hierarchical categorization with AutoTree
+
+   The parent-child pattern allows:
+   - Small chunks for precise similarity search (capabilities, keywords)
+   - Full server documentation returned for context
+   - Metadata filtering (stars, category, etc.) via self-query
+
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/complete_mcp_with_parent_retriever/HITLRequest
+   /autoapi/complete_mcp_with_parent_retriever/MCPServerInfo
+   /autoapi/complete_mcp_with_parent_retriever/MCPSystemWithParentRetriever
+
+.. autoapisummary::
+
+   complete_mcp_with_parent_retriever.HITLRequest
+   complete_mcp_with_parent_retriever.MCPServerInfo
+   complete_mcp_with_parent_retriever.MCPSystemWithParentRetriever
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   complete_mcp_with_parent_retriever.main
+
+
+Module Contents
+---------------
+
+.. py:function:: main()
+   :async:
+
+
+   Run the complete end-to-end example.
+
+

@@ -1,0 +1,203 @@
+mcp.agents.mcp_agent.MCPAgent
+=============================
+
+.. py:class:: mcp.agents.mcp_agent.MCPAgent(/, **data: Any)
+
+   Bases: :py:obj:`haive.agents.simple.agent.SimpleAgent`
+
+
+   Agent with seamless MCP integration.
+
+   This agent extends SimpleAgent with automatic MCP server management,
+   tool discovery, and seamless integration. It represents the culmination
+   of Phase 4 - full agent integration with the MCP ecosystem.
+
+   The agent can:
+   1. Automatically install MCP servers from categories
+   2. Discover and register tools from connected servers
+   3. Use MCP tools transparently in LLM conversations
+   4. Monitor server health and auto-reconnect
+   5. Provide detailed integration statistics
+
+   .. rubric:: Examples
+
+   Basic usage with automatic setup::
+
+       agent = MCPAgent(
+           name="assistant",
+           engine=AugLLMConfig(),
+           mcp_categories=["development", "productivity"]
+       )
+
+       # Agent auto-installs filesystem, git, search tools
+       result = await agent.arun("List files and search for Python docs")
+
+   Custom server configuration::
+
+       agent = MCPAgent(
+           name="custom_agent",
+           engine=AugLLMConfig(),
+           custom_servers={
+               "database": MCPServerConfig(
+                   name="database",
+                   transport="stdio",
+                   command="npx",
+                   args=["-y", "@modelcontextprotocol/server-postgres"],
+                   env={"DATABASE_URL": "postgresql://..."}
+               )
+           }
+       )
+
+   With health monitoring::
+
+       agent = MCPAgent(
+           name="monitored_agent",
+           engine=AugLLMConfig(),
+           auto_health_check=True,
+           health_check_interval=30.0
+       )
+
+       # Get detailed integration statistics
+       stats = agent.get_mcp_stats()
+       print(f"Connected servers: {stats.servers_connected}")
+       print(f"Available tools: {stats.tools_registered}")
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:method:: arun(input_data: Any, **kwargs) -> Any
+      :async:
+
+
+      Run the agent with automatic MCP initialization.
+
+
+
+   .. py:method:: discover_mcp_tools() -> None
+      :async:
+
+
+      Discover tools from all connected MCP servers and register them.
+
+
+
+   .. py:method:: get_mcp_stats() -> MCPIntegrationStats
+
+      Get current MCP integration statistics.
+
+
+
+   .. py:method:: health_check_mcp() -> Dict[str, Any]
+      :async:
+
+
+      Perform health check on all MCP servers.
+
+
+
+   .. py:method:: initialize_mcp() -> None
+      :async:
+
+
+      Initialize MCP integration - install servers and discover tools.
+
+
+
+   .. py:method:: install_additional_category(category: str) -> bool
+      :async:
+
+
+      Install an additional MCP category after initialization.
+
+
+
+   .. py:method:: list_mcp_tools() -> List[Dict[str, Any]]
+
+      List all available MCP tools with details.
+
+
+
+   .. py:method:: model_post_init(__context) -> None
+
+      Initialize MCP components after Pydantic model creation.
+
+
+
+   .. py:method:: refresh_mcp_tools() -> None
+      :async:
+
+
+      Refresh tool discovery from all servers.
+
+
+
+   .. py:method:: run(input_data: Any, **kwargs) -> Any
+
+      Sync run with MCP initialization.
+
+
+
+   .. py:attribute:: auto_health_check
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: auto_install
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: custom_servers
+      :type:  Optional[Dict[str, haive.mcp.manager.MCPServerConfig]]
+      :value: None
+
+
+
+   .. py:attribute:: health_check_interval
+      :type:  float
+      :value: None
+
+
+
+   .. py:attribute:: max_concurrent_installs
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: mcp_categories
+      :type:  Optional[List[str]]
+      :value: None
+
+
+
+   .. py:attribute:: mcp_manager
+      :type:  Optional[haive.mcp.manager.MCPManager]
+      :value: None
+
+
+
+   .. py:attribute:: mcp_stats
+      :type:  Optional[MCPIntegrationStats]
+      :value: None
+
+
+
+   .. py:attribute:: mcp_tools
+      :type:  Optional[Dict[str, langchain_core.tools.Tool]]
+      :value: None
+
+
+
+   .. py:attribute:: server_tools_map
+      :type:  Optional[Dict[str, List[str]]]
+      :value: None
+
+

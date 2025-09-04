@@ -1,0 +1,58 @@
+mcp.downloader.installers.DockerInstaller
+=========================================
+
+.. py:class:: mcp.downloader.installers.DockerInstaller
+
+   Bases: :py:obj:`MCPInstaller`
+
+
+   Installer for Docker-based MCP servers.
+
+   Handles pulling Docker images for containerized MCP servers.
+
+   .. rubric:: Examples
+
+   Docker installation:
+
+   .. code-block:: python
+       installer = DockerInstaller()
+       result = await installer.install(
+           server_config,
+           template,
+           install_dir
+       )
+
+
+   .. py:method:: can_handle(server_config: haive.mcp.downloader.config.ServerConfig, template: haive.mcp.downloader.config.ServerTemplate) -> bool
+      :async:
+
+
+      Check if this is a Docker installation.
+
+
+
+   .. py:method:: install(server_config: haive.mcp.downloader.config.ServerConfig, template: haive.mcp.downloader.config.ServerTemplate, install_dir: pathlib.Path) -> dict[str, Any]
+      :async:
+
+
+      Pull Docker image.
+
+      :param server_config: Server configuration
+      :param template: Server template
+      :param install_dir: Installation directory
+
+      :returns: Installation result dictionary
+
+
+
+   .. py:method:: verify(server_config: haive.mcp.downloader.config.ServerConfig, template: haive.mcp.downloader.config.ServerTemplate, install_dir: pathlib.Path) -> bool
+      :async:
+
+
+      Verify Docker installation.
+
+      Checks if the Docker image exists locally.
+
+      :returns: True if image is available
+
+

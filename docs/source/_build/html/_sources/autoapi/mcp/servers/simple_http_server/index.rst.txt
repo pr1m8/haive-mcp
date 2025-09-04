@@ -1,0 +1,91 @@
+mcp.servers.simple_http_server
+==============================
+
+.. py:module:: mcp.servers.simple_http_server
+
+.. autoapi-nested-parse::
+
+   Simple HTTP MCP server example.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.servers.simple_http_server.app
+   mcp.servers.simple_http_server.mcp
+   mcp.servers.simple_http_server.routes
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp.servers.simple_http_server.add
+   mcp.servers.simple_http_server.create_app
+   mcp.servers.simple_http_server.execute_tool
+   mcp.servers.simple_http_server.get_time
+   mcp.servers.simple_http_server.hello
+   mcp.servers.simple_http_server.index
+   mcp.servers.simple_http_server.list_tools
+
+
+Module Contents
+---------------
+
+.. py:function:: add(x: int, y: int) -> int
+   :async:
+
+
+   Add two numbers.
+
+
+.. py:function:: create_app() -> aiohttp.web.Application
+
+   Create the web application.
+
+
+.. py:function:: execute_tool(request: aiohttp.web.Request) -> aiohttp.web.Response
+   :async:
+
+
+   Execute a tool.
+
+
+.. py:function:: get_time() -> str
+   :async:
+
+
+   Get current time.
+
+
+.. py:function:: hello(name: str) -> str
+   :async:
+
+
+   Say hello to someone.
+
+
+.. py:function:: index(request: aiohttp.web.Request) -> aiohttp.web.Response
+   :async:
+
+
+   Root endpoint with server info.
+
+
+.. py:function:: list_tools(request: aiohttp.web.Request) -> aiohttp.web.Response
+   :async:
+
+
+   List available tools.
+
+
+.. py:data:: app
+
+.. py:data:: mcp
+
+.. py:data:: routes
+

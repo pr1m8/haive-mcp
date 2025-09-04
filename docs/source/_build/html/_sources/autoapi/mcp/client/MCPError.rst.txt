@@ -1,0 +1,54 @@
+mcp.client.MCPError
+===================
+
+.. py:exception:: mcp.client.MCPError(message: str, error_code: Optional[int] = None, details: Optional[Dict[str, Any]] = None)
+
+   Bases: :py:obj:`Exception`
+
+
+   Base exception for all MCP-related errors.
+
+   This is the root exception class for all MCP client errors. It provides
+   a consistent interface for error handling and includes optional error
+   details and context information.
+
+   :param message: Human-readable error description
+   :param error_code: MCP protocol error code (if applicable)
+   :param details: Additional error details or context
+
+   .. rubric:: Examples
+
+   Basic error::
+
+       raise MCPError("Connection failed")
+
+   With error code::
+
+       raise MCPError("Invalid request", error_code=-32600)
+
+   With details::
+
+       raise MCPError(
+           "Tool execution failed",
+           details={"tool": "filesystem", "args": {...}}
+       )
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+
+   .. py:method:: __str__() -> str
+
+      Return formatted error message.
+
+
+
+   .. py:attribute:: details
+
+
+   .. py:attribute:: error_code
+      :value: None
+
+
+
+   .. py:attribute:: message
+

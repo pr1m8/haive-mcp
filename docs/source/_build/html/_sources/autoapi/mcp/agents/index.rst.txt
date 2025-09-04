@@ -1,0 +1,59 @@
+mcp.agents
+==========
+
+.. py:module:: mcp.agents
+
+.. autoapi-nested-parse::
+
+   Module exports.
+
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/mcp/agents/basic_mcp_agent/index
+   /autoapi/mcp/agents/documentation_agent/index
+   /autoapi/mcp/agents/intelligent_mcp_agent/index
+   /autoapi/mcp/agents/mcp_agent/index
+   /autoapi/mcp/agents/transferable_mcp_agent/index
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.agents.ApprovalStatus
+   mcp.agents.BasicMCPAgent
+   mcp.agents.MCPAgent
+   mcp.agents.MCPDocumentationAgent
+   mcp.agents.TransferableMCPAgent
+
+
+Package Contents
+----------------
+
+.. py:data:: ApprovalStatus
+   :value: None
+
+
+.. py:data:: BasicMCPAgent
+   :value: None
+
+
+.. py:data:: MCPAgent
+   :value: None
+
+
+.. py:data:: MCPDocumentationAgent
+   :value: None
+
+
+.. py:data:: TransferableMCPAgent
+   :value: None
+
+

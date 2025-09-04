@@ -1,0 +1,68 @@
+simple_faiss_retriever.SimpleFAISSRetriever
+===========================================
+
+.. py:class:: simple_faiss_retriever.SimpleFAISSRetriever(cache_dir: str = '/tmp/mcp_faiss_cache')
+
+   Simple FAISS-based retriever for MCP servers.
+
+   Init  .
+
+   :param cache_dir: [TODO: Add description]
+
+
+   .. py:method:: asearch(query: str, k: int = 5) -> list[langchain_core.documents.Document]
+      :async:
+
+
+      Async search for relevant documents.
+
+
+
+   .. py:method:: get_server_by_name(name: str) -> dict[str, Any]
+
+      Get a specific server by name.
+
+
+
+   .. py:method:: get_servers_by_category(category: str) -> list[dict[str, Any]]
+
+      Get servers by category.
+
+
+
+   .. py:method:: get_top_servers(n: int = 10) -> list[dict[str, Any]]
+
+      Get top N servers by stars.
+
+
+
+   .. py:method:: search(query: str, k: int = 5) -> list[langchain_core.documents.Document]
+
+      Search for relevant documents.
+
+
+
+   .. py:method:: setup() -> None
+
+      Set up the retriever with auto-loading.
+
+
+
+   .. py:attribute:: cache_dir
+
+
+   .. py:attribute:: doc_loader
+
+
+   .. py:attribute:: documents
+      :value: []
+
+
+
+   .. py:attribute:: embeddings
+
+
+   .. py:attribute:: vectorstore
+      :value: None
+
+

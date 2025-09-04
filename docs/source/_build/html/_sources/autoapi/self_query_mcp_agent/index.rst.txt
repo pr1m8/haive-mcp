@@ -1,0 +1,49 @@
+self_query_mcp_agent
+====================
+
+.. py:module:: self_query_mcp_agent
+
+.. autoapi-nested-parse::
+
+   Self Query MCP Discovery Agent.
+
+   Enhanced RAG agent that uses Self Query methodology for structured querying
+   with metadata filtering and parent document retrieval.
+
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/self_query_mcp_agent/EnhancedMCPDocument
+   /autoapi/self_query_mcp_agent/MCPServerMetadata
+   /autoapi/self_query_mcp_agent/SelfQueryMCPAgent
+
+.. autoapisummary::
+
+   self_query_mcp_agent.EnhancedMCPDocument
+   self_query_mcp_agent.MCPServerMetadata
+   self_query_mcp_agent.SelfQueryMCPAgent
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   self_query_mcp_agent.test_enhanced_agent
+
+
+Module Contents
+---------------
+
+.. py:function:: test_enhanced_agent()
+   :async:
+
+
+   Test the enhanced MCP agent.
+
+

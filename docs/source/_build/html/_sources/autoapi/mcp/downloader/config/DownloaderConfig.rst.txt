@@ -1,0 +1,160 @@
+mcp.downloader.config.DownloaderConfig
+======================================
+
+.. py:class:: mcp.downloader.config.DownloaderConfig(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Overall configuration for the MCP downloader.
+
+   .. attribute:: install_dir
+
+      Directory for server installations
+
+   .. attribute:: config_dir
+
+      Directory for configuration files
+
+   .. attribute:: log_dir
+
+      Directory for log files
+
+   .. attribute:: max_concurrent
+
+      Maximum concurrent downloads
+
+   .. attribute:: retry_attempts
+
+      Number of retry attempts
+
+   .. attribute:: retry_delay
+
+      Delay between retries in seconds
+
+   .. attribute:: health_check_enabled
+
+      Enable health checks after install
+
+   .. attribute:: health_check_timeout
+
+      Health check timeout in seconds
+
+   .. attribute:: backup_enabled
+
+      Enable configuration backups
+
+   .. attribute:: backup_dir
+
+      Directory for backups
+
+   .. attribute:: templates
+
+      List of server templates
+
+   .. attribute:: servers
+
+      List of server configurations
+
+   .. attribute:: discovery
+
+      Discovery configuration
+
+   .. rubric:: Example
+
+   Full configuration:
+
+   .. code-block:: python
+       config = DownloaderConfig(
+           install_dir="/home/user/.mcp/servers",
+           max_concurrent=5,
+           retry_attempts=3,
+           templates=[template1, template2],
+           servers=[server1, server2]
+       )
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: backup_dir
+      :type:  pathlib.Path
+      :value: None
+
+
+
+   .. py:attribute:: backup_enabled
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: config_dir
+      :type:  pathlib.Path
+      :value: None
+
+
+
+   .. py:attribute:: discovery
+      :type:  DiscoveryConfig
+      :value: None
+
+
+
+   .. py:attribute:: health_check_enabled
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: health_check_timeout
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: install_dir
+      :type:  pathlib.Path
+      :value: None
+
+
+
+   .. py:attribute:: log_dir
+      :type:  pathlib.Path
+      :value: None
+
+
+
+   .. py:attribute:: max_concurrent
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: retry_attempts
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: retry_delay
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: servers
+      :type:  list[ServerConfig]
+      :value: None
+
+
+
+   .. py:attribute:: templates
+      :type:  list[ServerTemplate]
+      :value: None
+
+

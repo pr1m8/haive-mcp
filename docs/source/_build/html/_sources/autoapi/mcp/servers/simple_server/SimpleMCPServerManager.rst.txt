@@ -1,0 +1,47 @@
+mcp.servers.simple_server.SimpleMCPServerManager
+================================================
+
+.. py:class:: mcp.servers.simple_server.SimpleMCPServerManager
+
+   Simple manager for MCP servers.
+
+
+   .. py:method:: add_server(name: str, command: List[str], env: Dict[str, str] = None)
+      :async:
+
+
+      Add a new MCP server.
+
+
+
+   .. py:method:: is_server_running(name: str) -> bool
+
+      Check if a server is still running.
+
+
+
+   .. py:method:: list_servers()
+
+      List all registered servers.
+
+
+
+   .. py:method:: stop_all_servers()
+
+      Stop all servers.
+
+
+
+   .. py:method:: stop_server(name: str)
+
+      Stop a specific server.
+
+
+
+   .. py:attribute:: processes
+      :type:  Dict[str, subprocess.Popen]
+
+
+   .. py:attribute:: servers
+      :type:  Dict[str, Dict[str, Any]]
+

@@ -1,0 +1,39 @@
+mcp.servers.compatibility.MCPServerManager
+==========================================
+
+.. py:class:: mcp.servers.compatibility.MCPServerManager(*args, **kwargs)
+
+   Bases: :py:obj:`mcp.servers.mcp_server_manager_v2.MCPServerManagerV2`
+
+
+   Compatibility wrapper for legacy MCPServerManager.
+
+   This class provides full backward compatibility with the original
+   MCPServerManager while using the new Pydantic-based implementation
+   under the hood.
+
+   .. note::
+
+      This is a transitional class. New code should use MCPServerManagerV2
+      directly for better type safety and validation.
+
+   Initialize with compatibility mode enabled.
+
+
+   .. py:method:: check_server_startup(process, name, timeout=5.0)
+
+      Legacy synchronous startup check.
+
+
+
+   .. py:method:: start_server(name: str, env_overrides=None)
+
+      Legacy synchronous start_server method.
+
+
+
+   .. py:method:: stop_server(name: str)
+
+      Legacy synchronous stop_server method.
+
+

@@ -1,0 +1,89 @@
+mcp.manager.MCPRegistrationResult
+=================================
+
+.. py:class:: mcp.manager.MCPRegistrationResult(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Result of MCP server registration.
+
+   Contains the outcome of attempting to register and connect to an MCP server.
+
+   .. attribute:: server_name
+
+      Name of the server that was registered
+
+   .. attribute:: success
+
+      Whether registration and connection succeeded
+
+   .. attribute:: status
+
+      Current status of the server connection
+
+   .. attribute:: error
+
+      Optional error message if registration failed
+
+   .. attribute:: tools_discovered
+
+      Number of tools discovered from this server
+
+   .. attribute:: resources_discovered
+
+      Number of resources discovered from this server
+
+   .. attribute:: connection_time
+
+      Time taken to establish connection in seconds
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: connection_time
+      :type:  float | None
+      :value: None
+
+
+
+   .. py:attribute:: error_message
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: server_name
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: status
+      :type:  MCPServerStatus
+      :value: None
+
+
+
+   .. py:attribute:: success
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: tools
+      :type:  list[str]
+      :value: None
+
+
+
+   .. py:attribute:: tools_count
+      :type:  int
+      :value: None
+
+

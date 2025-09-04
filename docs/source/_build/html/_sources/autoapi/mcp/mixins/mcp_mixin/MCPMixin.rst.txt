@@ -1,0 +1,193 @@
+mcp.mixins.mcp_mixin.MCPMixin
+=============================
+
+.. py:class:: mcp.mixins.mcp_mixin.MCPMixin(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Mixin to add MCP (Model Context Protocol) capabilities to any agent.
+
+   This mixin provides comprehensive MCP integration including server management,
+   tool discovery, health monitoring, and graceful error handling. It can be
+   mixed into any Haive agent to add MCP functionality.
+
+   .. attribute:: mcp_config
+
+      Optional MCP configuration for server connections
+
+   Private Attributes:
+       _mcp_client: The MultiServerMCPClient instance for server communication
+       _mcp_servers: Dictionary of configured MCP servers
+       _mcp_tools: Dictionary of discovered tools from MCP servers
+       _mcp_initialized: Flag indicating if MCP has been initialized
+       _failed_servers: Set of server names that failed to connect
+       _server_health: Health status tracking for each server
+
+   Features:
+       - Dynamic MCP server discovery and connection
+       - Automatic tool registration with agent systems
+       - Health monitoring with automatic reconnection
+       - Graceful degradation when servers fail
+       - Lazy initialization support
+       - Resource and prompt management
+
+   .. rubric:: Examples
+
+   Creating a custom agent with MCP capabilities:
+
+   .. code-block:: python
+
+       from haive.agents.base import Agent
+       from haive.mcp.mixins import MCPMixin
+       from haive.mcp.config import MCPConfig, MCPServerConfig
+
+       class MyMCPAgent(MCPMixin, Agent):
+           '''Custom agent with MCP capabilities.'''
+
+           async def setup(self):
+               await super().setup()
+               # Initialize MCP
+               if self.mcp_config:
+                   await self.initialize_mcp()
+                   print(f"Loaded {len(self._mcp_tools)} MCP tools")
+
+       # Configure and use
+       agent = MyMCPAgent(
+           engine=engine,
+           mcp_config=MCPConfig(
+               enabled=True,
+               servers={
+                   "filesystem": MCPServerConfig(
+                       name="filesystem",
+                       transport="stdio",
+                       command="npx",
+                       args=["-y", "@modelcontextprotocol/server-filesystem"]
+                   )
+               }
+           )
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:method:: call_mcp_tool(tool_name: str, arguments: dict[str, Any], server_name: str | None = None) -> Any
+      :async:
+
+
+      Call an MCP tool.
+
+      :param tool_name: Name of the tool to call
+      :param arguments: Tool arguments
+      :param server_name: Optional specific server to use
+
+      :returns: Tool execution result
+
+
+
+   .. py:method:: cleanup_mcp()
+      :async:
+
+
+      Clean up MCP resources.
+
+
+
+   .. py:method:: get_mcp_prompt(server_name: str, prompt_name: str, arguments: dict[str, Any] | None = None) -> list[Any]
+      :async:
+
+
+      Get a prompt from an MCP server.
+
+
+
+   .. py:method:: get_mcp_resources(server_name: str, uris: str | list[str] | None = None) -> list[Any]
+      :async:
+
+
+      Get resources from an MCP server.
+
+
+
+   .. py:method:: get_mcp_status() -> dict[str, Any]
+
+      Get current MCP status.
+
+
+
+   .. py:method:: initialize_mcp() -> bool
+      :async:
+
+
+      Initialize MCP servers and client.
+
+      Establishes connections to all configured MCP servers, discovers available
+      tools, and registers them with the component registry if available.
+
+      The initialization process:
+          1. Checks for MCP dependencies availability
+          2. Discovers servers if auto-discovery is enabled
+          3. Connects to each configured server
+          4. Creates MultiServerMCPClient with connected servers
+          5. Discovers tools from all servers
+          6. Registers servers and tools with component registry
+
+      :returns: True if at least one server connected successfully, False otherwise
+      :rtype: bool
+
+      :raises Exception: Logged but not raised to ensure graceful degradation
+
+      .. rubric:: Examples
+
+      Manual initialization:
+
+      .. code-block:: python
+
+          agent = MCPAgent(engine=engine, mcp_config=config)
+          success = await agent.initialize_mcp()
+          if success:
+              print(f"Connected to {len(agent._mcp_servers)} servers")
+
+
+
+   .. py:method:: mcp_session(server_name: str | None = None)
+      :async:
+
+
+      Context manager for MCP operations.
+
+      :param server_name: Optional specific server to use
+
+      :Yields: MCP client or session
+
+
+
+   .. py:method:: model_post_init(__context) -> None
+
+      Initialize MCP mixin after model initialization.
+
+
+
+   .. py:method:: refresh_mcp_servers()
+      :async:
+
+
+      Refresh MCP server connections.
+
+
+
+   .. py:method:: setup_mcp()
+
+      Setup MCP after agent initialization.
+
+
+
+   .. py:attribute:: mcp_config
+      :type:  haive.mcp.config.MCPConfig | None
+      :value: None
+
+

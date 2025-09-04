@@ -1,0 +1,49 @@
+self_query_mcp_agent_v2
+=======================
+
+.. py:module:: self_query_mcp_agent_v2
+
+.. autoapi-nested-parse::
+
+   Self Query MCP Discovery Agent - Proper Haive Implementation.
+
+   This agent uses Haive's configuration system properly by extending BaseRAGAgent
+   and using SelfQueryRetrieverConfig instead of manually creating retrievers.
+
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/self_query_mcp_agent_v2/MCPDocumentLoader
+   /autoapi/self_query_mcp_agent_v2/MCPServerMetadata
+   /autoapi/self_query_mcp_agent_v2/SelfQueryMCPAgent
+
+.. autoapisummary::
+
+   self_query_mcp_agent_v2.MCPDocumentLoader
+   self_query_mcp_agent_v2.MCPServerMetadata
+   self_query_mcp_agent_v2.SelfQueryMCPAgent
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   self_query_mcp_agent_v2.test_mcp_agent
+
+
+Module Contents
+---------------
+
+.. py:function:: test_mcp_agent()
+   :async:
+
+
+   Test the MCP agent.
+
+

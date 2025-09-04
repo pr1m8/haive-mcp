@@ -1,0 +1,49 @@
+mcp.client.mcp_client
+=====================
+
+.. py:module:: mcp.client.mcp_client
+
+.. autoapi-nested-parse::
+
+   MCP Client Main Implementation.
+
+   This module provides the main MCPClient class that orchestrates the MCP
+   protocol communication. It combines the transport layer, protocol layer,
+   and provides a high-level interface for MCP operations.
+
+   The client handles:
+       - Connection management and lifecycle
+       - Tool discovery and execution
+       - Resource access and management
+       - Prompt retrieval and execution
+       - Server capability discovery
+       - Error handling and recovery
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.client.mcp_client.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/client/mcp_client/MCPClient
+
+.. autoapisummary::
+
+   mcp.client.mcp_client.MCPClient
+
+
+Module Contents
+---------------
+
+.. py:data:: logger
+

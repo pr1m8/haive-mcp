@@ -1,0 +1,33 @@
+mcp.installers.advanced_code_installer
+======================================
+
+.. py:module:: mcp.installers.advanced_code_installer
+
+.. autoapi-nested-parse::
+
+   Advanced Code-Generating MCP Server Installer.
+
+   Version 2: Uses Aug_LLM agents to generate custom installation code.
+   More flexible but requires human oversight for safety.
+
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/installers/advanced_code_installer/AdvancedCodeInstaller
+   /autoapi/mcp/installers/advanced_code_installer/CodeGenerationRequest
+   /autoapi/mcp/installers/advanced_code_installer/GeneratedInstallPlan
+   /autoapi/mcp/installers/advanced_code_installer/SubprocessExecutionInput
+
+.. autoapisummary::
+
+   mcp.installers.advanced_code_installer.AdvancedCodeInstaller
+   mcp.installers.advanced_code_installer.CodeGenerationRequest
+   mcp.installers.advanced_code_installer.GeneratedInstallPlan
+   mcp.installers.advanced_code_installer.SubprocessExecutionInput
+
+

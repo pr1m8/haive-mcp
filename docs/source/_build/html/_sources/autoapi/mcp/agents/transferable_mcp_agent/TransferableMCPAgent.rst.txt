@@ -1,0 +1,457 @@
+mcp.agents.transferable_mcp_agent.TransferableMCPAgent
+======================================================
+
+.. py:class:: mcp.agents.transferable_mcp_agent.TransferableMCPAgent(/, **data: Any)
+
+   Bases: :py:obj:`haive.mcp.mixins.mcp_mixin.MCPMixin`, :py:obj:`haive.agents.simple.SimpleAgent`
+
+
+   An MCP-enabled agent with enhanced transferability features.
+
+   TransferableMCPAgent extends SimpleAgent with sophisticated sharing and
+   transfer mechanisms for MCP resources. It enables efficient multi-agent
+   workflows by allowing agents to share clients, transfer tools, and
+   collaborate on tasks.
+
+   The agent supports:
+       - Sharing MCP clients between agents to reduce resource usage
+       - Transferring resources/prompts/tools to other agents
+       - Session-based collaboration with shared state
+       - Dynamic capability delegation for flexible workflows
+       - Transfer tracking and auditing
+
+   .. attribute:: share_client
+
+      Whether to share MCP client with other agents
+
+   .. attribute:: client_pool_key
+
+      Key for shared client pool identification
+
+   .. attribute:: _transferred_tools
+
+      Set of tool names transferred to other agents
+
+   .. attribute:: _transferred_resources
+
+      Set of resource URIs delegated
+
+   .. attribute:: _transferred_prompts
+
+      Set of prompts shared with other agents
+
+   Class Attributes:
+       _shared_mcp_clients: Pool of shared MCP client instances
+       _shared_sessions: Pool of shared MCP sessions
+
+   .. rubric:: Example
+
+   Basic usage with tool transfer:
+
+   .. code-block:: python
+
+       # Create source agent with tools
+       source = TransferableMCPAgent(
+           engine=engine,
+           mcp_config=mcp_config,
+           name="source_agent"
+       )
+       await source.setup()
+
+       # Create target agent
+       target = TransferableMCPAgent(
+           engine=engine,
+           mcp_config=minimal_config,
+           name="target_agent"
+       )
+       await target.setup()
+
+       # Transfer specific tool
+       success = await source.transfer_tool_to_agent(
+           target,
+           "filesystem_read_file"
+       )
+
+       # Now target can use the transferred tool
+       result = await target.call_mcp_tool(
+           "filesystem_read_file",
+           {"path": "/path/to/file"}
+       )
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:method:: collaborate_with_agents(agents: list[TransferableMCPAgent], task: str) -> dict[str, Any]
+      :async:
+
+
+      Collaborate with multiple agents on a task.
+
+      Orchestrates collaboration by sharing tools and resources with a group
+      of agents for a specific task. This method sets up the collaborative
+      environment but does not execute the task itself.
+
+      :param agents: List of agents to collaborate with
+      :param task: Description of the collaborative task
+
+      :returns:
+
+                Collaboration setup results including:
+                    - task: The task description
+                    - agents: List of agent details and tools received
+                    - shared_tools: Total number of tools shared
+                    - shared_resources: Total number of resources shared
+      :rtype: Dict[str, Any]
+
+      .. rubric:: Example
+
+      Setting up a collaborative analysis:
+
+      .. code-block:: python
+              # Leader agent has all necessary tools
+              leader = TransferableMCPAgent(
+                  engine=engine,
+                  mcp_config=full_config,
+                  name="leader"
+              )
+
+              # Create worker agents
+              workers = TransferableMCPAgent.create_collaborative_agents(
+                  engine=engine,
+                  mcp_config=minimal_config,
+                  num_agents=3
+              )
+
+              # Set up collaboration
+              results = await leader.collaborate_with_agents(
+                  workers,
+                  "Analyze codebase for security vulnerabilities"
+              )
+
+              # Workers now have tools to perform the analysis
+              for worker in workers:
+                  await worker.arun({
+                      "messages": [{"role": "user", "content": f"Analyze: {task}"}]
+                  })
+
+
+
+   .. py:method:: create_collaborative_agents(engine: Any, mcp_config: haive.mcp.config.MCPConfig, num_agents: int = 2, shared_client: bool = True) -> list[TransferableMCPAgent]
+      :classmethod:
+
+
+      Create multiple collaborative agents with shared MCP client.
+
+      Factory method that creates a group of agents configured for
+      collaboration. When shared_client is True, all agents will share
+      the same MCP client instance for resource efficiency.
+
+      :param engine: LLM engine configuration (AugLLMConfig)
+      :param mcp_config: MCP configuration to use for all agents
+      :param num_agents: Number of agents to create (default: 2)
+      :param shared_client: Whether agents should share MCP client (default: True)
+
+      :returns: List of configured collaborative agents
+      :rtype: List[TransferableMCPAgent]
+
+      :raises ValueError: If num_agents < 1
+
+
+
+   .. py:method:: delegate_resource_access(agent: TransferableMCPAgent, server_name: str, resource_uris: list[str] | None = None) -> list[Any]
+      :async:
+
+
+      Delegate resource access to another agent.
+
+      Retrieves resources from an MCP server on behalf of another agent.
+      This is useful when one agent has access to resources that another
+      agent needs but cannot directly access.
+
+      :param agent: Target agent requesting resource access
+      :param server_name: Name of the MCP server providing resources
+      :param resource_uris: Specific resource URIs to retrieve, or None for all
+
+      :returns: Resources retrieved from the server
+      :rtype: List[Any]
+
+      :raises RuntimeError: If MCP client not initialized
+      :raises ValueError: If server not found
+
+      .. rubric:: Example
+
+      Delegating file access:
+
+      .. code-block:: python
+              # Admin agent has filesystem access
+              admin = TransferableMCPAgent(
+                  engine=engine,
+                  mcp_config=admin_config,
+                  name="admin"
+              )
+
+              # Worker needs specific files
+              files = await admin.delegate_resource_access(
+                  worker,
+                  "filesystem",
+                  ["file:///config/settings.json", "file:///data/users.csv"]
+              )
+
+              # Worker can now process the files
+              for file in files:
+                  print(f"Processing {file.uri}: {file.content}")
+
+
+
+   .. py:method:: get_transfer_status() -> dict[str, Any]
+
+      Get status of all transfers.
+
+      Returns a summary of all transfer operations performed by this agent,
+      useful for auditing and debugging collaborative workflows.
+
+      :returns:
+
+                Transfer status including:
+                    - transferred_tools: List of tool names transferred
+                    - transferred_resources: List of resource URIs delegated
+                    - transferred_prompts: List of prompts shared
+                    - shared_client: Whether client sharing is enabled
+                    - client_pool_key: Key used for client pooling
+      :rtype: Dict[str, Any]
+
+      .. rubric:: Example
+
+      Checking transfer history:
+
+      .. code-block:: python
+              status = agent.get_transfer_status()
+              print(f"Tools transferred: {len(status['transferred_tools'])}")
+              print(f"Resources delegated: {len(status['transferred_resources'])}")
+
+              # List all transferred tools
+              for tool in status['transferred_tools']:
+                  print(f"  - {tool}")
+
+
+
+   .. py:method:: initialize_mcp() -> bool
+      :async:
+
+
+      Initialize MCP with client sharing support.
+
+      This method extends the base initialization to support client sharing
+      between agent instances. When share_client is True, it will attempt
+      to reuse an existing client from the shared pool before creating a
+      new one.
+
+      The client pool key is determined by:
+          1. Explicit client_pool_key if provided
+          2. Hash of the MCP configuration for automatic grouping
+
+      :returns: True if initialization successful, False otherwise
+      :rtype: bool
+
+      :raises Exception: Logged but not raised, ensures graceful degradation
+
+      .. rubric:: Example
+
+      Manual initialization with shared client:
+
+      .. code-block:: python
+
+          agent1 = TransferableMCPAgent(
+              engine=engine,
+              mcp_config=config,
+              share_client=True,
+              client_pool_key="my_shared_pool"
+          )
+          await agent1.initialize_mcp()  # Creates new client
+
+          agent2 = TransferableMCPAgent(
+              engine=engine,
+              mcp_config=config,
+              share_client=True,
+              client_pool_key="my_shared_pool"
+          )
+          await agent2.initialize_mcp()  # Reuses agent1's client
+
+
+
+   .. py:method:: share_prompt_with_agent(agent: TransferableMCPAgent, server_name: str, prompt_name: str, arguments: dict[str, Any] | None = None) -> list[Any]
+      :async:
+
+
+      Share a prompt with another agent.
+
+      Retrieves a prompt from an MCP server and shares it with another agent.
+      This enables consistent prompting across multiple agents for coordinated
+      behavior.
+
+      :param agent: Target agent to receive the prompt
+      :param server_name: Name of the MCP server providing the prompt
+      :param prompt_name: Name of the prompt to retrieve
+      :param arguments: Optional arguments to customize the prompt
+
+      :returns: Prompt messages that can be used by the target agent
+      :rtype: List[Any]
+
+      :raises RuntimeError: If MCP client not initialized
+      :raises ValueError: If server or prompt not found
+
+      .. rubric:: Example
+
+      Sharing a code review prompt:
+
+      .. code-block:: python
+              # Lead agent gets specialized prompt
+              review_prompt = await lead_agent.share_prompt_with_agent(
+                  reviewer_agent,
+                  "code_assistant",
+                  "code_review_prompt",
+                  {"language": "python", "style_guide": "PEP8"}
+              )
+
+              # Reviewer uses the shared prompt
+              result = await reviewer_agent.arun({
+                  "messages": review_prompt + [
+                      {"role": "user", "content": "Review this code: ..."}
+                  ]
+              })
+
+
+
+   .. py:method:: shared_mcp_session(session_key: str, server_name: str | None = None)
+      :async:
+
+
+      Create or join a shared MCP session.
+
+      Context manager that provides shared MCP sessions for coordinated
+      operations between multiple agents. Sessions are identified by unique
+      keys and automatically cleaned up when all agents exit.
+
+      :param session_key: Unique identifier for the shared session
+      :param server_name: Optional specific server for the session
+
+      :Yields: *Any* -- Shared MCP session instance
+
+      .. rubric:: Example
+
+      Coordinated file operations:
+
+      .. code-block:: python
+              # Multiple agents work on the same project
+              async with agent1.shared_mcp_session("project_x", "filesystem") as session:
+                  # Agent 1 creates project structure
+                  await session.call_tool("create_directory", {"path": "/project_x"})
+
+                  # Agent 2 joins the same session
+                  async with agent2.shared_mcp_session("project_x", "filesystem") as session2:
+                      # Both agents share the same session state
+                      await session2.call_tool("write_file", {
+                          "path": "/project_x/README.md",
+                          "content": "# Project X"
+                      })
+
+
+
+   .. py:method:: transfer_all_tools_to_agent(agent: TransferableMCPAgent) -> int
+      :async:
+
+
+      Transfer all tools to another agent.
+
+      Bulk transfer operation that shares all available MCP tools from this
+      agent to the target agent. Useful for creating worker agents with
+      full capabilities.
+
+      :param agent: Target agent to receive all tools
+
+      :returns: Number of tools successfully transferred
+      :rtype: int
+
+      .. rubric:: Example
+
+      Creating a fully-equipped worker:
+
+      .. code-block:: python
+
+          # Leader has all MCP servers configured
+          leader = TransferableMCPAgent(
+              engine=engine,
+              mcp_config=full_config,
+              name="leader"
+          )
+          await leader.setup()
+
+          # Worker starts with minimal config
+          worker = TransferableMCPAgent(
+              engine=engine,
+              mcp_config=minimal_config,
+              name="worker"
+          )
+          await worker.setup()
+
+          # Transfer all tools to worker
+          count = await leader.transfer_all_tools_to_agent(worker)
+          print(f"Worker now has {count} additional tools")
+
+
+
+   .. py:method:: transfer_tool_to_agent(agent: TransferableMCPAgent, tool_name: str) -> bool
+      :async:
+
+
+      Transfer a specific tool to another agent.
+
+      Transfers a single MCP tool from this agent to another agent. The tool
+      reference is shared, not copied, so both agents will have access to
+      the same tool instance. The transfer is tracked for auditing.
+
+      :param agent: Target agent to receive the tool
+      :param tool_name: Name of the tool to transfer (e.g., "filesystem_read_file")
+
+      :returns: True if transfer successful, False if tool not found
+      :rtype: bool
+
+      :raises RuntimeError: If target agent initialization fails
+
+      .. rubric:: Example
+
+      Transferring a specific tool:
+
+      .. code-block:: python
+
+          # Transfer GitHub issue creation tool
+          success = await source_agent.transfer_tool_to_agent(
+              target_agent,
+              "github_create_issue"
+          )
+
+          if success:
+              # Target can now create GitHub issues
+              await target_agent.call_mcp_tool(
+                  "github_create_issue",
+                  {"title": "New feature", "body": "Description"}
+              )
+
+
+
+   .. py:attribute:: client_pool_key
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: share_client
+      :type:  bool
+      :value: None
+
+

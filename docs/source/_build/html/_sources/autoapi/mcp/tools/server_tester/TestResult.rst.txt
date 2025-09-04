@@ -1,0 +1,49 @@
+mcp.tools.server_tester.TestResult
+==================================
+
+.. py:class:: mcp.tools.server_tester.TestResult
+
+   Result from testing an MCP server.
+
+
+   .. py:method:: __post_init__()
+
+      Post Init  .
+
+
+
+   .. py:attribute:: capabilities_found
+      :type:  list[str]
+      :value: None
+
+
+
+   .. py:attribute:: error
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: response_time
+      :type:  float
+
+
+   .. py:attribute:: server_name
+      :type:  str
+
+
+   .. py:attribute:: success
+      :type:  bool
+
+
+   .. py:attribute:: tools_discovered
+      :type:  int
+      :value: 0
+
+
+
+   .. py:attribute:: warnings
+      :type:  list[str]
+      :value: None
+
+

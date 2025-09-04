@@ -1,0 +1,109 @@
+mcp_simple_tool_agent
+=====================
+
+.. py:module:: mcp_simple_tool_agent
+
+.. autoapi-nested-parse::
+
+   MCP Simple Tool Agent - Using SimpleAgent with retrieval tool.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp_simple_tool_agent.VECTOR_STORE
+   mcp_simple_tool_agent.app
+   mcp_simple_tool_agent.mcp_agent
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp_simple_tool_agent/QueryRequest
+   /autoapi/mcp_simple_tool_agent/QueryResponse
+
+.. autoapisummary::
+
+   mcp_simple_tool_agent.QueryRequest
+   mcp_simple_tool_agent.QueryResponse
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp_simple_tool_agent.ask_agent
+   mcp_simple_tool_agent.create_mcp_documents
+   mcp_simple_tool_agent.create_mcp_tool_agent
+   mcp_simple_tool_agent.initialize_vector_store
+   mcp_simple_tool_agent.root
+   mcp_simple_tool_agent.search_mcp_servers
+   mcp_simple_tool_agent.startup_event
+
+
+Module Contents
+---------------
+
+.. py:function:: ask_agent(request: QueryRequest)
+   :async:
+
+
+   Ask the MCP agent a question.
+
+
+.. py:function:: create_mcp_documents() -> list[langchain_core.documents.Document]
+
+   Create documents from MCP server data.
+
+
+.. py:function:: create_mcp_tool_agent(llm_config: haive.core.models.llm.base.LLMConfig | None = None) -> haive.agents.simple.agent.SimpleAgent
+
+   Create a SimpleAgent with MCP search tool.
+
+
+.. py:function:: initialize_vector_store()
+
+   Initialize the vector store with MCP documents.
+
+
+.. py:function:: root()
+   :async:
+
+
+   Web interface for the MCP agent.
+
+
+.. py:function:: search_mcp_servers(query: str, k: int = 5) -> str
+
+   Search for MCP servers based on query.
+
+   :param query: Search query (e.g., "python database", "github integration")
+   :param k: Number of results to return (default: 5)
+
+   :returns: Formatted string with search results
+
+
+.. py:function:: startup_event()
+   :async:
+
+
+   Initialize the MCP tool agent.
+
+
+.. py:data:: VECTOR_STORE
+   :value: None
+
+
+.. py:data:: app
+
+.. py:data:: mcp_agent
+   :value: None
+
+

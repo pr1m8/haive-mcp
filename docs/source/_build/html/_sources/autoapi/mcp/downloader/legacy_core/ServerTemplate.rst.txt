@@ -1,0 +1,59 @@
+mcp.downloader.legacy_core.ServerTemplate
+=========================================
+
+.. py:class:: mcp.downloader.legacy_core.ServerTemplate
+
+   Template for MCP server configuration.
+
+
+   .. py:attribute:: args_pattern
+      :type:  list[str]
+      :value: []
+
+
+
+   .. py:attribute:: capabilities
+      :type:  list[str]
+      :value: []
+
+
+
+   .. py:attribute:: category
+      :type:  str
+      :value: 'general'
+
+
+
+   .. py:attribute:: command_pattern
+      :type:  str
+
+
+   .. py:attribute:: env_vars
+      :type:  dict[str, str]
+
+
+   .. py:attribute:: health_check
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: installation_method
+      :type:  InstallationMethod
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: post_install
+      :type:  list[str]
+      :value: []
+
+
+
+   .. py:attribute:: prerequisites
+      :type:  list[str]
+      :value: []
+
+

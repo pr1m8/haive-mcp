@@ -1,0 +1,89 @@
+enhance_mcp_data.GitHubDataEnhancer
+===================================
+
+.. py:class:: enhance_mcp_data.GitHubDataEnhancer(github_token: str | None = None)
+
+   Enhanced data collection from GitHub repositories.
+
+   Init  .
+
+   :param github_token: [TODO: Add description]
+
+
+   .. py:method:: __aenter__()
+      :async:
+
+
+      Aenter  .
+
+
+
+   .. py:method:: __aexit__(exc_type, exc_val, exc_tb)
+      :async:
+
+
+      Aexit  .
+
+      :param exc_type: [TODO: Add description]
+      :param exc_val: [TODO: Add description]
+      :param exc_tb: [TODO: Add description]
+
+
+
+   .. py:method:: check_rate_limit()
+      :async:
+
+
+      Check and respect GitHub rate limits.
+
+
+
+   .. py:method:: extract_github_info(url: str) -> dict[str, str] | None
+
+      Extract owner and repo from GitHub URL.
+
+
+
+   .. py:method:: fetch_github_api(url: str) -> dict[str, Any] | None
+      :async:
+
+
+      Fetch data from GitHub API with rate limiting.
+
+
+
+   .. py:method:: get_dependencies(owner: str, repo: str) -> dict[str, Any]
+      :async:
+
+
+      Extract dependencies from package files.
+
+
+
+   .. py:method:: get_repository_info(repo_url: str) -> dict[str, Any]
+      :async:
+
+
+      Get comprehensive repository information.
+
+
+
+   .. py:attribute:: github_token
+      :value: None
+
+
+
+   .. py:attribute:: rate_limit_remaining
+      :value: 5000
+
+
+
+   .. py:attribute:: rate_limit_reset
+      :value: 0
+
+
+
+   .. py:attribute:: session
+      :value: None
+
+

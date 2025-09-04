@@ -1,0 +1,13 @@
+mcp.cli.server_manager
+======================
+
+.. py:module:: mcp.cli.server_manager
+
+.. autoapi-nested-parse::
+
+   CLI for MCP Server Manager.
+
+   This provides a command-line interface to manage MCP servers.
+
+
+

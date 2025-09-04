@@ -1,0 +1,29 @@
+mcp.api.CategoryInstallRequest
+==============================
+
+.. py:class:: mcp.api.CategoryInstallRequest(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Request to install servers from a category.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: category_name
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: max_concurrent
+      :type:  int
+      :value: None
+
+

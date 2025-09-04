@@ -1,0 +1,23 @@
+simple_rag_mcp_agent.MCPSimpleRAGAgent
+======================================
+
+.. py:class:: simple_rag_mcp_agent.MCPSimpleRAGAgent(name: str = 'mcp_rag_agent', **kwargs)
+
+   Bases: :py:obj:`haive.agents.rag.simple.agent.SimpleRAGAgent`
+
+
+   SimpleRAG agent specialized for MCP server discovery.
+
+   Init  .
+
+   :param name: [TODO: Add description]
+
+
+   .. py:method:: get_system_prompt() -> str
+
+      Custom system prompt for MCP assistance.
+
+
+
+   .. py:attribute:: mcp_retriever
+

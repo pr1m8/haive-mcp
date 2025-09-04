@@ -1,0 +1,40 @@
+mcp.tools.ai_assistant.TaskMatcher
+==================================
+
+.. py:class:: mcp.tools.ai_assistant.TaskMatcher
+
+   Advanced task-to-server matching with learning capabilities.
+
+   Initialize task matcher.
+
+
+   .. py:method:: get_server_recommendation_score(server_name: str, task_pattern: str | None, task_description: str) -> float
+
+      Calculate recommendation score for a server.
+
+      :param server_name: Name of the server
+      :param task_pattern: Matched task pattern
+      :param task_description: Original task description
+
+      :returns: Score from 0.0 to 1.0
+
+
+
+   .. py:method:: match_task_to_pattern(task_description: str) -> str | None
+
+      Match a task description to a known pattern.
+
+      :param task_description: Natural language task description
+
+      :returns: Pattern name if matched, None otherwise
+
+
+
+   .. py:attribute:: server_profiles
+
+
+   .. py:attribute:: success_history
+
+
+   .. py:attribute:: task_patterns
+

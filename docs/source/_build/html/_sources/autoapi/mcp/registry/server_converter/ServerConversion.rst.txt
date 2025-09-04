@@ -1,0 +1,33 @@
+mcp.registry.server_converter.ServerConversion
+==============================================
+
+.. py:class:: mcp.registry.server_converter.ServerConversion
+
+   Result of converting a GitHub server to npm package format.
+
+
+   .. py:attribute:: category_guess
+      :type:  Optional[str]
+      :value: None
+
+
+
+   .. py:attribute:: confidence
+      :type:  float
+      :value: 0.0
+
+
+
+   .. py:attribute:: github_url
+      :type:  str
+
+
+   .. py:attribute:: potential_npm_packages
+      :type:  List[str]
+
+
+   .. py:attribute:: validated_package
+      :type:  Optional[str]
+      :value: None
+
+

@@ -1,0 +1,41 @@
+mcp.config.MCPTransport
+=======================
+
+.. py:class:: mcp.config.MCPTransport
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+
+   MCP transport types.
+
+   Defines the communication transport mechanisms supported by MCP servers.
+
+   .. attribute:: STDIO
+
+      Standard input/output communication (default for CLI-based servers)
+
+   .. attribute:: SSE
+
+      Server-Sent Events for HTTP-based streaming
+
+   .. attribute:: STREAMABLE_HTTP
+
+      HTTP streaming for continuous data transfer
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+
+   .. py:attribute:: SSE
+      :value: 'sse'
+
+
+
+   .. py:attribute:: STDIO
+      :value: 'stdio'
+
+
+
+   .. py:attribute:: STREAMABLE_HTTP
+      :value: 'streamable_http'
+
+

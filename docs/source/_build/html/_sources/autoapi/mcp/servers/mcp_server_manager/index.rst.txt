@@ -1,0 +1,111 @@
+mcp.servers.mcp_server_manager
+==============================
+
+.. py:module:: mcp.servers.mcp_server_manager
+
+.. autoapi-nested-parse::
+
+   MCP Server Manager for Model Context Protocol servers.
+
+   This module provides a robust way to start and manage MCP servers, handling
+   the complexities of stdio transport, process management, and server lifecycle.
+
+   Key features:
+       - Manages multiple MCP servers concurrently
+       - Handles stdio transport servers correctly (stderr is normal output)
+       - Provides health monitoring and automatic restart capabilities
+       - Supports environment variable configuration for API keys
+       - Clean shutdown handling with signal management
+
+   .. rubric:: Example
+
+   Basic usage to start filesystem and time servers::
+
+       from haive.mcp.servers import MCPServerManager
+
+       manager = MCPServerManager()
+       manager.run(servers_to_start=["filesystem", "time"])
+
+   Non-blocking mode for integration::
+
+       manager = MCPServerManager()
+       manager.run(servers_to_start=["filesystem"], blocking=False)
+       # Servers run in background
+       status = manager.get_status()
+       print(f"Running servers: {status}")
+
+   With environment variables for API servers::
+
+       manager = MCPServerManager()
+       env_overrides = {"GITHUB_TOKEN": "your-token"}
+       manager.start_server("github", env_overrides=env_overrides)
+
+   .. note::
+
+      MCP servers using stdio transport write their status messages to stderr,
+      which is normal behavior and not an error condition.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.servers.mcp_server_manager.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/servers/mcp_server_manager/MCPServerManager
+
+.. autoapisummary::
+
+   mcp.servers.mcp_server_manager.MCPServerManager
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp.servers.mcp_server_manager.main
+
+
+Module Contents
+---------------
+
+.. py:function:: main()
+
+   Main entry point for command-line usage.
+
+   Provides a CLI interface for the MCP Server Manager with options
+   for listing available servers, selecting which to start, and
+   enabling debug logging.
+
+   Command-line arguments:
+       --servers: Space-separated list of servers to start
+       --list: List available servers and exit
+       --debug: Enable debug-level logging
+
+   .. rubric:: Example
+
+   List available servers::
+
+       $ python mcp_server_manager.py --list
+
+   Start specific servers::
+
+       $ python mcp_server_manager.py --servers filesystem memory
+
+   Enable debug logging::
+
+       $ python mcp_server_manager.py --debug
+
+
+.. py:data:: logger
+

@@ -1,0 +1,58 @@
+mcp.downloader.installers.BinaryInstaller
+=========================================
+
+.. py:class:: mcp.downloader.installers.BinaryInstaller
+
+   Bases: :py:obj:`MCPInstaller`
+
+
+   Installer for binary executable MCP servers.
+
+   Downloads and installs pre-compiled binary executables.
+
+   .. rubric:: Examples
+
+   Binary installation:
+
+   .. code-block:: python
+       installer = BinaryInstaller()
+       result = await installer.install(
+           server_config,
+           template,
+           install_dir
+       )
+
+
+   .. py:method:: can_handle(server_config: haive.mcp.downloader.config.ServerConfig, template: haive.mcp.downloader.config.ServerTemplate) -> bool
+      :async:
+
+
+      Check if this is a binary installation.
+
+
+
+   .. py:method:: install(server_config: haive.mcp.downloader.config.ServerConfig, template: haive.mcp.downloader.config.ServerTemplate, install_dir: pathlib.Path) -> dict[str, Any]
+      :async:
+
+
+      Download and install binary executable.
+
+      :param server_config: Server configuration
+      :param template: Server template
+      :param install_dir: Installation directory
+
+      :returns: Installation result dictionary
+
+
+
+   .. py:method:: verify(server_config: haive.mcp.downloader.config.ServerConfig, template: haive.mcp.downloader.config.ServerTemplate, install_dir: pathlib.Path) -> bool
+      :async:
+
+
+      Verify binary installation.
+
+      Checks if the binary exists and is executable.
+
+      :returns: True if binary exists and is executable
+
+

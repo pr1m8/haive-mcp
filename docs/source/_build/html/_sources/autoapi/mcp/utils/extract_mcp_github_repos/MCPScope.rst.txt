@@ -1,0 +1,27 @@
+mcp.utils.extract_mcp_github_repos.MCPScope
+===========================================
+
+.. py:class:: mcp.utils.extract_mcp_github_repos.MCPScope
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+
+   Server Scope.
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+
+   .. py:attribute:: CLOUD
+      :value: 'cloud'
+
+
+
+   .. py:attribute:: EMBEDDED
+      :value: 'embedded'
+
+
+
+   .. py:attribute:: LOCAL
+      :value: 'local'
+
+

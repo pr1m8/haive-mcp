@@ -1,0 +1,354 @@
+mcp.agents.documentation_agent.MCPDocumentationAgent
+====================================================
+
+.. py:class:: mcp.agents.documentation_agent.MCPDocumentationAgent(**kwargs)
+
+   Bases: :py:obj:`haive.mcp.mixins.mcp_mixin.MCPMixin`, :py:obj:`haive.agents.document.agent.DocumentAgent`
+
+
+   Agent specialized for processing MCP server documentation and generating setup instructions.
+
+   MCPDocumentationAgent extends DocumentAgent with specialized capabilities for
+   processing Model Context Protocol server documentation. It can extract setup
+   instructions, generate configurations, and provide implementation guidance
+   from various documentation sources.
+
+   The agent combines document processing capabilities with MCP knowledge to:
+       - Load and process MCP server documentation from stored resources
+       - Extract setup instructions from README files and documentation
+       - Generate MCPServerConfig instances from documentation
+       - Provide implementation guidance with code examples
+       - Search for servers by capability or category
+       - Create combined configurations for multi-server setups
+
+   .. attribute:: doc_loader
+
+      MCPDocumentationLoader instance for accessing stored docs
+
+   .. attribute:: resources_path
+
+      Path to MCP server resources directory
+
+   Inherits from:
+       MCPMixin: Provides MCP client capabilities
+       DocumentAgent: Provides document processing capabilities
+
+   .. rubric:: Example
+
+   Basic documentation processing:
+
+   .. code-block:: python
+
+       # Create documentation agent
+       doc_agent = MCPDocumentationAgent.create_for_mcp_setup(
+           engine=engine
+       )
+       await doc_agent.setup()
+
+       # Process filesystem server docs
+       result = await doc_agent.process_mcp_server(
+           "modelcontextprotocol/server-filesystem"
+       )
+
+       # Extract components
+       setup_steps = result["setup_instructions"]
+       mcp_config = result["mcp_config"]
+       capabilities = result["capabilities"]
+
+       print(f"Server: {mcp_config.name}")
+       print(f"Capabilities: {', '.join(capabilities)}")
+       print("\nSetup Instructions:")
+       for step in setup_steps:
+           print(f"  {step}")
+
+   Advanced multi-server setup:
+
+   .. code-block:: python
+
+       # Generate implementation guide for multiple servers
+       guide = await doc_agent.generate_implementation_guide(
+           server_names=[
+               "modelcontextprotocol/server-filesystem",
+               "modelcontextprotocol/server-github",
+               "modelcontextprotocol/server-postgres"
+           ],
+           target_agent_type="research"
+       )
+
+       # Get combined configuration
+       combined_config = guide["combined_config"]
+
+       # Get implementation code
+       implementation = guide["implementation_code"]
+       print(implementation)
+
+   Initialize MCP documentation agent.
+
+   Sets up the agent with optimized defaults for processing MCP documentation.
+   Initializes the documentation loader with access to stored server docs.
+
+   :param \*\*kwargs: Additional arguments passed to parent classes including:
+                      - engine: AugLLMConfig for the agent
+                      - resources_path: Path to MCP resources directory
+                      - processing_strategy: Document processing strategy
+                      - chunking_strategy: How to chunk documents
+                      - All other DocumentAgent parameters
+
+
+   .. py:method:: create_for_mcp_research(**kwargs) -> MCPDocumentationAgent
+      :classmethod:
+
+
+      Create an agent for researching MCP capabilities.
+
+      Factory method that creates an agent optimized for comprehensive
+      research across multiple MCP server documentations. Uses parallel
+      processing and embeddings for efficient search.
+
+      :param \*\*kwargs: Additional arguments including:
+                         - engine: Required AugLLMConfig
+                         - resources_path: Optional path to resources
+
+      :returns:
+
+                Agent configured for research with:
+                    - Parallel processing for multiple documents
+                    - Recursive chunking with overlap
+                    - Embedding generation enabled
+                    - Maximum worker threads for speed
+      :rtype: MCPDocumentationAgent
+
+      .. rubric:: Example
+
+      Researching MCP capabilities:
+
+      .. code-block:: python
+
+          agent = MCPDocumentationAgent.create_for_mcp_research(
+              engine=engine
+          )
+
+          # Find all database-related servers
+          db_servers = await agent.find_servers_by_capability(
+              "database",
+              limit=10
+          )
+
+          # Research each server's capabilities
+          for server in db_servers:
+              print(f"\n{server['server_name']}:")
+              print(f"  Capabilities: {server['capabilities']}")
+              print(f"  Setup: {len(server['setup_instructions'])} steps")
+
+
+
+   .. py:method:: create_for_mcp_setup(**kwargs) -> MCPDocumentationAgent
+      :classmethod:
+
+
+      Create an agent optimized for MCP setup documentation.
+
+      Factory method that creates an agent specifically configured for
+      extracting setup instructions and configuration from MCP server
+      documentation. Uses semantic chunking for better context preservation.
+
+      :param \*\*kwargs: Additional arguments including:
+                         - engine: Required AugLLMConfig
+                         - resources_path: Optional path to resources
+
+      :returns:
+
+                Agent configured for setup extraction with:
+                    - Semantic chunking for preserving setup steps
+                    - Enhanced processing for code extraction
+                    - Metadata extraction enabled
+                    - Language detection for code blocks
+      :rtype: MCPDocumentationAgent
+
+      .. rubric:: Example
+
+      Creating a setup-focused agent:
+
+      .. code-block:: python
+
+          agent = MCPDocumentationAgent.create_for_mcp_setup(
+              engine=engine
+          )
+
+          # Process server setup documentation
+          result = await agent.process_mcp_server(
+              "modelcontextprotocol/server-brave-search"
+          )
+
+          # Get installation commands
+          for cmd in result["setup_instructions"]:
+              if cmd.startswith("npm") or cmd.startswith("npx"):
+                  print(f"Run: {cmd}")
+
+
+
+   .. py:method:: find_servers_by_capability(capability: str, limit: int = 10) -> list[dict[str, Any]]
+      :async:
+
+
+      Find MCP servers that provide a specific capability.
+
+      Searches through all available MCP server documentation to find
+      servers that mention a specific capability in their description
+      or documentation. Returns detailed setup information for each.
+
+      :param capability: Capability to search for (e.g., "database", "search",
+                         "filesystem", "api", "git", "calendar")
+      :param limit: Maximum number of results to return (default: 10)
+
+      :returns:
+
+                List of server information dicts, each containing:
+                    - server_name: Full server identifier
+                    - setup_instructions: Installation and setup commands
+                    - mcp_config: Ready-to-use MCPServerConfig
+                    - capabilities: List of all server capabilities
+      :rtype: List[Dict[str, Any]]
+
+      .. rubric:: Example
+
+      Finding database servers:
+
+      .. code-block:: python
+              # Find all database-capable servers
+              db_servers = await agent.find_servers_by_capability(
+                  "database",
+                  limit=5
+              )
+
+              # Create configs for all found servers
+              configs = {}
+              for server in db_servers:
+                  config = server["mcp_config"]
+                  configs[config.name] = config
+
+              # Use in MCP agent
+              agent = MCPAgent(
+                  engine=engine,
+                  mcp_config=MCPConfig(
+                      enabled=True,
+                      servers=configs
+                  )
+              )
+
+
+
+   .. py:method:: generate_implementation_guide(server_names: list[str], target_agent_type: str = 'general') -> dict[str, Any]
+      :async:
+
+
+      Generate a complete implementation guide for using MCP servers.
+
+      Creates a comprehensive guide including configurations, setup instructions,
+      and implementation code for integrating multiple MCP servers into an agent.
+      Processes each server documentation and combines them into a unified guide.
+
+      :param server_names: List of full MCP server names to include
+                           (e.g., ["modelcontextprotocol/server-filesystem", "modelcontextprotocol/server-github"])
+      :param target_agent_type: Type of agent to generate code for. Options:
+                                - "general": Basic MCPAgent implementation
+                                - "research": Research-focused agent setup
+                                - "task": Task execution agent setup
+                                - "collaborative": Multi-agent collaborative setup
+
+      :returns:
+
+                Complete implementation guide containing:
+                    - agent_type: The specified target agent type
+                    - servers: Dict mapping server names to their processed info
+                    - combined_config: MCPConfig with all servers configured
+                    - implementation_code: Ready-to-use Python code
+                    - usage_examples: List of example code snippets
+      :rtype: Dict[str, Any]
+
+      .. rubric:: Example
+
+      Generating a research agent guide:
+
+      .. code-block:: python
+              # Generate guide for research agent with multiple servers
+              guide = await doc_agent.generate_implementation_guide(
+                  server_names=[
+                      "modelcontextprotocol/server-brave-search",
+                      "modelcontextprotocol/server-arxiv",
+                      "modelcontextprotocol/server-filesystem"
+                  ],
+                  target_agent_type="research"
+              )
+
+              # Save the implementation code
+              with open("research_agent.py", "w") as f:
+                  f.write(guide["implementation_code"])
+
+              # Use the combined config directly
+              agent = MCPAgent(
+                  engine=engine,
+                  mcp_config=guide["combined_config"],
+                  name="research_mcp_agent"
+              )
+
+
+
+   .. py:method:: process_mcp_server(server_name: str, fetch_latest: bool = True) -> dict[str, Any]
+      :async:
+
+
+      Process documentation for a specific MCP server.
+
+      Loads and processes documentation for a single MCP server, extracting
+      setup instructions, configuration, and capabilities. Can fetch latest
+      documentation from GitHub or use cached versions.
+
+      :param server_name: Full name of the MCP server including organization
+                          (e.g., "modelcontextprotocol/server-filesystem")
+      :param fetch_latest: Whether to fetch latest docs from GitHub repository
+                           (default: True). Set to False for faster cached access.
+
+      :returns:
+
+                Processed server information containing:
+                    - server_name: The input server name
+                    - setup_instructions: List of setup command strings
+                    - mcp_config: MCPServerConfig instance ready to use
+                    - documentation: Full processed documentation dict
+                    - capabilities: List of capability strings
+      :rtype: Dict[str, Any]
+
+      .. rubric:: Example
+
+      Processing with latest documentation:
+
+      .. code-block:: python
+              result = await agent.process_mcp_server(
+                  "modelcontextprotocol/server-github",
+                  fetch_latest=True
+              )
+
+              # Use the generated config
+              config = result["mcp_config"]
+              mcp_agent = MCPAgent(
+                  engine=engine,
+                  mcp_config=MCPConfig(
+                      enabled=True,
+                      servers={"github": config}
+                  )
+              )
+
+
+
+   .. py:attribute:: doc_loader
+      :type:  haive.mcp.documentation.doc_loader.MCPDocumentationLoader
+      :value: None
+
+
+
+   .. py:attribute:: resources_path
+      :type:  pathlib.Path | None
+      :value: None
+
+

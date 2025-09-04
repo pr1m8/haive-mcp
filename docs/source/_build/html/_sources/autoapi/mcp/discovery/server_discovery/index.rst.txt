@@ -1,0 +1,92 @@
+mcp.discovery.server_discovery
+==============================
+
+.. py:module:: mcp.discovery.server_discovery
+
+.. autoapi-nested-parse::
+
+   Simple MCP server discovery placeholder.
+
+   This module provides a placeholder implementation for MCP server discovery
+   functionality. In a full implementation, this would handle automatic discovery
+   of available MCP servers from various sources like registries, local installations,
+   and configured directories.
+
+   The discovery system would support:
+       - Registry-based server discovery
+       - Local server scanning
+       - Configuration file parsing
+       - Capability-based filtering
+       - Version compatibility checking
+
+   Classes:
+       MCPServerDiscovery: Main discovery class (placeholder)
+
+   Functions:
+       get_discovery_report: Get a report of discovered servers
+       create_mcp_config: Create MCP configuration from discoveries
+
+   .. note::
+
+      This is a placeholder implementation. The full implementation would
+      integrate with the MCPDocumentationLoader and server registries.
+
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/discovery/server_discovery/MCPServerDiscovery
+
+.. autoapisummary::
+
+   mcp.discovery.server_discovery.MCPServerDiscovery
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp.discovery.server_discovery.create_mcp_config
+   mcp.discovery.server_discovery.get_discovery_report
+
+
+Module Contents
+---------------
+
+.. py:function:: create_mcp_config() -> dict[str, Any]
+
+   Create MCP configuration using a temporary instance.
+
+   Convenience function that creates a temporary MCPServerDiscovery
+   instance and generates an MCP configuration from discovered servers.
+
+   :returns: MCP configuration dictionary ready for use with MCPConfig.
+
+   .. rubric:: Example
+
+   config = create_mcp_config()
+   mcp_config = MCPConfig(**config)
+
+
+.. py:function:: get_discovery_report() -> dict[str, Any]
+
+   Get discovery report using a temporary instance.
+
+   Convenience function that creates a temporary MCPServerDiscovery
+   instance and returns its discovery report. Useful for one-off
+   discovery operations.
+
+   :returns: Discovery report dictionary with server counts and sources.
+
+   .. rubric:: Example
+
+   report = get_discovery_report()
+   if report['servers'] > 0:
+       print("MCP servers available")
+
+

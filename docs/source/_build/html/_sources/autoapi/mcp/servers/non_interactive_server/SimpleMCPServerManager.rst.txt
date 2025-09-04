@@ -1,0 +1,44 @@
+mcp.servers.non_interactive_server.SimpleMCPServerManager
+=========================================================
+
+.. py:class:: mcp.servers.non_interactive_server.SimpleMCPServerManager
+
+   Simple manager for MCP servers.
+
+
+   .. py:method:: run_non_interactive()
+
+      Run servers in non-interactive mode.
+
+
+
+   .. py:method:: show_status()
+
+      Show server status.
+
+
+
+   .. py:method:: start_server(name: str) -> bool
+
+      Start an MCP server by name.
+
+
+
+   .. py:method:: stop_all_servers()
+
+      Stop all running servers.
+
+
+
+   .. py:method:: stop_server(name: str) -> bool
+
+      Stop a server by name.
+
+
+
+   .. py:attribute:: available_servers
+
+
+   .. py:attribute:: servers
+      :type:  Dict[str, dict]
+

@@ -1,0 +1,35 @@
+mcp.api.ServerStatusResponse
+============================
+
+.. py:class:: mcp.api.ServerStatusResponse(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Response for server status.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: health
+      :type:  Optional[Dict[str, Any]]
+      :value: None
+
+
+
+   .. py:attribute:: server_name
+      :type:  str
+
+
+   .. py:attribute:: status
+      :type:  str
+
+
+   .. py:attribute:: tools_count
+      :type:  int
+

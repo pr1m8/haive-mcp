@@ -1,0 +1,95 @@
+mcp.tools.server_tester
+=======================
+
+.. py:module:: mcp.tools.server_tester
+
+.. autoapi-nested-parse::
+
+   MCP server testing and validation tools.
+
+   This module provides tools for testing MCP server configurations, validating
+   connections, and ensuring servers are working correctly before use in production.
+
+   The testing system provides:
+       - Connection testing for individual servers
+       - Batch testing for multiple servers
+       - Health monitoring and diagnostics
+       - Performance benchmarking
+       - Configuration validation
+
+   Classes:
+       MCPServerTester: Main testing interface
+       TestResult: Results from server testing
+       HealthMonitor: Continuous health monitoring
+
+   .. rubric:: Example
+
+   Testing server configurations:
+
+   .. code-block:: python
+
+       from haive.mcp.tools import MCPServerTester
+       from haive.mcp.config import MCPServerConfig
+
+       # Test individual server
+       tester = MCPServerTester()
+
+       server_config = MCPServerConfig(
+           name="test_server",
+           transport="stdio",
+           command="npx",
+           args=["-y", "@modelcontextprotocol/server-filesystem"]
+       )
+
+       result = await tester.test_server(server_config)
+       if result.success:
+           print(f"✅ {server_config.name} is working")
+       else:
+           print(f"❌ {server_config.name} failed: {result.error}")
+
+       # Test multiple servers
+       results = await tester.test_multiple_servers([server_config])
+
+       # Monitor health
+       monitor = tester.create_health_monitor()
+       await monitor.start_monitoring([server_config])
+
+   .. note::
+
+      Server testing requires the actual MCP packages to be installed
+      and may need appropriate environment variables.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.tools.server_tester.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/tools/server_tester/HealthMonitor
+   /autoapi/mcp/tools/server_tester/HealthStatus
+   /autoapi/mcp/tools/server_tester/MCPServerTester
+   /autoapi/mcp/tools/server_tester/TestResult
+
+.. autoapisummary::
+
+   mcp.tools.server_tester.HealthMonitor
+   mcp.tools.server_tester.HealthStatus
+   mcp.tools.server_tester.MCPServerTester
+   mcp.tools.server_tester.TestResult
+
+
+Module Contents
+---------------
+
+.. py:data:: logger
+

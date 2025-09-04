@@ -1,0 +1,32 @@
+mcp.client.exceptions.MCPAuthenticationError
+============================================
+
+.. py:exception:: mcp.client.exceptions.MCPAuthenticationError(message: str, error_code: Optional[int] = None, details: Optional[Dict[str, Any]] = None)
+
+   Bases: :py:obj:`MCPError`
+
+
+   Authentication failure with MCP server.
+
+   Raised when authentication is required but fails, or when authorization
+   is denied for a specific operation. This includes token validation failures
+   and permission issues.
+
+   .. rubric:: Examples
+
+   Invalid token::
+
+       raise MCPAuthenticationError(
+           "Invalid authentication token",
+           error_code=401
+       )
+
+   Insufficient permissions::
+
+       raise MCPAuthenticationError(
+           "Insufficient permissions for tool execution",
+           details={"tool": "sensitive_operation", "required_scope": "admin"}
+       )
+
+   Initialize self.  See help(type(self)) for accurate signature.
+

@@ -1,0 +1,73 @@
+mcp.config
+==========
+
+.. py:module:: mcp.config
+
+.. autoapi-nested-parse::
+
+   MCP configuration types for flexible server management.
+
+   This module provides Pydantic models for configuring Model Context Protocol (MCP)
+   servers and their integration with Haive agents. It includes comprehensive validation
+   and type safety for all MCP-related configurations.
+
+   The configuration system supports:
+       - Multiple transport types (stdio, SSE, HTTP streaming)
+       - Server-specific settings and capabilities
+       - Environment variables and authentication
+       - Discovery and filtering options
+       - Health monitoring and retry logic
+
+   Classes:
+       MCPTransport: Enumeration of supported MCP transport types
+       MCPServerConfig: Configuration for individual MCP servers
+       MCPConfig: Complete MCP configuration for agents
+
+   .. rubric:: Examples
+
+   Creating an MCP server configuration:
+
+   .. code-block:: python
+
+       from haive.mcp.config import MCPConfig, MCPServerConfig, MCPTransport
+
+       # Configure a filesystem MCP server
+       fs_server = MCPServerConfig(
+           name="filesystem",
+           transport=MCPTransport.STDIO,
+           command="npx",
+           args=["-y", "@modelcontextprotocol/server-filesystem"],
+           capabilities=["file_read", "file_write", "directory_list"],
+           category="filesystem",
+           description="Local filesystem operations"
+       )
+
+       # Create complete MCP config
+       config = MCPConfig(
+           enabled=True,
+           servers={"filesystem": fs_server},
+           auto_discover=True,
+           lazy_init=True
+       )
+
+   .. note:: All configuration models use Pydantic v2 for validation and serialization.
+
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/config/MCPConfig
+   /autoapi/mcp/config/MCPServerConfig
+   /autoapi/mcp/config/MCPTransport
+
+.. autoapisummary::
+
+   mcp.config.MCPConfig
+   mcp.config.MCPServerConfig
+   mcp.config.MCPTransport
+
+

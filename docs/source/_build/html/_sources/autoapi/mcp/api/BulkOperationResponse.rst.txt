@@ -1,0 +1,49 @@
+mcp.api.BulkOperationResponse
+=============================
+
+.. py:class:: mcp.api.BulkOperationResponse(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Response for bulk operations.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: is_complete
+      :type:  bool
+
+
+   .. py:attribute:: operation_id
+      :type:  str
+
+
+   .. py:attribute:: operation_type
+      :type:  str
+
+
+   .. py:attribute:: progress_percentage
+      :type:  float
+
+
+   .. py:attribute:: started_at
+      :type:  datetime.datetime
+
+
+   .. py:attribute:: status
+      :type:  str
+
+
+   .. py:attribute:: success_rate
+      :type:  float
+
+
+   .. py:attribute:: total_count
+      :type:  int
+

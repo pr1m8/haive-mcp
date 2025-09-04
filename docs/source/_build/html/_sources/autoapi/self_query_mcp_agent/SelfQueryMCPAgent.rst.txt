@@ -1,0 +1,62 @@
+self_query_mcp_agent.SelfQueryMCPAgent
+======================================
+
+.. py:class:: self_query_mcp_agent.SelfQueryMCPAgent(config: haive.core.engine.aug_llm.AugLLMConfig = None)
+
+   Enhanced MCP Discovery Agent with Self Query and Parent Document Retrieval.
+
+   Initialize with proper Haive configuration system.
+
+
+   .. py:method:: analyze_query_intent(query: str) -> str
+
+      Analyze query to determine best search method.
+
+
+
+   .. py:method:: hybrid_search(query: str, k: int = 5) -> dict[str, list[langchain.schema.Document]]
+      :async:
+
+
+      Perform all search methods and return results.
+
+
+
+   .. py:method:: search_similarity(query: str, k: int = 5) -> list[langchain.schema.Document]
+      :async:
+
+
+      Fallback similarity search.
+
+
+
+   .. py:method:: search_with_parent_retriever(query: str, k: int = 5) -> list[langchain.schema.Document]
+      :async:
+
+
+      Search using parent document retriever for full content.
+
+
+
+   .. py:method:: search_with_self_query(query: str, k: int = 5) -> list[langchain.schema.Document]
+      :async:
+
+
+      Search using self-query retriever for structured queries.
+
+
+
+   .. py:method:: setup_retrievers()
+
+      Set up both self-query and parent document retrievers.
+
+
+
+   .. py:attribute:: config
+
+
+   .. py:attribute:: embeddings
+
+
+   .. py:attribute:: llm
+

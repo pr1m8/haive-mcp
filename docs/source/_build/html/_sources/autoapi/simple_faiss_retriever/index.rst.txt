@@ -1,0 +1,39 @@
+simple_faiss_retriever
+======================
+
+.. py:module:: simple_faiss_retriever
+
+.. autoapi-nested-parse::
+
+   Simple FAISS-based MCP Retriever with Auto-Loading.
+
+   Uses FAISS for vector storage and auto-loads MCP server documentation.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   simple_faiss_retriever.retriever
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/simple_faiss_retriever/SimpleFAISSRetriever
+
+.. autoapisummary::
+
+   simple_faiss_retriever.SimpleFAISSRetriever
+
+
+Module Contents
+---------------
+
+.. py:data:: retriever
+

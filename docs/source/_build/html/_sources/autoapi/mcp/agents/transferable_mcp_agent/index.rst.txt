@@ -1,0 +1,84 @@
+mcp.agents.transferable_mcp_agent
+=================================
+
+.. py:module:: mcp.agents.transferable_mcp_agent
+
+.. autoapi-nested-parse::
+
+   Transferable MCP agent implementation with resource/prompt/tool sharing capabilities.
+
+   This module provides an advanced MCP agent that supports sharing and transferring
+   capabilities between agent instances. It enables collaborative workflows where multiple
+   agents can share MCP clients, tools, resources, and prompts for efficient distributed
+   processing.
+
+   The TransferableMCPAgent extends the basic MCPAgent with:
+       - Shared MCP client pools for resource efficiency
+       - Tool transfer mechanisms between agents
+       - Resource delegation and access control
+       - Prompt sharing for consistent behavior
+       - Collaborative session management
+       - Transfer tracking and auditing
+
+   Classes:
+       TransferableMCPAgent: Agent with MCP sharing and transfer capabilities
+
+   Functions:
+       create_collaborative_agents: Factory for creating collaborative agent groups
+
+   .. rubric:: Example
+
+   Creating and using transferable agents:
+
+   .. code-block:: python
+
+       from haive.mcp.agents import TransferableMCPAgent
+       from haive.mcp.config import MCPConfig
+
+   from haive import agents
+
+
+           # Create collaborative agents with shared client
+           agents = TransferableMCPAgent.create_collaborative_agents(
+               engine=engine,
+               mcp_config=mcp_config,
+               num_agents=3,
+               shared_client=True
+           )
+
+           # Initialize all agents
+           for agent in agents:
+               await agent.setup()
+
+           # Transfer tools from first agent to others
+           leader = agents[0]
+           for follower in agents[1:]:
+               count = await leader.transfer_all_tools_to_agent(follower)
+               print(f"Transferred {count} tools to {follower.name}")
+
+           # Collaborate on a task
+           results = await leader.collaborate_with_agents(
+               agents[1:],
+               task="Analyze repository structure"
+           )
+
+   .. note::
+
+      Shared clients reduce resource usage but require careful synchronization.
+      Transfer operations are tracked for auditing and debugging purposes.
+
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/agents/transferable_mcp_agent/TransferableMCPAgent
+
+.. autoapisummary::
+
+   mcp.agents.transferable_mcp_agent.TransferableMCPAgent
+
+

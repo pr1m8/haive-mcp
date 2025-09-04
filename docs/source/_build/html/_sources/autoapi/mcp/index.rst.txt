@@ -1,0 +1,165 @@
+mcp
+===
+
+.. py:module:: mcp
+
+.. autoapi-nested-parse::
+
+   Haive MCP - Dynamic Model Context Protocol Integration.
+
+   This package provides dynamic MCP (Model Context Protocol) integration for Haive agents,
+   enabling them to discover and use external tools and resources at runtime.
+
+   Key Components
+   --------------
+
+   - **MCPManager**: Central manager for MCP server lifecycle and tool management
+   - **MCPAgent**: Production-ready agent with static MCP configuration
+   - **IntelligentMCPAgent**: AI-powered agent with automatic server discovery
+   - **TransferableMCPAgent**: Agent that can share tools with other agents
+
+   Quick Start
+   -----------
+
+   Basic MCP Agent Usage
+   ~~~~~~~~~~~~~~~~~~~~~
+
+   .. code-block:: python
+
+       from haive.mcp import MCPAgent, MCPConfig
+       from haive.core.engine import AugLLMConfig
+
+       # Create agent with MCP capabilities
+       agent = MCPAgent(
+           engine=AugLLMConfig(),
+           mcp_config=MCPConfig(
+               enabled=True,
+               servers={
+                   "filesystem": {
+                       "transport": "stdio",
+                       "command": "npx",
+                       "args": ["-y", "@modelcontextprotocol/server-filesystem"]
+                   }
+               }
+           )
+       )
+
+       # Initialize and use
+       await agent.setup()
+       result = await agent.arun({"messages": [...]})
+
+   Dynamic Discovery with IntelligentMCPAgent
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   .. code-block:: python
+
+       from haive.mcp import IntelligentMCPAgent
+
+       # Create agent with auto-discovery
+       agent = IntelligentMCPAgent(
+           engine=AugLLMConfig(),
+           auto_discover=True,
+           require_approval=True
+       )
+
+       # Agent will automatically find and install needed MCP servers
+       result = await agent.arun({
+           "messages": [{"role": "user", "content": "Search web and save to database"}]
+       })
+
+   Available Classes
+   -----------------
+
+   Configuration
+   ~~~~~~~~~~~~~
+   - :class:`MCPConfig` - Main configuration for MCP integration
+   - :class:`MCPServerConfig` - Individual server configuration
+   - :class:`MCPTransport` - Transport protocol enumeration
+
+   Agents
+   ~~~~~~
+   - :class:`MCPAgent` - Basic MCP-enabled agent
+   - :class:`IntelligentMCPAgent` - Agent with automatic discovery
+   - :class:`TransferableMCPAgent` - Agent with tool sharing capabilities
+
+   Management
+   ~~~~~~~~~~
+   - :class:`MCPManager` - Server lifecycle management
+   - :class:`MCPHealthStatus` - Health monitoring
+   - :class:`MCPRegistrationResult` - Registration status
+
+   Utilities
+   ~~~~~~~~~
+   - :class:`MCPMixin` - Add MCP capabilities to existing agents
+   - :class:`MCPServerDiscovery` - Discover available servers
+   - :class:`MCPDocumentationLoader` - Load server documentation
+
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/mcp/__main__/index
+   /autoapi/mcp/agents/index
+   /autoapi/mcp/api/index
+   /autoapi/mcp/cli/index
+   /autoapi/mcp/client/index
+   /autoapi/mcp/config/index
+   /autoapi/mcp/discovery/index
+   /autoapi/mcp/documentation/index
+   /autoapi/mcp/downloader/index
+   /autoapi/mcp/installer/index
+   /autoapi/mcp/installers/index
+   /autoapi/mcp/integration/index
+   /autoapi/mcp/manager/index
+   /autoapi/mcp/mixins/index
+   /autoapi/mcp/plugins/index
+   /autoapi/mcp/registry/index
+   /autoapi/mcp/servers/index
+   /autoapi/mcp/tools/index
+   /autoapi/mcp/utils/index
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.IntelligentMCPAgent
+   mcp.MCPBrowserPlugin
+   mcp.MCPDocumentationLoader
+   mcp.MCPHealthStatus
+   mcp.MCPMixin
+   mcp.MCPServerDiscovery
+
+
+Package Contents
+----------------
+
+.. py:data:: IntelligentMCPAgent
+   :value: None
+
+
+.. py:data:: MCPBrowserPlugin
+   :value: None
+
+
+.. py:data:: MCPDocumentationLoader
+   :value: None
+
+
+.. py:data:: MCPHealthStatus
+   :value: None
+
+
+.. py:data:: MCPMixin
+   :value: None
+
+
+.. py:data:: MCPServerDiscovery
+   :value: None
+
+

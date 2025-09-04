@@ -1,0 +1,47 @@
+mcp.installers.safe_pattern_installer.InstallationResult
+========================================================
+
+.. py:class:: mcp.installers.safe_pattern_installer.InstallationResult(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Result of installation attempt.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: config_created
+      :type:  bool
+      :value: False
+
+
+
+   .. py:attribute:: message
+      :type:  str
+
+
+   .. py:attribute:: process_id
+      :type:  int | None
+      :value: None
+
+
+
+   .. py:attribute:: server_name
+      :type:  str
+
+
+   .. py:attribute:: success
+      :type:  bool
+
+
+   .. py:attribute:: tools_available
+      :type:  list[str]
+      :value: None
+
+

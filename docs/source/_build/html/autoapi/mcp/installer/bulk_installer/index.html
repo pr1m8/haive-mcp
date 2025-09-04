@@ -1,0 +1,690 @@
+ <!doctype html>
+<html class="no-js" lang="en" data-content_root="../../../../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="bulk_installer" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://docs.haive.ai/packages/haive-mcp/autoapi/mcp/installer/bulk_installer/index.html" />
+<meta property="og:site_name" content="haive-mcp Documentation" />
+<meta property="og:description" content="Bulk installer for MCP servers. This module provides utilities to install multiple MCP servers based on various criteria like star count, category, or specific lists. Module Summary: Classes: Funct..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://docs.haive.ai/packages/haive-mcp/_images/social_previews/summary_autoapi_mcp_installer_bulk_installer_index_ec049581.png" />
+<meta property="og:image:alt" content="Bulk installer for MCP servers. This module provides utilities to install multiple MCP servers based on various criteria like star count, category, or specific lists. Module Summary: Classes: Funct..." />
+<meta name="description" content="Bulk installer for MCP servers. This module provides utilities to install multiple MCP servers based on various criteria like star count, category, or specific lists. Module Summary: Classes: Funct..." />
+<meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" sizes="32x32" href="../../../../_static/favicon-32x32.png" type="image/png">
+    <link rel="icon" sizes="16x16" href="../../../../_static/favicon-16x16.png" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../../_static/apple-touch-icon.png" type="image/png">
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico" type="image/x-icon"><link rel="index" title="Index" href="../../../../genindex.html" /><link rel="search" title="Search" href="../../../../search.html" /><link rel="next" title="installers" href="../../installers/index.html" /><link rel="prev" title="installer" href="../index.html" />
+        <link rel="canonical" href="https://docs.haive.ai/packages/haive-mcp/autoapi/mcp/installer/bulk_installer/index.html" />
+
+    <!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
+        <title>bulk_installer - haive-mcp</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/furo-extensions.css?v=302659d7" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  --color-brand-primary: #8b5cf6;
+  --color-brand-content: #7c3aed;
+  --color-background-primary: #ffffff;
+  --color-background-secondary: #faf5ff;
+  --color-background-border: #e9d5ff;
+  --color-background-hover: #f3e8ff;
+  --color-sidebar-background: #faf5ff;
+  --color-sidebar-background-border: #e9d5ff;
+  --color-sidebar-brand-text: #7c3aed;
+  --color-sidebar-item-background--current: #ede9fe;
+  --color-sidebar-item-background--hover: #f3e8ff;
+  --color-sidebar-search-background: #ffffff;
+  --color-sidebar-search-border: #e9d5ff;
+  --color-sidebar-search-icon: #8b5cf6;
+  --color-admonition-background: transparent;
+  --color-admonition-title-background--note: #dbeafe;
+  --color-admonition-title-background--tip: #d1fae5;
+  --color-admonition-title-background--important: #fee2e2;
+  --color-admonition-title-background--warning: #fef3c7;
+  --color-admonition-title--note: #1e40af;
+  --color-admonition-title--tip: #047857;
+  --color-admonition-title--important: #b91c1c;
+  --color-admonition-title--warning: #92400e;
+  --color-code-background: #f8f4ff;
+  --color-code-foreground: #1f2937;
+  --color-inline-code-background: #ede9fe;
+  --color-highlight-on-target: #8b5cf640;
+  --color-link: #8b5cf6;
+  --color-link--hover: #7c3aed;
+  --color-link-underline: #8b5cf640;
+  --color-link-underline--hover: #7c3aed80;
+  --font-stack: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+  --font-stack--monospace: JetBrains Mono, Consolas, Monaco, Courier, monospace;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #a78bfa;
+  --color-brand-content: #c084fc;
+  --color-background-primary: #0f0f23;
+  --color-background-secondary: #1a1a2e;
+  --color-background-border: #2e2e4e;
+  --color-background-hover: #16213e;
+  --color-sidebar-background: #16162d;
+  --color-sidebar-background-border: #2e2e4e;
+  --color-sidebar-brand-text: #c084fc;
+  --color-sidebar-item-background--current: #312e81;
+  --color-sidebar-item-background--hover: #1e1e3f;
+  --color-sidebar-search-background: #1a1a2e;
+  --color-sidebar-search-border: #2e2e4e;
+  --color-sidebar-search-icon: #a78bfa;
+  --color-admonition-background: transparent;
+  --color-admonition-title-background--note: #1e3a8a20;
+  --color-admonition-title-background--tip: #047857​20;
+  --color-admonition-title-background--important: #991b1b20;
+  --color-admonition-title-background--warning: #92400e20;
+  --color-admonition-title--note: #60a5fa;
+  --color-admonition-title--tip: #34d399;
+  --color-admonition-title--important: #f87171;
+  --color-admonition-title--warning: #fbbf24;
+  --color-code-background: #1a1a2e;
+  --color-code-foreground: #e0e7ff;
+  --color-inline-code-background: #312e81;
+  --color-highlight-on-target: #a78bfa40;
+  --color-link: #a78bfa;
+  --color-link--hover: #c084fc;
+  --color-link-underline: #a78bfa40;
+  --color-link-underline--hover: #c084fc80;
+  --color-api-background: #1a1a2e;
+  --color-api-background--hover: #312e81;
+  --color-api-overall: #e0e7ff;
+  --color-api-name: #c084fc;
+  --color-api-pre-name: #a78bfa;
+  --color-api-paren: #6366f1;
+  --color-api-keyword: #f472b6;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #a78bfa;
+  --color-brand-content: #c084fc;
+  --color-background-primary: #0f0f23;
+  --color-background-secondary: #1a1a2e;
+  --color-background-border: #2e2e4e;
+  --color-background-hover: #16213e;
+  --color-sidebar-background: #16162d;
+  --color-sidebar-background-border: #2e2e4e;
+  --color-sidebar-brand-text: #c084fc;
+  --color-sidebar-item-background--current: #312e81;
+  --color-sidebar-item-background--hover: #1e1e3f;
+  --color-sidebar-search-background: #1a1a2e;
+  --color-sidebar-search-border: #2e2e4e;
+  --color-sidebar-search-icon: #a78bfa;
+  --color-admonition-background: transparent;
+  --color-admonition-title-background--note: #1e3a8a20;
+  --color-admonition-title-background--tip: #047857​20;
+  --color-admonition-title-background--important: #991b1b20;
+  --color-admonition-title-background--warning: #92400e20;
+  --color-admonition-title--note: #60a5fa;
+  --color-admonition-title--tip: #34d399;
+  --color-admonition-title--important: #f87171;
+  --color-admonition-title--warning: #fbbf24;
+  --color-code-background: #1a1a2e;
+  --color-code-foreground: #e0e7ff;
+  --color-inline-code-background: #312e81;
+  --color-highlight-on-target: #a78bfa40;
+  --color-link: #a78bfa;
+  --color-link--hover: #c084fc;
+  --color-link-underline: #a78bfa40;
+  --color-link-underline--hover: #c084fc80;
+  --color-api-background: #1a1a2e;
+  --color-api-background--hover: #312e81;
+  --color-api-overall: #e0e7ff;
+  --color-api-name: #c084fc;
+  --color-api-pre-name: #a78bfa;
+  --color-api-paren: #6366f1;
+  --color-api-keyword: #f472b6;
+  
+      }
+    }
+  }
+</style>  
+<meta name="description" content="haive-mcp - bulk_installer" />
+<meta property="og:title" content="bulk_installer - haive-mcp" />
+<meta
+  property="og:description"
+  content="Documentation for haive-mcp - bulk_installer"
+/>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap"
+  rel="stylesheet"
+/>
+</head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+<div class="announcement">
+  <aside class="announcement-content">
+     🔌 <b>haive-mcp</b> - Model Context Protocol integration for 1900+ tools 
+  </aside>
+</div>
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../../index.html"><div class="brand">haive-mcp</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky">
+<div class="sidebar-brand">
+  <a class="sidebar-brand-logo" href="../../../../index.html">
+    <span class="sidebar-brand-text">haive-mcp</span>
+  </a>
+</div><form class="sidebar-search-container" method="get" action="../../../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">📖 Overview</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../overview.html">haive-mcp: Model Context Protocol Integration for Haive</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of haive-mcp: Model Context Protocol Integration for Haive</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../quickstart.html">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration.html">Configuration</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../mcp_servers.html">MCP Servers Documentation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of MCP Servers Documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development.html">Development</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../overview.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../inheritance_diagram.html">Class Inheritance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🚀 Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quickstart.html">Quick Start</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">📚 Tutorials &amp; Examples</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../tutorials.html">Tutorials</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Tutorials</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/01_understanding_mcp.html">Tutorial 1: Understanding MCP with Haive’s Dynamic Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/02_first_mcp_server.html">Tutorial 2: Your First MCP-Enhanced Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/03_installer_types.html">Tutorial 3: Automatic Installation Behind the Scenes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">📖 User Guides</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../guides.html">Guides</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Guides</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/platform-architecture.html">Platform Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/fastapi-integration.html">FastAPI Integration Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/mcp-browser-plugin.html">MCP Browser Plugin Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/real-world-examples.html">Real-World Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user_guide.html">User Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🛠️ Developer Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced.html">Advanced Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced_config.html">Advanced Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../server_manager_guide.html">Server Manager Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../managing_mcp_servers.html">Managing MCP Servers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">📖 References</span></p>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../../../index.html">API Reference</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of API Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="../../index.html">mcp</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of mcp</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../agents/index.html">agents</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of agents</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../agents/basic_mcp_agent/index.html">basic_mcp_agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../agents/documentation_agent/index.html">documentation_agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../agents/intelligent_mcp_agent/index.html">intelligent_mcp_agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../agents/mcp_agent/index.html">mcp_agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../agents/transferable_mcp_agent/index.html">transferable_mcp_agent</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../cli/index.html">cli</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of cli</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../cli/mcp_manager/index.html">mcp_manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cli/server_manager/index.html">server_manager</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../client/index.html">client</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of client</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../client/connection/index.html">connection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../client/exceptions/index.html">exceptions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../client/mcp_client/index.html">mcp_client</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../client/protocol/index.html">protocol</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../client/transport/index.html">transport</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../discovery/index.html">discovery</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of discovery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../discovery/analyzer/index.html">analyzer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../discovery/installed_servers/index.html">installed_servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../discovery/server_discovery/index.html">server_discovery</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../documentation/index.html">documentation</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../documentation/doc_loader/index.html">doc_loader</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../downloader/index.html">downloader</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of downloader</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../downloader/config/index.html">config</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../downloader/core/index.html">core</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../downloader/discovery/index.html">discovery</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../downloader/github_mass_downloader/index.html">github_mass_downloader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../downloader/installers/index.html">installers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../downloader/integration/index.html">integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../downloader/legacy_core/index.html">legacy_core</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current has-children"><a class="reference internal" href="../index.html">installer</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of installer</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l4 current current-page"><a class="current reference internal" href="#">bulk_installer</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../installers/index.html">installers</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of installers</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../installers/advanced_code_installer/index.html">advanced_code_installer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../installers/config_manager/index.html">config_manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../installers/safe_pattern_installer/index.html">safe_pattern_installer</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../integration/index.html">integration</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of integration</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../integration/aug_llm_mcp_extension/index.html">aug_llm_mcp_extension</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../integration/fastapi_mcp_server/index.html">fastapi_mcp_server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../integration/haive_agent_mcp_integration/index.html">haive_agent_mcp_integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../integration/integrated_launcher/index.html">integrated_launcher</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../integration/integrated_mcp_system/index.html">integrated_mcp_system</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../mixins/index.html">mixins</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle navigation of mixins</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../mixins/mcp_mixin/index.html">mcp_mixin</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../plugins/index.html">plugins</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle navigation of plugins</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../plugins/browser_plugin/index.html">browser_plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../registry/index.html">registry</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of registry</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../registry/server_converter/index.html">server_converter</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../servers/index.html">servers</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of servers</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../servers/compatibility/index.html">compatibility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../servers/dataflow_mcp_server/index.html">dataflow_mcp_server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../servers/dataflow_server/index.html">dataflow_server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../servers/example_server_fastmcp/index.html">example_server_fastmcp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../servers/http_server/index.html">http_server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../servers/mcp_server_manager/index.html">mcp_server_manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../servers/mcp_server_manager_v2/index.html">mcp_server_manager_v2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../servers/models/index.html">models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../servers/non_interactive_server/index.html">non_interactive_server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../servers/simple_http_server/index.html">simple_http_server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../servers/simple_server/index.html">simple_server</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../tools/index.html">tools</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle navigation of tools</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../tools/ai_assistant/index.html">ai_assistant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tools/server_selector/index.html">server_selector</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tools/server_tester/index.html">server_tester</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../utils/index.html">utils</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" role="switch" type="checkbox"/><label for="toctree-checkbox-21"><div class="visually-hidden">Toggle navigation of utils</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../utils/extract_mcp_github_repos/index.html">extract_mcp_github_repos</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../__main__/index.html">__main__</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/index.html">api</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../config/index.html">config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../manager/index.html">manager</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="module-mcp.installer.bulk_installer">
+<span id="bulk-installer"></span><h1>bulk_installer<a class="headerlink" href="#module-mcp.installer.bulk_installer" title="Link to this heading">¶</a></h1>
+<p>Bulk installer for MCP servers.</p>
+<p>This module provides utilities to install multiple MCP servers based on
+various criteria like star count, category, or specific lists.</p>
+<section id="module-summary">
+<h2>Module Summary<a class="headerlink" href="#module-summary" title="Link to this heading">¶</a></h2>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</div>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+<div class="footer-content">
+  <div class="footer-container">
+    <div class="footer-column">
+      <h4>haive-mcp</h4>
+      <p>haive-mcp is part of the Haive AI Agent Framework ecosystem.</p>
+    </div>
+    <div class="footer-column">
+      <h4>Documentation</h4>
+      <ul>
+        <li><a href="../../../../getting_started.html">Getting Started</a></li>
+        <li><a href="../../../../concepts.html">Core Concepts</a></li>
+        <li><a href="../../../index.html">API Reference</a></li>
+        <li><a href="../../../../examples.html">Examples</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Community</h4>
+      <ul>
+        <li><a href="https://github.com/haive-ai/haive">GitHub</a></li>
+        <li>
+          <a href="https://github.com/haive-ai/haive/issues">Issue Tracker</a>
+        </li>
+        <li>
+          <a href="https://github.com/haive-ai/haive/discussions"
+            >Discussions</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>
+      &copy; Copyright 2025, Haive Team. Built with
+      <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+      <a href="https://pradyunsg.me/furo/">Furo</a>.
+    </p>
+  </div>
+</div>
+
+        <div class="related-pages">
+          <a class="next-page" href="../../installers/index.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">installers</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">installer</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Haive Team
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+         
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">bulk_installer</a><ul>
+<li><a class="reference internal" href="#module-summary">Module Summary</a></li>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../../../_static/documentation_options.js?v=38b66d78"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=30646c52"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script defer="defer" src="https://unpkg.com/@popperjs/core@2"></script>
+    <script defer="defer" src="https://unpkg.com/tippy.js@6"></script>
+    <script defer="defer" src="../../../../_static/tippy/autoapi/mcp/installer/bulk_installer/index.245d5221-f9b9-42d3-b68a-49f26f75fbe0.js"></script>
+    <script defer="defer" src="../../../../_static/custom.js"></script>
+    </body>
+</html>

@@ -1,0 +1,66 @@
+mcp.integration.haive_agent_mcp_integration
+===========================================
+
+.. py:module:: mcp.integration.haive_agent_mcp_integration
+
+.. autoapi-nested-parse::
+
+   Haive Agent + MCP Tool Integration.
+
+   Demonstrates the complete workflow:
+   1. Discover an MCP server/tool
+   2. Install and configure it
+   3. Create a haive agent that uses the MCP tool
+   4. Show the agent executing with the discovered tool
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.integration.haive_agent_mcp_integration.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/integration/haive_agent_mcp_integration/HaiveMCPIntegration
+
+.. autoapisummary::
+
+   mcp.integration.haive_agent_mcp_integration.HaiveMCPIntegration
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp.integration.haive_agent_mcp_integration.demo_discovery_to_agent
+   mcp.integration.haive_agent_mcp_integration.demo_manual_integration
+
+
+Module Contents
+---------------
+
+.. py:function:: demo_discovery_to_agent()
+   :async:
+
+
+   Demonstrate the complete workflow.
+
+
+.. py:function:: demo_manual_integration()
+   :async:
+
+
+   Demonstrate manual integration steps.
+
+
+.. py:data:: logger
+

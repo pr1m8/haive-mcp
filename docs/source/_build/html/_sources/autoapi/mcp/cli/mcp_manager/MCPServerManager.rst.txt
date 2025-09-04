@@ -1,0 +1,69 @@
+mcp.cli.mcp_manager.MCPServerManager
+====================================
+
+.. py:class:: mcp.cli.mcp_manager.MCPServerManager(config_file: str | None = None, install_dir: str | None = None)
+
+   Comprehensive MCP Server Manager.
+
+   Init  .
+
+   :param config_file: [TODO: Add description]
+   :param install_dir: [TODO: Add description]
+
+
+   .. py:method:: discover_all_sources(auto_install: bool = False, limit: int | None = None) -> dict
+      :async:
+
+
+      Discover MCP servers from all configured sources.
+
+
+
+   .. py:method:: health_check(server_names: list[str] | None = None) -> dict
+      :async:
+
+
+      Perform health checks on servers.
+
+
+
+   .. py:method:: install_discovered_servers(servers: list[dict]) -> dict
+      :async:
+
+
+      Install servers from discovery results.
+
+
+
+   .. py:method:: install_servers(server_names: list[str] | None = None, categories: list[str] | None = None) -> dict
+      :async:
+
+
+      Install specific servers or categories.
+
+
+
+   .. py:method:: list_servers(status_filter: str = 'all') -> dict
+      :async:
+
+
+      List servers with their status.
+
+
+
+   .. py:method:: update_servers(server_names: list[str] | None = None, force: bool = False) -> dict
+      :async:
+
+
+      Update servers to latest versions.
+
+
+
+   .. py:attribute:: downloader
+
+
+   .. py:attribute:: install_dir
+
+
+   .. py:attribute:: status_file
+

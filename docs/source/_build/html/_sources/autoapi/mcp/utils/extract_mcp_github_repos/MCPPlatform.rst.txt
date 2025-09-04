@@ -1,0 +1,32 @@
+mcp.utils.extract_mcp_github_repos.MCPPlatform
+==============================================
+
+.. py:class:: mcp.utils.extract_mcp_github_repos.MCPPlatform
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+
+   Supported Platforms.
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+
+   .. py:attribute:: CROSS_PLATFORM
+      :value: 'Cross-Platform'
+
+
+
+   .. py:attribute:: LINUX
+      :value: 'Linux'
+
+
+
+   .. py:attribute:: MACOS
+      :value: 'macOS'
+
+
+
+   .. py:attribute:: WINDOWS
+      :value: 'Windows'
+
+

@@ -1,0 +1,168 @@
+mcp.servers.mcp_server_manager_v2.MCPServerManagerV2
+====================================================
+
+.. py:class:: mcp.servers.mcp_server_manager_v2.MCPServerManagerV2(**data)
+
+   Bases: :py:obj:`haive.dataflow.server_management.base.BaseServerManager`\ [\ :py:obj:`mcp.servers.models.MCPServerConfig`\ , :py:obj:`mcp.servers.models.MCPServerInfo`\ ]
+
+
+   Refactored MCP Server Manager with Pydantic validation.
+
+   Inherits from BaseServerManager to provide type-safe server management
+   with MCP-specific extensions for stdio transport, environment validation,
+   and protocol handling.
+
+   .. attribute:: config_class
+
+      MCPServerConfig class for validation
+
+   .. attribute:: info_class
+
+      MCPServerInfo class for runtime state
+
+   .. attribute:: output_monitors
+
+      Thread references for stdio output monitoring
+
+   .. attribute:: legacy_mode
+
+      Enable backward compatibility behaviors
+
+   .. rubric:: Example
+
+   >>> manager = MCPServerManagerV2()
+   >>> config = MCPServerConfig(
+   ...     name="github",
+   ...     command=["npx", "-y", "@modelcontextprotocol/server-github"],
+   ...     transport=MCPTransport.STDIO,
+   ...     requires_env=["GITHUB_TOKEN"]
+   ... )
+   >>> manager.add_config("github", config)
+   >>> await manager.start_server("github", {"GITHUB_TOKEN": "token"})
+
+   Initialize with optional pre-configured servers.
+
+
+   .. py:method:: cleanup() -> None
+      :async:
+
+
+      Clean up all resources including output monitors.
+
+
+
+   .. py:method:: get_status() -> Dict[str, dict]
+
+      Get legacy-format status.
+
+
+
+   .. py:method:: health_check(name: str) -> bool
+      :async:
+
+
+      MCP-specific health check implementation.
+
+
+
+   .. py:method:: restart_server(name: str) -> mcp.servers.models.MCPServerInfo
+      :async:
+
+
+      Restart server preserving environment configuration.
+
+
+
+   .. py:method:: run(servers_to_start: Optional[List[str]] = None, blocking: bool = True) -> bool
+
+      Legacy run method for backward compatibility.
+
+
+
+   .. py:method:: show_status() -> None
+
+      Show status in legacy format.
+
+
+
+   .. py:method:: start_server(name: str, env_overrides: Optional[Dict[str, str]] = None) -> mcp.servers.models.MCPServerInfo
+      :async:
+
+
+      Start an MCP server with proper validation.
+
+      Extends base start_server with MCP-specific features like environment
+      validation and stdio output monitoring.
+
+      :param name: Server name
+      :param env_overrides: Optional environment variable overrides
+
+      :returns: MCPServerInfo with running server details
+
+      :raises ValueError: If required environment variables are missing
+      :raises RuntimeError: If server fails to start
+
+
+
+   .. py:method:: start_server_sync(name: str, env_overrides: Optional[Dict[str, str]] = None) -> bool
+
+      Synchronous wrapper for legacy compatibility.
+
+
+
+   .. py:method:: stop_all_servers() -> None
+
+      Stop all servers synchronously for legacy compatibility.
+
+
+
+   .. py:method:: stop_server(name: str, force: bool = False) -> bool
+      :async:
+
+
+      Stop server with cleanup of MCP-specific resources.
+
+
+
+   .. py:method:: stop_server_sync(name: str) -> bool
+
+      Synchronous wrapper for legacy compatibility.
+
+
+
+   .. py:property:: available_servers
+      :type: Dict[str, dict]
+
+
+      Legacy property for backward compatibility.
+
+
+   .. py:attribute:: config_class
+      :type:  type[mcp.servers.models.MCPServerConfig]
+      :value: None
+
+
+
+   .. py:attribute:: info_class
+      :type:  type[mcp.servers.models.MCPServerInfo]
+      :value: None
+
+
+
+   .. py:attribute:: legacy_mode
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: output_monitors
+      :type:  Dict[str, threading.Thread]
+      :value: None
+
+
+
+   .. py:attribute:: shutdown_requested
+      :type:  bool
+      :value: None
+
+

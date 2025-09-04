@@ -1,0 +1,298 @@
+mcp.client.MCPClient
+====================
+
+.. py:class:: mcp.client.MCPClient(transport: mcp.client.transport.MCPTransport, timeout: float = 30.0, client_info: Optional[Dict[str, Any]] = None, auto_reconnect: bool = False, max_reconnect_attempts: int = 3)
+
+   High-level MCP client for communicating with MCP servers.
+
+   This is the main interface for interacting with MCP servers. It combines
+   the transport and protocol layers to provide a clean, easy-to-use API
+   for MCP operations.
+
+   The client handles the complete MCP lifecycle:
+       1. Connection establishment
+       2. Capability negotiation
+       3. Tool/resource/prompt discovery
+       4. Operation execution
+       5. Connection cleanup
+
+   It supports multiple transport types and provides both sync-style
+   and async context manager interfaces.
+
+   .. rubric:: Examples
+
+   Basic usage with STDIO transport::
+
+       from haive.mcp.client import MCPClient, StdioTransport
+
+       transport = StdioTransport("npx", ["-y", "@modelcontextprotocol/server-filesystem"])
+       client = MCPClient(transport)
+
+       await client.connect()
+       tools = await client.list_tools()
+       result = await client.call_tool("read_file", {"path": "/etc/hosts"})
+       await client.disconnect()
+
+   Using context manager (recommended)::
+
+       async with MCPClient(transport) as client:
+           tools = await client.list_tools()
+           for tool in tools:
+               print(f"Available tool: {tool.name}")
+
+           result = await client.call_tool("tool_name", {"arg": "value"})
+
+   With HTTP transport::
+
+       from haive.mcp.client import HttpTransport
+
+       transport = HttpTransport("http://localhost:8080/mcp")
+       async with MCPClient(transport) as client:
+           resources = await client.list_resources()
+           content = await client.read_resource("file://config.json")
+
+   With notification handling::
+
+       def on_tool_list_changed(params):
+           print("Tool list updated!")
+
+       client.add_notification_handler("tools/list_changed", on_tool_list_changed)
+
+   Error handling::
+
+       try:
+           async with MCPClient(transport) as client:
+               result = await client.call_tool("nonexistent", {})
+       except MCPToolError as e:
+           print(f"Tool error: {e}")
+       except MCPConnectionError as e:
+           print(f"Connection error: {e}")
+
+   Initialize MCP client.
+
+   :param transport: Transport implementation (STDIO, HTTP, etc.)
+   :param timeout: Default timeout for operations
+   :param client_info: Client information for server handshake
+   :param auto_reconnect: Whether to automatically reconnect on failures
+   :param max_reconnect_attempts: Maximum reconnection attempts
+
+
+   .. py:method:: __aenter__()
+      :async:
+
+
+      Async context manager entry.
+
+
+
+   .. py:method:: __aexit__(exc_type, exc_val, exc_tb)
+      :async:
+
+
+      Async context manager exit.
+
+
+
+   .. py:method:: add_notification_handler(method: str, handler: Callable[[Dict[str, Any]], Awaitable[None]]) -> None
+
+      Add a handler for server notifications.
+
+      :param method: Notification method name
+      :param handler: Async handler function
+
+
+
+   .. py:method:: call_tool(name: str, arguments: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Any
+      :async:
+
+
+      Call a tool on the server.
+
+      :param name: Tool name to call
+      :param arguments: Tool arguments
+      :param timeout: Call timeout (uses default if None)
+
+      :returns: Tool execution result
+
+      :raises MCPToolError: If tool execution fails
+      :raises MCPProtocolError: If request fails
+
+
+
+   .. py:method:: connect() -> Dict[str, Any]
+      :async:
+
+
+      Connect to the MCP server and perform initialization.
+
+      This method establishes the connection and performs the MCP
+      initialization handshake, including capability negotiation.
+
+      :returns: Server information and capabilities
+
+      :raises MCPConnectionError: If connection fails
+      :raises MCPProtocolError: If protocol handshake fails
+
+
+
+   .. py:method:: disconnect() -> None
+      :async:
+
+
+      Disconnect from the MCP server gracefully.
+
+      This method cleanly shuts down the MCP connection and cleans up
+      all resources. It's safe to call multiple times.
+
+
+
+   .. py:method:: get_capabilities() -> List[mcp.client.protocol.MCPCapability]
+      :async:
+
+
+      Get server capabilities.
+
+      :returns: List of server capabilities
+
+      :raises MCPConnectionError: If not connected
+
+
+
+   .. py:method:: get_prompt(name: str, arguments: Optional[Dict[str, Any]] = None) -> Dict[str, Any]
+      :async:
+
+
+      Get a prompt from the server.
+
+      :param name: Prompt name
+      :param arguments: Prompt arguments
+
+      :returns: Prompt content and metadata
+
+
+
+   .. py:method:: get_server_info() -> Dict[str, Any]
+      :async:
+
+
+      Get server information from initialization.
+
+      :returns: Server information dictionary
+
+      :raises MCPConnectionError: If not connected
+
+
+
+   .. py:method:: health_check() -> Dict[str, Any]
+      :async:
+
+
+      Perform a health check on the MCP connection.
+
+      :returns: Health check results including connectivity and capabilities
+
+
+
+   .. py:method:: is_connected() -> bool
+      :async:
+
+
+      Check if client is currently connected.
+
+      :returns: True if connected, False otherwise
+
+
+
+   .. py:method:: list_prompts(use_cache: bool = True) -> List[mcp.client.protocol.MCPPrompt]
+      :async:
+
+
+      List available prompts from the server.
+
+      :param use_cache: Whether to use cached results
+
+      :returns: List of available prompts
+
+      :raises MCPCapabilityError: If prompts capability not supported
+
+
+
+   .. py:method:: list_resources(use_cache: bool = True) -> List[mcp.client.protocol.MCPResource]
+      :async:
+
+
+      List available resources from the server.
+
+      :param use_cache: Whether to use cached results
+
+      :returns: List of available resources
+
+
+
+   .. py:method:: list_tools(use_cache: bool = True) -> List[mcp.client.protocol.MCPTool]
+      :async:
+
+
+      List available tools from the server.
+
+      :param use_cache: Whether to use cached results if available
+
+      :returns: List of available tools
+
+      :raises MCPCapabilityError: If tools capability not supported
+      :raises MCPProtocolError: If request fails
+
+
+
+   .. py:method:: read_resource(uri: str) -> Dict[str, Any]
+      :async:
+
+
+      Read a resource from the server.
+
+      :param uri: Resource URI to read
+
+      :returns: Resource content and metadata
+
+
+
+   .. py:method:: refresh_cache() -> None
+      :async:
+
+
+      Refresh all cached server information.
+
+      This re-fetches tools, prompts, and resources from the server
+      and updates the local cache.
+
+
+
+   .. py:method:: remove_notification_handler(method: str, handler: Callable[[Dict[str, Any]], Awaitable[None]]) -> None
+
+      Remove a notification handler.
+
+      :param method: Notification method name
+      :param handler: Handler function to remove
+
+
+
+   .. py:attribute:: auto_reconnect
+      :value: False
+
+
+
+   .. py:attribute:: max_reconnect_attempts
+      :value: 3
+
+
+
+   .. py:attribute:: protocol
+
+
+   .. py:attribute:: timeout
+      :value: 30.0
+
+
+
+   .. py:attribute:: transport
+

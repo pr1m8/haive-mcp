@@ -1,0 +1,99 @@
+mcp.tools.server_selector.MCPServerSelector
+===========================================
+
+.. py:class:: mcp.tools.server_selector.MCPServerSelector(servers: list[dict[str, Any]] | None = None)
+
+   Intelligent MCP server selection and recommendation system.
+
+   Initialize server selector.
+
+   :param servers: List of server documentation. If None, loads all available.
+
+
+   .. py:method:: create_config_for_selection(selected_servers: list[str], lazy_init: bool = True) -> haive.mcp.config.MCPConfig
+
+      Create MCPConfig for selected servers.
+
+      :param selected_servers: List of server names to include
+      :param lazy_init: Whether to use lazy initialization
+
+      :returns: MCPConfig with selected servers
+
+
+
+   .. py:method:: filter_by_prefix(prefix: str) -> list[dict[str, Any]]
+
+      Filter servers by prefix/namespace.
+
+      :param prefix: Prefix to filter by (e.g., "modelcontextprotocol/")
+
+      :returns: List of servers with matching prefix
+
+
+
+   .. py:method:: get_available_categories() -> list[str]
+
+      Get all available server categories.
+
+      :returns: List of unique categories
+
+
+
+   .. py:method:: get_available_prefixes() -> list[str]
+
+      Get all available server prefixes/namespaces.
+
+      :returns: List of unique prefixes found in server names
+
+
+
+   .. py:method:: get_selection_summary(selected_servers: list[str]) -> dict[str, Any]
+
+      Get summary of selected servers.
+
+      :param selected_servers: List of selected server names
+
+      :returns: Summary dictionary with statistics and details
+
+
+
+   .. py:method:: interactive_select(prompt: str = 'Select MCP servers to use:', categories: list[str] | None = None, prefixes: list[str] | None = None, max_selections: int | None = None) -> list[str]
+      :async:
+
+
+      Interactive server selection interface.
+
+      :param prompt: Prompt to display to user
+      :param categories: Filter by categories
+      :param prefixes: Filter by prefixes
+      :param max_selections: Maximum number of selections allowed
+
+      :returns: List of selected server names
+
+
+
+   .. py:method:: recommend_for_task(task_description: str, max_servers: int = 5, include_experimental: bool = False) -> list[ServerScore]
+
+      Recommend servers for a specific task.
+
+      :param task_description: Natural language description of the task
+      :param max_servers: Maximum number of servers to recommend
+      :param include_experimental: Whether to include experimental servers
+
+      :returns: List of ServerScore objects ranked by relevance
+
+
+
+   .. py:attribute:: analyzer
+
+
+   .. py:attribute:: filter
+
+
+   .. py:attribute:: server_map
+
+
+   .. py:attribute:: servers
+      :value: None
+
+

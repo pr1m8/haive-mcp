@@ -1,0 +1,149 @@
+mcp.downloader.config.ServerTemplate
+====================================
+
+.. py:class:: mcp.downloader.config.ServerTemplate(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Template for MCP server installation patterns.
+
+   Templates define reusable installation patterns that can be applied
+   to multiple servers with similar installation requirements.
+
+   .. attribute:: name
+
+      Unique template identifier
+
+   .. attribute:: installation_method
+
+      Method to use for installation
+
+   .. attribute:: command_pattern
+
+      Pattern for the command to run the server
+
+   .. attribute:: args_pattern
+
+      Default arguments for the command
+
+   .. attribute:: env_vars
+
+      Environment variables to set
+
+   .. attribute:: capabilities
+
+      List of server capabilities
+
+   .. attribute:: category
+
+      Server category for organization
+
+   .. attribute:: health_check
+
+      Command to verify server health
+
+   .. attribute:: prerequisites
+
+      Required system dependencies
+
+   .. attribute:: post_install
+
+      Commands to run after installation
+
+   .. attribute:: timeout
+
+      Installation timeout in seconds
+
+   .. rubric:: Example
+
+   NPM template:
+
+   .. code-block:: python
+       template = ServerTemplate(
+           name="npm_official",
+           installation_method=InstallationMethod.NPM,
+           command_pattern="@modelcontextprotocol/server-{service}",
+           capabilities=["tools"],
+           category="official",
+           prerequisites=["node", "npm"]
+       )
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: args_pattern
+      :type:  list[str]
+      :value: None
+
+
+
+   .. py:attribute:: capabilities
+      :type:  list[str]
+      :value: None
+
+
+
+   .. py:attribute:: category
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: command_pattern
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: env_vars
+      :type:  dict[str, str]
+      :value: None
+
+
+
+   .. py:attribute:: health_check
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: installation_method
+      :type:  InstallationMethod
+      :value: None
+
+
+
+   .. py:attribute:: model_config
+
+      Configuration for the model, should be a dictionary conforming to [`ConfigDict`][pydantic.config.ConfigDict].
+
+
+   .. py:attribute:: name
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: post_install
+      :type:  list[str]
+      :value: None
+
+
+
+   .. py:attribute:: prerequisites
+      :type:  list[str]
+      :value: None
+
+
+
+   .. py:attribute:: timeout
+      :type:  int
+      :value: None
+
+

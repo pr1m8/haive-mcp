@@ -1,0 +1,84 @@
+mcp.mixins.mcp_mixin
+====================
+
+.. py:module:: mcp.mixins.mcp_mixin
+
+.. autoapi-nested-parse::
+
+   MCP mixin for adding Model Context Protocol capabilities to agents.
+
+   This module provides a mixin class that adds MCP functionality to any Haive agent.
+   The mixin handles server connections, tool discovery, resource access, and prompt
+   management with automatic error handling and graceful degradation.
+
+   The MCPMixin class integrates seamlessly with the Haive agent architecture,
+   providing:
+       - Dynamic server discovery and connection management
+       - Automatic tool registration with agents
+       - Health monitoring and failure recovery
+       - Component registry integration
+       - Lazy initialization support
+
+   .. rubric:: Examples
+
+   Adding MCP capabilities to a custom agent:
+
+   .. code-block:: python
+
+       from haive.agents.base import Agent
+       from haive.mcp.mixins import MCPMixin
+       from haive.mcp.config import MCPConfig
+
+       class MyCustomAgent(MCPMixin, Agent):
+           '''Agent with MCP capabilities.'''
+
+           async def setup(self):
+               await super().setup()
+               # MCP tools are now available
+               if self._mcp_tools:
+                   print(f"Loaded {len(self._mcp_tools)} MCP tools")
+
+       # Use the agent
+       agent = MyCustomAgent(
+           engine=engine,
+           mcp_config=MCPConfig(enabled=True, servers={...})
+       )
+
+   .. seealso::
+
+      - :class:`haive.mcp.config.MCPConfig`: MCP configuration
+      - :class:`haive.mcp.agents.MCPAgent`: Pre-built MCP agent
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.mixins.mcp_mixin.MCP_AVAILABLE
+   mcp.mixins.mcp_mixin.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/mixins/mcp_mixin/MCPMixin
+
+.. autoapisummary::
+
+   mcp.mixins.mcp_mixin.MCPMixin
+
+
+Module Contents
+---------------
+
+.. py:data:: MCP_AVAILABLE
+   :value: True
+
+
+.. py:data:: logger
+

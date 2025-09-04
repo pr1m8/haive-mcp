@@ -1,0 +1,78 @@
+mcp.utils.extract_mcp_github_repos
+==================================
+
+.. py:module:: mcp.utils.extract_mcp_github_repos
+
+.. autoapi-nested-parse::
+
+   Enhanced MCP Repository Extractor with README Processing.
+
+   This script:
+   1. Extracts repository URLs from awesome-mcp-servers
+   2. Downloads and processes README files
+   3. Converts to LangChain Documents with metadata
+   4. Organizes resources for agent access
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.utils.extract_mcp_github_repos.console
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/utils/extract_mcp_github_repos/ExtractionStats
+   /autoapi/mcp/utils/extract_mcp_github_repos/MCPCategory
+   /autoapi/mcp/utils/extract_mcp_github_repos/MCPLanguage
+   /autoapi/mcp/utils/extract_mcp_github_repos/MCPPlatform
+   /autoapi/mcp/utils/extract_mcp_github_repos/MCPRepositoryExtractor
+   /autoapi/mcp/utils/extract_mcp_github_repos/MCPScope
+   /autoapi/mcp/utils/extract_mcp_github_repos/MCPServerDocument
+   /autoapi/mcp/utils/extract_mcp_github_repos/MCPServerMetadata
+
+.. autoapisummary::
+
+   mcp.utils.extract_mcp_github_repos.ExtractionStats
+   mcp.utils.extract_mcp_github_repos.MCPCategory
+   mcp.utils.extract_mcp_github_repos.MCPLanguage
+   mcp.utils.extract_mcp_github_repos.MCPPlatform
+   mcp.utils.extract_mcp_github_repos.MCPRepositoryExtractor
+   mcp.utils.extract_mcp_github_repos.MCPScope
+   mcp.utils.extract_mcp_github_repos.MCPServerDocument
+   mcp.utils.extract_mcp_github_repos.MCPServerMetadata
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp.utils.extract_mcp_github_repos.create_agent_loader
+   mcp.utils.extract_mcp_github_repos.main
+
+
+Module Contents
+---------------
+
+.. py:function:: create_agent_loader(output_dir: str = 'agent_resources/mcp_servers') -> callable
+
+   Create a loader function for agents to access MCP documents.
+
+
+.. py:function:: main()
+   :async:
+
+
+   Main function.
+
+
+.. py:data:: console
+

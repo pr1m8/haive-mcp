@@ -1,0 +1,155 @@
+mcp.client
+==========
+
+.. py:module:: mcp.client
+
+.. autoapi-nested-parse::
+
+   MCP Client Implementation Package.
+
+   This package provides native MCP protocol client implementation for connecting
+   to and communicating with MCP servers according to the Model Context Protocol
+   specification.
+
+   Key Components
+   --------------
+
+   **Core Classes**
+       - :class:`MCPClient`: Main client for protocol communication
+       - :class:`MCPTransport`: Transport layer abstraction
+       - :class:`MCPConnection`: Connection management
+       - :class:`MCPProtocol`: Protocol implementation
+
+   **Transport Support**
+       - **STDIO**: Communication via stdin/stdout
+       - **HTTP**: RESTful communication
+       - **SSE**: Server-sent events
+       - **WebSocket**: Real-time bidirectional communication
+
+   Usage Examples
+   --------------
+
+   Basic Connection
+   ~~~~~~~~~~~~~~~~
+
+   .. code-block:: python
+
+       from haive.mcp.client import MCPClient, StdioTransport
+
+       # Create transport and client
+       transport = StdioTransport(
+           command="npx",
+           args=["-y", "@modelcontextprotocol/server-filesystem"]
+       )
+       client = MCPClient(transport)
+
+       # Connect and use
+       await client.connect()
+       tools = await client.list_tools()
+       result = await client.call_tool("read_file", {"path": "/etc/hosts"})
+       await client.disconnect()
+
+   Context Manager Usage
+   ~~~~~~~~~~~~~~~~~~~~~
+
+   .. code-block:: python
+
+       async with MCPClient(transport) as client:
+           tools = await client.list_tools()
+           result = await client.call_tool("tool_name", args)
+
+   Available Classes
+   -----------------
+
+   Transport Classes
+   ~~~~~~~~~~~~~~~~~
+   - :class:`StdioTransport` - Standard I/O transport
+   - :class:`HttpTransport` - HTTP-based transport
+   - :class:`SseTransport` - Server-Sent Events transport
+   - :class:`WebSocketTransport` - WebSocket transport
+
+   Exception Classes
+   ~~~~~~~~~~~~~~~~~
+   - :class:`MCPError` - Base MCP exception
+   - :class:`MCPConnectionError` - Connection-related errors
+   - :class:`MCPProtocolError` - Protocol violation errors
+   - :class:`MCPTimeoutError` - Timeout-related errors
+   - :class:`MCPTransportError` - Transport layer errors
+   - :class:`MCPAuthenticationError` - Authentication failures
+   - :class:`MCPCapabilityError` - Capability negotiation errors
+   - :class:`MCPToolError` - Tool execution errors
+
+   .. note::
+      This is a native implementation of the MCP protocol, designed to work
+      with any MCP-compliant server. It handles the full protocol lifecycle
+      including initialization, capability discovery, and tool execution.
+
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/mcp/client/connection/index
+   /autoapi/mcp/client/exceptions/index
+   /autoapi/mcp/client/mcp_client/index
+   /autoapi/mcp/client/protocol/index
+   /autoapi/mcp/client/transport/index
+
+
+Exceptions
+----------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/client/MCPAuthenticationError
+   /autoapi/mcp/client/MCPCapabilityError
+   /autoapi/mcp/client/MCPConnectionError
+   /autoapi/mcp/client/MCPError
+   /autoapi/mcp/client/MCPProtocolError
+   /autoapi/mcp/client/MCPTimeoutError
+   /autoapi/mcp/client/MCPToolError
+   /autoapi/mcp/client/MCPTransportError
+
+.. autoapisummary::
+
+   mcp.client.MCPAuthenticationError
+   mcp.client.MCPCapabilityError
+   mcp.client.MCPConnectionError
+   mcp.client.MCPError
+   mcp.client.MCPProtocolError
+   mcp.client.MCPTimeoutError
+   mcp.client.MCPToolError
+   mcp.client.MCPTransportError
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/client/HttpTransport
+   /autoapi/mcp/client/MCPClient
+   /autoapi/mcp/client/MCPConnection
+   /autoapi/mcp/client/MCPProtocol
+   /autoapi/mcp/client/MCPTransport
+   /autoapi/mcp/client/SseTransport
+   /autoapi/mcp/client/StdioTransport
+   /autoapi/mcp/client/WebSocketTransport
+
+.. autoapisummary::
+
+   mcp.client.HttpTransport
+   mcp.client.MCPClient
+   mcp.client.MCPConnection
+   mcp.client.MCPProtocol
+   mcp.client.MCPTransport
+   mcp.client.SseTransport
+   mcp.client.StdioTransport
+   mcp.client.WebSocketTransport
+
+

@@ -1,0 +1,102 @@
+mcp.client.transport.StdioTransport
+===================================
+
+.. py:class:: mcp.client.transport.StdioTransport(command: str, args: Optional[List[str]] = None, env: Optional[Dict[str, str]] = None, cwd: Optional[str] = None, timeout: float = 30.0)
+
+   Bases: :py:obj:`MCPTransport`
+
+
+   STDIO transport for MCP communication.
+
+   This transport communicates with an MCP server via stdin/stdout of a
+   subprocess. This is the most common transport for MCP servers that are
+   designed to run as command-line tools.
+
+   The transport handles:
+       - Process lifecycle management
+       - JSON-RPC message framing over stdio
+       - Process cleanup on disconnection
+       - Error handling for process failures
+
+   .. rubric:: Examples
+
+   Basic usage::
+
+       transport = StdioTransport(
+           command="npx",
+           args=["-y", "@modelcontextprotocol/server-filesystem", "/tmp"]
+       )
+
+   With environment variables::
+
+       transport = StdioTransport(
+           command="python",
+           args=["-m", "my_mcp_server"],
+           env={"API_KEY": "secret"},
+           cwd="/path/to/server"
+       )
+
+   Initialize STDIO transport.
+
+   :param command: Command to execute (e.g., "npx", "python")
+   :param args: Command line arguments
+   :param env: Environment variables for the process
+   :param cwd: Working directory for the process
+   :param timeout: Timeout for operations
+
+
+   .. py:method:: connect() -> None
+      :async:
+
+
+      Start the MCP server process and establish stdio communication.
+
+
+
+   .. py:method:: disconnect() -> None
+      :async:
+
+
+      Stop the MCP server process and cleanup resources.
+
+
+
+   .. py:method:: receive_message() -> Dict[str, Any]
+      :async:
+
+
+      Receive JSON-RPC message from server via stdout.
+
+
+
+   .. py:method:: send_message(message: Dict[str, Any]) -> None
+      :async:
+
+
+      Send JSON-RPC message to server via stdin.
+
+
+
+   .. py:attribute:: args
+      :value: []
+
+
+
+   .. py:attribute:: command
+
+
+   .. py:attribute:: cwd
+      :value: None
+
+
+
+   .. py:attribute:: env
+      :value: None
+
+
+
+   .. py:attribute:: process
+      :type:  Optional[asyncio.subprocess.Process]
+      :value: None
+
+

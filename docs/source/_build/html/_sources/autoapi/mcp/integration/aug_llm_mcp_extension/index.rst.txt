@@ -1,0 +1,80 @@
+mcp.integration.aug_llm_mcp_extension
+=====================================
+
+.. py:module:: mcp.integration.aug_llm_mcp_extension
+
+.. autoapi-nested-parse::
+
+   Extension module to add MCP support to AugLLMConfig.
+
+   This module provides utilities and mixins to enhance AugLLMConfig with MCP
+   integration capabilities, allowing seamless use of MCP tools, resources, and
+   prompts within the Haive agent framework.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.integration.aug_llm_mcp_extension.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/integration/aug_llm_mcp_extension/MCPAugLLMConfig
+   /autoapi/mcp/integration/aug_llm_mcp_extension/MCPPromptTemplate
+   /autoapi/mcp/integration/aug_llm_mcp_extension/MCPResource
+   /autoapi/mcp/integration/aug_llm_mcp_extension/MCPToolWrapper
+
+.. autoapisummary::
+
+   mcp.integration.aug_llm_mcp_extension.MCPAugLLMConfig
+   mcp.integration.aug_llm_mcp_extension.MCPPromptTemplate
+   mcp.integration.aug_llm_mcp_extension.MCPResource
+   mcp.integration.aug_llm_mcp_extension.MCPToolWrapper
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp.integration.aug_llm_mcp_extension.create_mcp_enabled_aug_config
+   mcp.integration.aug_llm_mcp_extension.extend_aug_llm_config_for_mcp
+
+
+Module Contents
+---------------
+
+.. py:function:: create_mcp_enabled_aug_config(name: str, model: str = 'gpt-4o-mini', mcp_servers: dict[str, haive.mcp.config.MCPServerConfig] | None = None, **kwargs) -> MCPAugLLMConfig
+   :async:
+
+
+   Factory function to create an MCP-enabled AugLLMConfig.
+
+   :param name: Configuration name
+   :param model: LLM model to use
+   :param mcp_servers: Dictionary of MCP server configurations
+   :param \*\*kwargs: Additional AugLLMConfig parameters
+
+   :returns: Initialized MCPAugLLMConfig with MCP integration
+
+
+.. py:function:: extend_aug_llm_config_for_mcp(base_config: haive.core.engine.aug_llm.AugLLMConfig, mcp_config: haive.mcp.config.MCPConfig) -> MCPAugLLMConfig
+
+   Utility function to extend an existing AugLLMConfig with MCP support.
+
+   :param base_config: Existing AugLLMConfig instance
+   :param mcp_config: MCP configuration to add
+
+   :returns: MCPAugLLMConfig with MCP support added
+
+
+.. py:data:: logger
+

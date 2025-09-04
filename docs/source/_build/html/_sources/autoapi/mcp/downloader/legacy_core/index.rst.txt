@@ -1,0 +1,89 @@
+mcp.downloader.legacy_core
+==========================
+
+.. py:module:: mcp.downloader.legacy_core
+
+.. autoapi-nested-parse::
+
+   General MCP Server Downloader - A flexible, configuration-driven approach.
+
+   This script provides a general, extensible system for downloading and configuring
+   MCP servers from various sources using configurable installation strategies.
+
+   Key features:
+   - Plugin architecture for different installation methods
+   - Configuration-driven patterns and templates
+   - Support for multiple server registries and sources
+   - Flexible metadata handling
+   - Batch processing with retry logic
+   - Progress tracking and logging
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.downloader.legacy_core.aiohttp
+   mcp.downloader.legacy_core.logger
+   mcp.downloader.legacy_core.yaml
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/downloader/legacy_core/DockerInstaller
+   /autoapi/mcp/downloader/legacy_core/GeneralMCPDownloader
+   /autoapi/mcp/downloader/legacy_core/GitInstaller
+   /autoapi/mcp/downloader/legacy_core/InstallationMethod
+   /autoapi/mcp/downloader/legacy_core/MCPInstaller
+   /autoapi/mcp/downloader/legacy_core/NPMInstaller
+   /autoapi/mcp/downloader/legacy_core/PipInstaller
+   /autoapi/mcp/downloader/legacy_core/ServerConfig
+   /autoapi/mcp/downloader/legacy_core/ServerTemplate
+
+.. autoapisummary::
+
+   mcp.downloader.legacy_core.DockerInstaller
+   mcp.downloader.legacy_core.GeneralMCPDownloader
+   mcp.downloader.legacy_core.GitInstaller
+   mcp.downloader.legacy_core.InstallationMethod
+   mcp.downloader.legacy_core.MCPInstaller
+   mcp.downloader.legacy_core.NPMInstaller
+   mcp.downloader.legacy_core.PipInstaller
+   mcp.downloader.legacy_core.ServerConfig
+   mcp.downloader.legacy_core.ServerTemplate
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp.downloader.legacy_core.main
+
+
+Module Contents
+---------------
+
+.. py:function:: main()
+   :async:
+
+
+   Main function for CLI usage.
+
+
+.. py:data:: aiohttp
+   :value: None
+
+
+.. py:data:: logger
+
+.. py:data:: yaml
+   :value: None
+
+

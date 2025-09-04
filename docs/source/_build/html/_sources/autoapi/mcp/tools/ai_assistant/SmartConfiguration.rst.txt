@@ -1,0 +1,35 @@
+mcp.tools.ai_assistant.SmartConfiguration
+=========================================
+
+.. py:class:: mcp.tools.ai_assistant.SmartConfiguration
+
+   A complete MCP configuration with metadata.
+
+
+   .. py:attribute:: config
+      :type:  haive.mcp.config.MCPConfig
+
+
+   .. py:attribute:: estimated_capabilities
+      :type:  list[str]
+
+
+   .. py:attribute:: fallback_servers
+      :type:  list[str]
+
+
+   .. py:attribute:: primary_servers
+      :type:  list[str]
+
+
+   .. py:attribute:: reasoning
+      :type:  str
+
+
+   .. py:attribute:: setup_complexity
+      :type:  str
+
+
+   .. py:attribute:: warnings
+      :type:  list[str]
+

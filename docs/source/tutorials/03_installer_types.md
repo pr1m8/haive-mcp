@@ -2,19 +2,19 @@
 
 ## Overview
 
-While MCPAgent handles all installation automatically, understanding how different MCP servers are installed helps you troubleshoot issues and optimize performance. Haive MCP supports **all major installation methods** transparently.
+While EnhancedMCPAgent handles all installation automatically, understanding how different MCP servers are installed helps you troubleshoot issues and optimize performance. Haive MCP supports **all major installation methods** transparently.
 
 ## Automatic Installation in Action
 
 ```python
 import asyncio
-from haive.mcp.agents import MCPAgent
+from haive.mcp.agents.enhanced_mcp_agent import EnhancedMCPAgent
 from haive.core.engine.aug_llm import AugLLMConfig
 
 async def see_automatic_installation():
     """Watch automatic installation across different package types."""
     
-    agent = MCPAgent(
+    agent = EnhancedMCPAgent(
         name="installer_demo",
         engine=AugLLMConfig(),
         mcp_categories=["core"],  # Contains NPM, Git, and Python servers
@@ -103,7 +103,7 @@ npm-package/
 
 ### How Haive Handles NPM Installation
 
-Behind the scenes, when you create an MCPAgent, here's what happens with NPM servers:
+Behind the scenes, when you create an EnhancedMCPAgent, here's what happens with NPM servers:
 
 ```python
 # This is what the agent does automatically
@@ -117,7 +117,7 @@ async def behind_the_scenes_npm():
     # 4. Connects via STDIO transport
     # 5. Discovers available tools
     
-    agent = MCPAgent(
+    agent = EnhancedMCPAgent(
         name="npm_demo",
         engine=AugLLMConfig(),
         mcp_categories=["core"],  # Contains many NPM servers
@@ -453,7 +453,7 @@ When automatic installation fails, you can debug specific installer types:
 async def debug_installation_issues():
     """Debug installation problems by installer type."""
     
-    agent = MCPAgent(
+    agent = EnhancedMCPAgent(
         name="debug_installer",
         engine=AugLLMConfig(),
         mcp_categories=["core"],
@@ -494,7 +494,7 @@ asyncio.run(debug_installation_issues())
 
 ## Summary
 
-**With MCPAgent, you don't need to worry about installer types!** The agent:
+**With EnhancedMCPAgent, you don't need to worry about installer types!** The agent:
 
 - ✅ **Automatically detects** the best installation method for each server
 - ✅ **Handles all package managers** (NPM, Pip, Git, Docker) transparently  

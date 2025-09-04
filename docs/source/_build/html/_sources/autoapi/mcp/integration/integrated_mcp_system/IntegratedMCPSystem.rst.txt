@@ -1,0 +1,61 @@
+mcp.integration.integrated_mcp_system.IntegratedMCPSystem
+=========================================================
+
+.. py:class:: mcp.integration.integrated_mcp_system.IntegratedMCPSystem
+
+   Main integrated system combining discovery and management.
+
+   Init  .
+
+
+   .. py:method:: get_fastmcp_servers() -> dict[str, Any]
+
+      Get all FastMCP managed servers.
+
+
+
+   .. py:method:: install_and_configure(server_name: str) -> ServerInstallation
+      :async:
+
+
+      Install a server and configure it in FastMCP.
+
+
+
+   .. py:method:: search_servers(query: str, method: str = 'auto') -> dict[str, Any]
+      :async:
+
+
+      Search for MCP servers.
+
+
+
+   .. py:method:: start_server(server_name: str) -> dict[str, Any]
+      :async:
+
+
+      Start a FastMCP server.
+
+
+
+   .. py:method:: stop_server(server_name: str, pid: int) -> dict[str, Any]
+      :async:
+
+
+      Stop a running server.
+
+
+
+   .. py:attribute:: discovery_agent
+
+
+   .. py:attribute:: fastmcp_manager
+      :value: None
+
+
+
+   .. py:attribute:: installer
+
+
+   .. py:attribute:: servers_data
+
