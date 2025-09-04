@@ -1,0 +1,26 @@
+mcp.downloader
+==============
+
+.. py:module:: mcp.downloader
+
+.. autoapi-nested-parse::
+
+   Module exports.
+
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/mcp/downloader/config/index
+   /autoapi/mcp/downloader/core/index
+   /autoapi/mcp/downloader/discovery/index
+   /autoapi/mcp/downloader/github_mass_downloader/index
+   /autoapi/mcp/downloader/installers/index
+   /autoapi/mcp/downloader/integration/index
+   /autoapi/mcp/downloader/legacy_core/index
+
+

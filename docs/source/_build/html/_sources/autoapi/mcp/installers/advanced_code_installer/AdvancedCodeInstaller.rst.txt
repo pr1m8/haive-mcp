@@ -1,0 +1,66 @@
+mcp.installers.advanced_code_installer.AdvancedCodeInstaller
+============================================================
+
+.. py:class:: mcp.installers.advanced_code_installer.AdvancedCodeInstaller(config_manager: haive.mcp.installers.config_manager.MCPConfigManager | None = None)
+
+   Advanced MCP installer with LLM code generation.
+
+   Init  .
+
+   :param config_manager: [TODO: Add description]
+
+
+   .. py:method:: cleanup()
+
+      Clean up all resources.
+
+
+
+   .. py:method:: create_subprocess_execution_tool(plan: GeneratedInstallPlan, request: CodeGenerationRequest) -> langchain_core.tools.StructuredTool
+
+      Create tool for executing subprocess commands with oversight.
+
+
+
+   .. py:method:: create_validation_tool(plan: GeneratedInstallPlan, request: CodeGenerationRequest) -> langchain_core.tools.StructuredTool
+
+      Create tool for validating installation.
+
+
+
+   .. py:method:: generate_installation_plan(request: CodeGenerationRequest) -> GeneratedInstallPlan
+      :async:
+
+
+      Generate installation plan using LLM.
+
+
+
+   .. py:method:: get_advanced_status() -> dict[str, Any]
+
+      Get status of advanced installer.
+
+
+
+   .. py:method:: install_server_advanced(request: CodeGenerationRequest) -> tuple[bool, str, list[langchain_core.tools.StructuredTool]]
+      :async:
+
+
+      Advanced server installation with code generation.
+
+
+
+   .. py:attribute:: code_generation_agent
+      :value: None
+
+
+
+   .. py:attribute:: config_manager
+
+
+   .. py:attribute:: running_servers
+      :type:  dict[str, subprocess.Popen]
+
+
+   .. py:attribute:: safe_installer
+

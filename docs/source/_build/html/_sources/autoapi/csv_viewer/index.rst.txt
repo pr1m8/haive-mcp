@@ -1,0 +1,53 @@
+csv_viewer
+==========
+
+.. py:module:: csv_viewer
+
+.. autoapi-nested-parse::
+
+   CSV Viewer and Exporter for MCP Servers Data.
+
+   Creates a browsable CSV export with sorting and filtering capabilities.
+
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   csv_viewer.create_csv_export
+   csv_viewer.export_to_csv
+   csv_viewer.load_mcp_servers_data
+   csv_viewer.main
+   csv_viewer.streamlit_viewer
+
+
+Module Contents
+---------------
+
+.. py:function:: create_csv_export() -> pandas.DataFrame
+
+   Create pandas DataFrame for CSV export.
+
+
+.. py:function:: export_to_csv()
+
+   Export data to CSV file.
+
+
+.. py:function:: load_mcp_servers_data() -> list[dict[str, Any]]
+
+   Load MCP servers data from JSON file.
+
+
+.. py:function:: main()
+
+   Main CLI interface.
+
+
+.. py:function:: streamlit_viewer()
+
+   Create Streamlit web interface for browsing MCP servers.
+
+

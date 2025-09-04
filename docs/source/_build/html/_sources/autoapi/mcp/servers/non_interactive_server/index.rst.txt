@@ -1,0 +1,40 @@
+mcp.servers.non_interactive_server
+==================================
+
+.. py:module:: mcp.servers.non_interactive_server
+
+.. autoapi-nested-parse::
+
+   Non-interactive MCP server manager that avoids EOF errors.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.servers.non_interactive_server.logger
+   mcp.servers.non_interactive_server.manager
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/servers/non_interactive_server/SimpleMCPServerManager
+
+.. autoapisummary::
+
+   mcp.servers.non_interactive_server.SimpleMCPServerManager
+
+
+Module Contents
+---------------
+
+.. py:data:: logger
+
+.. py:data:: manager
+

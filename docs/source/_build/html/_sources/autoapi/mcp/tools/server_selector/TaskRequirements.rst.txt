@@ -1,0 +1,27 @@
+mcp.tools.server_selector.TaskRequirements
+==========================================
+
+.. py:class:: mcp.tools.server_selector.TaskRequirements
+
+   Analyzed requirements from a task description.
+
+
+   .. py:attribute:: complexity_score
+      :type:  float
+
+
+   .. py:attribute:: keywords
+      :type:  list[str]
+
+
+   .. py:attribute:: preferred_categories
+      :type:  list[str]
+
+
+   .. py:attribute:: required_capabilities
+      :type:  list[str]
+
+
+   .. py:attribute:: suggested_servers
+      :type:  list[str]
+

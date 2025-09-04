@@ -1,0 +1,37 @@
+mcp.integration.integrated_mcp_system.ServerInstallation
+========================================================
+
+.. py:class:: mcp.integration.integrated_mcp_system.ServerInstallation
+
+   Track server installation status.
+
+
+   .. py:attribute:: install_command
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: installed_at
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: message
+      :type:  str
+
+
+   .. py:attribute:: pid
+      :type:  int | None
+      :value: None
+
+
+
+   .. py:attribute:: server_name
+      :type:  str
+
+
+   .. py:attribute:: status
+      :type:  str
+

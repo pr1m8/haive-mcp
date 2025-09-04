@@ -1,0 +1,73 @@
+mcp.downloader.installers
+=========================
+
+.. py:module:: mcp.downloader.installers
+
+.. autoapi-nested-parse::
+
+   Installer plugins for different MCP server types.
+
+   This module provides installer implementations for various installation methods
+   including NPM, pip, Git, Docker, binary downloads, and more.
+
+   .. rubric:: Examples
+
+   Using installers directly:
+
+       .. code-block:: python
+       installer = NPMInstaller()
+       if await installer.can_handle(server_config, template):
+           result = await installer.install(server_config, template, install_dir)
+
+   Classes:
+       MCPInstaller: Abstract base class for installers
+       NPMInstaller: Handles NPM package installations
+       PipInstaller: Handles Python pip installations
+       GitInstaller: Handles Git repository cloning
+       DockerInstaller: Handles Docker image pulling
+       BinaryInstaller: Handles binary executable downloads
+       CurlInstaller: Handles direct HTTP downloads
+
+   Version: 1.0.0
+   Author: Haive MCP Team
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.downloader.installers.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/downloader/installers/BinaryInstaller
+   /autoapi/mcp/downloader/installers/CurlInstaller
+   /autoapi/mcp/downloader/installers/DockerInstaller
+   /autoapi/mcp/downloader/installers/GitInstaller
+   /autoapi/mcp/downloader/installers/MCPInstaller
+   /autoapi/mcp/downloader/installers/NPMInstaller
+   /autoapi/mcp/downloader/installers/PipInstaller
+
+.. autoapisummary::
+
+   mcp.downloader.installers.BinaryInstaller
+   mcp.downloader.installers.CurlInstaller
+   mcp.downloader.installers.DockerInstaller
+   mcp.downloader.installers.GitInstaller
+   mcp.downloader.installers.MCPInstaller
+   mcp.downloader.installers.NPMInstaller
+   mcp.downloader.installers.PipInstaller
+
+
+Module Contents
+---------------
+
+.. py:data:: logger
+

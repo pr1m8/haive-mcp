@@ -1,0 +1,39 @@
+dynamic_activation_mcp
+======================
+
+.. py:module:: dynamic_activation_mcp
+
+.. autoapi-nested-parse::
+
+   Dynamic Activation MCP Server Implementation.
+
+   This module provides MCP (Model Context Protocol) integration for the Dynamic
+   Activation Pattern, allowing MCP servers to dynamically discover and activate
+   tools based on client requests.
+
+   Based on:
+   - @project_docs/active/patterns/dynamic_activation_pattern.md
+   - MCP protocol specification
+   - Existing haive-mcp infrastructure
+
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/dynamic_activation_mcp/DynamicActivationMCPServer
+   /autoapi/dynamic_activation_mcp/DynamicMCPRegistry
+   /autoapi/dynamic_activation_mcp/DynamicMCPState
+   /autoapi/dynamic_activation_mcp/MCPTool
+
+.. autoapisummary::
+
+   dynamic_activation_mcp.DynamicActivationMCPServer
+   dynamic_activation_mcp.DynamicMCPRegistry
+   dynamic_activation_mcp.DynamicMCPState
+   dynamic_activation_mcp.MCPTool
+
+

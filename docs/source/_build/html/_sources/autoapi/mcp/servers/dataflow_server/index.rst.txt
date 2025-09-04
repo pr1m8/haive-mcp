@@ -1,0 +1,153 @@
+mcp.servers.dataflow_server
+===========================
+
+.. py:module:: mcp.servers.dataflow_server
+
+.. autoapi-nested-parse::
+
+   Haive Dataflow MCP Server - Provides access to haive-dataflow registry and components.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.servers.dataflow_server.DATAFLOW_AVAILABLE
+   mcp.servers.dataflow_server.logger
+   mcp.servers.dataflow_server.mcp
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp.servers.dataflow_server.agent_creation_prompt
+   mcp.servers.dataflow_server.component_search_prompt
+   mcp.servers.dataflow_server.create_agent_config
+   mcp.servers.dataflow_server.discover_components
+   mcp.servers.dataflow_server.get_component_details
+   mcp.servers.dataflow_server.get_component_resource
+   mcp.servers.dataflow_server.get_server_info
+   mcp.servers.dataflow_server.list_all_components_resource
+   mcp.servers.dataflow_server.list_components
+   mcp.servers.dataflow_server.register_component
+
+
+Module Contents
+---------------
+
+.. py:function:: agent_creation_prompt(requirements: str) -> str
+   :async:
+
+
+   Generate a prompt for creating a new haive agent.
+
+   :param requirements: Requirements for the agent
+
+   :returns: Agent creation prompt
+
+
+.. py:function:: component_search_prompt(query: str) -> str
+   :async:
+
+
+   Generate a prompt for searching haive components.
+
+   :param query: Search query
+
+   :returns: Search prompt
+
+
+.. py:function:: create_agent_config(agent_type: str, name: str, model: str = 'gpt-4', temperature: float = 0.7) -> dict[str, Any]
+   :async:
+
+
+   Create a configuration for a haive agent.
+
+   :param agent_type: Type of agent (simple, react, rag, multi)
+   :param name: Name for the agent
+   :param model: LLM model to use
+   :param temperature: Temperature setting
+
+   :returns: Agent configuration
+
+
+.. py:function:: discover_components(component_type: str) -> dict[str, Any]
+   :async:
+
+
+   Run discovery for a specific component type.
+
+   :param component_type: Type to discover (agents, tools, engines, games)
+
+   :returns: Discovery results
+
+
+.. py:function:: get_component_details(component_id: str) -> dict[str, Any]
+   :async:
+
+
+   Get detailed information about a specific component.
+
+   :param component_id: ID of the component
+
+   :returns: Component details
+
+
+.. py:function:: get_component_resource(component_id: str) -> str
+   :async:
+
+
+   Resource for specific component details.
+
+
+.. py:function:: get_server_info() -> dict[str, Any]
+   :async:
+
+
+   Get server information.
+
+
+.. py:function:: list_all_components_resource() -> str
+   :async:
+
+
+   Resource listing all registered components.
+
+
+.. py:function:: list_components(component_type: str = 'all') -> dict[str, Any]
+   :async:
+
+
+   List components registered in haive-dataflow.
+
+   :param component_type: Type of components to list (agent, tool, engine, game, mcp_server, or all)
+
+   :returns: Dictionary of components by type
+
+
+.. py:function:: register_component(name: str, component_type: str, description: str, metadata: dict[str, Any] | None = None) -> dict[str, str]
+   :async:
+
+
+   Register a new component in haive-dataflow.
+
+   :param name: Component name
+   :param component_type: Type of component (agent, tool, engine, etc.)
+   :param description: Component description
+   :param metadata: Optional metadata dictionary
+
+   :returns: Registration result with component ID
+
+
+.. py:data:: DATAFLOW_AVAILABLE
+   :value: True
+
+
+.. py:data:: logger
+
+.. py:data:: mcp
+

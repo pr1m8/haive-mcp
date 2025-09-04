@@ -105,19 +105,19 @@ The filesystem MCP server provides tools for file operations:
 
 With Haive MCP, the process is dramatically simplified through **automatic discovery**:
 
-1. **Create Agent**: Use `MCPAgent` with desired capabilities
+1. **Create Agent**: Use `EnhancedMCPAgent` with desired capabilities
 2. **Auto-Discovery**: Agent automatically finds and installs needed servers
 3. **Dynamic Integration**: Tools are available instantly in your agent
 4. **Just Use**: No manual configuration - tools work immediately
 
 ```python
 import asyncio
-from haive.mcp.agents import MCPAgent
+from haive.mcp.agents.enhanced_mcp_agent import EnhancedMCPAgent
 from haive.core.engine.aug_llm import AugLLMConfig
 
 async def quick_start():
     # Create agent that auto-discovers tools from 1900+ servers
-    agent = MCPAgent(
+    agent = EnhancedMCPAgent(
         name="discovery_agent",
         engine=AugLLMConfig(temperature=0.7),
         mcp_categories=["core"],  # Auto-install filesystem, database, search tools

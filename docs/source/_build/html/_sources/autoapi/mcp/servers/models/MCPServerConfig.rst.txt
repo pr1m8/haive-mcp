@@ -1,0 +1,87 @@
+mcp.servers.models.MCPServerConfig
+==================================
+
+.. py:class:: mcp.servers.models.MCPServerConfig
+
+   Bases: :py:obj:`haive.dataflow.server_management.models.BaseServerConfig`
+
+
+   MCP-specific server configuration.
+
+   Extends BaseServerConfig with MCP-specific fields like transport type,
+   required environment variables, and protocol version.
+
+   .. attribute:: transport
+
+      MCP transport mechanism (stdio, http, etc.)
+
+   .. attribute:: requires_env
+
+      List of required environment variable names
+
+   .. attribute:: protocol_version
+
+      MCP protocol version (default: "1.0")
+
+   .. attribute:: capabilities
+
+      List of server capabilities/features
+
+   .. attribute:: endpoints
+
+      Optional endpoints for HTTP/WebSocket transports
+
+   .. rubric:: Example
+
+   >>> config = MCPServerConfig(
+   ...     name="github",
+   ...     command=["npx", "-y", "@modelcontextprotocol/server-github"],
+   ...     description="GitHub repository access",
+   ...     transport=MCPTransport.STDIO,
+   ...     requires_env=["GITHUB_TOKEN"]
+   ... )
+
+
+   .. py:method:: validate_env_vars(v: List[str]) -> List[str]
+      :classmethod:
+
+
+      Validate environment variable names.
+
+
+
+   .. py:method:: validate_transport_config() -> MCPServerConfig
+
+      Validate transport-specific configuration.
+
+
+
+   .. py:attribute:: capabilities
+      :type:  List[str]
+      :value: None
+
+
+
+   .. py:attribute:: endpoints
+      :type:  Optional[Dict[str, str]]
+      :value: None
+
+
+
+   .. py:attribute:: protocol_version
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: requires_env
+      :type:  List[str]
+      :value: None
+
+
+
+   .. py:attribute:: transport
+      :type:  MCPTransport
+      :value: None
+
+

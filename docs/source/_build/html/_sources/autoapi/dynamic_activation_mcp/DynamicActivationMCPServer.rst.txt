@@ -1,0 +1,254 @@
+dynamic_activation_mcp.DynamicActivationMCPServer
+=================================================
+
+.. py:class:: dynamic_activation_mcp.DynamicActivationMCPServer(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   MCP server with dynamic tool activation capabilities.
+
+   This server implements the MCP protocol with dynamic tool discovery
+   and activation. It can discover tools from documentation and activate
+   them based on client requests.
+
+   Key Features:
+       - Dynamic tool discovery from documentation
+       - Tool activation on demand
+       - MCP protocol compliance
+       - MetaStateSchema integration for tracking
+       - Session management
+
+   :param name: Server name
+   :param discovery_source: Source for tool discovery
+   :param tool_registry: Registry for managing tools
+   :param discovery_config: Configuration for discovery
+   :param meta_state: MetaStateSchema for tracking
+   :param state: DynamicMCPState for session management
+
+   .. rubric:: Examples
+
+   Create MCP server:
+
+   .. code-block:: python
+       server = DynamicActivationMCPServer(
+           name="dynamic_mcp_server",
+           discovery_source="@haive-tools"
+       )
+
+       # Start server
+       await server.start()
+
+       # Handle client requests
+       result = await server.handle_tool_request({
+           "tool": "calculator",
+           "input": {"expression": "2 + 2"}
+       })
+
+   With custom discovery:
+
+       .. code-block:: python
+
+           server = DynamicActivationMCPServer(
+           name="custom_mcp_server",
+           discovery_source="/path/to/tools",
+           discovery_config={
+               "auto_discover": True,
+               "max_tools": 50,
+               "cache_ttl": 3600
+           }
+       )
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:method:: get_available_tools() -> list[dict[str, Any]]
+
+      Get list of available tools for MCP clients.
+
+      :returns: List of tool descriptions for MCP protocol
+
+      .. rubric:: Examples
+
+      Get tools for MCP registration:
+
+      .. code-block:: python
+              tools = server.get_available_tools()
+              for tool in tools:
+                  print(f"{tool['name']}: {tool['description']}")
+
+
+
+   .. py:method:: get_server_stats() -> dict[str, Any]
+
+      Get server statistics.
+
+      :returns: Dictionary with server statistics
+
+      .. rubric:: Examples
+
+      Get server status:
+
+      .. code-block:: python
+              stats = server.get_server_stats()
+              print(f"Tools: {stats['total_tools']}")
+              print(f"Active: {stats['active_tools']}")
+              print(f"Clients: {stats['connected_clients']}")
+
+
+
+   .. py:method:: handle_client_connect(client_id: str, client_info: dict[str, Any]) -> dict[str, Any]
+      :async:
+
+
+      Handle MCP client connection.
+
+      :param client_id: ID of connecting client
+      :param client_info: Client information
+
+      :returns: Connection response
+
+      .. rubric:: Examples
+
+      Handle client connection:
+
+      .. code-block:: python
+              response = await server.handle_client_connect("client_123", {
+                  "name": "My Client",
+                  "version": "1.0"
+              })
+
+
+
+   .. py:method:: handle_client_disconnect(client_id: str) -> None
+      :async:
+
+
+      Handle MCP client disconnection.
+
+      :param client_id: ID of disconnecting client
+
+      .. rubric:: Examples
+
+      Handle client disconnect:
+
+      .. code-block:: python
+              await server.handle_client_disconnect("client_123")
+
+
+
+   .. py:method:: handle_tool_request(request: dict[str, Any]) -> dict[str, Any]
+      :async:
+
+
+      Handle dynamic tool requests from MCP clients.
+
+      :param request: MCP tool request
+
+      :returns: Tool execution result
+
+      .. rubric:: Examples
+
+      Handle tool request:
+
+      .. code-block:: python
+              request = {
+                  "tool": "calculator",
+                  "input": {"expression": "2 + 2"},
+                  "client_id": "client_123"
+              }
+
+              result = await server.handle_tool_request(request)
+              print(f"Result: {result}")
+
+
+
+   .. py:method:: setup_mcp_server() -> DynamicActivationMCPServer
+
+      Initialize MCP server components.
+
+      This validator:
+      1. Sets up discovery configuration
+      2. Initializes discovery agent
+      3. Wraps in MetaStateSchema
+      4. Configures MCP protocol settings
+
+
+
+   .. py:method:: start() -> None
+      :async:
+
+
+      Start the MCP server.
+
+      .. rubric:: Examples
+
+      Start server:
+
+      .. code-block:: python
+              await server.start()
+              print("MCP server started")
+
+
+
+   .. py:method:: stop() -> None
+      :async:
+
+
+      Stop the MCP server.
+
+      .. rubric:: Examples
+
+      Stop server:
+
+      .. code-block:: python
+              await server.stop()
+              print("MCP server stopped")
+
+
+
+   .. py:attribute:: discovery_config
+      :type:  dict[str, Any]
+      :value: None
+
+
+
+   .. py:attribute:: discovery_source
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: meta_state
+      :type:  haive.core.schema.prebuilt.meta_state.MetaStateSchema | None
+      :value: None
+
+
+
+   .. py:attribute:: model_config
+
+      Configuration for the model, should be a dictionary conforming to [`ConfigDict`][pydantic.config.ConfigDict].
+
+
+   .. py:attribute:: name
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: state
+      :type:  DynamicMCPState
+      :value: None
+
+
+
+   .. py:attribute:: tool_registry
+      :type:  DynamicMCPRegistry
+      :value: None
+
+

@@ -1,0 +1,37 @@
+mcp.client.protocol.MCPCapability
+=================================
+
+.. py:class:: mcp.client.protocol.MCPCapability
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+
+   Standard MCP capabilities.
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+
+   .. py:attribute:: LOGGING
+      :value: 'logging'
+
+
+
+   .. py:attribute:: PROMPTS
+      :value: 'prompts'
+
+
+
+   .. py:attribute:: RESOURCES
+      :value: 'resources'
+
+
+
+   .. py:attribute:: SAMPLING
+      :value: 'sampling'
+
+
+
+   .. py:attribute:: TOOLS
+      :value: 'tools'
+
+

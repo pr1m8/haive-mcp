@@ -1,0 +1,53 @@
+mcp.installers.safe_pattern_installer.InstallationRequest
+=========================================================
+
+.. py:class:: mcp.installers.safe_pattern_installer.InstallationRequest(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Request for MCP server installation.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: custom_args
+      :type:  list[str]
+      :value: None
+
+
+
+   .. py:attribute:: env_vars
+      :type:  dict[str, str]
+      :value: None
+
+
+
+   .. py:attribute:: package_name
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: pattern_type
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: require_approval
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: server_name
+      :type:  str
+      :value: None
+
+

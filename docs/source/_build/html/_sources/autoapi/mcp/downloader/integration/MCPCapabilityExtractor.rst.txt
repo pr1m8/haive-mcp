@@ -1,0 +1,154 @@
+mcp.downloader.integration.MCPCapabilityExtractor
+=================================================
+
+.. py:class:: mcp.downloader.integration.MCPCapabilityExtractor
+
+   Extracts tools, resources, and prompts from MCP servers.
+
+   This class provides methods to extract and organize capabilities
+   from multiple MCP servers for use with agents.
+
+   .. attribute:: connections
+
+      Active server connections
+
+   .. attribute:: all_tools
+
+      Aggregated tools from all servers
+
+   .. attribute:: all_resources
+
+      Aggregated resources
+
+   .. attribute:: all_prompts
+
+      Aggregated prompts
+
+   .. rubric:: Examples
+
+   Extracting capabilities:
+
+   .. code-block:: python
+       extractor = MCPCapabilityExtractor()
+       await extractor.add_server("filesystem", config)
+       tools = extractor.get_all_tools()
+
+   Initialize the capability extractor.
+
+
+   .. py:method:: add_server(name: str, config: dict[str, Any], transport: str = 'stdio') -> bool
+      :async:
+
+
+      Add and connect to an MCP server.
+
+      :param name: Server name
+      :param config: Server configuration
+      :param transport: Transport type
+
+      :returns: True if server added successfully
+      :rtype: bool
+
+      .. rubric:: Examples
+
+      Adding a server:
+
+      .. code-block:: python
+              success = await extractor.add_server(
+                  "filesystem",
+                  {"command": "npx", "args": ["@modelcontextprotocol/server-filesystem"]}
+              )
+
+
+
+   .. py:method:: add_servers_from_config(servers: list[haive.mcp.downloader.config.ServerConfig], config_dir: pathlib.Path) -> dict[str, bool]
+      :async:
+
+
+      Add multiple servers from configuration.
+
+      :param servers: List of server configurations
+      :param config_dir: Directory containing server configs
+
+      :returns: Dict mapping server names to success status
+
+      .. rubric:: Examples
+
+      Adding from config:
+
+      .. code-block:: python
+              results = await extractor.add_servers_from_config(
+                  downloader.servers,
+                  downloader.install_dir
+              )
+
+
+
+   .. py:method:: get_all_prompts() -> dict[str, list[dict]]
+
+      Get all discovered prompts.
+
+      :returns: Dict of server name to prompt list
+
+
+
+   .. py:method:: get_all_resources() -> dict[str, list[dict]]
+
+      Get all discovered resources.
+
+      :returns: Dict of server name to resource list
+
+
+
+   .. py:method:: get_all_tools() -> dict[str, langchain_core.tools.BaseTool]
+
+      Get all discovered tools.
+
+      :returns: Dict of tool name to tool object
+
+      .. rubric:: Examples
+
+      Getting tools:
+
+      .. code-block:: python
+              tools = extractor.get_all_tools()
+              for name, tool in tools.items():
+                  print(f"Tool: {name}")
+
+
+
+   .. py:method:: get_tools_by_capability(capability: str) -> dict[str, langchain_core.tools.BaseTool]
+
+      Get tools that have a specific capability.
+
+      :param capability: Capability to filter by
+
+      :returns: Dict of tools with that capability
+
+
+
+   .. py:method:: get_tools_by_server(server_name: str) -> dict[str, langchain_core.tools.BaseTool]
+
+      Get tools from a specific server.
+
+      :param server_name: Name of the server
+
+      :returns: Dict of tools from that server
+
+
+
+   .. py:attribute:: all_prompts
+      :type:  dict[str, list[dict]]
+
+
+   .. py:attribute:: all_resources
+      :type:  dict[str, list[dict]]
+
+
+   .. py:attribute:: all_tools
+      :type:  dict[str, langchain_core.tools.BaseTool]
+
+
+   .. py:attribute:: connections
+      :type:  dict[str, MCPServerConnection]
+

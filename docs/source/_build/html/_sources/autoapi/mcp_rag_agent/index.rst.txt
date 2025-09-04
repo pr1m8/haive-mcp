@@ -1,0 +1,85 @@
+mcp_rag_agent
+=============
+
+.. py:module:: mcp_rag_agent
+
+.. autoapi-nested-parse::
+
+   MCP RAG Agent - Simplified version that works with our enhanced retriever.
+
+   This agent helps users find and understand MCP servers using RAG.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp_rag_agent.app
+   mcp_rag_agent.rag_agent
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp_rag_agent/QueryRequest
+   /autoapi/mcp_rag_agent/QueryResponse
+
+.. autoapisummary::
+
+   mcp_rag_agent.QueryRequest
+   mcp_rag_agent.QueryResponse
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp_rag_agent.ask_agent
+   mcp_rag_agent.create_mcp_rag_agent
+   mcp_rag_agent.root
+   mcp_rag_agent.startup_event
+
+
+Module Contents
+---------------
+
+.. py:function:: ask_agent(request: QueryRequest)
+   :async:
+
+
+   Ask the RAG agent a question.
+
+
+.. py:function:: create_mcp_rag_agent()
+   :async:
+
+
+   Create a RAG agent for MCP discovery.
+
+
+.. py:function:: root()
+   :async:
+
+
+   Web UI for the agent.
+
+
+.. py:function:: startup_event()
+   :async:
+
+
+   Initialize the RAG agent on startup.
+
+
+.. py:data:: app
+
+.. py:data:: rag_agent
+   :value: None
+
+

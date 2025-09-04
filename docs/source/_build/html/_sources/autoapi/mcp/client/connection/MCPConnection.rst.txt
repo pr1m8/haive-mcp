@@ -1,0 +1,254 @@
+mcp.client.connection.MCPConnection
+===================================
+
+.. py:class:: mcp.client.connection.MCPConnection(name: str, transport: mcp.client.transport.MCPTransport, auto_reconnect: bool = True, max_reconnect_attempts: int = 5, reconnect_delay: float = 1.0, max_reconnect_delay: float = 60.0, health_check_interval: float = 30.0, connection_timeout: float = 30.0)
+
+   MCP connection manager with health monitoring and auto-reconnection.
+
+   This class manages individual MCP connections with features like:
+       - Health monitoring and scoring
+       - Automatic reconnection with backoff
+       - Connection lifecycle management
+       - Error tracking and recovery
+       - Performance metrics
+
+   .. rubric:: Examples
+
+   Basic connection management::
+
+       from haive.mcp.client import MCPConnection, StdioTransport
+
+       transport = StdioTransport("npx", ["-y", "@modelcontextprotocol/server-filesystem"])
+       connection = MCPConnection("filesystem", transport)
+
+       await connection.connect()
+       client = connection.get_client()
+       tools = await client.list_tools()
+       await connection.disconnect()
+
+   With health monitoring::
+
+       connection = MCPConnection(
+           "filesystem",
+           transport,
+           health_check_interval=30.0,
+           auto_reconnect=True
+       )
+
+       await connection.start_monitoring()
+       # Connection will be monitored and auto-reconnected
+
+   Connection status checking::
+
+       if connection.is_healthy():
+           client = connection.get_client()
+           result = await client.call_tool("read_file", {"path": "/tmp/test"})
+
+   Initialize MCP connection manager.
+
+   :param name: Connection name/identifier
+   :param transport: Transport implementation
+   :param auto_reconnect: Enable automatic reconnection
+   :param max_reconnect_attempts: Maximum reconnection attempts
+   :param reconnect_delay: Initial reconnection delay (seconds)
+   :param max_reconnect_delay: Maximum reconnection delay (seconds)
+   :param health_check_interval: Health check interval (seconds)
+   :param connection_timeout: Connection timeout (seconds)
+
+
+   .. py:method:: __aenter__()
+      :async:
+
+
+      Async context manager entry.
+
+
+
+   .. py:method:: __aexit__(exc_type, exc_val, exc_tb)
+      :async:
+
+
+      Async context manager exit.
+
+
+
+   .. py:method:: connect(timeout: Optional[float] = None) -> mcp.client.mcp_client.MCPClient
+      :async:
+
+
+      Connect to the MCP server.
+
+      :param timeout: Connection timeout (uses default if None)
+
+      :returns: Connected MCP client
+
+      :raises MCPConnectionError: If connection fails
+
+
+
+   .. py:method:: disconnect() -> None
+      :async:
+
+
+      Disconnect from the MCP server.
+
+
+
+   .. py:method:: get_client() -> mcp.client.mcp_client.MCPClient
+
+      Get the MCP client if connected.
+
+      :returns: MCP client instance
+
+      :raises MCPConnectionError: If not connected
+
+
+
+   .. py:method:: get_info() -> ConnectionInfo
+
+      Get connection information.
+
+      :returns: ConnectionInfo object with current state
+
+
+
+   .. py:method:: health_check() -> Dict[str, Any]
+      :async:
+
+
+      Perform a health check on the connection.
+
+      :returns: Health check results
+
+
+
+   .. py:method:: is_connected() -> bool
+
+      Check if connection is active.
+
+      :returns: True if connected, False otherwise
+
+
+
+   .. py:method:: is_healthy(threshold: float = 0.7) -> bool
+
+      Check if connection is healthy.
+
+      :param threshold: Health score threshold (0.0-1.0)
+
+      :returns: True if health score is above threshold
+
+
+
+   .. py:method:: reconnect() -> Optional[mcp.client.mcp_client.MCPClient]
+      :async:
+
+
+      Attempt to reconnect to the server.
+
+      :returns: Connected client if successful, None if failed
+
+
+
+   .. py:method:: start_monitoring() -> None
+      :async:
+
+
+      Start background health monitoring.
+
+
+
+   .. py:method:: stop_monitoring() -> None
+      :async:
+
+
+      Stop background health monitoring.
+
+
+
+   .. py:attribute:: auto_reconnect
+      :value: True
+
+
+
+   .. py:attribute:: client
+      :type:  Optional[mcp.client.mcp_client.MCPClient]
+      :value: None
+
+
+
+   .. py:attribute:: connection_count
+      :value: 0
+
+
+
+   .. py:attribute:: connection_timeout
+      :value: 30.0
+
+
+
+   .. py:attribute:: error_count
+      :value: 0
+
+
+
+   .. py:attribute:: health_check_interval
+      :value: 30.0
+
+
+
+   .. py:attribute:: health_score
+      :value: 1.0
+
+
+
+   .. py:attribute:: last_connected
+      :type:  Optional[float]
+      :value: None
+
+
+
+   .. py:attribute:: last_error
+      :type:  Optional[str]
+      :value: None
+
+
+
+   .. py:attribute:: last_operation_time
+      :value: 0.0
+
+
+
+   .. py:attribute:: max_reconnect_attempts
+      :value: 5
+
+
+
+   .. py:attribute:: max_reconnect_delay
+      :value: 60.0
+
+
+
+   .. py:attribute:: name
+
+
+   .. py:attribute:: reconnect_attempts
+      :value: 0
+
+
+
+   .. py:attribute:: reconnect_delay
+      :value: 1.0
+
+
+
+   .. py:attribute:: status
+
+
+   .. py:attribute:: total_uptime
+      :value: 0.0
+
+
+
+   .. py:attribute:: transport
+

@@ -1,0 +1,30 @@
+mcp.installers.config_manager
+=============================
+
+.. py:module:: mcp.installers.config_manager
+
+.. autoapi-nested-parse::
+
+   MCP Configuration and Environment Management.
+
+   Handles .env files, configuration templates, and secure credential storage.
+
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/installers/config_manager/MCPConfigManager
+   /autoapi/mcp/installers/config_manager/MCPEnvironmentConfig
+   /autoapi/mcp/installers/config_manager/MCPServerPattern
+
+.. autoapisummary::
+
+   mcp.installers.config_manager.MCPConfigManager
+   mcp.installers.config_manager.MCPEnvironmentConfig
+   mcp.installers.config_manager.MCPServerPattern
+
+

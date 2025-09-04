@@ -1,0 +1,68 @@
+mcp.client.transport.SseTransport
+=================================
+
+.. py:class:: mcp.client.transport.SseTransport(sse_url: str, post_url: str, headers: Optional[Dict[str, str]] = None, timeout: float = 30.0)
+
+   Bases: :py:obj:`MCPTransport`
+
+
+   Server-Sent Events transport for MCP communication.
+
+   This transport uses SSE for receiving messages and HTTP POST for sending.
+   Useful for streaming scenarios where the server needs to push messages
+   to the client.
+
+   Initialize SSE transport.
+
+   :param sse_url: URL for SSE stream (receiving messages)
+   :param post_url: URL for POST requests (sending messages)
+   :param headers: HTTP headers for both requests
+   :param timeout: Request timeout
+
+
+   .. py:method:: connect() -> None
+      :async:
+
+
+      Establish SSE connection.
+
+
+
+   .. py:method:: disconnect() -> None
+      :async:
+
+
+      Close SSE connection.
+
+
+
+   .. py:method:: receive_message() -> Dict[str, Any]
+      :async:
+
+
+      Receive message from SSE stream.
+
+
+
+   .. py:method:: send_message(message: Dict[str, Any]) -> None
+      :async:
+
+
+      Send message via HTTP POST.
+
+
+
+   .. py:attribute:: headers
+
+
+   .. py:attribute:: post_url
+
+
+   .. py:attribute:: session
+      :type:  Optional[aiohttp.ClientSession]
+      :value: None
+
+
+
+   .. py:attribute:: sse_url
+

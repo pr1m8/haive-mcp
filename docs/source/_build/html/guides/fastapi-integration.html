@@ -1,0 +1,1581 @@
+ <!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="FastAPI Integration Guide" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://docs.haive.ai/packages/haive-mcp/guides/fastapi-integration.html" />
+<meta property="og:site_name" content="haive-mcp Documentation" />
+<meta property="og:description" content="Complete guide to integrating Haive MCP with FastAPI for web APIs and microservices. Overview: The Haive MCP platform provides built-in FastAPI integration through: Auto-generated routers- Platform..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://docs.haive.ai/packages/haive-mcp/_images/social_previews/summary_guides_fastapi-integration_a22370c6.png" />
+<meta property="og:image:alt" content="Complete guide to integrating Haive MCP with FastAPI for web APIs and microservices. Overview: The Haive MCP platform provides built-in FastAPI integration through: Auto-generated routers- Platform..." />
+<meta name="description" content="Complete guide to integrating Haive MCP with FastAPI for web APIs and microservices. Overview: The Haive MCP platform provides built-in FastAPI integration through: Auto-generated routers- Platform..." />
+<meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" sizes="32x32" href="../_static/favicon-32x32.png" type="image/png">
+    <link rel="icon" sizes="16x16" href="../_static/favicon-16x16.png" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../_static/apple-touch-icon.png" type="image/png">
+    <link rel="shortcut icon" href="../_static/favicon.ico" type="image/x-icon"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="MCP Browser Plugin Guide" href="mcp-browser-plugin.html" /><link rel="prev" title="Platform Architecture" href="platform-architecture.html" />
+        <link rel="canonical" href="https://docs.haive.ai/packages/haive-mcp/guides/fastapi-integration.html" />
+
+    <!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
+        <title>FastAPI Integration Guide - haive-mcp</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  --color-brand-primary: #8b5cf6;
+  --color-brand-content: #7c3aed;
+  --color-background-primary: #ffffff;
+  --color-background-secondary: #faf5ff;
+  --color-background-border: #e9d5ff;
+  --color-background-hover: #f3e8ff;
+  --color-sidebar-background: #faf5ff;
+  --color-sidebar-background-border: #e9d5ff;
+  --color-sidebar-brand-text: #7c3aed;
+  --color-sidebar-item-background--current: #ede9fe;
+  --color-sidebar-item-background--hover: #f3e8ff;
+  --color-sidebar-search-background: #ffffff;
+  --color-sidebar-search-border: #e9d5ff;
+  --color-sidebar-search-icon: #8b5cf6;
+  --color-admonition-background: transparent;
+  --color-admonition-title-background--note: #dbeafe;
+  --color-admonition-title-background--tip: #d1fae5;
+  --color-admonition-title-background--important: #fee2e2;
+  --color-admonition-title-background--warning: #fef3c7;
+  --color-admonition-title--note: #1e40af;
+  --color-admonition-title--tip: #047857;
+  --color-admonition-title--important: #b91c1c;
+  --color-admonition-title--warning: #92400e;
+  --color-code-background: #f8f4ff;
+  --color-code-foreground: #1f2937;
+  --color-inline-code-background: #ede9fe;
+  --color-highlight-on-target: #8b5cf640;
+  --color-link: #8b5cf6;
+  --color-link--hover: #7c3aed;
+  --color-link-underline: #8b5cf640;
+  --color-link-underline--hover: #7c3aed80;
+  --font-stack: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+  --font-stack--monospace: JetBrains Mono, Consolas, Monaco, Courier, monospace;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #a78bfa;
+  --color-brand-content: #c084fc;
+  --color-background-primary: #0f0f23;
+  --color-background-secondary: #1a1a2e;
+  --color-background-border: #2e2e4e;
+  --color-background-hover: #16213e;
+  --color-sidebar-background: #16162d;
+  --color-sidebar-background-border: #2e2e4e;
+  --color-sidebar-brand-text: #c084fc;
+  --color-sidebar-item-background--current: #312e81;
+  --color-sidebar-item-background--hover: #1e1e3f;
+  --color-sidebar-search-background: #1a1a2e;
+  --color-sidebar-search-border: #2e2e4e;
+  --color-sidebar-search-icon: #a78bfa;
+  --color-admonition-background: transparent;
+  --color-admonition-title-background--note: #1e3a8a20;
+  --color-admonition-title-background--tip: #047857​20;
+  --color-admonition-title-background--important: #991b1b20;
+  --color-admonition-title-background--warning: #92400e20;
+  --color-admonition-title--note: #60a5fa;
+  --color-admonition-title--tip: #34d399;
+  --color-admonition-title--important: #f87171;
+  --color-admonition-title--warning: #fbbf24;
+  --color-code-background: #1a1a2e;
+  --color-code-foreground: #e0e7ff;
+  --color-inline-code-background: #312e81;
+  --color-highlight-on-target: #a78bfa40;
+  --color-link: #a78bfa;
+  --color-link--hover: #c084fc;
+  --color-link-underline: #a78bfa40;
+  --color-link-underline--hover: #c084fc80;
+  --color-api-background: #1a1a2e;
+  --color-api-background--hover: #312e81;
+  --color-api-overall: #e0e7ff;
+  --color-api-name: #c084fc;
+  --color-api-pre-name: #a78bfa;
+  --color-api-paren: #6366f1;
+  --color-api-keyword: #f472b6;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #a78bfa;
+  --color-brand-content: #c084fc;
+  --color-background-primary: #0f0f23;
+  --color-background-secondary: #1a1a2e;
+  --color-background-border: #2e2e4e;
+  --color-background-hover: #16213e;
+  --color-sidebar-background: #16162d;
+  --color-sidebar-background-border: #2e2e4e;
+  --color-sidebar-brand-text: #c084fc;
+  --color-sidebar-item-background--current: #312e81;
+  --color-sidebar-item-background--hover: #1e1e3f;
+  --color-sidebar-search-background: #1a1a2e;
+  --color-sidebar-search-border: #2e2e4e;
+  --color-sidebar-search-icon: #a78bfa;
+  --color-admonition-background: transparent;
+  --color-admonition-title-background--note: #1e3a8a20;
+  --color-admonition-title-background--tip: #047857​20;
+  --color-admonition-title-background--important: #991b1b20;
+  --color-admonition-title-background--warning: #92400e20;
+  --color-admonition-title--note: #60a5fa;
+  --color-admonition-title--tip: #34d399;
+  --color-admonition-title--important: #f87171;
+  --color-admonition-title--warning: #fbbf24;
+  --color-code-background: #1a1a2e;
+  --color-code-foreground: #e0e7ff;
+  --color-inline-code-background: #312e81;
+  --color-highlight-on-target: #a78bfa40;
+  --color-link: #a78bfa;
+  --color-link--hover: #c084fc;
+  --color-link-underline: #a78bfa40;
+  --color-link-underline--hover: #c084fc80;
+  --color-api-background: #1a1a2e;
+  --color-api-background--hover: #312e81;
+  --color-api-overall: #e0e7ff;
+  --color-api-name: #c084fc;
+  --color-api-pre-name: #a78bfa;
+  --color-api-paren: #6366f1;
+  --color-api-keyword: #f472b6;
+  
+      }
+    }
+  }
+</style>  
+<meta name="description" content="haive-mcp - FastAPI Integration Guide" />
+<meta property="og:title" content="FastAPI Integration Guide - haive-mcp" />
+<meta
+  property="og:description"
+  content="Documentation for haive-mcp - FastAPI Integration Guide"
+/>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap"
+  rel="stylesheet"
+/>
+</head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+<div class="announcement">
+  <aside class="announcement-content">
+     🔌 <b>haive-mcp</b> - Model Context Protocol integration for 1900+ tools 
+  </aside>
+</div>
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">haive-mcp</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky">
+<div class="sidebar-brand">
+  <a class="sidebar-brand-logo" href="../index.html">
+    <span class="sidebar-brand-text">haive-mcp</span>
+  </a>
+</div><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">📖 Overview</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../overview.html">haive-mcp: Model Context Protocol Integration for Haive</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of haive-mcp: Model Context Protocol Integration for Haive</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../mcp_servers.html">MCP Servers Documentation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of MCP Servers Documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../development.html">Development</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inheritance_diagram.html">Class Inheritance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🚀 Quick Start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">📚 Tutorials &amp; Examples</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tutorials.html">Tutorials</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Tutorials</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/01_understanding_mcp.html">Tutorial 1: Understanding MCP with Haive’s Dynamic Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/02_first_mcp_server.html">Tutorial 2: Your First MCP-Enhanced Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/03_installer_types.html">Tutorial 3: Automatic Installation Behind the Scenes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">📖 User Guides</span></p>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../guides.html">Guides</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Guides</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="platform-architecture.html">Platform Architecture</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">FastAPI Integration Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcp-browser-plugin.html">MCP Browser Plugin Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="real-world-examples.html">Real-World Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🛠️ Developer Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../advanced.html">Advanced Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_config.html">Advanced Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server_manager_guide.html">Server Manager Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../managing_mcp_servers.html">Managing MCP Servers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">📖 References</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../autoapi/index.html">API Reference</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of API Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../autoapi/mcp/index.html">mcp</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of mcp</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../autoapi/mcp/agents/index.html">agents</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of agents</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/agents/basic_mcp_agent/index.html">basic_mcp_agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/agents/documentation_agent/index.html">documentation_agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/agents/intelligent_mcp_agent/index.html">intelligent_mcp_agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/agents/mcp_agent/index.html">mcp_agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/agents/transferable_mcp_agent/index.html">transferable_mcp_agent</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../autoapi/mcp/cli/index.html">cli</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of cli</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/cli/mcp_manager/index.html">mcp_manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/cli/server_manager/index.html">server_manager</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../autoapi/mcp/client/index.html">client</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of client</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/client/connection/index.html">connection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/client/exceptions/index.html">exceptions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/client/mcp_client/index.html">mcp_client</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/client/protocol/index.html">protocol</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/client/transport/index.html">transport</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../autoapi/mcp/discovery/index.html">discovery</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of discovery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/discovery/analyzer/index.html">analyzer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/discovery/installed_servers/index.html">installed_servers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/discovery/server_discovery/index.html">server_discovery</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../autoapi/mcp/documentation/index.html">documentation</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/documentation/doc_loader/index.html">doc_loader</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../autoapi/mcp/downloader/index.html">downloader</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of downloader</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/downloader/config/index.html">config</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/downloader/core/index.html">core</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/downloader/discovery/index.html">discovery</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/downloader/github_mass_downloader/index.html">github_mass_downloader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/downloader/installers/index.html">installers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/downloader/integration/index.html">integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/downloader/legacy_core/index.html">legacy_core</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../autoapi/mcp/installer/index.html">installer</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of installer</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/installer/bulk_installer/index.html">bulk_installer</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../autoapi/mcp/installers/index.html">installers</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of installers</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/installers/advanced_code_installer/index.html">advanced_code_installer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/installers/config_manager/index.html">config_manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/installers/safe_pattern_installer/index.html">safe_pattern_installer</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../autoapi/mcp/integration/index.html">integration</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of integration</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/integration/aug_llm_mcp_extension/index.html">aug_llm_mcp_extension</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/integration/fastapi_mcp_server/index.html">fastapi_mcp_server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/integration/haive_agent_mcp_integration/index.html">haive_agent_mcp_integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/integration/integrated_launcher/index.html">integrated_launcher</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/integration/integrated_mcp_system/index.html">integrated_mcp_system</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../autoapi/mcp/mixins/index.html">mixins</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle navigation of mixins</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/mixins/mcp_mixin/index.html">mcp_mixin</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../autoapi/mcp/plugins/index.html">plugins</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle navigation of plugins</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/plugins/browser_plugin/index.html">browser_plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../autoapi/mcp/registry/index.html">registry</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of registry</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/registry/server_converter/index.html">server_converter</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../autoapi/mcp/servers/index.html">servers</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of servers</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/servers/compatibility/index.html">compatibility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/servers/dataflow_mcp_server/index.html">dataflow_mcp_server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/servers/dataflow_server/index.html">dataflow_server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/servers/example_server_fastmcp/index.html">example_server_fastmcp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/servers/http_server/index.html">http_server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/servers/mcp_server_manager/index.html">mcp_server_manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/servers/mcp_server_manager_v2/index.html">mcp_server_manager_v2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/servers/models/index.html">models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/servers/non_interactive_server/index.html">non_interactive_server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/servers/simple_http_server/index.html">simple_http_server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/servers/simple_server/index.html">simple_server</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../autoapi/mcp/tools/index.html">tools</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle navigation of tools</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/tools/ai_assistant/index.html">ai_assistant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/tools/server_selector/index.html">server_selector</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/tools/server_tester/index.html">server_tester</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../autoapi/mcp/utils/index.html">utils</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" role="switch" type="checkbox"/><label for="toctree-checkbox-21"><div class="visually-hidden">Toggle navigation of utils</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../autoapi/mcp/utils/extract_mcp_github_repos/index.html">extract_mcp_github_repos</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../autoapi/mcp/__main__/index.html">__main__</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../autoapi/mcp/api/index.html">api</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../autoapi/mcp/config/index.html">config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../autoapi/mcp/manager/index.html">manager</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="fastapi-integration-guide">
+<h1>FastAPI Integration Guide<a class="headerlink" href="#fastapi-integration-guide" title="Link to this heading">¶</a></h1>
+<p>Complete guide to integrating Haive MCP with FastAPI for web APIs and microservices.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<p>The Haive MCP platform provides built-in FastAPI integration through:</p>
+<ul class="simple">
+<li><p><strong>Auto-generated routers</strong> - Platforms automatically create FastAPI routers</p></li>
+<li><p><strong>Pydantic serialization</strong> - Seamless JSON API responses</p></li>
+<li><p><strong>Async support</strong> - Full async/await patterns</p></li>
+<li><p><strong>Type safety</strong> - Complete type hints and validation</p></li>
+<li><p><strong>OpenAPI docs</strong> - Automatic API documentation</p></li>
+</ul>
+</section>
+<section id="basic-integration">
+<h2>Basic Integration<a class="headerlink" href="#basic-integration" title="Link to this heading">¶</a></h2>
+<section id="simple-fastapi-app">
+<h3>Simple FastAPI App<a class="headerlink" href="#simple-fastapi-app" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastAPI</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">haive.mcp.plugins</span><span class="w"> </span><span class="kn">import</span> <span class="n">MCPBrowserPlugin</span>
+
+<span class="c1"># Create FastAPI app</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;MCP Server Manager&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Manage and browse MCP servers&quot;</span><span class="p">,</span>
+    <span class="n">version</span><span class="o">=</span><span class="s2">&quot;1.0.0&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Create MCP plugin</span>
+<span class="n">mcp_plugin</span> <span class="o">=</span> <span class="n">MCPBrowserPlugin</span><span class="p">(</span>
+    <span class="n">server_directory</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/home/will/Downloads/mcp_servers&quot;</span><span class="p">),</span>
+    <span class="n">cache_ttl</span><span class="o">=</span><span class="mi">3600</span>
+<span class="p">)</span>
+
+<span class="c1"># Mount plugin router</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span>
+    <span class="n">mcp_plugin</span><span class="o">.</span><span class="n">get_router</span><span class="p">(),</span>
+    <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/mcp&quot;</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;MCP Servers&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">uvicorn</span>
+    <span class="n">uvicorn</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="multiple-plugin-integration">
+<h3>Multiple Plugin Integration<a class="headerlink" href="#multiple-plugin-integration" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastAPI</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">haive.mcp.plugins</span><span class="w"> </span><span class="kn">import</span> <span class="n">MCPBrowserPlugin</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Multi-Plugin MCP Manager&quot;</span><span class="p">)</span>
+
+<span class="c1"># Development servers</span>
+<span class="n">dev_plugin</span> <span class="o">=</span> <span class="n">MCPBrowserPlugin</span><span class="p">(</span>
+    <span class="n">server_directory</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/dev/mcp_servers&quot;</span><span class="p">),</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;dev-browser&quot;</span>
+<span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span>
+    <span class="n">dev_plugin</span><span class="o">.</span><span class="n">get_router</span><span class="p">(),</span>
+    <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/dev/mcp&quot;</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Development MCP&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Production servers</span>
+<span class="n">prod_plugin</span> <span class="o">=</span> <span class="n">MCPBrowserPlugin</span><span class="p">(</span>
+    <span class="n">server_directory</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/prod/mcp_servers&quot;</span><span class="p">),</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;prod-browser&quot;</span>
+<span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span>
+    <span class="n">prod_plugin</span><span class="o">.</span><span class="n">get_router</span><span class="p">(),</span>
+    <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/prod/mcp&quot;</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Production MCP&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Health check</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/health&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">health</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;healthy&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;plugins&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;dev&quot;</span><span class="p">:</span> <span class="n">dev_plugin</span><span class="o">.</span><span class="n">enabled</span><span class="p">,</span>
+            <span class="s2">&quot;prod&quot;</span><span class="p">:</span> <span class="n">prod_plugin</span><span class="o">.</span><span class="n">enabled</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="available-endpoints">
+<h2>Available Endpoints<a class="headerlink" href="#available-endpoints" title="Link to this heading">¶</a></h2>
+<section id="default-plugin-endpoints">
+<h3>Default Plugin Endpoints<a class="headerlink" href="#default-plugin-endpoints" title="Link to this heading">¶</a></h3>
+<p>Each MCPBrowserPlugin provides these endpoints:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GET    /servers                    # List all servers
+GET    /servers/{server_name}      # Get specific server
+GET    /categories                 # List unique capabilities
+GET    /search                     # Search servers (query param: q)
+GET    /stats                      # Server statistics
+POST   /cache/refresh              # Refresh server cache
+DELETE /cache                      # Clear cache
+</pre></div>
+</div>
+</section>
+<section id="endpoint-details">
+<h3>Endpoint Details<a class="headerlink" href="#endpoint-details" title="Link to this heading">¶</a></h3>
+<p><strong>List Servers</strong> - <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/servers</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example response</span>
+<span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;postgresql-server&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;PostgreSQL MCP server&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;1.2.0&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;capabilities&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;database&quot;</span><span class="p">,</span> <span class="s2">&quot;sql&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;mcp_version&quot;</span><span class="p">:</span> <span class="s2">&quot;0.1.0&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;transport_types&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;stdio&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;local_path&quot;</span><span class="p">:</span> <span class="s2">&quot;/servers/postgresql-server&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;file_size&quot;</span><span class="p">:</span> <span class="mi">1024000</span><span class="p">,</span>
+        <span class="s2">&quot;installed_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2025-01-15T10:30:00&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;download_source&quot;</span><span class="p">:</span> <span class="s2">&quot;npm&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;is_verified&quot;</span><span class="p">:</span> <span class="n">true</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Get Server</strong> - <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/servers/{server_name}</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example: GET /servers/postgresql-server</span>
+<span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;postgresql-server&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;PostgreSQL MCP server&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;1.2.0&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;capabilities&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;database&quot;</span><span class="p">,</span> <span class="s2">&quot;sql&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;mcp_version&quot;</span><span class="p">:</span> <span class="s2">&quot;0.1.0&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;transport_types&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;stdio&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;command_template&quot;</span><span class="p">:</span> <span class="s2">&quot;npx -y @modelcontextprotocol/server-postgres </span><span class="si">{connection_string}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;local_path&quot;</span><span class="p">:</span> <span class="s2">&quot;/servers/postgresql-server&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;file_size&quot;</span><span class="p">:</span> <span class="mi">1024000</span><span class="p">,</span>
+    <span class="s2">&quot;installed_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2025-01-15T10:30:00&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;download_source&quot;</span><span class="p">:</span> <span class="s2">&quot;npm&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;is_verified&quot;</span><span class="p">:</span> <span class="n">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Search Servers</strong> - <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/search?q={query}</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example: GET /search?q=database</span>
+<span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;postgresql-server&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;PostgreSQL MCP server&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;1.2.0&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;capabilities&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;database&quot;</span><span class="p">,</span> <span class="s2">&quot;sql&quot;</span><span class="p">]</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;mysql-server&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;MySQL MCP server&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;capabilities&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;database&quot;</span><span class="p">,</span> <span class="s2">&quot;sql&quot;</span><span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="custom-router-extensions">
+<h2>Custom Router Extensions<a class="headerlink" href="#custom-router-extensions" title="Link to this heading">¶</a></h2>
+<section id="extending-plugin-routers">
+<h3>Extending Plugin Routers<a class="headerlink" href="#extending-plugin-routers" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">APIRouter</span><span class="p">,</span> <span class="n">HTTPException</span><span class="p">,</span> <span class="n">Query</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">haive.mcp.plugins</span><span class="w"> </span><span class="kn">import</span> <span class="n">MCPBrowserPlugin</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">haive.mcp.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">DownloadedServerInfo</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ExtendedMCPPlugin</span><span class="p">(</span><span class="n">MCPBrowserPlugin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plugin with custom endpoints&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_router</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">APIRouter</span><span class="p">:</span>
+        <span class="c1"># Start with base router</span>
+        <span class="n">router</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_router</span><span class="p">()</span>
+
+        <span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/servers/by-capability/</span><span class="si">{capability}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_servers_by_capability</span><span class="p">(</span><span class="n">capability</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Get all servers with specific capability&quot;&quot;&quot;</span>
+            <span class="n">servers</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter_by_category</span><span class="p">(</span><span class="n">capability</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">servers</span><span class="p">]</span>
+
+        <span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/servers/large&quot;</span><span class="p">)</span>
+        <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_large_servers</span><span class="p">(</span>
+            <span class="n">min_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Query</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">1000000</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Minimum size in bytes&quot;</span><span class="p">)</span>
+        <span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Get servers larger than specified size&quot;&quot;&quot;</span>
+            <span class="n">servers</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_servers</span><span class="p">()</span>
+            <span class="n">large_servers</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">servers</span> <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">file_size</span> <span class="o">&gt;=</span> <span class="n">min_size</span><span class="p">]</span>
+            <span class="k">return</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                    <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">file_size</span><span class="p">,</span>
+                    <span class="s2">&quot;size_mb&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">file_size</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+                <span class="p">}</span>
+                <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">large_servers</span>
+            <span class="p">]</span>
+
+        <span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/servers/</span><span class="si">{server_name}</span><span class="s2">/verify&quot;</span><span class="p">)</span>
+        <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">verify_server</span><span class="p">(</span><span class="n">server_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Verify server installation&quot;&quot;&quot;</span>
+            <span class="n">servers</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_servers</span><span class="p">()</span>
+            <span class="n">server</span> <span class="o">=</span> <span class="nb">next</span><span class="p">((</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">servers</span> <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">server_name</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">server</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="mi">404</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Server not found: </span><span class="si">{</span><span class="n">server_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Verification logic</span>
+            <span class="n">exists</span> <span class="o">=</span> <span class="n">server</span><span class="o">.</span><span class="n">local_path</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
+            <span class="n">correct_size</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">exists</span><span class="p">:</span>
+                <span class="n">actual_size</span> <span class="o">=</span> <span class="n">server</span><span class="o">.</span><span class="n">local_path</span><span class="o">.</span><span class="n">stat</span><span class="p">()</span><span class="o">.</span><span class="n">st_size</span>
+                <span class="n">correct_size</span> <span class="o">=</span> <span class="n">actual_size</span> <span class="o">==</span> <span class="n">server</span><span class="o">.</span><span class="n">file_size</span>
+
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">&quot;server&quot;</span><span class="p">:</span> <span class="n">server_name</span><span class="p">,</span>
+                <span class="s2">&quot;exists&quot;</span><span class="p">:</span> <span class="n">exists</span><span class="p">,</span>
+                <span class="s2">&quot;correct_size&quot;</span><span class="p">:</span> <span class="n">correct_size</span><span class="p">,</span>
+                <span class="s2">&quot;verified&quot;</span><span class="p">:</span> <span class="n">exists</span> <span class="ow">and</span> <span class="n">correct_size</span>
+            <span class="p">}</span>
+
+        <span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/analytics/capabilities&quot;</span><span class="p">)</span>
+        <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_capability_analytics</span><span class="p">():</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Get capability distribution analytics&quot;&quot;&quot;</span>
+            <span class="n">servers</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_servers</span><span class="p">()</span>
+
+            <span class="n">capability_counts</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">server</span> <span class="ow">in</span> <span class="n">servers</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">cap</span> <span class="ow">in</span> <span class="n">server</span><span class="o">.</span><span class="n">capabilities</span><span class="p">:</span>
+                    <span class="n">capability_counts</span><span class="p">[</span><span class="n">cap</span><span class="p">]</span> <span class="o">=</span> <span class="n">capability_counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cap</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+            <span class="n">total_servers</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">servers</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">&quot;total_servers&quot;</span><span class="p">:</span> <span class="n">total_servers</span><span class="p">,</span>
+                <span class="s2">&quot;capability_distribution&quot;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="s2">&quot;capability&quot;</span><span class="p">:</span> <span class="n">cap</span><span class="p">,</span>
+                        <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="n">count</span><span class="p">,</span>
+                        <span class="s2">&quot;percentage&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">count</span> <span class="o">/</span> <span class="n">total_servers</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                    <span class="p">}</span>
+                    <span class="k">for</span> <span class="n">cap</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span>
+                        <span class="n">capability_counts</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span>
+                        <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                        <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span>
+                    <span class="p">)</span>
+                <span class="p">]</span>
+            <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">router</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="request-response-models">
+<h2>Request/Response Models<a class="headerlink" href="#request-response-models" title="Link to this heading">¶</a></h2>
+<section id="custom-pydantic-models">
+<h3>Custom Pydantic Models<a class="headerlink" href="#custom-pydantic-models" title="Link to this heading">¶</a></h3>
+<p>Create custom request/response models:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ServerFilter</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Request model for server filtering&quot;&quot;&quot;</span>
+    <span class="n">capabilities</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">min_version</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">max_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">verified_only</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ServerSummary</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Response model for server summary&quot;&quot;&quot;</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">version</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">capabilities</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">size_mb</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">last_updated</span><span class="p">:</span> <span class="n">datetime</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">AnalyticsResponse</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Response model for analytics&quot;&quot;&quot;</span>
+    <span class="n">total_servers</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">total_size_mb</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">verified_count</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">capability_distribution</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span>
+
+<span class="c1"># Usage in endpoints</span>
+<span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/servers/filter&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">List</span><span class="p">[</span><span class="n">ServerSummary</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">filter_servers</span><span class="p">(</span><span class="n">filter_params</span><span class="p">:</span> <span class="n">ServerFilter</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Filter servers with custom criteria&quot;&quot;&quot;</span>
+    <span class="n">servers</span> <span class="o">=</span> <span class="k">await</span> <span class="n">plugin</span><span class="o">.</span><span class="n">load_servers</span><span class="p">()</span>
+
+    <span class="c1"># Apply filters</span>
+    <span class="n">filtered</span> <span class="o">=</span> <span class="n">servers</span>
+    <span class="k">if</span> <span class="n">filter_params</span><span class="o">.</span><span class="n">capabilities</span><span class="p">:</span>
+        <span class="n">filtered</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">filtered</span>
+            <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">cap</span> <span class="ow">in</span> <span class="n">s</span><span class="o">.</span><span class="n">capabilities</span> <span class="k">for</span> <span class="n">cap</span> <span class="ow">in</span> <span class="n">filter_params</span><span class="o">.</span><span class="n">capabilities</span><span class="p">)</span>
+        <span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">filter_params</span><span class="o">.</span><span class="n">verified_only</span><span class="p">:</span>
+        <span class="n">filtered</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">filtered</span> <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">is_verified</span><span class="p">]</span>
+
+    <span class="c1"># Convert to response model</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="n">ServerSummary</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">version</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">version</span><span class="p">,</span>
+            <span class="n">capabilities</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">capabilities</span><span class="p">,</span>
+            <span class="n">size_mb</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">file_size</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="p">),</span> <span class="mi">2</span><span class="p">),</span>
+            <span class="n">last_updated</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">installed_date</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">filtered</span>
+    <span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="authentication-authorization">
+<h2>Authentication &amp; Authorization<a class="headerlink" href="#authentication-authorization" title="Link to this heading">¶</a></h2>
+<section id="api-key-authentication">
+<h3>API Key Authentication<a class="headerlink" href="#api-key-authentication" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">HTTPException</span><span class="p">,</span> <span class="n">status</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi.security</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTTPBearer</span><span class="p">,</span> <span class="n">HTTPAuthorizationCredentials</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="n">security</span> <span class="o">=</span> <span class="n">HTTPBearer</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">verify_api_key</span><span class="p">(</span><span class="n">credentials</span><span class="p">:</span> <span class="n">HTTPAuthorizationCredentials</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">security</span><span class="p">)):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Verify API key from environment&quot;&quot;&quot;</span>
+    <span class="n">expected_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MCP_API_KEY&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">expected_key</span> <span class="ow">or</span> <span class="n">credentials</span><span class="o">.</span><span class="n">credentials</span> <span class="o">!=</span> <span class="n">expected_key</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span>
+            <span class="n">status_code</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">,</span>
+            <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Invalid API key&quot;</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">credentials</span>
+
+<span class="c1"># Protect specific endpoints</span>
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/servers/admin&quot;</span><span class="p">,</span> <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">verify_api_key</span><span class="p">)])</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">admin_servers</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Admin-only server listing&quot;&quot;&quot;</span>
+    <span class="n">servers</span> <span class="o">=</span> <span class="k">await</span> <span class="n">plugin</span><span class="o">.</span><span class="n">load_servers</span><span class="p">()</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;servers&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">servers</span><span class="p">),</span>
+        <span class="s2">&quot;total_size&quot;</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">file_size</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">servers</span><span class="p">),</span>
+        <span class="s2">&quot;unverified&quot;</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">servers</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">s</span><span class="o">.</span><span class="n">is_verified</span><span class="p">)</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="role-based-access">
+<h3>Role-Based Access<a class="headerlink" href="#role-based-access" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">Enum</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">UserRole</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+    <span class="n">ADMIN</span> <span class="o">=</span> <span class="s2">&quot;admin&quot;</span>
+    <span class="n">USER</span> <span class="o">=</span> <span class="s2">&quot;user&quot;</span>
+    <span class="n">READONLY</span> <span class="o">=</span> <span class="s2">&quot;readonly&quot;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">User</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">username</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">roles</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">UserRole</span><span class="p">]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">require_roles</span><span class="p">(</span><span class="n">allowed_roles</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">UserRole</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Decorator for role-based access&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+        <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="c1"># In real app, get user from token/session</span>
+            <span class="n">current_user</span> <span class="o">=</span> <span class="n">get_current_user</span><span class="p">()</span>  <span class="c1"># Implement this</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">role</span> <span class="ow">in</span> <span class="n">current_user</span><span class="o">.</span><span class="n">roles</span> <span class="k">for</span> <span class="n">role</span> <span class="ow">in</span> <span class="n">allowed_roles</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="mi">403</span><span class="p">,</span> <span class="s2">&quot;Insufficient permissions&quot;</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="k">await</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">wrapper</span>
+    <span class="k">return</span> <span class="n">decorator</span>
+
+<span class="c1"># Usage</span>
+<span class="nd">@router</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s2">&quot;/servers/</span><span class="si">{server_name}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nd">@require_roles</span><span class="p">([</span><span class="n">UserRole</span><span class="o">.</span><span class="n">ADMIN</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">delete_server</span><span class="p">(</span><span class="n">server_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Admin-only server deletion&quot;&quot;&quot;</span>
+    <span class="c1"># Implementation here</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="error-handling">
+<h2>Error Handling<a class="headerlink" href="#error-handling" title="Link to this heading">¶</a></h2>
+<section id="custom-exception-handlers">
+<h3>Custom Exception Handlers<a class="headerlink" href="#custom-exception-handlers" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTTPException</span><span class="p">,</span> <span class="n">Request</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi.responses</span><span class="w"> </span><span class="kn">import</span> <span class="n">JSONResponse</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">ValidationError</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">ValidationError</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">validation_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exc</span><span class="p">:</span> <span class="n">ValidationError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Handle Pydantic validation errors&quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Validation error: </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">JSONResponse</span><span class="p">(</span>
+        <span class="n">status_code</span><span class="o">=</span><span class="mi">422</span><span class="p">,</span>
+        <span class="n">content</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;Validation Error&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;details&quot;</span><span class="p">:</span> <span class="n">exc</span><span class="o">.</span><span class="n">errors</span><span class="p">(),</span>
+            <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Invalid input data&quot;</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="ne">FileNotFoundError</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">file_not_found_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exc</span><span class="p">:</span> <span class="ne">FileNotFoundError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Handle file not found errors&quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File not found: </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">JSONResponse</span><span class="p">(</span>
+        <span class="n">status_code</span><span class="o">=</span><span class="mi">404</span><span class="p">,</span>
+        <span class="n">content</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;File Not Found&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">exc</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MCPException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Custom MCP exception&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">status_code</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">500</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="n">status_code</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">MCPException</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">mcp_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exc</span><span class="p">:</span> <span class="n">MCPException</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Handle custom MCP exceptions&quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MCP error: </span><span class="si">{</span><span class="n">exc</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">JSONResponse</span><span class="p">(</span>
+        <span class="n">status_code</span><span class="o">=</span><span class="n">exc</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span>
+        <span class="n">content</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;MCP Error&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="n">exc</span><span class="o">.</span><span class="n">message</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="graceful-error-responses">
+<h3>Graceful Error Responses<a class="headerlink" href="#graceful-error-responses" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTTPException</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ExtendedMCPPlugin</span><span class="p">(</span><span class="n">MCPBrowserPlugin</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_router</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">APIRouter</span><span class="p">:</span>
+        <span class="n">router</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_router</span><span class="p">()</span>
+
+        <span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/servers/</span><span class="si">{server_name}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_server_safe</span><span class="p">(</span><span class="n">server_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Get server with proper error handling&quot;&quot;&quot;</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">servers</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_servers</span><span class="p">()</span>
+                <span class="n">server</span> <span class="o">=</span> <span class="nb">next</span><span class="p">((</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">servers</span> <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">server_name</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">server</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span>
+                        <span class="n">status_code</span><span class="o">=</span><span class="mi">404</span><span class="p">,</span>
+                        <span class="n">detail</span><span class="o">=</span><span class="p">{</span>
+                            <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;Server not found&quot;</span><span class="p">,</span>
+                            <span class="s2">&quot;server_name&quot;</span><span class="p">:</span> <span class="n">server_name</span><span class="p">,</span>
+                            <span class="s2">&quot;available_servers&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">servers</span><span class="p">[:</span><span class="mi">5</span><span class="p">]]</span>
+                        <span class="p">}</span>
+                    <span class="p">)</span>
+
+                <span class="k">return</span> <span class="n">server</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
+
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error loading server </span><span class="si">{</span><span class="n">server_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span>
+                    <span class="n">status_code</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+                    <span class="n">detail</span><span class="o">=</span><span class="p">{</span>
+                        <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;Internal server error&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Failed to load server information&quot;</span>
+                    <span class="p">}</span>
+                <span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="middleware-cors">
+<h2>Middleware &amp; CORS<a class="headerlink" href="#middleware-cors" title="Link to this heading">¶</a></h2>
+<section id="cors-configuration">
+<h3>CORS Configuration<a class="headerlink" href="#cors-configuration" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi.middleware.cors</span><span class="w"> </span><span class="kn">import</span> <span class="n">CORSMiddleware</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">add_middleware</span><span class="p">(</span>
+    <span class="n">CORSMiddleware</span><span class="p">,</span>
+    <span class="n">allow_origins</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;http://localhost:3000&quot;</span><span class="p">,</span> <span class="s2">&quot;https://myapp.com&quot;</span><span class="p">],</span>
+    <span class="n">allow_credentials</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">allow_methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">],</span>
+    <span class="n">allow_headers</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="custom-middleware">
+<h3>Custom Middleware<a class="headerlink" href="#custom-middleware" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Request</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">starlette.middleware.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseHTTPMiddleware</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">LoggingMiddleware</span><span class="p">(</span><span class="n">BaseHTTPMiddleware</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Log all API requests&quot;&quot;&quot;</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">call_next</span><span class="p">):</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+        <span class="c1"># Log request</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Request: </span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">call_next</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+        <span class="c1"># Log response</span>
+        <span class="n">process_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Response: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2"> &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">process_time</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s)&quot;</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">response</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">add_middleware</span><span class="p">(</span><span class="n">LoggingMiddleware</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">CacheMiddleware</span><span class="p">(</span><span class="n">BaseHTTPMiddleware</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add cache headers to responses&quot;&quot;&quot;</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">call_next</span><span class="p">):</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">call_next</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+        <span class="c1"># Add cache headers for GET requests</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;Cache-Control&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;public, max-age=300&quot;</span>  <span class="c1"># 5 minutes</span>
+
+        <span class="k">return</span> <span class="n">response</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">add_middleware</span><span class="p">(</span><span class="n">CacheMiddleware</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Link to this heading">¶</a></h2>
+<section id="fastapi-test-client">
+<h3>FastAPI Test Client<a class="headerlink" href="#fastapi-test-client" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi.testclient</span><span class="w"> </span><span class="kn">import</span> <span class="n">TestClient</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_app</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create test FastAPI app&quot;&quot;&quot;</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+    <span class="c1"># Create temporary server directory</span>
+    <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">temp_dir</span><span class="p">:</span>
+        <span class="n">temp_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">temp_dir</span><span class="p">)</span>
+
+        <span class="c1"># Create mock server files</span>
+        <span class="n">mock_server_dir</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">/</span> <span class="s2">&quot;postgresql-server&quot;</span>
+        <span class="n">mock_server_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">()</span>
+        <span class="p">(</span><span class="n">mock_server_dir</span> <span class="o">/</span> <span class="s2">&quot;package.json&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;@modelcontextprotocol/server-postgres&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;1.2.0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;PostgreSQL MCP server&quot;</span>
+            <span class="p">})</span>
+        <span class="p">)</span>
+
+        <span class="n">plugin</span> <span class="o">=</span> <span class="n">MCPBrowserPlugin</span><span class="p">(</span><span class="n">server_directory</span><span class="o">=</span><span class="n">temp_path</span><span class="p">)</span>
+        <span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">plugin</span><span class="o">.</span><span class="n">get_router</span><span class="p">(),</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/mcp&quot;</span><span class="p">)</span>
+
+        <span class="k">yield</span> <span class="n">app</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_list_servers</span><span class="p">(</span><span class="n">test_app</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test server listing endpoint&quot;&quot;&quot;</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">TestClient</span><span class="p">(</span><span class="n">test_app</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/mcp/servers&quot;</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+    <span class="n">servers</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">servers</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">servers</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span>
+
+    <span class="n">server</span> <span class="o">=</span> <span class="n">servers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="s2">&quot;name&quot;</span> <span class="ow">in</span> <span class="n">server</span>
+    <span class="k">assert</span> <span class="s2">&quot;version&quot;</span> <span class="ow">in</span> <span class="n">server</span>
+    <span class="k">assert</span> <span class="s2">&quot;capabilities&quot;</span> <span class="ow">in</span> <span class="n">server</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_get_specific_server</span><span class="p">(</span><span class="n">test_app</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test getting specific server&quot;&quot;&quot;</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">TestClient</span><span class="p">(</span><span class="n">test_app</span><span class="p">)</span>
+
+    <span class="c1"># First get list to find a server name</span>
+    <span class="n">servers_response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/mcp/servers&quot;</span><span class="p">)</span>
+    <span class="n">servers</span> <span class="o">=</span> <span class="n">servers_response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">servers</span><span class="p">:</span>
+        <span class="n">server_name</span> <span class="o">=</span> <span class="n">servers</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;/mcp/servers/</span><span class="si">{</span><span class="n">server_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+        <span class="n">server</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">server</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">server_name</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_server_not_found</span><span class="p">(</span><span class="n">test_app</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test 404 for non-existent server&quot;&quot;&quot;</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">TestClient</span><span class="p">(</span><span class="n">test_app</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/mcp/servers/nonexistent&quot;</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">404</span>
+</pre></div>
+</div>
+</section>
+<section id="async-testing">
+<h3>Async Testing<a class="headerlink" href="#async-testing" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">httpx</span><span class="w"> </span><span class="kn">import</span> <span class="n">AsyncClient</span>
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">asyncio</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_async_endpoints</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test async endpoints&quot;&quot;&quot;</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">create_test_app</span><span class="p">()</span>  <span class="c1"># Your app factory</span>
+
+    <span class="k">async</span> <span class="k">with</span> <span class="n">AsyncClient</span><span class="p">(</span><span class="n">app</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;http://test&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+        <span class="c1"># Test server loading</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/mcp/servers&quot;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+
+        <span class="c1"># Test search</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/mcp/search?q=database&quot;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+        <span class="c1"># Verify search results</span>
+        <span class="k">for</span> <span class="n">server</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="s2">&quot;database&quot;</span> <span class="ow">in</span> <span class="n">server</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">or</span> \
+                   <span class="s2">&quot;database&quot;</span> <span class="ow">in</span> <span class="n">server</span><span class="p">[</span><span class="s2">&quot;description&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">or</span> \
+                   <span class="s2">&quot;database&quot;</span> <span class="ow">in</span> <span class="n">server</span><span class="p">[</span><span class="s2">&quot;capabilities&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="production-deployment">
+<h2>Production Deployment<a class="headerlink" href="#production-deployment" title="Link to this heading">¶</a></h2>
+<section id="docker-deployment">
+<h3>Docker Deployment<a class="headerlink" href="#docker-deployment" title="Link to this heading">¶</a></h3>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.11-slim</span>
+
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+
+<span class="c"># Install dependencies</span>
+<span class="k">COPY</span><span class="w"> </span>pyproject.toml<span class="w"> </span>poetry.lock<span class="w"> </span>./
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>poetry<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>poetry<span class="w"> </span>config<span class="w"> </span>virtualenvs.create<span class="w"> </span><span class="nb">false</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>poetry<span class="w"> </span>install<span class="w"> </span>--only<span class="o">=</span>main
+
+<span class="c"># Copy application</span>
+<span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+
+<span class="c"># Expose port</span>
+<span class="k">EXPOSE</span><span class="w"> </span><span class="s">8000</span>
+
+<span class="c"># Run with uvicorn</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;uvicorn&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;app:app&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--host&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--port&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;8000&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="docker-compose">
+<h3>Docker Compose<a class="headerlink" href="#docker-compose" title="Link to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.8&#39;</span>
+
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">mcp-api</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;8000:8000&quot;</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MCP_SERVER_DIR=/data/mcp_servers</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MCP_CACHE_TTL=3600</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MCP_API_KEY=${MCP_API_KEY}</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./mcp_servers:/data/mcp_servers:ro</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
+
+<span class="w">  </span><span class="nt">nginx</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx:alpine</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;80:80&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;443:443&quot;</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./nginx.conf:/etc/nginx/nginx.conf:ro</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./ssl:/etc/nginx/ssl:ro</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mcp-api</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
+</pre></div>
+</div>
+</section>
+<section id="production-configuration">
+<h3>Production Configuration<a class="headerlink" href="#production-configuration" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastAPI</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">create_production_app</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create production-ready FastAPI app&quot;&quot;&quot;</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;MCP Server Manager&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Production MCP server management API&quot;</span><span class="p">,</span>
+        <span class="n">version</span><span class="o">=</span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+        <span class="n">docs_url</span><span class="o">=</span><span class="s2">&quot;/docs&quot;</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;ENABLE_DOCS&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">redoc_url</span><span class="o">=</span><span class="s2">&quot;/redoc&quot;</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;ENABLE_DOCS&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Production plugin configuration</span>
+    <span class="n">plugin</span> <span class="o">=</span> <span class="n">MCPBrowserPlugin</span><span class="p">(</span>
+        <span class="n">server_directory</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MCP_SERVER_DIR&quot;</span><span class="p">,</span> <span class="s2">&quot;/data/mcp_servers&quot;</span><span class="p">)),</span>
+        <span class="n">cache_ttl</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MCP_CACHE_TTL&quot;</span><span class="p">,</span> <span class="s2">&quot;3600&quot;</span><span class="p">))</span>
+    <span class="p">)</span>
+
+    <span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span>
+        <span class="n">plugin</span><span class="o">.</span><span class="n">get_router</span><span class="p">(),</span>
+        <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/api/v1/mcp&quot;</span><span class="p">,</span>
+        <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;MCP Servers&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Health check</span>
+    <span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/health&quot;</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">health</span><span class="p">():</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;healthy&quot;</span><span class="p">,</span> <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;1.0.0&quot;</span><span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">app</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">create_production_app</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="performance-optimization">
+<h2>Performance Optimization<a class="headerlink" href="#performance-optimization" title="Link to this heading">¶</a></h2>
+<section id="response-caching">
+<h3>Response Caching<a class="headerlink" href="#response-caching" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">lru_cache</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">CachedMCPPlugin</span><span class="p">(</span><span class="n">MCPBrowserPlugin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plugin with response caching&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_response_cache</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_cache_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate cache key for endpoint and parameters&quot;&quot;&quot;</span>
+        <span class="n">key_data</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">params</span><span class="p">,</span><span class="w"> </span><span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">return</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">key_data</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+    <span class="nd">@lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_cached_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cache_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;LRU cached response getter&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_response_cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cache_key</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_router</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">APIRouter</span><span class="p">:</span>
+        <span class="n">router</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_router</span><span class="p">()</span>
+
+        <span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/servers/cached&quot;</span><span class="p">)</span>
+        <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_servers_cached</span><span class="p">():</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Cached server listing&quot;&quot;&quot;</span>
+            <span class="n">cache_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache_key</span><span class="p">(</span><span class="s2">&quot;servers&quot;</span><span class="p">,</span> <span class="p">{})</span>
+            <span class="n">timestamp</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+            <span class="c1"># Check cache first</span>
+            <span class="n">cached</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_cached_response</span><span class="p">(</span><span class="n">cache_key</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">timestamp</span> <span class="o">/</span> <span class="mi">60</span><span class="p">))</span>  <span class="c1"># 1-minute buckets</span>
+            <span class="k">if</span> <span class="n">cached</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">cached</span>
+
+            <span class="c1"># Load fresh data</span>
+            <span class="n">servers</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_servers</span><span class="p">()</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">servers</span><span class="p">]</span>
+
+            <span class="c1"># Cache response</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_response_cache</span><span class="p">[</span><span class="n">cache_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">response</span>
+
+            <span class="k">return</span> <span class="n">response</span>
+</pre></div>
+</div>
+</section>
+<section id="async-optimization">
+<h3>Async Optimization<a class="headerlink" href="#async-optimization" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">OptimizedMCPPlugin</span><span class="p">(</span><span class="n">MCPBrowserPlugin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Optimized plugin with async improvements&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_executor</span> <span class="o">=</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">load_servers_parallel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">DownloadedServerInfo</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load servers in parallel&quot;&quot;&quot;</span>
+        <span class="n">server_dirs</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">server_directory</span><span class="o">.</span><span class="n">iterdir</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">d</span><span class="o">.</span><span class="n">is_dir</span><span class="p">()</span>
+        <span class="p">]</span>
+
+        <span class="c1"># Process servers in parallel</span>
+        <span class="n">tasks</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_load_single_server</span><span class="p">(</span><span class="n">server_dir</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">server_dir</span> <span class="ow">in</span> <span class="n">server_dirs</span>
+        <span class="p">]</span>
+
+        <span class="n">results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="o">*</span><span class="n">tasks</span><span class="p">,</span> <span class="n">return_exceptions</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Filter successful results</span>
+        <span class="n">servers</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">result</span> <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">DownloadedServerInfo</span><span class="p">)</span>
+        <span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">servers</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_load_single_server</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">server_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DownloadedServerInfo</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load single server info asynchronously&quot;&quot;&quot;</span>
+        <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span>
+
+        <span class="c1"># Run CPU-intensive operations in thread pool</span>
+        <span class="n">server_info</span> <span class="o">=</span> <span class="k">await</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_executor</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_extract_server_info</span><span class="p">,</span>
+            <span class="n">server_dir</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">server_info</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="real-world-examples.html"><span class="doc">Real-World Examples</span></a> - Production usage patterns</p></li>
+<li><p><span class="xref std std-doc">performance-optimization</span> - Scaling and optimization</p></li>
+<li><p><span class="xref std std-doc">troubleshooting</span> - Common issues and solutions</p></li>
+</ul>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+<div class="footer-content">
+  <div class="footer-container">
+    <div class="footer-column">
+      <h4>haive-mcp</h4>
+      <p>haive-mcp is part of the Haive AI Agent Framework ecosystem.</p>
+    </div>
+    <div class="footer-column">
+      <h4>Documentation</h4>
+      <ul>
+        <li><a href="../getting_started.html">Getting Started</a></li>
+        <li><a href="../concepts.html">Core Concepts</a></li>
+        <li><a href="../autoapi/index.html">API Reference</a></li>
+        <li><a href="../examples.html">Examples</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Community</h4>
+      <ul>
+        <li><a href="https://github.com/haive-ai/haive">GitHub</a></li>
+        <li>
+          <a href="https://github.com/haive-ai/haive/issues">Issue Tracker</a>
+        </li>
+        <li>
+          <a href="https://github.com/haive-ai/haive/discussions"
+            >Discussions</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>
+      &copy; Copyright 2025, Haive Team. Built with
+      <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+      <a href="https://pradyunsg.me/furo/">Furo</a>.
+    </p>
+  </div>
+</div>
+
+        <div class="related-pages">
+          <a class="next-page" href="mcp-browser-plugin.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">MCP Browser Plugin Guide</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="platform-architecture.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Platform Architecture</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Haive Team
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+         
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">FastAPI Integration Guide</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#basic-integration">Basic Integration</a><ul>
+<li><a class="reference internal" href="#simple-fastapi-app">Simple FastAPI App</a></li>
+<li><a class="reference internal" href="#multiple-plugin-integration">Multiple Plugin Integration</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#available-endpoints">Available Endpoints</a><ul>
+<li><a class="reference internal" href="#default-plugin-endpoints">Default Plugin Endpoints</a></li>
+<li><a class="reference internal" href="#endpoint-details">Endpoint Details</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#custom-router-extensions">Custom Router Extensions</a><ul>
+<li><a class="reference internal" href="#extending-plugin-routers">Extending Plugin Routers</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#request-response-models">Request/Response Models</a><ul>
+<li><a class="reference internal" href="#custom-pydantic-models">Custom Pydantic Models</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#authentication-authorization">Authentication &amp; Authorization</a><ul>
+<li><a class="reference internal" href="#api-key-authentication">API Key Authentication</a></li>
+<li><a class="reference internal" href="#role-based-access">Role-Based Access</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#error-handling">Error Handling</a><ul>
+<li><a class="reference internal" href="#custom-exception-handlers">Custom Exception Handlers</a></li>
+<li><a class="reference internal" href="#graceful-error-responses">Graceful Error Responses</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#middleware-cors">Middleware &amp; CORS</a><ul>
+<li><a class="reference internal" href="#cors-configuration">CORS Configuration</a></li>
+<li><a class="reference internal" href="#custom-middleware">Custom Middleware</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#testing">Testing</a><ul>
+<li><a class="reference internal" href="#fastapi-test-client">FastAPI Test Client</a></li>
+<li><a class="reference internal" href="#async-testing">Async Testing</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#production-deployment">Production Deployment</a><ul>
+<li><a class="reference internal" href="#docker-deployment">Docker Deployment</a></li>
+<li><a class="reference internal" href="#docker-compose">Docker Compose</a></li>
+<li><a class="reference internal" href="#production-configuration">Production Configuration</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#performance-optimization">Performance Optimization</a><ul>
+<li><a class="reference internal" href="#response-caching">Response Caching</a></li>
+<li><a class="reference internal" href="#async-optimization">Async Optimization</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=38b66d78"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script defer="defer" src="https://unpkg.com/@popperjs/core@2"></script>
+    <script defer="defer" src="https://unpkg.com/tippy.js@6"></script>
+    <script defer="defer" src="../_static/tippy/guides/fastapi-integration.d4a0651d-df08-47af-90d4-203ac1c668a9.js"></script>
+    <script defer="defer" src="../_static/custom.js"></script>
+    </body>
+</html>

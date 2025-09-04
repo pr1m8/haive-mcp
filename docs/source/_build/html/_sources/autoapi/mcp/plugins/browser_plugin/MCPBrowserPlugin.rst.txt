@@ -1,0 +1,255 @@
+mcp.plugins.browser_plugin.MCPBrowserPlugin
+===========================================
+
+.. py:class:: mcp.plugins.browser_plugin.MCPBrowserPlugin
+
+   Bases: :py:obj:`haive.dataflow.platform.models.PluginPlatform`
+
+
+   Plugin for managing our 63 downloaded MCP servers.
+
+   This plugin inherits from PluginPlatform and specializes in managing the MCP servers
+   we successfully downloaded during our bulk download session. It demonstrates the
+   intelligent inheritance pattern by extending platform capabilities while maintaining
+   the Pydantic-first design philosophy.
+
+   Inheritance Features:
+   - Inherits: platform_id, status, metadata, lifecycle methods from BasePlatform (via PluginPlatform)
+   - Inherits: entry_point, routes, priorities, dependencies from PluginPlatform
+   - Extends: MCP-specific server management and discovery capabilities
+   - Specializes: Downloaded server data integration and caching
+
+   Real Integration:
+   - Works with our actual mcp_servers_data.csv file
+   - Uses our install report JSON files
+   - Loads our 63 successfully downloaded servers
+   - Provides web interface for browsing servers
+
+   .. rubric:: Examples
+
+   Basic plugin creation::
+
+       plugin = MCPBrowserPlugin()
+       # Uses intelligent defaults for all inherited fields
+
+   With custom data paths::
+
+       plugin = MCPBrowserPlugin(
+           servers_data_file=Path("custom/path/servers.csv"),
+           install_reports_pattern="custom_install_*.json"
+       )
+
+   Plugin initialization::
+
+       await plugin.initialize()
+       servers = plugin.get_servers()
+       print(f"Loaded {len(servers)} downloaded servers")
+
+
+   .. py:method:: cleanup() -> None
+      :async:
+
+
+      Cleanup plugin resources.
+
+
+
+   .. py:method:: get_plugin_stats() -> Dict[str, Any]
+
+      Get comprehensive plugin statistics.
+
+      :returns: Dictionary with plugin statistics and server information
+
+
+
+   .. py:method:: get_server_by_name(server_name: str) -> Optional[haive.dataflow.platform.models.DownloadedServerInfo]
+
+      Get a specific server by name.
+
+      :param server_name: Server name to search for
+
+      :returns: Server if found, None otherwise
+
+
+
+   .. py:method:: get_servers() -> List[haive.dataflow.platform.models.DownloadedServerInfo]
+
+      Get our 63 downloaded servers with intelligent caching.
+
+      This method implements intelligent caching to avoid repeatedly loading and
+      processing our server data. It uses the cache TTL to determine when to
+      refresh the data.
+
+      :returns: List of DownloadedServerInfo instances for our downloaded servers
+
+      .. rubric:: Examples
+
+      >>> plugin = MCPBrowserPlugin()
+      >>> servers = plugin.get_servers()
+      >>> len(servers)
+      63
+      >>> all(s.source == ServerSource.DOWNLOADED for s in servers)
+      True
+
+
+
+   .. py:method:: get_servers_by_language(language: str) -> List[haive.dataflow.platform.models.DownloadedServerInfo]
+
+      Get servers filtered by programming language.
+
+      :param language: Programming language to filter by
+
+      :returns: List of servers matching the language
+
+
+
+   .. py:method:: get_servers_by_stars(min_stars: int = 0) -> List[haive.dataflow.platform.models.DownloadedServerInfo]
+
+      Get servers with at least the specified number of stars.
+
+      :param min_stars: Minimum number of GitHub stars
+
+      :returns: List of servers sorted by star count (descending)
+
+
+
+   .. py:method:: initialize() -> None
+      :async:
+
+
+      Initialize plugin with validation and server loading.
+
+      This method extends the base PluginPlatform initialization with
+      MCP-specific setup and validation.
+
+
+
+   .. py:method:: register_routes(app: fastapi.FastAPI) -> None
+
+      Register plugin routes with FastAPI app.
+
+      This method creates FastAPI routes for browsing our downloaded servers.
+      It's called by the platform during plugin initialization.
+
+      :param app: FastAPI application instance to register routes with
+
+
+
+   .. py:method:: validate_servers_data_file_exists(v: pathlib.Path) -> pathlib.Path
+      :classmethod:
+
+
+      Validate that servers data file exists (when not using defaults).
+
+
+
+   .. py:attribute:: cache_timestamp
+      :type:  Optional[datetime.datetime]
+      :value: None
+
+
+
+   .. py:attribute:: cache_ttl_seconds
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: cached_servers
+      :type:  Optional[List[haive.dataflow.platform.models.DownloadedServerInfo]]
+      :value: None
+
+
+
+   .. py:attribute:: description
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: downloaded_servers_path
+      :type:  pathlib.Path
+      :value: None
+
+
+
+   .. py:attribute:: entry_point
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: install_reports_pattern
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: model_config
+
+
+   .. py:attribute:: platform_id
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: platform_name
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: priority
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: provides_discovery
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: provides_health_checks
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: provides_servers
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: router
+      :type:  Optional[fastapi.APIRouter]
+      :value: None
+
+
+
+   .. py:attribute:: routes_prefix
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: servers_data_file
+      :type:  pathlib.Path
+      :value: None
+
+
+
+   .. py:attribute:: supports_discovery
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: supports_health_monitoring
+      :type:  bool
+      :value: None
+
+

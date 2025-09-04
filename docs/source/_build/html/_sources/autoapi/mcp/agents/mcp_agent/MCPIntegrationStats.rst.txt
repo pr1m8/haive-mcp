@@ -1,0 +1,67 @@
+mcp.agents.mcp_agent.MCPIntegrationStats
+========================================
+
+.. py:class:: mcp.agents.mcp_agent.MCPIntegrationStats(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Statistics about MCP integration status.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: categories_active
+      :type:  List[str]
+      :value: None
+
+
+
+   .. py:property:: connection_rate
+      :type: float
+
+
+      Calculate server connection success rate.
+
+
+   .. py:attribute:: last_discovery
+      :type:  Optional[datetime.datetime]
+      :value: None
+
+
+
+   .. py:attribute:: servers_connected
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: servers_installed
+      :type:  int
+      :value: None
+
+
+
+   .. py:property:: tool_registration_rate
+      :type: float
+
+
+      Calculate tool registration success rate.
+
+
+   .. py:attribute:: tools_discovered
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: tools_registered
+      :type:  int
+      :value: None
+
+

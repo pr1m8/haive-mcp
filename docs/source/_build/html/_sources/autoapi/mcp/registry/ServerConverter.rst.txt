@@ -1,0 +1,52 @@
+mcp.registry.ServerConverter
+============================
+
+.. py:class:: mcp.registry.ServerConverter
+
+   Converts server entries from GitHub format to npm package format.
+
+
+   .. py:method:: convert_batch(server_entries: List[Dict]) -> List[ServerConversion]
+      :async:
+
+
+      Convert multiple server entries in parallel.
+
+
+
+   .. py:method:: convert_github_to_npm_candidates(github_url: str) -> List[str]
+
+      Convert a GitHub URL to potential npm package names.
+
+
+
+   .. py:method:: convert_server_entry(github_url: str, description: str = '') -> ServerConversion
+      :async:
+
+
+      Convert a single server entry.
+
+
+
+   .. py:method:: create_registry_categories(conversions: List[ServerConversion]) -> Dict[str, List[str]]
+
+      Create registry categories from validated conversions.
+
+
+
+   .. py:method:: guess_category(server_name: str, description: str = '') -> Optional[str]
+
+      Guess the category based on server name and description.
+
+
+
+   .. py:attribute:: category_mapping
+
+
+   .. py:attribute:: conversion_patterns
+      :value: [('github\\.com/modelcontextprotocol/server-(\\w+)', '@modelcontextprotocol/server-\\1'),...
+
+
+
+   .. py:attribute:: validator
+

@@ -1,0 +1,60 @@
+mcp.tools.server_tester.HealthMonitor
+=====================================
+
+.. py:class:: mcp.tools.server_tester.HealthMonitor(check_interval: int = 60)
+
+   Continuous health monitoring for MCP servers.
+
+   Initialize health monitor.
+
+   :param check_interval: Seconds between health checks
+
+
+   .. py:method:: get_health_report() -> dict[str, HealthStatus]
+
+      Get current health status for all monitored servers.
+
+
+
+   .. py:method:: get_unhealthy_servers() -> list[str]
+
+      Get list of unhealthy server names.
+
+
+
+   .. py:method:: start_monitoring(servers: list[haive.mcp.config.MCPServerConfig])
+      :async:
+
+
+      Start monitoring the specified servers.
+
+      :param servers: List of server configurations to monitor
+
+
+
+   .. py:method:: stop_monitoring()
+      :async:
+
+
+      Stop health monitoring.
+
+
+
+   .. py:attribute:: check_interval
+      :value: 60
+
+
+
+   .. py:attribute:: health_status
+      :type:  dict[str, HealthStatus]
+
+
+   .. py:attribute:: monitor_task
+      :value: None
+
+
+
+   .. py:attribute:: monitoring
+      :value: False
+
+

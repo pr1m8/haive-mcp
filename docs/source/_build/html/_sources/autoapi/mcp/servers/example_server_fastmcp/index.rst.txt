@@ -1,0 +1,125 @@
+mcp.servers.example_server_fastmcp
+==================================
+
+.. py:module:: mcp.servers.example_server_fastmcp
+
+.. autoapi-nested-parse::
+
+   Example MCP server using FastMCP for haive-dataflow integration.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.servers.example_server_fastmcp.logger
+   mcp.servers.example_server_fastmcp.mcp
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp.servers.example_server_fastmcp.code_review_prompt
+   mcp.servers.example_server_fastmcp.list_directory
+   mcp.servers.example_server_fastmcp.read_file
+   mcp.servers.example_server_fastmcp.read_file_resource
+   mcp.servers.example_server_fastmcp.refactor_prompt
+   mcp.servers.example_server_fastmcp.search_files
+   mcp.servers.example_server_fastmcp.write_file
+
+
+Module Contents
+---------------
+
+.. py:function:: code_review_prompt(code: str, language: str = 'python') -> list[dict[str, str]]
+   :async:
+
+
+   Generate a code review prompt.
+
+   :param code: Code to review
+   :param language: Programming language of the code
+
+   :returns: List of prompt messages
+
+
+.. py:function:: list_directory(path: str = '.', pattern: str = '*') -> list[str]
+   :async:
+
+
+   List files in a directory.
+
+   :param path: Directory path to list (default: current directory)
+   :param pattern: Glob pattern to filter files (default: *)
+
+   :returns: List of file paths matching the pattern
+
+
+.. py:function:: read_file(path: str) -> str
+   :async:
+
+
+   Read contents of a file.
+
+   :param path: Path to the file to read
+
+   :returns: Contents of the file
+
+
+.. py:function:: read_file_resource(path: str) -> str
+   :async:
+
+
+   Resource handler for reading files.
+
+   :param path: Path to the file
+
+   :returns: File contents
+
+
+.. py:function:: refactor_prompt(code: str, goal: str, language: str = 'python') -> list[dict[str, str]]
+   :async:
+
+
+   Generate a refactoring prompt.
+
+   :param code: Code to refactor
+   :param goal: Goal of the refactoring
+   :param language: Programming language
+
+   :returns: List of prompt messages
+
+
+.. py:function:: search_files(directory: str, search_term: str, file_pattern: str = '*.py') -> dict[str, list[str]]
+   :async:
+
+
+   Search for a term in files within a directory.
+
+   :param directory: Directory to search in
+   :param search_term: Term to search for
+   :param file_pattern: Pattern for files to search (default: *.py)
+
+   :returns: Dictionary mapping file paths to list of matching lines
+
+
+.. py:function:: write_file(path: str, content: str) -> str
+   :async:
+
+
+   Write content to a file.
+
+   :param path: Path to the file to write
+   :param content: Content to write to the file
+
+   :returns: Success message or error
+
+
+.. py:data:: logger
+
+.. py:data:: mcp
+

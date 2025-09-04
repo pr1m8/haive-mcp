@@ -1,0 +1,152 @@
+mcp.utils.extract_mcp_github_repos.MCPCategory
+==============================================
+
+.. py:class:: mcp.utils.extract_mcp_github_repos.MCPCategory
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+
+   MCP Server Categories.
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+
+   .. py:attribute:: AGGREGATORS
+      :value: 'Aggregators'
+
+
+
+   .. py:attribute:: AI_SERVICES
+      :value: 'AI Services'
+
+
+
+   .. py:attribute:: ART_LITERATURE
+      :value: 'Art & Literature'
+
+
+
+   .. py:attribute:: CLOUD_PLATFORMS
+      :value: 'Cloud Platforms'
+
+
+
+   .. py:attribute:: CLOUD_STORAGE
+      :value: 'Cloud Storage'
+
+
+
+   .. py:attribute:: COMMUNICATION
+      :value: 'Communication'
+
+
+
+   .. py:attribute:: DATABASES
+      :value: 'Databases'
+
+
+
+   .. py:attribute:: DATA_VISUALIZATION
+      :value: 'Data Visualization'
+
+
+
+   .. py:attribute:: DEVELOPMENT_TOOLS
+      :value: 'Development Tools'
+
+
+
+   .. py:attribute:: FILE_SYSTEMS
+      :value: 'File Systems'
+
+
+
+   .. py:attribute:: FINANCE
+      :value: 'Finance'
+
+
+
+   .. py:attribute:: GAMING
+      :value: 'Gaming'
+
+
+
+   .. py:attribute:: IDENTITY
+      :value: 'Identity'
+
+
+
+   .. py:attribute:: IOT
+      :value: 'IoT'
+
+
+
+   .. py:attribute:: LANGUAGE_TRANSLATION
+      :value: 'Language & Translation'
+
+
+
+   .. py:attribute:: LOCATION_SERVICES
+      :value: 'Location Services'
+
+
+
+   .. py:attribute:: MARKETING
+      :value: 'Marketing'
+
+
+
+   .. py:attribute:: MONITORING
+      :value: 'Monitoring'
+
+
+
+   .. py:attribute:: NOTE_TAKING
+      :value: 'Note Taking'
+
+
+
+   .. py:attribute:: OTHER
+      :value: 'Other'
+
+
+
+   .. py:attribute:: RESEARCH_DATA
+      :value: 'Research & Data'
+
+
+
+   .. py:attribute:: SANDBOX_VIRTUALIZATION
+      :value: 'Sandbox & Virtualization'
+
+
+
+   .. py:attribute:: SEARCH_WEB
+      :value: 'Search & Web'
+
+
+
+   .. py:attribute:: SECURITY
+      :value: 'Security'
+
+
+
+   .. py:attribute:: SOCIAL_MEDIA
+      :value: 'Social Media'
+
+
+
+   .. py:attribute:: SYSTEM_AUTOMATION
+      :value: 'System Automation'
+
+
+
+   .. py:attribute:: VERSION_CONTROL
+      :value: 'Version Control'
+
+
+
+   .. py:attribute:: WORKFLOW_AUTOMATION
+      :value: 'Workflow Automation'
+
+

@@ -1,0 +1,59 @@
+mcp.installers.advanced_code_installer.GeneratedInstallPlan
+===========================================================
+
+.. py:class:: mcp.installers.advanced_code_installer.GeneratedInstallPlan(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   LLM-generated installation plan.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: confidence_score
+      :type:  float
+      :value: None
+
+
+
+   .. py:attribute:: environment_setup
+      :type:  dict[str, str]
+      :value: None
+
+
+
+   .. py:attribute:: fallback_to_safe
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: install_commands
+      :type:  list[str]
+      :value: None
+
+
+
+   .. py:attribute:: risk_assessment
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: startup_command
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: validation_steps
+      :type:  list[str]
+      :value: None
+
+

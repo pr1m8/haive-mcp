@@ -1,0 +1,81 @@
+mcp.client.HttpTransport
+========================
+
+.. py:class:: mcp.client.HttpTransport(url: str, headers: Optional[Dict[str, str]] = None, timeout: float = 30.0)
+
+   Bases: :py:obj:`MCPTransport`
+
+
+   HTTP transport for MCP communication.
+
+   This transport communicates with an MCP server over HTTP using JSON-RPC
+   over HTTP POST requests. This is useful for servers that expose HTTP APIs
+   or for remote MCP servers.
+
+   .. rubric:: Examples
+
+   Basic HTTP transport::
+
+       transport = HttpTransport("http://localhost:8080/mcp")
+
+   With authentication::
+
+       transport = HttpTransport(
+           "https://api.example.com/mcp",
+           headers={"Authorization": "Bearer token123"}
+       )
+
+   Initialize HTTP transport.
+
+   :param url: Base URL for the MCP server
+   :param headers: HTTP headers to include in requests
+   :param timeout: Request timeout in seconds
+
+
+   .. py:method:: connect() -> None
+      :async:
+
+
+      Create HTTP session.
+
+
+
+   .. py:method:: disconnect() -> None
+      :async:
+
+
+      Close HTTP session.
+
+
+
+   .. py:method:: receive_message() -> Dict[str, Any]
+      :async:
+
+
+      Send pending message and receive response.
+
+
+
+   .. py:method:: send_message(message: Dict[str, Any]) -> None
+      :async:
+
+
+      Send JSON-RPC message via HTTP POST.
+
+      Note: For HTTP transport, sending and receiving are combined
+      in a request-response cycle. This method stores the message
+      for the next receive_message call.
+
+
+
+   .. py:attribute:: headers
+
+
+   .. py:attribute:: session
+      :type:  Optional[aiohttp.ClientSession]
+      :value: None
+
+
+
+   .. py:attribute:: url
+

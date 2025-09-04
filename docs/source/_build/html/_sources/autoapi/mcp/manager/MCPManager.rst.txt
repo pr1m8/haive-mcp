@@ -1,0 +1,330 @@
+mcp.manager.MCPManager
+======================
+
+.. py:class:: mcp.manager.MCPManager(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Dynamic MCP manager for procedural server addition.
+
+   Provides a high-level interface for managing MCP servers during runtime,
+   allowing for incremental addition, health monitoring, and dynamic configuration
+   updates without disrupting existing connections.
+
+   The manager maintains:
+       - Individual server configurations and status
+       - Health monitoring for each server
+       - Consolidated tool registry from all servers
+       - Connection pooling and retry logic
+       - Event callbacks for server state changes
+
+   .. attribute:: enabled
+
+      Whether MCP management is enabled
+
+   .. attribute:: auto_health_check
+
+      Whether to automatically monitor server health
+
+   .. attribute:: health_check_interval
+
+      Interval between health checks in seconds
+
+   .. attribute:: max_retry_attempts
+
+      Maximum retry attempts for failed connections
+
+   .. attribute:: connection_timeout
+
+      Timeout for server connections in seconds
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:method:: add_custom_category(category: MCPServerCategory) -> None
+
+      Add a custom server category.
+
+
+
+   .. py:method:: add_server(server_name: str, config: haive.mcp.config.MCPServerConfig, connect_immediately: bool = True) -> MCPRegistrationResult
+      :async:
+
+
+      Add a new MCP server procedurally.
+
+      Adds a single MCP server to the manager with optional immediate connection.
+      This allows for step-by-step server addition during runtime without
+      disrupting existing connections.
+
+      :param server_name: Unique name for the server
+      :param config: Complete server configuration
+      :param connect_immediately: Whether to attempt connection immediately
+
+      :returns: Result of the registration attempt
+      :rtype: MCPRegistrationResult
+
+      .. rubric:: Examples
+
+      Adding a filesystem server:
+
+      .. code-block:: python
+              result = await manager.add_server("filesystem", MCPServerConfig(
+                  name="filesystem",
+                  transport="stdio",
+                  command="npx",
+                  args=["-y", "@modelcontextprotocol/server-filesystem"]
+              ))
+
+              if result.success:
+                  print(f"Added {result.tools_count} tools")
+
+
+
+   .. py:method:: bulk_health_check() -> dict[str, Any]
+      :async:
+
+
+      Perform health check on all connected servers.
+
+      :returns: Dict with health status for all servers
+
+
+
+   .. py:method:: bulk_install_category(category_name: str, max_concurrent: int = 5) -> MCPBulkOperation
+      :async:
+
+
+      Install all servers in a category.
+
+      :param category_name: Name of the category to install
+      :param max_concurrent: Maximum concurrent installations
+
+      :returns: Operation tracking object
+      :rtype: MCPBulkOperation
+
+
+
+   .. py:method:: bulk_install_servers(server_packages: list[str], add_to_manager: bool = True, max_concurrent: int = 5) -> MCPBulkOperation
+      :async:
+
+
+      Install multiple MCP servers in parallel.
+
+      :param server_packages: List of npm package names to install
+      :param add_to_manager: Whether to add installed servers to the manager
+      :param max_concurrent: Maximum concurrent installations
+
+      :returns: Operation tracking object
+      :rtype: MCPBulkOperation
+
+
+
+   .. py:method:: bulk_remove_servers(server_names: list[str]) -> MCPBulkOperation
+      :async:
+
+
+      Remove multiple servers from the manager.
+
+      :param server_names: List of server names to remove
+
+      :returns: Operation tracking object
+      :rtype: MCPBulkOperation
+
+
+
+   .. py:method:: bulk_update_servers() -> MCPBulkOperation
+      :async:
+
+
+      Update all installed MCP servers to their latest versions.
+
+      :returns: Operation tracking object
+      :rtype: MCPBulkOperation
+
+
+
+   .. py:method:: call_tool(tool_name: str, arguments: dict[str, Any]) -> Any
+      :async:
+
+
+      Call a tool from any connected server.
+
+      :param tool_name: Name of the tool to call
+      :param arguments: Arguments for the tool
+
+      :returns: Result of the tool call
+      :rtype: Any
+
+
+
+   .. py:method:: get_all_server_status() -> dict[str, dict[str, Any]]
+
+      Get status information for all servers.
+
+      :returns: Status information for all servers
+      :rtype: Dict[str, Dict[str, Any]]
+
+
+
+   .. py:method:: get_all_tools(refresh: bool = False) -> list[Any]
+      :async:
+
+
+      Get all tools from all connected servers.
+
+      :param refresh: Whether to refresh the tool list from servers
+
+      :returns: List of all available tools
+      :rtype: List[Any]
+
+
+
+   .. py:method:: get_available_categories() -> dict[str, MCPServerCategory]
+
+      Get all available server categories for bulk operations.
+
+
+
+   .. py:method:: get_bulk_operation_status(operation_id: str) -> MCPBulkOperation | None
+
+      Get the status of a bulk operation.
+
+
+
+   .. py:method:: get_prompts(server_name: str | None = None) -> list[Any]
+      :async:
+
+
+      Get available prompts from MCP servers.
+
+      :param server_name: Optional specific server to query, otherwise gets from all
+
+      :returns: List of available prompts
+
+
+
+   .. py:method:: get_resources(server_name: str | None = None) -> list[Any]
+      :async:
+
+
+      Get available resources from MCP servers.
+
+      :param server_name: Optional specific server to query, otherwise gets from all
+
+      :returns: List of available resources
+
+
+
+   .. py:method:: get_server_status(server_name: str) -> MCPServerStatus | None
+
+      Get the status of a specific server.
+
+      :param server_name: Name of the server
+
+      :returns: Server status or None if not found
+      :rtype: Optional[MCPServerStatus]
+
+
+
+   .. py:method:: model_post_init(__context) -> None
+
+      Initialize the MCP manager after model creation.
+
+
+
+   .. py:method:: refresh_tools() -> None
+      :async:
+
+
+      Refresh the tool list from all connected servers.
+
+      This method rebuilds the multi-client and forces a fresh discovery
+      of all tools from connected servers. Call this after adding new
+      servers or when tools may have changed.
+
+
+
+   .. py:method:: reload_server(server_name: str) -> MCPRegistrationResult
+      :async:
+
+
+      Reload a specific MCP server.
+
+      Disconnects and reconnects to the server, refreshing all tools,
+      resources, and prompts.
+
+      :param server_name: Name of the server to reload
+
+      :returns: Result of the reload operation
+      :rtype: MCPRegistrationResult
+
+
+
+   .. py:method:: remove_server(server_name: str) -> bool
+      :async:
+
+
+      Remove an MCP server from the manager.
+
+      :param server_name: Name of the server to remove
+
+      :returns: True if server was removed successfully
+      :rtype: bool
+
+
+
+   .. py:method:: retry_failed_servers() -> list[MCPRegistrationResult]
+      :async:
+
+
+      Retry connection to all failed servers.
+
+      :returns: Results of retry attempts
+      :rtype: List[MCPRegistrationResult]
+
+
+
+   .. py:method:: shutdown() -> None
+      :async:
+
+
+      Shutdown the MCP manager and close all connections.
+
+
+
+   .. py:attribute:: auto_health_check
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: connection_timeout
+      :type:  float
+      :value: None
+
+
+
+   .. py:attribute:: enabled
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: health_check_interval
+      :type:  float
+      :value: None
+
+
+
+   .. py:attribute:: max_retry_attempts
+      :type:  int
+      :value: None
+
+

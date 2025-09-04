@@ -1,0 +1,86 @@
+mcp.integration.integrated_mcp_system
+=====================================
+
+.. py:module:: mcp.integration.integrated_mcp_system
+
+.. autoapi-nested-parse::
+
+   Integrated MCP Discovery & Management System.
+
+   A complete end-to-end solution that combines:
+   1. MCP server discovery with enhanced RAG search
+   2. One-click installation from discovery results
+   3. FastMCP server management (like Claude's 'claude mcp add')
+   4. Live server monitoring and access
+
+   This creates a seamless workflow from discovery to deployment.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.integration.integrated_mcp_system.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/integration/integrated_mcp_system/IntegratedMCPSystem
+   /autoapi/mcp/integration/integrated_mcp_system/MCPServerInstaller
+   /autoapi/mcp/integration/integrated_mcp_system/ServerInstallation
+
+.. autoapisummary::
+
+   mcp.integration.integrated_mcp_system.IntegratedMCPSystem
+   mcp.integration.integrated_mcp_system.MCPServerInstaller
+   mcp.integration.integrated_mcp_system.ServerInstallation
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp.integration.integrated_mcp_system.create_web_interface
+   mcp.integration.integrated_mcp_system.show_analytics_tab
+   mcp.integration.integrated_mcp_system.show_discovery_tab
+   mcp.integration.integrated_mcp_system.show_installed_tab
+   mcp.integration.integrated_mcp_system.show_running_tab
+
+
+Module Contents
+---------------
+
+.. py:function:: create_web_interface()
+
+   Create the integrated web interface.
+
+
+.. py:function:: show_analytics_tab(system)
+
+   Show analytics and statistics.
+
+
+.. py:function:: show_discovery_tab(system)
+
+   Discovery and installation tab.
+
+
+.. py:function:: show_installed_tab(system)
+
+   Show installed servers.
+
+
+.. py:function:: show_running_tab(system)
+
+   Show running servers.
+
+
+.. py:data:: logger
+

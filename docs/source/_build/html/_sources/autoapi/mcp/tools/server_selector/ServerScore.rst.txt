@@ -1,0 +1,31 @@
+mcp.tools.server_selector.ServerScore
+=====================================
+
+.. py:class:: mcp.tools.server_selector.ServerScore
+
+   Score and metadata for a server recommendation.
+
+
+   .. py:attribute:: capabilities_match
+      :type:  list[str]
+
+
+   .. py:attribute:: category_match
+      :type:  bool
+
+
+   .. py:attribute:: prefix_match
+      :type:  bool
+
+
+   .. py:attribute:: reasons
+      :type:  list[str]
+
+
+   .. py:attribute:: score
+      :type:  float
+
+
+   .. py:attribute:: server_name
+      :type:  str
+

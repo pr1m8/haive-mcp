@@ -1,0 +1,210 @@
+mcp.api
+=======
+
+.. py:module:: mcp.api
+
+.. autoapi-nested-parse::
+
+   FastAPI web interface for MCP bulk management.
+
+   This module provides a complete REST API for managing MCP servers with bulk operations,
+   real-time progress tracking, and a clean web interface for browsing and managing
+   the 1900+ available MCP servers.
+
+   Features:
+       - Bulk server installation and management
+       - Real-time progress tracking via WebSockets
+       - Category-based server organization
+       - Health monitoring and status reporting
+       - Server browser and search interface
+       - Operation history and logging
+
+   .. rubric:: Examples
+
+   Running the FastAPI server:
+
+   .. code-block:: bash
+
+       # Start the server
+       poetry run python -m haive.mcp.api
+
+       # Or with uvicorn directly
+       poetry run uvicorn haive.mcp.api:app --reload --host 0.0.0.0 --port 8000
+
+   Using the API programmatically:
+
+   .. code-block:: python
+
+       import httpx
+
+       # Get available categories
+       response = httpx.get("http://localhost:8000/api/mcp/categories")
+       categories = response.json()
+
+       # Install a category
+       response = httpx.post("http://localhost:8000/api/mcp/categories/development/install")
+       operation = response.json()
+
+       # Track progress
+       operation_id = operation["operation_id"]
+       progress = httpx.get(f"http://localhost:8000/api/mcp/operations/{operation_id}")
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.api.app
+   mcp.api.connection_manager
+   mcp.api.global_manager
+   mcp.api.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/api/BulkOperationResponse
+   /autoapi/mcp/api/CategoryInstallRequest
+   /autoapi/mcp/api/ConnectionManager
+   /autoapi/mcp/api/ServerInstallRequest
+   /autoapi/mcp/api/ServerRemoveRequest
+   /autoapi/mcp/api/ServerStatusResponse
+
+.. autoapisummary::
+
+   mcp.api.BulkOperationResponse
+   mcp.api.CategoryInstallRequest
+   mcp.api.ConnectionManager
+   mcp.api.ServerInstallRequest
+   mcp.api.ServerRemoveRequest
+   mcp.api.ServerStatusResponse
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp.api.bulk_health_check
+   mcp.api.get_categories
+   mcp.api.get_operation_status
+   mcp.api.get_status
+   mcp.api.install_category
+   mcp.api.install_servers
+   mcp.api.lifespan
+   mcp.api.list_servers
+   mcp.api.main
+   mcp.api.remove_servers
+   mcp.api.root
+   mcp.api.update_all_servers
+   mcp.api.websocket_endpoint
+
+
+Module Contents
+---------------
+
+.. py:function:: bulk_health_check()
+   :async:
+
+
+   Perform health check on all connected servers.
+
+
+.. py:function:: get_categories()
+   :async:
+
+
+   Get all available server categories.
+
+
+.. py:function:: get_operation_status(operation_id: str)
+   :async:
+
+
+   Get the status of a bulk operation.
+
+
+.. py:function:: get_status()
+   :async:
+
+
+   Get overall MCP system status.
+
+
+.. py:function:: install_category(category_name: str, request: CategoryInstallRequest = CategoryInstallRequest(category_name='', max_concurrent=5), background_tasks: fastapi.BackgroundTasks = None)
+   :async:
+
+
+   Install all servers in a category.
+
+
+.. py:function:: install_servers(request: ServerInstallRequest)
+   :async:
+
+
+   Install multiple MCP servers.
+
+
+.. py:function:: lifespan(app: fastapi.FastAPI)
+   :async:
+
+
+   Manage the lifecycle of the FastAPI app.
+
+
+.. py:function:: list_servers()
+   :async:
+
+
+   List all configured servers and their status.
+
+
+.. py:function:: main()
+
+   Run the FastAPI server.
+
+
+.. py:function:: remove_servers(request: ServerRemoveRequest)
+   :async:
+
+
+   Remove multiple servers from the manager.
+
+
+.. py:function:: root()
+   :async:
+
+
+   Serve the main web interface.
+
+
+.. py:function:: update_all_servers()
+   :async:
+
+
+   Update all installed MCP servers to latest versions.
+
+
+.. py:function:: websocket_endpoint(websocket: fastapi.WebSocket)
+   :async:
+
+
+   WebSocket endpoint for real-time progress updates.
+
+
+.. py:data:: app
+
+.. py:data:: connection_manager
+
+.. py:data:: global_manager
+   :type:  Optional[haive.mcp.manager.MCPManager]
+   :value: None
+
+
+.. py:data:: logger
+

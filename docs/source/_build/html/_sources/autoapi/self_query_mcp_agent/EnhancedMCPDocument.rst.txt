@@ -1,0 +1,15 @@
+self_query_mcp_agent.EnhancedMCPDocument
+========================================
+
+.. py:class:: self_query_mcp_agent.EnhancedMCPDocument
+
+   Enhanced document creation with chunking for parent retrieval.
+
+
+   .. py:method:: create_mcp_documents_with_chunks() -> tuple[list[langchain.schema.Document], list[langchain.schema.Document]]
+      :staticmethod:
+
+
+      Create both parent documents and child chunks for retrieval.
+
+

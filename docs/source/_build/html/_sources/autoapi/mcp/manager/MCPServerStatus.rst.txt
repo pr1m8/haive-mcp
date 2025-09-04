@@ -1,0 +1,66 @@
+mcp.manager.MCPServerStatus
+===========================
+
+.. py:class:: mcp.manager.MCPServerStatus
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+
+   Status of an MCP server.
+
+   .. attribute:: PENDING
+
+      Not yet attempted to connect
+
+   .. attribute:: CONNECTING
+
+      Connection in progress
+
+   .. attribute:: CONNECTED
+
+      Successfully connected and operational
+
+   .. attribute:: FAILED
+
+      Connection failed with error
+
+   .. attribute:: DISCONNECTED
+
+      Intentionally disconnected by user
+
+   .. attribute:: UNHEALTHY
+
+      Connected but health check failed
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+
+   .. py:attribute:: CONNECTED
+      :value: 'connected'
+
+
+
+   .. py:attribute:: CONNECTING
+      :value: 'connecting'
+
+
+
+   .. py:attribute:: DISCONNECTED
+      :value: 'disconnected'
+
+
+
+   .. py:attribute:: FAILED
+      :value: 'failed'
+
+
+
+   .. py:attribute:: PENDING
+      :value: 'pending'
+
+
+
+   .. py:attribute:: UNHEALTHY
+      :value: 'unhealthy'
+
+

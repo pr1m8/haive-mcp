@@ -1,0 +1,22 @@
+simple_rag_mcp_agent.MCPRetrieverWrapper
+========================================
+
+.. py:class:: simple_rag_mcp_agent.MCPRetrieverWrapper(enhanced_retriever: haive.mcp.working_enhanced_retriever.WorkingEnhancedRetriever)
+
+   Bases: :py:obj:`langchain_core.retrievers.BaseRetriever`
+
+
+   Wrapper to make our enhanced retriever compatible with LangChain.
+
+   Init  .
+
+   :param enhanced_retriever: [TODO: Add description]
+
+
+   .. py:attribute:: enhanced_retriever
+
+
+   .. py:property:: llm
+
+      Llm.
+

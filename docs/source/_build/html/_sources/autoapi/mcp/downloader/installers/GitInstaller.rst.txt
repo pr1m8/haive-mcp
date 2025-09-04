@@ -1,0 +1,58 @@
+mcp.downloader.installers.GitInstaller
+======================================
+
+.. py:class:: mcp.downloader.installers.GitInstaller
+
+   Bases: :py:obj:`MCPInstaller`
+
+
+   Installer for Git repository-based MCP servers.
+
+   Handles cloning Git repositories and running post-install commands.
+
+   .. rubric:: Examples
+
+   Git installation:
+
+   .. code-block:: python
+       installer = GitInstaller()
+       result = await installer.install(
+           server_config,
+           template,
+           install_dir
+       )
+
+
+   .. py:method:: can_handle(server_config: haive.mcp.downloader.config.ServerConfig, template: haive.mcp.downloader.config.ServerTemplate) -> bool
+      :async:
+
+
+      Check if this is a Git installation.
+
+
+
+   .. py:method:: install(server_config: haive.mcp.downloader.config.ServerConfig, template: haive.mcp.downloader.config.ServerTemplate, install_dir: pathlib.Path) -> dict[str, Any]
+      :async:
+
+
+      Clone Git repository and run post-install commands.
+
+      :param server_config: Server configuration
+      :param template: Server template
+      :param install_dir: Installation directory
+
+      :returns: Installation result dictionary
+
+
+
+   .. py:method:: verify(server_config: haive.mcp.downloader.config.ServerConfig, template: haive.mcp.downloader.config.ServerTemplate, install_dir: pathlib.Path) -> bool
+      :async:
+
+
+      Verify Git installation.
+
+      Checks if the repository was cloned successfully.
+
+      :returns: True if repository exists with .git directory
+
+

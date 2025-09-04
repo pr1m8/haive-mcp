@@ -1,119 +1,125 @@
-# Configuration file for haive-mcp documentation
+"""Sphinx configuration for haive-mcp documentation."""
+
 import os
 import sys
-from pathlib import Path
 
-# Add package to path
-sys.path.insert(0, os.path.abspath('../../src'))
+from sphinx.application import Sphinx
 
-# Project information
-project = 'haive-mcp'
-copyright = '2025, Haive Team'
-author = 'Haive Team'
-release = '0.1.0'
+# Path setup
+sys.path.insert(0, os.path.abspath("../../src"))
 
-# Extensions
+# -- Project information -----------------------------------------------------
+project = "haive-mcp"
+copyright = "2025, Haive Team"
+author = "Haive Team"
+release = "0.1.0"
+
+# -- General configuration ---------------------------------------------------
 extensions = [
-    'autoapi.extension',       # Must be first for API documentation
-    'sphinx.ext.autodoc',
-    'sphinx.ext.napoleon',
-    'sphinx.ext.viewcode',
-    'sphinx.ext.intersphinx',
-    'sphinx_copybutton',
-    'sphinx.ext.githubpages',
+    "autoapi.extension",  # Must be first
+    "sphinx.ext.autodoc", 
+    "sphinx.ext.napoleon",
+    "sphinx.ext.viewcode",
+    "sphinx.ext.intersphinx",
+    "sphinx_copybutton",
+    "sphinx_design",
+    "sphinxcontrib.mermaid",
+    "sphinx.ext.graphviz",
 ]
 
-# AutoAPI Configuration - Consistent across all packages
-autoapi_dirs = ['../../src']
-autoapi_type = 'python'
-autoapi_root = 'autoapi'  # Use consistent directory name
+# AutoAPI Configuration
+autoapi_dirs = ["../../src"]
+autoapi_type = "python"
 autoapi_add_toctree_entry = True
-autoapi_keep_files = False  # Don't keep files to avoid stale references
+autoapi_keep_files = True
+autoapi_root = "autoapi"
+autoapi_include_inheritance_diagram = False
 autoapi_options = [
-    'members',
-    'undoc-members',
-    'show-inheritance',
-    'show-module-summary',
-    'special-members',
-    'imported-members',
+    "members",
+    "undoc-members",
+    "show-inheritance",
+    "show-module-summary",
+    "imported-members",
+    "special-members",
 ]
 
-# Fix for hierarchical API structure
-autoapi_member_order = 'groupwise'
-autoapi_own_page_level = 'class'  # Create pages at class level for better navigation
-autoapi_python_class_content = 'both'  # Show both class and __init__ docstrings
-autoapi_include_inheritance_diagrams = True  # Show inheritance diagrams
+# CRITICAL: Use module-level pages for hierarchical organization
+autoapi_own_page_level = "module"
+autoapi_member_order = "groupwise"
 
-# Theme Configuration
-html_theme = 'furo'
-html_static_path = ['_static']
+# -- Options for HTML output -------------------------------------------------
+html_theme = "furo"
+html_static_path = ["_static"]
 
-# CSS files
-html_css_files = [
-    "purple-theme.css",
-]
-
-# Theme options - Consistent navigation and colors
+# Furo theme configuration - Enhanced purple theme
 html_theme_options = {
-    # Navigation settings
-    "navigation_depth": 6,  # Show 6 levels of navigation for better API visibility
-    "collapse_navigation": False,  # Keep navigation expanded
-    "sticky_navigation": True,
-    "includehidden": True,
-    "titles_only": False,
-    "show_nav_level": 1,  # Show navigation from first level
-    
-    # Light mode colors
+    "navigation_with_keys": True,
+    "show_nav_level": 3,
+    "collapse_navigation": False,
+    "sidebar_hide_name": False, 
+    "navigation_depth": 4,
+    "show_toc_level": 3,
     "light_css_variables": {
-        "color-brand-primary": "#1e40af",
-        "color-brand-content": "#1e3a8a",
+        "color-brand-primary": "#8b5cf6",
+        "color-brand-content": "#7c3aed",
+        "color-sidebar-background": "#faf5ff",
+        "color-sidebar-background-border": "#e9d5ff", 
     },
-    
-    # Dark mode colors (black/blue theme)
     "dark_css_variables": {
-        "color-background-primary": "#000612",
-        "color-background-secondary": "#0a1428",
-        "color-background-hover": "#1e293b",
-        "color-brand-primary": "#60a5fa",
-        "color-brand-content": "#93bbfc",
-        "color-sidebar-background": "#0a1428",
-        "color-sidebar-background-border": "#1e3a8a",
+        "color-brand-primary": "#a78bfa",
+        "color-brand-content": "#c084fc",
+        "color-background-primary": "#0f0019",  # Very dark purple
+        "color-background-secondary": "#1a0033",  # Dark purple
+        "color-background-hover": "#2d0059",  # Purple hover
+        "color-background-border": "#4c1d95",  # Purple border
+        "color-sidebar-background": "#14001f",  # Darker purple sidebar
+        "color-sidebar-background-border": "#4c1d95",
+        "color-sidebar-link-text": "#e9d5ff",
+        "color-sidebar-link-text--top-level": "#f3e8ff",
+        "color-sidebar-item-background--hover": "#2d0059",
+        "color-sidebar-item-expander-background--hover": "#4c1d95",
+        "color-content-foreground": "#ffffff",
+        "color-code-background": "#1e0936",  # Dark purple code bg
     },
 }
 
 # Napoleon settings
 napoleon_google_docstring = True
 napoleon_numpy_docstring = True
-napoleon_include_init_with_doc = True
 
-# Intersphinx mapping
+# Intersphinx
 intersphinx_mapping = {
-    'python': ('https://docs.python.org/3', None),
-    'sphinx': ('https://www.sphinx-doc.org/en/master/', None),
+    "python": ("https://docs.python.org/3", None),
+    "sphinx": ("https://www.sphinx-doc.org/en/master", None),
 }
 
-# Autodoc settings
-autodoc_default_options = {
-    'members': True,
-    'member-order': 'bysource',
-    'special-members': '__init__',
-    'undoc-members': True,
-    'exclude-members': '__weakref__'
-}
+# -- Purple Theme Configuration ----------------------------------------------
+# Syntax highlighting - use purple-friendly themes
+pygments_style = "default"  # Better for light mode with our custom CSS
+pygments_dark_style = "monokai"  # Good for dark mode
 
-# Add package-specific sidebar
-html_sidebars = {
-    '**': [
-        'sidebar/brand.html',
-        'sidebar/search.html',
-        'sidebar/scroll-start.html',
-        'sidebar/navigation.html',
-        'sidebar/ethical-ads.html',
-        'sidebar/scroll-end.html',
-        'sidebar/variant-selector.html',
-    ]
-}
+# AutoAPI configuration for prominent API Reference
+autoapi_add_toctree_entry = True
+autoapi_toctree_caption = "🔍 API Reference"
+autoapi_toctree_first = True  # Put at top!
 
-# Copy button configuration
-copybutton_prompt_text = r">>> |\.\.\. |\$ |In \[\d*\]: | {%.+%} {%.+%}"
-copybutton_prompt_is_regexp = True
+# Graphviz configuration for beautiful diagrams
+graphviz_output_format = "svg"
+graphviz_dot_args = [
+    "-Kdot",
+    "-Tsvg",
+    "-Gfontname=Inter",
+    "-Nfontname=Inter",
+    "-Efontname=Inter",
+    "-Gbgcolor=transparent",
+    "-Gpad=0.5",
+    "-Grankdir=TB",
+    "-Gnodesep=0.7",
+    "-Granksep=0.8",
+    "-Gsplines=true",
+]
+
+# Simplified - using Furo's built-in theme + tippy for tooltips
+html_css_files = [
+    "tippy-enhancements.css",  # Keep tooltip enhancements only
+]

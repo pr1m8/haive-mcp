@@ -1,0 +1,42 @@
+mcp.integration.integrated_mcp_system.MCPServerInstaller
+========================================================
+
+.. py:class:: mcp.integration.integrated_mcp_system.MCPServerInstaller(manager_config_path: pathlib.Path | None = None)
+
+   Handles server installation and setup.
+
+   Init  .
+
+   :param manager_config_path: [TODO: Add description]
+
+
+   .. py:method:: add_to_fastmcp_manager(server_data: dict[str, Any], pkg_manager: str)
+      :async:
+
+
+      Add installed server to FastMCP manager configuration.
+
+
+
+   .. py:method:: detect_package_manager(server_data: dict[str, Any]) -> tuple[str, str]
+      :async:
+
+
+      Detect appropriate package manager and command.
+
+
+
+   .. py:method:: install_server(server_data: dict[str, Any]) -> ServerInstallation
+      :async:
+
+
+      Install an MCP server.
+
+
+
+   .. py:attribute:: installations
+      :type:  dict[str, ServerInstallation]
+
+
+   .. py:attribute:: manager_config_path
+

@@ -1,0 +1,82 @@
+mcp.discovery.analyzer
+======================
+
+.. py:module:: mcp.discovery.analyzer
+
+.. autoapi-nested-parse::
+
+   MCP server analyzer for component discovery integration.
+
+   This module provides analysis capabilities for discovering and configuring MCP
+   servers from various sources. It can analyze dictionaries, objects, and files
+   to extract valid MCP server configurations.
+
+   The analyzer supports:
+       - Dictionary-based configurations (JSON/YAML)
+       - Object attribute extraction
+       - Directory scanning for config files
+       - Registry file parsing
+       - Component info generation for discovery system
+
+   Classes:
+       MCPServerAnalyzer: Main analyzer for MCP server discovery
+
+   .. rubric:: Examples
+
+   Analyzing server configurations:
+
+   .. code-block:: python
+
+       from haive.mcp.discovery import MCPServerAnalyzer
+
+       analyzer = MCPServerAnalyzer()
+
+       # Analyze a dictionary config
+       config_dict = {
+           "name": "my_server",
+           "command": "npx",
+           "args": ["-y", "@myorg/mcp-server"],
+           "capabilities": ["data_access"]
+       }
+
+       server_config = analyzer.analyze(config_dict)
+       if server_config:
+           print(f"Found server: {server_config.name}")
+
+       # Discover from directory
+       configs = analyzer.discover_from_directory(Path("./mcp_configs"))
+       print(f"Discovered {len(configs)} servers")
+
+   .. note::
+
+      The analyzer is designed to be flexible and handle various configuration
+      formats commonly used for MCP servers.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.discovery.analyzer.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/discovery/analyzer/MCPServerAnalyzer
+
+.. autoapisummary::
+
+   mcp.discovery.analyzer.MCPServerAnalyzer
+
+
+Module Contents
+---------------
+
+.. py:data:: logger
+

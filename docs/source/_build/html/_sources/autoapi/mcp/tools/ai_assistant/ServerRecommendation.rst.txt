@@ -1,0 +1,35 @@
+mcp.tools.ai_assistant.ServerRecommendation
+===========================================
+
+.. py:class:: mcp.tools.ai_assistant.ServerRecommendation
+
+   A server recommendation with detailed reasoning.
+
+
+   .. py:attribute:: capabilities
+      :type:  list[str]
+
+
+   .. py:attribute:: confidence
+      :type:  float
+
+
+   .. py:attribute:: estimated_setup_time
+      :type:  int
+
+
+   .. py:attribute:: fallback_servers
+      :type:  list[str]
+
+
+   .. py:attribute:: reasoning
+      :type:  str
+
+
+   .. py:attribute:: required_env_vars
+      :type:  list[str]
+
+
+   .. py:attribute:: server_name
+      :type:  str
+

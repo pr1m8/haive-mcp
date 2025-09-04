@@ -1,0 +1,31 @@
+mcp.client.MCPToolError
+=======================
+
+.. py:exception:: mcp.client.MCPToolError(message: str, error_code: Optional[int] = None, details: Optional[Dict[str, Any]] = None)
+
+   Bases: :py:obj:`MCPError`
+
+
+   Error during tool execution.
+
+   Raised when there are issues executing tools on the MCP server. This
+   includes tool not found errors, invalid arguments, and execution failures.
+
+   .. rubric:: Examples
+
+   Tool not found::
+
+       raise MCPToolError(
+           "Tool not found",
+           details={"tool_name": "nonexistent_tool"}
+       )
+
+   Invalid arguments::
+
+       raise MCPToolError(
+           "Invalid tool arguments",
+           details={"tool": "read_file", "error": "path is required"}
+       )
+
+   Initialize self.  See help(type(self)) for accurate signature.
+

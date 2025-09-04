@@ -1,0 +1,55 @@
+mcp.manager.MCPBulkInstaller
+============================
+
+.. py:class:: mcp.manager.MCPBulkInstaller(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Handles bulk installation of MCP servers with progress tracking.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:method:: bulk_install_servers(server_packages: list[str], operation_id: str | None = None) -> MCPBulkOperation
+      :async:
+
+
+      Install multiple MCP servers in parallel with progress tracking.
+
+
+
+   .. py:method:: get_operation_status(operation_id: str) -> MCPBulkOperation | None
+
+      Get status of a bulk operation.
+
+
+
+   .. py:attribute:: max_concurrent
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: retry_attempts
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: show_progress
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: timeout_per_server
+      :type:  float
+      :value: None
+
+

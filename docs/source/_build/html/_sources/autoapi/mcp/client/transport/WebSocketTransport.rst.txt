@@ -1,0 +1,69 @@
+mcp.client.transport.WebSocketTransport
+=======================================
+
+.. py:class:: mcp.client.transport.WebSocketTransport(url: str, headers: Optional[Dict[str, str]] = None, timeout: float = 30.0)
+
+   Bases: :py:obj:`MCPTransport`
+
+
+   WebSocket transport for MCP communication.
+
+   This transport provides real-time bidirectional communication over
+   WebSocket. Useful for interactive applications and real-time scenarios.
+
+   Initialize WebSocket transport.
+
+   :param url: WebSocket URL (ws:// or wss://)
+   :param headers: WebSocket headers
+   :param timeout: Connection timeout
+
+
+   .. py:method:: connect() -> None
+      :async:
+
+
+      Establish WebSocket connection.
+
+
+
+   .. py:method:: disconnect() -> None
+      :async:
+
+
+      Close WebSocket connection.
+
+
+
+   .. py:method:: receive_message() -> Dict[str, Any]
+      :async:
+
+
+      Receive message from WebSocket.
+
+
+
+   .. py:method:: send_message(message: Dict[str, Any]) -> None
+      :async:
+
+
+      Send message over WebSocket.
+
+
+
+   .. py:attribute:: headers
+
+
+   .. py:attribute:: session
+      :type:  Optional[aiohttp.ClientSession]
+      :value: None
+
+
+
+   .. py:attribute:: url
+
+
+   .. py:attribute:: websocket
+      :type:  Optional[aiohttp.ClientWebSocketResponse]
+      :value: None
+
+

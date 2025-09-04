@@ -1,0 +1,68 @@
+complete_mcp_with_parent_retriever.MCPSystemWithParentRetriever
+===============================================================
+
+.. py:class:: complete_mcp_with_parent_retriever.MCPSystemWithParentRetriever(engine: haive.core.engine.aug_llm.AugLLMConfig)
+
+   MCP system using parent-child document retrieval.
+
+   Init  .
+
+   :param engine: [TODO: Add description]
+
+
+   .. py:method:: demonstrate_retrieval() -> None
+      :async:
+
+
+      Demonstrate different retrieval patterns.
+
+
+
+   .. py:method:: install_top_server_with_hitl() -> str | None
+      :async:
+
+
+      Find and install top server with HITL approval.
+
+
+
+   .. py:method:: setup_retrievers() -> None
+      :async:
+
+
+      Set up both parent-child and self-query retrievers.
+
+
+
+   .. py:method:: test_installed_server(server_name: str) -> None
+      :async:
+
+
+      Test installed server with all MCP capabilities.
+
+
+
+   .. py:attribute:: doc_loader
+
+
+   .. py:attribute:: engine
+
+
+   .. py:attribute:: installed_servers
+      :type:  dict[str, dict]
+
+
+   .. py:attribute:: parent_retriever
+      :value: None
+
+
+
+   .. py:attribute:: rag_agent
+      :value: None
+
+
+
+   .. py:attribute:: self_query_retriever
+      :value: None
+
+

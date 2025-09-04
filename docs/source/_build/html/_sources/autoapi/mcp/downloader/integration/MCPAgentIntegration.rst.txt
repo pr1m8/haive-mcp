@@ -1,0 +1,148 @@
+mcp.downloader.integration.MCPAgentIntegration
+==============================================
+
+.. py:class:: mcp.downloader.integration.MCPAgentIntegration(config_file: str | None = None, install_dir: str | None = None)
+
+   Integration between MCP downloader and Haive agents.
+
+   This class provides high-level methods to create agents with
+   MCP servers automatically configured and connected.
+
+   .. attribute:: downloader
+
+      General MCP downloader instance
+
+   .. attribute:: extractor
+
+      Capability extractor
+
+   .. attribute:: manager
+
+      MCP manager for agent integration
+
+   .. rubric:: Examples
+
+   Creating integrated agent:
+
+   .. code-block:: python
+       integration = MCPAgentIntegration()
+       agent = await integration.create_agent_with_mcp_servers(
+           engine=engine,
+           server_names=["filesystem", "github"]
+       )
+
+   Initialize MCP agent integration.
+
+   :param config_file: Path to configuration file
+   :param install_dir: Installation directory
+
+
+   .. py:method:: create_agent_with_auto_discovery(engine: haive.core.engine.aug_llm.AugLLMConfig, limit: int | None = None, categories: list[str] | None = None, tags: set[str] | None = None, agent_class: type = MCPAgent, **agent_kwargs) -> haive.mcp.agents.MCPAgent
+      :async:
+
+
+      Create an agent with auto-discovered MCP servers.
+
+      :param engine: Haive engine configuration
+      :param limit: Maximum servers to discover
+      :param categories: Server categories to include
+      :param tags: Server tags to filter by
+      :param agent_class: Agent class to instantiate
+      :param \*\*agent_kwargs: Additional agent arguments
+
+      :returns: Configured agent with discovered servers
+
+      .. rubric:: Examples
+
+      Auto-discovery agent:
+
+      .. code-block:: python
+              agent = await integration.create_agent_with_auto_discovery(
+                  engine=engine,
+                  limit=10,
+                  categories=["official", "core"],
+                  tags={"file-operations", "database"}
+              )
+
+
+
+   .. py:method:: create_agent_with_mcp_servers(engine: haive.core.engine.aug_llm.AugLLMConfig, server_names: list[str], agent_class: type = MCPAgent, install_if_missing: bool = True, **agent_kwargs) -> haive.mcp.agents.MCPAgent
+      :async:
+
+
+      Create an agent with specific MCP servers.
+
+      :param engine: Haive engine configuration
+      :param server_names: List of server names to use
+      :param agent_class: Agent class to instantiate
+      :param install_if_missing: Install missing servers
+      :param \*\*agent_kwargs: Additional agent arguments
+
+      :returns: Configured agent with MCP servers
+
+      .. rubric:: Examples
+
+      Creating agent with servers:
+
+      .. code-block:: python
+              agent = await integration.create_agent_with_mcp_servers(
+                  engine=engine,
+                  server_names=["filesystem", "github", "postgres"],
+                  name="my_mcp_agent"
+              )
+
+
+
+   .. py:method:: create_transferable_agent_team(engine: haive.core.engine.aug_llm.AugLLMConfig, num_agents: int, server_distribution: str = 'shared', **agent_kwargs) -> list[haive.mcp.agents.TransferableMCPAgent]
+      :async:
+
+
+      Create a team of transferable MCP agents.
+
+      :param engine: Haive engine configuration
+      :param num_agents: Number of agents to create
+      :param server_distribution: How to distribute servers
+                                  - "shared": All agents share all servers
+                                  - "split": Divide servers among agents
+                                  - "specialized": Each agent gets specific categories
+      :param \*\*agent_kwargs: Additional agent arguments
+
+      :returns: List of configured transferable agents
+
+      .. rubric:: Examples
+
+      Creating agent team:
+
+      .. code-block:: python
+              agents = await integration.create_transferable_agent_team(
+                  engine=engine,
+                  num_agents=3,
+                  server_distribution="specialized"
+              )
+
+
+
+   .. py:method:: get_capability_summary() -> dict[str, Any]
+
+      Get a summary of all discovered capabilities.
+
+      :returns: Dict with capability statistics
+
+      .. rubric:: Examples
+
+      Getting summary:
+
+      .. code-block:: python
+              summary = integration.get_capability_summary()
+              print(f"Total tools: {summary['total_tools']}")
+
+
+
+   .. py:attribute:: downloader
+
+
+   .. py:attribute:: extractor
+
+
+   .. py:attribute:: manager
+

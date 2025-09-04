@@ -1,0 +1,91 @@
+mcp.tools.ai_assistant
+======================
+
+.. py:module:: mcp.tools.ai_assistant
+
+.. autoapi-nested-parse::
+
+   AI-friendly MCP server selection and configuration assistant.
+
+   This module provides tools specifically designed for AI agents to automatically
+   select, configure, and use MCP servers based on task analysis and intelligent
+   recommendations. It minimizes the need for manual configuration while maximizing
+   the effectiveness of server selection.
+
+   The assistant provides:
+       - Automatic server selection based on task analysis
+       - Smart configuration generation with minimal setup
+       - Performance-aware server combinations
+       - Fallback strategies for failed servers
+       - Context-aware capability matching
+
+   Classes:
+       MCPAssistant: Main AI-friendly server selection assistant
+       SmartConfig: Intelligent configuration generator
+       TaskMatcher: Advanced task-to-server matching system
+
+   .. rubric:: Example
+
+   AI agent usage:
+
+   .. code-block:: python
+
+       from haive.mcp.tools import MCPAssistant
+
+       # Create assistant
+       assistant = MCPAssistant()
+
+       # Automatically select servers for a task
+       task = "I need to analyze Python code in a GitHub repo for security issues"
+       config = await assistant.auto_configure_for_task(task)
+
+       # Create agent with optimal configuration
+       agent = MCPAgent(
+           engine=engine,
+           mcp_config=config,
+           name="security_analysis_agent"
+       )
+
+       # Assistant provides reasoning
+       reasoning = assistant.get_selection_reasoning()
+       print(f"Selected servers because: {reasoning}")
+
+   .. note::
+
+      Designed to work seamlessly with AI agents that need to dynamically
+      adapt their capabilities based on task requirements.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.tools.ai_assistant.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/tools/ai_assistant/MCPAssistant
+   /autoapi/mcp/tools/ai_assistant/ServerRecommendation
+   /autoapi/mcp/tools/ai_assistant/SmartConfiguration
+   /autoapi/mcp/tools/ai_assistant/TaskMatcher
+
+.. autoapisummary::
+
+   mcp.tools.ai_assistant.MCPAssistant
+   mcp.tools.ai_assistant.ServerRecommendation
+   mcp.tools.ai_assistant.SmartConfiguration
+   mcp.tools.ai_assistant.TaskMatcher
+
+
+Module Contents
+---------------
+
+.. py:data:: logger
+

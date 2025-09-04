@@ -1,0 +1,50 @@
+enhanced_parent_self_query_retriever
+====================================
+
+.. py:module:: enhanced_parent_self_query_retriever
+
+.. autoapi-nested-parse::
+
+   Enhanced MCP Retriever combining Parent Document Retriever with Self-Query.
+
+   This implementation combines:
+   1. Parent-child document retrieval for context preservation
+   2. Self-query metadata filtering for natural language queries
+   3. Metadata propagation from parent to child chunks
+
+   The key insight: Store metadata on BOTH parent docs AND child chunks,
+   enabling self-query filtering on chunks while returning full parents.
+
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/enhanced_parent_self_query_retriever/EnhancedMCPRetriever
+
+.. autoapisummary::
+
+   enhanced_parent_self_query_retriever.EnhancedMCPRetriever
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   enhanced_parent_self_query_retriever.main
+
+
+Module Contents
+---------------
+
+.. py:function:: main()
+   :async:
+
+
+   Run the enhanced retriever example.
+
+

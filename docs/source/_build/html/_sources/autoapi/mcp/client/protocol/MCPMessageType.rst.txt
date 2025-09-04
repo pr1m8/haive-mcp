@@ -1,0 +1,27 @@
+mcp.client.protocol.MCPMessageType
+==================================
+
+.. py:class:: mcp.client.protocol.MCPMessageType
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+
+   MCP message types.
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+
+   .. py:attribute:: NOTIFICATION
+      :value: 'notification'
+
+
+
+   .. py:attribute:: REQUEST
+      :value: 'request'
+
+
+
+   .. py:attribute:: RESPONSE
+      :value: 'response'
+
+

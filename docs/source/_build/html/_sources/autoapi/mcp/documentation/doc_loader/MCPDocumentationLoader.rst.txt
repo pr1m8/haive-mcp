@@ -1,0 +1,91 @@
+mcp.documentation.doc_loader.MCPDocumentationLoader
+===================================================
+
+.. py:class:: mcp.documentation.doc_loader.MCPDocumentationLoader(resources_path: pathlib.Path | None = None)
+
+   Loads and processes MCP server documentation from various sources.
+
+   Initialize the documentation loader.
+
+   :param resources_path: Path to the data directory containing MCP servers
+
+
+   .. py:method:: extract_setup_info(server_doc: dict[str, Any]) -> dict[str, Any]
+
+      Extract setup information from server documentation.
+
+      :param server_doc: Server documentation dictionary
+
+      :returns: Extracted setup information
+
+
+
+   .. py:method:: fetch_github_readme(repo_url: str) -> langchain_core.documents.Document | None
+      :async:
+
+
+      Fetch README from GitHub repository.
+
+      :param repo_url: GitHub repository URL
+
+      :returns: Document containing README content
+
+
+
+   .. py:method:: fetch_server_website(url: str) -> langchain_core.documents.Document | None
+      :async:
+
+
+      Fetch documentation from server website.
+
+      :param url: Website URL
+
+      :returns: Document containing website content
+
+
+
+   .. py:method:: get_server_documentation(server_name: str) -> dict[str, Any] | None
+
+      Get documentation for a specific MCP server.
+
+      :param server_name: Name of the MCP server (e.g., "modelcontextprotocol/server-filesystem")
+
+      :returns: Server documentation or None if not found
+
+
+
+   .. py:method:: load_all_mcp_documents() -> dict[str, dict[str, Any]]
+
+      Load all MCP server documentation from the stored JSON.
+
+      :returns: Dictionary mapping server names to documentation dictionaries
+
+
+
+   .. py:method:: search_servers_by_capability(capability: str) -> list[dict[str, Any]]
+
+      Search for MCP servers by capability mentioned in description.
+
+      :param capability: Capability to search for
+
+      :returns: List of matching server documentation
+
+
+
+   .. py:method:: search_servers_by_category(category: str) -> list[dict[str, Any]]
+
+      Search for MCP servers by category.
+
+      :param category: Category to search for (e.g., "Databases", "File Systems")
+
+      :returns: List of matching server documentation
+
+
+
+   .. py:attribute:: mcp_servers_path
+
+
+   .. py:attribute:: resources_path
+      :value: None
+
+

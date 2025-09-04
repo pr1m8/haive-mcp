@@ -1,0 +1,32 @@
+mcp.agents.intelligent_mcp_agent.ApprovalStatus
+===============================================
+
+.. py:class:: mcp.agents.intelligent_mcp_agent.ApprovalStatus
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+
+   Status of HITL approval request.
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+
+   .. py:attribute:: APPROVED
+      :value: 'approved'
+
+
+
+   .. py:attribute:: PENDING
+      :value: 'pending'
+
+
+
+   .. py:attribute:: REJECTED
+      :value: 'rejected'
+
+
+
+   .. py:attribute:: TIMEOUT
+      :value: 'timeout'
+
+

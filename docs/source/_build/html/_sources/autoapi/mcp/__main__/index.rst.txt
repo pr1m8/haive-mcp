@@ -1,0 +1,14 @@
+mcp.__main__
+============
+
+.. py:module:: mcp.__main__
+
+.. autoapi-nested-parse::
+
+   Main entry point for haive-mcp CLI.
+
+   Usage:
+       python -m haive.mcp [options]
+
+
+

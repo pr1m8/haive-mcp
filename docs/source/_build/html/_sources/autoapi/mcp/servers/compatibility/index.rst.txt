@@ -1,0 +1,64 @@
+mcp.servers.compatibility
+=========================
+
+.. py:module:: mcp.servers.compatibility
+
+.. autoapi-nested-parse::
+
+   Backward compatibility layer for MCPServerManager migration.
+
+   This module provides a compatibility wrapper that allows existing code
+   using MCPServerManager to work with the new Pydantic-based implementation
+   without modification.
+
+   .. rubric:: Example
+
+   Existing code will continue to work::
+
+       from haive.mcp.servers import MCPServerManager  # Works via compatibility
+
+       manager = MCPServerManager()
+       manager.run()  # Legacy API still works
+
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/servers/compatibility/MCPServerManager
+
+.. autoapisummary::
+
+   mcp.servers.compatibility.MCPServerManager
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp.servers.compatibility.migrate_to_v2
+
+
+Module Contents
+---------------
+
+.. py:function:: migrate_to_v2(legacy_manager: mcp.servers.mcp_server_manager.MCPServerManager) -> mcp.servers.mcp_server_manager_v2.MCPServerManagerV2
+
+   Helper to migrate from legacy to V2 manager.
+
+   :param legacy_manager: Existing MCPServerManager instance
+
+   :returns: MCPServerManagerV2 with same configuration
+
+   .. rubric:: Example
+
+   >>> legacy = MCPServerManager()
+   >>> legacy.start_server("filesystem")
+   >>> v2_manager = migrate_to_v2(legacy)
+   >>> # v2_manager now has same servers running
+
+

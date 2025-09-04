@@ -1,0 +1,50 @@
+mcp.downloader.legacy_core.InstallationMethod
+=============================================
+
+.. py:class:: mcp.downloader.legacy_core.InstallationMethod(*args, **kwds)
+
+   Bases: :py:obj:`enum.Enum`
+
+
+   Supported installation methods.
+
+
+   .. py:attribute:: BINARY
+      :value: 'binary'
+
+
+
+   .. py:attribute:: CURL
+      :value: 'curl'
+
+
+
+   .. py:attribute:: DOCKER
+      :value: 'docker'
+
+
+
+   .. py:attribute:: GIT
+      :value: 'git'
+
+
+
+   .. py:attribute:: MANUAL
+      :value: 'manual'
+
+
+
+   .. py:attribute:: NPM
+      :value: 'npm'
+
+
+
+   .. py:attribute:: PIP
+      :value: 'pip'
+
+
+
+   .. py:attribute:: SCRIPT
+      :value: 'script'
+
+

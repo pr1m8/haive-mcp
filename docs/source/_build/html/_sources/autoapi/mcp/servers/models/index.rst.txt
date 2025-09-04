@@ -1,0 +1,36 @@
+mcp.servers.models
+==================
+
+.. py:module:: mcp.servers.models
+
+.. autoapi-nested-parse::
+
+   MCP Server-specific models extending base server management framework.
+
+   This module provides MCP-specific server configuration and runtime information
+   models that extend the base server management framework from haive-dataflow.
+
+   Key Components:
+       - MCPTransport: Enum for MCP transport types (stdio, http, etc.)
+       - MCPServerConfig: MCP-specific server configuration
+       - MCPServerInfo: MCP runtime information with transport details
+
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/servers/models/MCPServerConfig
+   /autoapi/mcp/servers/models/MCPServerInfo
+   /autoapi/mcp/servers/models/MCPTransport
+
+.. autoapisummary::
+
+   mcp.servers.models.MCPServerConfig
+   mcp.servers.models.MCPServerInfo
+   mcp.servers.models.MCPTransport
+
+

@@ -1,0 +1,90 @@
+mcp_simple_rag_agent
+====================
+
+.. py:module:: mcp_simple_rag_agent
+
+.. autoapi-nested-parse::
+
+   MCP Simple RAG Agent - Using Haive's proper patterns.
+
+   This agent uses BaseRAGAgent and SimpleAgent to create a proper RAG system
+   for MCP server discovery.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp_simple_rag_agent.app
+   mcp_simple_rag_agent.mcp_agent
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp_simple_rag_agent/QueryRequest
+   /autoapi/mcp_simple_rag_agent/QueryResponse
+
+.. autoapisummary::
+
+   mcp_simple_rag_agent.QueryRequest
+   mcp_simple_rag_agent.QueryResponse
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp_simple_rag_agent.ask_agent
+   mcp_simple_rag_agent.create_mcp_documents
+   mcp_simple_rag_agent.create_mcp_rag_agent
+   mcp_simple_rag_agent.root
+   mcp_simple_rag_agent.startup_event
+
+
+Module Contents
+---------------
+
+.. py:function:: ask_agent(request: QueryRequest)
+   :async:
+
+
+   Ask the MCP agent a question.
+
+
+.. py:function:: create_mcp_documents() -> list[langchain_core.documents.Document]
+
+   Create documents from MCP server data with improved searchability.
+
+
+.. py:function:: create_mcp_rag_agent(llm_config: haive.core.models.llm.base.LLMConfig | None = None) -> haive.agents.rag.base.agent.BaseRAGAgent
+
+   Create a BaseRAG agent using direct vector store for MCP discovery.
+
+
+.. py:function:: root()
+   :async:
+
+
+   Web interface for the MCP agent.
+
+
+.. py:function:: startup_event()
+   :async:
+
+
+   Initialize the MCP RAG agent.
+
+
+.. py:data:: app
+
+.. py:data:: mcp_agent
+   :value: None
+
+

@@ -1,0 +1,60 @@
+mcp.client.protocol
+===================
+
+.. py:module:: mcp.client.protocol
+
+.. autoapi-nested-parse::
+
+   MCP Protocol Implementation.
+
+   This module implements the Model Context Protocol (MCP) JSON-RPC based
+   communication protocol. It handles the protocol-level details including
+   message framing, request/response matching, and capability negotiation.
+
+   The protocol implementation is transport-agnostic and works with any
+   transport that implements the MCPTransport interface.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.client.protocol.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/client/protocol/MCPCapability
+   /autoapi/mcp/client/protocol/MCPMessage
+   /autoapi/mcp/client/protocol/MCPMessageType
+   /autoapi/mcp/client/protocol/MCPMethod
+   /autoapi/mcp/client/protocol/MCPPrompt
+   /autoapi/mcp/client/protocol/MCPProtocol
+   /autoapi/mcp/client/protocol/MCPProtocolVersion
+   /autoapi/mcp/client/protocol/MCPResource
+   /autoapi/mcp/client/protocol/MCPTool
+
+.. autoapisummary::
+
+   mcp.client.protocol.MCPCapability
+   mcp.client.protocol.MCPMessage
+   mcp.client.protocol.MCPMessageType
+   mcp.client.protocol.MCPMethod
+   mcp.client.protocol.MCPPrompt
+   mcp.client.protocol.MCPProtocol
+   mcp.client.protocol.MCPProtocolVersion
+   mcp.client.protocol.MCPResource
+   mcp.client.protocol.MCPTool
+
+
+Module Contents
+---------------
+
+.. py:data:: logger
+

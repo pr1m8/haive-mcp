@@ -1,0 +1,86 @@
+mcp.documentation.doc_loader
+============================
+
+.. py:module:: mcp.documentation.doc_loader
+
+.. autoapi-nested-parse::
+
+   MCP documentation loader using haive document loaders.
+
+   This module provides functionality to load, process, and extract information from
+   MCP server documentation. It includes methods to parse README files, extract setup
+   instructions, and generate configurations from documentation.
+
+   The loader processes documentation from:
+       - Stored JSON files containing 992+ MCP server docs
+       - GitHub repositories (via GitHubLoader)
+       - Web documentation (via WebScraper)
+       - Local documentation files
+
+   Classes:
+       MCPDocumentationLoader: Main class for loading and processing MCP documentation
+
+   .. rubric:: Example
+
+   Loading and using MCP documentation:
+
+       .. code-block:: python
+       from haive.mcp.documentation import MCPDocumentationLoader
+
+   from haive import agents
+
+
+           # Initialize loader
+           loader = MCPDocumentationLoader()
+
+           # Load all documentation
+           all_docs = loader.load_all_mcp_documents()
+           print(f"Loaded {len(all_docs)} server documentations")
+
+           # Get specific server documentation
+           fs_doc = loader.get_server_documentation("modelcontextprotocol/server-filesystem")
+
+           # Extract setup information
+           setup_info = loader.extract_setup_info(fs_doc)
+           print("Installation:", setup_info["installation"])
+           print("Configuration:", setup_info["configuration"])
+
+           # Search by capability
+           search_servers = loader.search_servers_by_capability("search")
+           print(f"Found {len(search_servers)} servers with search capability")
+
+   .. note:: The loader gracefully handles missing dependencies for document loaders.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.documentation.doc_loader.LOADERS_AVAILABLE
+   mcp.documentation.doc_loader.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/documentation/doc_loader/MCPDocumentationLoader
+
+.. autoapisummary::
+
+   mcp.documentation.doc_loader.MCPDocumentationLoader
+
+
+Module Contents
+---------------
+
+.. py:data:: LOADERS_AVAILABLE
+   :value: True
+
+
+.. py:data:: logger
+

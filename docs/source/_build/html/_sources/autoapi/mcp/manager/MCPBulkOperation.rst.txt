@@ -1,0 +1,112 @@
+mcp.manager.MCPBulkOperation
+============================
+
+.. py:class:: mcp.manager.MCPBulkOperation(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Represents a bulk operation on multiple MCP servers.
+
+   Tracks progress, results, and errors for bulk installation, removal,
+   or update operations across multiple servers.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: completed_at
+      :type:  datetime.datetime | None
+      :value: None
+
+
+
+   .. py:attribute:: completed_count
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: current_server
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: failed_count
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: failed_servers
+      :type:  list[dict]
+      :value: None
+
+
+
+   .. py:attribute:: is_complete
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: operation_id
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: operation_type
+      :type:  str
+      :value: None
+
+
+
+   .. py:property:: progress_percentage
+      :type: float
+
+
+      Get completion percentage.
+
+
+   .. py:attribute:: server_names
+      :type:  list[str]
+      :value: None
+
+
+
+   .. py:attribute:: started_at
+      :type:  datetime.datetime
+      :value: None
+
+
+
+   .. py:attribute:: succeeded_servers
+      :type:  list[str]
+      :value: None
+
+
+
+   .. py:attribute:: success_count
+      :type:  int
+      :value: None
+
+
+
+   .. py:property:: success_rate
+      :type: float
+
+
+      Get success rate percentage.
+
+
+   .. py:attribute:: total_count
+      :type:  int
+      :value: None
+
+

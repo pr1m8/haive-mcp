@@ -1,0 +1,105 @@
+mcp.downloader.core.DownloadResult
+==================================
+
+.. py:class:: mcp.downloader.core.DownloadResult(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Result of a download operation.
+
+   .. attribute:: total
+
+      Total servers attempted
+
+   .. attribute:: successful
+
+      Number of successful installations
+
+   .. attribute:: failed
+
+      Number of failed installations
+
+   .. attribute:: success_rate
+
+      Percentage success rate
+
+   .. attribute:: successful_servers
+
+      List of successful server details
+
+   .. attribute:: failed_servers
+
+      List of failed server details
+
+   .. attribute:: config_file
+
+      Path to generated configuration
+
+   .. attribute:: duration
+
+      Operation duration in seconds
+
+   .. rubric:: Example
+
+   Checking results:
+
+   .. code-block:: python
+       if result.success_rate > 80:
+           print(f"Good success rate: {result.success_rate}%")
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: config_file
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: duration
+      :type:  float | None
+      :value: None
+
+
+
+   .. py:attribute:: failed
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: failed_servers
+      :type:  list[dict[str, Any]]
+      :value: None
+
+
+
+   .. py:attribute:: success_rate
+      :type:  float
+      :value: None
+
+
+
+   .. py:attribute:: successful
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: successful_servers
+      :type:  list[dict[str, Any]]
+      :value: None
+
+
+
+   .. py:attribute:: total
+      :type:  int
+      :value: None
+
+

@@ -1,0 +1,94 @@
+mcp.servers.models.MCPServerInfo
+================================
+
+.. py:class:: mcp.servers.models.MCPServerInfo
+
+   Bases: :py:obj:`haive.dataflow.server_management.models.BaseServerInfo`
+
+
+   MCP-specific server runtime information.
+
+   Extends BaseServerInfo with MCP-specific runtime details like transport
+   info, connection status, and protocol negotiation results.
+
+   .. attribute:: transport
+
+      Active transport type
+
+   .. attribute:: transport_info
+
+      Transport-specific connection details
+
+   .. attribute:: protocol_version
+
+      Negotiated protocol version
+
+   .. attribute:: capabilities_active
+
+      Currently active capabilities
+
+   .. attribute:: last_message_time
+
+      Timestamp of last message exchange
+
+   .. attribute:: message_count
+
+      Total messages exchanged
+
+   .. rubric:: Example
+
+   >>> info = MCPServerInfo(
+   ...     pid=12345,
+   ...     status=ServerStatus.RUNNING,
+   ...     transport=MCPTransport.STDIO,
+   ...     transport_info={"pipes": ["stdin", "stdout", "stderr"]}
+   ... )
+
+
+   .. py:method:: get_transport_status() -> str
+
+      Get human-readable transport status.
+
+
+
+   .. py:method:: record_message() -> None
+
+      Record a message exchange.
+
+
+
+   .. py:attribute:: capabilities_active
+      :type:  List[str]
+      :value: None
+
+
+
+   .. py:attribute:: last_message_time
+      :type:  Optional[datetime.datetime]
+      :value: None
+
+
+
+   .. py:attribute:: message_count
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: protocol_version
+      :type:  Optional[str]
+      :value: None
+
+
+
+   .. py:attribute:: transport
+      :type:  MCPTransport
+      :value: None
+
+
+
+   .. py:attribute:: transport_info
+      :type:  Dict[str, Any]
+      :value: None
+
+

@@ -1,0 +1,106 @@
+mcp.client.MCPTransport
+=======================
+
+.. py:class:: mcp.client.MCPTransport(timeout: float = 30.0)
+
+   Bases: :py:obj:`abc.ABC`
+
+
+   Abstract base class for MCP transports.
+
+   All MCP transports must implement this interface to provide a consistent
+   API for the protocol layer. The transport handles the low-level communication
+   while the protocol layer handles MCP message semantics.
+
+   The transport is responsible for:
+       - Connection establishment and teardown
+       - Raw message sending and receiving
+       - Transport-specific error handling
+       - Connection state management
+
+   Initialize transport with timeout.
+
+   :param timeout: Default timeout for operations in seconds
+
+
+   .. py:method:: __aenter__()
+      :async:
+
+
+      Async context manager entry.
+
+
+
+   .. py:method:: __aexit__(exc_type, exc_val, exc_tb)
+      :async:
+
+
+      Async context manager exit.
+
+
+
+   .. py:method:: connect() -> None
+      :abstractmethod:
+
+      :async:
+
+
+      Establish connection to the MCP server.
+
+      :raises MCPConnectionError: If connection fails
+      :raises MCPTimeoutError: If connection times out
+
+
+
+   .. py:method:: disconnect() -> None
+      :abstractmethod:
+
+      :async:
+
+
+      Close connection to the MCP server.
+
+      Should be idempotent and safe to call multiple times.
+
+
+
+   .. py:method:: receive_message() -> Dict[str, Any]
+      :abstractmethod:
+
+      :async:
+
+
+      Receive a message from the server.
+
+      :returns: JSON-RPC message from server
+
+      :raises MCPTransportError: If receiving fails
+      :raises MCPConnectionError: If not connected
+      :raises MCPTimeoutError: If receive times out
+
+
+
+   .. py:method:: send_message(message: Dict[str, Any]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+      Send a message to the server.
+
+      :param message: JSON-RPC message to send
+
+      :raises MCPTransportError: If sending fails
+      :raises MCPConnectionError: If not connected
+
+
+
+   .. py:attribute:: connected
+      :value: False
+
+
+
+   .. py:attribute:: timeout
+      :value: 30.0
+
+

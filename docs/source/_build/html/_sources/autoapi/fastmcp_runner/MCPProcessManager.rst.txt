@@ -1,0 +1,101 @@
+fastmcp_runner.MCPProcessManager
+================================
+
+.. py:class:: fastmcp_runner.MCPProcessManager(config_path: pathlib.Path | None = None)
+
+   Manages MCP server processes with monitoring and auto-restart.
+
+   Init  .
+
+   :param config_path: [TODO: Add description]
+
+
+   .. py:method:: get_server_status(server_name: str) -> dict[str, Any]
+
+      Get detailed status of a server.
+
+
+
+   .. py:method:: list_running_servers() -> list[dict[str, Any]]
+
+      List all running servers with their status.
+
+
+
+   .. py:method:: load_servers() -> dict[str, Any]
+
+      Load server configurations.
+
+
+
+   .. py:method:: monitor_servers()
+      :async:
+
+
+      Monitor running servers and restart if needed.
+
+
+
+   .. py:method:: restart_server(server_name: str) -> dict[str, Any]
+      :async:
+
+
+      Restart a server.
+
+
+
+   .. py:method:: start_monitoring()
+      :async:
+
+
+      Start the monitoring task.
+
+
+
+   .. py:method:: start_server(server_name: str) -> dict[str, Any]
+      :async:
+
+
+      Start a specific server.
+
+
+
+   .. py:method:: stop_all_servers()
+      :async:
+
+
+      Stop all running servers.
+
+
+
+   .. py:method:: stop_monitoring()
+      :async:
+
+
+      Stop the monitoring task.
+
+
+
+   .. py:method:: stop_server(server_name: str) -> dict[str, Any]
+      :async:
+
+
+      Stop a specific server.
+
+
+
+   .. py:attribute:: config_path
+
+
+   .. py:attribute:: monitor_task
+      :value: None
+
+
+
+   .. py:attribute:: process_info
+      :type:  dict[str, dict[str, Any]]
+
+
+   .. py:attribute:: processes
+      :type:  dict[str, subprocess.Popen]
+

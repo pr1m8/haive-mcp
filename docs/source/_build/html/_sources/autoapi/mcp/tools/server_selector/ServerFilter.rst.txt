@@ -1,0 +1,57 @@
+mcp.tools.server_selector.ServerFilter
+======================================
+
+.. py:class:: mcp.tools.server_selector.ServerFilter(servers: list[dict[str, Any]])
+
+   Flexible filtering system for MCP servers.
+
+   Initialize filter with server list.
+
+   :param servers: List of server documentation dictionaries
+
+
+   .. py:method:: filter_by_capability_keyword(keyword: str) -> list[dict[str, Any]]
+
+      Filter servers by capability keyword in description.
+
+      :param keyword: Keyword to search for
+
+      :returns: List of servers mentioning the keyword
+
+
+
+   .. py:method:: filter_by_category(category: str) -> list[dict[str, Any]]
+
+      Filter servers by category.
+
+      :param category: Category to filter by
+
+      :returns: List of servers in the category
+
+
+
+   .. py:method:: filter_by_multiple_criteria(prefixes: list[str] | None = None, categories: list[str] | None = None, keywords: list[str] | None = None, exclude_prefixes: list[str] | None = None) -> list[dict[str, Any]]
+
+      Filter servers by multiple criteria.
+
+      :param prefixes: List of prefixes to include
+      :param categories: List of categories to include
+      :param keywords: List of capability keywords
+      :param exclude_prefixes: List of prefixes to exclude
+
+      :returns: List of servers matching all criteria
+
+
+
+   .. py:method:: filter_by_prefix(prefix: str) -> list[dict[str, Any]]
+
+      Filter servers by name prefix (namespace).
+
+      :param prefix: Prefix to filter by (e.g., "anthropic/", "openai/")
+
+      :returns: List of servers matching the prefix
+
+
+
+   .. py:attribute:: servers
+

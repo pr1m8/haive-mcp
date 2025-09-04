@@ -1,0 +1,98 @@
+mcp.tools.server_selector
+=========================
+
+.. py:module:: mcp.tools.server_selector
+
+.. autoapi-nested-parse::
+
+   Intelligent MCP server selection and filtering tools for AI agents.
+
+   This module provides sophisticated tools for filtering, selecting, and recommending
+   MCP servers based on various criteria including prefixes, capabilities, task analysis,
+   and performance metrics. Designed to help AI agents make intelligent decisions about
+   which servers to use for specific tasks.
+
+   The server selector provides:
+       - Namespace/prefix-based filtering for organized server groups
+       - Capability-based server recommendations
+       - Task analysis for automatic server selection
+       - Performance-aware server ranking
+       - Interactive selection interfaces
+       - Smart server combinations and workflows
+
+   Classes:
+       MCPServerSelector: Main class for intelligent server selection
+       ServerFilter: Flexible filtering system for servers
+       TaskAnalyzer: Analyzes tasks to recommend appropriate servers
+       ServerRecommender: Provides smart server recommendations
+
+   .. rubric:: Example
+
+   Basic server selection:
+
+   .. code-block:: python
+
+       from haive.mcp.tools import MCPServerSelector
+       from haive.mcp.documentation import MCPDocumentationLoader
+
+       # Create selector with all available servers
+       loader = MCPDocumentationLoader()
+       all_servers = loader.load_all_mcp_documents()
+
+       selector = MCPServerSelector(all_servers)
+
+       # Filter by prefix (organization/namespace)
+       anthropic_servers = selector.filter_by_prefix("anthropic/")
+       openai_servers = selector.filter_by_prefix("openai/")
+
+       # Get recommendations for a task
+       task = "I need to analyze a GitHub repository for security issues"
+       recommendations = selector.recommend_for_task(task)
+
+       # Interactive selection
+       chosen_servers = await selector.interactive_select(
+           "Choose servers for code analysis",
+           categories=["development", "security"]
+       )
+
+   .. note::
+
+      This system is designed to make server selection intelligent and context-aware,
+      reducing the need for manual server configuration.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.tools.server_selector.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/tools/server_selector/MCPServerSelector
+   /autoapi/mcp/tools/server_selector/ServerFilter
+   /autoapi/mcp/tools/server_selector/ServerScore
+   /autoapi/mcp/tools/server_selector/TaskAnalyzer
+   /autoapi/mcp/tools/server_selector/TaskRequirements
+
+.. autoapisummary::
+
+   mcp.tools.server_selector.MCPServerSelector
+   mcp.tools.server_selector.ServerFilter
+   mcp.tools.server_selector.ServerScore
+   mcp.tools.server_selector.TaskAnalyzer
+   mcp.tools.server_selector.TaskRequirements
+
+
+Module Contents
+---------------
+
+.. py:data:: logger
+

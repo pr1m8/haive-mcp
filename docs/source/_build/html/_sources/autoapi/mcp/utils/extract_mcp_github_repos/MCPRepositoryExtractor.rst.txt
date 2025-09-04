@@ -1,0 +1,101 @@
+mcp.utils.extract_mcp_github_repos.MCPRepositoryExtractor
+=========================================================
+
+.. py:class:: mcp.utils.extract_mcp_github_repos.MCPRepositoryExtractor(output_dir: str = 'agent_resources/mcp_servers')
+
+   Enhanced MCP Repository Extractor.
+
+   Init  .
+
+   :param output_dir: [TODO: Add description]
+
+
+   .. py:method:: extract_all() -> list[MCPServerDocument]
+      :async:
+
+
+      Main extraction method.
+
+
+
+   .. py:method:: extract_repositories_from_readme() -> list[MCPServerMetadata]
+      :async:
+
+
+      Extract repository information from the awesome-mcp-servers.
+      README.
+
+
+
+   .. py:method:: fetch_github_metadata(metadata: MCPServerMetadata) -> None
+      :async:
+
+
+      Fetch additional metadata from GitHub API.
+
+
+
+   .. py:method:: fetch_readme_content(metadata: MCPServerMetadata) -> str | None
+      :async:
+
+
+      Fetch README content from GitHub.
+
+
+
+   .. py:method:: generate_statistics_report(documents: list[MCPServerDocument]) -> None
+
+      Generate statistics report.
+
+
+
+   .. py:method:: process_repository(metadata: MCPServerMetadata) -> MCPServerDocument | None
+      :async:
+
+
+      Process a single repository.
+
+
+
+   .. py:method:: save_documents(documents: list[MCPServerDocument]) -> None
+
+      Save documents in various formats.
+
+
+
+   .. py:attribute:: category_mappings
+
+
+   .. py:attribute:: docs_dir
+
+
+   .. py:attribute:: language_indicators
+
+
+   .. py:attribute:: metadata_dir
+
+
+   .. py:attribute:: output_dir
+
+
+   .. py:attribute:: platform_indicators
+
+
+   .. py:attribute:: raw_dir
+
+
+   .. py:attribute:: scope_indicators
+
+
+   .. py:attribute:: session
+      :value: None
+
+
+
+   .. py:attribute:: source_url
+      :value: 'https://github.com/TensorBlock/awesome-mcp-servers'
+
+
+
+   .. py:attribute:: stats
+

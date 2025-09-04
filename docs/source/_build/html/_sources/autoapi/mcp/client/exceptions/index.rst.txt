@@ -1,0 +1,42 @@
+mcp.client.exceptions
+=====================
+
+.. py:module:: mcp.client.exceptions
+
+.. autoapi-nested-parse::
+
+   MCP Client Exception Classes.
+
+   This module defines all exception types used by the MCP client implementation.
+   These exceptions follow the MCP protocol error specifications and provide
+   detailed error information for debugging and error handling.
+
+
+
+Exceptions
+----------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/client/exceptions/MCPAuthenticationError
+   /autoapi/mcp/client/exceptions/MCPCapabilityError
+   /autoapi/mcp/client/exceptions/MCPConnectionError
+   /autoapi/mcp/client/exceptions/MCPError
+   /autoapi/mcp/client/exceptions/MCPProtocolError
+   /autoapi/mcp/client/exceptions/MCPTimeoutError
+   /autoapi/mcp/client/exceptions/MCPToolError
+   /autoapi/mcp/client/exceptions/MCPTransportError
+
+.. autoapisummary::
+
+   mcp.client.exceptions.MCPAuthenticationError
+   mcp.client.exceptions.MCPCapabilityError
+   mcp.client.exceptions.MCPConnectionError
+   mcp.client.exceptions.MCPError
+   mcp.client.exceptions.MCPProtocolError
+   mcp.client.exceptions.MCPTimeoutError
+   mcp.client.exceptions.MCPToolError
+   mcp.client.exceptions.MCPTransportError
+
+

@@ -1,0 +1,52 @@
+mcp.utils.extract_mcp_github_repos.MCPLanguage
+==============================================
+
+.. py:class:: mcp.utils.extract_mcp_github_repos.MCPLanguage
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+
+   Programming Languages.
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+
+   .. py:attribute:: CSHARP
+      :value: 'C#'
+
+
+
+   .. py:attribute:: C_CPP
+      :value: 'C/C++'
+
+
+
+   .. py:attribute:: GO
+      :value: 'Go'
+
+
+
+   .. py:attribute:: JAVA
+      :value: 'Java'
+
+
+
+   .. py:attribute:: OTHER
+      :value: 'Other'
+
+
+
+   .. py:attribute:: PYTHON
+      :value: 'Python'
+
+
+
+   .. py:attribute:: RUST
+      :value: 'Rust'
+
+
+
+   .. py:attribute:: TYPESCRIPT_JAVASCRIPT
+      :value: 'TypeScript/JavaScript'
+
+

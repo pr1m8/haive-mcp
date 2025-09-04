@@ -1,0 +1,114 @@
+mcp.manager.MCPHealthStatus
+===========================
+
+.. py:class:: mcp.manager.MCPHealthStatus(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Health status information for an MCP server.
+
+   Tracks the health and performance metrics of an individual MCP server connection.
+
+   .. attribute:: server_name
+
+      Name of the server being monitored
+
+   .. attribute:: status
+
+      Current operational status
+
+   .. attribute:: last_check
+
+      Timestamp of the most recent health check
+
+   .. attribute:: response_time
+
+      Latest response time in seconds (None if failed)
+
+   .. attribute:: consecutive_failures
+
+      Count of consecutive failed health checks
+
+   .. attribute:: total_requests
+
+      Total number of requests made to this server
+
+   .. attribute:: successful_requests
+
+      Number of successful requests
+
+   .. attribute:: error_details
+
+      Details of the most recent error (if any)
+
+   .. rubric:: Examples
+
+   Health status after monitoring:
+
+   .. code-block:: python
+       status = MCPHealthStatus(
+           server_name="filesystem",
+           status=MCPServerStatus.CONNECTED,
+           last_check=datetime.now(),
+           response_time=0.125,
+           consecutive_failures=0,
+           total_requests=1000,
+           successful_requests=998
+       )
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: consecutive_failures
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: error_details
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: last_check
+      :type:  datetime.datetime
+      :value: None
+
+
+
+   .. py:attribute:: response_time
+      :type:  float | None
+      :value: None
+
+
+
+   .. py:attribute:: server_name
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: status
+      :type:  MCPServerStatus
+      :value: None
+
+
+
+   .. py:attribute:: successful_requests
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: total_requests
+      :type:  int
+      :value: None
+
+

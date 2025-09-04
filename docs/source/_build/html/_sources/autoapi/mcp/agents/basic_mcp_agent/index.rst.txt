@@ -1,0 +1,115 @@
+mcp.agents.basic_mcp_agent
+==========================
+
+.. py:module:: mcp.agents.basic_mcp_agent
+
+.. autoapi-nested-parse::
+
+   Basic MCP-enabled agent implementation that demonstrates integration with haive-agents.
+
+   This module provides a ready-to-use agent class that combines SimpleAgent capabilities
+   with MCP (Model Context Protocol) support. The BasicMCPAgent class offers seamless
+   integration with MCP servers, automatic tool discovery, and convenient factory methods.
+
+   The agent supports:
+       - Multiple MCP server connections
+       - Automatic tool registration
+       - Capability-based tool discovery
+       - Retry logic for failed operations
+       - Convenient factory methods for common patterns
+
+   Classes:
+       BasicMCPAgent: Main agent class with MCP capabilities
+
+   Functions:
+       create_filesystem_agent: Factory for filesystem MCP agent
+       create_github_agent: Factory for GitHub MCP agent
+       create_multi_mcp_agent: Factory for multi-server MCP agent
+
+   .. rubric:: Examples
+
+   Creating and using an MCP agent:
+
+   .. code-block:: python
+
+       from haive.mcp.agents import BasicMCPAgent
+       from haive.mcp.config import MCPConfig, MCPServerConfig
+
+   from haive import agents
+
+
+           # Method 1: Direct instantiation
+           agent = BasicMCPAgent(
+               engine=engine,
+               mcp_config=MCPConfig(
+                   enabled=True,
+                   servers={
+                       "fs": MCPServerConfig(
+                           name="fs",
+                           transport="stdio",
+                           command="npx",
+                           args=["-y", "@modelcontextprotocol/server-filesystem"]
+                       )
+                   }
+               )
+           )
+
+           # Method 2: Using convenience factory
+           agent = BasicMCPAgent.create_with_mcp_servers(
+               engine=engine,
+               server_configs={
+                   "filesystem": {
+                       "transport": "stdio",
+                       "command": "npx",
+                       "args": ["-y", "@modelcontextprotocol/server-filesystem"]
+                   }
+               }
+           )
+
+           # Initialize and use
+           await agent.setup()
+           result = await agent.arun({"messages": [...]})
+
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/agents/basic_mcp_agent/BasicMCPAgent
+
+.. autoapisummary::
+
+   mcp.agents.basic_mcp_agent.BasicMCPAgent
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp.agents.basic_mcp_agent.create_filesystem_agent
+   mcp.agents.basic_mcp_agent.create_github_agent
+   mcp.agents.basic_mcp_agent.create_multi_mcp_agent
+
+
+Module Contents
+---------------
+
+.. py:function:: create_filesystem_agent(engine: Any) -> BasicMCPAgent
+
+   Create an agent with filesystem MCP server.
+
+
+.. py:function:: create_github_agent(engine: Any, github_token: str) -> BasicMCPAgent
+
+   Create an agent with GitHub MCP server.
+
+
+.. py:function:: create_multi_mcp_agent(engine: Any, github_token: str | None = None) -> BasicMCPAgent
+
+   Create an agent with multiple MCP servers.
+
+

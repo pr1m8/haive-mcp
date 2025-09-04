@@ -1,0 +1,79 @@
+mcp.downloader.core
+===================
+
+.. py:module:: mcp.downloader.core
+
+.. autoapi-nested-parse::
+
+   Core MCP Downloader implementation.
+
+   This module provides the main GeneralMCPDownloader class that orchestrates
+   the downloading, installation, and configuration of MCP servers from various sources.
+
+   .. rubric:: Example
+
+   Basic usage:
+
+       .. code-block:: python
+       downloader = GeneralMCPDownloader()
+       result = await downloader.download_servers(["filesystem", "github"])
+
+   Auto-discovery:
+
+
+
+       .. code-block:: python
+
+
+
+           result = await downloader.auto_discover_and_download(limit=10)
+
+   Custom configuration:
+
+       .. code-block:: python
+
+           downloader = GeneralMCPDownloader(
+           config_file="my_config.yaml",
+           install_dir="/custom/path"
+       )
+
+   Classes:
+       GeneralMCPDownloader: Main downloader orchestrator
+       DownloadResult: Result of download operations
+       ServerStatus: Status tracking for servers
+
+   Version: 1.0.0
+   Author: Haive MCP Team
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.downloader.core.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/downloader/core/DownloadResult
+   /autoapi/mcp/downloader/core/GeneralMCPDownloader
+   /autoapi/mcp/downloader/core/ServerStatus
+
+.. autoapisummary::
+
+   mcp.downloader.core.DownloadResult
+   mcp.downloader.core.GeneralMCPDownloader
+   mcp.downloader.core.ServerStatus
+
+
+Module Contents
+---------------
+
+.. py:data:: logger
+

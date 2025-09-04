@@ -1,0 +1,81 @@
+mcp.discovery
+=============
+
+.. py:module:: mcp.discovery
+
+.. autoapi-nested-parse::
+
+   Module exports.
+
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/mcp/discovery/analyzer/index
+   /autoapi/mcp/discovery/installed_servers/index
+   /autoapi/mcp/discovery/server_discovery/index
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/discovery/MCPServerAnalyzer
+   /autoapi/mcp/discovery/MCPServerDiscovery
+
+.. autoapisummary::
+
+   mcp.discovery.MCPServerAnalyzer
+   mcp.discovery.MCPServerDiscovery
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp.discovery.create_mcp_config
+   mcp.discovery.get_discovery_report
+
+
+Package Contents
+----------------
+
+.. py:function:: create_mcp_config() -> dict[str, Any]
+
+   Create MCP configuration using a temporary instance.
+
+   Convenience function that creates a temporary MCPServerDiscovery
+   instance and generates an MCP configuration from discovered servers.
+
+   :returns: MCP configuration dictionary ready for use with MCPConfig.
+
+   .. rubric:: Example
+
+   config = create_mcp_config()
+   mcp_config = MCPConfig(**config)
+
+
+.. py:function:: get_discovery_report() -> dict[str, Any]
+
+   Get discovery report using a temporary instance.
+
+   Convenience function that creates a temporary MCPServerDiscovery
+   instance and returns its discovery report. Useful for one-off
+   discovery operations.
+
+   :returns: Discovery report dictionary with server counts and sources.
+
+   .. rubric:: Example
+
+   report = get_discovery_report()
+   if report['servers'] > 0:
+       print("MCP servers available")
+
+

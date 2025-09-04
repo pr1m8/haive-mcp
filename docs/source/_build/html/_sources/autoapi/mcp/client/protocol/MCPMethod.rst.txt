@@ -1,0 +1,97 @@
+mcp.client.protocol.MCPMethod
+=============================
+
+.. py:class:: mcp.client.protocol.MCPMethod
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+
+   Standard MCP methods.
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+
+   .. py:attribute:: CANCELLED
+      :value: 'cancelled'
+
+
+
+   .. py:attribute:: INITIALIZE
+      :value: 'initialize'
+
+
+
+   .. py:attribute:: INITIALIZED
+      :value: 'initialized'
+
+
+
+   .. py:attribute:: LOGGING_SET_LEVEL
+      :value: 'logging/setLevel'
+
+
+
+   .. py:attribute:: PROGRESS
+      :value: 'progress'
+
+
+
+   .. py:attribute:: PROMPTS_GET
+      :value: 'prompts/get'
+
+
+
+   .. py:attribute:: PROMPTS_LIST
+      :value: 'prompts/list'
+
+
+
+   .. py:attribute:: PROMPT_LIST_CHANGED
+      :value: 'prompts/list_changed'
+
+
+
+   .. py:attribute:: RESOURCES_LIST
+      :value: 'resources/list'
+
+
+
+   .. py:attribute:: RESOURCES_READ
+      :value: 'resources/read'
+
+
+
+   .. py:attribute:: RESOURCES_SUBSCRIBE
+      :value: 'resources/subscribe'
+
+
+
+   .. py:attribute:: RESOURCES_UNSUBSCRIBE
+      :value: 'resources/unsubscribe'
+
+
+
+   .. py:attribute:: RESOURCE_LIST_CHANGED
+      :value: 'resources/list_changed'
+
+
+
+   .. py:attribute:: RESOURCE_UPDATED
+      :value: 'resources/updated'
+
+
+
+   .. py:attribute:: TOOLS_CALL
+      :value: 'tools/call'
+
+
+
+   .. py:attribute:: TOOLS_LIST
+      :value: 'tools/list'
+
+
+
+   .. py:attribute:: TOOL_LIST_CHANGED
+      :value: 'tools/list_changed'
+
+

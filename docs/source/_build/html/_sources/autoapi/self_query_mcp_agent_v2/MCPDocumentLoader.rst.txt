@@ -1,0 +1,15 @@
+self_query_mcp_agent_v2.MCPDocumentLoader
+=========================================
+
+.. py:class:: self_query_mcp_agent_v2.MCPDocumentLoader
+
+   Load and process MCP server documents.
+
+
+   .. py:method:: create_mcp_documents() -> list[langchain.schema.Document]
+      :staticmethod:
+
+
+      Create documents from MCP servers data.
+
+

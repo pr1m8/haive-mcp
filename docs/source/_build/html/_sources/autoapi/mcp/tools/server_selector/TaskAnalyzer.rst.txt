@@ -1,0 +1,25 @@
+mcp.tools.server_selector.TaskAnalyzer
+======================================
+
+.. py:class:: mcp.tools.server_selector.TaskAnalyzer
+
+   Analyzes task descriptions to determine server requirements.
+
+   Initialize task analyzer.
+
+
+   .. py:method:: analyze_task(task_description: str) -> TaskRequirements
+
+      Analyze a task description to determine requirements.
+
+      :param task_description: Natural language task description
+
+      :returns: TaskRequirements with analyzed needs
+
+
+
+   .. py:attribute:: capability_patterns
+
+
+   .. py:attribute:: server_patterns
+

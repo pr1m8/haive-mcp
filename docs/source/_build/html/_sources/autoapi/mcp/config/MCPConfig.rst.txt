@@ -1,0 +1,168 @@
+mcp.config.MCPConfig
+====================
+
+.. py:class:: mcp.config.MCPConfig(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Complete MCP configuration for an agent.
+
+   This class provides the main configuration structure for MCP integration with Haive agents.
+   It controls server discovery, filtering, initialization, and runtime behavior.
+
+   .. attribute:: enabled
+
+      Whether MCP functionality is enabled
+
+   .. attribute:: auto_discover
+
+      Automatically discover servers from configured paths
+
+   .. attribute:: lazy_init
+
+      Initialize servers on-demand rather than at startup
+
+   .. attribute:: servers
+
+      Dictionary mapping server names to their configurations
+
+   .. attribute:: discovery_paths
+
+      List of paths to search for MCP server configurations
+
+   .. attribute:: categories
+
+      Optional filter for server categories
+
+   .. attribute:: required_capabilities
+
+      Optional list of required server capabilities
+
+   .. attribute:: global_timeout
+
+      Timeout for all MCP operations in seconds
+
+   .. attribute:: max_concurrent_servers
+
+      Maximum number of concurrent server connections
+
+   .. attribute:: enable_health_checks
+
+      Whether to enable periodic server health checks
+
+   .. attribute:: on_server_connected
+
+      Optional callback name when server connects
+
+   .. attribute:: on_server_failed
+
+      Optional callback name when server fails
+
+   .. attribute:: on_tool_discovered
+
+      Optional callback name when tool is discovered
+
+   .. rubric:: Examples
+
+   Creating a comprehensive MCP configuration:
+
+   .. code-block:: python
+
+       config = MCPConfig(
+           enabled=True,
+           servers={
+               "filesystem": MCPServerConfig(...),
+               "github": MCPServerConfig(...),
+           },
+           categories=["development", "filesystem"],
+           required_capabilities=["file_read"],
+           global_timeout=120,
+           max_concurrent_servers=5
+       )
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: auto_discover
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: categories
+      :type:  list[str] | None
+      :value: None
+
+
+
+   .. py:attribute:: discovery_paths
+      :type:  list[str]
+      :value: None
+
+
+
+   .. py:attribute:: enable_health_checks
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: enabled
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: global_timeout
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: lazy_init
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: max_concurrent_servers
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: on_server_connected
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: on_server_failed
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: on_tool_discovered
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: required_capabilities
+      :type:  list[str] | None
+      :value: None
+
+
+
+   .. py:attribute:: servers
+      :type:  dict[str, MCPServerConfig]
+      :value: None
+
+

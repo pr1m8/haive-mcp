@@ -1,0 +1,101 @@
+mcp.agents.documentation_agent
+==============================
+
+.. py:module:: mcp.agents.documentation_agent
+
+.. autoapi-nested-parse::
+
+   MCP Documentation Agent for processing and setting up MCP servers.
+
+   This module provides a specialized agent that combines document processing
+   capabilities with MCP knowledge to help users understand, configure, and
+   implement MCP servers. It processes documentation from various sources and
+   generates actionable setup instructions.
+
+   The agent uses document processing capabilities to:
+       1. Load MCP server documentation from stored resources (992+ servers)
+       2. Fetch additional documentation from GitHub repositories
+       3. Generate setup instructions for agents
+       4. Provide implementation guidance with code examples
+       5. Extract capabilities and configuration requirements
+       6. Create ready-to-use MCPServerConfig instances
+
+   Classes:
+       MCPDocumentationAgent: Document agent specialized for MCP documentation
+
+   Functions:
+       create_for_mcp_setup: Factory for setup-focused documentation agent
+       create_for_mcp_research: Factory for research-focused documentation agent
+
+   .. rubric:: Example
+
+   Processing MCP server documentation:
+
+   .. code-block:: python
+
+       from haive.mcp.agents import MCPDocumentationAgent
+
+   from haive import core
+   from haive import agents
+
+
+           # Create documentation agent
+           doc_agent = MCPDocumentationAgent.create_for_mcp_setup()
+           await doc_agent.setup()
+
+           # Process filesystem server documentation
+           result = await doc_agent.process_mcp_server(
+               "modelcontextprotocol/server-filesystem",
+               fetch_latest=True
+           )
+
+           # Get setup instructions
+           print("\n".join(result["setup_instructions"]))
+
+           # Get generated config
+           config = result["mcp_config"]
+           print(f"Server: {config.name}")
+           print(f"Command: {config.command} {' '.join(config.args)}")
+
+           # Find servers by capability
+           search_results = await doc_agent.find_servers_by_capability(
+               "database",
+               limit=5
+           )
+
+           for server in search_results:
+               print(f"Found: {server['server_name']}")
+
+   .. note::
+
+      The agent has access to pre-processed documentation for 992+ MCP servers
+      stored in the agent_resources directory.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.agents.documentation_agent.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/agents/documentation_agent/MCPDocumentationAgent
+
+.. autoapisummary::
+
+   mcp.agents.documentation_agent.MCPDocumentationAgent
+
+
+Module Contents
+---------------
+
+.. py:data:: logger
+

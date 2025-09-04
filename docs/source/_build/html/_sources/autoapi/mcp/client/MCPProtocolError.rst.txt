@@ -1,0 +1,33 @@
+mcp.client.MCPProtocolError
+===========================
+
+.. py:exception:: mcp.client.MCPProtocolError(message: str, error_code: Optional[int] = None, details: Optional[Dict[str, Any]] = None)
+
+   Bases: :py:obj:`MCPError`
+
+
+   Error in MCP protocol communication.
+
+   Raised when there are protocol-level issues such as invalid messages,
+   unsupported protocol versions, or malformed responses. This indicates
+   a problem with the MCP protocol implementation or server compliance.
+
+   .. rubric:: Examples
+
+   Protocol version mismatch::
+
+       raise MCPProtocolError(
+           "Unsupported protocol version",
+           details={"client": "1.0", "server": "0.9"}
+       )
+
+   Invalid message format::
+
+       raise MCPProtocolError(
+           "Malformed JSON-RPC message",
+           error_code=-32700,
+           details={"raw_message": "invalid json"}
+       )
+
+   Initialize self.  See help(type(self)) for accurate signature.
+

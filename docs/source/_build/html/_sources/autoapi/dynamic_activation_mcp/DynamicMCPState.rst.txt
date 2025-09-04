@@ -1,0 +1,88 @@
+dynamic_activation_mcp.DynamicMCPState
+======================================
+
+.. py:class:: dynamic_activation_mcp.DynamicMCPState(/, **data: Any)
+
+   Bases: :py:obj:`haive.core.schema.prebuilt.dynamic_activation_state.DynamicActivationState`
+
+
+   MCP-specific state for dynamic activation.
+
+   Extends DynamicActivationState with MCP protocol specific fields
+   and functionality for handling MCP client requests.
+
+   :param mcp_client_id: ID of connected MCP client
+   :param mcp_session_id: Current MCP session ID
+   :param mcp_protocol_version: MCP protocol version
+   :param tool_call_history: History of MCP tool calls
+
+   .. rubric:: Examples
+
+   Create MCP state:
+
+   .. code-block:: python
+       state = DynamicMCPState(
+           mcp_client_id="client_123",
+           mcp_session_id="session_456",
+           mcp_protocol_version="1.0"
+       )
+
+       # Track tool calls
+       state.tool_call_history.append({
+           "tool": "calculator",
+           "input": {"expression": "2 + 2"},
+           "timestamp": "2025-01-15T10:30:00"
+       })
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:method:: track_tool_call(tool_name: str, input_data: dict[str, Any], result: Any) -> None
+
+      Track an MCP tool call.
+
+      :param tool_name: Name of tool called
+      :param input_data: Input data for tool
+      :param result: Result from tool execution
+
+      .. rubric:: Examples
+
+      Track tool call:
+
+      .. code-block:: python
+              state.track_tool_call(
+                  tool_name="calculator",
+                  input_data={"expression": "2 + 2"},
+                  result=4
+              )
+
+
+
+   .. py:attribute:: mcp_client_id
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: mcp_protocol_version
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: mcp_session_id
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: tool_call_history
+      :type:  list[dict[str, Any]]
+      :value: None
+
+

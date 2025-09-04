@@ -1,0 +1,29 @@
+mcp.client.exceptions.MCPConnectionError
+========================================
+
+.. py:exception:: mcp.client.exceptions.MCPConnectionError(message: str, error_code: Optional[int] = None, details: Optional[Dict[str, Any]] = None)
+
+   Bases: :py:obj:`MCPError`
+
+
+   Error during MCP connection establishment or management.
+
+   Raised when there are issues connecting to, maintaining, or disconnecting
+   from an MCP server. This includes transport-level failures, timeout issues,
+   and connection state problems.
+
+   .. rubric:: Examples
+
+   Connection timeout::
+
+       raise MCPConnectionError("Connection timeout after 30s")
+
+   Transport failure::
+
+       raise MCPConnectionError(
+           "Failed to start server process",
+           details={"command": ["npx", "server"], "exit_code": 1}
+       )
+
+   Initialize self.  See help(type(self)) for accurate signature.
+

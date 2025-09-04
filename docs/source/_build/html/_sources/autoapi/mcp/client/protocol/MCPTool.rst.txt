@@ -1,0 +1,35 @@
+mcp.client.protocol.MCPTool
+===========================
+
+.. py:class:: mcp.client.protocol.MCPTool(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   MCP tool definition.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: description
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: inputSchema
+      :type:  Dict[str, Any]
+      :value: None
+
+
+
+   .. py:attribute:: name
+      :type:  str
+      :value: None
+
+

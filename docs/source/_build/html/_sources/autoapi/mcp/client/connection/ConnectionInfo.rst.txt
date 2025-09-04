@@ -1,0 +1,53 @@
+mcp.client.connection.ConnectionInfo
+====================================
+
+.. py:class:: mcp.client.connection.ConnectionInfo
+
+   Information about an MCP connection.
+
+
+   .. py:attribute:: client
+      :type:  Optional[mcp.client.mcp_client.MCPClient]
+      :value: None
+
+
+
+   .. py:attribute:: health_score
+      :type:  float
+      :value: 1.0
+
+
+
+   .. py:attribute:: last_connected
+      :type:  Optional[float]
+      :value: None
+
+
+
+   .. py:attribute:: last_error
+      :type:  Optional[str]
+      :value: None
+
+
+
+   .. py:attribute:: metadata
+      :type:  Dict[str, Any]
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: reconnect_attempts
+      :type:  int
+      :value: 0
+
+
+
+   .. py:attribute:: status
+      :type:  ConnectionStatus
+
+
+   .. py:attribute:: transport
+      :type:  mcp.client.transport.MCPTransport
+

@@ -1,0 +1,63 @@
+mcp.downloader.discovery
+========================
+
+.. py:module:: mcp.downloader.discovery
+
+.. autoapi-nested-parse::
+
+   Server discovery module for finding MCP servers from various sources.
+
+   This module provides functionality to discover MCP servers from multiple
+   registries and sources including npm, PyPI, GitHub, and custom registries.
+
+   .. rubric:: Examples
+
+   Basic discovery:
+
+       .. code-block:: python
+       discovery = ServerDiscovery(config)
+       servers = await discovery.discover_all(limit_per_source=10)
+
+   Discover from specific source:
+
+       .. code-block:: python
+
+           servers = await discovery.discover_from_npm(query="mcp server", limit=20)
+
+   Classes:
+       ServerDiscovery: Main discovery class
+       DiscoveredServer: Information about a discovered server
+
+   Version: 1.0.0
+   Author: Haive MCP Team
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.downloader.discovery.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/downloader/discovery/DiscoveredServer
+   /autoapi/mcp/downloader/discovery/ServerDiscovery
+
+.. autoapisummary::
+
+   mcp.downloader.discovery.DiscoveredServer
+   mcp.downloader.discovery.ServerDiscovery
+
+
+Module Contents
+---------------
+
+.. py:data:: logger
+

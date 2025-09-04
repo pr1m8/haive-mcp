@@ -1,0 +1,26 @@
+self_query_mcp_agent_v2.SelfQueryMCPAgent
+=========================================
+
+.. py:class:: self_query_mcp_agent_v2.SelfQueryMCPAgent(name: str = 'mcp_self_query_agent')
+
+   Bases: :py:obj:`haive.agents.rag.base.agent.BaseRAGAgent`
+
+
+   Enhanced MCP Discovery Agent using proper Haive configuration system.
+
+   Initialize with proper Haive configuration system.
+
+
+   .. py:method:: analyze_query_intent(query: str) -> str
+
+      Analyze query to determine if it's suitable for self-query.
+
+
+
+   .. py:method:: search_mcp_servers(query: str, k: int = 5) -> list[langchain.schema.Document]
+      :async:
+
+
+      Search for MCP servers using the configured retriever.
+
+

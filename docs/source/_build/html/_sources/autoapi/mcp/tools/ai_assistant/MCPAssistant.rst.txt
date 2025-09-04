@@ -1,0 +1,76 @@
+mcp.tools.ai_assistant.MCPAssistant
+===================================
+
+.. py:class:: mcp.tools.ai_assistant.MCPAssistant(cache_enabled: bool = True)
+
+   AI-friendly MCP server selection and configuration assistant.
+
+   Initialize MCP assistant.
+
+   :param cache_enabled: Whether to cache server information
+
+
+   .. py:method:: auto_configure_for_task(task_description: str, prefer_simple_setup: bool = True, max_servers: int = 3, include_fallbacks: bool = True) -> SmartConfiguration
+      :async:
+
+
+      Automatically configure MCP servers for a task.
+
+      :param task_description: Natural language description of the task
+      :param prefer_simple_setup: Prefer servers with easier setup
+      :param max_servers: Maximum number of servers to include
+      :param include_fallbacks: Whether to include fallback servers
+
+      :returns: SmartConfiguration with optimized setup
+
+
+
+   .. py:method:: explain_recommendation(server_name: str) -> dict[str, Any]
+
+      Get detailed explanation for a server recommendation.
+
+      :param server_name: Name of the server to explain
+
+      :returns: Dictionary with detailed explanation
+
+
+
+   .. py:method:: get_selection_reasoning() -> str
+
+      Get the reasoning for the last selection.
+
+
+
+   .. py:method:: validate_configuration(config: haive.mcp.config.MCPConfig) -> dict[str, Any]
+      :async:
+
+
+      Validate a configuration and provide feedback.
+
+      :param config: MCP configuration to validate
+
+      :returns: Validation results with issues and suggestions
+
+
+
+   .. py:attribute:: analyzer
+
+
+   .. py:attribute:: cache_enabled
+      :value: True
+
+
+
+   .. py:attribute:: cached_configs
+
+
+   .. py:attribute:: last_reasoning
+      :value: ''
+
+
+
+   .. py:attribute:: matcher
+
+
+   .. py:attribute:: selector
+

@@ -1,0 +1,61 @@
+enhance_mcp_data
+================
+
+.. py:module:: enhance_mcp_data
+
+.. autoapi-nested-parse::
+
+   Enhanced MCP Data Collector.
+
+   Collects comprehensive information about MCP servers including:
+   - Full README content
+   - Detailed documentation
+   - Installation instructions
+   - Code examples
+   - Dependencies
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   enhance_mcp_data.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/enhance_mcp_data/GitHubDataEnhancer
+   /autoapi/enhance_mcp_data/MCPDataEnhancer
+
+.. autoapisummary::
+
+   enhance_mcp_data.GitHubDataEnhancer
+   enhance_mcp_data.MCPDataEnhancer
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   enhance_mcp_data.main
+
+
+Module Contents
+---------------
+
+.. py:function:: main()
+   :async:
+
+
+   Main execution function.
+
+
+.. py:data:: logger
+

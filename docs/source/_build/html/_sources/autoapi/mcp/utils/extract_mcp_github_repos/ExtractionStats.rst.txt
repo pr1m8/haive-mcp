@@ -1,0 +1,53 @@
+mcp.utils.extract_mcp_github_repos.ExtractionStats
+==================================================
+
+.. py:class:: mcp.utils.extract_mcp_github_repos.ExtractionStats(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Statistics for extraction process.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: categories
+      :type:  dict[str, int]
+      :value: None
+
+
+
+   .. py:attribute:: extraction_duration
+      :type:  float | None
+      :value: None
+
+
+
+   .. py:attribute:: failed_extractions
+      :type:  int
+      :value: 0
+
+
+
+   .. py:attribute:: languages
+      :type:  dict[str, int]
+      :value: None
+
+
+
+   .. py:attribute:: successfully_extracted
+      :type:  int
+      :value: 0
+
+
+
+   .. py:attribute:: total_found
+      :type:  int
+      :value: 0
+
+

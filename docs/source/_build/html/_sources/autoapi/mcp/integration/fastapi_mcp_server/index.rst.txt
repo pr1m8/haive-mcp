@@ -1,0 +1,129 @@
+mcp.integration.fastapi_mcp_server
+==================================
+
+.. py:module:: mcp.integration.fastapi_mcp_server
+
+.. autoapi-nested-parse::
+
+   FastAPI MCP Discovery and Installation Server.
+
+   This server provides:
+   1. Web interface for discovering MCP servers
+   2. HITL approval via web UI
+   3. Server installation and testing
+   4. Real-time status updates via WebSocket
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.integration.fastapi_mcp_server.app
+   mcp.integration.fastapi_mcp_server.manager
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/integration/fastapi_mcp_server/ApprovalResponse
+   /autoapi/mcp/integration/fastapi_mcp_server/InstallRequest
+   /autoapi/mcp/integration/fastapi_mcp_server/MCPServerManager
+   /autoapi/mcp/integration/fastapi_mcp_server/SearchRequest
+   /autoapi/mcp/integration/fastapi_mcp_server/ServerInfo
+   /autoapi/mcp/integration/fastapi_mcp_server/TestRequest
+
+.. autoapisummary::
+
+   mcp.integration.fastapi_mcp_server.ApprovalResponse
+   mcp.integration.fastapi_mcp_server.InstallRequest
+   mcp.integration.fastapi_mcp_server.MCPServerManager
+   mcp.integration.fastapi_mcp_server.SearchRequest
+   mcp.integration.fastapi_mcp_server.ServerInfo
+   mcp.integration.fastapi_mcp_server.TestRequest
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp.integration.fastapi_mcp_server.approve_installation
+   mcp.integration.fastapi_mcp_server.get_installed_servers
+   mcp.integration.fastapi_mcp_server.install_server
+   mcp.integration.fastapi_mcp_server.lifespan
+   mcp.integration.fastapi_mcp_server.root
+   mcp.integration.fastapi_mcp_server.search_servers
+   mcp.integration.fastapi_mcp_server.test_server
+   mcp.integration.fastapi_mcp_server.websocket_endpoint
+
+
+Module Contents
+---------------
+
+.. py:function:: approve_installation(response: ApprovalResponse)
+   :async:
+
+
+   Approve or reject an installation.
+
+
+.. py:function:: get_installed_servers()
+   :async:
+
+
+   Get list of installed servers.
+
+
+.. py:function:: install_server(request: InstallRequest)
+   :async:
+
+
+   Install an MCP server.
+
+
+.. py:function:: lifespan(app: fastapi.FastAPI)
+   :async:
+
+
+   Lifespan.
+
+   :param app: [TODO: Add description]
+
+
+.. py:function:: root()
+   :async:
+
+
+   Serve the web UI.
+
+
+.. py:function:: search_servers(request: SearchRequest)
+   :async:
+
+
+   Search for MCP servers.
+
+
+.. py:function:: test_server(request: TestRequest)
+   :async:
+
+
+   Test an installed MCP server.
+
+
+.. py:function:: websocket_endpoint(websocket: fastapi.WebSocket)
+   :async:
+
+
+   WebSocket endpoint for real-time updates.
+
+
+.. py:data:: app
+
+.. py:data:: manager
+

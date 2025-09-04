@@ -1,0 +1,47 @@
+mcp.servers.dataflow_mcp_server.AgentCreationRequest
+====================================================
+
+.. py:class:: mcp.servers.dataflow_mcp_server.AgentCreationRequest(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Request model for agent creation.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: model
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: name
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: system_prompt
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: temperature
+      :type:  float
+      :value: None
+
+
+
+   .. py:attribute:: tools
+      :type:  list[str]
+      :value: None
+
+

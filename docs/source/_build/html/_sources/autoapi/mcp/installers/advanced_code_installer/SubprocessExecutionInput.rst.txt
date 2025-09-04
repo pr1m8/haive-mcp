@@ -1,0 +1,41 @@
+mcp.installers.advanced_code_installer.SubprocessExecutionInput
+===============================================================
+
+.. py:class:: mcp.installers.advanced_code_installer.SubprocessExecutionInput(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Input for subprocess execution tool.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: command
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: environment_vars
+      :type:  dict[str, str]
+      :value: None
+
+
+
+   .. py:attribute:: timeout
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: working_directory
+      :type:  str | None
+      :value: None
+
+

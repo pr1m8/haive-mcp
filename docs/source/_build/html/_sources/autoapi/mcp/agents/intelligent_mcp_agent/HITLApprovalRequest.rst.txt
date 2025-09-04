@@ -1,0 +1,65 @@
+mcp.agents.intelligent_mcp_agent.HITLApprovalRequest
+====================================================
+
+.. py:class:: mcp.agents.intelligent_mcp_agent.HITLApprovalRequest(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Request for human-in-the-loop approval.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: approval_callback
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: context
+      :type:  dict[str, Any]
+      :value: None
+
+
+
+   .. py:attribute:: recommendation
+      :type:  ServerRecommendation
+      :value: None
+
+
+
+   .. py:attribute:: request_id
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: request_type
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: response_deadline
+      :type:  datetime.datetime | None
+      :value: None
+
+
+
+   .. py:attribute:: status
+      :type:  ApprovalStatus
+      :value: None
+
+
+
+   .. py:attribute:: timestamp
+      :type:  datetime.datetime
+      :value: None
+
+

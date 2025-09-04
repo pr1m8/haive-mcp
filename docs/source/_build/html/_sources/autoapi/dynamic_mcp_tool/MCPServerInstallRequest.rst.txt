@@ -1,0 +1,41 @@
+dynamic_mcp_tool.MCPServerInstallRequest
+========================================
+
+.. py:class:: dynamic_mcp_tool.MCPServerInstallRequest(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Request to install an MCP server.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: auto_install
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: capability_description
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: max_servers
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: use_fastmcp
+      :type:  bool
+      :value: None
+
+

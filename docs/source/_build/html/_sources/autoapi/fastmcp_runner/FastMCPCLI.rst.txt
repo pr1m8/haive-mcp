@@ -1,0 +1,20 @@
+fastmcp_runner.FastMCPCLI
+=========================
+
+.. py:class:: fastmcp_runner.FastMCPCLI
+
+   Command-line interface for FastMCP server management.
+
+   Init  .
+
+
+   .. py:method:: run_command(command: str, args: list[str])
+      :async:
+
+
+      Execute a CLI command.
+
+
+
+   .. py:attribute:: manager
+

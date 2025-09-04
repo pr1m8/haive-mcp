@@ -1,0 +1,64 @@
+mcp.downloader.github_mass_downloader.GitHubMCPDownloader
+=========================================================
+
+.. py:class:: mcp.downloader.github_mass_downloader.GitHubMCPDownloader(resources_dir: str = 'agent_resources/mcp_servers')
+
+   Download all MCP servers from GitHub resources.
+
+   Init  .
+
+   :param resources_dir: [TODO: Add description]
+
+
+   .. py:method:: categorize_servers(servers)
+
+      Categorize servers by type.
+
+
+
+   .. py:method:: create_master_config(categorized)
+
+      Create a master configuration file.
+
+
+
+   .. py:method:: create_server_config(server_data)
+
+      Create ServerConfig from server data.
+
+
+
+   .. py:method:: download_all_servers()
+      :async:
+
+
+      Download all servers from GitHub resources.
+
+
+
+   .. py:method:: load_all_servers()
+
+      Load all server information from resources.
+
+
+
+   .. py:method:: show_results(results)
+
+      Display download results.
+
+
+
+   .. py:attribute:: all_servers_file
+
+
+   .. py:attribute:: dirs
+
+
+   .. py:attribute:: documents_dir
+
+
+   .. py:attribute:: output_dir
+
+
+   .. py:attribute:: resources_dir
+

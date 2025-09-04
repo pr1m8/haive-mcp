@@ -16,14 +16,14 @@ Skip all the manual server installation! With Haive MCP, agents automatically di
 
 ```python
 import asyncio
-from haive.mcp.agents import MCPAgent
+from haive.mcp.agents.enhanced_mcp_agent import EnhancedMCPAgent
 from haive.core.engine.aug_llm import AugLLMConfig
 
 async def create_first_agent():
     """Create an agent that automatically gets filesystem tools."""
     
     # Create agent with automatic tool discovery
-    agent = MCPAgent(
+    agent = EnhancedMCPAgent(
         name="file_assistant",
         engine=AugLLMConfig(
             temperature=0.7,
@@ -78,7 +78,7 @@ async def use_file_agent():
     
     # Use the agent we created (agent variable from Step 1)
     # Or create a new one:
-    agent = MCPAgent(
+    agent = EnhancedMCPAgent(
         name="file_worker",
         engine=AugLLMConfig(temperature=0.7),
         mcp_categories=["core"],
@@ -140,7 +140,7 @@ async def explore_categories():
     # Create agents with different tool sets
     
     # 1. Core tools (filesystem, database, web search)
-    core_agent = MCPAgent(
+    core_agent = EnhancedMCPAgent(
         name="core_agent",
         engine=AugLLMConfig(),
         mcp_categories=["core"],
@@ -148,7 +148,7 @@ async def explore_categories():
     )
     
     # 2. Enhanced filesystem tools
-    fs_agent = MCPAgent(
+    fs_agent = EnhancedMCPAgent(
         name="filesystem_agent", 
         engine=AugLLMConfig(),
         mcp_categories=["enhanced_filesystem"],
@@ -156,7 +156,7 @@ async def explore_categories():
     )
     
     # 3. Multiple categories
-    multi_agent = MCPAgent(
+    multi_agent = EnhancedMCPAgent(
         name="multi_agent",
         engine=AugLLMConfig(), 
         mcp_categories=["core", "ai_enhanced", "time_utilities"],
@@ -191,7 +191,7 @@ Monitor your MCP integration with built-in debugging tools:
 async def debug_mcp_agent():
     """Debug and monitor MCP agent performance."""
     
-    agent = MCPAgent(
+    agent = EnhancedMCPAgent(
         name="debug_agent",
         engine=AugLLMConfig(),
         mcp_categories=["core"],
@@ -255,7 +255,7 @@ except:
 
 ```python
 # Increase timeout for slow networks
-agent = MCPAgent(
+agent = EnhancedMCPAgent(
     name="patient_agent",
     engine=AugLLMConfig(),
     mcp_categories=["core"],
@@ -269,7 +269,7 @@ agent = MCPAgent(
 ```python
 # Debug specific tool issues
 async def debug_tool_issue():
-    agent = MCPAgent(name="debug", engine=AugLLMConfig(), 
+    agent = EnhancedMCPAgent(name="debug", engine=AugLLMConfig(), 
                            mcp_categories=["core"], auto_install=True)
     await agent.initialize_mcp()
     
@@ -293,7 +293,7 @@ asyncio.run(debug_tool_issue())
 
    ```python
    async def file_manager():
-       agent = MCPAgent(name="fm", engine=AugLLMConfig(), 
+       agent = EnhancedMCPAgent(name="fm", engine=AugLLMConfig(), 
                               mcp_categories=["enhanced_filesystem"], auto_install=True)
        await agent.initialize_mcp()
        
@@ -305,7 +305,7 @@ asyncio.run(debug_tool_issue())
 
    ```python
    async def workflow_agent():
-       agent = MCPAgent(name="workflow", engine=AugLLMConfig(),
+       agent = EnhancedMCPAgent(name="workflow", engine=AugLLMConfig(),
                               mcp_categories=["core", "ai_enhanced"], auto_install=True)
        await agent.initialize_mcp()
        
@@ -317,7 +317,7 @@ asyncio.run(debug_tool_issue())
 
    ```python
    async def monitor_health():
-       agent = MCPAgent(name="monitor", engine=AugLLMConfig(),
+       agent = EnhancedMCPAgent(name="monitor", engine=AugLLMConfig(),
                               mcp_categories=["core"], auto_install=True)
        await agent.initialize_mcp()
        
@@ -368,6 +368,6 @@ You've learned how to:
 
 ## Additional Resources
 
-- [MCPAgent API Reference](../docs/source/agents.rst)
+- [EnhancedMCPAgent API Reference](../docs/source/agents.rst)
 - [MCP Categories Guide](../guides/platform-architecture.rst)
 - [Real-world Examples](../guides/real-world-examples.rst)

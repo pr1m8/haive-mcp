@@ -1,0 +1,74 @@
+dynamic_activation_mcp.DynamicMCPRegistry
+=========================================
+
+.. py:class:: dynamic_activation_mcp.DynamicMCPRegistry
+
+   Bases: :py:obj:`haive.core.registry.DynamicRegistry`\ [\ :py:obj:`MCPTool`\ ]
+
+
+   MCP-specific registry for dynamic tool activation.
+
+   Extends DynamicRegistry with MCP-specific functionality for tool
+   registration and activation with MCP servers.
+
+   .. rubric:: Examples
+
+   Create MCP registry:
+
+   .. code-block:: python
+       registry = DynamicMCPRegistry()
+
+       # Register MCP tool
+       tool = MCPTool(
+           name="search",
+           description="Web search",
+           input_schema={"type": "object", "properties": {"query": {"type": "string"}}},
+           handler=search_handler
+       )
+       item = RegistryItem(
+           id="search_001",
+           name="Web Search",
+           description="Search the web",
+           component=tool
+       )
+       registry.register(item)
+
+
+   .. py:method:: activate_mcp_tool(tool_id: str, mcp_server: Any | None = None) -> MCPTool | None
+      :async:
+
+
+      Activate an MCP tool and register with server.
+
+      :param tool_id: ID of tool to activate
+      :param mcp_server: MCP server to register with (optional)
+
+      :returns: Activated MCPTool or None if activation failed
+
+      .. rubric:: Examples
+
+      Activate MCP tool:
+
+      .. code-block:: python
+              tool = await registry.activate_mcp_tool("search_001", server)
+              if tool:
+                  print(f"Activated: {tool.name}")
+
+
+
+   .. py:method:: get_tool_schemas() -> dict[str, dict[str, Any]]
+
+      Get input schemas for all registered tools.
+
+      :returns: Dictionary of tool name to input schema
+
+      .. rubric:: Examples
+
+      Get schemas for MCP registration:
+
+      .. code-block:: python
+              schemas = registry.get_tool_schemas()
+              for tool_name, schema in schemas.items():
+                  print(f"{tool_name}: {schema}")
+
+

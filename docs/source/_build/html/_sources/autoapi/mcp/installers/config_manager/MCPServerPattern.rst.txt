@@ -1,0 +1,43 @@
+mcp.installers.config_manager.MCPServerPattern
+==============================================
+
+.. py:class:: mcp.installers.config_manager.MCPServerPattern
+
+   Standard pattern for MCP server installation.
+
+
+   .. py:attribute:: default_args
+      :type:  list[str]
+
+
+   .. py:attribute:: env_template
+      :type:  dict[str, str]
+
+
+   .. py:attribute:: install_command
+      :type:  str
+
+
+   .. py:attribute:: package_pattern
+      :type:  str
+
+
+   .. py:attribute:: pattern_name
+      :type:  str
+
+
+   .. py:attribute:: security_level
+      :type:  str
+      :value: 'safe'
+
+
+
+   .. py:attribute:: startup_command
+      :type:  str
+
+
+   .. py:attribute:: transport
+      :type:  str
+      :value: 'stdio'
+
+

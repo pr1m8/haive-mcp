@@ -1,0 +1,72 @@
+mcp.installers.safe_pattern_installer.SafePatternInstaller
+==========================================================
+
+.. py:class:: mcp.installers.safe_pattern_installer.SafePatternInstaller(config_manager: haive.mcp.installers.config_manager.MCPConfigManager | None = None)
+
+   Safe MCP installer using only predefined patterns.
+
+   Init  .
+
+   :param config_manager: [TODO: Add description]
+
+
+   .. py:method:: check_server_status(server_name: str) -> str
+
+      Check if an MCP server is running.
+
+
+
+   .. py:method:: cleanup() -> None
+
+      Stop all running servers.
+
+
+
+   .. py:method:: create_installation_tool(request: InstallationRequest) -> langchain_core.tools.StructuredTool
+
+      Create a tool for installing a specific MCP server.
+
+
+
+   .. py:method:: create_quick_install_tools() -> list[langchain_core.tools.StructuredTool]
+
+      Create tools for common MCP server installations.
+
+
+
+   .. py:method:: get_pattern_for_server(package_name: str, suggested_pattern: str) -> haive.mcp.installers.config_manager.MCPServerPattern | None
+
+      Get the appropriate pattern for a server.
+
+
+
+   .. py:method:: get_status_summary() -> dict[str, Any]
+
+      Get summary of installer status.
+
+
+
+   .. py:method:: start_server(server_name: str) -> InstallationResult
+      :async:
+
+
+      Start a configured MCP server.
+
+
+
+   .. py:method:: validate_installation_request(request: InstallationRequest) -> tuple[bool, str]
+
+      Validate that installation request is safe.
+
+
+
+   .. py:attribute:: config_manager
+
+
+   .. py:attribute:: request_counters
+      :type:  dict[str, int]
+
+
+   .. py:attribute:: running_servers
+      :type:  dict[str, subprocess.Popen]
+

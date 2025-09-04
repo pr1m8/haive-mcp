@@ -1,0 +1,101 @@
+mcp.cli.mcp_manager
+===================
+
+.. py:module:: mcp.cli.mcp_manager
+
+.. autoapi-nested-parse::
+
+   Comprehensive MCP Server Manager.
+
+   This script provides a complete management interface for MCP servers including:
+   - Discovery from multiple sources
+   - Installation using various methods
+   - Configuration management
+   - Health monitoring
+   - Updates and maintenance
+
+   Usage:
+       python mcp_manager.py discover --auto-install
+       python mcp_manager.py install --servers filesystem github postgres
+       python mcp_manager.py install --categories official core
+       python mcp_manager.py list --status all
+       python mcp_manager.py health-check
+       python mcp_manager.py update --all
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.cli.mcp_manager.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/cli/mcp_manager/MCPServerManager
+
+.. autoapisummary::
+
+   mcp.cli.mcp_manager.MCPServerManager
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp.cli.mcp_manager.cli
+   mcp.cli.mcp_manager.config
+   mcp.cli.mcp_manager.discover
+   mcp.cli.mcp_manager.health_check
+   mcp.cli.mcp_manager.install
+   mcp.cli.mcp_manager.list_servers
+   mcp.cli.mcp_manager.update
+
+
+Module Contents
+---------------
+
+.. py:function:: cli(ctx, config, install_dir)
+
+   MCP Server Manager - Comprehensive management for Model Context Protocol servers.
+
+
+.. py:function:: config(ctx)
+
+   Show current configuration.
+
+
+.. py:function:: discover(ctx, auto_install, limit)
+
+   Discover MCP servers from all configured sources.
+
+
+.. py:function:: health_check(ctx, servers)
+
+   Perform health checks on MCP servers.
+
+
+.. py:function:: install(ctx, servers, categories, install_all)
+
+   Install MCP servers.
+
+
+.. py:function:: list_servers(ctx, status, output_format)
+
+   List MCP servers and their status.
+
+
+.. py:function:: update(ctx, servers, update_all, force)
+
+   Update MCP servers to latest versions.
+
+
+.. py:data:: logger
+

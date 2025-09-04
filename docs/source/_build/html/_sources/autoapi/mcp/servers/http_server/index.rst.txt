@@ -1,0 +1,150 @@
+mcp.servers.http_server
+=======================
+
+.. py:module:: mcp.servers.http_server
+
+.. autoapi-nested-parse::
+
+   HTTP-based MCP server for haive using FastAPI and SSE transport.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.servers.http_server.app
+   mcp.servers.http_server.logger
+   mcp.servers.http_server.mcp
+   mcp.servers.http_server.sse_transport
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp.servers.http_server.calculate
+   mcp.servers.http_server.echo
+   mcp.servers.http_server.get_server_time
+   mcp.servers.http_server.get_system_info
+   mcp.servers.http_server.handle_sse
+   mcp.servers.http_server.health
+   mcp.servers.http_server.help_prompt
+   mcp.servers.http_server.info
+   mcp.servers.http_server.list_tools
+   mcp.servers.http_server.root
+   mcp.servers.http_server.run_server
+   mcp.servers.http_server.server_info_resource
+   mcp.servers.http_server.server_status_resource
+
+
+Module Contents
+---------------
+
+.. py:function:: calculate(operation: str, a: float, b: float) -> float
+   :async:
+
+
+   Perform a calculation.
+
+   :param operation: One of 'add', 'subtract', 'multiply', 'divide'
+   :param a: First number
+   :param b: Second number
+
+   :returns: Result of the calculation
+
+
+.. py:function:: echo(message: str) -> str
+   :async:
+
+
+   Echo back a message.
+
+
+.. py:function:: get_server_time() -> str
+   :async:
+
+
+   Get the current server time.
+
+
+.. py:function:: get_system_info() -> dict[str, Any]
+   :async:
+
+
+   Get system information.
+
+
+.. py:function:: handle_sse(request: fastapi.Request)
+   :async:
+
+
+   Handle SSE connections for MCP protocol.
+
+
+.. py:function:: health()
+   :async:
+
+
+   Health check endpoint.
+
+
+.. py:function:: help_prompt() -> list[dict[str, str]]
+   :async:
+
+
+   Get help using this MCP server.
+
+
+.. py:function:: info()
+   :async:
+
+
+   Server information endpoint.
+
+
+.. py:function:: list_tools() -> list[str]
+   :async:
+
+
+   List all available tools.
+
+
+.. py:function:: root()
+   :async:
+
+
+   Root endpoint.
+
+
+.. py:function:: run_server(host: str = '0.0.0.0', port: int = 8000)
+
+   Run the HTTP MCP server.
+
+
+.. py:function:: server_info_resource() -> str
+   :async:
+
+
+   Get server information as a resource.
+
+
+.. py:function:: server_status_resource() -> str
+   :async:
+
+
+   Get server status.
+
+
+.. py:data:: app
+
+.. py:data:: logger
+
+.. py:data:: mcp
+
+.. py:data:: sse_transport
+   :value: None
+
+

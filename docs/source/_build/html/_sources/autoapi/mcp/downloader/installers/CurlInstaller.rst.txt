@@ -1,0 +1,58 @@
+mcp.downloader.installers.CurlInstaller
+=======================================
+
+.. py:class:: mcp.downloader.installers.CurlInstaller
+
+   Bases: :py:obj:`MCPInstaller`
+
+
+   Installer for direct HTTP downloads.
+
+   Downloads files directly via HTTP/HTTPS without package managers.
+
+   .. rubric:: Examples
+
+   Curl installation:
+
+   .. code-block:: python
+       installer = CurlInstaller()
+       result = await installer.install(
+           server_config,
+           template,
+           install_dir
+       )
+
+
+   .. py:method:: can_handle(server_config: haive.mcp.downloader.config.ServerConfig, template: haive.mcp.downloader.config.ServerTemplate) -> bool
+      :async:
+
+
+      Check if this is a curl/HTTP download.
+
+
+
+   .. py:method:: install(server_config: haive.mcp.downloader.config.ServerConfig, template: haive.mcp.downloader.config.ServerTemplate, install_dir: pathlib.Path) -> dict[str, Any]
+      :async:
+
+
+      Download files via HTTP.
+
+      :param server_config: Server configuration
+      :param template: Server template
+      :param install_dir: Installation directory
+
+      :returns: Installation result dictionary
+
+
+
+   .. py:method:: verify(server_config: haive.mcp.downloader.config.ServerConfig, template: haive.mcp.downloader.config.ServerTemplate, install_dir: pathlib.Path) -> bool
+      :async:
+
+
+      Verify curl installation.
+
+      Checks if the expected files exist.
+
+      :returns: True if installation directory exists with files
+
+

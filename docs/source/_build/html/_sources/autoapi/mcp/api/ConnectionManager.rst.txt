@@ -1,0 +1,28 @@
+mcp.api.ConnectionManager
+=========================
+
+.. py:class:: mcp.api.ConnectionManager
+
+   .. py:method:: broadcast(message: str)
+      :async:
+
+
+
+   .. py:method:: connect(websocket: fastapi.WebSocket)
+      :async:
+
+
+
+   .. py:method:: disconnect(websocket: fastapi.WebSocket)
+
+
+   .. py:method:: send_personal_message(message: str, websocket: fastapi.WebSocket)
+      :async:
+
+
+
+   .. py:attribute:: active_connections
+      :type:  List[fastapi.WebSocket]
+      :value: []
+
+

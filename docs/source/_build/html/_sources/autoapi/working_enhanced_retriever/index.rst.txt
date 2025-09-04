@@ -1,0 +1,45 @@
+working_enhanced_retriever
+==========================
+
+.. py:module:: working_enhanced_retriever
+
+.. autoapi-nested-parse::
+
+   Working Enhanced MCP Retriever - Parent-Child + Self-Query Combined.
+
+   This demonstrates the key pattern: metadata on child chunks enables
+   self-query filtering while returning full parent documents.
+
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/working_enhanced_retriever/WorkingEnhancedRetriever
+
+.. autoapisummary::
+
+   working_enhanced_retriever.WorkingEnhancedRetriever
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   working_enhanced_retriever.main
+
+
+Module Contents
+---------------
+
+.. py:function:: main()
+   :async:
+
+
+   Run working example.
+
+

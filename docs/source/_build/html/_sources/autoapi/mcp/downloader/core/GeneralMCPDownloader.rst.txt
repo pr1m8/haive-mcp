@@ -1,0 +1,293 @@
+mcp.downloader.core.GeneralMCPDownloader
+========================================
+
+.. py:class:: mcp.downloader.core.GeneralMCPDownloader(config_file: str | None = None, install_dir: str | None = None)
+
+   General MCP Server Downloader with configurable patterns and installers.
+
+   This is the main orchestrator class that manages the downloading, installation,
+   and configuration of MCP servers from various sources using a plugin-based
+   architecture.
+
+   .. attribute:: config
+
+      Downloader configuration
+
+   .. attribute:: installers
+
+      List of available installers
+
+   .. attribute:: discovery
+
+      Server discovery instance
+
+   .. attribute:: status_tracker
+
+      Server status tracking
+
+   .. rubric:: Example
+
+   Creating and using downloader:
+
+   .. code-block:: python
+       downloader = GeneralMCPDownloader()
+
+       # Download specific servers
+       result = await downloader.download_servers(["filesystem", "github"])
+
+       # Auto-discover and install
+       result = await downloader.auto_discover_and_download(limit=10)
+
+       # Check server health
+       health = await downloader.check_server_health()
+
+   .. note::
+
+      The downloader automatically creates necessary directories and
+      default configuration if not provided.
+
+   Initialize the General MCP Downloader.
+
+   :param config_file: Path to YAML configuration file. If not provided,
+                       creates a default configuration.
+   :param install_dir: Directory for server installations. Defaults to
+                       ~/.mcp/servers if not specified.
+
+   .. rubric:: Example
+
+   Initialization:
+
+   .. code-block:: python
+           # Use defaults
+           downloader = GeneralMCPDownloader()
+
+           # Custom paths
+           downloader = GeneralMCPDownloader(
+               config_file="/path/to/config.yaml",
+               install_dir="/custom/install/dir"
+           )
+
+
+   .. py:method:: add_custom_server(server: haive.mcp.downloader.config.ServerConfig) -> None
+
+      Add a custom server configuration.
+
+      :param server: ServerConfig to add
+
+      .. rubric:: Example
+
+      Adding custom server:
+
+      .. code-block:: python
+              custom = ServerConfig(
+                  name="my-custom-mcp",
+                  template="git_repo",
+                  source="https://github.com/user/my-mcp.git",
+                  variables={"owner": "user", "repo": "my-mcp"}
+              )
+              downloader.add_custom_server(custom)
+
+
+
+   .. py:method:: add_custom_template(template: haive.mcp.downloader.config.ServerTemplate) -> None
+
+      Add a custom template.
+
+      :param template: ServerTemplate to add
+
+      .. rubric:: Example
+
+      Adding custom template:
+
+      .. code-block:: python
+              template = ServerTemplate(
+                  name="rust_binary",
+                  installation_method=InstallationMethod.BINARY,
+                  command_pattern="./{service}-mcp",
+                  category="rust"
+              )
+              downloader.add_custom_template(template)
+
+
+
+   .. py:method:: auto_discover_and_download(limit: int | None = None, auto_install: bool = True) -> DownloadResult
+      :async:
+
+
+      Auto-discover servers from registries and optionally download them.
+
+      This method discovers MCP servers from configured sources and can
+      automatically install them.
+
+      :param limit: Maximum number of servers to discover per source
+      :param auto_install: Whether to automatically install discovered servers
+
+      :returns: DownloadResult with discovery and installation details
+
+      .. rubric:: Example
+
+      Auto-discover and install:
+
+      .. code-block:: python
+              result = await downloader.auto_discover_and_download(limit=20)
+              print(f"Discovered and installed {result.successful} servers")
+
+          Discover only:
+
+              .. code-block:: python
+
+                  result = await downloader.auto_discover_and_download(
+                  limit=50,
+                  auto_install=False
+              )
+
+
+
+   .. py:method:: check_server_health(server_names: list[str] | None = None) -> dict[str, Any]
+      :async:
+
+
+      Check health status of installed servers.
+
+      :param server_names: Specific servers to check. If None, checks all installed.
+
+      :returns: Dict with health check results
+
+      .. rubric:: Example
+
+      Checking health:
+
+      .. code-block:: python
+              health = await downloader.check_server_health()
+              for server, status in health["servers"].items():
+                  print(f"{server}: {status}")
+
+
+
+   .. py:method:: download_servers(server_names: list[str] | None = None, categories: list[str] | None = None, tags: set[str] | None = None, max_concurrent: int | None = None) -> DownloadResult
+      :async:
+
+
+      Download and install MCP servers.
+
+      This is the main method for downloading servers. It supports filtering
+      by name, category, or tags, and handles concurrent downloads with
+      retry logic.
+
+      :param server_names: Specific server names to download. If None,
+                           downloads all enabled servers.
+      :param categories: Filter servers by category (e.g., "official", "community")
+      :param tags: Filter servers by tags (e.g., {"database", "file-operations"})
+      :param max_concurrent: Maximum concurrent downloads. Uses config default if None.
+
+      :returns: DownloadResult with details of the operation
+
+      .. rubric:: Example
+
+      Download specific servers:
+
+      .. code-block:: python
+              result = await downloader.download_servers(["filesystem", "github"])
+              print(f"Success rate: {result.success_rate}%")
+
+          Download by category:
+
+              .. code-block:: python
+
+                  result = await downloader.download_servers(categories=["official"])
+
+          Download by tags:
+
+              .. code-block:: python
+
+                  result = await downloader.download_servers(tags={"database", "sql"})
+
+      :raises ValueError: If no servers match the criteria
+
+
+
+   .. py:method:: get_all_status() -> dict[str, ServerStatus]
+
+      Get status for all servers.
+
+      :returns: Dict mapping server names to ServerStatus objects
+
+
+
+   .. py:method:: get_server_status(server_name: str) -> ServerStatus | None
+
+      Get status for a specific server.
+
+      :param server_name: Name of the server
+
+      :returns: ServerStatus if found, None otherwise
+
+      .. rubric:: Example
+
+      Checking status:
+
+      .. code-block:: python
+              status = downloader.get_server_status("filesystem")
+              if status and status.status == "installed":
+                  print(f"Last success: {status.last_success}")
+
+
+
+   .. py:method:: save_configuration(config_file: pathlib.Path) -> None
+
+      Save current configuration to file.
+
+      :param config_file: Path to save configuration
+
+      .. rubric:: Example
+
+      Saving config:
+
+      .. code-block:: python
+              downloader.save_configuration(Path("my_config.yaml"))
+
+
+
+   .. py:attribute:: discovery
+
+
+   .. py:attribute:: installers
+
+
+   .. py:property:: servers
+      :type: list[haive.mcp.downloader.config.ServerConfig]
+
+
+      Get list of server configurations.
+
+      :returns: List of ServerConfig objects
+
+      .. rubric:: Example
+
+      Listing servers:
+
+      .. code-block:: python
+              for server in downloader.servers:
+                  print(f"{server.name}: {server.template}")
+
+
+   .. py:attribute:: status_tracker
+      :type:  dict[str, ServerStatus]
+
+
+   .. py:property:: templates
+      :type: dict[str, haive.mcp.downloader.config.ServerTemplate]
+
+
+      Get templates as a dictionary.
+
+      :returns: Dict mapping template names to ServerTemplate objects
+
+      .. rubric:: Example
+
+      Accessing templates:
+
+      .. code-block:: python
+              npm_template = downloader.templates["npm_official"]
+              print(f"Command: {npm_template.command_pattern}")
+

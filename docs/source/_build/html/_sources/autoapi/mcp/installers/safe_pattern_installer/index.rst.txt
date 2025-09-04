@@ -1,0 +1,31 @@
+mcp.installers.safe_pattern_installer
+=====================================
+
+.. py:module:: mcp.installers.safe_pattern_installer
+
+.. autoapi-nested-parse::
+
+   Safe Pattern-Based MCP Server Installer.
+
+   Version 1: Uses predefined patterns for safe, predictable installations.
+   No code generation - only trusted, tested patterns.
+
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/installers/safe_pattern_installer/InstallationRequest
+   /autoapi/mcp/installers/safe_pattern_installer/InstallationResult
+   /autoapi/mcp/installers/safe_pattern_installer/SafePatternInstaller
+
+.. autoapisummary::
+
+   mcp.installers.safe_pattern_installer.InstallationRequest
+   mcp.installers.safe_pattern_installer.InstallationResult
+   mcp.installers.safe_pattern_installer.SafePatternInstaller
+
+

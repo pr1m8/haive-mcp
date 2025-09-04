@@ -1,0 +1,211 @@
+mcp.client.protocol.MCPProtocol
+===============================
+
+.. py:class:: mcp.client.protocol.MCPProtocol(transport, timeout: float = 30.0, client_info: Optional[Dict[str, Any]] = None)
+
+   MCP protocol implementation.
+
+   This class handles the MCP protocol layer, including:
+       - Message serialization/deserialization
+       - Request/response matching
+       - Capability negotiation
+       - Protocol state management
+       - Error handling
+
+   The protocol is transport-agnostic and works with any MCPTransport
+   implementation. It provides a clean async API for MCP operations.
+
+   .. rubric:: Examples
+
+   Basic protocol usage::
+
+       from haive.mcp.client.transport import StdioTransport
+       from haive.mcp.client.protocol import MCPProtocol
+
+       transport = StdioTransport("npx", ["-y", "@modelcontextprotocol/server-filesystem"])
+       protocol = MCPProtocol(transport)
+
+       await protocol.initialize()
+       tools = await protocol.list_tools()
+       result = await protocol.call_tool("read_file", {"path": "/etc/hosts"})
+       await protocol.shutdown()
+
+   With context manager::
+
+       async with MCPProtocol(transport) as protocol:
+           tools = await protocol.list_tools()
+           result = await protocol.call_tool("tool_name", args)
+
+   Initialize MCP protocol.
+
+   :param transport: Transport implementation
+   :param timeout: Default timeout for requests
+   :param client_info: Client information for initialization
+
+
+   .. py:method:: __aenter__()
+      :async:
+
+
+      Async context manager entry.
+
+
+
+   .. py:method:: __aexit__(exc_type, exc_val, exc_tb)
+      :async:
+
+
+      Async context manager exit.
+
+
+
+   .. py:method:: add_notification_handler(method: str, handler: Callable[[Dict[str, Any]], Awaitable[None]]) -> None
+
+      Add a handler for notifications.
+
+      :param method: Notification method name
+      :param handler: Async handler function
+
+
+
+   .. py:method:: call_tool(name: str, arguments: Optional[Dict[str, Any]] = None) -> Any
+      :async:
+
+
+      Call a tool on the server.
+
+      :param name: Tool name to call
+      :param arguments: Tool arguments
+
+      :returns: Tool execution result
+
+      :raises MCPCapabilityError: If tools capability not supported
+      :raises MCPToolError: If tool execution fails
+      :raises MCPProtocolError: If request fails
+
+
+
+   .. py:method:: get_prompt(name: str, arguments: Optional[Dict[str, Any]] = None) -> Dict[str, Any]
+      :async:
+
+
+      Get a prompt from the server.
+
+      :param name: Prompt name
+      :param arguments: Prompt arguments
+
+      :returns: Prompt content and metadata
+
+
+
+   .. py:method:: initialize() -> Dict[str, Any]
+      :async:
+
+
+      Initialize the MCP connection.
+
+      This performs the MCP initialization handshake, including capability
+      negotiation and protocol version agreement.
+
+      :returns: Server information and capabilities
+
+      :raises MCPProtocolError: If initialization fails
+      :raises MCPCapabilityError: If capabilities are incompatible
+
+
+
+   .. py:method:: list_prompts() -> List[MCPPrompt]
+      :async:
+
+
+      List available prompts from the server.
+
+      :returns: List of available prompts
+
+      :raises MCPCapabilityError: If prompts capability not supported
+
+
+
+   .. py:method:: list_resources() -> List[MCPResource]
+      :async:
+
+
+      List available resources from the server.
+
+      :returns: List of available resources
+
+
+
+   .. py:method:: list_tools() -> List[MCPTool]
+      :async:
+
+
+      List available tools from the server.
+
+      :returns: List of available tools
+
+      :raises MCPCapabilityError: If tools capability not supported
+      :raises MCPProtocolError: If request fails
+
+
+
+   .. py:method:: read_resource(uri: str) -> Dict[str, Any]
+      :async:
+
+
+      Read a resource from the server.
+
+      :param uri: Resource URI to read
+
+      :returns: Resource content and metadata
+
+
+
+   .. py:method:: remove_notification_handler(method: str, handler: Callable[[Dict[str, Any]], Awaitable[None]]) -> None
+
+      Remove a notification handler.
+
+      :param method: Notification method name
+      :param handler: Handler function to remove
+
+
+
+   .. py:method:: shutdown() -> None
+      :async:
+
+
+      Shutdown the MCP connection gracefully.
+
+
+
+   .. py:attribute:: client_info
+
+
+   .. py:attribute:: initialized
+      :value: False
+
+
+
+   .. py:attribute:: protocol_version
+      :type:  Optional[MCPProtocolVersion]
+      :value: None
+
+
+
+   .. py:attribute:: server_capabilities
+      :type:  Set[MCPCapability]
+
+
+   .. py:attribute:: server_info
+      :type:  Optional[Dict[str, Any]]
+      :value: None
+
+
+
+   .. py:attribute:: timeout
+      :value: 30.0
+
+
+
+   .. py:attribute:: transport
+

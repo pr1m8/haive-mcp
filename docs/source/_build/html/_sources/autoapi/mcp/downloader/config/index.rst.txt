@@ -1,0 +1,115 @@
+mcp.downloader.config
+=====================
+
+.. py:module:: mcp.downloader.config
+
+.. autoapi-nested-parse::
+
+   Configuration models for MCP Downloader.
+
+   This module defines the configuration models used throughout the MCP downloader
+   system, including templates, server configurations, and installation methods.
+
+   .. rubric:: Example
+
+   Creating a server template:
+
+       .. code-block:: python
+       template = ServerTemplate(
+           name="npm_official",
+           installation_method=InstallationMethod.NPM,
+           command_pattern="@modelcontextprotocol/server-{service}",
+           capabilities=["tools"],
+           category="official"
+       )
+
+   Creating a server configuration:
+
+       .. code-block:: python
+
+           config = ServerConfig(
+           name="filesystem",
+           template="npm_official",
+           source="npm",
+           variables={"service": "filesystem"},
+           tags={"official", "file-operations"}
+       )
+
+   Classes:
+       InstallationMethod: Enum of supported installation methods
+       ServerTemplate: Template for server installation patterns
+       ServerConfig: Configuration for a specific server
+       DownloaderConfig: Overall downloader configuration
+
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/downloader/config/DiscoveryConfig
+   /autoapi/mcp/downloader/config/DownloaderConfig
+   /autoapi/mcp/downloader/config/InstallationMethod
+   /autoapi/mcp/downloader/config/ServerConfig
+   /autoapi/mcp/downloader/config/ServerTemplate
+
+.. autoapisummary::
+
+   mcp.downloader.config.DiscoveryConfig
+   mcp.downloader.config.DownloaderConfig
+   mcp.downloader.config.InstallationMethod
+   mcp.downloader.config.ServerConfig
+   mcp.downloader.config.ServerTemplate
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp.downloader.config.load_config
+   mcp.downloader.config.save_config
+
+
+Module Contents
+---------------
+
+.. py:function:: load_config(config_file: pathlib.Path) -> DownloaderConfig
+
+   Load configuration from YAML file.
+
+   :param config_file: Path to YAML configuration file
+
+   :returns: Loaded configuration
+   :rtype: DownloaderConfig
+
+   :raises FileNotFoundError: If config file doesn't exist
+   :raises ValueError: If config file is invalid
+
+   .. rubric:: Example
+
+   Loading config:
+
+   .. code-block:: python
+       config = load_config(Path("mcp_config.yaml"))
+       print(f"Loaded {len(config.templates)} templates")
+
+
+.. py:function:: save_config(config: DownloaderConfig, config_file: pathlib.Path) -> None
+
+   Save configuration to YAML file.
+
+   :param config: Configuration to save
+   :param config_file: Path to save file
+
+   .. rubric:: Example
+
+   Saving config:
+
+   .. code-block:: python
+       config = DownloaderConfig(max_concurrent=10)
+       save_config(config, Path("my_config.yaml"))
+
+

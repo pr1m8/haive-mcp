@@ -1,0 +1,53 @@
+mcp.client.protocol.MCPMessage
+==============================
+
+.. py:class:: mcp.client.protocol.MCPMessage(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Base MCP message.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: error
+      :type:  Optional[Dict[str, Any]]
+      :value: None
+
+
+
+   .. py:attribute:: id
+      :type:  Optional[Union[str, int]]
+      :value: None
+
+
+
+   .. py:attribute:: jsonrpc
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: method
+      :type:  Optional[str]
+      :value: None
+
+
+
+   .. py:attribute:: params
+      :type:  Optional[Dict[str, Any]]
+      :value: None
+
+
+
+   .. py:attribute:: result
+      :type:  Optional[Any]
+      :value: None
+
+

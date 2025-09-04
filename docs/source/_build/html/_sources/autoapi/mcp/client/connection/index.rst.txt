@@ -1,0 +1,45 @@
+mcp.client.connection
+=====================
+
+.. py:module:: mcp.client.connection
+
+.. autoapi-nested-parse::
+
+   MCP Connection Management.
+
+   This module provides connection management utilities for MCP clients.
+   It handles connection pooling, health monitoring, and connection lifecycle
+   management for different transport types.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.client.connection.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/client/connection/ConnectionInfo
+   /autoapi/mcp/client/connection/ConnectionStatus
+   /autoapi/mcp/client/connection/MCPConnection
+
+.. autoapisummary::
+
+   mcp.client.connection.ConnectionInfo
+   mcp.client.connection.ConnectionStatus
+   mcp.client.connection.MCPConnection
+
+
+Module Contents
+---------------
+
+.. py:data:: logger
+

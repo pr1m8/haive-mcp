@@ -1,0 +1,55 @@
+mcp.downloader.github_mass_downloader
+=====================================
+
+.. py:module:: mcp.downloader.github_mass_downloader
+
+.. autoapi-nested-parse::
+
+   Download ALL MCP servers from the GitHub resources.
+
+   This script reads all MCP server information from agent_resources/mcp_servers/
+   and downloads/installs every single one in an organized manner.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.downloader.github_mass_downloader.console
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/downloader/github_mass_downloader/GitHubMCPDownloader
+
+.. autoapisummary::
+
+   mcp.downloader.github_mass_downloader.GitHubMCPDownloader
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp.downloader.github_mass_downloader.main
+
+
+Module Contents
+---------------
+
+.. py:function:: main()
+   :async:
+
+
+   Main function.
+
+
+.. py:data:: console
+

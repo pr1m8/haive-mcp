@@ -1,0 +1,225 @@
+mcp.agents.basic_mcp_agent.BasicMCPAgent
+========================================
+
+.. py:class:: mcp.agents.basic_mcp_agent.BasicMCPAgent(/, **data: Any)
+
+   Bases: :py:obj:`haive.mcp.mixins.mcp_mixin.MCPMixin`, :py:obj:`haive.agents.simple.SimpleAgent`
+
+
+   An agent with MCP (Model Context Protocol) capabilities.
+
+   This agent extends SimpleAgent with the ability to connect to and use
+   MCP servers for additional tools and resources. It provides seamless
+   integration with MCP servers while maintaining all SimpleAgent functionality.
+
+   .. attribute:: mcp_config
+
+      Optional MCP configuration for connecting to MCP servers
+
+   The agent automatically:
+       - Connects to configured MCP servers
+       - Discovers available tools and resources
+       - Registers MCP tools with the agent's tool system
+       - Handles server health monitoring and reconnection
+       - Provides unified tool access across all servers
+
+   .. rubric:: Examples
+
+   Basic MCP agent setup:
+
+   .. code-block:: python
+
+       from haive.mcp.agents import MCPAgent
+       from haive.mcp.config import MCPConfig, MCPServerConfig
+
+       # Configure MCP servers
+       mcp_config = MCPConfig(
+           enabled=True,
+           servers={
+               "filesystem": MCPServerConfig(
+                   name="filesystem",
+                   transport="stdio",
+                   command="npx",
+                   args=["-y", "@modelcontextprotocol/server-filesystem"],
+                   capabilities=["file_read", "file_write", "directory_list"]
+               ),
+               "github": MCPServerConfig(
+                   name="github",
+                   transport="stdio",
+                   command="npx",
+                   args=["-y", "@modelcontextprotocol/server-github"],
+                   env={"GITHUB_TOKEN": "your_token"},
+                   capabilities=["repo_access", "issue_management"]
+               )
+           }
+       )
+
+       # Create agent with MCP
+       agent = MCPAgent(
+           engine=my_engine,
+           mcp_config=mcp_config,
+           name="mcp_assistant"
+       )
+
+       # Initialize agent and MCP connections
+       await agent.setup()
+
+       # Tools from MCP servers are automatically available
+       result = await agent.arun({
+           "messages": [{"role": "user", "content": "List files in current directory"}]
+       })
+
+   Factory method usage:
+
+   .. code-block:: python
+
+       # Using convenience factory
+       agent = MCPAgent.create_with_mcp_servers(
+           engine=engine,
+           server_configs={
+               "filesystem": {
+                   "transport": "stdio",
+                   "command": "npx",
+                   "args": ["-y", "@modelcontextprotocol/server-filesystem"]
+               }
+           }
+       )
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:method:: __repr__() -> str
+
+      String representation of the agent.
+
+
+
+   .. py:method:: call_tool_with_retry(tool_name: str, arguments: dict[str, Any], max_retries: int = 3) -> Any
+      :async:
+
+
+      Call an MCP tool with retry logic.
+
+      :param tool_name: Name of the tool
+      :param arguments: Tool arguments
+      :param max_retries: Maximum retry attempts
+
+      :returns: Tool result
+
+
+
+   .. py:method:: create_with_mcp_servers(engine: Any, server_configs: dict[str, dict[str, Any]], name: str | None = None, **kwargs) -> Self
+      :classmethod:
+
+
+      Create an MCP agent with server configurations.
+
+      Convenience factory method that simplifies agent creation by accepting
+      server configurations as dictionaries instead of MCPServerConfig objects.
+
+      :param engine: The LLM engine configuration (AugLLMConfig)
+      :param server_configs: Dictionary mapping server names to their configurations.
+                             Each config should include transport, command/url, and optional settings.
+      :param name: Optional agent name (defaults to "mcp_agent")
+      :param \*\*kwargs: Additional agent configuration parameters
+
+      :returns: Configured agent instance ready for initialization
+      :rtype: MCPAgent
+
+      :raises ValueError: If server configurations are invalid
+
+      .. rubric:: Examples
+
+      Creating an agent with multiple servers:
+
+      .. code-block:: python
+
+          agent = MCPAgent.create_with_mcp_servers(
+              engine=engine,
+              server_configs={
+                  "filesystem": {
+                      "transport": "stdio",
+                      "command": "npx",
+                      "args": ["-y", "@modelcontextprotocol/server-filesystem"],
+                      "capabilities": ["file_read", "file_write"]
+                  },
+                  "github": {
+                      "transport": "stdio",
+                      "command": "npx",
+                      "args": ["-y", "@modelcontextprotocol/server-github"],
+                      "env": {"GITHUB_TOKEN": token}
+                  }
+              },
+              name="multi_mcp_agent"
+          )
+
+          await agent.setup()
+
+
+
+   .. py:method:: discover_tools_by_capability(capability: str) -> list[Any]
+      :async:
+
+
+      Discover tools that provide a specific capability.
+
+      :param capability: The capability to search for
+
+      :returns: List of tools that provide the capability
+
+
+
+   .. py:method:: get_available_capabilities() -> list[str]
+
+      Get all available capabilities from connected MCP servers.
+
+
+
+   .. py:method:: setup() -> None
+      :async:
+
+
+      Setup agent including MCP initialization.
+
+      This async setup method should be called after agent creation
+      to initialize MCP connections and discover available tools.
+
+      The method handles:
+          - MCP server connections (if not lazy_init)
+          - Tool discovery and registration
+          - Resource loading
+          - Health monitoring setup
+
+      .. note::
+
+         This method is required for MCP functionality. Call it after
+         creating the agent but before using it.
+
+
+
+   .. py:method:: setup_agent() -> None
+
+      Override setup_agent to configure MCP after base setup.
+
+      This method extends the base SimpleAgent setup to include MCP configuration.
+      It ensures that MCP is initialized after the base agent setup is complete.
+
+
+
+   .. py:attribute:: mcp_config
+      :type:  haive.mcp.config.MCPConfig | None
+      :value: None
+
+
+
+   .. py:property:: tool_count
+      :type: int
+
+
+      Get total number of available tools including MCP tools.
+

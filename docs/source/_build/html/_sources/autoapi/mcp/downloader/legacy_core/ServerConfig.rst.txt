@@ -1,0 +1,39 @@
+mcp.downloader.legacy_core.ServerConfig
+=======================================
+
+.. py:class:: mcp.downloader.legacy_core.ServerConfig
+
+   Configuration for a specific MCP server.
+
+
+   .. py:attribute:: enabled
+      :type:  bool
+      :value: True
+
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: priority
+      :type:  int
+      :value: 0
+
+
+
+   .. py:attribute:: source
+      :type:  str
+
+
+   .. py:attribute:: tags
+      :type:  set[str]
+
+
+   .. py:attribute:: template
+      :type:  str
+
+
+   .. py:attribute:: variables
+      :type:  dict[str, Any]
+

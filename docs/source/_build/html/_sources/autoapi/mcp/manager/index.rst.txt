@@ -1,0 +1,131 @@
+mcp.manager
+===========
+
+.. py:module:: mcp.manager
+
+.. autoapi-nested-parse::
+
+   Dynamic MCP Manager for procedural server addition and bulk operations.
+
+   This module provides a comprehensive system for adding MCP servers procedurally,
+   one by one, during runtime, plus industrial-strength bulk operations for managing
+   hundreds of servers from the 1900+ available MCP server ecosystem.
+
+   The manager enables:
+       - Step-by-step MCP server addition
+       - Bulk installation and management operations
+       - Runtime configuration updates
+       - Health monitoring and retry logic
+       - Incremental capability discovery
+       - Safe server removal and replacement
+       - Progress tracking for bulk operations
+       - Category-based server management
+
+   Classes:
+       MCPManager: Main manager for dynamic MCP operations
+       MCPRegistrationResult: Result of server registration
+       MCPHealthStatus: Health monitoring information
+
+   .. rubric:: Examples
+
+   Adding MCP servers procedurally:
+
+       .. code-block:: python
+       from haive.mcp.manager import MCPManager
+       from haive.mcp.config import MCPServerConfig
+
+       # Create manager
+       manager = MCPManager()
+
+       # Add servers one by one
+       await manager.add_server("filesystem", MCPServerConfig(
+           name="filesystem",
+           transport="stdio",
+           command="npx",
+           args=["-y", "@modelcontextprotocol/server-filesystem"]
+       ))
+
+       await manager.add_server("github", MCPServerConfig(
+           name="github",
+           transport="stdio",
+           command="npx",
+           args=["-y", "@modelcontextprotocol/server-github"],
+           env={"GITHUB_TOKEN": "your_token"}
+       ))
+
+       # Get all available tools
+       tools = await manager.get_all_tools()
+
+   Health monitoring example:
+
+
+
+       .. code-block:: python
+
+
+
+           # Check server health
+       health = await manager.check_server_health("filesystem")
+       if health.status == MCPServerStatus.UNHEALTHY:
+           await manager.reconnect_server("filesystem")
+
+   Tool execution example:
+
+
+
+       .. code-block:: python
+
+
+
+           # Execute a tool on specific server
+       result = await manager.execute_tool(
+           server="filesystem",
+           tool="read_file",
+           params={"path": "/path/to/file.txt"}
+       )
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.manager.MCP_AVAILABLE
+   mcp.manager.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/manager/MCPBulkInstaller
+   /autoapi/mcp/manager/MCPBulkOperation
+   /autoapi/mcp/manager/MCPHealthStatus
+   /autoapi/mcp/manager/MCPManager
+   /autoapi/mcp/manager/MCPRegistrationResult
+   /autoapi/mcp/manager/MCPServerCategory
+   /autoapi/mcp/manager/MCPServerStatus
+
+.. autoapisummary::
+
+   mcp.manager.MCPBulkInstaller
+   mcp.manager.MCPBulkOperation
+   mcp.manager.MCPHealthStatus
+   mcp.manager.MCPManager
+   mcp.manager.MCPRegistrationResult
+   mcp.manager.MCPServerCategory
+   mcp.manager.MCPServerStatus
+
+
+Module Contents
+---------------
+
+.. py:data:: MCP_AVAILABLE
+   :value: True
+
+
+.. py:data:: logger
+

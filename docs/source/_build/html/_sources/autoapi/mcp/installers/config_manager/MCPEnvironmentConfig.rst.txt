@@ -1,0 +1,77 @@
+mcp.installers.config_manager.MCPEnvironmentConfig
+==================================================
+
+.. py:class:: mcp.installers.config_manager.MCPEnvironmentConfig(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Environment configuration for MCP servers.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: allowed_paths
+      :type:  list[str]
+      :value: None
+
+
+
+   .. py:attribute:: env_vars
+      :type:  dict[str, str]
+      :value: None
+
+
+
+   .. py:attribute:: package_name
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: port
+      :type:  int | None
+      :value: None
+
+
+
+   .. py:attribute:: requires_approval
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: secure_vars
+      :type:  dict[str, pydantic.SecretStr]
+      :value: None
+
+
+
+   .. py:attribute:: server_name
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: startup_args
+      :type:  list[str]
+      :value: None
+
+
+
+   .. py:attribute:: transport_type
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: working_directory
+      :type:  str | None
+      :value: None
+
+

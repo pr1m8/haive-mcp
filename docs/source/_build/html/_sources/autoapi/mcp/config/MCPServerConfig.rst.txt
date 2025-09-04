@@ -1,0 +1,192 @@
+mcp.config.MCPServerConfig
+==========================
+
+.. py:class:: mcp.config.MCPServerConfig(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Configuration for a single MCP server.
+
+   Represents the complete configuration needed to connect to and use an MCP server.
+   Supports multiple transport types and provides extensive customization options.
+
+   .. attribute:: name
+
+      Unique identifier for the server
+
+   .. attribute:: enabled
+
+      Whether this server should be activated
+
+   .. attribute:: transport
+
+      Communication transport type (stdio, sse, streamable_http)
+
+   .. attribute:: command
+
+      Executable command for stdio transport
+
+   .. attribute:: args
+
+      Command arguments for stdio transport
+
+   .. attribute:: url
+
+      Server URL for HTTP-based transports
+
+   .. attribute:: env
+
+      Environment variables to set when starting server
+
+   .. attribute:: api_key
+
+      Optional API key for authentication
+
+   .. attribute:: category
+
+      Server category for organization (e.g., "filesystem", "database")
+
+   .. attribute:: description
+
+      Human-readable description of server functionality
+
+   .. attribute:: capabilities
+
+      List of capabilities provided by the server
+
+   .. attribute:: timeout
+
+      Connection timeout in seconds
+
+   .. attribute:: retry_attempts
+
+      Number of retry attempts on connection failure
+
+   .. attribute:: auto_start
+
+      Whether to automatically start the server
+
+   .. attribute:: health_check_interval
+
+      Interval for health checks in seconds
+
+   .. rubric:: Examples
+
+   Creating a GitHub MCP server config:
+
+   .. code-block:: python
+
+       config = MCPServerConfig(
+           name="github",
+           transport="stdio",
+           command="npx",
+           args=["-y", "@modelcontextprotocol/server-github"],
+           env={"GITHUB_TOKEN": "your_token"},
+           capabilities=["repo_access", "issue_management"],
+           category="development",
+           description="GitHub repository operations"
+       )
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: api_key
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: args
+      :type:  list[str] | None
+      :value: None
+
+
+
+   .. py:attribute:: auto_start
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: capabilities
+      :type:  list[str]
+      :value: None
+
+
+
+   .. py:attribute:: category
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: command
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: description
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: enabled
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: env
+      :type:  dict[str, str]
+      :value: None
+
+
+
+   .. py:attribute:: health_check_interval
+      :type:  int | None
+      :value: None
+
+
+
+   .. py:attribute:: model_config
+
+      Configuration for the model, should be a dictionary conforming to [`ConfigDict`][pydantic.config.ConfigDict].
+
+
+   .. py:attribute:: name
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: retry_attempts
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: timeout
+      :type:  int
+      :value: None
+
+
+
+   .. py:attribute:: transport
+      :type:  MCPTransport
+      :value: None
+
+
+
+   .. py:attribute:: url
+      :type:  str | None
+      :value: None
+
+

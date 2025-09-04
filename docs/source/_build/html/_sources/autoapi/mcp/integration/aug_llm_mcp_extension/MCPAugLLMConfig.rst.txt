@@ -1,0 +1,87 @@
+mcp.integration.aug_llm_mcp_extension.MCPAugLLMConfig
+=====================================================
+
+.. py:class:: mcp.integration.aug_llm_mcp_extension.MCPAugLLMConfig
+
+   Bases: :py:obj:`haive.core.engine.aug_llm.AugLLMConfig`
+
+
+   Extended AugLLMConfig with MCP integration support.
+
+   This class extends the base AugLLMConfig to add MCP-specific fields and
+   functionality, enabling agents to use MCP servers for tools, resources,
+   and prompts.
+
+
+   .. py:method:: enhance_system_prompt_with_mcp() -> str
+
+      Enhance the system prompt with MCP information.
+
+      :returns: Enhanced system prompt including MCP resources and capabilities
+
+
+
+   .. py:method:: get_mcp_resource_content(uri: str) -> Any
+      :async:
+
+
+      Fetch content for an MCP resource.
+
+      :param uri: Resource URI
+
+      :returns: Resource content
+
+
+
+   .. py:method:: setup_mcp() -> None
+      :async:
+
+
+      Initialize MCP integration.
+
+      Sets up the MCP manager, discovers tools, loads resources, and
+      configures prompts based on the MCP configuration.
+
+
+
+   .. py:attribute:: auto_discover_mcp_tools
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: inject_mcp_resources
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: mcp_config
+      :type:  haive.mcp.config.MCPConfig | None
+      :value: None
+
+
+
+   .. py:attribute:: mcp_manager
+      :type:  haive.mcp.manager.MCPManager | None
+      :value: None
+
+
+
+   .. py:attribute:: mcp_prompts
+      :type:  dict[str, MCPPromptTemplate] | None
+      :value: None
+
+
+
+   .. py:attribute:: mcp_resources
+      :type:  list[MCPResource] | None
+      :value: None
+
+
+
+   .. py:attribute:: use_mcp_prompts
+      :type:  bool
+      :value: None
+
+

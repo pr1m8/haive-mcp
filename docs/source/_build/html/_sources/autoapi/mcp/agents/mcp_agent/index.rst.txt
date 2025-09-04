@@ -1,0 +1,97 @@
+mcp.agents.mcp_agent
+====================
+
+.. py:module:: mcp.agents.mcp_agent
+
+.. autoapi-nested-parse::
+
+   MCP Agent - Phase 4 Integration.
+
+   This agent demonstrates the complete MCP integration workflow:
+   1. Uses MCPManager to install and connect to MCP servers
+   2. Dynamically discovers and registers MCP tools
+   3. Integrates with Haive SimpleAgent for LLM-powered reasoning
+   4. Provides seamless tool execution through MCP protocol
+
+   Features:
+   - Dynamic server discovery and installation
+   - Automatic tool registration from MCP servers
+   - Real LLM integration with structured output support
+   - Multi-server coordination and tool management
+   - Health monitoring and auto-reconnection
+
+   Usage:
+       from haive.mcp.agents.mcp_agent import MCPAgent
+       from haive.core.engine.aug_llm import AugLLMConfig
+
+       # Create agent with automatic MCP integration
+       agent = MCPAgent(
+           name="research_assistant",
+           engine=AugLLMConfig(temperature=0.7),
+           mcp_categories=["development", "productivity"]  # Auto-install these categories
+       )
+
+       # Agent automatically installs MCP servers and registers tools
+       result = await agent.arun("Read the file 'example.txt' and search for Python tutorials")
+
+       # Agent uses filesystem and search tools seamlessly
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.agents.mcp_agent.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/agents/mcp_agent/MCPAgent
+   /autoapi/mcp/agents/mcp_agent/MCPIntegrationStats
+
+.. autoapisummary::
+
+   mcp.agents.mcp_agent.MCPAgent
+   mcp.agents.mcp_agent.MCPIntegrationStats
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp.agents.mcp_agent.create_mcp_agent
+   mcp.agents.mcp_agent.demo
+
+
+Module Contents
+---------------
+
+.. py:function:: create_mcp_agent(name: str = 'mcp_agent', categories: Optional[List[str]] = None, **kwargs) -> MCPAgent
+   :async:
+
+
+   Factory function to create and initialize an MCP Agent.
+
+   :param name: Agent name
+   :param categories: MCP categories to install (defaults to ["development", "productivity"])
+   :param \*\*kwargs: Additional arguments for MCPAgent
+
+   :returns: Fully initialized MCPAgent
+
+
+.. py:function:: demo()
+   :async:
+
+
+   Demo of MCP Agent.
+
+
+.. py:data:: logger
+

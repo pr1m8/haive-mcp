@@ -1,0 +1,132 @@
+mcp.utils.extract_mcp_github_repos.MCPServerMetadata
+====================================================
+
+.. py:class:: mcp.utils.extract_mcp_github_repos.MCPServerMetadata(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Metadata for an MCP Server.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:method:: get_unique_id() -> str
+
+      Generate unique ID for this server.
+
+
+
+   .. py:method:: to_langchain_metadata() -> dict[str, Any]
+
+      Convert to LangChain Document metadata format.
+
+
+
+   .. py:method:: validate_repo_url(v: str) -> str
+      :classmethod:
+
+
+      Validate GitHub repository URL.
+
+
+
+   .. py:attribute:: api_base_url
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: category
+      :type:  MCPCategory
+      :value: None
+
+
+
+   .. py:attribute:: description
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: is_official
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: languages
+      :type:  list[MCPLanguage]
+      :value: None
+
+
+
+   .. py:attribute:: last_updated
+      :type:  datetime.datetime | None
+      :value: None
+
+
+
+   .. py:attribute:: license
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: model_config
+
+      Configuration for the model, should be a dictionary conforming to [`ConfigDict`][pydantic.config.ConfigDict].
+
+
+   .. py:attribute:: name
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: owner
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: platforms
+      :type:  list[MCPPlatform]
+      :value: None
+
+
+
+   .. py:attribute:: readme_url
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: repo_name
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: repo_url
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: scopes
+      :type:  list[MCPScope]
+      :value: None
+
+
+
+   .. py:attribute:: stars
+      :type:  int | None
+      :value: None
+
+

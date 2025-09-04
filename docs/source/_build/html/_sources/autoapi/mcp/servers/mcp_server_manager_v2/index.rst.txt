@@ -1,0 +1,80 @@
+mcp.servers.mcp_server_manager_v2
+=================================
+
+.. py:module:: mcp.servers.mcp_server_manager_v2
+
+.. autoapi-nested-parse::
+
+   MCP Server Manager V2 - Pydantic-based refactor.
+
+   This module provides a refactored MCPServerManager that inherits from the
+   base server management framework, adding MCP-specific functionality with
+   full Pydantic validation.
+
+   Key improvements:
+       - Inherits from BaseServerManager for type-safe management
+       - Full Pydantic validation for all configurations
+       - Backward compatibility with existing MCPServerManager API
+       - Enhanced error handling and logging
+       - Better separation of concerns
+
+   .. rubric:: Example
+
+   Basic usage with new typed API::
+
+       from haive.mcp.servers import MCPServerManagerV2
+
+       manager = MCPServerManagerV2()
+       manager.add_config("filesystem", {
+           "command": ["npx", "-y", "@modelcontextprotocol/server-filesystem"],
+           "description": "File system operations",
+           "transport": "stdio"
+       })
+       await manager.start_server("filesystem")
+
+   Legacy compatibility mode::
+
+       manager = MCPServerManagerV2()
+       manager.run(servers_to_start=["filesystem", "time"])
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   mcp.servers.mcp_server_manager_v2.logger
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/mcp/servers/mcp_server_manager_v2/MCPServerManagerV2
+
+.. autoapisummary::
+
+   mcp.servers.mcp_server_manager_v2.MCPServerManagerV2
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   mcp.servers.mcp_server_manager_v2.main
+
+
+Module Contents
+---------------
+
+.. py:function:: main()
+
+   Main entry point for command-line usage.
+
+
+.. py:data:: logger
+
