@@ -119,10 +119,7 @@ graphviz_dot_args = [
     "-Gsplines=true",
 ]
 
-# CSS files in correct order - purple theme loads last to override
+# Simplified - using Furo's built-in theme + tippy for tooltips
 html_css_files = [
-    "graphviz-purple-theme.css",  # Purple diagram theme
-    "code-purple-theme.css",  # Purple code blocks
-    "purple-theme-enhanced.css",  # Enhanced purple theming (MUST be last)
-    "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap",
+    "tippy-enhancements.css",  # Keep tooltip enhancements only
 ]
