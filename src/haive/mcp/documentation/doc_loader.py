@@ -44,7 +44,9 @@ class MCPDocumentationLoader:
 
         self.resources_path = resources_path
         self.mcp_servers_path = self.resources_path / "mcp_servers"
+        self._documents_path = self.mcp_servers_path / "documents"
         self._loaded_docs: dict[str, Any] = {}
+        self._enriched: dict[str, dict[str, Any]] = {}
 
     def load_all_mcp_documents(self) -> dict[str, dict[str, Any]]:
         """Load all MCP server documentation from the stored JSON.
@@ -103,6 +105,182 @@ class MCPDocumentationLoader:
         except Exception as e:
             logger.exception(f"Failed to load MCP documents: {e}")
             return {}
+
+    def get_enriched_server(self, server_name: str) -> dict[str, Any] | None:
+        """Get a server enriched with data from its individual document file.
+
+        The individual document files in ``data/mcp_servers/documents/`` contain
+        full README content, descriptions, stars, and other metadata not present
+        in the lightweight index.
+
+        Args:
+            server_name: Server name (exact or partial match).
+
+        Returns:
+            Enriched server dict with ``readme_content``, ``description``,
+            ``install_command`` etc., or ``None`` if not found.
+        """
+        if not self._loaded_docs:
+            self.load_all_mcp_documents()
+
+        # Find the server in the index
+        server = self._loaded_docs.get(server_name)
+        if server is None:
+            # Try partial match
+            for name, doc in self._loaded_docs.items():
+                if server_name.lower() in name.lower():
+                    server = doc
+                    server_name = name
+                    break
+        if server is None:
+            return None
+
+        # Check cache
+        if server_name in self._enriched:
+            return self._enriched[server_name]
+
+        # Try to find the document file
+        owner = server.get("repository_owner", "")
+        repo_name = server.get("repository_name", "")
+        if owner and repo_name:
+            doc_file = self._documents_path / f"{owner}_{repo_name}.json"
+            if doc_file.exists():
+                try:
+                    with open(doc_file) as f:
+                        doc_data = json.load(f)
+                    # Merge enriched data into a copy
+                    enriched = {**server}
+                    meta = doc_data.get("metadata", {})
+                    enriched["description"] = meta.get("description") or enriched.get("description", "")
+                    enriched["readme_content"] = doc_data.get("readme_content", "")
+                    enriched["stars"] = meta.get("stars")
+                    enriched["last_updated"] = meta.get("last_updated")
+                    enriched["license"] = meta.get("license")
+                    enriched["languages"] = meta.get("languages", [])
+                    enriched["platforms"] = meta.get("platforms", [])
+                    # Derive install command from README if not already set
+                    if not enriched.get("install_command"):
+                        enriched["install_command"] = self._derive_install_command(
+                            enriched.get("readme_content", ""),
+                            owner, repo_name,
+                        )
+                    self._enriched[server_name] = enriched
+                    return enriched
+                except Exception as e:
+                    logger.debug(f"Failed to load document for {server_name}: {e}")
+
+        # No doc file found -- derive install command from repo info
+        enriched = {**server}
+        enriched["install_command"] = self._derive_install_command("", owner, repo_name)
+        self._enriched[server_name] = enriched
+        return enriched
+
+    @staticmethod
+    def _derive_install_command(readme: str, owner: str, repo_name: str) -> str:
+        """Derive an install command from README content or repo info.
+
+        Scans the README for npx/uvx/pip/npm install patterns first,
+        then falls back to a sensible default based on repo name.
+        """
+        if readme:
+            candidates: list[tuple[int, str]] = []
+            for line in readme.split("\n"):
+                stripped = line.strip().lstrip("$> ").strip()
+                if not stripped or stripped.startswith("```"):
+                    continue
+                cmd = stripped.split("#")[0].strip()  # trim inline comments
+
+                # Skip debug/inspector commands
+                if "inspector" in cmd.lower():
+                    continue
+
+                # pip install (high priority - simple, reliable)
+                if cmd.startswith("pip install ") and len(cmd.split()) <= 4:
+                    candidates.append((100, cmd))
+                # uvx (high priority - Python MCP servers)
+                elif cmd.startswith("uvx ") and len(cmd.split()) <= 4:
+                    candidates.append((90, cmd))
+                # npx -y @scope/package (standard MCP install)
+                elif cmd.startswith("npx -y @") and len(cmd.split()) <= 4:
+                    candidates.append((80, cmd))
+                # npx -y package
+                elif cmd.startswith("npx -y ") and len(cmd.split()) <= 4:
+                    candidates.append((70, cmd))
+                # npm install -g
+                elif cmd.startswith("npm install -g ") and len(cmd.split()) <= 5:
+                    candidates.append((60, cmd))
+                # npx @scope/package (without -y)
+                elif cmd.startswith("npx @") and len(cmd.split()) <= 3:
+                    candidates.append((50, cmd.replace("npx ", "npx -y ")))
+
+            if candidates:
+                candidates.sort(key=lambda x: x[0], reverse=True)
+                return candidates[0][1]
+
+        # Fallback: guess from repo name
+        if repo_name:
+            if any(repo_name.startswith(p) for p in ["mcp-server-", "server-"]):
+                return f"npx -y @{owner}/{repo_name}"
+            return f"npx -y {repo_name}"
+
+        return ""
+
+    def generate_server_config(self, server_name: str) -> dict[str, Any] | None:
+        """Generate an MCP server configuration from a server in the database.
+
+        Returns a config dict that can be used with:
+        - haive-mcp ``MCPServerConfig``
+        - Claude Desktop ``mcp.json``
+        - ``langchain-mcp-adapters`` ``MultiServerMCPClient``
+
+        Args:
+            server_name: Server name (exact or partial match).
+
+        Returns:
+            Config dict with ``command``, ``args``, ``transport``, ``env``
+            fields, or ``None`` if server not found.
+        """
+        enriched = self.get_enriched_server(server_name)
+        if enriched is None:
+            return None
+
+        install_cmd = enriched.get("install_command", "")
+        if not install_cmd:
+            return None
+
+        parts = install_cmd.split()
+        config: dict[str, Any] = {"transport": "stdio"}
+
+        if parts[0] == "npx":
+            config["command"] = "npx"
+            config["args"] = [p for p in parts[1:] if p]
+            if "-y" not in config["args"]:
+                config["args"].insert(0, "-y")
+        elif parts[0] == "uvx":
+            config["command"] = "uvx"
+            config["args"] = parts[1:]
+        elif parts[0] == "pip":
+            # pip install → run as python -m
+            pkg = parts[-1] if len(parts) > 2 else parts[1]
+            module = pkg.replace("-", "_")
+            config["command"] = "python"
+            config["args"] = ["-m", module]
+        elif parts[0] == "npm":
+            # npm install -g → npx
+            pkg = parts[-1]
+            config["command"] = "npx"
+            config["args"] = ["-y", pkg]
+        else:
+            config["command"] = parts[0]
+            config["args"] = parts[1:]
+
+        # Extract env vars from README config section
+        readme = enriched.get("readme_content", "")
+        env_vars = self._extract_configuration(readme)
+        if env_vars:
+            config["env"] = env_vars
+
+        return config
 
     def get_server_documentation(self, server_name: str) -> dict[str, Any] | None:
         """Get documentation for a specific MCP server.

@@ -107,6 +107,9 @@ class MCPSelfQuery:
     def get_server_detail(self, name: str) -> dict[str, Any] | None:
         """Get detailed information about a specific server.
 
+        Enriches the server with data from its individual document file
+        (full README, description, stars, derived install command).
+
         Args:
             name: Server name (exact or partial match)
 
@@ -115,17 +118,12 @@ class MCPSelfQuery:
         """
         self._ensure_loaded()
 
-        # Try exact match first
-        if name in self._servers:
-            server = self._servers[name]
-            return self._build_detail(server)
+        # Use enriched data (pulls from documents/ files)
+        enriched = self.loader.get_enriched_server(name)
+        if enriched is None:
+            return None
 
-        # Try partial match
-        for sname, server in self._servers.items():
-            if name.lower() in sname.lower():
-                return self._build_detail(server)
-
-        return None
+        return self._build_detail(enriched)
 
     def _build_detail(self, server: dict[str, Any]) -> dict[str, Any]:
         """Build a detailed view of a server."""
@@ -137,6 +135,9 @@ class MCPSelfQuery:
             "repository_url": server.get("repository_url", ""),
             "source": server.get("source", ""),
             "install_command": server.get("install_command", ""),
+            "stars": server.get("stars"),
+            "languages": server.get("languages", []),
+            "license": server.get("license"),
             "setup_info": setup,
         }
 
