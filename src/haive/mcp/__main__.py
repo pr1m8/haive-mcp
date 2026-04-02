@@ -56,10 +56,10 @@ def discover(capability: str | None):
 
 @cli.command("self-query")
 def self_query_cmd():
-    """Interactive self-query interface for MCP server discovery."""
-    from haive.mcp.self_query import run_interactive
+    """Interactive TUI for browsing, searching, and installing MCP servers."""
+    from haive.mcp.tui import run_tui
 
-    run_interactive()
+    run_tui()
 
 
 @cli.command()
