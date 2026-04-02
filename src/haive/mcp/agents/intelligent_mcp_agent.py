@@ -63,9 +63,8 @@ from langchain_core.tools import tool
 from pydantic import BaseModel, Field
 
 from haive.mcp.config import MCPServerConfig, MCPTransport
+from haive.mcp.installer_service import MCPInstallerService
 from haive.mcp.manager import MCPManager
-
-# from haive.mcp.agents.documentation_agent import MCPDocumentationAgent
 
 
 logger = logging.getLogger(__name__)
@@ -156,8 +155,8 @@ class IntelligentMCPAgent(ReactAgent):
         default_factory=MCPManager, description="Dynamic MCP manager"
     )
 
-    doc_agent: Any | None = Field(
-        default=None, description="Documentation agent for discovery"
+    installer_service: MCPInstallerService | None = Field(
+        default=None, description="Server installer with LLM fallback and HITL"
     )
 
     # Configuration
@@ -205,13 +204,12 @@ class IntelligentMCPAgent(ReactAgent):
 
         super().__init__(**kwargs)
 
-        # Initialize documentation agent
-        if self.auto_discover and not self.doc_agent:
-            # TODO: Re-enable when documentation agent is fixed
-            # self.doc_agent = MCPDocumentationAgent.create_for_mcp_research(
-            #     engine=self.engine
-            # )
-            pass
+        # Initialize installer service (uses MCPSelfQuery + LLM fallback)
+        if self.installer_service is None:
+            self.installer_service = MCPInstallerService(
+                require_approval=self.require_approval,
+                approval_callback=self.approval_callback,
+            )
 
     def _create_discovery_tools(self) -> list[Any]:
         """Create tools for server discovery and management."""
@@ -220,33 +218,33 @@ class IntelligentMCPAgent(ReactAgent):
         async def discover_mcp_servers(capability: str) -> str:
             """Discover MCP servers that provide a specific capability.
 
+            Searches the database of 1,960+ MCP servers and returns
+            matches with install commands and configuration.
+
             Args:
-                capability: The capability needed (e.g., 'database', 'web_search', 'file_access')
+                capability: The capability needed (e.g., 'database', 'web_search', 'filesystem')
 
             Returns:
                 JSON string with discovered servers and recommendations
             """
-            if not self.doc_agent:
-                return json.dumps({"error": "Documentation agent not initialized"})
-
             try:
-                # Search for servers with capability
-                servers = await self.doc_agent.find_servers_by_capability(
-                    capability, limit=5
-                )
+                results_raw = self.installer_service.search(capability, limit=5)
 
-                # Format results
                 results = []
-                for server in servers:
+                for server in results_raw:
+                    name = server.get("name", "")
+                    detail = self.installer_service.get_detail(name)
+                    config = self.installer_service._loader.generate_server_config(name)
                     results.append(
                         {
-                            "server_name": server["server_name"],
-                            "capabilities": server.get("capabilities", []),
-                            "setup_instructions": server.get("setup_instructions", []),
+                            "server_name": name,
+                            "description": (detail or {}).get("description", ""),
+                            "install_command": (detail or {}).get("install_command", ""),
+                            "category": server.get("category", ""),
+                            "config": config,
                         }
                     )
 
-                # Cache the results
                 self.capability_cache[capability] = [s["server_name"] for s in results]
 
                 return json.dumps(
@@ -267,6 +265,9 @@ class IntelligentMCPAgent(ReactAgent):
         ) -> str:
             """Install and configure an MCP server.
 
+            Creates an install plan (with LLM fallback if needed),
+            requests HITL approval, then connects and verifies.
+
             Args:
                 server_name: Full name of the server to install
                 require_approval: Whether to require HITL approval
@@ -275,68 +276,33 @@ class IntelligentMCPAgent(ReactAgent):
                 JSON string with installation result
             """
             try:
-                # Get server documentation
-                if self.doc_agent:
-                    server_info = await self.doc_agent.process_mcp_server(
-                        server_name, fetch_latest=False
-                    )
-                    config = server_info.get("mcp_config")
-                else:
-                    # Basic config without documentation
-                    config = MCPServerConfig(
-                        name=server_name.split("/")[-1],
-                        transport=MCPTransport.STDIO,
-                        command="npx",
-                        args=["-y", f"@{server_name}"],
-                        url=None,
-                        api_key=None,
-                        category="auto-discovered",
-                        description=f"Auto-discovered server: {server_name}",
-                        health_check_interval=60,
-                    )
+                # Create install plan (README extraction + LLM fallback)
+                plan = await self.installer_service.plan_install(server_name)
+                if plan is None:
+                    return json.dumps({
+                        "success": False,
+                        "error": f"Could not find or plan install for '{server_name}'",
+                    })
 
-                # Check if approval needed
+                # HITL approval
                 if require_approval and self.require_approval:
-                    approval = await self._request_approval(
-                        ServerRecommendation(
-                            server_name=server_name,
-                            reason="User requested installation",
-                            capabilities=(
-                                server_info.get("capabilities", [])
-                                if server_info
-                                else []
-                            ),
-                            confidence=0.9,
-                            config=config,
-                        )
-                    )
+                    approved = await self.installer_service.approve(plan)
+                    if not approved:
+                        return json.dumps({
+                            "success": False,
+                            "error": "Installation rejected by user",
+                        })
 
-                    if approval.status != ApprovalStatus.APPROVED:
-                        return json.dumps(
-                            {
-                                "success": False,
-                                "error": f"Installation rejected: {approval.status.value}",
-                            }
-                        )
+                # Install and verify
+                result = await self.installer_service.install(plan)
 
-                # Install the server
-                result = await self.mcp_manager.add_server(
-                    server_name.split("/")[-1], config, connect_immediately=True
-                )
-
-                # Refresh tools if successful
-                if result.success:
-                    await self.mcp_manager.get_all_tools(refresh=True)
-
-                return json.dumps(
-                    {
-                        "success": result.success,
-                        "server_name": result.server_name,
-                        "tools_added": result.tools_count,
-                        "status": result.status.value,
-                        "error": result.error_message,
-                    }
-                )
+                return json.dumps({
+                    "success": result.success,
+                    "server_name": result.server_name,
+                    "message": result.message,
+                    "tools_discovered": result.tools_discovered,
+                    "config": result.config,
+                })
 
             except Exception as e:
                 logger.exception(f"Failed to install server: {e}")
@@ -551,43 +517,17 @@ If no special capabilities are needed, return: []
                 if missing:
                     logger.info(f"Missing capabilities: {missing}")
 
-                    # Discover and recommend servers
+                    # Discover and install servers for missing capabilities
                     for capability in missing:
                         try:
-                            # Use discovery tool
-                            discovery_tool = self._discovery_tools[
-                                "discover_mcp_servers"
-                            ]
-                            discovery_result = await discovery_tool.arun(capability)
-                            discovery_data = json.loads(discovery_result)
-
-                            if discovery_data.get("servers_found", 0) > 0:
-                                # Install the first recommended server
-                                recommendations = discovery_data.get(
-                                    "recommendations", []
+                            result = await self.installer_service.search_and_install(
+                                capability
+                            )
+                            if result and result.success:
+                                logger.info(
+                                    f"Installed {result.server_name} for {capability} "
+                                    f"({len(result.tools_discovered)} tools)"
                                 )
-                                if recommendations:
-                                    server_name = recommendations[0]["server_name"]
-                                    logger.info(
-                                        f"Installing {server_name} for {capability}"
-                                    )
-
-                                    install_tool = self._discovery_tools[
-                                        "install_mcp_server"
-                                    ]
-                                    install_result = await install_tool.arun(
-                                        {
-                                            "server_name": server_name,
-                                            "require_approval": self.require_approval,
-                                        }
-                                    )
-
-                                    install_data = json.loads(install_result)
-                                    if install_data.get("success"):
-                                        logger.info(
-                                            f"Successfully installed {server_name}"
-                                        )
-
                         except Exception as e:
                             logger.exception(
                                 f"Failed to handle capability {capability}: {e}"
