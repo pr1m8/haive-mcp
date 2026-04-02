@@ -139,7 +139,6 @@ except ImportError:
 # Mixins for adding MCP to existing agents - handle missing dependencies
 try:
     from haive.mcp.mixins import (
-        # MCPDiscoveryMixin,  # TODO: Missing class - needs to be implemented
         MCPMixin,
     )
 except ImportError:
@@ -172,7 +171,6 @@ __all__ = [
     "TransferableMCPAgent",
     # Mixins
     "MCPMixin",
-    # "MCPDiscoveryMixin",  # TODO: Missing class
     # Discovery
     "MCPServerDiscovery",
     # Documentation

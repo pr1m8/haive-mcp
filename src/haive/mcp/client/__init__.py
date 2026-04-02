@@ -15,9 +15,10 @@ Key Components
 
 **Transport Support**
     - **STDIO**: Communication via stdin/stdout
-    - **HTTP**: RESTful communication  
+    - **HTTP**: RESTful communication
     - **SSE**: Server-sent events
     - **WebSocket**: Real-time bidirectional communication
+    - **Docker**: Run MCP servers in Docker containers via stdio
 
 Usage Examples
 --------------
@@ -60,6 +61,7 @@ Transport Classes
 - :class:`HttpTransport` - HTTP-based transport
 - :class:`SseTransport` - Server-Sent Events transport
 - :class:`WebSocketTransport` - WebSocket transport
+- :class:`DockerTransport` - Docker container transport
 
 Exception Classes
 ~~~~~~~~~~~~~~~~~
@@ -85,6 +87,7 @@ from .transport import (
     HttpTransport,
     SseTransport,
     WebSocketTransport,
+    DockerTransport,
 )
 from .connection import MCPConnection
 from .protocol import MCPProtocol
@@ -106,6 +109,7 @@ __all__ = [
     "HttpTransport",
     "SseTransport",
     "WebSocketTransport",
+    "DockerTransport",
     "MCPConnection",
     "MCPProtocol",
     "MCPError",

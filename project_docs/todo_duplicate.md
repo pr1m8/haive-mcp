@@ -1,3 +1,0 @@
-- Fix organization of mcp stuff and junk 
-- fix docs org 
-- haive-agents (SIMPLE AGENT REBUILD ISSUE)

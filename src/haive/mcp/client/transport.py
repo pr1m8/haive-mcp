@@ -9,6 +9,7 @@ Supported Transports:
     - HTTP: RESTful communication over HTTP
     - SSE: Server-sent events for streaming
     - WebSocket: Real-time bidirectional communication
+    - Docker: Communication via stdin/stdout with a Docker container
 
 The transport layer is responsible for:
     - Establishing and managing connections
@@ -669,3 +670,242 @@ class WebSocketTransport(MCPTransport):
             raise MCPTimeoutError(f"No WebSocket message within {self.timeout}s")
         except json.JSONDecodeError as e:
             raise MCPTransportError(f"Invalid JSON in WebSocket message: {e}")
+
+
+class DockerTransport(MCPTransport):
+    """Docker transport for MCP communication.
+
+    This transport runs an MCP server inside a Docker container and communicates
+    via stdin/stdout, similar to StdioTransport but using ``docker run`` as the
+    process wrapper. This provides isolation, reproducibility, and simplified
+    dependency management for MCP servers.
+
+    The transport handles:
+        - Docker container lifecycle management
+        - Volume mounting for data access
+        - Port mapping for network services
+        - Environment variable passing to the container
+        - Graceful container shutdown with ``docker stop``
+
+    Examples:
+        Basic Docker transport::
+
+            transport = DockerTransport(
+                image="mcp/postgres",
+                env={"POSTGRES_HOST": "host.docker.internal"},
+            )
+
+        With volumes and network::
+
+            transport = DockerTransport(
+                image="mcp/filesystem",
+                volumes=["/home/user/data:/data:ro"],
+                network="host",
+                env={"ALLOWED_DIRS": "/data"},
+            )
+    """
+
+    def __init__(
+        self,
+        image: str,
+        env: Optional[Dict[str, str]] = None,
+        volumes: Optional[List[str]] = None,
+        ports: Optional[List[str]] = None,
+        network: Optional[str] = None,
+        docker_args: Optional[List[str]] = None,
+        timeout: float = 30.0,
+    ):
+        """Initialize Docker transport.
+
+        Args:
+            image: Docker image name (e.g., ``"mcp/postgres"``)
+            env: Environment variables to pass to the container
+            volumes: Volume mounts (e.g., ``["/host/path:/container/path:ro"]``)
+            ports: Port mappings (e.g., ``["8080:8080"]``)
+            network: Docker network to attach to (e.g., ``"host"``)
+            docker_args: Extra arguments to pass to ``docker run``
+            timeout: Timeout for operations in seconds
+        """
+        super().__init__(timeout)
+        self.image = image
+        self.env = env or {}
+        self.volumes = volumes or []
+        self.ports = ports or []
+        self.network = network
+        self.docker_args = docker_args or []
+        self.process: Optional[asyncio.subprocess.Process] = None
+        self._read_queue: Optional[asyncio.Queue] = None
+        self._reader_task: Optional[asyncio.Task] = None
+        self._container_id: Optional[str] = None
+
+    def _build_docker_command(self) -> List[str]:
+        """Build the ``docker run`` command."""
+        cmd = ["docker", "run", "--rm", "-i"]
+
+        # Environment variables
+        for key, value in self.env.items():
+            cmd.extend(["-e", f"{key}={value}"])
+
+        # Volume mounts
+        for vol in self.volumes:
+            cmd.extend(["-v", vol])
+
+        # Port mappings
+        for port in self.ports:
+            cmd.extend(["-p", port])
+
+        # Network
+        if self.network:
+            cmd.extend(["--network", self.network])
+
+        # Extra args
+        cmd.extend(self.docker_args)
+
+        # Image
+        cmd.append(self.image)
+
+        return cmd
+
+    async def connect(self) -> None:
+        """Start the Docker container and establish stdio communication."""
+        async with self._connection_lock:
+            if self.connected:
+                return
+
+            full_command = self._build_docker_command()
+            logger.info(f"Starting MCP server in Docker: {' '.join(full_command)}")
+
+            try:
+                self.process = await asyncio.create_subprocess_exec(
+                    *full_command,
+                    stdin=asyncio.subprocess.PIPE,
+                    stdout=asyncio.subprocess.PIPE,
+                    stderr=asyncio.subprocess.PIPE,
+                )
+
+                self._read_queue = asyncio.Queue()
+                self._reader_task = asyncio.create_task(self._reader_loop())
+
+                self.connected = True
+                logger.info(
+                    f"Docker MCP server started (PID {self.process.pid}, "
+                    f"image={self.image})"
+                )
+
+            except FileNotFoundError:
+                raise MCPConnectionError(
+                    "Docker is not installed or not in PATH. "
+                    "Install Docker from https://docs.docker.com/get-docker/",
+                    details={"command": full_command},
+                )
+            except Exception as e:
+                await self._cleanup()
+                raise MCPConnectionError(
+                    f"Failed to start Docker container: {e}",
+                    details={"command": full_command, "error": str(e)},
+                )
+
+    async def disconnect(self) -> None:
+        """Stop the Docker container and clean up resources."""
+        async with self._connection_lock:
+            if not self.connected:
+                return
+
+            await self._cleanup()
+            self.connected = False
+            logger.info(f"Docker MCP server stopped (image={self.image})")
+
+    async def _cleanup(self) -> None:
+        """Clean up container and tasks."""
+        # Cancel reader task
+        if self._reader_task and not self._reader_task.done():
+            self._reader_task.cancel()
+            try:
+                await self._reader_task
+            except asyncio.CancelledError:
+                pass
+            self._reader_task = None
+
+        # Terminate container process
+        if self.process:
+            try:
+                if self.process.returncode is None:
+                    self.process.terminate()
+                    try:
+                        await asyncio.wait_for(self.process.wait(), timeout=10.0)
+                    except asyncio.TimeoutError:
+                        self.process.kill()
+                        await self.process.wait()
+            except Exception as e:
+                logger.warning(f"Error during Docker container cleanup: {e}")
+            finally:
+                self.process = None
+
+        self._read_queue = None
+
+    async def send_message(self, message: Dict[str, Any]) -> None:
+        """Send JSON-RPC message to the container via stdin."""
+        if not self.connected or not self.process or not self.process.stdin:
+            raise MCPConnectionError("Not connected to Docker MCP server")
+
+        try:
+            message_str = json.dumps(message, separators=(",", ":"))
+            message_bytes = (message_str + "\n").encode("utf-8")
+            self.process.stdin.write(message_bytes)
+            await self.process.stdin.drain()
+            logger.debug(f"Sent message to Docker container: {message_str}")
+        except Exception as e:
+            raise MCPTransportError(
+                f"Failed to send message to Docker container: {e}",
+                details={"message": message, "error": str(e)},
+            )
+
+    async def receive_message(self) -> Dict[str, Any]:
+        """Receive JSON-RPC message from the container via stdout."""
+        if not self.connected or not self._read_queue:
+            raise MCPConnectionError("Not connected to Docker MCP server")
+
+        try:
+            message = await asyncio.wait_for(
+                self._read_queue.get(), timeout=self.timeout
+            )
+            if isinstance(message, Exception):
+                raise message
+            logger.debug(
+                f"Received message from Docker container: "
+                f"{json.dumps(message, separators=(',', ':'))}"
+            )
+            return message
+        except asyncio.TimeoutError:
+            raise MCPTimeoutError(
+                f"No message received from Docker container within {self.timeout}s"
+            )
+
+    async def _reader_loop(self) -> None:
+        """Background task to read messages from container stdout."""
+        if not self.process or not self.process.stdout:
+            return
+
+        try:
+            while True:
+                line = await self.process.stdout.readline()
+                if not line:
+                    break
+
+                try:
+                    line_str = line.decode("utf-8").strip()
+                    if line_str:
+                        message = json.loads(line_str)
+                        await self._read_queue.put(message)
+                except json.JSONDecodeError as e:
+                    error = MCPTransportError(
+                        f"Invalid JSON from Docker container: {e}",
+                        details={"raw_line": line_str},
+                    )
+                    await self._read_queue.put(error)
+        except Exception as e:
+            error = MCPTransportError(
+                f"Error reading from Docker container: {e}",
+                details={"error": str(e)},
+            )
+            await self._read_queue.put(error)

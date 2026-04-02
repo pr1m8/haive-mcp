@@ -10,10 +10,7 @@ from pathlib import Path
 
 import pytest
 
-# Add parent to path for imports
-sys.path.insert(0, str(Path(__file__).parent.parent.parent))
-
-from src.haive.mcp.downloader.legacy_core import (
+from haive.mcp.downloader import (
     DockerInstaller,
     GitInstaller,
     InstallationMethod,

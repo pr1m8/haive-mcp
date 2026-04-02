@@ -5,7 +5,7 @@ servers and their integration with Haive agents. It includes comprehensive valid
 and type safety for all MCP-related configurations.
 
 The configuration system supports:
-    - Multiple transport types (stdio, SSE, HTTP streaming)
+    - Multiple transport types (stdio, SSE, HTTP streaming, Docker)
     - Server-specific settings and capabilities
     - Environment variables and authentication
     - Discovery and filtering options
@@ -60,11 +60,13 @@ class MCPTransport(str, Enum):
         STDIO: Standard input/output communication (default for CLI-based servers)
         SSE: Server-Sent Events for HTTP-based streaming
         STREAMABLE_HTTP: HTTP streaming for continuous data transfer
+        DOCKER: Run MCP server inside a Docker container via stdio
     """
 
     STDIO = "stdio"
     SSE = "sse"
     STREAMABLE_HTTP = "streamable_http"
+    DOCKER = "docker"
 
 
 class MCPServerConfig(BaseModel):
@@ -76,11 +78,11 @@ class MCPServerConfig(BaseModel):
     Attributes:
         name: Unique identifier for the server
         enabled: Whether this server should be activated
-        transport: Communication transport type (stdio, sse, streamable_http)
-        command: Executable command for stdio transport
-        args: Command arguments for stdio transport
+        transport: Communication transport type (stdio, sse, streamable_http, docker)
+        command: Executable command for stdio transport, or Docker image for docker transport
+        args: Command arguments for stdio transport, or extra ``docker run`` flags for docker
         url: Server URL for HTTP-based transports
-        env: Environment variables to set when starting server
+        env: Environment variables to set when starting server / passed to container
         api_key: Optional API key for authentication
         category: Server category for organization (e.g., "filesystem", "database")
         description: Human-readable description of server functionality
@@ -89,6 +91,9 @@ class MCPServerConfig(BaseModel):
         retry_attempts: Number of retry attempts on connection failure
         auto_start: Whether to automatically start the server
         health_check_interval: Interval for health checks in seconds
+        docker_volumes: Volume mounts for docker transport (e.g., ``["/host/path:/container/path"]``)
+        docker_ports: Port mappings for docker transport (e.g., ``["8080:8080"]``)
+        docker_network: Docker network to attach to (e.g., ``"host"``)
 
     Examples:
         Creating a GitHub MCP server config:
@@ -138,6 +143,19 @@ class MCPServerConfig(BaseModel):
     auto_start: bool = Field(default=True, description="Auto-start server on init")
     health_check_interval: int | None = Field(
         None, description="Health check interval in seconds"
+    )
+
+    # Docker transport settings
+    docker_volumes: list[str] = Field(
+        default_factory=list,
+        description="Volume mounts for docker transport (e.g., ['/host:/container'])",
+    )
+    docker_ports: list[str] = Field(
+        default_factory=list,
+        description="Port mappings for docker transport (e.g., ['8080:8080'])",
+    )
+    docker_network: str | None = Field(
+        None, description="Docker network to attach to"
     )
 
     model_config = {"extra": "allow"}  # Allow additional fields for flexibility

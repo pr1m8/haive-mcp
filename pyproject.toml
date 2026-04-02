@@ -7,6 +7,9 @@ license = "MIT"
 readme = "README.md"
 packages = [{ include = "haive", from = "src" }]
 
+[tool.poetry.scripts]
+haive-mcp = "haive.mcp.__main__:main"
+
 [tool.poetry.dependencies]
 python = ">=3.12,<3.13"
 pydantic = "^2.10.6"

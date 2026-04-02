@@ -315,72 +315,83 @@ agent = IntelligentMCPAgent(
 )
 ```
 
-## Examples & Documentation
+## Docker Transport
 
-### 🚀 Quick Start
+Run MCP servers in isolated Docker containers:
 
-```bash
-# 5-minute setup guide
-see project_docs/guides/quick-start.md
+```python
+from haive.mcp.config import MCPServerConfig, MCPTransport
 
-# Run basic example
-poetry run python examples/basic_mcp_agent.py
+config = MCPServerConfig(
+    name="postgres",
+    transport=MCPTransport.DOCKER,
+    command="mcp/postgres",  # Docker image
+    env={"POSTGRES_HOST": "host.docker.internal"},
+    docker_volumes=["/data:/data:ro"],
+    docker_network="host",
+)
 ```
 
-### 📚 Comprehensive Documentation
-
-- **[Project Documentation](project_docs/README.md)** - Complete documentation hub
-- **[Integration Guide](project_docs/integration/README.md)** - Add MCP to your agents
-- **[Usage Patterns](project_docs/guides/usage-patterns.md)** - Common scenarios
-- **[Architecture](project_docs/architecture/README.md)** - System design
-- **[Examples](project_docs/examples/README.md)** - Working code examples
-
-### 🎯 Key Examples
+## CLI
 
 ```bash
-# Dynamic discovery with approval
-poetry run python examples/intelligent_discovery.py
+# Show available transports
+haive-mcp transports
 
-# Multi-agent coordination
-poetry run python examples/multi_agent_workflow.py
+# Discover servers by capability
+haive-mcp discover "database"
 
-# Tool sharing between agents
-poetry run python examples/tool_sharing.py
+# Show status
+haive-mcp status
+```
+
+## Examples
+
+See the [examples/](examples/) directory for runnable examples:
+
+```bash
+poetry run python examples/basic_mcp_agent.py        # Static config
+poetry run python examples/intelligent_discovery.py   # Auto-discovery
+poetry run python examples/tool_transfer.py           # Tool sharing
+poetry run python examples/docker_transport.py        # Docker transport
+poetry run python examples/fastmcp_server.py          # Build your own server
+poetry run python examples/langchain_mcp_adapters.py  # LangChain bridge
 ```
 
 ## Testing
 
 ```bash
-# Run all tests
-poetry run pytest
+# Run unit tests (fast, no external deps)
+poetry run pytest tests/unit/ -v
 
-# Run integration tests
-poetry run pytest tests/test_hot_reload_integration.py -v
+# Run integration tests (requires MCP servers)
+poetry run pytest tests/integration/ -v
 
 # Run with coverage
-poetry run pytest --cov=haive.mcp
+poetry run pytest tests/unit/ --cov=haive.mcp
 ```
 
 ## Package Structure
 
 ```
 haive-mcp/
-├── 📚 project_docs/          # Comprehensive documentation
-│   ├── guides/               # Usage guides and quick start
-│   ├── integration/          # Integration patterns
-│   ├── architecture/         # System design
-│   ├── implementation/       # Production patterns
-│   └── examples/             # Working code examples
-├── 🧹 src/haive/mcp/         # Clean source code
-│   ├── agents/               # Agent implementations
-│   ├── manager.py            # Dynamic server management
-│   ├── config.py             # Configuration models
-│   └── documentation/        # 1,960+ server database
-├── 🎯 examples/              # Organized examples
-├── 🔧 scripts/               # Setup and utility scripts
-├── 🛠️ tools/                 # Development tools
-├── ✅ tests/                 # Comprehensive tests
-└── 📦 data/                  # MCP server database (55MB)
+├── src/haive/mcp/             # Source code
+│   ├── agents/                # MCPAgent, IntelligentMCPAgent, TransferableMCPAgent
+│   ├── client/                # Native MCP client + transports (stdio, http, sse, docker)
+│   ├── config.py              # MCPConfig, MCPServerConfig, MCPTransport
+│   ├── manager.py             # MCPManager - server lifecycle management
+│   ├── discovery/             # Server discovery system
+│   ├── documentation/         # Documentation loader (1,960+ servers)
+│   ├── downloader/            # Server download and installation
+│   ├── mixins/                # MCPMixin for existing agents
+│   └── plugins/               # Plugin system
+├── examples/                  # Runnable examples
+├── tests/
+│   ├── unit/                  # Unit tests (42 passing)
+│   └── integration/           # Integration tests
+├── data/mcp_servers/          # Pre-indexed server database
+├── configs/                   # YAML configurations
+└── docs/                      # Sphinx documentation
 ```
 
 ## Advanced Usage
