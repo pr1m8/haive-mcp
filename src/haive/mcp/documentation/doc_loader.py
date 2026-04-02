@@ -1,47 +1,22 @@
-"""MCP documentation loader using haive document loaders.
+"""MCP documentation loader for server discovery and setup extraction.
 
-This module provides functionality to load, process, and extract information from
-MCP server documentation. It includes methods to parse README files, extract setup
-instructions, and generate configurations from documentation.
-
-The loader processes documentation from:
-    - Stored JSON files containing 992+ MCP server docs
-    - GitHub repositories (via GitHubLoader)
-    - Web documentation (via WebScraper)
-    - Local documentation files
-
-Classes:
-    MCPDocumentationLoader: Main class for loading and processing MCP documentation
+Loads, searches, and extracts setup information from the pre-indexed
+database of 1,960+ MCP servers. Includes lightweight GitHub README
+fetching via aiohttp (no external framework dependencies).
 
 Example:
-    Loading and using MCP documentation:
+    .. code-block:: python
 
-        .. code-block:: python
         from haive.mcp.documentation import MCPDocumentationLoader
-from haive import agents
 
-
-        # Initialize loader
         loader = MCPDocumentationLoader()
-
-        # Load all documentation
         all_docs = loader.load_all_mcp_documents()
-        print(f"Loaded {len(all_docs)} server documentations")
+        print(f"Loaded {len(all_docs)} servers")
 
-        # Get specific server documentation
-        fs_doc = loader.get_server_documentation("modelcontextprotocol/server-filesystem")
-
-        # Extract setup information
-        setup_info = loader.extract_setup_info(fs_doc)
-        print("Installation:", setup_info["installation"])
-        print("Configuration:", setup_info["configuration"])
-
-        # Search by capability
-        search_servers = loader.search_servers_by_capability("search")
-        print(f"Found {len(search_servers)} servers with search capability")
-
-Note:
-    The loader gracefully handles missing dependencies for document loaders.
+        results = loader.search_servers_by_capability("database")
+        for server in results:
+            info = loader.extract_setup_info(server)
+            print(info["name"], info.get("install_command"))
 """
 
 from __future__ import annotations
@@ -49,40 +24,22 @@ from __future__ import annotations
 import json
 import logging
 from pathlib import Path
-from typing import TYPE_CHECKING, Any
-
-if TYPE_CHECKING:
-    from langchain_core.documents import Document
-
-# Optional imports - these require haive-agents which may not be installed
-try:
-    from haive.agents.research.open_perplexity.structured_tools import (
-        GitHubLoader,
-        WebScraper,
-    )
-    from langchain_core.documents import Document
-
-    LOADERS_AVAILABLE = True
-except ImportError:
-    GitHubLoader = None
-    WebScraper = None
-    Document = None
-    LOADERS_AVAILABLE = False
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
 
 class MCPDocumentationLoader:
-    """Loads and processes MCP server documentation from various sources."""
+    """Loads and processes MCP server documentation from the local database."""
 
     def __init__(self, resources_path: Path | None = None):
         """Initialize the documentation loader.
 
         Args:
-            resources_path: Path to the data directory containing MCP servers
+            resources_path: Path to the data directory containing MCP servers.
+                Defaults to the package's ``data/`` directory.
         """
         if resources_path is None:
-            # Default to the package's data directory
             resources_path = Path(__file__).parent.parent.parent.parent.parent / "data"
 
         self.resources_path = resources_path
@@ -98,9 +55,8 @@ class MCPDocumentationLoader:
         3. all_mcp_documents.json (original)
 
         Returns:
-            Dictionary mapping server names to documentation dictionaries
+            Dictionary mapping server names to documentation dictionaries.
         """
-        # Try data files in order of preference
         candidates = [
             self.mcp_servers_path / "ALL_MCP_SERVERS_COMPLETE.json",
             self.mcp_servers_path / "organized_servers.json",
@@ -121,9 +77,7 @@ class MCPDocumentationLoader:
             with open(all_docs_path) as f:
                 data = json.load(f)
 
-            # Handle multiple data formats
             if isinstance(data, list):
-                # List of server documents
                 docs_dict = {}
                 for doc in data:
                     name = doc.get("name") or doc.get("metadata", {}).get("name", "")
@@ -131,7 +85,6 @@ class MCPDocumentationLoader:
                         docs_dict[name] = doc
                         self._loaded_docs[name] = doc
             elif "all_servers" in data:
-                # ALL_MCP_SERVERS_COMPLETE.json format: {metadata: {}, all_servers: [...]}
                 docs_dict = {}
                 for doc in data["all_servers"]:
                     name = doc.get("name", "")
@@ -139,11 +92,9 @@ class MCPDocumentationLoader:
                         docs_dict[name] = doc
                         self._loaded_docs[name] = doc
             elif "servers" in data:
-                # Organized format: {servers: {...}}
                 docs_dict = data["servers"]
                 self._loaded_docs = docs_dict.copy()
             else:
-                # Fallback: treat as direct dictionary
                 docs_dict = data
                 self._loaded_docs = docs_dict.copy()
 
@@ -157,37 +108,26 @@ class MCPDocumentationLoader:
         """Get documentation for a specific MCP server.
 
         Args:
-            server_name: Name of the MCP server (e.g., "modelcontextprotocol/server-filesystem")
-
-        Returns:
-            Server documentation or None if not found
+            server_name: Server name (e.g., ``"modelcontextprotocol/server-filesystem"``)
         """
-        # Load all docs if not already cached
         if not self._loaded_docs:
             self.load_all_mcp_documents()
-
         return self._loaded_docs.get(server_name)
 
     def search_servers_by_category(self, category: str) -> list[dict[str, Any]]:
         """Search for MCP servers by category.
 
         Args:
-            category: Category to search for (e.g., "Databases", "File Systems")
-
-        Returns:
-            List of matching server documentation
+            category: Category to search for (e.g., ``"database"``, ``"filesystem"``)
         """
         if not self._loaded_docs:
             self.load_all_mcp_documents()
 
         matching = []
         for server_doc in self._loaded_docs.values():
-            # Handle both old and new format
             if "metadata" in server_doc:
-                # Old format
                 server_category = server_doc.get("metadata", {}).get("category", "")
             else:
-                # New format
                 server_category = server_doc.get("category", "")
 
             if category.lower() in (server_category or "").lower():
@@ -196,26 +136,20 @@ class MCPDocumentationLoader:
         return matching
 
     def search_servers_by_capability(self, capability: str) -> list[dict[str, Any]]:
-        """Search for MCP servers by capability mentioned in description.
+        """Search for MCP servers by capability in name or description.
 
         Args:
-            capability: Capability to search for
-
-        Returns:
-            List of matching server documentation
+            capability: Capability keyword to search for.
         """
         if not self._loaded_docs:
             self.load_all_mcp_documents()
 
         matching = []
         for server_doc in self._loaded_docs.values():
-            # Handle both old and new format
             if "metadata" in server_doc:
-                # Old format
                 description = server_doc.get("metadata", {}).get("description", "")
                 readme = server_doc.get("readme_content", "")
             else:
-                # New format
                 description = server_doc.get("description", "")
                 readme = server_doc.get("documentation", "")
 
@@ -227,67 +161,87 @@ class MCPDocumentationLoader:
 
         return matching
 
-    async def fetch_github_readme(self, repo_url: str) -> Document | None:
-        """Fetch README from GitHub repository.
+    async def fetch_github_readme(self, repo_url: str) -> str | None:
+        """Fetch README from a GitHub repository via the API.
+
+        Uses aiohttp directly -- no external framework dependencies.
 
         Args:
             repo_url: GitHub repository URL
+                (e.g., ``"https://github.com/owner/repo"``)
 
         Returns:
-            Document containing README content
+            README content as a string, or ``None`` on failure.
         """
-        if not LOADERS_AVAILABLE:
-            logger.warning("Haive document loaders not available")
+        try:
+            import aiohttp
+        except ImportError:
+            logger.warning("aiohttp not installed -- cannot fetch README")
             return None
 
         try:
-            loader = GitHubLoader()
-            # Extract owner and repo from URL
-            parts = repo_url.replace("https://github.com/", "").split("/")
-            if len(parts) >= 2:
-                owner, repo = parts[0], parts[1]
-                docs = await loader.load(repo=f"{owner}/{repo}", content_type="readme")
-                return docs[0] if docs else None
+            parts = repo_url.rstrip("/").replace("https://github.com/", "").split("/")
+            if len(parts) < 2:
+                return None
+            owner, repo = parts[0], parts[1]
+            api_url = f"https://api.github.com/repos/{owner}/{repo}/readme"
+
+            async with aiohttp.ClientSession() as session:
+                async with session.get(
+                    api_url,
+                    headers={"Accept": "application/vnd.github.raw+json"},
+                    timeout=aiohttp.ClientTimeout(total=15),
+                ) as resp:
+                    if resp.status == 200:
+                        return await resp.text()
+                    logger.warning(f"GitHub API returned {resp.status} for {api_url}")
+                    return None
         except Exception as e:
             logger.exception(f"Failed to fetch GitHub README: {e}")
             return None
 
-    async def fetch_server_website(self, url: str) -> Document | None:
-        """Fetch documentation from server website.
+    async def fetch_url_content(self, url: str) -> str | None:
+        """Fetch text content from a URL.
 
         Args:
-            url: Website URL
+            url: URL to fetch.
 
         Returns:
-            Document containing website content
+            Response text, or ``None`` on failure.
         """
-        if not LOADERS_AVAILABLE:
-            logger.warning("Haive document loaders not available")
+        try:
+            import aiohttp
+        except ImportError:
+            logger.warning("aiohttp not installed -- cannot fetch URL")
             return None
 
         try:
-            scraper = WebScraper()
-            docs = await scraper.load(url=url)
-            return docs[0] if docs else None
+            async with aiohttp.ClientSession() as session:
+                async with session.get(
+                    url, timeout=aiohttp.ClientTimeout(total=15)
+                ) as resp:
+                    if resp.status == 200:
+                        return await resp.text()
+                    logger.warning(f"HTTP {resp.status} for {url}")
+                    return None
         except Exception as e:
-            logger.exception(f"Failed to fetch website: {e}")
+            logger.exception(f"Failed to fetch URL: {e}")
             return None
 
     def extract_setup_info(self, server_doc: dict[str, Any]) -> dict[str, Any]:
         """Extract setup information from server documentation.
 
         Args:
-            server_doc: Server documentation dictionary
+            server_doc: Server documentation dictionary.
 
         Returns:
-            Extracted setup information
+            Extracted setup information including installation steps,
+            configuration, and usage examples.
         """
-        # Handle both old and new format
-        if "metadata" in server_doc:
-            # Old format
+        if "metadata" in server_doc and "readme_content" in server_doc:
             metadata = server_doc.get("metadata", {})
             readme = server_doc.get("readme_content", "")
-            setup_info = {
+            return {
                 "name": metadata.get("name", ""),
                 "repo_url": metadata.get("repo_url", ""),
                 "description": metadata.get("description", ""),
@@ -300,33 +254,34 @@ class MCPDocumentationLoader:
                 "usage": self._extract_usage_examples(readme),
                 "dependencies": self._extract_dependencies(readme),
             }
-        else:
-            # New format
-            readme = server_doc.get("documentation", "")
-            meta = server_doc.get("metadata", {})
-            setup_info = {
-                "name": server_doc.get("name", ""),
-                "repo_url": server_doc.get("repository", ""),
-                "description": server_doc.get("description", ""),
-                "category": server_doc.get("category", ""),
-                "platforms": [],
-                "languages": [],
-                "license": "",
-                "stars": meta.get("stars"),
-                "last_updated": meta.get("last_updated"),
-                "is_official": meta.get("is_official", False),
-                "npm_package": meta.get("npm_package"),
-                "install_command": meta.get("install_command"),
-                "setup_instructions": meta.get("setup_instructions"),
-                "transport_types": meta.get("transport_types", []),
-                "capabilities": meta.get("capabilities", []),
-                "dependencies": meta.get("dependencies", []),
-                "installation": self._extract_installation_steps(readme),
-                "configuration": self._extract_configuration(readme),
-                "usage": self._extract_usage_examples(readme),
-            }
 
-        return setup_info
+        readme = server_doc.get("documentation", "")
+        meta = server_doc.get("metadata", {})
+        return {
+            "name": server_doc.get("name", ""),
+            "repo_url": server_doc.get("repository", server_doc.get("repository_url", "")),
+            "description": server_doc.get("description", ""),
+            "category": server_doc.get("category", ""),
+            "stars": meta.get("stars") if isinstance(meta, dict) else None,
+            "last_updated": meta.get("last_updated") if isinstance(meta, dict) else None,
+            "is_official": meta.get("is_official", False) if isinstance(meta, dict) else False,
+            "npm_package": meta.get("npm_package") if isinstance(meta, dict) else None,
+            "install_command": (
+                server_doc.get("install_command")
+                or (meta.get("install_command") if isinstance(meta, dict) else None)
+            ),
+            "setup_instructions": meta.get("setup_instructions") if isinstance(meta, dict) else None,
+            "transport_types": meta.get("transport_types", []) if isinstance(meta, dict) else [],
+            "capabilities": meta.get("capabilities", []) if isinstance(meta, dict) else [],
+            "dependencies": meta.get("dependencies", []) if isinstance(meta, dict) else [],
+            "installation": self._extract_installation_steps(readme),
+            "configuration": self._extract_configuration(readme),
+            "usage": self._extract_usage_examples(readme),
+        }
+
+    # ------------------------------------------------------------------
+    # Private helpers for extracting sections from README content
+    # ------------------------------------------------------------------
 
     def _extract_installation_steps(self, readme: str | None) -> list[str]:
         """Extract installation steps from README."""
@@ -338,71 +293,42 @@ class MCPDocumentationLoader:
         in_install_section = False
 
         for line in lines:
-            lower_line = line.lower()
-
-            # Look for installation section
-            if any(
-                keyword in lower_line
-                for keyword in ["## install", "# install", "### install"]
-            ):
+            lower = line.lower()
+            if any(k in lower for k in ["## install", "# install", "### install"]):
                 in_install_section = True
                 continue
-
-            # End of installation section
             if in_install_section and line.startswith("#"):
                 break
-
-            # Collect installation steps
             if in_install_section and line.strip():
-                # Look for commands (lines with npm, pip, git, etc.)
-                if any(
-                    cmd in line
-                    for cmd in ["npm", "pip", "git", "yarn", "pnpm", "cargo", "go"]
-                ):
+                if any(cmd in line for cmd in ["npm", "npx", "uvx", "pip", "git", "yarn", "pnpm", "cargo", "go", "docker"]):
                     steps.append(line.strip())
                 elif line.strip().startswith(("$", ">", "```")):
-                    # Command line indicators
-                    clean_line = line.strip().lstrip("$>").strip()
-                    if clean_line and not clean_line.startswith("```"):
-                        steps.append(clean_line)
+                    clean = line.strip().lstrip("$>").strip()
+                    if clean and not clean.startswith("```"):
+                        steps.append(clean)
 
         return steps
 
     def _extract_configuration(self, readme: str | None) -> dict[str, Any]:
-        """Extract configuration information from README."""
+        """Extract configuration / env vars from README."""
         if not readme:
             return {}
 
-        config = {}
+        config: dict[str, Any] = {}
         lines = readme.split("\n")
-        in_config_section = False
+        in_config = False
 
-        for _i, line in enumerate(lines):
-            lower_line = line.lower()
-
-            # Look for configuration section
-            if any(
-                keyword in lower_line
-                for keyword in [
-                    "## config",
-                    "# config",
-                    "### config",
-                    "## setup",
-                    "### setup",
-                ]
-            ):
-                in_config_section = True
+        for line in lines:
+            lower = line.lower()
+            if any(k in lower for k in ["## config", "# config", "### config", "## setup", "### setup"]):
+                in_config = True
                 continue
-
-            # End of configuration section
-            if in_config_section and line.startswith("#"):
+            if in_config and line.startswith("#"):
                 break
-
-            # Look for environment variables
             if ("export" in line or "=" in line) and any(
-                var in line for var in ["API_KEY", "TOKEN", "URL", "PORT", "HOST"]
+                v in line for v in ["API_KEY", "TOKEN", "URL", "PORT", "HOST", "SECRET"]
             ):
-                parts = line.split("=")
+                parts = line.split("=", 1)
                 if len(parts) == 2:
                     key = parts[0].strip().replace("export ", "")
                     value = parts[1].strip().strip("\"'")
@@ -415,49 +341,30 @@ class MCPDocumentationLoader:
         if not readme:
             return []
 
-        examples = []
+        examples: list[str] = []
         lines = readme.split("\n")
-        in_usage_section = False
-        in_code_block = False
-        current_example = []
+        in_usage = False
+        in_code = False
+        current: list[str] = []
 
         for line in lines:
-            lower_line = line.lower()
-
-            # Look for usage section
-            if any(
-                keyword in lower_line
-                for keyword in [
-                    "## usage",
-                    "# usage",
-                    "### usage",
-                    "## example",
-                    "### example",
-                ]
-            ):
-                in_usage_section = True
+            lower = line.lower()
+            if any(k in lower for k in ["## usage", "# usage", "### usage", "## example", "### example"]):
+                in_usage = True
                 continue
-
-            # End of usage section
-            if in_usage_section and line.startswith("#") and not line.startswith("###"):
+            if in_usage and line.startswith("#") and not line.startswith("###"):
                 break
-
-            # Track code blocks
             if "```" in line:
-                if in_code_block:
-                    # End of code block
-                    if current_example:
-                        examples.append("\n".join(current_example))
-                        current_example = []
-                    in_code_block = False
+                if in_code:
+                    if current:
+                        examples.append("\n".join(current))
+                        current = []
+                    in_code = False
                 else:
-                    # Start of code block
-                    in_code_block = True
+                    in_code = True
                 continue
-
-            # Collect code examples
-            if in_usage_section and in_code_block:
-                current_example.append(line)
+            if in_usage and in_code:
+                current.append(line)
 
         return examples
 
@@ -466,18 +373,14 @@ class MCPDocumentationLoader:
         if not readme:
             return []
 
-        dependencies = []
-        lines = readme.split("\n")
-
-        for line in lines:
-            # Look for requirement patterns
+        deps: list[str] = []
+        for line in readme.split("\n"):
             if "require" in line.lower() or "depend" in line.lower():
-                # Extract package names from common patterns
                 if "npm install" in line:
                     parts = line.split("npm install")[-1].strip().split()
-                    dependencies.extend([p for p in parts if not p.startswith("-")])
+                    deps.extend(p for p in parts if not p.startswith("-"))
                 elif "pip install" in line:
                     parts = line.split("pip install")[-1].strip().split()
-                    dependencies.extend([p for p in parts if not p.startswith("-")])
+                    deps.extend(p for p in parts if not p.startswith("-"))
 
-        return list(set(dependencies))  # Remove duplicates
+        return list(set(deps))
