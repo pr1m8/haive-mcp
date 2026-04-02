@@ -4,9 +4,6 @@
 Demonstrates using langchain-mcp-adapters to convert MCP server tools
 into LangChain-compatible tools that work with any LangChain agent.
 
-This is useful when you want to use MCP tools directly with LangChain
-or LangGraph without the full haive-mcp agent framework.
-
 Usage:
     poetry run python examples/langchain_mcp_adapters.py
 
@@ -17,8 +14,6 @@ References:
 import asyncio
 
 from langchain_mcp_adapters.client import MultiServerMCPClient
-from langgraph.prebuilt import create_react_agent
-from langchain_openai import ChatOpenAI
 
 
 async def main():
@@ -29,7 +24,7 @@ async def main():
             "args": ["-y", "@modelcontextprotocol/server-filesystem", "/tmp"],
             "transport": "stdio",
         },
-        # Example with uvx (Python-based MCP servers)
+        # Python-based MCP servers use uvx:
         # "fetch": {
         #     "command": "uvx",
         #     "args": ["mcp-server-fetch"],
@@ -37,21 +32,31 @@ async def main():
         # },
     }
 
-    # Use the multi-server client to connect and get tools
-    async with MultiServerMCPClient(server_configs) as client:
-        # Get LangChain-compatible tools from all servers
-        tools = client.get_tools()
-        print(f"Available tools: {[t.name for t in tools]}")
+    # Create client and get LangChain-compatible tools
+    client = MultiServerMCPClient(server_configs)
+    tools = await client.get_tools()
 
-        # Create a LangGraph ReAct agent with the MCP tools
-        model = ChatOpenAI(model="gpt-4o-mini")
-        agent = create_react_agent(model, tools)
+    print(f"Discovered {len(tools)} tools:")
+    for tool in tools:
+        print(f"  - {tool.name}: {(tool.description or '')[:60]}")
 
-        # Run the agent
-        result = await agent.ainvoke(
-            {"messages": [{"role": "user", "content": "List files in /tmp"}]}
-        )
-        print("Result:", result["messages"][-1].content)
+    # These tools work directly with LangGraph create_react_agent:
+    #
+    #   from langgraph.prebuilt import create_react_agent
+    #   from langchain_openai import ChatOpenAI
+    #
+    #   model = ChatOpenAI(model="gpt-4o-mini")
+    #   agent = create_react_agent(model, tools)
+    #   result = await agent.ainvoke(
+    #       {"messages": [{"role": "user", "content": "List files in /tmp"}]}
+    #   )
+
+    # You can also generate these configs from the haive-mcp search:
+    #
+    #   from haive.mcp.self_query import MCPSelfQuery
+    #   sq = MCPSelfQuery()
+    #   config = sq.loader.generate_server_config("filesystem")
+    #   # config = {"command": "npx", "args": [...], "transport": "stdio"}
 
 
 if __name__ == "__main__":
