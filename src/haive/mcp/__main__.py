@@ -33,25 +33,33 @@ def discover(capability: str | None):
 
     If no capability is specified, lists all available categories.
     """
-    try:
-        from haive.mcp.documentation import MCPDocumentationLoader
+    from haive.mcp.self_query import MCPSelfQuery
 
-        loader = MCPDocumentationLoader()
-        docs = loader.load_all_mcp_documents()
-        click.echo(f"Found {len(docs)} MCP servers in database")
+    engine = MCPSelfQuery()
+    click.echo(f"MCP Server Database: {engine.server_count} servers\n")
 
-        if capability:
-            click.echo(f"\nSearching for '{capability}'...")
-            results = [
-                d for d in docs if capability.lower() in str(d).lower()
-            ]
-            click.echo(f"Found {len(results)} matching servers")
-            for doc in results[:10]:
-                name = doc.get("name", "Unknown") if isinstance(doc, dict) else str(doc)[:60]
-                click.echo(f"  - {name}")
-    except ImportError:
-        click.echo("Discovery requires the full haive-mcp installation.")
-        click.echo("Run: poetry install")
+    if capability:
+        results = engine.search(capability)
+        click.echo(f"Found {len(results)} servers matching '{capability}':\n")
+        for s in results[:15]:
+            name = s.get("name", "?")
+            desc = (s.get("description") or "")[:60]
+            click.echo(f"  {name}")
+            if desc:
+                click.echo(f"    {desc}")
+    else:
+        cats = engine.get_categories()
+        click.echo("Categories:\n")
+        for cat, count in cats.items():
+            click.echo(f"  {cat:<30} ({count} servers)")
+
+
+@cli.command("self-query")
+def self_query_cmd():
+    """Interactive self-query interface for MCP server discovery."""
+    from haive.mcp.self_query import run_interactive
+
+    run_interactive()
 
 
 @cli.command()

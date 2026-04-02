@@ -44,21 +44,29 @@ Note:
     The loader gracefully handles missing dependencies for document loaders.
 """
 
+from __future__ import annotations
+
 import json
 import logging
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
-from haive.agents.research.open_perplexity.structured_tools import (
-    GitHubLoader,
-    WebScraper,
-)
-from langchain_core.documents import Document
+if TYPE_CHECKING:
+    from langchain_core.documents import Document
 
-# Try to import haive document loaders
+# Optional imports - these require haive-agents which may not be installed
 try:
+    from haive.agents.research.open_perplexity.structured_tools import (
+        GitHubLoader,
+        WebScraper,
+    )
+    from langchain_core.documents import Document
+
     LOADERS_AVAILABLE = True
 except ImportError:
+    GitHubLoader = None
+    WebScraper = None
+    Document = None
     LOADERS_AVAILABLE = False
 
 logger = logging.getLogger(__name__)
@@ -84,30 +92,54 @@ class MCPDocumentationLoader:
     def load_all_mcp_documents(self) -> dict[str, dict[str, Any]]:
         """Load all MCP server documentation from the stored JSON.
 
+        Tries multiple data files in order of preference:
+        1. ALL_MCP_SERVERS_COMPLETE.json (full database)
+        2. organized_servers.json (organized version)
+        3. all_mcp_documents.json (original)
+
         Returns:
             Dictionary mapping server names to documentation dictionaries
         """
-        all_docs_path = self.mcp_servers_path / "all_mcp_documents.json"
+        # Try data files in order of preference
+        candidates = [
+            self.mcp_servers_path / "ALL_MCP_SERVERS_COMPLETE.json",
+            self.mcp_servers_path / "organized_servers.json",
+            self.mcp_servers_path / "all_mcp_documents.json",
+        ]
 
-        if not all_docs_path.exists():
-            logger.error(f"MCP documents file not found: {all_docs_path}")
+        all_docs_path = None
+        for candidate in candidates:
+            if candidate.exists() and candidate.stat().st_size > 200:
+                all_docs_path = candidate
+                break
+
+        if all_docs_path is None:
+            logger.error("No MCP server data files found")
             return {}
 
         try:
             with open(all_docs_path) as f:
                 data = json.load(f)
 
-            # Handle both old list format and new structured format
+            # Handle multiple data formats
             if isinstance(data, list):
-                # Old format: list of documents
+                # List of server documents
                 docs_dict = {}
                 for doc in data:
-                    if doc.get("metadata", {}).get("name"):
-                        name = doc["metadata"]["name"]
+                    name = doc.get("name") or doc.get("metadata", {}).get("name", "")
+                    if name:
                         docs_dict[name] = doc
                         self._loaded_docs[name] = doc
-            # New format: {metadata: {...}, servers: {...}}
+            elif "all_servers" in data:
+                # ALL_MCP_SERVERS_COMPLETE.json format: {metadata: {}, all_servers: [...]}
+                docs_dict = {}
+                for doc in data["all_servers"]:
+                    name = doc.get("name", "")
+                    if name:
+                        docs_dict[name] = doc
+                        self._loaded_docs[name] = doc
             elif "servers" in data:
+                # Organized format: {servers: {...}}
                 docs_dict = data["servers"]
                 self._loaded_docs = docs_dict.copy()
             else:
@@ -158,7 +190,7 @@ class MCPDocumentationLoader:
                 # New format
                 server_category = server_doc.get("category", "")
 
-            if category.lower() in server_category.lower():
+            if category.lower() in (server_category or "").lower():
                 matching.append(server_doc)
 
         return matching
@@ -188,7 +220,7 @@ class MCPDocumentationLoader:
                 readme = server_doc.get("documentation", "")
 
             if (
-                capability.lower() in description.lower()
+                capability.lower() in (description or "").lower()
                 or capability.lower() in (readme or "").lower()
             ):
                 matching.append(server_doc)
