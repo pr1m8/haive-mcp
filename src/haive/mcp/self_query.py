@@ -142,18 +142,68 @@ class MCPSelfQuery:
         }
 
 
-def run_interactive():
-    """Run the interactive self-query interface."""
-    query_engine = MCPSelfQuery()
+def _print_results(results: list[dict[str, Any]], limit: int = 20) -> None:
+    """Print search results."""
+    for i, s in enumerate(results[:limit], 1):
+        desc = (s.get("description") or "")[:65]
+        name = s.get("name", "?")
+        cat = s.get("category", "")
+        line = f"  {i:2}. {name}"
+        if cat:
+            line += f"  [{cat}]"
+        print(line)
+        if desc:
+            print(f"      {desc}")
 
-    print(f"\n  MCP Server Discovery")
-    print(f"  {query_engine.server_count} servers available\n")
+
+def _print_detail(detail: dict[str, Any]) -> None:
+    """Print server detail."""
+    name = detail["name"]
+    print(f"\n  {name}")
+    print(f"  {'=' * len(name)}")
+    if detail.get("description"):
+        print(f"  {detail['description'][:120]}")
+    if detail.get("category"):
+        print(f"  Category:  {detail['category']}")
+    if detail.get("repository_url"):
+        print(f"  Repo:      {detail['repository_url']}")
+    if detail.get("install_command"):
+        print(f"  Install:   {detail['install_command']}")
+    if detail.get("stars"):
+        print(f"  Stars:     {detail['stars']}")
+    if detail.get("languages"):
+        print(f"  Languages: {', '.join(detail['languages'])}")
+    if detail.get("license"):
+        print(f"  License:   {detail['license']}")
+    setup = detail.get("setup_info", {})
+    if setup.get("installation"):
+        print(f"  Steps:")
+        for step in setup["installation"][:5]:
+            print(f"    $ {step}")
+    if setup.get("capabilities"):
+        print(f"  Capabilities: {', '.join(setup['capabilities'][:10])}")
+
+
+def run_interactive():
+    """Run the interactive self-query interface with install support."""
+    import asyncio
+    import json as _json
+
+    query_engine = MCPSelfQuery()
+    _last_results: list[dict[str, Any]] = []
+
+    print(f"\n  haive-mcp  |  {query_engine.server_count} MCP servers")
+    print(f"  {'=' * 42}")
     print("  Commands:")
-    print("    search <query>    - Search servers by keyword")
-    print("    categories        - List all categories")
-    print("    category <name>   - List servers in a category")
-    print("    detail <name>     - Show server details")
-    print("    quit              - Exit\n")
+    print("    <query>             Search servers (default action)")
+    print("    detail <name>       Show server details + install command")
+    print("    install <name>      Search, plan, approve, and install")
+    print("    config <name>       Generate configs (langchain, claude, haive)")
+    print("    categories          List all categories")
+    print("    category <name>     List servers in a category")
+    print("    help                Show this help")
+    print("    quit                Exit")
+    print()
 
     while True:
         try:
@@ -167,20 +217,27 @@ def run_interactive():
 
         parts = user_input.split(maxsplit=1)
         cmd = parts[0].lower()
-        arg = parts[1] if len(parts) > 1 else ""
+        arg = parts[1].strip() if len(parts) > 1 else ""
 
         if cmd in ("quit", "exit", "q"):
             break
 
+        elif cmd == "help":
+            print("  search <query>   Search servers by keyword")
+            print("  detail <name>    Server details with install command")
+            print("  install <name>   Full install pipeline with HITL")
+            print("  config <name>    Generate configs for langchain/claude/haive")
+            print("  categories       List all 14 categories")
+            print("  category <name>  Servers in a category")
+            print("  quit             Exit")
+            print()
+
         elif cmd == "search" and arg:
             results = query_engine.search(arg)
+            _last_results = results
             if results:
-                print(f"\n  Found {len(results)} servers:\n")
-                for i, s in enumerate(results, 1):
-                    desc = (s.get("description") or "")[:70]
-                    print(f"  {i:2}. {s.get('name', '?')}")
-                    if desc:
-                        print(f"      {desc}")
+                print(f"\n  {len(results)} results for '{arg}':\n")
+                _print_results(results)
                 print()
             else:
                 print(f"  No servers found for '{arg}'\n")
@@ -189,17 +246,17 @@ def run_interactive():
             cats = query_engine.get_categories()
             print(f"\n  {len(cats)} categories:\n")
             for cat, count in cats.items():
-                print(f"    {cat:<30} ({count} servers)")
+                print(f"    {cat:<30} {count:>4} servers")
             print()
 
         elif cmd == "category" and arg:
             results = query_engine.loader.search_servers_by_category(arg)
             if results:
                 print(f"\n  {len(results)} servers in '{arg}':\n")
-                for s in results[:20]:
+                for s in results[:25]:
                     print(f"    - {s.get('name', '?')}")
-                if len(results) > 20:
-                    print(f"    ... and {len(results) - 20} more")
+                if len(results) > 25:
+                    print(f"    ... and {len(results) - 25} more")
                 print()
             else:
                 print(f"  No servers in category '{arg}'\n")
@@ -207,38 +264,68 @@ def run_interactive():
         elif cmd == "detail" and arg:
             detail = query_engine.get_server_detail(arg)
             if detail:
-                print(f"\n  {detail['name']}")
-                print(f"  {'=' * len(detail['name'])}")
-                if detail["description"]:
-                    print(f"  {detail['description']}")
-                if detail["category"]:
-                    print(f"  Category: {detail['category']}")
-                if detail["repository_url"]:
-                    print(f"  Repo: {detail['repository_url']}")
-                if detail["install_command"]:
-                    print(f"  Install: {detail['install_command']}")
-                setup = detail.get("setup_info", {})
-                if setup.get("installation"):
-                    print(f"  Steps:")
-                    for step in setup["installation"]:
-                        print(f"    $ {step}")
-                if setup.get("capabilities"):
-                    print(f"  Capabilities: {', '.join(setup['capabilities'])}")
+                _print_detail(detail)
                 print()
             else:
                 print(f"  Server '{arg}' not found\n")
 
-        else:
-            # Treat as search by default
-            if user_input:
-                results = query_engine.search(user_input)
-                if results:
-                    print(f"\n  Found {len(results)} servers:\n")
-                    for i, s in enumerate(results[:10], 1):
-                        desc = (s.get("description") or "")[:70]
-                        print(f"  {i:2}. {s.get('name', '?')}")
-                        if desc:
-                            print(f"      {desc}")
+        elif cmd == "config" and arg:
+            config = query_engine.loader.generate_server_config(arg)
+            if config:
+                print(f"\n  --- langchain-mcp-adapters ---")
+                lc = {arg: {k: v for k, v in config.items() if v}}
+                print(f"  {_json.dumps(lc, indent=2)}")
+                print(f"\n  --- Claude Desktop (mcp.json) ---")
+                claude = {"mcpServers": {arg: {"command": config["command"], "args": config.get("args", [])}}}
+                if config.get("env"):
+                    claude["mcpServers"][arg]["env"] = config["env"]
+                print(f"  {_json.dumps(claude, indent=2)}")
+                print()
+            else:
+                print(f"  Could not generate config for '{arg}'\n")
+
+        elif cmd == "install" and arg:
+            try:
+                from haive.mcp.installer_service import MCPInstallerService
+
+                async def _do_install():
+                    svc = MCPInstallerService(require_approval=True)
+                    plan = await svc.plan_install(arg)
+                    if plan is None:
+                        print(f"  Could not plan install for '{arg}'\n")
+                        return
+                    print(f"\n  Install plan:")
+                    print(f"    Server:     {plan.server_name}")
+                    print(f"    Command:    {plan.install_command}")
+                    print(f"    Method:     {plan.method.value} ({plan.confidence:.0%} confidence)")
+                    if plan.repository_url:
+                        print(f"    Repository: {plan.repository_url}")
                     print()
-                else:
-                    print(f"  No results. Try: search <keyword>\n")
+                    approved = await svc.approve(plan)
+                    if not approved:
+                        print("  Rejected.\n")
+                        return
+                    print(f"  Connecting...")
+                    result = await svc.install(plan)
+                    if result.success:
+                        print(f"  {result.message}")
+                        if result.tools_discovered:
+                            print(f"  Tools: {', '.join(result.tools_discovered[:10])}")
+                    else:
+                        print(f"  Failed: {result.message}")
+                    print()
+
+                asyncio.run(_do_install())
+            except Exception as e:
+                print(f"  Install error: {e}\n")
+
+        else:
+            # Default: treat input as search query
+            results = query_engine.search(user_input)
+            _last_results = results
+            if results:
+                print(f"\n  {len(results)} results:\n")
+                _print_results(results, limit=10)
+                print()
+            else:
+                print(f"  No results. Try: search <keyword>\n")
