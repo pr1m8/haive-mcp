@@ -1,11 +1,24 @@
 [tool.poetry]
 name = "haive-mcp"
 version = "0.1.0"
-description = "haive-mcp for Haive framework"
+description = "Dynamic MCP integration for AI agents - search 1,960+ servers, install with HITL approval, connect via LangChain or Docker"
 authors = ["pr1m8 <william.astley@algebraicwealth.com>"]
 license = "MIT"
 readme = "README.md"
+homepage = "https://github.com/pr1m8/haive-mcp"
+repository = "https://github.com/pr1m8/haive-mcp"
+documentation = "https://haive-mcp.readthedocs.io"
+keywords = ["mcp", "model-context-protocol", "ai-agents", "langchain", "tool-use"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Framework :: FastAPI",
+    "Typing :: Typed",
+]
 packages = [{ include = "haive", from = "src" }]
+exclude = ["data/**", "docs/**", "tests/**", "scripts/**", "project_docs/**", "examples/**", "configs/**"]
 
 [tool.poetry.scripts]
 haive-mcp = "haive.mcp.__main__:main"
@@ -40,8 +53,6 @@ pytest-html = "^4.1.1"
 
 
 [tool.poetry.group.docs.dependencies]
-# Use the shared pydevelop-docs system (contains all 43+ Sphinx extensions)
-# pydvlp-docs = { path = "../../tools/pydvlp-docs", develop = true }
 sphinx = "^8.2.3"
 sphinx-autoapi = "^3.6.0"
 sphinx-autodoc-typehints = "^3.1.0"
@@ -49,38 +60,18 @@ autodoc-pydantic = "^2.0.1"
 furo = "^2024.8.6"
 myst-parser = "^4.0.1"
 sphinx-copybutton = "^0.5.2"
-sphinx-togglebutton = "^0.3.2"
 sphinx-design = "^0.6.1"
-sphinx-tabs = "^3.4.5"
-sphinx-inline-tabs = "^2023.4.21"
 sphinxcontrib-mermaid = "^1.0.0"
-sphinxcontrib-plantuml = "^0.30"
-sphinxcontrib-blockdiag = "^3.0.0"
-sphinxcontrib-seqdiag = "^3.0.0"
-sphinx-exec-code = "^0.16"
-sphinx-runpython = "^0.4.0"
-sphinx-sitemap = "^2.6.0"
-sphinx-last-updated-by-git = "^0.3.8"
-sphinxext-opengraph = "^0.10.0"
-sphinx-reredirects = "^1.0.0"
-sphinx-favicon = "^1.0.1"
-sphinxemoji = "^0.3.1"
-sphinx-tippy = "^0.4.3"
-enum-tools = "^0.13.0"
-sphinx-toolbox = "^3.8.1"
-seed-intersphinx-mapping = "^1.2.2"
-sphinx-autobuild = "^2024.10.3"
-#sphinxcontrib-autodoc-pydantic = "^2.2.0"
 sphinx-codeautolink = "^0.17.0"
-# Additional advanced extensions
-sphinx-hoverxref = "^1.4.2"
-sphinx-paramlinks = "^0.6.0"
-sphinx-math-dollar = "^1.2.1"
-sphinx-needs = "^5.1.0"
-sphinx-prompt = "^1.10.0"
-sphinx-git = "^11.0.0"
-sphinx-changelog = "^1.6.0"
-sphinx-notfound-page = "^1.1.0"
+sphinxext-opengraph = "^0.10.0"
+sphinx-sitemap = "^2.6.0"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
