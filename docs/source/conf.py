@@ -259,27 +259,11 @@ autosummary_imported_members = True
 codeautolink_concat_default = True
 codeautolink_global_preface = "https://github.com/pr1m8/haive-mcp"
 
-# MyST parser configuration for README.md files
-source_suffix = {
-    ".rst": None,
-    ".md": "myst_parser",
-}
-
+# MyST parser handles .md files automatically when added as an extension
 myst_enable_extensions = [
     "colon_fence",
     "deflist",
     "dollarmath",
-    "fieldlist",
-    "html_admonition",
-    "html_image",
-    "linkify",
-    "replacements",
-    "smartquotes",
-    "strikethrough",
-    "substitution",
-    "tasklist",
 ]
 
-# Include README.md files in documentation
 myst_heading_anchors = 3
-myst_title_to_header = True
